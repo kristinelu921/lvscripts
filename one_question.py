@@ -37,7 +37,7 @@ async def run_one_question(
     question: str,
     video_id: str = "01",
     uid: str = "q1",
-    llm_model: str = "openai/gpt-oss-120b",
+    llm_model: str = "deepseek-ai/DeepSeek-V3.1",
     vlm_model: str = "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
 ) -> Dict[str, Any]:
     vid_path = f"{vid_dir}/{video_id}"
@@ -122,7 +122,7 @@ def main():
     parser.add_argument("video_id", help="Video id folder name, e.g., 00000048")
     parser.add_argument("uid", help="Unique id of the question, e.g., q1")
     parser.add_argument("question", help="Question text to answer")
-    parser.add_argument("--llm_model", default="openai/gpt-oss-120b")
+    parser.add_argument("--llm_model", default="deepseek-ai/DeepSeek-V3.1")
     parser.add_argument("--vlm_model", default="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8")
     args = parser.parse_args()
 

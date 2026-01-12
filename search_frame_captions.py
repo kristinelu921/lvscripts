@@ -11,8 +11,8 @@ import asyncio
 
 with open("env.json", "r") as f:
     env = json.load(f)
-    openai_key = env["openai_key"]
-os.environ["OPENAI_API_KEY"] = openai_key
+    together_key = env["together_key"]
+os.environ["TOGETHER_API_KEY"] = together_key
 
 def log(message, file_title):
     if not os.path.exists(file_title):
@@ -137,13 +137,27 @@ def embed_query(
     normalize: bool = True,
 ) -> np.ndarray:
     """Synchronous version of embed_query for CLI usage"""
-    if provider == "openai":
+    if provider == "together":
+        from together import Together
+        if not query or not isinstance(query, str):
+            raise ValueError(f"Query must be a non-empty string, got: {query}")
+        client = Together(api_key=together_key)
+        resp = client.embeddings.create(model=model_name, input=query)
+
+        vec = np.asarray(resp.data[0].embedding, dtype=np.float32)
+        # L2 normalize
+        if normalize:
+            norm = np.linalg.norm(vec)
+            if norm > 0:
+                vec = vec / norm
+        return vec
+    elif provider == "openai":
         client = OpenAI()
         # Ensure query is a non-empty string
         if not query or not isinstance(query, str):
             raise ValueError(f"Query must be a non-empty string, got: {query}")
         resp = client.embeddings.create(model=model_name, input=query)
-        
+
         vec = np.asarray(resp.data[0].embedding, dtype=np.float32)
         if normalize:
             norm = np.linalg.norm(vec)
@@ -163,14 +177,42 @@ async def embed_query_async(
     device: str = None,
     normalize: bool = True,
 ) -> np.ndarray:
+    """Embed a query string asynchronously
+
+    Args:
+        query: Query text to embed
+        provider: Provider to use ("together", "openai", or "sbert")
+        model_name: Model identifier
+        device: Device for local models (sbert only)
+        normalize: Whether to L2 normalize the embedding
+
+    Returns:
+        np.ndarray: L2-normalized embedding vector
+    """
     if provider == "openai":
         client = AsyncOpenAI()
         # Ensure query is a non-empty string
         if not query or not isinstance(query, str):
             raise ValueError(f"Query must be a non-empty string, got: {query}")
         resp = await client.embeddings.create(model=model_name, input=query)
-        
+
         vec = np.asarray(resp.data[0].embedding, dtype=np.float32)
+        if normalize:
+            norm = np.linalg.norm(vec)
+            if norm > 0:
+                vec = vec / norm
+        return vec
+    elif provider == "together":
+        # Use Together AI's async API
+        from together import AsyncTogether
+        if not query or not isinstance(query, str):
+            raise ValueError(f"Query must be a non-empty string, got: {query}")
+
+        client = AsyncTogether(api_key=together_key)
+        resp = await client.embeddings.create(model=model_name, input=query)
+
+        vec = np.asarray(resp.data[0].embedding, dtype=np.float32)
+        # L2 normalize
         if normalize:
             norm = np.linalg.norm(vec)
             if norm > 0:
@@ -222,28 +264,75 @@ def embed_texts_openai(
     #print("embedded and this is the mat: ", mat)
     return mat
 
-async def batch_embed_query_async(query_path: str, output_path: str, provider: str, model_name: str = "text-embedding-3-large", device: str = None, normalize: bool = True):
+def embed_texts_together(
+    texts: List[str],
+    model_name: str,
+    batch_size: int = 64,
+    normalize: bool = True,
+    max_chars: Optional[int] = None,
+) -> np.ndarray:
+    """Embed texts using Together AI API with BAAI models"""
+    try:
+        from together import Together
+    except Exception as e:
+        raise RuntimeError(
+            "The 'together' package is required for provider=together. Install with: pip install together"
+        ) from e
+
+    client = Together(api_key=together_key)
+
+    def _truncate(text: str) -> str:
+        if max_chars is not None and len(text) > max_chars:
+            return text[:max_chars]
+        return text
+
+    vectors: List[np.ndarray] = []
+    for start in range(0, len(texts), batch_size):
+        chunk = [_truncate(t) for t in texts[start : start + batch_size]]
+        start_time = time.time()
+        resp = client.embeddings.create(model=model_name, input=chunk)
+        end_time = time.time()
+        elapsed = end_time - start_time
+        #print(f"time for one {elapsed}")
+        for item in resp.data:
+            vectors.append(np.asarray(item.embedding, dtype=np.float32))
+
+    mat = np.vstack(vectors)
+    if normalize:
+        norms = np.linalg.norm(mat, axis=1, keepdims=True)
+        norms = np.maximum(norms, 1e-12)
+        mat = mat / norms
+    #print("embedded and this is the mat: ", mat)
+    return mat
+
+async def batch_embed_query_async(query_path: str, output_path: str, provider: str, model_name: str = "BAAI/bge-large-en-v1.5", device: str = None, normalize: bool = True):
+    """Batch embed queries using Together AI with BAAI embedder"""
     while True:
         await asyncio.sleep(2)
         #("batch task running")
         query_dict = safe_access_and_remove(query_path)
 
-        
+
         # Skip if no queries to process
         if not query_dict:
             continue
-            
+
         query_list = []
         uid_list = []
-        for uid, query in query_dict.items(): 
+        for uid, query in query_dict.items():
             query_list.append(query)
             uid_list.append(uid)
 
         #print("query list made", query_list)
-        
+
         # Only process if we have queries
         if query_list:
-            embeds = embed_texts_openai(query_list, model_name) 
+            # Use Together AI with BAAI embedder
+            if provider == "together":
+                embeds = embed_texts_together(query_list, model_name, normalize=normalize)
+            else:
+                # Fallback to OpenAI if explicitly specified
+                embeds = embed_texts_openai(query_list, model_name, normalize=normalize)
             embed_list = embeds.tolist()
             res_dict = {}
             for i in range(len(uid_list)):
@@ -375,27 +464,49 @@ def safe_remove(filepath, items_to_remove):
     raise KeyError(f"UID {items_to_remove['uid']} not found after {max_attempts} attempts")
     
 
-async def search_captions(vid_path, question_uid, query, embeddings_path, topk = 30):
-    # Directly compute the embedding without queueing/waiting
-    # Check if open-source embeddings exist, use those instead
-    import os
-    sbert_embeddings_path = embeddings_path.replace('frame_captions_enriched_embeddings.jsonl',
-                                                      'frame_captions_enriched_embeddings_sbert.jsonl')
-    if os.path.exists(sbert_embeddings_path):
-        embeddings_path = sbert_embeddings_path
-        provider = "sbert"
-        model_name = "sentence-transformers/all-MiniLM-L6-v2"
-        print(f"Using open-source embeddings: {sbert_embeddings_path}")
-    else:
-        provider = "openai"
-        model_name = "text-embedding-3-large"
-        print(f"Using OpenAI embeddings: {embeddings_path}")
+async def search_captions(vid_path, question_uid, query, embeddings_path, topk=30):
+    """Search captions using semantic similarity with Together AI BAAI embedder
 
-    # Use open-source embedding model instead of OpenAI
+    Args:
+        vid_path: Path to video directory
+        question_uid: Unique question identifier
+        query: Search query text
+        embeddings_path: Path to embeddings JSONL file
+        topk: Number of top results to return
+
+    Returns:
+        List of search results with similarity scores
+    """
+    import os
+
+    # Use Together AI with BAAI/bge-large-en-v1.5 (1024 dimensions, L2 normalized)
+    # This MUST match the model used for embedding the captions
+    provider = "together"
+    model_name = "BAAI/bge-large-en-v1.5"
+
+    print(f"Searching captions with Together AI ({model_name})")
+    print(f"Embeddings path: {embeddings_path}")
+
+    # Embed the query with the same model used for captions
     query_emb = await embed_query_async(query, provider=provider, model_name=model_name, normalize=True)
-    print(f"search for {query} embedded.")
+    print(f"✓ Query embedded: {query[:100]}..." if len(query) > 100 else f"✓ Query embedded: {query}")
+    print(f"  Query embedding shape: {query_emb.shape}")
+
+    # Load pre-computed caption embeddings
     records, matrix = load_jsonl_embeddings(embeddings_path)
+    print(f"  Loaded {len(records)} caption embeddings (shape: {matrix.shape})")
+
+    # Check dimension compatibility
+    if query_emb.shape[0] != matrix.shape[1]:
+        raise ValueError(
+            f"Dimension mismatch: query embedding has {query_emb.shape[0]} dims "
+            f"but caption embeddings have {matrix.shape[1]} dims. "
+            f"Ensure query and captions use the same embedding model."
+        )
+
+    # Find most similar captions using cosine similarity
     idx, scores = cosine_topk(query_emb, matrix, k=topk)
+
     results = []
     for rank, (i, score) in enumerate(zip(idx, scores), start=1):
         rec = dict(records[int(i)])
@@ -404,28 +515,54 @@ async def search_captions(vid_path, question_uid, query, embeddings_path, topk =
         id_cap_score["text"] = rec["text"]
         id_cap_score["similarity score"] = float(score)
         results.append(id_cap_score)
+
+    print(f"✓ Found top {len(results)} similar captions (scores: {scores[0]:.3f} to {scores[-1]:.3f})")
     message = f"Caption search results: {results}"
     log(message, f"logs/log_video_{vid_path}_{question_uid}")
     return results
     
 def main():
-    parser = argparse.ArgumentParser(description="Search most similar captions with timestamps.")
+    parser = argparse.ArgumentParser(
+        description="Search most similar captions using Together AI with BAAI/bge-large-en-v1.5 (1024 dims)"
+    )
     parser.add_argument("embeddings", help="Path to *_embeddings.jsonl produced by embed_frame_captions.py")
     parser.add_argument("--query", required=True, help="Search query text")
     parser.add_argument("--topk", type=int, default=10, help="Number of results to return")
-    parser.add_argument("--provider", choices=["sbert", "openai"], default="openai")
-    parser.add_argument("--model", default="sentence-transformers/all-MiniLM-L6-v2", help="Model name for query embedding")
+    parser.add_argument("--provider", choices=["together", "sbert", "openai"], default="together",
+                       help="Embedding provider (default: together)")
+    parser.add_argument("--model", default="BAAI/bge-large-en-v1.5",
+                       help="Model name for query embedding (default: BAAI/bge-large-en-v1.5 for Together AI)")
     parser.add_argument("--device", default=None, help="'cuda' or 'cpu' (sbert only)")
-    parser.add_argument("--env", default=None, help="Path to env.json with 'openai_key'")
+    parser.add_argument("--env", default=None, help="Path to env.json with API keys")
     parser.add_argument("--print-json", action="store_true", help="Output results as JSONL to stdout")
 
     args = parser.parse_args()
 
     _maybe_load_env_keys(args.env)
+
+    print(f"\n{'='*60}")
+    print(f"Searching with {args.provider} provider: {args.model}")
+    print(f"{'='*60}\n")
+
     records, matrix = load_jsonl_embeddings(args.embeddings)
-    if args.provider == "openai":
+    print(f"Loaded {len(records)} embeddings with dimension {matrix.shape[1]}")
+
+    # Verify dimension compatibility with BAAI/bge-large-en-v1.5 (1024 dims)
+    if args.provider == "together" and matrix.shape[1] != 1024:
+        print(f"⚠ Warning: Embeddings have {matrix.shape[1]} dimensions, but BAAI/bge-large-en-v1.5 outputs 1024 dimensions")
+        print(f"  Make sure your embeddings were created with the same model!")
+
+    # Set default models for each provider if not specified
+    if args.provider == "openai" and args.model == "BAAI/bge-large-en-v1.5":
         args.model = "text-embedding-3-small"
+        print(f"Switched to OpenAI model: {args.model}")
+    elif args.provider == "sbert" and args.model == "BAAI/bge-large-en-v1.5":
+        args.model = "sentence-transformers/all-MiniLM-L6-v2"
+        print(f"Switched to SBERT model: {args.model}")
+
     qvec = embed_query(args.query, provider=args.provider, model_name=args.model, device=args.device, normalize=True)
+    print(f"Query embedding shape: {qvec.shape}")
+
     idx, scores = cosine_topk(qvec, matrix, k=args.topk)
     
 

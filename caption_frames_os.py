@@ -1,11 +1,13 @@
-
+########## CREATES BASELINE CAPTIONS FOR ALL FRAMES ##########
 #!/usr/bin/env python3
 import os
 import json
 import time
 import asyncio
+import re
 from pathlib import Path
 from together import AsyncTogether
+from prompts import CES_log_prompt, global_summary_prompt
 import base64
 
 
@@ -15,34 +17,6 @@ with open("env.json", "r") as f:
     os.environ['TOGETHER_API_KEY'] = together_key
 
 async_client_together = AsyncTogether(api_key=together_key)
-
-
-def CES_log_prompt(captions_data):
-    return f"""
-        Here is a SET of frame-by-frame captions data for the long video. Please read it first: \n {captions_data} \n \n  Please keep track of and add to the character-log, an event-log, and a scene/location log with approximate frame numbers in this section of frames for tracking. Note that when the SCENE changes, you should mark the timestamps, so you have rough ideas of locations throughout the whole video. Same for reecurrent characters, and events. 
-        
-        IMPORTANT: ONLY append to the logs, including NOTHING else in your response.
-        IMPORTANT: The logs should be formatted as follows:
-        
-        CHARACTERS:
-        Person 1 (eg: Middle-aged Male Chef): Description: [eg: Heavyset man with a headband, wearing chef's coat]
-        
-        Person 2 (eg: Conical-Hat Swordbearer): Description:
-        
-        SCENES:
-        Scene 1 (eg: Snowy Forest) : Description: [eg: Snowy winter forest with lots of black trees and cloudy skies] [Timestamp]
-
-        EVENTS:
-        Event 1 (eg: Fight Scene): Description: [eg: Confrontation between Person A and person B, swords pulled and fighting commences, Person A is injured.] [Timestamp]
-
-        In the logs, please add a general description of each character/event/scene so that it is identifiable from the visual frames."""
-
-def global_summary_prompt(captions_data):
-    return f"""
-            Here is a SET of frame-by-frame captions data for a long video. Please read it first: \n {captions_data} \n \n 
-
-            Please output a global summary that depicts main characters, setting, plot line, vibes, and general details. """
-
 async def process_single_frame(frame_path, prompt, semaphore, results, output_file, file_lock, frame_num, total_frames, model="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8"):
     """process a single frame with async API call and semaphore control"""
 
@@ -79,6 +53,16 @@ async def process_single_frame(frame_path, prompt, semaphore, results, output_fi
 
             # Extract text from Together API response
             response_text = response.choices[0].message.content
+
+            # Append subtitle if available and requested
+            if use_subtitles and subtitle_frames:
+                # Extract frame number from path (e.g., frames/frame_0123.jpg -> 123)
+                frame_match = re.search(r'frame_(\d+)\.jpg', frame_path)
+                if frame_match:
+                    frame_num = int(frame_match.group(1))
+                    if frame_num in subtitle_frames:
+                        response_text += f" | Subtitle: {subtitle_frames[frame_num]}"
+
             result_entry = frame_path.split(".jpg")[0][-17:] + " seconds: " + response_text
 
             async with file_lock:
@@ -91,10 +75,18 @@ async def process_single_frame(frame_path, prompt, semaphore, results, output_fi
             print(f"Error processing {frame_path}: {e}")
             return None
 
-async def caption_frame_with_os(frames_dir = 'frames', output_file = 'captions/frame_captions.json', max_concurrent = 20):
-    """caption frames with tgt"""
+async def caption_frame_with_os(frames_dir = 'frames', output_file = 'captions/frame_captions.json', max_concurrent = 20, use_subtitles = False, subtitle_frames = None, model = "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8"):
+    """caption frames with tgt, optionally appending subtitles
 
-    prompt = """Please write ONE DESCRIPTIVE sentence that includes [subjects], [actions], [location/scene] if possible/relevant. Make sure to include detailed descriptions of subjects, actions, OBJECTS, large text, and the location/scene."""
+    Args:
+        frames_dir: Directory containing frame images
+        output_file: Output file for captions
+        max_concurrent: Max concurrent API calls
+        use_subtitles: Whether to append subtitles to captions
+        subtitle_frames: Dict mapping frame numbers to subtitle text {frame_num: subtitle_text}
+    """
+
+    prompt = """Please write ONE DESCRIPTIVE sentence that includes [subjects], [actions], [location/scene] if possible/relevant. Make sure to include detailed descriptions of subjects, actions, OBJECTS, large text, and the location/scene.""" #TODO: CAN OPTIMIZE HERE
 
     frames_path = Path(frames_dir)
     print(type(frames_path))
@@ -127,7 +119,7 @@ async def caption_frame_with_os(frames_dir = 'frames', output_file = 'captions/f
     
     file_lock = asyncio.Lock()
 
-    tasks = [process_single_frame(frame_path, prompt, semaphore, results, output_file, file_lock, i+1, len(frames_to_process)) for i, frame_path in enumerate(frames_to_process)]
+    tasks = [process_single_frame(frame_path, prompt, semaphore, results, output_file, file_lock, i+1, len(frames_to_process), model) for i, frame_path in enumerate(frames_to_process)]
 
     completed_tasks = await asyncio.gather(*tasks, return_exceptions=True)
 
@@ -189,7 +181,7 @@ async def create_logs(captions_dir = 'frame_captions_sorted.json', output_file =
         # Extract the actual content from the response
         if responses and responses[0]:
             # Extract the message content from the response object
-            content = responses[0].choices[0].message.content if responses[0].choices else "No content found"
+            content = str(responses[0].choices[0].message.content) if responses[0].choices else "No content found"
             
             # Remove <think> tags if present
             if "<think>" in content and "</think>" in content:
@@ -214,24 +206,55 @@ async def create_logs(captions_dir = 'frame_captions_sorted.json', output_file =
                 f.write("No response received")
     return
 
-async def process_many_captions(vid_folder):
+async def process_many_captions(vid_folder, use_subtitles=False, subtitle_mapping_path='/mnt/ssh/data/longvideobench/subtitles_frame_mapping.json', model = "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8"):
+    """Process captions for many videos, optionally with subtitles
+
+    Args:
+        vid_folder: Folder containing video directories
+        use_subtitles: Whether to use subtitles
+        subtitle_mapping_path: Path to subtitle frame mapping JSON
+    """
     curr_folder = vid_folder
     curr_paths = os.listdir(curr_folder)
     print(curr_paths)
-    for num in curr_paths[10:]:
+
+    # Load subtitle mappings if requested
+    subtitle_data = {}
+    if use_subtitles and os.path.exists(subtitle_mapping_path):
+        with open(subtitle_mapping_path, 'r') as f:
+            subtitle_data = json.load(f)
+        print(f"Loaded subtitle mappings for {len(subtitle_data)} videos")
+
+    for num in curr_paths:
+        print("num", num)
         os.makedirs(f'{curr_folder}/{num}/captions', exist_ok = True)
         #with open(f'{curr_folder}/{num}/captions/frame_captions.json', 'w') as f:
         #    json.dump([], f)
 
-    tasks = [caption_frame_with_os(frames_dir = f'{curr_folder}/{num}/frames', output_file = f'{curr_folder}/{num}/captions/frame_captions.json', max_concurrent = 10) for num in curr_paths]
+    tasks = []
+    for num in curr_paths:
+        # Get subtitle frames for this video if available
+        subtitle_frames = subtitle_data.get(num, {}).get('frames', {}) if use_subtitles else None
+        # Convert string keys to int keys
+        if subtitle_frames:
+            subtitle_frames = {int(k): v for k, v in subtitle_frames.items()}
+
+        tasks.append(caption_frame_with_os(
+            frames_dir = f'{curr_folder}/{num}/frames',
+            output_file = f'{curr_folder}/{num}/captions/frame_captions.json',
+            max_concurrent = 10,
+            use_subtitles = use_subtitles,
+            subtitle_frames = subtitle_frames,
+            model = model
+        ))
 
     completed_tasks = await asyncio.gather(*tasks, return_exceptions=True)
 
 
-async def create_captions(dirname):
-    await process_many_captions(dirname)
+async def create_captions(dirname, use_subtitles=False, model = "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8"):
+    await process_many_captions(dirname, use_subtitles=use_subtitles, model = model)
 
-async def log_many_captions(vid_folder):
+async def log_many_captions(vid_folder, model = "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8"):
     curr_folder = vid_folder
     curr_paths = os.listdir(curr_folder)
     #curr_paths = ['00000032']
@@ -241,19 +264,19 @@ async def log_many_captions(vid_folder):
 
     prompt_function = CES_log_prompt  # Rename to avoid conflict
     print(prompt_function)
-    tasks = [create_logs(captions_dir = f'{curr_folder}/{num}/captions/frame_captions_sorted.json', output_file = f'{curr_folder}/{num}/captions/CES_logs.txt', prompt_fct = prompt_function, frames_dir = f'{curr_folder}/{num}/frames') for num in curr_paths]
+    tasks = [create_logs(captions_dir = f'{curr_folder}/{num}/captions/frame_captions_sorted.json', output_file = f'{curr_folder}/{num}/captions/CES_logs.txt', prompt_fct = prompt_function, frames_dir = f'{curr_folder}/{num}/frames', model = model) for num in curr_paths]
     print(tasks)
 
     completed_tasks = await asyncio.gather(*tasks, return_exceptions=True)
     print(completed_tasks)
     print("awaited")
 
-async def summary_many_captions(vid_folder):
+async def summary_many_captions(vid_folder, model = "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8"):
     curr_folder = vid_folder
     curr_paths = os.listdir(curr_folder)
     print("curr paths: ", curr_paths)
     prompt_function = global_summary_prompt  # Rename to avoid conflict
-    tasks = [create_logs(captions_dir = f'{curr_folder}/{num}/captions/frame_captions_sorted.json', output_file = f'{curr_folder}/{num}/captions/global_summary.txt', prompt_fct = prompt_function, frames_dir = f'{curr_folder}/{num}/frames') for num in curr_paths]
+    tasks = [create_logs(captions_dir = f'{curr_folder}/{num}/captions/frame_captions_sorted.json', output_file = f'{curr_folder}/{num}/captions/global_summary.txt', prompt_fct = prompt_function, frames_dir = f'{curr_folder}/{num}/frames', model = model) for num in curr_paths]
     print(tasks)
 
     completed_tasks = await asyncio.gather(*tasks, return_exceptions=True)
@@ -265,11 +288,11 @@ async def summary_many_captions(vid_folder):
 
     print(failed_tasks)
 
-async def log_main(funct_name):
+async def log_main(funct_name, model = "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8", vid_dir = './videos_two'):
     if funct_name == "CES_logs":
-        await log_many_captions('./videos_two')
+        await log_many_captions(vid_dir, model = model)
     elif funct_name == "global_summary":
-        await summary_many_captions('./videos_two')
+        await summary_many_captions(vid_dir, model = model)
 
 def sort_captions(dirname):
     curr_paths = os.listdir(dirname)
@@ -287,10 +310,16 @@ def sort_captions(dirname):
                 json.dump(sorted_captions, f, indent=2)
             print("Saved sorted captions.")
 
-async def run_all_captions(dirname):
+async def run_all_captions(dirname, use_subtitles=False, model_vlm = "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8", model_llm = "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8"):
+    """Run complete caption pipeline with optional subtitles
+
+    Args:
+        dirname: Directory containing video folders
+        use_subtitles: Whether to integrate subtitles into captions
+    """
     # Since this is already an async function, just await the async functions directly
-    await create_captions(dirname)
-    print("CAPTIONS CREATED")
+    await create_captions(dirname, use_subtitles=use_subtitles, model = model_vlm)
+    print("CAPTIONS CREATED" + (" (with subtitles)" if use_subtitles else ""))
 
     sort_captions(dirname)
     print("SORTED CAPTIONS")
@@ -299,26 +328,32 @@ async def run_all_captions(dirname):
     await embed_many(dirname)
     print("EMBEDDED CAPTIONS")
 
-    await summary_many_captions(dirname)
+    await summary_many_captions(dirname, model = model_llm)
     print("SUMMARY PROCESSED")
 
-    await log_many_captions(dirname)
+    await log_many_captions(dirname, model = model_llm)
     print("LOGS PROCESSED")
 
 
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(
-        prog = "caption_frames_os.py", 
-        description = "captions frames"
+        prog = "caption_frames_os.py",
+        description = "captions frames with optional subtitle integration"
     )
 
-    parser.add_argument('dirname')
+    parser.add_argument('dirname', help='Directory containing video folders')
+    parser.add_argument('--use-subtitles', action='store_true',
+                        help='Append subtitles to frame captions')
+    parser.add_argument('--model-vlm', default="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
+                        help='VLM model to use')
+    parser.add_argument('--model-llm', default="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
+                        help='LLM model to use')
     args = parser.parse_args()
 
     dirname = args.dirname
 
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
-    loop.run_until_complete(run_all_captions(dirname))
+    loop.run_until_complete(run_all_captions(dirname, use_subtitles=args.use_subtitles))
     print("ALL CAPTIONS PROCESSED")

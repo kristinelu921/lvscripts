@@ -21,7 +21,6 @@ except ImportError:
 with open("env.json", "r") as f:
     env_data = json.load(f)
     together_key_PRIV = env_data["together_key"]
-    gemini_key_PRIV = env_data["gemini_key"]
 
 
 os.environ['TOGETHER_API_KEY'] = together_key_PRIV
@@ -38,108 +37,154 @@ def log(message, file_title):
             f.write(message + "\n")
 
 async def query_vlm(model, image_paths, query, max_retries=20, batch_size=30):
-    """Query VLM about frames with retry logic and error handling"""
+    """Query VLM about frames with batched images in single API call
+
+    Sends up to 30 images in ONE VLM conversation with labeled frames.
+    Implements exponential backoff if max tokens timeout occurs (30 -> 15 -> 7, etc).
+
+    Args:
+        model: VLM model name
+        image_paths: List of image file paths
+        query: Text prompt for the VLM
+        max_retries: Maximum retry attempts
+        batch_size: Initial number of images per VLM call (default 30)
+    """
     grouped_response = []
     failed_images = []
-    print("="*10 + " Querying VLM " + "="*10 + f"for image_paths {image_paths[:1]}...")
-    
+    warned_missing_files = set()  # Track files we've already warned about
+    print("="*10 + " Querying VLM " + "="*10 + f"for {len(image_paths)} images in batches of up to {batch_size}...")
+
     # Create a new async client for this request to avoid session issues
     async_client = AsyncTogether(api_key=together_key_PRIV)
-    
+
     # Process in batches to avoid overwhelming the API
-    for batch_start in range(0, len(image_paths), batch_size):
-        batch_end = min(batch_start + batch_size, len(image_paths))
+    current_batch_size = batch_size
+    batch_start = 0
+
+    while batch_start < len(image_paths):
+        batch_end = min(batch_start + current_batch_size, len(image_paths))
         batch_paths = image_paths[batch_start:batch_end]
-        
+
+        print(f"Processing batch {batch_start}-{batch_end} ({len(batch_paths)} images) with batch_size={current_batch_size}")
+
         for attempt in range(max_retries):
             if attempt > 0:
                 # Wait before retry with exponential backoff
-                wait_time = 2 ** attempt
+                wait_time = min(2 ** attempt, 60)  # Cap at 60 seconds
                 print(f"Retrying batch after {wait_time} seconds...")
                 await asyncio.sleep(wait_time)
-            
+
             try:
-                # Create tasks for images in this batch
-                tasks = []
-                for image_path in batch_paths:
+                # Build content array with labeled frames
+                content = []
+
+                # Add initial query text with frame count
+                intro_text = f"{query}\n\nYou are viewing {len(batch_paths)} frames from the video. Each frame is labeled with its position:\n"
+                content.append({"type": "text", "text": intro_text})
+
+                # Add each image with label
+                valid_images = []
+                for idx, image_path in enumerate(batch_paths, 1):
                     try:
                         # Check if file exists
                         if not os.path.exists(image_path):
-                            print(f"Warning: Image file not found: {image_path}")
-                            failed_images.append((image_path, "File not found"))
+                            # Only warn once per missing file
+                            if image_path not in warned_missing_files:
+                                print(f"Warning: Image file not found: {image_path}")
+                                failed_images.append((image_path, "File not found"))
+                                warned_missing_files.add(image_path)
                             continue
-                        
-                        # Read and encode image with error handling
-                        try:
-                            with open(image_path, "rb") as image_file:
-                                image_data = base64.b64encode(image_file.read()).decode('utf-8')
-                        except Exception as e:
-                            print(f"Error reading image {image_path}: {e}")
-                            failed_images.append((image_path, f"Read error: {e}"))
-                            continue
-                        
-                        #print(f"Querying image: {image_path}")
-                        
-                        # Create async task with timeout
-                        task = asyncio.wait_for(
-                            async_client.chat.completions.create(
-                                model=model,
-                                messages=[{
-                                    "role": "user",
-                                    "content": [
-                                        {"type": "text", "text": query},
-                                        {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_data}"}}
-                                    ]
-                                }],
-                                stream=False
-                            ),
-                            timeout=60  # 30 second timeout per image
-                        )
-                        tasks.append((image_path, task))
+
+                        # Read and encode image
+                        with open(image_path, "rb") as image_file:
+                            image_data = base64.b64encode(image_file.read()).decode('utf-8')
+
+                        # Add frame label
+                        content.append({"type": "text", "text": f"\n--- Frame {idx} ({image_path}) ---"})
+                        # Add image
+                        content.append({"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_data}"}})
+                        valid_images.append(image_path)
+
                     except Exception as e:
-                        print(f"Error preparing task for {image_path}: {e}")
-                        failed_images.append((image_path, str(e)))
-                
-                if not tasks:
-                    print("No valid tasks in batch, skipping...")
+                        print(f"Error reading image {image_path}: {e}")
+                        failed_images.append((image_path, f"Read error: {e}"))
+                        continue
+
+                if not valid_images:
+                    print("No valid images in batch, skipping...")
+                    # Move to next batch even if no valid images
+                    batch_start = batch_end
                     break
-                
-                # Execute tasks with return_exceptions to handle individual failures
-                responses = await asyncio.gather(*[task for _, task in tasks], return_exceptions=True)
-                
-                # Process responses
-                batch_failed = []
-                for (image_path, _), response in zip(tasks, responses):
-                    if isinstance(response, Exception):
-                        print(f"Failed to process {image_path}: {response}")
-                        batch_failed.append(image_path)
-                        if attempt == max_retries - 1:
-                            failed_images.append((image_path, str(response)))
+
+                print(f"Sending {len(valid_images)} images in ONE API call...")
+
+                # Make single API call with all images
+                try:
+                    response = await asyncio.wait_for(
+                        async_client.chat.completions.create(
+                            model=model,
+                            messages=[{
+                                "role": "user",
+                                "content": content
+                            }],
+                            stream=False,
+                            max_tokens=4096
+                        ),
+                        timeout=120  # 2 minute timeout for batch
+                    )
+
+                    # Extract response
+                    content_response = response.choices[0].message.content
+                    print(f"✓ Successfully processed batch with {len(valid_images)} images")
+                    print(f"Response preview: {content_response[:100]}...")
+
+                    # Store response with batch info
+                    grouped_response.append({
+                        "batch_start": batch_start,
+                        "batch_end": batch_end,
+                        "image_paths": valid_images,
+                        "response": content_response
+                    })
+
+                    # Success - move to next batch
+                    batch_start = batch_end
+                    break
+
+                except asyncio.TimeoutError:
+                    print(f"⚠ Timeout with batch_size={current_batch_size}. Reducing batch size...")
+                    # Exponential backoff: reduce batch size
+                    current_batch_size = max(current_batch_size // 2, 1)
+                    if current_batch_size < len(batch_paths):
+                        print(f"Retrying with smaller batch_size={current_batch_size}")
+                        # Re-adjust batch_end with new batch size
+                        batch_end = min(batch_start + current_batch_size, len(image_paths))
+                        batch_paths = image_paths[batch_start:batch_end]
+                        continue
                     else:
-                        try:
-                            content = response.choices[0].message.content
-                            grouped_response.append(f"timestamp: {image_path} {content}\n")
-                        except Exception as e:
-                            print(f"Error extracting response for {image_path}: {e}")
-                            batch_failed.append(image_path)
-                            if attempt == max_retries - 1:
-                                failed_images.append((image_path, f"Response error: {e}"))
-            
-                
-                # If all succeeded, move to next batch
-                if not batch_failed:
-                    break
-                    
-                # Otherwise, retry only failed images
-                batch_paths = batch_failed
-                print(f"Retrying {len(batch_failed)} failed images in batch...")
-                
+                        raise  # Re-raise if we can't reduce further
+
+                except Exception as e:
+                    error_msg = str(e).lower()
+                    if "max" in error_msg and "token" in error_msg:
+                        print(f"⚠ Max tokens error with batch_size={current_batch_size}. Reducing batch size...")
+                        # Exponential backoff: reduce batch size
+                        current_batch_size = max(current_batch_size // 2, 1)
+                        if current_batch_size < len(batch_paths):
+                            print(f"Retrying with smaller batch_size={current_batch_size}")
+                            batch_end = min(batch_start + current_batch_size, len(image_paths))
+                            batch_paths = image_paths[batch_start:batch_end]
+                            continue
+                    raise  # Re-raise other errors
+
             except Exception as e:
                 print(f"Batch processing error (attempt {attempt + 1}/{max_retries}): {e}")
                 if attempt == max_retries - 1:
                     for image_path in batch_paths:
                         if not any(img == image_path for img, _ in failed_images):
                             failed_images.append((image_path, f"Batch error: {e}"))
+                    # Move to next batch even on failure
+                    batch_start = batch_end
+                    break
 
     # Report failures
     if failed_images:
@@ -150,25 +195,39 @@ async def query_vlm(model, image_paths, query, max_retries=20, batch_size=30):
             print(f"  ... and {len(failed_images) - 5} more")
     else:
         pass
-    
-    # Condense response if we have any successful responses
+
+    # Format and condense response if we have any successful responses
     if grouped_response:
         try:
-            condensed_response = await condense_vlm_response(' '.join(grouped_response))
+            # Format batched responses with frame info
+            formatted_responses = []
+            for batch in grouped_response:
+                batch_text = f"\n=== Batch {batch['batch_start']}-{batch['batch_end']} ({len(batch['image_paths'])} frames) ===\n"
+                batch_text += f"Frames: {', '.join(batch['image_paths'])}\n"
+                batch_text += f"VLM Response: {batch['response']}\n"
+                formatted_responses.append(batch_text)
+
+            all_responses_text = '\n'.join(formatted_responses)
+
+            # Condense the batched responses
+            condensed_response = await condense_vlm_response(all_responses_text)
             if condensed_response:
                 print("CONDENSED RESPONSE: ", condensed_response[:50] + "...")
             else:
                 print("CONDENSED RESPONSE: None")
+
             return {
-                "individual responses": grouped_response, 
-                "condensed response": condensed_response,
+                "batched_responses": grouped_response,
+                "formatted_responses": formatted_responses,
+                "condensed_response": condensed_response,
                 "failed_images": failed_images
             }
         except Exception as e:
             print(f"Error condensing response: {e}")
             return {
-                "individual responses": grouped_response,
-                "condensed response": None,
+                "batched_responses": grouped_response,
+                "formatted_responses": None,
+                "condensed_response": None,
                 "failed_images": failed_images
             }
     else:

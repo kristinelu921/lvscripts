@@ -2,7 +2,7 @@
 #!/usr/bin/env python3
 """
 Critic Response Pipeline
-Re-evaluates answers with confidence < 50 using the critic's feedback
+Re-evaluates answers with confidence < 70 using the critic's feedback
 """
 
 import json
@@ -49,47 +49,23 @@ async def append_to_json_file(filepath, data):
         message = f"saved answer {data.get('uid', 'unknown')}!"
         print(f"saved answer {data.get('uid', 'unknown')}!")
         return
-    
-class Pipeline:
-    def __init__(self, llm_model_name, vlm_model_name, max_num_iterations=15):
-        # Store model names
-        self.llm_model_name = llm_model_name
-        self.vlm_model_name = vlm_model_name
-        
-        # Create client objects with model names embedded
-        self.llm = llm_model_name
-        self.vlm = vlm_model_name
-        
-        self.max_num_iterations = max_num_iterations
-        self.scratchpad = []
-        self.messages = []
-    
-    
-    def llm_query(self, prompt):
-        return query_llm(self.llm, prompt)
-    
-    async def llm_query_async(self, prompt):
-        return await query_llm_async(self.llm, prompt)
-    
-    async def vlm_query(self, image_paths, prompt):
-        result = await query_vlm(self.vlm, image_paths, prompt)
-        return result
+
+# Pipeline class is imported from os_model.py (line 11)
+# No need to redefine it here
 
 # Load environment variables
 with open("env.json", "r") as f:
     env_data = json.load(f)
     together_key = env_data["together_key"]
-    gemini_key = env_data.get("gemini_key", "")
 
 os.environ['TOGETHER_API_KEY'] = together_key
-if gemini_key:
-    os.environ['GEMINI_API_KEY'] = gemini_key
 
 
-async def query_model_iterative_with_retry(model, question, uid, vid_path, max_retries=15):
+async def query_model_iterative_with_retry(model, question, uid, vid_path, candidates=None, max_retries=15):
     """Wrapper to retry query_model_iterative if it hangs"""
     print(f"QUESTION uid {uid} being called")
-    num = vid_path[-8:]
+    # Extract video ID from path (e.g., /path/to/yU9fGAEcxJY -> yU9fGAEcxJY)
+    num = os.path.basename(vid_path)
     output_file = f"{vid_path}/{num}_re_evaluated.json"
 
     if os.path.exists(output_file):
@@ -107,17 +83,17 @@ async def query_model_iterative_with_retry(model, question, uid, vid_path, max_r
             for item in results:
                 if item["uid"] == uid:
                     print (f"already completed question {uid}")
-                    return f"Already Completed Question {uid}"
+                    return item
         except Exception as e:
             print("Checking if q already completed error")
             pass
-    
+
     for attempt in range(max_retries):
         try:
             print(f"Attempt {attempt + 1}/{max_retries} for question: {str(question)[:50]}...")
             # Set 60 second timeout for the entire iterative process
             result = await asyncio.wait_for(
-                query_model_iterative(model, question, uid, vid_path),
+                query_model_iterative(model, question, uid, vid_path, candidates=candidates),
                 timeout=180  # 3 minute timeout
             )
             print(f"Successfully completed on attempt {attempt + 1}")
@@ -175,72 +151,104 @@ async def query_model_iterative_with_retry(model, question, uid, vid_path, max_r
                     "evidence_frame_numbers": []
                 }
     return result
-def create_enhanced_prompt(assessment):
+def create_enhanced_prompt(assessment, candidates=None):
     """
     Create an enhanced prompt incorporating critic feedback
-    
+
     Args:
         assessment: Critic assessment dictionary
-    
+        candidates: Optional list of answer choices
+
     Returns:
         Enhanced question string with critic context
     """
     question = assessment["question"]
-    
+
+    # Add candidates to question if provided
+    if candidates:
+        candidates_text = "\n\nAnswer Choices:\n"
+        for i, choice in enumerate(candidates):
+            candidates_text += f"{chr(65+i)}. {choice}\n"
+        question_with_candidates = question + candidates_text
+    else:
+        question_with_candidates = question
+
     # Build enhanced prompt with critic insights
-    enhanced = f"""{question}
+    enhanced = f"""{question_with_candidates}
 IMPORTANT CONTEXT FROM PREVIOUS ANALYSIS:
 - Previous answer: {assessment.get('answer', 'Unknown')}
 - Confidence level: {assessment.get('confidence', -1)}%
 """
-    
+
     if assessment.get("possible_errors"):
         enhanced += f"\nPotential issues identified:\n"
         for error in assessment["possible_errors"]:
             enhanced += f"  - {error}\n"
-    
+
     if assessment.get("suggestion"):
         enhanced += f"\nSuggested approach: {assessment['suggestion']}\n"
-    
+
     if assessment.get("evidence_frame_numbers"):
         enhanced += f"\nKey frames to examine: {', '.join(assessment['evidence_frame_numbers'])}\n"
-    
+
     enhanced += """
 INSTRUCTIONS FOR RE-EVALUATION:
 1. Carefully examine the evidence frames mentioned above
 2. Address any concerns or potential errors identified
-3. Determine if you want to use the suggested approach if provided. 
+3. Determine if you want to use the suggested approach if provided.
 4. Be especially thorough in verifying details
-5. Look for different scenes IF NEEDED. 
+5. Look for different scenes IF NEEDED.
 6. Provide clear reasoning for your final answer
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence. Do not refuse to answer.
+
 IMPORTANT: It is ALSO TOTALLY POSSIBLE that your original answer was CORRECT. Do your best to keep the old reasoning in mind, any new reasoning you have, and compare the two and use your best judgment to determine a final answer.
 """
-    
+
     return enhanced
 
-async def query_model_iterative(model, question, question_uid, vid_path):
+async def query_model_iterative(model, question, question_uid, vid_path, candidates=None):
     """Iteratively query any open-source model to answer questions about video
-    
+
+    FOR RE-EVALUATION: model.messages should already contain ALL previous LLM history + critic messages
+
     Args:
-        question: The question to answer
-        model_name: The model to use (default: DeepSeek R1)
-        max_num_iterations: Maximum iterations for reasoning
+        question: The question to answer (enhanced with critic feedback for re-evaluation)
+        question_uid: Unique identifier for the question
+        vid_path: Path to the video directory
+        candidates: Optional list of answer choices
     """
     message = f"Querying model iterative with question: {question}"
     log(message, f"logs/log_video_{vid_path}_{question_uid}")
+
+    # Check if this is a re-evaluation (model.messages already has history)
+    is_reevaluation = len(model.messages) > 0
     global_sum_path = vid_path + "/captions/global_summary.txt"
     CES_logs_path = vid_path + "/captions/CES_logs.txt"
     with open(global_sum_path, "r") as f:
         global_summary = f.read()
-    
+
     with open(CES_logs_path, "r") as f:
         CES_log = f.read()
-    
-    question = question.strip()
-    model.messages.append({"role": "system", "content": "You are an expert at reasoning and tool-using, with the goal of answering this question about a long video. You should be able to extract detailed frame-information from videos, do caption searches, and use your findings to answer the question. You should be SUPER PICKY about your findings, NOT make assumptions, and always bias towards gathering more evidence before executing a final answer. Use EXACT evidence only. ALSO, when dealing with TEMPORAL questions, you cannot find VISUAL TIMES. If a question asks for a 'duration' of an event, you want to do many VLM queries on consecutive ranges, and find scene-changes at the beginning and end of the event. You MUST CHOOSE AN ANSWER. NONE OF THE ABOVE IS NOT ACCEPTABLE."})
-    model.messages.append({"role": "user", "content": "\n Here is a global summary of the video for general context: " + global_summary + "\n\n Here is also an INCOMPLETE character/event/scene log across the video. These will all be encountered, and there MAY BE MORE " + CES_log +
-"\nYour question is this: " + question})
-    prompt = str(model.messages) + initial_prompt(question)
+
+    if is_reevaluation:
+        print(f"🔄 RE-EVALUATION MODE: Starting with {len(model.messages)} messages from previous conversation + critic")
+        message = f"RE-EVALUATION with {len(model.messages)} messages in history"
+        log(message, f"logs/log_video_{vid_path}_{question_uid}")
+
+        # Add re-evaluation context to the existing history
+        model.messages.append({"role": "system", "content": "🔄 RE-EVALUATION MODE: You now have access to VLM tooling to verify your answer. Review the critic's feedback above, then use VLM_QUERY to visually verify the frames and determine if your original answer was correct or needs revision."})
+        model.messages.append({"role": "user", "content": f"\nRe-evaluation request: {question}"})
+    else:
+        # Original evaluation mode (shouldn't happen in critic_response.py, but keeping for safety)
+        print("⚠️ Warning: query_model_iterative called without message history in critic_response.py")
+
+        question = question.strip()
+
+        model.messages.append({"role": "system", "content": "You are an expert at reasoning and tool-using, with the goal of answering this question about a long video. You should be able to extract detailed frame-information from videos, do caption searches, and use your findings to answer the question. You should be SUPER PICKY about your findings, NOT make assumptions, and always bias towards gathering more evidence before executing a final answer. Use EXACT evidence only. ALSO, when dealing with TEMPORAL questions, you cannot find VISUAL TIMES. If a question asks for a 'duration' of an event, you want to do many VLM queries on consecutive ranges, and find scene-changes at the beginning and end of the event. You MUST CHOOSE AN ANSWER. NONE OF THE ABOVE IS NOT ACCEPTABLE."})
+        model.messages.append({"role": "user", "content": "\n Here is a global summary of the video for general context: " + global_summary + "\n\n Here is also an INCOMPLETE character/event/scene log across the video. These will all be encountered, and there MAY BE MORE " + CES_log +
+    "\nYour question is this: " + question})
+    prompt = str(model.messages) + initial_prompt(question, candidates=candidates)
     message = f"Prompt: {prompt}"
     log(message, f"logs/log_video_{vid_path}_{question_uid}")
     for i in range(model.max_num_iterations):
@@ -346,11 +354,16 @@ async def query_model_iterative(model, question, question_uid, vid_path):
                 log(message, f"logs/log_video_{vid_path}_{question_uid}")
                 new_response = {
                     "uid": question_uid,
-                    "question": question, 
-                    "answer": parsed_response.get("answer"), 
-                    "reasoning": parsed_response.get("reasoning"), 
+                    "question": question,
+                    "answer": parsed_response.get("answer"),
+                    "reasoning": parsed_response.get("reasoning"),
                     "evidence_frame_numbers": parsed_response.get("frames")  # Map "frames" to "evidence_frame_numbers"
                 }
+
+                # Include answer-specific criteria if present in response
+                if "answer_criteria" in parsed_response:
+                    new_response["answer_criteria"] = parsed_response.get("answer_criteria", [])
+
                 return new_response
             elif parsed_response.get("tool") == "VLM_QUERY":
                 print("parsed response: ", str(parsed_response)[:50] + "...")
@@ -366,37 +379,94 @@ async def query_model_iterative(model, question, question_uid, vid_path):
                 message = f"VLM response: {retrieved_info}"
                 log(message, f"logs/log_video_{vid_path}_{question_uid}")
             elif parsed_response.get("tool") == "CAPTION_SEARCH":
-                # Handle both 'input' and 'prompt' fields
+                # Handle multiple search queries or single query
                 message = f"CAPTION_SEARCH: {parsed_response}"
                 log(message, f"logs/log_video_{vid_path}_{question_uid}")
                 print("reaching parsed response get tool caption search")
-                search_query = parsed_response.get("input") or parsed_response.get("prompt")
-                if isinstance(search_query, list):
-                    search_query = search_query[0]
-                if not search_query:
-                    print("Warning: No search query found in CAPTION_SEARCH")
-                    continue
-                print("search query from json: ", search_query)
-                message = f"Search query: {search_query}"
+
+                # Check for multiple search_queries (new format)
+                search_queries = parsed_response.get("search_queries")
+
+                # Fallback to single query (legacy format)
+                if not search_queries:
+                    search_query = parsed_response.get("input") or parsed_response.get("prompt")
+                    if isinstance(search_query, list):
+                        search_queries = search_query
+                    elif search_query:
+                        search_queries = [search_query]
+                    else:
+                        print("Warning: No search query found in CAPTION_SEARCH")
+                        continue
+
+                print(f"Performing {len(search_queries)} search queries: {search_queries}")
+                message = f"Search queries ({len(search_queries)}): {search_queries}"
                 log(message, f"logs/log_video_{vid_path}_{question_uid}")
-                retrieved_info = await search_captions(vid_path, question_uid, search_query, f"{vid_path}/captions/frame_captions_sorted_embeddings.jsonl", 30)
-                # Convert list results to string
-                
-                if isinstance(retrieved_info, list):
-                    retrieved_info = json.dumps(retrieved_info, indent=2)
-                
-                message = f"Caption search results: {retrieved_info}"
+
+                # Perform all searches and collect results
+                all_results = []
+                for idx, query in enumerate(search_queries):
+                    print(f"  Query {idx+1}/{len(search_queries)}: {query}")
+                    results = await search_captions(vid_path, question_uid, query, f"{vid_path}/captions/frame_captions_sorted_embeddings.jsonl", 30)
+
+                    all_results.append({
+                        "query": query,
+                        "results": results if isinstance(results, list) else [results]
+                    })
+
+                # Format results for LLM to process
+                retrieved_info_parts = [f"Retrieved frames from {len(search_queries)} different search queries.\n"]
+                retrieved_info_parts.append("Review all results below and choose the most relevant frames for your question.\n")
+
+                for idx, query_result in enumerate(all_results):
+                    retrieved_info_parts.append(f"\n--- Query {idx+1}: \"{query_result['query']}\" ---")
+                    results = query_result['results']
+                    if isinstance(results, list) and len(results) > 0:
+                        retrieved_info_parts.append(json.dumps(results, indent=2))
+                    else:
+                        retrieved_info_parts.append("No results")
+
+                retrieved_info = "\n".join(retrieved_info_parts)
+
+                message = f"Caption search completed: {len(search_queries)} queries executed"
                 log(message, f"logs/log_video_{vid_path}_{question_uid}")
-                model.messages.append({"role": "caption search results", "content": retrieved_info})
+                model.messages.append({"role": "caption search results", "content": retrieved_info[:500]})
             else:
                 print(f"Invalid or unrecognized tool: {parsed_response.get('tool')}")
                 continue
             # Update prompt for next iteration
             if parsed_response.get("tool") == "CAPTION_SEARCH":
-                prompt = "The following is the retrieved information from the caption search: Please read through and choose the most relevant few keyframes." + "\n"
+                num_queries = len(search_queries) if 'search_queries' in locals() else 1
+                if num_queries > 1:
+                    prompt = f"""
+The following results are from {num_queries} different search queries targeting different aspects of the question.
+
+FRAME SELECTION STRATEGY:
+When analyzing these multi-query results, use your best judgment to identify the BEST scene by:
+
+1. **TIME CLUSTERING** (Most Important): Look for frames from similar time ranges across different queries
+   - Identify which time period (frame numbers) appears most frequently across queries
+   - Choose a WINDOW of frames from the same time range (e.g., if Query 1 returns frame_0050 and Query 2 returns frame_0052, these cluster together)
+   - Prefer consecutive or nearby frames that tell a complete story
+
+2. **OVERLAPPING FRAMES**: Frames that appear in multiple query results are high-confidence matches
+   - If the same frame appears in 2+ queries, it's likely relevant to multiple criteria
+
+3. **HIGH-CONFIDENCE SCORES**: Frames with high similarity scores (close to 1.0) from any query
+   - Top results from each query are strong candidates
+
+4. **CLUSTER ANALYSIS**: Look for groups of frames that cluster together temporally
+   - Example: If multiple queries return frames in the 45-55 second range, focus there
+
+Your goal: Select a WINDOW of frames from the SAME TIME PERIOD that best satisfies all the different search criteria.
+Do not pick scattered frames from different parts of the video - choose a coherent scene.
+
+Now review the results and choose the most relevant keyframes for VLM querying.
+""" + "\n"
+                else:
+                    prompt = "The following is the retrieved information from the caption search: Please read through and choose the most relevant few keyframes." + "\n"
             elif parsed_response.get("tool") == "VLM_QUERY":
                 prompt = "The following is the retrieved information from the VLM query: Please read through and see if these are the scenes you're looking for. If not, please look for different scenes. If yes, extract detailed and important evidence from them." + "\n"
-            prompt = followup_prompt(model.messages, question)
+            prompt = followup_prompt(model.messages, question, candidates=candidates)
         except Exception as e:
             message = f"Error updating prompt: {e}"
             log(message, f"logs/log_video_{vid_path}_{question_uid}")
@@ -405,7 +475,7 @@ async def query_model_iterative(model, question, question_uid, vid_path):
             continue
     
     # Return final formatted scratchpad
-    final_prompt = finish_prompt(model.messages)
+    final_prompt = finish_prompt(model.messages, candidates=candidates)
     final_answer = await model.llm_query_async(final_prompt)
     
     if not final_answer:
@@ -435,29 +505,42 @@ async def query_model_iterative(model, question, question_uid, vid_path):
             else:
                 # Return as is if not JSON
                 message = f"Final answer: {final_answer}"
+                answer = final_answer
+                if final_answer in "012345":
+                    answer = int(final_answer)
                 log(message, f"logs/log_video_{vid_path}_{question_uid}")
                 return {
                     "uid": question_uid,
                     "question": question,
-                    "answer": final_answer,
+                    "answer": answer,
                     "reasoning": "Final iteration response",
                     "evidence_frame_numbers": []
                 }
-            
+            answer = parsed_final.get("answer")
+            if answer in "012345":
+                answer = int(answer)
+            elif answer in "ABCDE":
+                answer = ord(answer) - ord('A')
             return {
                 "uid": question_uid,
                 "question": question,
-                "answer": parsed_final.get("answer", ""),
+                "answer": answer,
                 "reasoning": parsed_final.get("reasoning", ""),
                 "evidence_frame_numbers": parsed_final.get("frames", [])
             }
     except:
         pass
-    
+
+    answer = final_answer
+    if final_answer in "012345":
+        answer = int(final_answer)
+    elif final_answer in "ABCDE":
+        answer = ord(final_answer) - ord('A')
+
     return {
         "uid": question_uid,
         "question": question,
-        "answer": final_answer,
+        "answer": answer,
         "reasoning": "Could not parse final response",
         "evidence_frame_numbers": []
     }
@@ -466,8 +549,8 @@ async def re_evaluate_low_confidence_answers(
     vid_dir,
     num,
     confidence_threshold=70,
-    llm_model="openai/gpt-oss-120b",
-    vlm_model="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8"
+    llm_model="deepseek-ai/DeepSeek-V3.1",
+    vlm_model="Qwen/Qwen2.5-VL-72B-Instruct"
 ):
     """
     Re-evaluate answers with low confidence scores
@@ -482,8 +565,9 @@ async def re_evaluate_low_confidence_answers(
     
     # Load critic assessments
 
-    critic_file = f"./{vid_dir}/{num}/{num}_critic_assessment.json"
-    output_file = f"./{vid_dir}/{num}/{num}_re_evaluated.json"
+    critic_file = f"{vid_dir}/{num}/{num}_critic_assessment.json"
+    print("critic file", critic_file)
+    output_file = f"{vid_dir}/{num}/{num}_re_evaluated.json"
     if not os.path.exists(critic_file):
         with open('failure_log', 'a') as f:
             f.write('no critic file for {video_dir}/{num}')
@@ -491,18 +575,31 @@ async def re_evaluate_low_confidence_answers(
 
     with open(critic_file, 'r') as f:
         critic_assessments = json.load(f)
-    
+
+    # Load original questions with candidates
+    questions_file = f"/mnt/ssh/data/longvideobench/downloaded_videos_questions.json"
+    candidates_by_uid = {}
+    if os.path.exists(questions_file):
+        with open(questions_file, 'r') as f:
+            all_questions = json.load(f)
+            # The file structure is {video_id: [questions]}
+            for video_id, questions in all_questions.items():
+                for q in questions:
+                    candidates_by_uid[q['uid']] = q.get('candidates', [])
+
     # Identify questions needing re-evaluation
     questions_to_reevaluate = []
     for assessment in critic_assessments:
         if assessment.get("confidence", 100) < confidence_threshold:
+            # Add candidates to assessment for easy access
+            assessment['candidates'] = candidates_by_uid.get(assessment.get('uid'), [])
             questions_to_reevaluate.append(assessment)
     
     print(f"Found {len(questions_to_reevaluate)} questions with confidence < {confidence_threshold}")
     
     # Re-evaluate each low-confidence question
     re_evaluated_results = []
-    vid_path = f"./{vid_dir}/{num}"
+    vid_path = f"{vid_dir}/{num}"
         
     # Create enhanced prompt with critic feedback
     max_concurrent = 10
@@ -513,18 +610,57 @@ async def re_evaluate_low_confidence_answers(
         log(message, f"logs/log_video_{vid_path}_{assessment.get('uid')}")
         async with semaphore:
             for i in range(3):
-                enhanced_question = create_enhanced_prompt(assessment)
+                # Get candidates from the assessment
+                candidates = assessment.get('candidates', [])
+                enhanced_question = create_enhanced_prompt(assessment, candidates=candidates)
                 message = f"Enhanced question: {enhanced_question}"
                 log(message, f"logs/log_video_{vid_path}_{assessment.get('uid')}")
-                #print("ENHANCED question: ", enhanced_question)
+
+                # Create model and load ALL conversation history
                 model = Pipeline(llm_model, vlm_model, max_num_iterations=10)
+
+                # Load ALL LLM history from original conversation
+                llm_history_path = f"{vid_path}/{assessment.get('uid')}_os_model.json"
+                if os.path.exists(llm_history_path):
+                    try:
+                        with open(llm_history_path, 'r') as f:
+                            llm_history = json.load(f)
+                        print(f"✅ Loaded {len(llm_history)} messages from LLM history")
+                        model.messages.extend(llm_history)
+                        message = f"Loaded {len(llm_history)} LLM messages"
+                        log(message, f"logs/log_video_{vid_path}_{assessment.get('uid')}")
+                    except Exception as e:
+                        print(f"⚠️ Could not load LLM history: {e}")
+                else:
+                    print(f"⚠️ LLM history not found at {llm_history_path}")
+
+                # Load ALL critic messages
+                critic_history_path = f"{vid_path}/{assessment.get('uid')}_critic_model.json"
+                if os.path.exists(critic_history_path):
+                    try:
+                        with open(critic_history_path, 'r') as f:
+                            critic_history = json.load(f)
+                        print(f"✅ Loaded {len(critic_history)} messages from critic history")
+                        # Add a separator message to clearly mark critic feedback
+                        model.messages.append({"role": "system", "content": f"📋 CRITIC FEEDBACK (Confidence: {assessment.get('confidence')}%)"})
+                        model.messages.extend(critic_history)
+                        message = f"Loaded {len(critic_history)} critic messages"
+                        log(message, f"logs/log_video_{vid_path}_{assessment.get('uid')}")
+                    except Exception as e:
+                        print(f"⚠️ Could not load critic history: {e}")
+                else:
+                    print(f"⚠️ Critic history not found at {critic_history_path}")
+
+                print(f"🔄 Re-evaluation starting with {len(model.messages)} total messages (LLM + Critic)")
+                #print("ENHANCED question: ", enhanced_question)
                 try:
                     # Re-evaluate with enhanced context
                     result = await query_model_iterative_with_retry(
-                        model, 
+                        model,
                         enhanced_question,
                         assessment.get("uid", "unknown"),
                         vid_path,
+                        candidates=candidates
                     )
                     message = f"Result: {result}"
                     log(message, f"logs/log_video_{vid_path}_{assessment.get('uid')}")
@@ -559,10 +695,19 @@ async def re_evaluate_low_confidence_answers(
                     result["critic_suggestion"] = assessment.get("suggestion")
                     result["critic_evidence"] = assessment.get("evidence_frame_numbers", [])
                     result["re_evaluated"] = True
+
+                    # Add judge decision if it exists
+                    if "judge_decision" in assessment:
+                        result["judge_decision"] = assessment.get("judge_decision")
+                        result["judge_reasoning"] = assessment.get("judge_reasoning", "")
+                        result["was_reevaluated_by_judge"] = True
+                        result["critic_suggested_answer"] = assessment.get("critic_answer_choice", -1)
+                    else:
+                        result["was_reevaluated_by_judge"] = False
                     
                     # Save critic-response conversation
                     try:
-                        conv_path = f"./{vid_dir}/{num}/{assessment.get('uid')}_critic_response.json"
+                        conv_path = f"{vid_dir}/{num}/{assessment.get('uid')}_critic_response.json"
                         with open(conv_path, "w") as conv_f:
                             json.dump(model.messages, conv_f, indent=2)
                     except Exception:
@@ -629,7 +774,6 @@ async def all_vids(vid_folder, batch_size = 1):
     curr_folder = vid_folder
     curr_paths = os.listdir(curr_folder)
     print(curr_paths)
-    print(curr_paths)
     all_tasks = []
     task_info = []
 
@@ -638,7 +782,7 @@ async def all_vids(vid_folder, batch_size = 1):
     for num in curr_paths:
         all_tasks.append(re_evaluate_low_confidence_answers(vid_folder, num))
         task_info.append(num)
-    
+        
     total_tasks = len(all_tasks)
     print("LEN ALL TASKS", total_tasks)
     failed_tasks = []
