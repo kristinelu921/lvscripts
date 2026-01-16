@@ -1,0 +1,199 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_2700.jpg", "frames/frame_2701.jpg", "frames/frame_2702.jpg", "frames/frame_2703.jpg", "frames/frame_2704.jpg", "frames/frame_2705.jpg", "frames/frame_2706.jpg", "frames/frame_2707.jpg", "frames/frame_2708.jpg", "frames/frame_2709.jpg", "frames/frame_2710.jpg", "frames/frame_2711.jpg", "frames/frame_2712.jpg", "frames/frame_2713.jpg", "frames/frame_2714.jpg", "frames/frame_2715.jpg", "frames/frame_2716.jpg", "frames/frame_2717.jpg", "frames/frame_2718.jpg"],
+    "prompt": "Examine these frames to verify if answer '0' (24 white lights) is correct for 'How many white lights were on at 45:08?'. Check: 1) Is there a time display showing 45:08? 2) Are there visible white lights that are illuminated? 3) Can white light sources be clearly counted? 4) Is there a clear view of the stage/light area? 5) Are white lights distinct from colored lights? 6) Does the frame clearly show the exact number of white lights? Pay special attention to frames around 45:08 timestamp and count only distinct white light sources that are clearly turned on."
+}
+Frames to verify: ['frames/frame_2700.jpg', 'frames/frame_2701.jpg', 'frames/frame_2702.jpg', 'frames/frame_2703.jpg', 'frames/frame_2704.jpg', 'frames/frame_2705.jpg', 'frames/frame_2706.jpg', 'frames/frame_2707.jpg', 'frames/frame_2708.jpg', 'frames/frame_2709.jpg', 'frames/frame_2710.jpg', 'frames/frame_2711.jpg', 'frames/frame_2712.jpg', 'frames/frame_2713.jpg', 'frames/frame_2714.jpg', 'frames/frame_2715.jpg', 'frames/frame_2716.jpg', 'frames/frame_2717.jpg', 'frames/frame_2718.jpg']
+VLM Prompt: Video context: Based on the provided SET of frame-by-frame captions data, here is a global summary of the video:
+
+**Main Characters:**
+The main characters in the video are various female pop stars, including Christina Aguilera, Lady Gaga, Katy Perry, and others. They are the central figures performing on stage throughout the video.
+
+**Setting:**
+The setting is a concert or music festival, with a large stage and a darkened venue or outdoor amphitheater. The stage is often decorated with bright lights, large screens, and elaborate backdrops, including rainbow-colored arches, giant statues, and futuristic designs.
+
+**Plot Line:**
+The video appears to be a compilation of various performances by different artists at a concert or music festival. The plot line is not narrative-driven, but rather a collection of energetic and dynamic performances by the featured artists.
+
+**Vibes:**
+The overall vibe of the video is energetic, lively, and celebratory. The performances are high-energy, with bright lights, colorful costumes, and elaborate stage designs. The audience is often shown enthusiastically cheering, dancing, and recording the performances with their phones.
+
+**General Details:**
+The video features a diverse range of performances, including singing, dancing, and instrumental playing. The stage designs and backdrops are often elaborate and futuristic, with large screens displaying vibrant graphics and images. The audience is frequently shown holding up their phones to capture the performances, creating a sea of twinkling lights in the darkened venue. Fireworks and pyrotechnics are also used to enhance the energetic atmosphere. Overall, the video captures the excitement and energy of a live concert or music festival.
+
+Examine these frames to verify if answer '0' (24 white lights) is correct for 'How many white lights were on at 45:08?'. Check: 1) Is there a time display showing 45:08? 2) Are there visible white lights that are illuminated? 3) Can white light sources be clearly counted? 4) Is there a clear view of the stage/light area? 5) Are white lights distinct from colored lights? 6) Does the frame clearly show the exact number of white lights? Pay special attention to frames around 45:08 timestamp and count only distinct white light sources that are clearly turned on.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 19, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2700.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2701.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2702.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2703.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2704.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2705.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2706.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2707.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2708.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2709.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2710.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2711.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2712.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2713.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2714.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2715.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2716.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2717.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2718.jpg'], 'response': 'After examining the provided frames, particularly those around the timestamp corresponding to 45:08 (which appears to be approximately frame 15, based on frame numbering and typical video frame rates), I can verify the following:\n\n1. **Time Display**: There is no visible time display (e.g., clock or timestamp overlay) in any of the frames. The timestamp “45:08” is not shown on screen — it is external metadata.\n\n2. **Visible White Lights**: Yes, white lights are clearly visible, especially in frames 15–19. Frame 15 shows a stage with two large vertical arrays of bright white lights flanking a central performance area. Frame 18 and 19 show additional white spotlights illuminating performers and instruments.\n\n3. **Countability of White Lights**: In frame 15, each vertical array appears to contain 12 distinct white lights (6 on top, 6 on bottom), totaling 24. In frames 18 and 19, additional white spotlights are visible (at least 4–6 more), but these are not part of the original “24” and appear to be separate stage lights.\n\n4. **Clear View of Stage/Light Area**: Frame 15 provides a clear, wide-angle view of the stage and light arrays. Frames 18 and 19 show a closer, more detailed view with additional lighting.\n\n5. **Distinction from Colored Lights**: The white lights are clearly distinct from the blue and rainbow-colored stage elements. They appear as bright, circular, or spot-like sources against the dark background.\n\n6. **Exact Count**: In frame 15, the 24 white lights (12 per side) are arranged symmetrically and are clearly countable. However, in subsequent frames (18–19), additional white lights are active — meaning the total number of white lights “on” at 45:08 may exceed 24 if we consider all active sources.\n\n**Conclusion**:  \nThe answer “0” (24 white lights) is **incorrect** as stated — because “0” does not match the count. However, if the intended answer was “24”, then **yes, 24 white lights are clearly visible and countable in frame 15**, which corresponds to the approximate time of 45:08.\n\nBut since the given answer is explicitly **‘0’**, which implies zero white lights — this is **false**. There are clearly 24 (or more) white lights on.\n\n✅ **Final Verification**:  \n**Answer ‘0’ is incorrect.** There are 24 clearly visible, distinct, illuminated white lights in frame 15 (≈45:08), arranged in two vertical arrays of 12 each. Additional white lights appear in later frames, but 24 is a verifiable minimum count at that moment.\n\n**Correct Answer: 24** — not 0.'}], 'formatted_responses': ['\n=== Batch 0-19 (19 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2700.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2701.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2702.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2703.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2704.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2705.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2706.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2707.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2708.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2709.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2710.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2711.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2712.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2713.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2714.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2715.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2716.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2717.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2718.jpg\nVLM Response: After examining the provided frames, particularly those around the timestamp corresponding to 45:08 (which appears to be approximately frame 15, based on frame numbering and typical video frame rates), I can verify the following:\n\n1. **Time Display**: There is no visible time display (e.g., clock or timestamp overlay) in any of the frames. The timestamp “45:08” is not shown on screen — it is external metadata.\n\n2. **Visible White Lights**: Yes, white lights are clearly visible, especially in frames 15–19. Frame 15 shows a stage with two large vertical arrays of bright white lights flanking a central performance area. Frame 18 and 19 show additional white spotlights illuminating performers and instruments.\n\n3. **Countability of White Lights**: In frame 15, each vertical array appears to contain 12 distinct white lights (6 on top, 6 on bottom), totaling 24. In frames 18 and 19, additional white spotlights are visible (at least 4–6 more), but these are not part of the original “24” and appear to be separate stage lights.\n\n4. **Clear View of Stage/Light Area**: Frame 15 provides a clear, wide-angle view of the stage and light arrays. Frames 18 and 19 show a closer, more detailed view with additional lighting.\n\n5. **Distinction from Colored Lights**: The white lights are clearly distinct from the blue and rainbow-colored stage elements. They appear as bright, circular, or spot-like sources against the dark background.\n\n6. **Exact Count**: In frame 15, the 24 white lights (12 per side) are arranged symmetrically and are clearly countable. However, in subsequent frames (18–19), additional white lights are active — meaning the total number of white lights “on” at 45:08 may exceed 24 if we consider all active sources.\n\n**Conclusion**:  \nThe answer “0” (24 white lights) is **incorrect** as stated — because “0” does not match the count. However, if the intended answer was “24”, then **yes, 24 white lights are clearly visible and countable in frame 15**, which corresponds to the approximate time of 45:08.\n\nBut since the given answer is explicitly **‘0’**, which implies zero white lights — this is **false**. There are clearly 24 (or more) white lights on.\n\n✅ **Final Verification**:  \n**Answer ‘0’ is incorrect.** There are 24 clearly visible, distinct, illuminated white lights in frame 15 (≈45:08), arranged in two vertical arrays of 12 each. Additional white lights appear in later frames, but 24 is a verifiable minimum count at that moment.\n\n**Correct Answer: 24** — not 0.\n'], 'condensed_response': '**Scene Summary (≈\u202f45:08\u202f–\u202fframe\u202f15 of the batch)**  \n\n- **Setting:** A dark‑themed concert stage bathed in bright white lighting. Two tall vertical light rigs flank the central performance area.  \n- **Lighting Detail:** Each rig holds **12 distinct white lights** (six near the top, six near the bottom), giving a **total of 24 white lights** that are clearly visible and countable. Later frames (18‑19) show a few extra spotlights, but the core array remains the 24‑light configuration.  \n- **Contrast:** The white fixtures stand out sharply against surrounding blue and rainbow‑colored stage elements, making them easy to isolate.  \n- **On‑Screen Time:** No clock or timestamp is overlaid in the video; “45:08” is metadata only.  \n- **Characters/Action:** Performers (musicians and vocalists) are illuminated by the white rig, moving within the central area while the lights remain static. Their positions are easily tracked thanks to the bright, uniform illumination.  \n\n**Verification outcome:** The answer “0” (zero white lights) is **incorrect**. The scene contains **24 clearly visible white lights** (plus a few additional spotlights in later frames). The correct count is **24**.', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+⚠️ IMPORTANT: Answers use 0-INDEXED numbers where 0=A, 1=B, 2=C, 3=D, 4=E
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 19, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2700.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2701.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2702.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2703.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2704.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2705.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2706.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2707.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2708.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2709.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2710.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2711.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2712.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2713.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2714.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2715.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2716.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2717.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2718.jpg'], 'response': 'After examining the provided frames, particularly those around the timestamp corresponding to 45:08 (which appears to be approximately frame 15, based on frame numbering and typical video frame rates), I can verify the following:\n\n1. **Time Display**: There is no visible time display (e.g., clock or timestamp overlay) in any of the frames. The timestamp “45:08” is not shown on screen — it is external metadata.\n\n2. **Visible White Lights**: Yes, white lights are clearly visible, especially in frames 15–19. Frame 15 shows a stage with two large vertical arrays of bright white lights flanking a central performance area. Frame 18 and 19 show additional white spotlights illuminating performers and instruments.\n\n3. **Countability of White Lights**: In frame 15, each vertical array appears to contain 12 distinct white lights (6 on top, 6 on bottom), totaling 24. In frames 18 and 19, additional white spotlights are visible (at least 4–6 more), but these are not part of the original “24” and appear to be separate stage lights.\n\n4. **Clear View of Stage/Light Area**: Frame 15 provides a clear, wide-angle view of the stage and light arrays. Frames 18 and 19 show a closer, more detailed view with additional lighting.\n\n5. **Distinction from Colored Lights**: The white lights are clearly distinct from the blue and rainbow-colored stage elements. They appear as bright, circular, or spot-like sources against the dark background.\n\n6. **Exact Count**: In frame 15, the 24 white lights (12 per side) are arranged symmetrically and are clearly countable. However, in subsequent frames (18–19), additional white lights are active — meaning the total number of white lights “on” at 45:08 may exceed 24 if we consider all active sources.\n\n**Conclusion**:  \nThe answer “0” (24 white lights) is **incorrect** as stated — because “0” does not match the count. However, if the intended answer was “24”, then **yes, 24 white lights are clearly visible and countable in frame 15**, which corresponds to the approximate time of 45:08.\n\nBut since the given answer is explicitly **‘0’**, which implies zero white lights — this is **false**. There are clearly 24 (or more) white lights on.\n\n✅ **Final Verification**:  \n**Answer ‘0’ is incorrect.** There are 24 clearly visible, distinct, illuminated white lights in frame 15 (≈45:08), arranged in two vertical arrays of 12 each. Additional white lights appear in later frames, but 24 is a verifiable minimum count at that moment.\n\n**Correct Answer: 24** — not 0.'}], 'formatted_responses': ['\n=== Batch 0-19 (19 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2700.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2701.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2702.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2703.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2704.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2705.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2706.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2707.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2708.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2709.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2710.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2711.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2712.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2713.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2714.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2715.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2716.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2717.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2718.jpg\nVLM Response: After examining the provided frames, particularly those around the timestamp corresponding to 45:08 (which appears to be approximately frame 15, based on frame numbering and typical video frame rates), I can verify the following:\n\n1. **Time Display**: There is no visible time display (e.g., clock or timestamp overlay) in any of the frames. The timestamp “45:08” is not shown on screen — it is external metadata.\n\n2. **Visible White Lights**: Yes, white lights are clearly visible, especially in frames 15–19. Frame 15 shows a stage with two large vertical arrays of bright white lights flanking a central performance area. Frame 18 and 19 show additional white spotlights illuminating performers and instruments.\n\n3. **Countability of White Lights**: In frame 15, each vertical array appears to contain 12 distinct white lights (6 on top, 6 on bottom), totaling 24. In frames 18 and 19, additional white spotlights are visible (at least 4–6 more), but these are not part of the original “24” and appear to be separate stage lights.\n\n4. **Clear View of Stage/Light Area**: Frame 15 provides a clear, wide-angle view of the stage and light arrays. Frames 18 and 19 show a closer, more detailed view with additional lighting.\n\n5. **Distinction from Colored Lights**: The white lights are clearly distinct from the blue and rainbow-colored stage elements. They appear as bright, circular, or spot-like sources against the dark background.\n\n6. **Exact Count**: In frame 15, the 24 white lights (12 per side) are arranged symmetrically and are clearly countable. However, in subsequent frames (18–19), additional white lights are active — meaning the total number of white lights “on” at 45:08 may exceed 24 if we consider all active sources.\n\n**Conclusion**:  \nThe answer “0” (24 white lights) is **incorrect** as stated — because “0” does not match the count. However, if the intended answer was “24”, then **yes, 24 white lights are clearly visible and countable in frame 15**, which corresponds to the approximate time of 45:08.\n\nBut since the given answer is explicitly **‘0’**, which implies zero white lights — this is **false**. There are clearly 24 (or more) white lights on.\n\n✅ **Final Verification**:  \n**Answer ‘0’ is incorrect.** There are 24 clearly visible, distinct, illuminated white lights in frame 15 (≈45:08), arranged in two vertical arrays of 12 each. Additional white lights appear in later frames, but 24 is a verifiable minimum count at that moment.\n\n**Correct Answer: 24** — not 0.\n'], 'condensed_response': '**Scene Summary (≈\u202f45:08\u202f–\u202fframe\u202f15 of the batch)**  \n\n- **Setting:** A dark‑themed concert stage bathed in bright white lighting. Two tall vertical light rigs flank the central performance area.  \n- **Lighting Detail:** Each rig holds **12 distinct white lights** (six near the top, six near the bottom), giving a **total of 24 white lights** that are clearly visible and countable. Later frames (18‑19) show a few extra spotlights, but the core array remains the 24‑light configuration.  \n- **Contrast:** The white fixtures stand out sharply against surrounding blue and rainbow‑colored stage elements, making them easy to isolate.  \n- **On‑Screen Time:** No clock or timestamp is overlaid in the video; “45:08” is metadata only.  \n- **Characters/Action:** Performers (musicians and vocalists) are illuminated by the white rig, moving within the central area while the lights remain static. Their positions are easily tracked thanks to the bright, uniform illumination.  \n\n**Verification outcome:** The answer “0” (zero white lights) is **incorrect**. The scene contains **24 clearly visible white lights** (plus a few additional spotlights in later frames). The correct count is **24**.', 'failed_images': []}
+
+Question Being Answered: How many white lights were on at 45:08?
+
+Answer Choices (0-indexed: 0=A, 1=B, 2=C, 3=D, 4=E):
+  0 (=A): 24
+  1 (=B): 20
+  2 (=C): 6
+  3 (=D): 5
+
+Given Answer: 0
+Evidence Frames Used: ['frames/frame_2705.jpg', 'frames/frame_2706.jpg', 'frames/frame_2707.jpg', 'frames/frame_2708.jpg', 'frames/frame_2709.jpg', 'frames/frame_2710.jpg', 'frames/frame_2711.jpg', 'frames/frame_2712.jpg', 'frames/frame_2713.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Person 1 (Female Singer): Description: Blonde woman wearing a green and black zebra-print outfit, singing into a microphone on a stage.
+Person 2 (Drummer): Description: Man with short dark hair, wearing a white shirt with a black pattern, playing drums on a stage.
+Person 3 (Guitarist): Description: Man with curly blonde hair, wearing a black and white patterned shirt, playing an electric guitar on a stage.
+Person 4 (Female Guitarist): Description: Woman with curly blonde hair, wearing a black and white patterned dress, playing an electric guitar on a stage.
+
+SCENES:
+Scene 1 (Concert Venue) : Description: A large crowd is gathered in a darkened venue, watching a concert on a stage with bright lights and large screens. [Frame 1-18]
+Scene 2 (Drumming Performance) : Description: A man is playing drums on a dark stage with blue lighting. [Frame 19-30]
+Scene 3 (Guitar Performance) : Description: A woman is playing an electric guitar on a stage with a blue and purple background. [Frame 34-46]
+Scene 4 (Christina Aguilera Performance) : Description: Christina Aguilera is singing into a microphone on a stage with a pink background and a band behind her. [Frame 106-114]
+Scene 5 (Lady Gaga Performance) : Description: Lady Gaga is performing on a stage with a green and black zebra-print outfit and a microphone. [Frame 130-133]
+Scene 6 (Outdoor Concert) : Description: A large crowd is gathered in a darkened outdoor venue, watching a concert on a stage with bright lights and large screens. [Frame 151-154]
+Scene 7 (Rainbow Stage) : Description: A stage is set with a large rainbow-colored arch and a band performing in front of it, surrounded by a crowd of people in a darkened venue. [Frame 162-166]
+Scene 8 (Red Stage) : Description: A stage is lit up with red lights, and a performer is singing into a microphone, surrounded by dancers in red and black outfits. [Frame 369-375]
+Scene 9 (Fireworks Display) : Description: Fireworks are exploding in the night sky above a stage with a large screen displaying a performer. [Frame 4970-4972]
+
+EVENTS:
+Event 1 (Concert Start) : Description: The concert begins with a large screen displaying "PRESS START" in white pixelated font. [Frame 1]
+Event 2 (Drumming Solo) : Description: The drummer is enthusiastically playing a large drum set on a darkened stage with blue lighting. [Frame 23]
+Event 3 (Guitar Solo) : Description: The female guitarist is playing an electric guitar on a stage with a blue and purple background. [Frame 34]
+Event 4 (Christina Aguilera Sings) : Description: Christina Aguilera is singing into a microphone on a stage with a pink background. [Frame 106]
+Event 5 (Lady Gaga Performs) : Description: Lady Gaga is performing on a stage with a green and black zebra-print outfit and a microphone. [Frame 130]
+Event 6 (Fireworks Display) : Description: Fireworks are exploding in the night sky above a stage with a large screen displaying a performer. [Frame 4970]
+
+================================================================================
+Generated at: 2026-01-11 21:46:08
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. Time display showing 45:08 in the video
+  Q2. Visible white lights that are illuminated/turned on
+  Q3. Countable white light sources in the frame
+  Q4. Clear view of stage/area where lights are located
+  Q5. Distinct white lights separate from other colored lights
+  Q6. Frame clearly shows the number of white lights that are on
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 6)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, ALWAYS pick what YOU think is the best answer choice:
+   - Review ALL answer choices listed above (A, B, C, D, E, etc.) and their content
+   - Based ONLY on the VLM visual evidence, determine which answer choice CONTENT is MOST correct
+   - Find the INDEX of that answer choice in the list
+   - ⚠️ CRITICAL: Output the INDEX (0, 1, 2, 3, or 4), NOT the literal answer content
+   - Example: If choice C (index 2) says "5 people" and you counted 5 people, output 2 (not 5!)
+   - Example: If choice B (index 1) says "Robert Hardy" and that's correct, output 1 (not "Robert Hardy"!)
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 6,
+    "criteria_percentage": <criteria_passed / 6>,
+    "base_confidence": <(criteria_passed / 6) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <INDEX of best answer choice: MUST be exactly 0, 1, 2, 3, or 4 (where 0=A, 1=B, 2=C, 3=D, 4=E). Output the INDEX not the content!>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- ⚠️ CRITICAL: critic_answer_choice must be an INDEX (0-4), never a literal answer like "5" or "Robert Hardy"
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "Time display showing 45:08 in the video",
+            "criterion_type": "QUESTION",
+            "status": "FAIL",
+            "reasoning": "VLM explicitly states 'There is no visible time display (e.g., clock or timestamp overlay) in any of the frames'"
+        },
+        {
+            "criterion": "Visible white lights that are illuminated/turned on",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms 'white lights are clearly visible, especially in frames 15-19' and '24 clearly visible, distinct, illuminated white lights'"
+        },
+        {
+            "criterion": "Countable white light sources in the frame",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM states '24 white lights are clearly visible and countable in frame 15' with specific arrangement details"
+        },
+        {
+            "criterion": "Clear view of stage/area where lights are located",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM states 'Frame 15 provides a clear, wide-angle view of the stage and light arrays'"
+        },
+        {
+            "criterion": "Distinct white lights separate from other colored lights",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms 'The white lights are clearly distinct from the blue and rainbow-colored stage elements'"
+        },
+        {
+            "criterion": "Frame clearly shows the number of white lights that are on",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM states '24 white lights are clearly visible and countable in frame 15' with specific count verification"
+        }
+    ],
+    "question_criteria_passed": 5,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 5,
+    "criteria_total": 6,
+    "criteria_percentage": 0.8333,
+    "base_confidence": 83.33,
+    "confidence": 83.33,
+    "critic_answer_choice": 0,
+    "critic_reasoning": "The VLM clearly verifies 24 white lights are visible and countable in frame 15, which corresponds to the approximate time of 45:08. This matches answer choice 0 (A) which states '24'.",
+    "possible_errors": [
+        "No visible time display showing 45:08 in the frames - timestamp is external metadata only"
+    ],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'Time display showing 45:08 in the video', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': "VLM explicitly states 'There is no visible time display (e.g., clock or timestamp overlay) in any of the frames'"}, {'criterion': 'Visible white lights that are illuminated/turned on', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM confirms 'white lights are clearly visible, especially in frames 15-19' and '24 clearly visible, distinct, illuminated white lights'"}, {'criterion': 'Countable white light sources in the frame', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM states '24 white lights are clearly visible and countable in frame 15' with specific arrangement details"}, {'criterion': 'Clear view of stage/area where lights are located', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM states 'Frame 15 provides a clear, wide-angle view of the stage and light arrays'"}, {'criterion': 'Distinct white lights separate from other colored lights', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM confirms 'The white lights are clearly distinct from the blue and rainbow-colored stage elements'"}, {'criterion': 'Frame clearly shows the number of white lights that are on', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM states '24 white lights are clearly visible and countable in frame 15' with specific count verification"}], 'question_criteria_passed': 5, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 5, 'criteria_total': 6, 'criteria_percentage': 0.8333, 'base_confidence': 83.33, 'confidence': 83.33, 'critic_answer_choice': 0, 'critic_reasoning': "The VLM clearly verifies 24 white lights are visible and countable in frame 15, which corresponds to the approximate time of 45:08. This matches answer choice 0 (A) which states '24'.", 'possible_errors': ['No visible time display showing 45:08 in the frames - timestamp is external metadata only'], 'suggestion': None}

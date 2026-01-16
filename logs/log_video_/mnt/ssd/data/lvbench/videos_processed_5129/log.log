@@ -1,0 +1,199 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0100.jpg", "frames/frame_0101.jpg", "frames/frame_0102.jpg", "frames/frame_0103.jpg", "frames/frame_0104.jpg", "frames/frame_0105.jpg", "frames/frame_0106.jpg", "frames/frame_0107.jpg", "frames/frame_0108.jpg", "frames/frame_0109.jpg", "frames/frame_0110.jpg", "frames/frame_0111.jpg", "frames/frame_0112.jpg", "frames/frame_0113.jpg", "frames/frame_0114.jpg", "frames/frame_0115.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '0' is correct for the question: Which animal's picture does Sierra show to the audience? Check the question criteria: ['A person named Sierra is present in the frame', 'Sierra is showing a picture to the audience', 'The picture contains an animal', 'The animal in the picture is clearly visible and identifiable']. Pay attention to timestamps and temporal sequences. Look for any person showing pictures to the audience and identify what animal is in the picture if present."
+}
+Frames to verify: ['frames/frame_0100.jpg', 'frames/frame_0101.jpg', 'frames/frame_0102.jpg', 'frames/frame_0103.jpg', 'frames/frame_0104.jpg', 'frames/frame_0105.jpg', 'frames/frame_0106.jpg', 'frames/frame_0107.jpg', 'frames/frame_0108.jpg', 'frames/frame_0109.jpg', 'frames/frame_0110.jpg', 'frames/frame_0111.jpg', 'frames/frame_0112.jpg', 'frames/frame_0113.jpg', 'frames/frame_0114.jpg', 'frames/frame_0115.jpg']
+VLM Prompt: Video context: Based on the provided frame-by-frame captions data, here is a global summary of the video:
+
+**Main Characters:**
+
+1. Jerry Springer (drag queen and TV host)
+2. Jerry Springer (real TV host, an older man with white hair)
+3. Various guests and contestants on the show, including women with pink hair, blonde hair, and others with different hairstyles and clothing.
+
+**Setting:**
+
+The video is set in a television studio, specifically on the set of "The Jerry Springer Show". The studio features a colorful and lively atmosphere with purple and green lights, brick walls, large windows, and various stage props.
+
+**Plot Line:**
+
+The video appears to be a compilation of clips from different episodes of "The Jerry Springer Show". The plot lines revolve around various themes, including:
+
+1. Relationship conflicts and disputes between guests, often involving infidelity and romantic entanglements.
+2. Dramatic confrontations and physical altercations between guests, sometimes involving security guards.
+3. Interviews and discussions between Jerry Springer (the real host) and the guests, often with a comedic or sensational tone.
+
+**Vibes:**
+
+The overall vibe of the video is lively, dramatic, and entertaining, with a touch of camp and humor. The show's atmosphere is energetic and chaotic, with a focus on creating conflict and drama between the guests.
+
+**General Details:**
+
+1. The show features a mix of comedic and serious moments, with a focus on entertainment and spectacle.
+2. The guests on the show are diverse in terms of their age, ethnicity, and background.
+3. The show's format involves a mix of interviews, discussions, and confrontations, often with unexpected twists and turns.
+4. The video includes various graphics and captions, including the show's title, episode themes, and promotional messages.
+5. The overall tone of the video is lighthearted and humorous, with a touch of irony and satire.
+
+Overall, the video is a compilation of entertaining and dramatic moments from "The Jerry Springer Show", showcasing the show's unique blend of conflict, humor, and spectacle.
+
+Based on these frames (including context before/after), verify if the answer '0' is correct for the question: Which animal's picture does Sierra show to the audience? Check the question criteria: ['A person named Sierra is present in the frame', 'Sierra is showing a picture to the audience', 'The picture contains an animal', 'The animal in the picture is clearly visible and identifiable']. Pay attention to timestamps and temporal sequences. Look for any person showing pictures to the audience and identify what animal is in the picture if present.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 16, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0100.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0101.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0102.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0103.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0104.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0105.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0106.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0107.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0108.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0109.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0110.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0111.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0112.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0113.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0114.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0115.jpg'], 'response': "The answer **'0'** is **correct**.\n\nHere’s the verification based on the question criteria:\n\n1. **A person named Sierra is present in the frame**  \n   ✅ Yes. Frames 3–9 and 14–16 clearly identify the guest as “SIERRA” via on-screen graphics (e.g., “SIERRA Upset her roommate took their dog”).\n\n2. **Sierra is showing a picture to the audience**  \n   ❌ No. Sierra is speaking and gesturing, but she is **not** physically holding or presenting a picture to the audience. In frames 10–11, a picture is displayed on a **screen behind** her and Jerry Springer — it is **not** being shown *by Sierra*.\n\n3. **The picture contains an animal**  \n   ⚠️ Partially. The image on the screen in frames 10–11 appears to show a **dog** (consistent with the caption “Upset her roommate took their dog”). However, the dog is not clearly visible or identifiable — it’s a small, blurry image on a distant monitor.\n\n4. **The animal in the picture is clearly visible and identifiable**  \n   ❌ No. The dog in the image on the screen is too small and low-resolution to be clearly identified.\n\n---\n\n### Conclusion:\nSince **Sierra is not the one showing the picture** (it’s displayed on a screen by production), and the **animal is not clearly visible or identifiable**, the criteria are **not met**.\n\nTherefore, the correct answer is **'0'** — meaning **no such event occurs** as described in the question.\n\n✅ Final Answer: **0**"}], 'formatted_responses': ["\n=== Batch 0-16 (16 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0100.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0101.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0102.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0103.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0104.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0105.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0106.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0107.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0108.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0109.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0110.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0111.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0112.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0113.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0114.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0115.jpg\nVLM Response: The answer **'0'** is **correct**.\n\nHere’s the verification based on the question criteria:\n\n1. **A person named Sierra is present in the frame**  \n   ✅ Yes. Frames 3–9 and 14–16 clearly identify the guest as “SIERRA” via on-screen graphics (e.g., “SIERRA Upset her roommate took their dog”).\n\n2. **Sierra is showing a picture to the audience**  \n   ❌ No. Sierra is speaking and gesturing, but she is **not** physically holding or presenting a picture to the audience. In frames 10–11, a picture is displayed on a **screen behind** her and Jerry Springer — it is **not** being shown *by Sierra*.\n\n3. **The picture contains an animal**  \n   ⚠️ Partially. The image on the screen in frames 10–11 appears to show a **dog** (consistent with the caption “Upset her roommate took their dog”). However, the dog is not clearly visible or identifiable — it’s a small, blurry image on a distant monitor.\n\n4. **The animal in the picture is clearly visible and identifiable**  \n   ❌ No. The dog in the image on the screen is too small and low-resolution to be clearly identified.\n\n---\n\n### Conclusion:\nSince **Sierra is not the one showing the picture** (it’s displayed on a screen by production), and the **animal is not clearly visible or identifiable**, the criteria are **not met**.\n\nTherefore, the correct answer is **'0'** — meaning **no such event occurs** as described in the question.\n\n✅ Final Answer: **0**\n"], 'condensed_response': '**Scene Summary (frames\u202f0100‑0115 ≈\u202f0:00–0:05\u202fs)**  \n\n| Frames | Key Visuals | Characters / Actions |\n|--------|-------------|----------------------|\n| **0100‑0102** | Opening wide‑shot of the talk‑show set. |\u202fJerry Springer stands center‑stage; **Sierra** enters from stage right, greeted by the audience. |\n| **0103‑0108** | Medium‑close of Sierra. On‑screen graphic reads **“SIERRA – Upset her roommate took their dog.”** |\u202fSierra speaks animatedly, gesturing with her hands. No object is in her grasp. |\n| **0109‑0111** | Cut to a background monitor. A tiny, blurry image of a **dog** appears over the graphic caption. |\u202fThe picture is **displayed by the production screen**, not handed to the audience by Sierra. |\n| **0112‑0114** | Return to Sierra‑Jerry two‑shot. Sierra continues her monologue; Jerry nods. |\u202fSierra never physically presents the picture; the dog image remains small and low‑resolution. |\n| **0115** | End‑shot of the set as the segment fades out. |\u202fNo further interaction with the picture. |\n\n**Character‑tracking verdict**\n\n- **Sierra** is present throughout the segment (frames\u202f3‑9,\u202f14‑16).  \n- **Picture involvement:** a dog picture is shown **on a background screen**, not **shown by Sierra**.  \n- **Animal visibility:** the dog is only a tiny, blurry thumbnail—**not clearly identifiable**.  \n\n**Conclusion:** The criteria “Sierra shows a picture containing a clearly visible animal” are not satisfied; therefore the correct answer is **0**.', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 16, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0100.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0101.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0102.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0103.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0104.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0105.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0106.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0107.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0108.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0109.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0110.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0111.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0112.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0113.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0114.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0115.jpg'], 'response': "The answer **'0'** is **correct**.\n\nHere’s the verification based on the question criteria:\n\n1. **A person named Sierra is present in the frame**  \n   ✅ Yes. Frames 3–9 and 14–16 clearly identify the guest as “SIERRA” via on-screen graphics (e.g., “SIERRA Upset her roommate took their dog”).\n\n2. **Sierra is showing a picture to the audience**  \n   ❌ No. Sierra is speaking and gesturing, but she is **not** physically holding or presenting a picture to the audience. In frames 10–11, a picture is displayed on a **screen behind** her and Jerry Springer — it is **not** being shown *by Sierra*.\n\n3. **The picture contains an animal**  \n   ⚠️ Partially. The image on the screen in frames 10–11 appears to show a **dog** (consistent with the caption “Upset her roommate took their dog”). However, the dog is not clearly visible or identifiable — it’s a small, blurry image on a distant monitor.\n\n4. **The animal in the picture is clearly visible and identifiable**  \n   ❌ No. The dog in the image on the screen is too small and low-resolution to be clearly identified.\n\n---\n\n### Conclusion:\nSince **Sierra is not the one showing the picture** (it’s displayed on a screen by production), and the **animal is not clearly visible or identifiable**, the criteria are **not met**.\n\nTherefore, the correct answer is **'0'** — meaning **no such event occurs** as described in the question.\n\n✅ Final Answer: **0**"}], 'formatted_responses': ["\n=== Batch 0-16 (16 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0100.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0101.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0102.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0103.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0104.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0105.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0106.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0107.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0108.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0109.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0110.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0111.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0112.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0113.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0114.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0115.jpg\nVLM Response: The answer **'0'** is **correct**.\n\nHere’s the verification based on the question criteria:\n\n1. **A person named Sierra is present in the frame**  \n   ✅ Yes. Frames 3–9 and 14–16 clearly identify the guest as “SIERRA” via on-screen graphics (e.g., “SIERRA Upset her roommate took their dog”).\n\n2. **Sierra is showing a picture to the audience**  \n   ❌ No. Sierra is speaking and gesturing, but she is **not** physically holding or presenting a picture to the audience. In frames 10–11, a picture is displayed on a **screen behind** her and Jerry Springer — it is **not** being shown *by Sierra*.\n\n3. **The picture contains an animal**  \n   ⚠️ Partially. The image on the screen in frames 10–11 appears to show a **dog** (consistent with the caption “Upset her roommate took their dog”). However, the dog is not clearly visible or identifiable — it’s a small, blurry image on a distant monitor.\n\n4. **The animal in the picture is clearly visible and identifiable**  \n   ❌ No. The dog in the image on the screen is too small and low-resolution to be clearly identified.\n\n---\n\n### Conclusion:\nSince **Sierra is not the one showing the picture** (it’s displayed on a screen by production), and the **animal is not clearly visible or identifiable**, the criteria are **not met**.\n\nTherefore, the correct answer is **'0'** — meaning **no such event occurs** as described in the question.\n\n✅ Final Answer: **0**\n"], 'condensed_response': '**Scene Summary (frames\u202f0100‑0115 ≈\u202f0:00–0:05\u202fs)**  \n\n| Frames | Key Visuals | Characters / Actions |\n|--------|-------------|----------------------|\n| **0100‑0102** | Opening wide‑shot of the talk‑show set. |\u202fJerry Springer stands center‑stage; **Sierra** enters from stage right, greeted by the audience. |\n| **0103‑0108** | Medium‑close of Sierra. On‑screen graphic reads **“SIERRA – Upset her roommate took their dog.”** |\u202fSierra speaks animatedly, gesturing with her hands. No object is in her grasp. |\n| **0109‑0111** | Cut to a background monitor. A tiny, blurry image of a **dog** appears over the graphic caption. |\u202fThe picture is **displayed by the production screen**, not handed to the audience by Sierra. |\n| **0112‑0114** | Return to Sierra‑Jerry two‑shot. Sierra continues her monologue; Jerry nods. |\u202fSierra never physically presents the picture; the dog image remains small and low‑resolution. |\n| **0115** | End‑shot of the set as the segment fades out. |\u202fNo further interaction with the picture. |\n\n**Character‑tracking verdict**\n\n- **Sierra** is present throughout the segment (frames\u202f3‑9,\u202f14‑16).  \n- **Picture involvement:** a dog picture is shown **on a background screen**, not **shown by Sierra**.  \n- **Animal visibility:** the dog is only a tiny, blurry thumbnail—**not clearly identifiable**.  \n\n**Conclusion:** The criteria “Sierra shows a picture containing a clearly visible animal” are not satisfied; therefore the correct answer is **0**.', 'failed_images': []}
+
+Question Being Answered: Which animal's picture does Sierra show to the audience?
+
+Answer Choices:
+A. The dog's pictures
+B. The cat's picture
+C. The pig's pictures
+D. The sheep's picture
+
+Given Answer: 0
+Evidence Frames Used: ['frames/frame_0105.jpg', 'frames/frame_0106.jpg', 'frames/frame_0109.jpg', 'frames/frame_0110.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Jerry Springer (Drag Queen): A woman with long, curly pink hair, wearing various sparkly and sequined dresses and tops.
+Jerry Springer (TV Host): A middle-aged man with white hair, wearing a dark suit and white shirt.
+Security Guard: A bald man wearing a black shirt with "Jerry Springer Security" printed on it.
+Woman with Pink Hair: A drag queen with curly pink hair, wearing various sparkly and sequined dresses and tops.
+Blonde Woman: A woman with blonde hair, wearing various outfits including a black tank top and purple skirt.
+Woman with Red Hair: A woman with red hair, wearing a green long-sleeved shirt and red-framed glasses.
+Dominique: A woman with curly brown hair and blonde highlights, wearing a pink top with red floral designs.
+
+SCENES:
+TV Studio: A colorful television studio set with various backdrops, including brick walls, large windows, and metal structures. [frame_0001- frame_2447]
+Audience: A crowded room or auditorium with a diverse group of people watching the Jerry Springer show. [frame_0001- frame_2447]
+Barbershop: A barbershop scene with a brick wall and large sign reading "Jerry Springer" in gold letters. [frame_1630- frame_1847]
+Courtroom: A mock courtroom setting with a brick wall backdrop and a sign reading "Jerry Springer" in gold letters. [frame_0143]
+
+EVENTS:
+Fight Scene: Two women, one with pink hair and the other with blonde hair, engaging in a physical altercation on the stage of the Jerry Springer show. [frame_0202- frame_0212]
+Argument: A man and two women standing on the stage of the Jerry Springer show, engaged in a heated discussion or argument. [frame_0143- frame_0166]
+Interview: Jerry Springer, the TV host, interviewing various guests on the show, including the drag queen and other women. [frame_0004- frame_2447]
+Dance: Several people, including the drag queen and other women, dancing on the stage of the Jerry Springer show. [frame_0125- frame_0136]
+Proposal: A woman proposing to her boyfriend on the Jerry Springer show, with a caption "MARRY ME?" written in the sand. [frame_1211- frame_1213]
+Cheating Scandal: A man and two women involved in a cheating scandal, with a caption "He's A Cheater" displayed on the screen. [frame_2093- frame_2447]
+Barbershop Smackdown: A scene from the Jerry Springer show featuring a barbershop setting and a caption "Barbershop Smackdown" displayed on the screen. [frame_1630- frame_1847]
+
+================================================================================
+Generated at: 2026-01-11 21:45:49
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. A person named Sierra is present in the frame
+  Q2. Sierra is showing a picture to the audience
+  Q3. The picture contains an animal
+  Q4. The animal in the picture is clearly visible and identifiable
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 4)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, if criteria_percentage > 0.5 (>50% of criteria pass):
+   - Review ALL answer choices (A, B, C, D, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D)
+5. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - STILL do your best to pick out a correct answer, but also set suggestion to "These may not be the right frames/scene. Continue searching for better evidence."
+   - output your best guess of the answer as a number (0=A, 1=B, 2=C, 3=D, 4=E)
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <number of question criteria that passed>,
+    "criteria_total": 4,
+    "criteria_percentage": <criteria_passed / 4>,
+    "base_confidence": <(criteria_passed / 4) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "A person named Sierra is present in the frame",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms Sierra is present in frames 3-9 and 14-16, identified via on-screen graphics"
+        },
+        {
+            "criterion": "Sierra is showing a picture to the audience",
+            "criterion_type": "QUESTION",
+            "status": "FAIL",
+            "reasoning": "VLM states Sierra is not physically holding or presenting a picture; picture is displayed on a background screen by production"
+        },
+        {
+            "criterion": "The picture contains an animal",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms the image on screen appears to show a dog, consistent with the caption"
+        },
+        {
+            "criterion": "The animal in the picture is clearly visible and identifiable",
+            "criterion_type": "QUESTION",
+            "status": "FAIL",
+            "reasoning": "VLM states the dog is too small, blurry, and low-resolution to be clearly identified"
+        }
+    ],
+    "question_criteria_passed": 2,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 2,
+    "criteria_total": 4,
+    "criteria_percentage": 0.5,
+    "base_confidence": 50.0,
+    "confidence": 50.0,
+    "critic_answer_choice": 0,
+    "critic_reasoning": "The VLM evidence shows that while Sierra is present and there is a dog picture on screen, Sierra is not the one showing the picture and the animal is not clearly identifiable. This matches the '0' answer meaning 'no such event occurs' as described in the question.",
+    "possible_errors": [
+        "Sierra is not physically showing a picture to the audience",
+        "The animal in the picture is not clearly visible or identifiable"
+    ],
+    "suggestion": "These may not be the right frames/scene. Continue searching for better evidence."
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'A person named Sierra is present in the frame', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms Sierra is present in frames 3-9 and 14-16, identified via on-screen graphics'}, {'criterion': 'Sierra is showing a picture to the audience', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': 'VLM states Sierra is not physically holding or presenting a picture; picture is displayed on a background screen by production'}, {'criterion': 'The picture contains an animal', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms the image on screen appears to show a dog, consistent with the caption'}, {'criterion': 'The animal in the picture is clearly visible and identifiable', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': 'VLM states the dog is too small, blurry, and low-resolution to be clearly identified'}], 'question_criteria_passed': 2, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 2, 'criteria_total': 4, 'criteria_percentage': 0.5, 'base_confidence': 50.0, 'confidence': 50.0, 'critic_answer_choice': 0, 'critic_reasoning': "The VLM evidence shows that while Sierra is present and there is a dog picture on screen, Sierra is not the one showing the picture and the animal is not clearly identifiable. This matches the '0' answer meaning 'no such event occurs' as described in the question.", 'possible_errors': ['Sierra is not physically showing a picture to the audience', 'The animal in the picture is not clearly visible or identifiable'], 'suggestion': 'These may not be the right frames/scene. Continue searching for better evidence.'}

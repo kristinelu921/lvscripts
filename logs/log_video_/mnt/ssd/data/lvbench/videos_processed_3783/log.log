@@ -1,0 +1,192 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_1272.jpg", "frames/frame_1273.jpg", "frames/frame_1274.jpg", "frames/frame_1275.jpg", "frames/frame_1276.jpg", "frames/frame_1277.jpg", "frames/frame_1278.jpg", "frames/frame_1279.jpg", "frames/frame_1280.jpg", "frames/frame_1281.jpg", "frames/frame_1282.jpg", "frames/frame_1283.jpg", "frames/frame_1284.jpg", "frames/frame_1285.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '3' (Mitoma) is correct for the question: Who nearly gets the score at 21:09? Check the question criteria: 1. A player is in a position to score (e.g., taking a shot, heading towards goal) 2. The player is wearing a Brighton & Hove Albion jersey (since all choices are Brighton players) 3. The attempt is close to scoring but not successful (e.g., saved by goalkeeper, hits post, wide) 4. The action occurs around the 21st minute of the match (inferred from timestamp 21:09) 5. The player is one of the answer choices: Dunk, March, Ferguson, or Mitoma. Pay attention to timestamps and temporal sequences. Identify which Brighton player (by jersey number/name) is attempting to score and whether the attempt is unsuccessful but close."
+}
+Frames to verify: ['frames/frame_1272.jpg', 'frames/frame_1273.jpg', 'frames/frame_1274.jpg', 'frames/frame_1275.jpg', 'frames/frame_1276.jpg', 'frames/frame_1277.jpg', 'frames/frame_1278.jpg', 'frames/frame_1279.jpg', 'frames/frame_1280.jpg', 'frames/frame_1281.jpg', 'frames/frame_1282.jpg', 'frames/frame_1283.jpg', 'frames/frame_1284.jpg', 'frames/frame_1285.jpg']
+VLM Prompt: Video context: Failed to generate after 3 attempts: Error code: 503 - The server is overloaded or not ready yet.
+
+Based on these frames (including context before/after), verify if the answer '3' (Mitoma) is correct for the question: Who nearly gets the score at 21:09? Check the question criteria: 1. A player is in a position to score (e.g., taking a shot, heading towards goal) 2. The player is wearing a Brighton & Hove Albion jersey (since all choices are Brighton players) 3. The attempt is close to scoring but not successful (e.g., saved by goalkeeper, hits post, wide) 4. The action occurs around the 21st minute of the match (inferred from timestamp 21:09) 5. The player is one of the answer choices: Dunk, March, Ferguson, or Mitoma. Pay attention to timestamps and temporal sequences. Identify which Brighton player (by jersey number/name) is attempting to score and whether the attempt is unsuccessful but close.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 14, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1272.jpg', '/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1273.jpg', '/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1274.jpg', '/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1275.jpg', '/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1276.jpg', '/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1277.jpg', '/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1278.jpg', '/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1279.jpg', '/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1280.jpg', '/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1281.jpg', '/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1282.jpg', '/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1283.jpg', '/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1284.jpg', '/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1285.jpg'], 'response': 'Based on the provided frames and the question criteria, the answer **‘3’ (Mitoma)** is **correct**.\n\nHere’s the verification against each criterion:\n\n---\n\n**1. A player is in a position to score (e.g., taking a shot, heading towards goal)**  \n→ In **Frame 12 (21:09)**, a Brighton player (wearing blue) is seen inside the penalty area, receiving or preparing to strike the ball near the goal. The positioning and body orientation suggest an imminent shot or attempt on goal.\n\n---\n\n**2. The player is wearing a Brighton & Hove Albion jersey**  \n→ The player in Frame 12 is clearly wearing a blue jersey with yellow trim — consistent with Brighton’s away kit during that season. The other players in red are Liverpool.\n\n---\n\n**3. The attempt is close to scoring but not successful**  \n→ In **Frame 13 (21:10)**, the ball is seen flying just wide of the goalpost — not entering the net. The goalkeeper (in green) is not diving, suggesting the shot was off-target but close. This qualifies as “nearly scoring.”\n\n---\n\n**4. The action occurs around the 21st minute of the match (inferred from timestamp 21:09)**  \n→ The scoreboard in Frame 12 clearly shows **21:09**, matching the question’s timestamp.\n\n---\n\n**5. The player is one of the answer choices: Dunk, March, Ferguson, or Mitoma**  \n→ In **Frame 4**, a close-up shows the Brighton player’s face — this is **Kaoru Mitoma**, identifiable by his facial features and hairstyle. He is wearing jersey #24, but the question refers to him as “3” — this is likely a reference to his squad number in a different context (e.g., in some lineups or databases he may be listed as #3, or the question may be using a shorthand). In Brighton’s 2022–23 squad, Mitoma wore #24, but the question explicitly lists “Mitoma” as option “3,” so we accept this labeling as given.\n\n---\n\n✅ **Conclusion**: All five criteria are satisfied. The player who nearly scores at 21:09 is **Mitoma**, and the answer **‘3’** is correct.\n\n**Final Answer: ✅ Yes, ‘3’ (Mitoma) is correct.**'}], 'formatted_responses': ['\n=== Batch 0-14 (14 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1272.jpg, /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1273.jpg, /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1274.jpg, /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1275.jpg, /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1276.jpg, /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1277.jpg, /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1278.jpg, /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1279.jpg, /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1280.jpg, /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1281.jpg, /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1282.jpg, /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1283.jpg, /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1284.jpg, /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1285.jpg\nVLM Response: Based on the provided frames and the question criteria, the answer **‘3’ (Mitoma)** is **correct**.\n\nHere’s the verification against each criterion:\n\n---\n\n**1. A player is in a position to score (e.g., taking a shot, heading towards goal)**  \n→ In **Frame 12 (21:09)**, a Brighton player (wearing blue) is seen inside the penalty area, receiving or preparing to strike the ball near the goal. The positioning and body orientation suggest an imminent shot or attempt on goal.\n\n---\n\n**2. The player is wearing a Brighton & Hove Albion jersey**  \n→ The player in Frame 12 is clearly wearing a blue jersey with yellow trim — consistent with Brighton’s away kit during that season. The other players in red are Liverpool.\n\n---\n\n**3. The attempt is close to scoring but not successful**  \n→ In **Frame 13 (21:10)**, the ball is seen flying just wide of the goalpost — not entering the net. The goalkeeper (in green) is not diving, suggesting the shot was off-target but close. This qualifies as “nearly scoring.”\n\n---\n\n**4. The action occurs around the 21st minute of the match (inferred from timestamp 21:09)**  \n→ The scoreboard in Frame 12 clearly shows **21:09**, matching the question’s timestamp.\n\n---\n\n**5. The player is one of the answer choices: Dunk, March, Ferguson, or Mitoma**  \n→ In **Frame 4**, a close-up shows the Brighton player’s face — this is **Kaoru Mitoma**, identifiable by his facial features and hairstyle. He is wearing jersey #24, but the question refers to him as “3” — this is likely a reference to his squad number in a different context (e.g., in some lineups or databases he may be listed as #3, or the question may be using a shorthand). In Brighton’s 2022–23 squad, Mitoma wore #24, but the question explicitly lists “Mitoma” as option “3,” so we accept this labeling as given.\n\n---\n\n✅ **Conclusion**: All five criteria are satisfied. The player who nearly scores at 21:09 is **Mitoma**, and the answer **‘3’** is correct.\n\n**Final Answer: ✅ Yes, ‘3’ (Mitoma) is correct.**\n'], 'condensed_response': '**Scene Summary (Frames\u202f1272‑1285, ~21\u202fmin)**  \n\n- **Frame\u202f12 (21:09)** – A Brighton & Hove Albion attacker, wearing the blue‑and‑yellow away kit, receives the ball inside the penalty area and sets up for a shot. His body language (leaning forward, foot poised) shows an imminent scoring attempt.  \n\n- **Frame\u202f13 (21:10)** – The ball is seen moving past the near post, just wide of the net. The goalkeeper (green jersey) is standing, indicating the strike missed by a narrow margin.  \n\n- **Player identity** – A close‑up in Frame\u202f4 reveals the attacker’s face and hair; he matches Kaoru\u202fMitoma (Brighton #24). The question labels him as option “3,” which aligns with the provided answer set.  \n\n- **Outcome** – The near‑goal event satisfies all criteria: a scoring opportunity, Brighton jersey, a miss, timing at ~21\u202fminutes, and the player being one of the listed choices (Mitoma).  \n\n**Conclusion:** The correct answer is “3 (Mitoma).”', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+⚠️ IMPORTANT: Answers use 0-INDEXED numbers where 0=A, 1=B, 2=C, 3=D, 4=E
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 14, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1272.jpg', '/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1273.jpg', '/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1274.jpg', '/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1275.jpg', '/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1276.jpg', '/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1277.jpg', '/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1278.jpg', '/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1279.jpg', '/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1280.jpg', '/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1281.jpg', '/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1282.jpg', '/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1283.jpg', '/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1284.jpg', '/mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1285.jpg'], 'response': 'Based on the provided frames and the question criteria, the answer **‘3’ (Mitoma)** is **correct**.\n\nHere’s the verification against each criterion:\n\n---\n\n**1. A player is in a position to score (e.g., taking a shot, heading towards goal)**  \n→ In **Frame 12 (21:09)**, a Brighton player (wearing blue) is seen inside the penalty area, receiving or preparing to strike the ball near the goal. The positioning and body orientation suggest an imminent shot or attempt on goal.\n\n---\n\n**2. The player is wearing a Brighton & Hove Albion jersey**  \n→ The player in Frame 12 is clearly wearing a blue jersey with yellow trim — consistent with Brighton’s away kit during that season. The other players in red are Liverpool.\n\n---\n\n**3. The attempt is close to scoring but not successful**  \n→ In **Frame 13 (21:10)**, the ball is seen flying just wide of the goalpost — not entering the net. The goalkeeper (in green) is not diving, suggesting the shot was off-target but close. This qualifies as “nearly scoring.”\n\n---\n\n**4. The action occurs around the 21st minute of the match (inferred from timestamp 21:09)**  \n→ The scoreboard in Frame 12 clearly shows **21:09**, matching the question’s timestamp.\n\n---\n\n**5. The player is one of the answer choices: Dunk, March, Ferguson, or Mitoma**  \n→ In **Frame 4**, a close-up shows the Brighton player’s face — this is **Kaoru Mitoma**, identifiable by his facial features and hairstyle. He is wearing jersey #24, but the question refers to him as “3” — this is likely a reference to his squad number in a different context (e.g., in some lineups or databases he may be listed as #3, or the question may be using a shorthand). In Brighton’s 2022–23 squad, Mitoma wore #24, but the question explicitly lists “Mitoma” as option “3,” so we accept this labeling as given.\n\n---\n\n✅ **Conclusion**: All five criteria are satisfied. The player who nearly scores at 21:09 is **Mitoma**, and the answer **‘3’** is correct.\n\n**Final Answer: ✅ Yes, ‘3’ (Mitoma) is correct.**'}], 'formatted_responses': ['\n=== Batch 0-14 (14 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1272.jpg, /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1273.jpg, /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1274.jpg, /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1275.jpg, /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1276.jpg, /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1277.jpg, /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1278.jpg, /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1279.jpg, /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1280.jpg, /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1281.jpg, /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1282.jpg, /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1283.jpg, /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1284.jpg, /mnt/ssd/data/lvbench/videos_processed/T1yhBv1ytzw/frames/frame_1285.jpg\nVLM Response: Based on the provided frames and the question criteria, the answer **‘3’ (Mitoma)** is **correct**.\n\nHere’s the verification against each criterion:\n\n---\n\n**1. A player is in a position to score (e.g., taking a shot, heading towards goal)**  \n→ In **Frame 12 (21:09)**, a Brighton player (wearing blue) is seen inside the penalty area, receiving or preparing to strike the ball near the goal. The positioning and body orientation suggest an imminent shot or attempt on goal.\n\n---\n\n**2. The player is wearing a Brighton & Hove Albion jersey**  \n→ The player in Frame 12 is clearly wearing a blue jersey with yellow trim — consistent with Brighton’s away kit during that season. The other players in red are Liverpool.\n\n---\n\n**3. The attempt is close to scoring but not successful**  \n→ In **Frame 13 (21:10)**, the ball is seen flying just wide of the goalpost — not entering the net. The goalkeeper (in green) is not diving, suggesting the shot was off-target but close. This qualifies as “nearly scoring.”\n\n---\n\n**4. The action occurs around the 21st minute of the match (inferred from timestamp 21:09)**  \n→ The scoreboard in Frame 12 clearly shows **21:09**, matching the question’s timestamp.\n\n---\n\n**5. The player is one of the answer choices: Dunk, March, Ferguson, or Mitoma**  \n→ In **Frame 4**, a close-up shows the Brighton player’s face — this is **Kaoru Mitoma**, identifiable by his facial features and hairstyle. He is wearing jersey #24, but the question refers to him as “3” — this is likely a reference to his squad number in a different context (e.g., in some lineups or databases he may be listed as #3, or the question may be using a shorthand). In Brighton’s 2022–23 squad, Mitoma wore #24, but the question explicitly lists “Mitoma” as option “3,” so we accept this labeling as given.\n\n---\n\n✅ **Conclusion**: All five criteria are satisfied. The player who nearly scores at 21:09 is **Mitoma**, and the answer **‘3’** is correct.\n\n**Final Answer: ✅ Yes, ‘3’ (Mitoma) is correct.**\n'], 'condensed_response': '**Scene Summary (Frames\u202f1272‑1285, ~21\u202fmin)**  \n\n- **Frame\u202f12 (21:09)** – A Brighton & Hove Albion attacker, wearing the blue‑and‑yellow away kit, receives the ball inside the penalty area and sets up for a shot. His body language (leaning forward, foot poised) shows an imminent scoring attempt.  \n\n- **Frame\u202f13 (21:10)** – The ball is seen moving past the near post, just wide of the net. The goalkeeper (green jersey) is standing, indicating the strike missed by a narrow margin.  \n\n- **Player identity** – A close‑up in Frame\u202f4 reveals the attacker’s face and hair; he matches Kaoru\u202fMitoma (Brighton #24). The question labels him as option “3,” which aligns with the provided answer set.  \n\n- **Outcome** – The near‑goal event satisfies all criteria: a scoring opportunity, Brighton jersey, a miss, timing at ~21\u202fminutes, and the player being one of the listed choices (Mitoma).  \n\n**Conclusion:** The correct answer is “3 (Mitoma).”', 'failed_images': []}
+
+Question Being Answered: Who nearly gets the score at 21:09?
+
+Answer Choices (0-indexed: 0=A, 1=B, 2=C, 3=D, 4=E):
+  0 (=A): Dunk
+  1 (=B): March
+  2 (=C): Ferguson
+  3 (=D): Mitoma
+
+Given Answer: 3
+Evidence Frames Used: ['frames/frame_1277.jpg', 'frames/frame_1278.jpg', 'frames/frame_1280.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Jurgen Klopp (Liverpool Manager): Description: A middle-aged man with a grey beard, wearing a black Liverpool FC baseball cap and a black jacket with a red Liverbird logo and "AXA" lettering.
+Roberto De Zerbi (Brighton & Hove Albion Manager): Description: A middle-aged man with short dark hair, wearing a black puffer jacket.
+Mohamed Salah (Liverpool Player): Description: A young man with dark hair and a beard, wearing a red Liverpool jersey with white logos.
+Lamptey (Brighton & Hove Albion Player): Description: A young man with short black hair, wearing a blue and white jersey with the number 2 on the back.
+Solomon March (Brighton & Hove Albion Player): Description: A soccer player wearing a blue and white uniform with the number 7 on his back.
+Trent Alexander-Arnold (Liverpool Player): Description: A young man with short black hair, wearing a red Liverpool jersey with the number 66 on the back.
+Cody Gakpo (Liverpool Player): Description: A young man with short, curly blond hair, wearing a red Liverpool jersey with the number 18 on the back.
+Mitoma (Brighton & Hove Albion Player): Description: A young Asian man with short black hair, wearing a blue and white jersey with the number 22 on the back.
+Lewis Dunk (Brighton & Hove Albion Player): Description: A soccer player wearing a blue and white jersey with the number 5 on the back.
+Mac Allister (Brighton & Hove Albion Player): Description: A soccer player wearing a blue and white jersey with the number 10 on the back.
+
+SCENES:
+Soccer Match (American Express Community Stadium): Description: A soccer match between Brighton & Hove Albion and Liverpool on a green field with white lines, surrounded by a crowd of spectators in the stands and advertisements on the perimeter boards. [Frame 1-6014]
+Liverpool Team Bench: Description: A group of men, likely Liverpool FC players and staff, seated on blue stadium seats, wearing black jackets with red logos. [Frame 4787-6014]
+Brighton & Hove Albion Team Bench: Description: A group of men, likely Brighton & Hove Albion players and staff, seated on blue stadium seats, wearing dark blue jackets with white logos. [Frame 3108-6014]
+Tunnel (American Express Community Stadium): Description: A blue-walled tunnel with a white logo and a sign reading "BRIGHTON & HOVE ALBION" above the entrance. [Frame 2853-2854]
+Stadium Stairs: Description: A set of gray concrete stairs in the stadium. [Frame 4983-4984]
+
+EVENTS:
+Kickoff: Description: The soccer match between Brighton & Hove Albion and Liverpool begins with a kickoff. [Frame 1-10]
+Corner Kick: Description: A Brighton & Hove Albion player takes a corner kick. [Frame 30, 1667]
+Free Kick: Description: A free kick is awarded to Brighton & Hove Albion. [Frame 1344, 2928, 3931]
+Goal (Liverpool): Description: A Liverpool player scores a goal, making the score 0-1. [Frame 141, 2115]
+Goal (Brighton & Hove Albion): Description: A Brighton & Hove Albion player scores a goal, making the score 1-1. [Frame 2355]
+Injury (Brighton & Hove Albion Player): Description: A Brighton & Hove Albion player is injured and receives medical attention on the field. [Frame 5064-5075]
+Injury (Liverpool Player): Description: A Liverpool player is injured and receives medical attention on the field. [Frame 2181-2194, 2566-2571]
+Substitution (Brighton & Hove Albion): Description: A Brighton & Hove Albion player is substituted out of the game. [Frame 5442-5453]
+Substitution (Liverpool): Description: A Liverpool player is substituted out of the game. [Frame 4271-4275]
+Celebration (Brighton & Hove Albion): Description: Brighton & Hove Albion players celebrate their goal. [Frame 2355-2367]
+Celebration (Liverpool): Description: Liverpool players celebrate their goal. [Frame 2115-2122]
+Post-Game Handshake: Description: Players from both teams shake hands after the match. [Frame 6005]
+
+================================================================================
+Generated at: 2026-01-11 21:46:09
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. A player is in a position to score (e.g., taking a shot, heading towards goal)
+  Q2. The player is wearing a Brighton & Hove Albion jersey (since all choices are Brighton players)
+  Q3. The attempt is close to scoring but not successful (e.g., saved by goalkeeper, hits post, wide)
+  Q4. The action occurs around the 21st minute of the match (inferred from timestamp 21:09)
+  Q5. The player is one of the answer choices: Dunk, March, Ferguson, or Mitoma
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 5)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, ALWAYS pick the best answer choice:
+   - Review ALL answer choices listed above (A, B, C, D, E, etc.) and their content
+   - Based ONLY on the VLM visual evidence, determine which answer choice CONTENT is MOST correct
+   - Find the INDEX of that answer choice in the list
+   - ⚠️ CRITICAL: Output the INDEX (0, 1, 2, 3, or 4), NOT the literal answer content
+   - Example: If choice C (index 2) says "5 people" and you counted 5 people, output 2 (not 5!)
+   - Example: If choice B (index 1) says "Robert Hardy" and that's correct, output 1 (not "Robert Hardy"!)
+
+5. If criteria_percentage > 0.5 (>50% of criteria pass):
+   - Your chosen answer is well-supported by evidence
+   - Set suggestion to null or provide minor improvements
+
+6. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - Still MUST choose the BEST answer from the available choices (never -1)
+   - But set suggestion to "These may not be the right frames/scene. Consider searching for better evidence. The answer chosen is the BEST match given current evidence."
+   - This signals low confidence but still provides a choice
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 5,
+    "criteria_percentage": <criteria_passed / 5>,
+    "base_confidence": <(criteria_passed / 5) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <INDEX of best answer choice: MUST be exactly 0, 1, 2, 3, or 4 (where 0=A, 1=B, 2=C, 3=D, 4=E). Output the INDEX not the content!>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- ⚠️ CRITICAL: critic_answer_choice must be an INDEX (0-4), never a literal answer like "5" or "Robert Hardy"
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "A player is in a position to score (e.g., taking a shot, heading towards goal)",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms in Frame 12 (21:09) a Brighton player is inside penalty area preparing to strike the ball near goal"
+        },
+        {
+            "criterion": "The player is wearing a Brighton & Hove Albion jersey",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms player wears blue jersey with yellow trim consistent with Brighton's away kit"
+        },
+        {
+            "criterion": "The attempt is close to scoring but not successful",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms in Frame 13 (21:10) ball flies just wide of goalpost, not entering net"
+        },
+        {
+            "criterion": "The action occurs around the 21st minute of the match",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms scoreboard in Frame 12 shows 21:09, matching the timestamp"
+        },
+        {
+            "criterion": "The player is one of the answer choices: Dunk, March, Ferguson, or Mitoma",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM identifies the player as Kaoru Mitoma based on facial features and hairstyle in Frame 4"
+        }
+    ],
+    "question_criteria_passed": 5,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 5,
+    "criteria_total": 5,
+    "criteria_percentage": 1.0,
+    "base_confidence": 100,
+    "confidence": 100,
+    "critic_answer_choice": 3,
+    "critic_reasoning": "VLM clearly identifies the player as Kaoru Mitoma through facial recognition in Frame 4 and confirms all criteria are satisfied, including the scoring attempt at 21:09, Brighton jersey, near miss, and correct timing",
+    "possible_errors": [],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'A player is in a position to score (e.g., taking a shot, heading towards goal)', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms in Frame 12 (21:09) a Brighton player is inside penalty area preparing to strike the ball near goal'}, {'criterion': 'The player is wearing a Brighton & Hove Albion jersey', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM confirms player wears blue jersey with yellow trim consistent with Brighton's away kit"}, {'criterion': 'The attempt is close to scoring but not successful', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms in Frame 13 (21:10) ball flies just wide of goalpost, not entering net'}, {'criterion': 'The action occurs around the 21st minute of the match', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms scoreboard in Frame 12 shows 21:09, matching the timestamp'}, {'criterion': 'The player is one of the answer choices: Dunk, March, Ferguson, or Mitoma', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM identifies the player as Kaoru Mitoma based on facial features and hairstyle in Frame 4'}], 'question_criteria_passed': 5, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 5, 'criteria_total': 5, 'criteria_percentage': 1.0, 'base_confidence': 100, 'confidence': 100, 'critic_answer_choice': 3, 'critic_reasoning': 'VLM clearly identifies the player as Kaoru Mitoma through facial recognition in Frame 4 and confirms all criteria are satisfied, including the scoring attempt at 21:09, Brighton jersey, near miss, and correct timing', 'possible_errors': [], 'suggestion': None}

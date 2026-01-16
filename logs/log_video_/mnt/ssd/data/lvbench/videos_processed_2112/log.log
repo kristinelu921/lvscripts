@@ -1,0 +1,198 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0020.jpg", "frames/frame_0021.jpg", "frames/frame_0022.jpg", "frames/frame_0023.jpg", "frames/frame_0024.jpg", "frames/frame_0025.jpg", "frames/frame_0026.jpg", "frames/frame_0027.jpg", "frames/frame_0028.jpg", "frames/frame_0029.jpg", "frames/frame_0030.jpg", "frames/frame_0031.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '1' (Two teenage males) is correct for the question: Who is earliest character in the entire video? Check the question criteria: ['Two male teenagers appear together in a frame', 'Two female teenagers appear together in a frame', 'Two elderly females appear together in a frame', 'A teenage female and teenage male appear together in a frame', 'Characters appear at the very beginning of the video (lowest frame numbers)', 'Characters are clearly identifiable as teenagers or elderly based on visual appearance']. Pay attention to timestamps and temporal sequences. Focus on identifying the earliest characters (lowest frame numbers) and whether they match any of the answer choices."
+}
+Frames to verify: ['frames/frame_0020.jpg', 'frames/frame_0021.jpg', 'frames/frame_0022.jpg', 'frames/frame_0023.jpg', 'frames/frame_0024.jpg', 'frames/frame_0025.jpg', 'frames/frame_0026.jpg', 'frames/frame_0027.jpg', 'frames/frame_0028.jpg', 'frames/frame_0029.jpg', 'frames/frame_0030.jpg', 'frames/frame_0031.jpg']
+VLM Prompt: Video context: Based on the provided SET of frame-by-frame captions data for a long video, here is a global summary that depicts the main characters, setting, plot line, vibes, and general details:
+
+**Main Characters:**
+
+1. Satya Nadella: The CEO of Microsoft, who appears frequently throughout the video, presenting and speaking on a stage.
+2. Various individuals: The video features a diverse cast of people, including men and women from different age groups, professions, and cultural backgrounds.
+3. Farmers and villagers: Some frames showcase farmers and villagers from rural India, highlighting their daily lives and interactions with technology.
+
+**Setting:**
+
+1. Microsoft Build conference: The video appears to be centered around the Microsoft Build conference, with Satya Nadella and other speakers presenting on a stage.
+2. Modern offices: Many frames depict modern office settings, showcasing people working on laptops, collaborating, and interacting with each other.
+3. Rural India: Some frames highlight rural India, featuring farmers, villagers, and traditional settings.
+
+**Plot Line:**
+
+The video seems to be promoting Microsoft's AI-powered technologies, particularly Copilot, and their potential to transform various aspects of life, including work, education, and daily activities. The narrative is woven around Satya Nadella's presentations and interactions, showcasing the capabilities of Microsoft's AI tools and their applications in different fields.
+
+**Vibes:**
+
+1. Innovative and futuristic: The video exudes an innovative and futuristic vibe, highlighting the potential of AI to transform various aspects of life.
+2. Collaborative and inclusive: The diverse cast of characters and the emphasis on collaboration and interaction convey a sense of inclusivity and community.
+3. Professional and modern: The video maintains a professional tone, showcasing modern office settings and cutting-edge technology.
+
+**General Details:**
+
+1. The video is likely a promotional or marketing content for Microsoft's AI-powered technologies, particularly Copilot.
+2. The narrative is driven by Satya Nadella's presentations and interactions, which provides a personal touch and emphasizes the company's vision for the future.
+3. The video highlights the potential of AI to improve various aspects of life, including work, education, and daily activities, and showcases Microsoft's efforts to make AI more accessible and user-friendly.
+
+Based on these frames (including context before/after), verify if the answer '1' (Two teenage males) is correct for the question: Who is earliest character in the entire video? Check the question criteria: ['Two male teenagers appear together in a frame', 'Two female teenagers appear together in a frame', 'Two elderly females appear together in a frame', 'A teenage female and teenage male appear together in a frame', 'Characters appear at the very beginning of the video (lowest frame numbers)', 'Characters are clearly identifiable as teenagers or elderly based on visual appearance']. Pay attention to timestamps and temporal sequences. Focus on identifying the earliest characters (lowest frame numbers) and whether they match any of the answer choices.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 12, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0020.jpg', '/mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0021.jpg', '/mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0022.jpg', '/mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0023.jpg', '/mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0024.jpg', '/mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0025.jpg', '/mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0026.jpg', '/mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0027.jpg', '/mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0028.jpg', '/mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0029.jpg', '/mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0030.jpg', '/mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0031.jpg'], 'response': "The answer **'1' (Two teenage males)** is **incorrect**.\n\n### Verification Against Criteria:\n\nLet’s evaluate the **earliest characters** in the video (lowest frame numbers) and whether they match any of the answer choices.\n\n---\n\n#### **Frames 1–5:**\nThese frames show a **text-based interface** (likely AI chat or Copilot), with no human characters visible. No teenagers, elderly, or any identifiable people appear.\n\n→ **No human characters here.**\n\n---\n\n#### **Frame 6:**\nFirst appearance of **human characters**.\n\n- Shows **two young females** sitting side-by-side at computers.\n- Both appear to be **teenagers or young adults** (based on facial features, hairstyle, and context).\n- They are clearly **female** and appear to be **teenagers or early 20s**.\n- **No males present.**\n\n→ This matches the criteria:  \n✅ *Two female teenagers appear together in a frame*  \n✅ *Characters appear at the very beginning of the video (lowest frame numbers — Frame 6 is the first with humans)*  \n✅ *Characters are clearly identifiable as teenagers based on visual appearance*\n\n---\n\n#### **Frame 7:**\nSame two females, slightly different angle. Still **two female teenagers**.\n\n---\n\n#### **Frames 8–9:**\nText on screen (Kepler’s law). No human characters.\n\n---\n\n#### **Frames 10–11:**\nShow **individual adult women** — not teenagers, and not appearing together.\n\n---\n\n#### **Frame 12:**\nBack to text interface. No human characters.\n\n---\n\n### Conclusion:\n\n- The **earliest human characters** (Frame 6) are **two teenage females**.\n- There are **no teenage males** in the earliest frames — or even in the first 12 frames.\n- Therefore, **answer '1' (Two teenage males)** is **not correct**.\n\n✅ **Correct answer should be: '2' (Two female teenagers appear together in a frame)** — if that were an option.\n\n---\n\n### Final Answer:\n**Incorrect.** The earliest characters are two teenage females, not two teenage males."}], 'formatted_responses': ["\n=== Batch 0-12 (12 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0020.jpg, /mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0021.jpg, /mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0022.jpg, /mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0023.jpg, /mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0024.jpg, /mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0025.jpg, /mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0026.jpg, /mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0027.jpg, /mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0028.jpg, /mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0029.jpg, /mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0030.jpg, /mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0031.jpg\nVLM Response: The answer **'1' (Two teenage males)** is **incorrect**.\n\n### Verification Against Criteria:\n\nLet’s evaluate the **earliest characters** in the video (lowest frame numbers) and whether they match any of the answer choices.\n\n---\n\n#### **Frames 1–5:**\nThese frames show a **text-based interface** (likely AI chat or Copilot), with no human characters visible. No teenagers, elderly, or any identifiable people appear.\n\n→ **No human characters here.**\n\n---\n\n#### **Frame 6:**\nFirst appearance of **human characters**.\n\n- Shows **two young females** sitting side-by-side at computers.\n- Both appear to be **teenagers or young adults** (based on facial features, hairstyle, and context).\n- They are clearly **female** and appear to be **teenagers or early 20s**.\n- **No males present.**\n\n→ This matches the criteria:  \n✅ *Two female teenagers appear together in a frame*  \n✅ *Characters appear at the very beginning of the video (lowest frame numbers — Frame 6 is the first with humans)*  \n✅ *Characters are clearly identifiable as teenagers based on visual appearance*\n\n---\n\n#### **Frame 7:**\nSame two females, slightly different angle. Still **two female teenagers**.\n\n---\n\n#### **Frames 8–9:**\nText on screen (Kepler’s law). No human characters.\n\n---\n\n#### **Frames 10–11:**\nShow **individual adult women** — not teenagers, and not appearing together.\n\n---\n\n#### **Frame 12:**\nBack to text interface. No human characters.\n\n---\n\n### Conclusion:\n\n- The **earliest human characters** (Frame 6) are **two teenage females**.\n- There are **no teenage males** in the earliest frames — or even in the first 12 frames.\n- Therefore, **answer '1' (Two teenage males)** is **not correct**.\n\n✅ **Correct answer should be: '2' (Two female teenagers appear together in a frame)** — if that were an option.\n\n---\n\n### Final Answer:\n**Incorrect.** The earliest characters are two teenage females, not two teenage males.\n"], 'condensed_response': '**Scene Summary (Frames\u202f0020‑0031)**  \n\n| Frame # | Visual Content | Characters Present |\n|---------|----------------|---------------------|\n| 0020‑0024 | UI‑only screens (chat/AI interface) | – |\n| **0025** | First human appearance – two girls seated side‑by‑side at computers. Both look like teenagers/young adults (short hair, youthful facial features). | **2 teenage females** |\n| **0026** | Same two girls, slightly shifted angle. | **2 teenage females** |\n| 0027‑0028 | Text about Kepler’s law; no people. | – |\n| 0029‑0030 | Individual adult women (older than teens), each shown alone. | **1 adult female (per frame)** |\n| 0031 | Return to UI‑only screen. | – |\n\n**Key points for character tracking**\n\n- The **earliest human characters** appear at **frame\u202f0025** (the sixth frame of the batch).  \n- They are **two teenage females** sitting together, clearly visible and identifiable as teens.  \n- No male or older characters are present until later frames (adult women appear at 0029‑0030, but not together).  \n\n**Conclusion:** The opening human scene consists of **two teenage female characters** appearing together in frames\u202f0025‑0026, contradicting the claim that the first characters are “two teenage males.”', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 12, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0020.jpg', '/mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0021.jpg', '/mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0022.jpg', '/mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0023.jpg', '/mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0024.jpg', '/mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0025.jpg', '/mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0026.jpg', '/mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0027.jpg', '/mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0028.jpg', '/mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0029.jpg', '/mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0030.jpg', '/mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0031.jpg'], 'response': "The answer **'1' (Two teenage males)** is **incorrect**.\n\n### Verification Against Criteria:\n\nLet’s evaluate the **earliest characters** in the video (lowest frame numbers) and whether they match any of the answer choices.\n\n---\n\n#### **Frames 1–5:**\nThese frames show a **text-based interface** (likely AI chat or Copilot), with no human characters visible. No teenagers, elderly, or any identifiable people appear.\n\n→ **No human characters here.**\n\n---\n\n#### **Frame 6:**\nFirst appearance of **human characters**.\n\n- Shows **two young females** sitting side-by-side at computers.\n- Both appear to be **teenagers or young adults** (based on facial features, hairstyle, and context).\n- They are clearly **female** and appear to be **teenagers or early 20s**.\n- **No males present.**\n\n→ This matches the criteria:  \n✅ *Two female teenagers appear together in a frame*  \n✅ *Characters appear at the very beginning of the video (lowest frame numbers — Frame 6 is the first with humans)*  \n✅ *Characters are clearly identifiable as teenagers based on visual appearance*\n\n---\n\n#### **Frame 7:**\nSame two females, slightly different angle. Still **two female teenagers**.\n\n---\n\n#### **Frames 8–9:**\nText on screen (Kepler’s law). No human characters.\n\n---\n\n#### **Frames 10–11:**\nShow **individual adult women** — not teenagers, and not appearing together.\n\n---\n\n#### **Frame 12:**\nBack to text interface. No human characters.\n\n---\n\n### Conclusion:\n\n- The **earliest human characters** (Frame 6) are **two teenage females**.\n- There are **no teenage males** in the earliest frames — or even in the first 12 frames.\n- Therefore, **answer '1' (Two teenage males)** is **not correct**.\n\n✅ **Correct answer should be: '2' (Two female teenagers appear together in a frame)** — if that were an option.\n\n---\n\n### Final Answer:\n**Incorrect.** The earliest characters are two teenage females, not two teenage males."}], 'formatted_responses': ["\n=== Batch 0-12 (12 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0020.jpg, /mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0021.jpg, /mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0022.jpg, /mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0023.jpg, /mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0024.jpg, /mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0025.jpg, /mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0026.jpg, /mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0027.jpg, /mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0028.jpg, /mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0029.jpg, /mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0030.jpg, /mnt/ssd/data/lvbench/videos_processed/FaV0tIaWWEg/frames/frame_0031.jpg\nVLM Response: The answer **'1' (Two teenage males)** is **incorrect**.\n\n### Verification Against Criteria:\n\nLet’s evaluate the **earliest characters** in the video (lowest frame numbers) and whether they match any of the answer choices.\n\n---\n\n#### **Frames 1–5:**\nThese frames show a **text-based interface** (likely AI chat or Copilot), with no human characters visible. No teenagers, elderly, or any identifiable people appear.\n\n→ **No human characters here.**\n\n---\n\n#### **Frame 6:**\nFirst appearance of **human characters**.\n\n- Shows **two young females** sitting side-by-side at computers.\n- Both appear to be **teenagers or young adults** (based on facial features, hairstyle, and context).\n- They are clearly **female** and appear to be **teenagers or early 20s**.\n- **No males present.**\n\n→ This matches the criteria:  \n✅ *Two female teenagers appear together in a frame*  \n✅ *Characters appear at the very beginning of the video (lowest frame numbers — Frame 6 is the first with humans)*  \n✅ *Characters are clearly identifiable as teenagers based on visual appearance*\n\n---\n\n#### **Frame 7:**\nSame two females, slightly different angle. Still **two female teenagers**.\n\n---\n\n#### **Frames 8–9:**\nText on screen (Kepler’s law). No human characters.\n\n---\n\n#### **Frames 10–11:**\nShow **individual adult women** — not teenagers, and not appearing together.\n\n---\n\n#### **Frame 12:**\nBack to text interface. No human characters.\n\n---\n\n### Conclusion:\n\n- The **earliest human characters** (Frame 6) are **two teenage females**.\n- There are **no teenage males** in the earliest frames — or even in the first 12 frames.\n- Therefore, **answer '1' (Two teenage males)** is **not correct**.\n\n✅ **Correct answer should be: '2' (Two female teenagers appear together in a frame)** — if that were an option.\n\n---\n\n### Final Answer:\n**Incorrect.** The earliest characters are two teenage females, not two teenage males.\n"], 'condensed_response': '**Scene Summary (Frames\u202f0020‑0031)**  \n\n| Frame # | Visual Content | Characters Present |\n|---------|----------------|---------------------|\n| 0020‑0024 | UI‑only screens (chat/AI interface) | – |\n| **0025** | First human appearance – two girls seated side‑by‑side at computers. Both look like teenagers/young adults (short hair, youthful facial features). | **2 teenage females** |\n| **0026** | Same two girls, slightly shifted angle. | **2 teenage females** |\n| 0027‑0028 | Text about Kepler’s law; no people. | – |\n| 0029‑0030 | Individual adult women (older than teens), each shown alone. | **1 adult female (per frame)** |\n| 0031 | Return to UI‑only screen. | – |\n\n**Key points for character tracking**\n\n- The **earliest human characters** appear at **frame\u202f0025** (the sixth frame of the batch).  \n- They are **two teenage females** sitting together, clearly visible and identifiable as teens.  \n- No male or older characters are present until later frames (adult women appear at 0029‑0030, but not together).  \n\n**Conclusion:** The opening human scene consists of **two teenage female characters** appearing together in frames\u202f0025‑0026, contradicting the claim that the first characters are “two teenage males.”', 'failed_images': []}
+
+Question Being Answered: Who is the earliest character in the entire video?
+
+Answer Choices:
+A. Two teenage males
+B. Two teenage females
+C. Two elderly females
+D. A teenage female, a teenage male
+
+Given Answer: 1
+Evidence Frames Used: ['frames/frame_0025.jpg', 'frames/frame_0026.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Satya Nadella: A bald man wearing black-framed glasses, often dressed in a dark blue or black shirt and dark pants, sometimes with a gray undershirt or a hoodie.
+Young Woman: A young woman with long dark hair and glasses, wearing a black blazer over a brown or mauve shirt.
+Young Superhero Girl: A young girl with a flowing gold cape, likely in a dynamic pose, against a cityscape or dramatic sky background.
+Young Girl: A young girl with long blonde hair and a blue plaid skirt, standing on a dark stage, holding a controller and gazing at a large screen.
+Man with Long Blonde Hair: A man with long blonde hair and a reddish-brown sweater, standing in a modern living room, gesturing with his hands.
+Man with Long Brown Hair: A man with long brown hair and a beard, wearing a rust-colored sweater, standing in a modern living room, gesturing with his hands.
+Formula 1 Driver: A person wearing a helmet with a red, white, and blue design and the word "MAPFRE" emblazoned on it, sitting in a blue Alpine car.
+Basketball Player: A person wearing a white uniform with red and yellow stripes, jumping in the air in front of a crowd of people.
+Doctor: A person wearing a white lab coat, examining or interacting with patients in a medical office.
+Man in White Robes: An elderly man with a white turban and beard, wearing a white long-sleeved shirt and pants, often standing or walking in a rural or desert landscape.
+Smita Gupta: A woman with long brown hair and dark-rimmed glasses, wearing a black blazer and a brown or pink collared shirt, standing in a modern office.
+Abhigyan Raman: A man with dark hair and a beard, wearing a light green button-down shirt and black pants, standing in an office setting.
+Yusuf Mehdi: A man with short black hair, wearing a black hoodie with a white zipper and dark blue jeans, standing in front of a vibrant, multicolored background.
+
+SCENES:
+Promotional Graphic for Microsoft Build: A vibrant and abstract design with the event's name prominently displayed against a gradient background. [1-3, 106, 107]
+Bing Chat Interface: A screenshot of a conversational AI interface with a light blue and white gradient background. [6-11]
+Rural or Village Setting: Scenes depicting people in traditional clothing, farming, or using cell phones in a rural or desert landscape. [76, 147, 1811-1850]
+Modern Office: Scenes showing people working on laptops or interacting in a modern office setting. [25, 29, 53, 82, 83, 1764, 1781-1785]
+Medical Office: Scenes depicting doctors and patients in a medical examination room. [59-61, 65]
+Classroom or Educational Setting: Scenes showing students reading books or being taught by a woman in a pink dress. [79-81, 1865]
+Formula 1 Garage or Pit Lane: Scenes showing a Formula 1 driver and crew members in a garage or pit area. [47, 48]
+Basketball Stadium: Scenes depicting a basketball player and a crowd of people cheering. [50-52]
+Space or Planet: Scenes showing a stunning view of the Earth from space. [54, 55]
+Microsoft Build Conference: Scenes showing Satya Nadella and other individuals on a stage with large screens displaying "Microsoft Build" and various presentations. [111-112, 124-130, 133-140, 152-159, 161-169, 171-175]
+Timeline of Technological Advancements: Scenes showing a man standing on a stage with a large screen behind him displaying a timeline titled "Pursuit of the Dream Machine". [198-224]
+Microsoft Azure AI Content Safety Studio: Scenes showing a user testing the content safety features of a given text sample. [1303-1314]
+Microsoft Fabric Interface: Scenes showing a screenshot of the Microsoft Fabric homepage and various data-related tools and services. [1402-1405]
+OneLake Data Hub: Scenes showing a screenshot of the "OneLake data hub" page within the "Synapse Data Engineering" platform. [1407-1413]
+Microsoft Synapse Data Science Workspace: Scenes showing a comprehensive list of various data science-related items. [1425]
+Power BI Dashboard: Scenes showing a Microsoft Power BI dashboard displaying various customer-related data visualizations. [1420]
+SQL Query Editor: Scenes showing a SQL query being executed in a database management system. [1421-1424]
+Copilot Chat Interface: Scenes showing a user interacting with a chat interface, asking questions and receiving responses. [1455-1463]
+
+EVENTS:
+User Requests Assistance from AI Chatbot: A user requests help creating a short video script celebrating developers in the age of AI. [20-24]
+Satya Nadella Gives a Presentation: Satya Nadella stands on a stage, gesturing with his hands as he speaks or presents. [121-130, 133-140, 152-159, 161-169, 171-175]
+Man Presents on Stage: A man stands on a stage, gesturing with his hands as he speaks or presents. [198-224, 320-323, 325-333, 335-342]
+User Tests Content Moderation Tool: A user inputs a sentence into a text box, triggering a content moderation analysis. [1303-1314]
+User Configures Assistant Setup: A user configures an assistant setup on the Azure AI Studio "Chat playground" page. [1260-1268]
+User Interacts with Bing Chat: A user converses with Bing Chat, an AI chatbot, on a Microsoft Bing webpage. [78-79]
+Yusuf Mehdi Gives a Presentation: Yusuf Mehdi stands on a stage, gesturing with his hands as he speaks or presents. [699-707]
+
+================================================================================
+Generated at: 2026-01-11 21:46:15
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. Two male teenagers appear together in a frame
+  Q2. Two female teenagers appear together in a frame
+  Q3. Two elderly females appear together in a frame
+  Q4. A teenage female and teenage male appear together in a frame
+  Q5. Characters appear at the very beginning of the video (lowest frame numbers)
+  Q6. Characters are clearly identifiable as teenagers or elderly based on visual appearance
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 6)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, if criteria_percentage > 0.5 (>50% of criteria pass):
+   - Review ALL answer choices (A, B, C, D, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D)
+5. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - STILL do your best to pick out a correct answer, but also set suggestion to "These may not be the right frames/scene. Continue searching for better evidence."
+   - output your best guess of the answer as a number (0=A, 1=B, 2=C, 3=D, 4=E)
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <number of question criteria that passed>,
+    "criteria_total": 6,
+    "criteria_percentage": <criteria_passed / 6>,
+    "base_confidence": <(criteria_passed / 6) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response:     {
+        "criteria_results": [
+            {"criterion": "Two male teenagers appear together in a frame", "criterion_type": "ANSWER", "status": "FAIL", "reasoning": "VLM explicitly states 'no teenage males' in the earliest frames and confirms the characters are female teenagers"},
+            {"criterion": "Two female teenagers appear together in a frame", "criterion_type": "ANSWER", "status": "PASS", "reasoning": "VLM confirms two teenage females appear together in frames 0025-0026"},
+            {"criterion": "Two elderly females appear together in a frame", "criterion_type": "ANSWER", "status": "FAIL", "reasoning": "VLM reports no elderly characters; only teenage females and later individual adult women"},
+            {"criterion": "A teenage female and teenage male appear together in a frame", "criterion_type": "ANSWER", "status": "FAIL", "reasoning": "VLM states 'no males present' in the frames showing teenagers together"},
+            {"criterion": "Characters appear at the very beginning of the video (lowest frame numbers)", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms characters appear at frame 0025, which are among the earliest frames analyzed"},
+            {"criterion": "Characters are clearly identifiable as teenagers based on visual appearance", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM states characters are 'clearly identifiable as teenagers' based on facial features and context"}
+        ],
+        "question_criteria_passed": 2,
+        "answer_criteria_passed": 1,
+        "answer_criteria_total": 4,
+        "criteria_passed": 3,
+        "criteria_total": 6,
+        "criteria_percentage": 0.5,
+        "base_confidence": 50.0,
+        "confidence": 50.0,
+        "critic_answer_choice": 1,
+        "critic_reasoning": "The VLM evidence clearly shows two female teenagers appearing together in the earliest frames (0025-0026), which corresponds to answer choice B",
+        "possible_errors": [
+            "Answer criterion 'Two male teenagers appear together in a frame' failed - VLM found no males",
+            "Answer criterion 'Two elderly females appear together in a frame' failed - no elderly characters found",
+            "Answer criterion 'A teenage female and teenage male appear together in a frame' failed - no males present with teenagers"
+        ],
+        "suggestion": "These may not be the right frames/scene. Continue searching for better evidence."
+    }
+Critical assessment data: {'criteria_results': [{'criterion': 'Two male teenagers appear together in a frame', 'criterion_type': 'ANSWER', 'status': 'FAIL', 'reasoning': "VLM explicitly states 'no teenage males' in the earliest frames and confirms the characters are female teenagers"}, {'criterion': 'Two female teenagers appear together in a frame', 'criterion_type': 'ANSWER', 'status': 'PASS', 'reasoning': 'VLM confirms two teenage females appear together in frames 0025-0026'}, {'criterion': 'Two elderly females appear together in a frame', 'criterion_type': 'ANSWER', 'status': 'FAIL', 'reasoning': 'VLM reports no elderly characters; only teenage females and later individual adult women'}, {'criterion': 'A teenage female and teenage male appear together in a frame', 'criterion_type': 'ANSWER', 'status': 'FAIL', 'reasoning': "VLM states 'no males present' in the frames showing teenagers together"}, {'criterion': 'Characters appear at the very beginning of the video (lowest frame numbers)', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms characters appear at frame 0025, which are among the earliest frames analyzed'}, {'criterion': 'Characters are clearly identifiable as teenagers based on visual appearance', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM states characters are 'clearly identifiable as teenagers' based on facial features and context"}], 'question_criteria_passed': 2, 'answer_criteria_passed': 1, 'answer_criteria_total': 4, 'criteria_passed': 3, 'criteria_total': 6, 'criteria_percentage': 0.5, 'base_confidence': 50.0, 'confidence': 50.0, 'critic_answer_choice': 1, 'critic_reasoning': 'The VLM evidence clearly shows two female teenagers appearing together in the earliest frames (0025-0026), which corresponds to answer choice B', 'possible_errors': ["Answer criterion 'Two male teenagers appear together in a frame' failed - VLM found no males", "Answer criterion 'Two elderly females appear together in a frame' failed - no elderly characters found", "Answer criterion 'A teenage female and teenage male appear together in a frame' failed - no males present with teenagers"], 'suggestion': 'These may not be the right frames/scene. Continue searching for better evidence.'}

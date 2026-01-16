@@ -1,0 +1,339 @@
+[{'role': 'system', 'content': "You are an expert at reasoning and tool-using, with the goal of answering this question about a long video. You should be able to extract detailed frame-information from videos, do caption searches, and use your findings to answer the question. You should be SUPER PICKY about your findings, NOT make assumptions, and always bias towards gathering more evidence before executing a final answer. Use EXACT evidence only. ALSO, when dealing with TEMPORAL questions, you cannot find VISUAL TIMES. If a question asks for a 'duration' of an event, you want to do many caption searches on consecutive ranges, and find scene-changes at the beginning and end of the event. You MUST CHOOSE AN ANSWER. NONE OF THE ABOVE IS NOT ACCEPTABLE."}, {'role': 'user', 'content': '\n Here is a global summary of the video for general context: Based on the provided SET of frame-by-frame captions data, here is a global summary of the video:\n\n**Main Characters:**\nThe main characters in the video are various female pop stars, including Christina Aguilera, Lady Gaga, Katy Perry, and others. They are the central figures performing on stage throughout the video.\n\n**Setting:**\nThe setting is a concert or music festival, with a large stage and a darkened venue or outdoor amphitheater. The stage is often decorated with bright lights, large screens, and elaborate backdrops, including rainbow-colored arches, giant statues, and futuristic designs.\n\n**Plot Line:**\nThe video appears to be a compilation of various performances by different artists at a concert or music festival. The plot line is not narrative-driven, but rather a collection of energetic and dynamic performances by the featured artists.\n\n**Vibes:**\nThe overall vibe of the video is energetic, lively, and celebratory. The performances are high-energy, with bright lights, colorful costumes, and elaborate stage designs. The audience is often shown enthusiastically cheering, dancing, and recording the performances with their phones.\n\n**General Details:**\nThe video features a diverse range of performances, including singing, dancing, and instrumental playing. The stage designs and backdrops are often elaborate and futuristic, with large screens displaying vibrant graphics and images. The audience is frequently shown holding up their phones to capture the performances, creating a sea of twinkling lights in the darkened venue. Fireworks and pyrotechnics are also used to enhance the energetic atmosphere. Overall, the video captures the excitement and energy of a live concert or music festival.\n\n Here is also an INCOMPLETE character/event/scene log across the video. These will all be encountered, and there MAY BE MORE ================================================================================\nCHARACTER, EVENT, AND SCENE LOGS\n================================================================================\n\nCHARACTERS:\nPerson 1 (Female Singer): Description: Blonde woman wearing a green and black zebra-print outfit, singing into a microphone on a stage.\nPerson 2 (Drummer): Description: Man with short dark hair, wearing a white shirt with a black pattern, playing drums on a stage.\nPerson 3 (Guitarist): Description: Man with curly blonde hair, wearing a black and white patterned shirt, playing an electric guitar on a stage.\nPerson 4 (Female Guitarist): Description: Woman with curly blonde hair, wearing a black and white patterned dress, playing an electric guitar on a stage.\n\nSCENES:\nScene 1 (Concert Venue) : Description: A large crowd is gathered in a darkened venue, watching a concert on a stage with bright lights and large screens. [Frame 1-18]\nScene 2 (Drumming Performance) : Description: A man is playing drums on a dark stage with blue lighting. [Frame 19-30]\nScene 3 (Guitar Performance) : Description: A woman is playing an electric guitar on a stage with a blue and purple background. [Frame 34-46]\nScene 4 (Christina Aguilera Performance) : Description: Christina Aguilera is singing into a microphone on a stage with a pink background and a band behind her. [Frame 106-114]\nScene 5 (Lady Gaga Performance) : Description: Lady Gaga is performing on a stage with a green and black zebra-print outfit and a microphone. [Frame 130-133]\nScene 6 (Outdoor Concert) : Description: A large crowd is gathered in a darkened outdoor venue, watching a concert on a stage with bright lights and large screens. [Frame 151-154]\nScene 7 (Rainbow Stage) : Description: A stage is set with a large rainbow-colored arch and a band performing in front of it, surrounded by a crowd of people in a darkened venue. [Frame 162-166]\nScene 8 (Red Stage) : Description: A stage is lit up with red lights, and a performer is singing into a microphone, surrounded by dancers in red and black outfits. [Frame 369-375]\nScene 9 (Fireworks Display) : Description: Fireworks are exploding in the night sky above a stage with a large screen displaying a performer. [Frame 4970-4972]\n\nEVENTS:\nEvent 1 (Concert Start) : Description: The concert begins with a large screen displaying "PRESS START" in white pixelated font. [Frame 1]\nEvent 2 (Drumming Solo) : Description: The drummer is enthusiastically playing a large drum set on a darkened stage with blue lighting. [Frame 23]\nEvent 3 (Guitar Solo) : Description: The female guitarist is playing an electric guitar on a stage with a blue and purple background. [Frame 34]\nEvent 4 (Christina Aguilera Sings) : Description: Christina Aguilera is singing into a microphone on a stage with a pink background. [Frame 106]\nEvent 5 (Lady Gaga Performs) : Description: Lady Gaga is performing on a stage with a green and black zebra-print outfit and a microphone. [Frame 130]\nEvent 6 (Fireworks Display) : Description: Fireworks are exploding in the night sky above a stage with a large screen displaying a performer. [Frame 4970]\n\n================================================================================\nGenerated at: 2026-01-11 21:46:08\n================================================================================\n\nYour question is this: What was the first instrument to appear in the video?'}]
+You are a reasoning model whose goal is to answer questions about a video. You cannot see the video, but you can use tools to retrieve information about the video.
+
+You will be given a question and answer choices.
+
+Question: What was the first instrument to appear in the video?
+
+Answer Choices:
+A. Bass
+B. Drum kit
+C. Electric piano
+D. Guitar
+
+
+⚠️ SUBTITLE QUESTION DETECTION:
+FIRST, check if the question references subtitles or spoken content:
+- Does it say "when the subtitle says...", "when the text shows...", "when the narration mentions..."?
+- Does it quote specific words/phrases that appear in subtitles?
+- If YES → You MUST use SUBTITLE_SEARCH as your first tool (not caption search!)
+
+TEMPORAL ATTENTION:
+NEXT, check if the question contains time keywords (after, before, during, when, then, while, first, next, later, etc.):
+- If present, IDENTIFY and MARK DOWN all temporal relationships and timeframes mentioned
+- Note which events should occur before/after/during other events
+- This temporal information is CRITICAL for finding the right frames
+
+⚠️ QUICK ACTION DETECTION:
+CHECK if the question asks about FAST/QUICK/SUDDEN actions:
+- Hand movements (grabbing, pointing, gesturing, catching, throwing)
+- Objects moving quickly (falling, dropping, flipping, being placed)
+- Facial expressions (sudden smiles, surprise, eye movements)
+- Brief moments (exact timing, precise actions, quick reactions)
+- Keywords: quick, fast, sudden, immediately, instant, rapid, brief, moment
+→ If YES, you will need to use EXTRACT_FINE_FRAMES tool later (after finding the scene) to get higher FPS frames!
+→ Default 1 FPS frames will NOT capture these quick actions - you MUST extract 5-10 FPS for accurate observation
+
+STEP 1: EXTRACT VERIFICATION CRITERIA
+First, carefully analyze the question and extract 4-6 specific, testable criteria that can be verified visually in the video frames. These criteria should be concrete conditions that must be satisfied to answer the question correctly. These criteria should be derived FROM THE QUESTION, NOT THE ANSWER CHOICES. 
+
+For example, if the question asks about "a person in a black shirt holding a metal bucket in a scene with scattered debris", the criteria might be:
+- Person is wearing a black shirt
+- Person is wearing black pants
+- Person is holding a large round metal bucket
+- Scene contains scattered debris on the ground
+- Scene shows items scattered on the ground
+
+Extract ONLY verifiable visual criteria from the question. DO NOT include criteria about the answer choices.
+
+STEP 2: GENERATE SEARCH QUERIES
+Now generate 2-4 search queries to find the relevant frames. Each query should be:
+- STRUCTURED like a natural caption (subject-verb-object format)
+- FOCUS on VISIBLE, CONCRETE details from the question
+- DESCRIBE what would APPEAR in the frame (not abstract concepts)
+- Use complete, grammatical phrases (e.g., "woman in yellow dress holds paper")
+
+Guidelines for creating queries:
+1. Prioritize VISIBLE traits: clothing colors, physical objects, actions, settings
+2. Use natural language structure: "person wearing [clothing] doing [action] in [location]"
+3. Each query should target a DIFFERENT aspect or detail from the question
+4. Avoid jumbled keywords - write how a caption would describe the scene
+
+Example question: "A woman in a yellow dress is holding papers in an office. What is she reading?"
+GOOD queries:
+- "woman wearing yellow dress holding papers"
+- "person in office setting with documents"
+- "woman reading document in indoor workspace"
+
+BAD queries (jumbled/unclear):
+- "yellow dress papers office woman"
+- "holding reading yellow"
+
+If subtitles are available, you should use the SUBTITLE_SEARCH tool instead of the CAPTION_SEARCH tool.
+Return the following format:
+```json{
+    "tool": "SUBTITLE_SEARCH",
+    "query": "the exact subtitle text or phrase mentioned in the question",
+    "topk": 10  // optional, defaults to 10
+}```
+
+Return your answer in the following json format:
+```json{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "criterion 1 - a specific visual condition to verify",
+        "criterion 2 - another specific visual condition",
+        "criterion 3 - another specific visual condition",
+        "criterion 4 - another specific visual condition",
+        "criterion 5 - (optional) another specific visual condition",
+        "criterion 6 - (optional) another specific visual condition"
+    ],
+    "search_queries": [
+        "first natural search query focusing on main subject/action",
+        "second query focusing on setting/objects",
+        "third query focusing on alternative details (optional)",
+        "fourth query for additional context (optional)"
+    ]
+}```
+
+IMPORTANT: Generate 2-4 search queries. Each should be a natural, structured phrase describing visible elements.
+
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "A musical instrument is visible in the frame",
+        "The instrument is being played or clearly shown",
+        "This is the earliest appearance of any instrument in the video",
+        "The instrument type can be identified visually"
+    ],
+    "search_queries": [
+        "person playing musical instrument on stage",
+        "drum set on stage with performer",
+        "guitar being played on stage",
+        "musical instrument visible on stage"
+    ]
+}
+Criteria: ['A musical instrument is visible in the frame', 'The instrument is being played or clearly shown', 'This is the earliest appearance of any instrument in the video', 'The instrument type can be identified visually']
+Search queries (4): ['person playing musical instrument on stage', 'drum set on stage with performer', 'guitar being played on stage', 'musical instrument visible on stage']
+Caption search results: [{'frames/frame_2404': 'frames/frame_2404', 'text': 'A person is playing an electric guitar on stage.', 'similarity score': 0.881195068359375}, {'frames/frame_3426': 'frames/frame_3426', 'text': 'A person is performing on a stage with a large screen displaying an animated character .', 'similarity score': 0.8386016488075256}, {'frames/frame_0940': 'frames/frame_0940', 'text': 'A man is playing drums on a stage.', 'similarity score': 0.8056471943855286}, {'frames/frame_2007': 'frames/frame_2007', 'text': 'The woman is performing on a stage.', 'similarity score': 0.8000210523605347}, {'frames/frame_1207': 'frames/frame_1207', 'text': 'The person is playing an electric guitar on a stage with a pink and purple background.', 'similarity score': 0.7963517904281616}, {'frames/frame_3997': 'frames/frame_3997', 'text': 'A person performs on a stage lit with blue and green lights in a dark venue.', 'similarity score': 0.7915095090866089}, {'frames/frame_2159': 'frames/frame_2159', 'text': 'A person is performing on a stage with a red backdrop and a large crowd is watching.', 'similarity score': 0.786424458026886}, {'frames/frame_1660': 'frames/frame_1660', 'text': 'The person is playing a pink and white electric guitar on a stage.', 'similarity score': 0.7846236228942871}, {'frames/frame_1205': 'frames/frame_1205', 'text': 'A person wearing a black and white patterned shirt is playing a white electric guitar on a stage.', 'similarity score': 0.7769310474395752}, {'frames/frame_3961': 'frames/frame_3961', 'text': 'A person is standing on a stage at night.', 'similarity score': 0.7762047052383423}, {'frames/frame_3941': 'frames/frame_3941', 'text': 'A person is standing on a stage with blue lights.', 'similarity score': 0.7758406400680542}, {'frames/frame_2898': 'frames/frame_2898', 'text': 'A person wearing a bright green and black patterned shirt is playing a white guitar on a dark blue stage, with a microphone stand nearby.', 'similarity score': 0.7723092436790466}, {'frames/frame_4371': 'frames/frame_4371', 'text': 'The woman is performing on a stage in front of an audience.', 'similarity score': 0.768254280090332}, {'frames/frame_2399': 'frames/frame_2399', 'text': 'A man is energetically playing a drum set on a stage.', 'similarity score': 0.7640304565429688}, {'frames/frame_3939': 'frames/frame_3939', 'text': 'A person stands on a stage, illuminated by blue lights, with a dark background.', 'similarity score': 0.7633920311927795}, {'frames/frame_4228': 'frames/frame_4228', 'text': 'The musician is playing an electric guitar on a stage with a pink and purple lighting scheme.', 'similarity score': 0.757938802242279}, {'frames/frame_0555': 'frames/frame_0555', 'text': 'A person wearing a black and white patterned jacket is playing an electric guitar on a stage lit with blue light.', 'similarity score': 0.7571274042129517}, {'frames/frame_2689': 'frames/frame_2689', 'text': 'The lights are shining brightly on a stage.', 'similarity score': 0.7564407587051392}, {'frames/frame_2427': 'frames/frame_2427', 'text': 'A musician with long hair is playing an electric guitar on a stage lit with blue light.', 'similarity score': 0.755750298500061}, {'frames/frame_3926': 'frames/frame_3926', 'text': 'A person is standing on a stage, illuminated by blue lights, with their hands raised in the air.', 'similarity score': 0.7544772028923035}, {'frames/frame_3935': 'frames/frame_3935', 'text': 'A person is standing on a stage with blue lights in the dark.', 'similarity score': 0.750157356262207}, {'frames/frame_1721': 'frames/frame_1721', 'text': 'The person is playing an electric guitar on a stage with a pink stand and a blue and white abstract sculpture.', 'similarity score': 0.7501335144042969}, {'frames/frame_0693': 'frames/frame_0693', 'text': 'A person is performing on a stage with a large screen behind them displaying a vibrant green and red pattern, surrounded by bright green lights shining down from above.', 'similarity score': 0.7495218515396118}, {'frames/frame_4346': 'frames/frame_4346', 'text': 'A person in a bright green outfit is performing on a stage in front of a large crowd of people at a concert venue.', 'similarity score': 0.749003529548645}, {'frames/frame_2785': 'frames/frame_2785', 'text': 'A person is playing a white guitar on a stage with bright lights shining on them, while a screen behind them displays a live performance by a band.', 'similarity score': 0.7487931251525879}, {'frames/frame_2897': 'frames/frame_2897', 'text': 'A person wearing a bright green and black zebra print shirt is playing a white acoustic guitar on a stage with a blue background.', 'similarity score': 0.7459144592285156}, {'frames/frame_3998': 'frames/frame_3998', 'text': 'A man is performing on a stage with a large screen displaying "THE" behind him.', 'similarity score': 0.7455660700798035}, {'frames/frame_2701': 'frames/frame_2701', 'text': 'A person is performing on a dark stage with blue lights and white spotlights arranged in a square pattern around them.', 'similarity score': 0.7449083924293518}, {'frames/frame_2239': 'frames/frame_2239', 'text': 'A person with curly hair, wearing a black and red patterned shirt and pants, is performing on a stage with a black and white patterned wall and a white-lit archway in the background.', 'similarity score': 0.7448735237121582}, {'frames/frame_0078': 'frames/frame_0078', 'text': 'A man is playing drums on a stage with blue and pink lights.', 'similarity score': 0.7447779178619385}]
+Caption search results: [{'frames/frame_2399': 'frames/frame_2399', 'text': 'A man is energetically playing a drum set on a stage.', 'similarity score': 0.8358532190322876}, {'frames/frame_0940': 'frames/frame_0940', 'text': 'A man is playing drums on a stage.', 'similarity score': 0.8118211030960083}, {'frames/frame_2395': 'frames/frame_2395', 'text': 'A man is playing a drum set on a stage surrounded by a blue-lit backdrop.', 'similarity score': 0.7958433032035828}, {'frames/frame_2440': 'frames/frame_2440', 'text': 'A shirtless drummer is energetically playing a drum set with a black design on a blue background on a stage.', 'similarity score': 0.7839847803115845}, {'frames/frame_0029': 'frames/frame_0029', 'text': 'A drummer is enthusiastically playing a drum set on a darkened stage with blue lighting.', 'similarity score': 0.7623268365859985}, {'frames/frame_4708': 'frames/frame_4708', 'text': 'A group of performers, including a singer, a drummer, and several dancers, are performing on a stage with a vibrant backdrop and colorful lights.', 'similarity score': 0.7423756718635559}, {'frames/frame_3768': 'frames/frame_3768', 'text': 'A group of performers, including a drummer, are on a brightly lit stage with a large, arched, colorful backdrop and large, multicolored windows on either side.', 'similarity score': 0.7353699803352356}, {'frames/frame_0023': 'frames/frame_0023', 'text': 'The drummer, wearing a white shirt with a distinctive black pattern, is energetically playing a large drum set on a dimly lit stage with blue lighting.', 'similarity score': 0.7336556315422058}, {'frames/frame_2400': 'frames/frame_2400', 'text': 'A man is enthusiastically playing a drum set on a dark stage lit with blue lights.', 'similarity score': 0.7322942614555359}, {'frames/frame_1866': 'frames/frame_1866', 'text': 'A young man with short dark hair is playing drums on a stage with a drum set that has a white bass drum with black designs.', 'similarity score': 0.7275928258895874}, {'frames/frame_0078': 'frames/frame_0078', 'text': 'A man is playing drums on a stage with blue and pink lights.', 'similarity score': 0.7271543741226196}, {'frames/frame_1631': 'frames/frame_1631', 'text': 'A shirtless drummer with short dark hair is playing a large drum set on a dark stage.', 'similarity score': 0.7249131202697754}, {'frames/frame_0019': 'frames/frame_0019', 'text': 'A man wearing a white shirt with a black pattern is enthusiastically playing a drum set on a raised stage with a large curved wall in the background.', 'similarity score': 0.7209663391113281}, {'frames/frame_2722': 'frames/frame_2722', 'text': 'Four female performers are performing on a stage with a drum set and bright lights.', 'similarity score': 0.7204513549804688}, {'frames/frame_3426': 'frames/frame_3426', 'text': 'A person is performing on a stage with a large screen displaying an animated character .', 'similarity score': 0.718823254108429}, {'frames/frame_0079': 'frames/frame_0079', 'text': 'A man with short, curly hair is playing a drum set on a stage lit with blue light.', 'similarity score': 0.7177596688270569}, {'frames/frame_0024': 'frames/frame_0024', 'text': 'A man, wearing a white shirt with a black pattern, is enthusiastically playing a drum set on a stage with a foggy background.', 'similarity score': 0.7159570455551147}, {'frames/frame_3595': 'frames/frame_3595', 'text': 'A group of performers, including a drummer and four female dancers wearing matching costumes, are performing on a brightly lit stage with a large red backdrop and colorful lights.', 'similarity score': 0.7152904272079468}, {'frames/frame_1632': 'frames/frame_1632', 'text': 'A shirtless man with short dark hair is playing a large drum set on a stage with multiple microphones in front of him.', 'similarity score': 0.7151825428009033}, {'frames/frame_0056': 'frames/frame_0056', 'text': 'A man wearing a white shirt with a black design is playing the drums on a stage with blue lighting.', 'similarity score': 0.7149658799171448}, {'frames/frame_1713': 'frames/frame_1713', 'text': 'A shirtless man with short dark hair is intently playing a large drum set with various cymbals and microphones on stage.', 'similarity score': 0.7143557667732239}, {'frames/frame_0561': 'frames/frame_0561', 'text': 'The drummer is playing the drums on a dark stage lit by blue light.', 'similarity score': 0.7128471732139587}, {'frames/frame_2411': 'frames/frame_2411', 'text': 'A shirtless man with short, dark hair is playing a drum set with various cymbals and drums adorned with a black and white geometric pattern on a dimly lit stage.', 'similarity score': 0.7114650011062622}, {'frames/frame_0055': 'frames/frame_0055', 'text': 'A young man with short, curly hair is playing a drum set on a dark stage with blue lighting.', 'similarity score': 0.7095769047737122}, {'frames/frame_4647': 'frames/frame_4647', 'text': 'A group of performers, including a drummer and female dancers, are actively performing on a stage with a large, dark blue statue and a yellow crescent moon-shaped backdrop.', 'similarity score': 0.7077210545539856}, {'frames/frame_2159': 'frames/frame_2159', 'text': 'A person is performing on a stage with a red backdrop and a large crowd is watching.', 'similarity score': 0.7076750993728638}, {'frames/frame_2724': 'frames/frame_2724', 'text': 'Lady Gaga is performing on stage with a male drummer behind her.', 'similarity score': 0.705524206161499}, {'frames/frame_3492': 'frames/frame_3492', 'text': 'A band performs on a stage with a colorful background.', 'similarity score': 0.7047809362411499}, {'frames/frame_4720': 'frames/frame_4720', 'text': 'A woman with short blonde hair and a green and yellow patterned dress is performing on a stage with a drum set behind her.', 'similarity score': 0.7038660049438477}, {'frames/frame_4236': 'frames/frame_4236', 'text': 'The man, a drummer with short dark hair and a white tank top with a black pattern, is intensely playing a large drum set with multiple cymbals and microphones on stage.', 'similarity score': 0.7028547525405884}]
+Attempt 1/15 for question: What was the first instrument to appear in the vid...
+[{'role': 'system', 'content': "You are an expert at reasoning and tool-using, with the goal of answering this question about a long video. You should be able to extract detailed frame-information from videos, do caption searches, and use your findings to answer the question. You should be SUPER PICKY about your findings, NOT make assumptions, and always bias towards gathering more evidence before executing a final answer. Use EXACT evidence only. ALSO, when dealing with TEMPORAL questions, you cannot find VISUAL TIMES. If a question asks for a 'duration' of an event, you want to do many caption searches on consecutive ranges, and find scene-changes at the beginning and end of the event. You MUST CHOOSE AN ANSWER. NONE OF THE ABOVE IS NOT ACCEPTABLE."}, {'role': 'user', 'content': '\n Here is a global summary of the video for general context: Based on the provided SET of frame-by-frame captions data, here is a global summary of the video:\n\n**Main Characters:**\nThe main characters in the video are various female pop stars, including Christina Aguilera, Lady Gaga, Katy Perry, and others. They are the central figures performing on stage throughout the video.\n\n**Setting:**\nThe setting is a concert or music festival, with a large stage and a darkened venue or outdoor amphitheater. The stage is often decorated with bright lights, large screens, and elaborate backdrops, including rainbow-colored arches, giant statues, and futuristic designs.\n\n**Plot Line:**\nThe video appears to be a compilation of various performances by different artists at a concert or music festival. The plot line is not narrative-driven, but rather a collection of energetic and dynamic performances by the featured artists.\n\n**Vibes:**\nThe overall vibe of the video is energetic, lively, and celebratory. The performances are high-energy, with bright lights, colorful costumes, and elaborate stage designs. The audience is often shown enthusiastically cheering, dancing, and recording the performances with their phones.\n\n**General Details:**\nThe video features a diverse range of performances, including singing, dancing, and instrumental playing. The stage designs and backdrops are often elaborate and futuristic, with large screens displaying vibrant graphics and images. The audience is frequently shown holding up their phones to capture the performances, creating a sea of twinkling lights in the darkened venue. Fireworks and pyrotechnics are also used to enhance the energetic atmosphere. Overall, the video captures the excitement and energy of a live concert or music festival.\n\n Here is also an INCOMPLETE character/event/scene log across the video. These will all be encountered, and there MAY BE MORE ================================================================================\nCHARACTER, EVENT, AND SCENE LOGS\n================================================================================\n\nCHARACTERS:\nPerson 1 (Female Singer): Description: Blonde woman wearing a green and black zebra-print outfit, singing into a microphone on a stage.\nPerson 2 (Drummer): Description: Man with short dark hair, wearing a white shirt with a black pattern, playing drums on a stage.\nPerson 3 (Guitarist): Description: Man with curly blonde hair, wearing a black and white patterned shirt, playing an electric guitar on a stage.\nPerson 4 (Female Guitarist): Description: Woman with curly blonde hair, wearing a black and white patterned dress, playing an electric guitar on a stage.\n\nSCENES:\nScene 1 (Concert Venue) : Description: A large crowd is gathered in a darkened venue, watching a concert on a stage with bright lights and large screens. [Frame 1-18]\nScene 2 (Drumming Performance) : Description: A man is playing drums on a dark stage with blue lighting. [Frame 19-30]\nScene 3 (Guitar Performance) : Description: A woman is playing an electric guitar on a stage with a blue and purple background. [Frame 34-46]\nScene 4 (Christina Aguilera Performance) : Description: Christina Aguilera is singing into a microphone on a stage with a pink background and a band behind her. [Frame 106-114]\nScene 5 (Lady Gaga Performance) : Description: Lady Gaga is performing on a stage with a green and black zebra-print outfit and a microphone. [Frame 130-133]\nScene 6 (Outdoor Concert) : Description: A large crowd is gathered in a darkened outdoor venue, watching a concert on a stage with bright lights and large screens. [Frame 151-154]\nScene 7 (Rainbow Stage) : Description: A stage is set with a large rainbow-colored arch and a band performing in front of it, surrounded by a crowd of people in a darkened venue. [Frame 162-166]\nScene 8 (Red Stage) : Description: A stage is lit up with red lights, and a performer is singing into a microphone, surrounded by dancers in red and black outfits. [Frame 369-375]\nScene 9 (Fireworks Display) : Description: Fireworks are exploding in the night sky above a stage with a large screen displaying a performer. [Frame 4970-4972]\n\nEVENTS:\nEvent 1 (Concert Start) : Description: The concert begins with a large screen displaying "PRESS START" in white pixelated font. [Frame 1]\nEvent 2 (Drumming Solo) : Description: The drummer is enthusiastically playing a large drum set on a darkened stage with blue lighting. [Frame 23]\nEvent 3 (Guitar Solo) : Description: The female guitarist is playing an electric guitar on a stage with a blue and purple background. [Frame 34]\nEvent 4 (Christina Aguilera Sings) : Description: Christina Aguilera is singing into a microphone on a stage with a pink background. [Frame 106]\nEvent 5 (Lady Gaga Performs) : Description: Lady Gaga is performing on a stage with a green and black zebra-print outfit and a microphone. [Frame 130]\nEvent 6 (Fireworks Display) : Description: Fireworks are exploding in the night sky above a stage with a large screen displaying a performer. [Frame 4970]\n\n================================================================================\nGenerated at: 2026-01-11 21:46:08\n================================================================================\n\nYour question is this: What was the first instrument to appear in the video?'}]
+You are a reasoning model whose goal is to answer questions about a video. You cannot see the video, but you can use tools to retrieve information about the video.
+
+You will be given a question and answer choices.
+
+Question: What was the first instrument to appear in the video?
+
+Answer Choices:
+A. Bass
+B. Drum kit
+C. Electric piano
+D. Guitar
+
+
+⚠️ SUBTITLE QUESTION DETECTION:
+FIRST, check if the question references subtitles or spoken content:
+- Does it say "when the subtitle says...", "when the text shows...", "when the narration mentions..."?
+- Does it quote specific words/phrases that appear in subtitles?
+- If YES → You MUST use SUBTITLE_SEARCH as your first tool (not caption search!)
+
+TEMPORAL ATTENTION:
+NEXT, check if the question contains time keywords (after, before, during, when, then, while, first, next, later, etc.):
+- If present, IDENTIFY and MARK DOWN all temporal relationships and timeframes mentioned
+- Note which events should occur before/after/during other events
+- This temporal information is CRITICAL for finding the right frames
+
+⚠️ QUICK ACTION DETECTION:
+CHECK if the question asks about FAST/QUICK/SUDDEN actions:
+- Hand movements (grabbing, pointing, gesturing, catching, throwing)
+- Objects moving quickly (falling, dropping, flipping, being placed)
+- Facial expressions (sudden smiles, surprise, eye movements)
+- Brief moments (exact timing, precise actions, quick reactions)
+- Keywords: quick, fast, sudden, immediately, instant, rapid, brief, moment
+→ If YES, you will need to use EXTRACT_FINE_FRAMES tool later (after finding the scene) to get higher FPS frames!
+→ Default 1 FPS frames will NOT capture these quick actions - you MUST extract 5-10 FPS for accurate observation
+
+STEP 1: EXTRACT VERIFICATION CRITERIA
+First, carefully analyze the question and extract 4-6 specific, testable criteria that can be verified visually in the video frames. These criteria should be concrete conditions that must be satisfied to answer the question correctly. These criteria should be derived FROM THE QUESTION, NOT THE ANSWER CHOICES. 
+
+For example, if the question asks about "a person in a black shirt holding a metal bucket in a scene with scattered debris", the criteria might be:
+- Person is wearing a black shirt
+- Person is wearing black pants
+- Person is holding a large round metal bucket
+- Scene contains scattered debris on the ground
+- Scene shows items scattered on the ground
+
+Extract ONLY verifiable visual criteria from the question. DO NOT include criteria about the answer choices.
+
+STEP 2: GENERATE SEARCH QUERIES
+Now generate 2-4 search queries to find the relevant frames. Each query should be:
+- STRUCTURED like a natural caption (subject-verb-object format)
+- FOCUS on VISIBLE, CONCRETE details from the question
+- DESCRIBE what would APPEAR in the frame (not abstract concepts)
+- Use complete, grammatical phrases (e.g., "woman in yellow dress holds paper")
+
+Guidelines for creating queries:
+1. Prioritize VISIBLE traits: clothing colors, physical objects, actions, settings
+2. Use natural language structure: "person wearing [clothing] doing [action] in [location]"
+3. Each query should target a DIFFERENT aspect or detail from the question
+4. Avoid jumbled keywords - write how a caption would describe the scene
+
+Example question: "A woman in a yellow dress is holding papers in an office. What is she reading?"
+GOOD queries:
+- "woman wearing yellow dress holding papers"
+- "person in office setting with documents"
+- "woman reading document in indoor workspace"
+
+BAD queries (jumbled/unclear):
+- "yellow dress papers office woman"
+- "holding reading yellow"
+
+If subtitles are available, you should use the SUBTITLE_SEARCH tool instead of the CAPTION_SEARCH tool.
+Return the following format:
+```json{
+    "tool": "SUBTITLE_SEARCH",
+    "query": "the exact subtitle text or phrase mentioned in the question",
+    "topk": 10  // optional, defaults to 10
+}```
+
+Return your answer in the following json format:
+```json{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "criterion 1 - a specific visual condition to verify",
+        "criterion 2 - another specific visual condition",
+        "criterion 3 - another specific visual condition",
+        "criterion 4 - another specific visual condition",
+        "criterion 5 - (optional) another specific visual condition",
+        "criterion 6 - (optional) another specific visual condition"
+    ],
+    "search_queries": [
+        "first natural search query focusing on main subject/action",
+        "second query focusing on setting/objects",
+        "third query focusing on alternative details (optional)",
+        "fourth query for additional context (optional)"
+    ]
+}```
+
+IMPORTANT: Generate 2-4 search queries. Each should be a natural, structured phrase describing visible elements.
+
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "A musical instrument is visible in the frame",
+        "The instrument is being played or is clearly present on stage",
+        "This is the earliest occurrence of an instrument in the video",
+        "The instrument type can be visually identified (e.g., drum kit, guitar, etc.)"
+    ],
+    "search_queries": [
+        "person playing musical instrument on stage",
+        "drum set on stage with performer",
+        "guitarist playing electric guitar",
+        "band performing with instruments"
+    ]
+}
+Criteria: ['A musical instrument is visible in the frame', 'The instrument is being played or is clearly present on stage', 'This is the earliest occurrence of an instrument in the video', 'The instrument type can be visually identified (e.g., drum kit, guitar, etc.)']
+Search queries (4): ['person playing musical instrument on stage', 'drum set on stage with performer', 'guitarist playing electric guitar', 'band performing with instruments']
+Caption search results: [{'frames/frame_2404': 'frames/frame_2404', 'text': 'A person is playing an electric guitar on stage.', 'similarity score': 0.881195068359375}, {'frames/frame_3426': 'frames/frame_3426', 'text': 'A person is performing on a stage with a large screen displaying an animated character .', 'similarity score': 0.8386016488075256}, {'frames/frame_0940': 'frames/frame_0940', 'text': 'A man is playing drums on a stage.', 'similarity score': 0.8056471943855286}, {'frames/frame_2007': 'frames/frame_2007', 'text': 'The woman is performing on a stage.', 'similarity score': 0.8000210523605347}, {'frames/frame_1207': 'frames/frame_1207', 'text': 'The person is playing an electric guitar on a stage with a pink and purple background.', 'similarity score': 0.7963517904281616}, {'frames/frame_3997': 'frames/frame_3997', 'text': 'A person performs on a stage lit with blue and green lights in a dark venue.', 'similarity score': 0.7915095090866089}, {'frames/frame_2159': 'frames/frame_2159', 'text': 'A person is performing on a stage with a red backdrop and a large crowd is watching.', 'similarity score': 0.786424458026886}, {'frames/frame_1660': 'frames/frame_1660', 'text': 'The person is playing a pink and white electric guitar on a stage.', 'similarity score': 0.7846236228942871}, {'frames/frame_1205': 'frames/frame_1205', 'text': 'A person wearing a black and white patterned shirt is playing a white electric guitar on a stage.', 'similarity score': 0.7769310474395752}, {'frames/frame_3961': 'frames/frame_3961', 'text': 'A person is standing on a stage at night.', 'similarity score': 0.7762047052383423}, {'frames/frame_3941': 'frames/frame_3941', 'text': 'A person is standing on a stage with blue lights.', 'similarity score': 0.7758406400680542}, {'frames/frame_2898': 'frames/frame_2898', 'text': 'A person wearing a bright green and black patterned shirt is playing a white guitar on a dark blue stage, with a microphone stand nearby.', 'similarity score': 0.7723092436790466}, {'frames/frame_4371': 'frames/frame_4371', 'text': 'The woman is performing on a stage in front of an audience.', 'similarity score': 0.768254280090332}, {'frames/frame_2399': 'frames/frame_2399', 'text': 'A man is energetically playing a drum set on a stage.', 'similarity score': 0.7640304565429688}, {'frames/frame_3939': 'frames/frame_3939', 'text': 'A person stands on a stage, illuminated by blue lights, with a dark background.', 'similarity score': 0.7633920311927795}, {'frames/frame_4228': 'frames/frame_4228', 'text': 'The musician is playing an electric guitar on a stage with a pink and purple lighting scheme.', 'similarity score': 0.757938802242279}, {'frames/frame_0555': 'frames/frame_0555', 'text': 'A person wearing a black and white patterned jacket is playing an electric guitar on a stage lit with blue light.', 'similarity score': 0.7571274042129517}, {'frames/frame_2689': 'frames/frame_2689', 'text': 'The lights are shining brightly on a stage.', 'similarity score': 0.7564407587051392}, {'frames/frame_2427': 'frames/frame_2427', 'text': 'A musician with long hair is playing an electric guitar on a stage lit with blue light.', 'similarity score': 0.755750298500061}, {'frames/frame_3926': 'frames/frame_3926', 'text': 'A person is standing on a stage, illuminated by blue lights, with their hands raised in the air.', 'similarity score': 0.7544772028923035}, {'frames/frame_3935': 'frames/frame_3935', 'text': 'A person is standing on a stage with blue lights in the dark.', 'similarity score': 0.750157356262207}, {'frames/frame_1721': 'frames/frame_1721', 'text': 'The person is playing an electric guitar on a stage with a pink stand and a blue and white abstract sculpture.', 'similarity score': 0.7501335144042969}, {'frames/frame_0693': 'frames/frame_0693', 'text': 'A person is performing on a stage with a large screen behind them displaying a vibrant green and red pattern, surrounded by bright green lights shining down from above.', 'similarity score': 0.7495218515396118}, {'frames/frame_4346': 'frames/frame_4346', 'text': 'A person in a bright green outfit is performing on a stage in front of a large crowd of people at a concert venue.', 'similarity score': 0.749003529548645}, {'frames/frame_2785': 'frames/frame_2785', 'text': 'A person is playing a white guitar on a stage with bright lights shining on them, while a screen behind them displays a live performance by a band.', 'similarity score': 0.7487931251525879}, {'frames/frame_2897': 'frames/frame_2897', 'text': 'A person wearing a bright green and black zebra print shirt is playing a white acoustic guitar on a stage with a blue background.', 'similarity score': 0.7459144592285156}, {'frames/frame_3998': 'frames/frame_3998', 'text': 'A man is performing on a stage with a large screen displaying "THE" behind him.', 'similarity score': 0.7455660700798035}, {'frames/frame_2701': 'frames/frame_2701', 'text': 'A person is performing on a dark stage with blue lights and white spotlights arranged in a square pattern around them.', 'similarity score': 0.7449083924293518}, {'frames/frame_2239': 'frames/frame_2239', 'text': 'A person with curly hair, wearing a black and red patterned shirt and pants, is performing on a stage with a black and white patterned wall and a white-lit archway in the background.', 'similarity score': 0.7448735237121582}, {'frames/frame_0078': 'frames/frame_0078', 'text': 'A man is playing drums on a stage with blue and pink lights.', 'similarity score': 0.7447779178619385}]
+Caption search results: [{'frames/frame_2399': 'frames/frame_2399', 'text': 'A man is energetically playing a drum set on a stage.', 'similarity score': 0.8358532190322876}, {'frames/frame_0940': 'frames/frame_0940', 'text': 'A man is playing drums on a stage.', 'similarity score': 0.8118211030960083}, {'frames/frame_2395': 'frames/frame_2395', 'text': 'A man is playing a drum set on a stage surrounded by a blue-lit backdrop.', 'similarity score': 0.7958433032035828}, {'frames/frame_2440': 'frames/frame_2440', 'text': 'A shirtless drummer is energetically playing a drum set with a black design on a blue background on a stage.', 'similarity score': 0.7839847803115845}, {'frames/frame_0029': 'frames/frame_0029', 'text': 'A drummer is enthusiastically playing a drum set on a darkened stage with blue lighting.', 'similarity score': 0.7623268365859985}, {'frames/frame_4708': 'frames/frame_4708', 'text': 'A group of performers, including a singer, a drummer, and several dancers, are performing on a stage with a vibrant backdrop and colorful lights.', 'similarity score': 0.7423756718635559}, {'frames/frame_3768': 'frames/frame_3768', 'text': 'A group of performers, including a drummer, are on a brightly lit stage with a large, arched, colorful backdrop and large, multicolored windows on either side.', 'similarity score': 0.7353699803352356}, {'frames/frame_0023': 'frames/frame_0023', 'text': 'The drummer, wearing a white shirt with a distinctive black pattern, is energetically playing a large drum set on a dimly lit stage with blue lighting.', 'similarity score': 0.7336556315422058}, {'frames/frame_2400': 'frames/frame_2400', 'text': 'A man is enthusiastically playing a drum set on a dark stage lit with blue lights.', 'similarity score': 0.7322942614555359}, {'frames/frame_1866': 'frames/frame_1866', 'text': 'A young man with short dark hair is playing drums on a stage with a drum set that has a white bass drum with black designs.', 'similarity score': 0.7275928258895874}, {'frames/frame_0078': 'frames/frame_0078', 'text': 'A man is playing drums on a stage with blue and pink lights.', 'similarity score': 0.7271543741226196}, {'frames/frame_1631': 'frames/frame_1631', 'text': 'A shirtless drummer with short dark hair is playing a large drum set on a dark stage.', 'similarity score': 0.7249131202697754}, {'frames/frame_0019': 'frames/frame_0019', 'text': 'A man wearing a white shirt with a black pattern is enthusiastically playing a drum set on a raised stage with a large curved wall in the background.', 'similarity score': 0.7209663391113281}, {'frames/frame_2722': 'frames/frame_2722', 'text': 'Four female performers are performing on a stage with a drum set and bright lights.', 'similarity score': 0.7204513549804688}, {'frames/frame_3426': 'frames/frame_3426', 'text': 'A person is performing on a stage with a large screen displaying an animated character .', 'similarity score': 0.718823254108429}, {'frames/frame_0079': 'frames/frame_0079', 'text': 'A man with short, curly hair is playing a drum set on a stage lit with blue light.', 'similarity score': 0.7177596688270569}, {'frames/frame_0024': 'frames/frame_0024', 'text': 'A man, wearing a white shirt with a black pattern, is enthusiastically playing a drum set on a stage with a foggy background.', 'similarity score': 0.7159570455551147}, {'frames/frame_3595': 'frames/frame_3595', 'text': 'A group of performers, including a drummer and four female dancers wearing matching costumes, are performing on a brightly lit stage with a large red backdrop and colorful lights.', 'similarity score': 0.7152904272079468}, {'frames/frame_1632': 'frames/frame_1632', 'text': 'A shirtless man with short dark hair is playing a large drum set on a stage with multiple microphones in front of him.', 'similarity score': 0.7151825428009033}, {'frames/frame_0056': 'frames/frame_0056', 'text': 'A man wearing a white shirt with a black design is playing the drums on a stage with blue lighting.', 'similarity score': 0.7149658799171448}, {'frames/frame_1713': 'frames/frame_1713', 'text': 'A shirtless man with short dark hair is intently playing a large drum set with various cymbals and microphones on stage.', 'similarity score': 0.7143557667732239}, {'frames/frame_0561': 'frames/frame_0561', 'text': 'The drummer is playing the drums on a dark stage lit by blue light.', 'similarity score': 0.7128471732139587}, {'frames/frame_2411': 'frames/frame_2411', 'text': 'A shirtless man with short, dark hair is playing a drum set with various cymbals and drums adorned with a black and white geometric pattern on a dimly lit stage.', 'similarity score': 0.7114650011062622}, {'frames/frame_0055': 'frames/frame_0055', 'text': 'A young man with short, curly hair is playing a drum set on a dark stage with blue lighting.', 'similarity score': 0.7095769047737122}, {'frames/frame_4647': 'frames/frame_4647', 'text': 'A group of performers, including a drummer and female dancers, are actively performing on a stage with a large, dark blue statue and a yellow crescent moon-shaped backdrop.', 'similarity score': 0.7077210545539856}, {'frames/frame_2159': 'frames/frame_2159', 'text': 'A person is performing on a stage with a red backdrop and a large crowd is watching.', 'similarity score': 0.7076750993728638}, {'frames/frame_2724': 'frames/frame_2724', 'text': 'Lady Gaga is performing on stage with a male drummer behind her.', 'similarity score': 0.705524206161499}, {'frames/frame_3492': 'frames/frame_3492', 'text': 'A band performs on a stage with a colorful background.', 'similarity score': 0.7047809362411499}, {'frames/frame_4720': 'frames/frame_4720', 'text': 'A woman with short blonde hair and a green and yellow patterned dress is performing on a stage with a drum set behind her.', 'similarity score': 0.7038660049438477}, {'frames/frame_4236': 'frames/frame_4236', 'text': 'The man, a drummer with short dark hair and a white tank top with a black pattern, is intensely playing a large drum set with multiple cymbals and microphones on stage.', 'similarity score': 0.7028547525405884}]
+Caption search results: [{'frames/frame_2786': 'frames/frame_2786', 'text': 'The person is playing an electric guitar in a nightclub or at a concert.', 'similarity score': 0.8042079210281372}, {'frames/frame_2404': 'frames/frame_2404', 'text': 'A person is playing an electric guitar on stage.', 'similarity score': 0.8035174012184143}, {'frames/frame_1207': 'frames/frame_1207', 'text': 'The person is playing an electric guitar on a stage with a pink and purple background.', 'similarity score': 0.7283052206039429}, {'frames/frame_1205': 'frames/frame_1205', 'text': 'A person wearing a black and white patterned shirt is playing a white electric guitar on a stage.', 'similarity score': 0.7191464900970459}, {'frames/frame_4228': 'frames/frame_4228', 'text': 'The musician is playing an electric guitar on a stage with a pink and purple lighting scheme.', 'similarity score': 0.7180500030517578}, {'frames/frame_0663': 'frames/frame_0663', 'text': 'The rockstar is playing an electric guitar on a stage lit with green and blue lights.', 'similarity score': 0.7070233821868896}, {'frames/frame_1721': 'frames/frame_1721', 'text': 'The person is playing an electric guitar on a stage with a pink stand and a blue and white abstract sculpture.', 'similarity score': 0.7026983499526978}, {'frames/frame_1660': 'frames/frame_1660', 'text': 'The person is playing a pink and white electric guitar on a stage.', 'similarity score': 0.6938554048538208}, {'frames/frame_4280': 'frames/frame_4280', 'text': 'A musician with curly blond hair is playing an electric guitar on a stage with a large screen displaying a colorful landscape behind him.', 'similarity score': 0.691625714302063}, {'frames/frame_0061': 'frames/frame_0061', 'text': 'A man is playing an electric guitar on stage, wearing a black shirt with white symbols and white fur around the collar, with bright lights shining on him.', 'similarity score': 0.6907676458358765}, {'frames/frame_3970': 'frames/frame_3970', 'text': 'The silhouette of a man is playing an electric guitar on a dark stage lit by blue lights.', 'similarity score': 0.6903403997421265}, {'frames/frame_3949': 'frames/frame_3949', 'text': 'The silhouette of a man is playing an electric guitar on a stage with blue lights at a concert venue.', 'similarity score': 0.6890082359313965}, {'frames/frame_0076': 'frames/frame_0076', 'text': 'A young man with curly blond hair is playing an electric guitar on stage.', 'similarity score': 0.6890077590942383}, {'frames/frame_2426': 'frames/frame_2426', 'text': 'A man with curly hair is playing an electric guitar on a stage with blue lighting.', 'similarity score': 0.6875696182250977}, {'frames/frame_0053': 'frames/frame_0053', 'text': 'The musician, a man with curly blonde hair and a black-and-white patterned shirt, is playing an electric guitar on a stage with a purple-lit background.', 'similarity score': 0.68706214427948}, {'frames/frame_0083': 'frames/frame_0083', 'text': 'A person is playing an electric guitar on a stage with blue and purple lights shining on them, while people in the audience are recording the performance with their phones.', 'similarity score': 0.6863700151443481}, {'frames/frame_2427': 'frames/frame_2427', 'text': 'A musician with long hair is playing an electric guitar on a stage lit with blue light.', 'similarity score': 0.686323881149292}, {'frames/frame_0556': 'frames/frame_0556', 'text': 'A man wearing a black and white patterned shirt plays a white electric guitar on a dimly lit stage.', 'similarity score': 0.6860607266426086}, {'frames/frame_0555': 'frames/frame_0555', 'text': 'A person wearing a black and white patterned jacket is playing an electric guitar on a stage lit with blue light.', 'similarity score': 0.6839785575866699}, {'frames/frame_4610': 'frames/frame_4610', 'text': 'The man is playing an electric guitar on a stage with a DJ booth and a large screen displaying a colorful pattern of squares in the background.', 'similarity score': 0.678854763507843}, {'frames/frame_0080': 'frames/frame_0080', 'text': 'A young man with short, curly blond hair is playing an electric guitar on a stage with a blue and purple lighting effect in the background.', 'similarity score': 0.6786168813705444}, {'frames/frame_0565': 'frames/frame_0565', 'text': 'The man with curly blond hair is playing an electric guitar on a stage.', 'similarity score': 0.6763237714767456}, {'frames/frame_2896': 'frames/frame_2896', 'text': 'A man is playing an electric guitar on stage, surrounded by large screens displaying images of people dancing and wearing clothes with various patterns.', 'similarity score': 0.6760728359222412}, {'frames/frame_2900': 'frames/frame_2900', 'text': 'A person wearing a vibrant green and black patterned shirt is playing a white electric guitar on a dark stage lit by blue light.', 'similarity score': 0.6746799349784851}, {'frames/frame_0064': 'frames/frame_0064', 'text': 'The person with curly blonde hair is playing an electric guitar on a stage with a large screen behind them.', 'similarity score': 0.6738988757133484}, {'frames/frame_2279': 'frames/frame_2279', 'text': 'A female rockstar plays an electric guitar on a stage with a black and white checkered background.', 'similarity score': 0.6690268516540527}, {'frames/frame_4211': 'frames/frame_4211', 'text': 'A man with curly blond hair is playing a white electric guitar with black designs on a stage with a colorful screen behind him.', 'similarity score': 0.6690072417259216}, {'frames/frame_0041': 'frames/frame_0041', 'text': 'A man with curly blonde hair, wearing a black and white patterned shirt, plays an electric guitar on a stage lit with purple and pink lights.', 'similarity score': 0.6675410866737366}, {'frames/frame_1206': 'frames/frame_1206', 'text': 'A man wearing a black jacket with large white and light blue abstract shapes is playing an electric guitar on a stage with a purple and pink background.', 'similarity score': 0.6641547679901123}, {'frames/frame_2238': 'frames/frame_2238', 'text': 'A man with curly blonde hair and a black and pink patterned shirt plays an electric guitar on a stage with a black and white checkered backdrop and a large, circular, white light.', 'similarity score': 0.6639397144317627}]
+Caption search results: [{'frames/frame_3492': 'frames/frame_3492', 'text': 'A band performs on a stage with a colorful background.', 'similarity score': 0.8403271436691284}, {'frames/frame_3977': 'frames/frame_3977', 'text': 'A band performs on a stage at night.', 'similarity score': 0.7824159264564514}, {'frames/frame_2402': 'frames/frame_2402', 'text': 'A band performs on a stage with a black background and blue lighting, featuring a guitarist, keyboardist, and drummer.', 'similarity score': 0.7747716307640076}, {'frames/frame_2446': 'frames/frame_2446', 'text': 'A band performs on a brightly lit stage in front of a large audience.', 'similarity score': 0.7653166651725769}, {'frames/frame_4505': 'frames/frame_4505', 'text': 'A band is performing on a large stage with colorful lights and screens in front of a large audience.', 'similarity score': 0.7580651044845581}, {'frames/frame_4199': 'frames/frame_4199', 'text': 'A band performs on a stage with a large colorful arch and screen behind them.', 'similarity score': 0.7566947340965271}, {'frames/frame_1615': 'frames/frame_1615', 'text': 'A band performs on a stage with bright lights and a large screen displaying an image of the performers in a concert venue.', 'similarity score': 0.7545051574707031}, {'frames/frame_4504': 'frames/frame_4504', 'text': 'A band performs on a stage in front of an audience, with large screens displaying the performance on either side of the stage.', 'similarity score': 0.7543619871139526}, {'frames/frame_0783': 'frames/frame_0783', 'text': 'A band performs on a brightly lit stage with large screens displaying colorful visuals behind them.', 'similarity score': 0.7541468143463135}, {'frames/frame_2686': 'frames/frame_2686', 'text': 'A band performs on a stage with a rainbow arch backdrop and bright stage lights shining down.', 'similarity score': 0.7535730600357056}, {'frames/frame_3905': 'frames/frame_3905', 'text': 'A band performs on a stage with a large screen displaying animated cartoon characters behind them.', 'similarity score': 0.7528958320617676}, {'frames/frame_2750': 'frames/frame_2750', 'text': 'A band performs on a large stage with a rainbow backdrop and bright lights shining down.', 'similarity score': 0.7528789043426514}, {'frames/frame_0554': 'frames/frame_0554', 'text': 'A band is performing on a stage with a large archway and green lights.', 'similarity score': 0.7490105628967285}, {'frames/frame_0570': 'frames/frame_0570', 'text': 'A band is performing on a stage with a large archway and green lights in the background.', 'similarity score': 0.7443782687187195}, {'frames/frame_2434': 'frames/frame_2434', 'text': 'A band performs on a brightly lit stage with a rainbow backdrop and large screens displaying images of the band members.', 'similarity score': 0.7442334890365601}, {'frames/frame_0546': 'frames/frame_0546', 'text': 'A band performs on a stage lit with blue lights in a dark venue.', 'similarity score': 0.7429254055023193}, {'frames/frame_2678': 'frames/frame_2678', 'text': 'A band performs on a stage with bright lights and large screens displaying visuals in front of a large audience.', 'similarity score': 0.7406406402587891}, {'frames/frame_1620': 'frames/frame_1620', 'text': 'A band performs on a stage with a large screen displaying their colorful images in a darkened venue.', 'similarity score': 0.738562822341919}, {'frames/frame_0781': 'frames/frame_0781', 'text': 'A band performs on a stage with a large LED screen displaying vibrant, multicolored visuals behind them.', 'similarity score': 0.7383579015731812}, {'frames/frame_1018': 'frames/frame_1018', 'text': 'A band performs on a stage with a large rainbow graphic and lights at a concert venue.', 'similarity score': 0.7355954647064209}, {'frames/frame_2714': 'frames/frame_2714', 'text': 'A band performs on a stage with a rainbow-colored backdrop and bright stage lights in a dimly lit auditorium.', 'similarity score': 0.7353806495666504}, {'frames/frame_0730': 'frames/frame_0730', 'text': 'A stage is set with a band performing in front of a darkened audience.', 'similarity score': 0.7349416017532349}, {'frames/frame_0558': 'frames/frame_0558', 'text': 'A band performs on a stage surrounded by blue and green lights and large castle-like structures.', 'similarity score': 0.7344167232513428}, {'frames/frame_3494': 'frames/frame_3494', 'text': 'The stage is illuminated by blue and red lights, with a band performing on it.', 'similarity score': 0.7324113845825195}, {'frames/frame_1545': 'frames/frame_1545', 'text': 'The stage is lit with blue lights as a band performs in front of an audience.', 'similarity score': 0.7299046516418457}, {'frames/frame_1544': 'frames/frame_1544', 'text': 'A band performs on a stage lit up with blue and purple lights in a large dark venue.', 'similarity score': 0.72957444190979}, {'frames/frame_0547': 'frames/frame_0547', 'text': 'A band performs on a stage with blue lights and an arch-shaped backdrop in a darkened venue.', 'similarity score': 0.7290297746658325}, {'frames/frame_1619': 'frames/frame_1619', 'text': 'A group of people are performing on a dark stage.', 'similarity score': 0.7287702560424805}, {'frames/frame_4501': 'frames/frame_4501', 'text': 'A band performs on a large stage with a bright light shining down from above and a large screen on the right side of the stage.', 'similarity score': 0.7287619113922119}, {'frames/frame_1614': 'frames/frame_1614', 'text': 'A band performs on a stage with a large screen behind them and bright lights shining down, creating a lively atmosphere at a concert venue.', 'similarity score': 0.7287269830703735}]
+Caption search completed: 4 queries executed
+Looking at the search results, I need to find the earliest appearance of a musical instrument in the video. The question asks for the "first instrument," so I need to focus on the lowest frame numbers where instruments appear.
+
+From the search results, I can see several early frames showing instruments:
+
+1. **Drum set frames**: 
+   - frame_0023: "The drummer, wearing a white shirt with a distinctive black pattern, is energetically playing a large drum set..."
+   - frame_0024: "A man, wearing a white shirt with a black pattern, is enthusiastically playing a drum set..."
+   - frame_0029: "A drummer is enthusiastically playing a drum set on a darkened stage with blue lighting."
+   - frame_0055: "A young man with short, curly hair is playing a drum set on a dark stage with blue lighting."
+   - frame_0056: "A man wearing a white shirt with a black design is playing the drums on a stage with blue lighting."
+
+2. **Guitar frames**:
+   - frame_0053: "The musician, a man with curly blonde hair and a black-and-white patterned shirt, is playing an electric guitar..."
+   - frame_0061: "A man is playing an electric guitar on stage..."
+   - frame_0064: "The person with curly blonde hair is playing an electric guitar on a stage with a large screen behind them."
+
+The drum set appears as early as frame_0023, while the earliest guitar appears around frame_0053. This suggests drums appear before guitars.
+
+However, I should verify this by examining the very beginning of the video. The global summary mentions "Event 1 (Concert Start)" at frame_001, showing "PRESS START" on a screen. I need to check if any instruments appear immediately after this.
+
+Let me query a window of frames from the very beginning to see what instruments appear first.
+
+```json
+{
+    "tool": "VLM_QUERY",
+    "frames": [
+        "frames/frame_0001.jpg",
+        "frames/frame_0002.jpg",
+        "frames/frame_0003.jpg",
+        "frames/frame_0004.jpg",
+        "frames/frame_0005.jpg",
+        "frames/frame_0006.jpg",
+        "frames/frame_0007.jpg",
+        "frames/frame_0008.jpg",
+        "frames/frame_0009.jpg",
+        "frames/frame_0010.jpg",
+        "frames/frame_0011.jpg",
+        "frames/frame_0012.jpg",
+        "frames/frame_0013.jpg",
+        "frames/frame_0014.jpg",
+        "frames/frame_0015.jpg",
+        "frames/frame_0016.jpg",
+        "frames/frame_0017.jpg",
+        "frames/frame_0018.jpg",
+        "frames/frame_0019.jpg",
+        "frames/frame_0020.jpg",
+        "frames/frame_0021.jpg",
+        "frames/frame_0022.jpg",
+        "frames/frame_0023.jpg",
+        "frames/frame_0024.jpg",
+        "frames/frame_0025.jpg",
+        "frames/frame_0026.jpg",
+        "frames/frame_0027.jpg",
+        "frames/frame_0028.jpg",
+        "frames/frame_0029.jpg",
+        "frames/frame_0030.jpg"
+    ],
+    "prompt": "Identify any musical instruments visible in these frames. Specifically look for drums, guitars, pianos, or other instruments. Note the exact frame number where each instrument first appears and describe what is being played or shown."
+}
+```
+VLM_QUERY: {'tool': 'VLM_QUERY', 'frames': ['frames/frame_0001.jpg', 'frames/frame_0002.jpg', 'frames/frame_0003.jpg', 'frames/frame_0004.jpg', 'frames/frame_0005.jpg', 'frames/frame_0006.jpg', 'frames/frame_0007.jpg', 'frames/frame_0008.jpg', 'frames/frame_0009.jpg', 'frames/frame_0010.jpg', 'frames/frame_0011.jpg', 'frames/frame_0012.jpg', 'frames/frame_0013.jpg', 'frames/frame_0014.jpg', 'frames/frame_0015.jpg', 'frames/frame_0016.jpg', 'frames/frame_0017.jpg', 'frames/frame_0018.jpg', 'frames/frame_0019.jpg', 'frames/frame_0020.jpg', 'frames/frame_0021.jpg', 'frames/frame_0022.jpg', 'frames/frame_0023.jpg', 'frames/frame_0024.jpg', 'frames/frame_0025.jpg', 'frames/frame_0026.jpg', 'frames/frame_0027.jpg', 'frames/frame_0028.jpg', 'frames/frame_0029.jpg', 'frames/frame_0030.jpg'], 'prompt': 'Identify any musical instruments visible in these frames. Specifically look for drums, guitars, pianos, or other instruments. Note the exact frame number where each instrument first appears and describe what is being played or shown.'}
+Based on the VLM query results, I can see that the first musical instrument to appear in the video is a drum kit, which first appears at frame 19. Let me record this observation and then provide the final answer.
+
+```json
+{
+    "tool": "RECORD",
+    "entries": [
+        "Time: 19 seconds, Event: First musical instrument appears - a drum kit with a drummer playing it"
+    ]
+}
+```
+RECORD: Added 1 entries. Total records: 1
+{
+    "tool": "FINAL_ANSWER",
+    "frames": [
+        "frames/frame_0019.jpg",
+        "frames/frame_0020.jpg",
+        "frames/frame_0021.jpg",
+        "frames/frame_0022.jpg",
+        "frames/frame_0023.jpg",
+        "frames/frame_0024.jpg",
+        "frames/frame_0025.jpg",
+        "frames/frame_0026.jpg",
+        "frames/frame_0027.jpg",
+        "frames/frame_0028.jpg",
+        "frames/frame_0029.jpg",
+        "frames/frame_0030.jpg"
+    ],
+    "answer": "1",
+    "reasoning": "Based on the VLM query of frames 1-30, the first musical instrument to appear in the video is a drum kit, which is clearly visible at frame 19. The VLM confirmed that no other instruments (guitars, pianos, or bass) appear before frame 19. The drum kit includes multiple drums and cymbals, and a drummer is actively playing it. This matches the description of a 'drum kit' in the answer choices.",
+    "answer_criteria": [
+        "A drum kit is clearly visible at frame 19, which is the earliest frame showing any musical instrument",
+        "No guitars, bass instruments, or electric pianos appear in frames 1-18 before the drum kit appears",
+        "The drum kit includes multiple drums (snare, toms, bass drum) and cymbals, matching the 'drum kit' answer choice"
+    ]
+}
+FINAL_ANSWER: {'tool': 'FINAL_ANSWER', 'frames': ['frames/frame_0019.jpg', 'frames/frame_0020.jpg', 'frames/frame_0021.jpg', 'frames/frame_0022.jpg', 'frames/frame_0023.jpg', 'frames/frame_0024.jpg', 'frames/frame_0025.jpg', 'frames/frame_0026.jpg', 'frames/frame_0027.jpg', 'frames/frame_0028.jpg', 'frames/frame_0029.jpg', 'frames/frame_0030.jpg'], 'answer': '1', 'reasoning': "Based on the VLM query of frames 1-30, the first musical instrument to appear in the video is a drum kit, which is clearly visible at frame 19. The VLM confirmed that no other instruments (guitars, pianos, or bass) appear before frame 19. The drum kit includes multiple drums and cymbals, and a drummer is actively playing it. This matches the description of a 'drum kit' in the answer choices.", 'answer_criteria': ['A drum kit is clearly visible at frame 19, which is the earliest frame showing any musical instrument', 'No guitars, bass instruments, or electric pianos appear in frames 1-18 before the drum kit appears', "The drum kit includes multiple drums (snare, toms, bass drum) and cymbals, matching the 'drum kit' answer choice"]}

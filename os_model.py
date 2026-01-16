@@ -1,5 +1,8 @@
 from model_example_query import query_vlm, query_llm, query_llm_async
 from search_frame_captions import batch_embed_query_async, search_captions
+from search_subtitles import search_subtitles
+from extract_fine_grained_frames import extract_fine_grained_for_pipeline
+from prompts import initial_prompt, followup_prompt, response_parsing_prompt, finish_prompt
 import math
 import json
 import os
@@ -122,7 +125,7 @@ async def query_model_iterative_with_retry(model, question, uid, vid_path, outpu
             # Set 60 second timeout for the entire iterative process
             result = await asyncio.wait_for(
                 query_model_iterative(model, question, uid, vid_path, candidates, use_no_vlm=use_no_vlm),
-                timeout=180  # 3 minute timeout
+                timeout=240  # 3 minute timeout
             )
             print(f"Successfully completed on attempt {attempt + 1}")
             if output_file:
@@ -204,6 +207,17 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
     # Variable to store criteria extracted from initial response
     question_criteria = None
 
+    # Check if subtitle embeddings are available for this video
+    video_id = os.path.basename(vid_path.rstrip('/'))
+    subtitle_embeddings_path = f"/mnt/ssd/data/longvideobench/subtitles_filtered/{video_id}_en_embeddings.jsonl"
+    subtitles_available = os.path.exists(subtitle_embeddings_path)
+    use_subtitles = True  # Enable subtitle search feature
+
+    if subtitles_available:
+        print(f"✓ Subtitles available for video {video_id}")
+    else:
+        print(f"⚠️ No subtitle embeddings found for video {video_id}")
+
     # Get the appropriate prompts module based on configuration
     prompts = get_prompts_module(use_no_vlm)
 
@@ -217,7 +231,7 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
         model.messages.append({"role": "system", "content": f"You are an expert at reasoning and tool-using, with the goal of answering this question about a long video.{vlm_note} You should be SUPER PICKY about your findings, NOT make assumptions, and always bias towards gathering more evidence before executing a final answer. Use EXACT evidence only. ALSO, when dealing with TEMPORAL questions, you cannot find VISUAL TIMES. If a question asks for a 'duration' of an event, you want to do many caption searches on consecutive ranges, and find scene-changes at the beginning and end of the event. You MUST CHOOSE AN ANSWER. NONE OF THE ABOVE IS NOT ACCEPTABLE."})
         model.messages.append({"role": "user", "content": "\n Here is a global summary of the video for general context: " + global_summary + "\n\n Here is also an INCOMPLETE character/event/scene log across the video. These will all be encountered, and there MAY BE MORE " + CES_log +
 "\nYour question is this: " + question})
-    prompt = str(model.messages) + prompts.initial_prompt(question, candidates)
+    prompt = str(model.messages) + prompts.initial_prompt(question, candidates, use_subtitles=use_subtitles, subtitles_available=subtitles_available)
     message = prompt
     log(message, f"logs/log_video_{vid_path}_{question_uid}")
 
@@ -226,7 +240,8 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
         # Query the specified model
         print("="*20 + f"Querying model with prompt: {i}, {question_uid} "+ "="*20)
         print(f"Prompt length: {len(prompt)} characters")
-        try:   
+        print(f"model.messages count: {len(model.messages)}")
+        try:
             #print("reached this thing")
             response = await model.llm_query_async(prompt)
             #print("response reached", response)
@@ -234,8 +249,9 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
             print(f"Failed to get model response: {e}")
             print(f"Error type: {type(e).__name__}")
             continue
-        
+
         model.messages.append({"role": "assistant", "content": response})
+        print(f"✓ Added assistant response to messages (total: {len(model.messages)})")
         
         message = response
         log(message, f"logs/log_video_{vid_path}_{question_uid}")
@@ -362,16 +378,38 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
             print(f"Failed to extract JSON from response")
             print(f"Raw response: {original_parsed_text[:500]}...")  # Print first 500 chars
             continue
+
+        # Debug: Print detected tool and normalize it
+        detected_tool = parsed_response.get("tool", "UNKNOWN")
+        # Normalize: strip whitespace and convert to uppercase for matching
+        if isinstance(detected_tool, str):
+            detected_tool = detected_tool.strip().upper()
+            parsed_response["tool"] = detected_tool  # Update the parsed response
+        print(f"🔧 Detected tool: {detected_tool}")
+
         try:
             if parsed_response.get("tool") == "FINAL_ANSWER":
                 # The parsed response has "frames" field, not "evidence_frame_numbers"
                 message = f"FINAL_ANSWER: {parsed_response}"
                 log(message, f"logs/log_video_{vid_path}_{question_uid}")
+
+                # Convert answer to int format (handle both letter and number responses)
                 parsed_answer = parsed_response.get("answer")
-                if parsed_answer in "012345":
-                    parsed_answer = int(parsed_answer)
-                elif parsed_answer in "ABCDE":  
-                    parsed_answer = ord(parsed_answer) - ord('A')
+                if isinstance(parsed_answer, str):
+                    parsed_answer = parsed_answer.strip().upper()
+                    # If it's a letter (A, B, C, D, E), convert to number
+                    if parsed_answer in ['A', 'B', 'C', 'D', 'E']:
+                        parsed_answer = ord(parsed_answer) - ord('A')
+                    # If it's already a number string, convert to int
+                    elif parsed_answer.isdigit():
+                        parsed_answer = int(parsed_answer)
+                    else:
+                        # Keep as is if unrecognized format
+                        pass
+                elif isinstance(parsed_answer, int):
+                    # Already an int, keep as is
+                    pass
+
                 new_response = {
                     "uid": question_uid,
                     "question": question,
@@ -509,10 +547,169 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
                 log(message, f"logs/log_video_{vid_path}_{question_uid}")
                 model.messages.append({"role": "system", "content": retrieved_info})
 
+            elif parsed_response.get("tool") == "SUBTITLE_SEARCH":
+                # Embeddings-based subtitle semantic search
+                query = parsed_response.get("query", "")
+                topk = parsed_response.get("topk", 10)  # Optional parameter
+                print(f"Searching subtitles (embeddings) for: '{query}' (top-{topk})")
+
+                # Extract video ID from vid_path (e.g., "/path/to/videos_processed/Y0IaijKNGX8")
+                video_id = os.path.basename(vid_path.rstrip('/'))
+
+                # Path to subtitle embeddings
+                embeddings_path = f"/mnt/ssd/data/longvideobench/subtitles_filtered/{video_id}_en_embeddings.jsonl"
+
+                try:
+                    # Search subtitles using embeddings
+                    subtitle_results = search_subtitles(
+                        embeddings_path=embeddings_path,
+                        query=query,
+                        topk=topk,
+                        fps=1.0
+                    )
+
+                    print(f"✓ Subtitle search returned {len(subtitle_results) if subtitle_results else 0} results")
+
+                    if subtitle_results:
+                        # Format results with frame information and similarity scores
+                        retrieved_info = f"Found {len(subtitle_results)} matching subtitle(s) for query: '{query}'\n"
+                        retrieved_info += f"(Ranked by semantic similarity using embeddings)\n\n"
+
+                        for result in subtitle_results:
+                            retrieved_info += f"[#{result['rank']}] Score: {result['score']:.3f} | Frame {result['start_frame']} ({result['time_formatted']})\n"
+                            retrieved_info += f"    Text: \"{result['text']}\"\n"
+                            retrieved_info += f"    Time: {result['start_sec']:.2f}s - {result['end_sec']:.2f}s\n"
+                            retrieved_info += f"    Frame path: frames/frame_{result['start_frame']:04d}.jpg\n\n"
+
+                        retrieved_info += "\nYou can now query these specific frames with VLM_QUERY to verify the visual content."
+
+                        message = f"SUBTITLE_SEARCH: Found {len(subtitle_results)} matches for '{query}'"
+                        log(message, f"logs/log_video_{vid_path}_{question_uid}")
+                        print(f"✓ SUBTITLE_SEARCH success: {len(subtitle_results)} results")
+                    else:
+                        retrieved_info = f"No subtitles found matching: '{query}'\nTry a different search term or use CAPTION_SEARCH instead."
+                        message = f"SUBTITLE_SEARCH: No matches for '{query}'"
+                        log(message, f"logs/log_video_{vid_path}_{question_uid}")
+                        print(f"⚠️ SUBTITLE_SEARCH: No results")
+
+                    model.messages.append({"role": "subtitle search results", "content": retrieved_info})
+                    print(f"✓ Added subtitle results to model.messages")
+
+                except FileNotFoundError as e:
+                    retrieved_info = f"Subtitle embeddings not found for video {video_id}. Subtitles may not be available or not yet embedded. Use CAPTION_SEARCH instead."
+                    message = f"SUBTITLE_SEARCH: Embeddings not found for {video_id}"
+                    log(message, f"logs/log_video_{vid_path}_{question_uid}")
+                    model.messages.append({"role": "system", "content": retrieved_info})
+                    print(f"✗ SUBTITLE_SEARCH: File not found - {embeddings_path}")
+                except Exception as e:
+                    retrieved_info = f"Error searching subtitles: {str(e)}. Try using CAPTION_SEARCH instead."
+                    message = f"SUBTITLE_SEARCH: Error - {str(e)}"
+                    log(message, f"logs/log_video_{vid_path}_{question_uid}")
+                    model.messages.append({"role": "system", "content": retrieved_info})
+                    print(f"✗ SUBTITLE_SEARCH: Exception - {str(e)}")
+
+            elif parsed_response.get("tool") == "EXTRACT_FINE_GRAINED_FRAMES":
+                # Extract fine-grained frames at higher FPS
+                start_sec = parsed_response.get("start_second", 0.0)
+                end_sec = parsed_response.get("end_second", 0.0)
+                fps = parsed_response.get("fps", 5)
+
+                # Validate parameters
+                if not (1 <= fps <= 10):
+                    fps = min(10, max(1, fps))  # Clamp to valid range
+
+                if start_sec >= end_sec:
+                    retrieved_info = f"Error: start_second ({start_sec}) must be less than end_second ({end_sec})"
+                    model.messages.append({"role": "system", "content": retrieved_info})
+                    continue
+
+                if start_sec < 0:
+                    retrieved_info = f"Error: start_second cannot be negative. Got: {start_sec}"
+                    model.messages.append({"role": "system", "content": retrieved_info})
+                    continue
+
+                # Limit extraction to reasonable duration (max 10 seconds at a time)
+                max_duration = 10.0
+                if (end_sec - start_sec) > max_duration:
+                    retrieved_info = f"Error: Time range too large ({end_sec - start_sec:.1f}s). Maximum is {max_duration}s. Please use a smaller range or multiple calls."
+                    model.messages.append({"role": "system", "content": retrieved_info})
+                    continue
+
+                print(f"Extracting fine-grained frames: {start_sec}s to {end_sec}s at {fps} FPS")
+
+                # Extract video ID from vid_path
+                video_id = os.path.basename(vid_path.rstrip('/'))
+
+                try:
+                    # Extract frames
+                    frame_paths = extract_fine_grained_for_pipeline(
+                        video_id=video_id,
+                        start_second=start_sec,
+                        end_second=end_sec,
+                        fps=fps,
+                        videos_dir=os.path.dirname(os.path.dirname(vid_path)) + '/videos',
+                        output_base=os.path.dirname(os.path.dirname(vid_path)),  # Get parent of video folder
+                        vid_path=vid_path  # Pass the actual video directory path
+                    )
+
+                    if frame_paths:
+                        duration = end_sec - start_sec
+                        retrieved_info = f"Successfully extracted {len(frame_paths)} fine-grained frames from {start_sec}s to {end_sec}s at {fps} FPS.\n\n"
+                        retrieved_info += f"Duration: {duration:.1f} seconds\n"
+                        retrieved_info += f"Frame interval: {1.0/fps:.2f}s\n\n"
+                        retrieved_info += "Extracted frames:\n"
+
+                        for frame_path in frame_paths[:10]:  # Show first 10
+                            retrieved_info += f"  - {frame_path}\n"
+
+                        if len(frame_paths) > 10:
+                            retrieved_info += f"  ... and {len(frame_paths) - 10} more frames\n"
+
+                        retrieved_info += f"\nYou can now use these frames with VLM_QUERY to analyze fine details like hand motions, quick actions, or subtle movements."
+
+                        message = f"EXTRACT_FINE_GRAINED_FRAMES: Extracted {len(frame_paths)} frames at {fps} FPS"
+                        log(message, f"logs/log_video_{vid_path}_{question_uid}")
+                    else:
+                        retrieved_info = f"Failed to extract frames from {start_sec}s to {end_sec}s"
+                        message = f"EXTRACT_FINE_GRAINED_FRAMES: Failed"
+                        log(message, f"logs/log_video_{vid_path}_{question_uid}")
+
+                    model.messages.append({"role": "fine frames extraction", "content": retrieved_info})
+
+                except FileNotFoundError as e:
+                    retrieved_info = f"Video file not found for ID {video_id}. Cannot extract fine-grained frames. Error: {str(e)}"
+                    message = f"EXTRACT_FINE_GRAINED_FRAMES: Video not found"
+                    log(message, f"logs/log_video_{vid_path}_{question_uid}")
+                    model.messages.append({"role": "system", "content": retrieved_info})
+                except RuntimeError as e:
+                    # RuntimeError contains detailed info from extract_fine_grained_frames.py
+                    error_msg = str(e)
+                    if "No frames were extracted" in error_msg:
+                        # Provide helpful guidance to the model
+                        retrieved_info = f"⚠️ Frame extraction failed: {error_msg}\n\n"
+                        retrieved_info += "SUGGESTIONS:\n"
+                        retrieved_info += "1. Check if the time range is valid (use CAPTION_SEARCH or SUBTITLE_SEARCH to find correct timestamps)\n"
+                        retrieved_info += "2. Try a different time range\n"
+                        retrieved_info += "3. Verify the timestamps are in seconds (not frame numbers)\n"
+                        retrieved_info += "4. Make sure start_second and end_second are within the video duration"
+                    else:
+                        retrieved_info = f"Error extracting fine-grained frames: {error_msg}"
+                    message = f"EXTRACT_FINE_GRAINED_FRAMES: Error - {error_msg[:100]}"
+                    log(message, f"logs/log_video_{vid_path}_{question_uid}")
+                    model.messages.append({"role": "system", "content": retrieved_info})
+                except Exception as e:
+                    retrieved_info = f"Unexpected error extracting fine-grained frames: {str(e)}"
+                    message = f"EXTRACT_FINE_GRAINED_FRAMES: Error - {str(e)}"
+                    log(message, f"logs/log_video_{vid_path}_{question_uid}")
+                    model.messages.append({"role": "system", "content": retrieved_info})
+
             else:
-                message = f"Invalid or unrecognized tool: {parsed_response.get('tool')}"
+                tool_name = parsed_response.get('tool')
+                message = f"Invalid or unrecognized tool: '{tool_name}' (type: {type(tool_name)}, repr: {repr(tool_name)})"
                 log(message, f"logs/log_video_{vid_path}_{question_uid}")
-                print(f"Invalid or unrecognized tool: {parsed_response.get('tool')}")
+                print(f"❌ {message}")
+                print(f"   Valid tools: FINAL_ANSWER, VLM_QUERY, CAPTION_SEARCH, RECORD, VIEW_RECORDS, SUBTITLE_SEARCH, EXTRACT_FINE_FRAMES")
+                print(f"   Parsed response keys: {list(parsed_response.keys())}")
                 continue
 
             # Update prompt for next iteration
@@ -552,10 +749,17 @@ Now review the results and choose the most relevant keyframes for VLM querying.
                 retrieved_info = str(model.messages[-1].get("content", ""))
             elif parsed_response.get("tool") == "VIEW_RECORDS":
                 retrieved_info = str(model.messages[-1].get("content", ""))
+            elif parsed_response.get("tool") == "SUBTITLE_SEARCH":
+                retrieved_info = "The following is the retrieved information from subtitle search (semantic similarity using embeddings). Review the frames where relevant subtitle content appears and use VLM_QUERY to verify the visual content if needed.\n" + str(model.messages[-1].get("content", ""))
+                print(f"✓ Preparing prompt with SUBTITLE_SEARCH results (length: {len(retrieved_info)} chars)")
+            elif parsed_response.get("tool") == "EXTRACT_FINE_GRAINED_FRAMES":
+                retrieved_info = "The following fine-grained frames have been extracted at higher FPS. You can now use VLM_QUERY with these frames to analyze detailed movements and actions.\n" + str(model.messages[-1].get("content", ""))
             else:
                 retrieved_info = str(model.messages[-1].get("content", ""))
 
-            prompt = prompts.followup_prompt(retrieved_info, question, candidates)
+            # CRITICAL: Include full conversation history in prompt
+            prompt = str(model.messages) + prompts.followup_prompt(retrieved_info, question, candidates, use_subtitles=use_subtitles, subtitles_available=subtitles_available)
+            print(f"✓ Updated prompt for next iteration (length: {len(prompt)} chars, messages: {len(model.messages)})")
         except Exception as e:
             message = f"Error updating prompt: {e}"
             log(message, f"logs/log_video_{vid_path}_{question_uid}")

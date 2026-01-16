@@ -1,0 +1,183 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0014.jpg", "frames/frame_0015.jpg", "frames/frame_0016.jpg", "frames/frame_0017.jpg", "frames/frame_0018.jpg", "frames/frame_0019.jpg", "frames/frame_0020.jpg", "frames/frame_0021.jpg", "frames/frame_0022.jpg", "frames/frame_0023.jpg", "frames/frame_0024.jpg", "frames/frame_0025.jpg", "frames/frame_0026.jpg", "frames/frame_0027.jpg", "frames/frame_0028.jpg", "frames/frame_0029.jpg", "frames/frame_0030.jpg", "frames/frame_0031.jpg", "frames/frame_0032.jpg", "frames/frame_0033.jpg", "frames/frame_0034.jpg", "frames/frame_0035.jpg"],
+    "prompt": "Analyze these frames chronologically to determine: 1) What is the first visible musical instrument that appears? 2) Is it being played or clearly present on stage? 3) Can you identify the instrument type? 4) Does this represent the earliest occurrence of an instrument in the video? Specifically verify if answer '1' (Drum kit) is correct by checking if a drum kit appears before any other instruments (bass, electric piano, guitar) in these frames."
+}
+Frames to verify: ['frames/frame_0014.jpg', 'frames/frame_0015.jpg', 'frames/frame_0016.jpg', 'frames/frame_0017.jpg', 'frames/frame_0018.jpg', 'frames/frame_0019.jpg', 'frames/frame_0020.jpg', 'frames/frame_0021.jpg', 'frames/frame_0022.jpg', 'frames/frame_0023.jpg', 'frames/frame_0024.jpg', 'frames/frame_0025.jpg', 'frames/frame_0026.jpg', 'frames/frame_0027.jpg', 'frames/frame_0028.jpg', 'frames/frame_0029.jpg', 'frames/frame_0030.jpg', 'frames/frame_0031.jpg', 'frames/frame_0032.jpg', 'frames/frame_0033.jpg', 'frames/frame_0034.jpg', 'frames/frame_0035.jpg']
+VLM Prompt: Video context: Based on the provided SET of frame-by-frame captions data, here is a global summary of the video:
+
+**Main Characters:**
+The main characters in the video are various female pop stars, including Christina Aguilera, Lady Gaga, Katy Perry, and others. They are the central figures performing on stage throughout the video.
+
+**Setting:**
+The setting is a concert or music festival, with a large stage and a darkened venue or outdoor amphitheater. The stage is often decorated with bright lights, large screens, and elaborate backdrops, including rainbow-colored arches, giant statues, and futuristic designs.
+
+**Plot Line:**
+The video appears to be a compilation of various performances by different artists at a concert or music festival. The plot line is not narrative-driven, but rather a collection of energetic and dynamic performances by the featured artists.
+
+**Vibes:**
+The overall vibe of the video is energetic, lively, and celebratory. The performances are high-energy, with bright lights, colorful costumes, and elaborate stage designs. The audience is often shown enthusiastically cheering, dancing, and recording the performances with their phones.
+
+**General Details:**
+The video features a diverse range of performances, including singing, dancing, and instrumental playing. The stage designs and backdrops are often elaborate and futuristic, with large screens displaying vibrant graphics and images. The audience is frequently shown holding up their phones to capture the performances, creating a sea of twinkling lights in the darkened venue. Fireworks and pyrotechnics are also used to enhance the energetic atmosphere. Overall, the video captures the excitement and energy of a live concert or music festival.
+
+Analyze these frames chronologically to determine: 1) What is the first visible musical instrument that appears? 2) Is it being played or clearly present on stage? 3) Can you identify the instrument type? 4) Does this represent the earliest occurrence of an instrument in the video? Specifically verify if answer '1' (Drum kit) is correct by checking if a drum kit appears before any other instruments (bass, electric piano, guitar) in these frames.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 22, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0014.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0015.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0016.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0017.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0018.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0019.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0020.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0021.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0022.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0023.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0024.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0025.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0026.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0027.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0028.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0029.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0030.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0031.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0032.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0033.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0034.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0035.jpg'], 'response': "Based on a chronological analysis of the 22 provided frames:\n\n---\n\n**1) What is the first visible musical instrument that appears?**  \nThe first visible musical instrument is a **drum kit**.\n\n**2) Is it being played or clearly present on stage?**  \nYes. Starting from **Frame 6**, a drummer is clearly visible seated behind a full drum kit on an elevated platform. In **Frame 7** and subsequent frames, the drummer is actively playing the kit.\n\n**3) Can you identify the instrument type?**  \nYes — it is a **drum kit (drum set)**, including visible components such as snare, toms, cymbals, and bass drum.\n\n**4) Does this represent the earliest occurrence of an instrument in the video? Specifically verify if answer '1' (Drum kit) is correct by checking if a drum kit appears before any other instruments (bass, electric piano, guitar) in these frames.**\n\n✅ **Verification:**\n\n- **Frames 1–5**: Show wide shots of the stage, lighting, audience, and large screens. No instruments are visible.\n- **Frame 6**: First clear appearance of a drum kit and drummer.\n- **Frames 7–17**: Continuous shots of the drummer actively playing the kit.\n- **Frame 18–20**: Wide stage shots — no close-ups of instruments; dancers and screens dominate.\n- **Frame 21**: First appearance of a **guitar** — a performer (Lady Gaga) is holding and posing with a white electric guitar.\n- **Frame 22**: Continuation of the guitar performance.\n\n➡️ **Conclusion**: The drum kit appears in **Frame 6**, while the first guitar appears in **Frame 21** — 15 frames later. No bass, piano, or other instruments are visible before Frame 6.\n\n---\n\n✅ **Final Answer: YES, “Drum kit” is correct as the first visible musical instrument. It appears before any other instruments (guitar, bass, piano) in the video sequence.**"}], 'formatted_responses': ["\n=== Batch 0-22 (22 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0014.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0015.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0016.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0017.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0018.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0019.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0020.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0021.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0022.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0023.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0024.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0025.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0026.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0027.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0028.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0029.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0030.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0031.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0032.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0033.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0034.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0035.jpg\nVLM Response: Based on a chronological analysis of the 22 provided frames:\n\n---\n\n**1) What is the first visible musical instrument that appears?**  \nThe first visible musical instrument is a **drum kit**.\n\n**2) Is it being played or clearly present on stage?**  \nYes. Starting from **Frame 6**, a drummer is clearly visible seated behind a full drum kit on an elevated platform. In **Frame 7** and subsequent frames, the drummer is actively playing the kit.\n\n**3) Can you identify the instrument type?**  \nYes — it is a **drum kit (drum set)**, including visible components such as snare, toms, cymbals, and bass drum.\n\n**4) Does this represent the earliest occurrence of an instrument in the video? Specifically verify if answer '1' (Drum kit) is correct by checking if a drum kit appears before any other instruments (bass, electric piano, guitar) in these frames.**\n\n✅ **Verification:**\n\n- **Frames 1–5**: Show wide shots of the stage, lighting, audience, and large screens. No instruments are visible.\n- **Frame 6**: First clear appearance of a drum kit and drummer.\n- **Frames 7–17**: Continuous shots of the drummer actively playing the kit.\n- **Frame 18–20**: Wide stage shots — no close-ups of instruments; dancers and screens dominate.\n- **Frame 21**: First appearance of a **guitar** — a performer (Lady Gaga) is holding and posing with a white electric guitar.\n- **Frame 22**: Continuation of the guitar performance.\n\n➡️ **Conclusion**: The drum kit appears in **Frame 6**, while the first guitar appears in **Frame 21** — 15 frames later. No bass, piano, or other instruments are visible before Frame 6.\n\n---\n\n✅ **Final Answer: YES, “Drum kit” is correct as the first visible musical instrument. It appears before any other instruments (guitar, bass, piano) in the video sequence.**\n"], 'condensed_response': '**Scene Summary (Frames\u202f0014‑0035)**  \n\n- **Frames\u202f0014‑0018 (wide stage shots)** – The camera pans over lighting rigs, massive video screens and the audience. No instruments are visible yet.  \n\n- **Frame\u202f0019 (first instrument)** – An **elevated platform** comes into view, revealing a **drum kit** (snare, toms, cymbals, bass drum) and a **drummer** seated behind it.  \n\n- **Frames\u202f0020‑0024** – The drummer is actively playing; the kit remains the sole instrument on screen.  \n\n- **Frames\u202f0025‑0030** – The view widens again to include dancers and stage props; the drum set stays in the background but no new instruments appear.  \n\n- **Frame\u202f0031** – The camera cuts to **Lady\u202fGaga**, who steps forward holding a **white electric guitar**. This is the first non‑percussion instrument in the sequence.  \n\n- **Frames\u202f0032‑0035** – Gaga continues to pose and lip‑sync with the guitar; the drummer and drum kit remain in the background.  \n\n**Verification of “first instrument”**  \n- No bass, piano, or guitar is present in frames\u202f0014‑0018.  \n- The drum kit’s debut in **frame\u202f0019** precedes the guitar’s appearance in **frame\u202f0031** by 12 frames.  \n\n**Conclusion** – The earliest visible musical instrument is the **drum kit** (frame\u202f0019), played by the drummer on the raised platform, followed later by Lady\u202fGaga’s electric guitar. This confirms that “drum kit” is indeed the first instrument shown.', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+⚠️ IMPORTANT: Answers use 0-INDEXED numbers where 0=A, 1=B, 2=C, 3=D, 4=E
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 22, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0014.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0015.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0016.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0017.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0018.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0019.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0020.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0021.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0022.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0023.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0024.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0025.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0026.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0027.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0028.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0029.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0030.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0031.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0032.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0033.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0034.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0035.jpg'], 'response': "Based on a chronological analysis of the 22 provided frames:\n\n---\n\n**1) What is the first visible musical instrument that appears?**  \nThe first visible musical instrument is a **drum kit**.\n\n**2) Is it being played or clearly present on stage?**  \nYes. Starting from **Frame 6**, a drummer is clearly visible seated behind a full drum kit on an elevated platform. In **Frame 7** and subsequent frames, the drummer is actively playing the kit.\n\n**3) Can you identify the instrument type?**  \nYes — it is a **drum kit (drum set)**, including visible components such as snare, toms, cymbals, and bass drum.\n\n**4) Does this represent the earliest occurrence of an instrument in the video? Specifically verify if answer '1' (Drum kit) is correct by checking if a drum kit appears before any other instruments (bass, electric piano, guitar) in these frames.**\n\n✅ **Verification:**\n\n- **Frames 1–5**: Show wide shots of the stage, lighting, audience, and large screens. No instruments are visible.\n- **Frame 6**: First clear appearance of a drum kit and drummer.\n- **Frames 7–17**: Continuous shots of the drummer actively playing the kit.\n- **Frame 18–20**: Wide stage shots — no close-ups of instruments; dancers and screens dominate.\n- **Frame 21**: First appearance of a **guitar** — a performer (Lady Gaga) is holding and posing with a white electric guitar.\n- **Frame 22**: Continuation of the guitar performance.\n\n➡️ **Conclusion**: The drum kit appears in **Frame 6**, while the first guitar appears in **Frame 21** — 15 frames later. No bass, piano, or other instruments are visible before Frame 6.\n\n---\n\n✅ **Final Answer: YES, “Drum kit” is correct as the first visible musical instrument. It appears before any other instruments (guitar, bass, piano) in the video sequence.**"}], 'formatted_responses': ["\n=== Batch 0-22 (22 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0014.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0015.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0016.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0017.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0018.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0019.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0020.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0021.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0022.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0023.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0024.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0025.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0026.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0027.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0028.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0029.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0030.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0031.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0032.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0033.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0034.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_0035.jpg\nVLM Response: Based on a chronological analysis of the 22 provided frames:\n\n---\n\n**1) What is the first visible musical instrument that appears?**  \nThe first visible musical instrument is a **drum kit**.\n\n**2) Is it being played or clearly present on stage?**  \nYes. Starting from **Frame 6**, a drummer is clearly visible seated behind a full drum kit on an elevated platform. In **Frame 7** and subsequent frames, the drummer is actively playing the kit.\n\n**3) Can you identify the instrument type?**  \nYes — it is a **drum kit (drum set)**, including visible components such as snare, toms, cymbals, and bass drum.\n\n**4) Does this represent the earliest occurrence of an instrument in the video? Specifically verify if answer '1' (Drum kit) is correct by checking if a drum kit appears before any other instruments (bass, electric piano, guitar) in these frames.**\n\n✅ **Verification:**\n\n- **Frames 1–5**: Show wide shots of the stage, lighting, audience, and large screens. No instruments are visible.\n- **Frame 6**: First clear appearance of a drum kit and drummer.\n- **Frames 7–17**: Continuous shots of the drummer actively playing the kit.\n- **Frame 18–20**: Wide stage shots — no close-ups of instruments; dancers and screens dominate.\n- **Frame 21**: First appearance of a **guitar** — a performer (Lady Gaga) is holding and posing with a white electric guitar.\n- **Frame 22**: Continuation of the guitar performance.\n\n➡️ **Conclusion**: The drum kit appears in **Frame 6**, while the first guitar appears in **Frame 21** — 15 frames later. No bass, piano, or other instruments are visible before Frame 6.\n\n---\n\n✅ **Final Answer: YES, “Drum kit” is correct as the first visible musical instrument. It appears before any other instruments (guitar, bass, piano) in the video sequence.**\n"], 'condensed_response': '**Scene Summary (Frames\u202f0014‑0035)**  \n\n- **Frames\u202f0014‑0018 (wide stage shots)** – The camera pans over lighting rigs, massive video screens and the audience. No instruments are visible yet.  \n\n- **Frame\u202f0019 (first instrument)** – An **elevated platform** comes into view, revealing a **drum kit** (snare, toms, cymbals, bass drum) and a **drummer** seated behind it.  \n\n- **Frames\u202f0020‑0024** – The drummer is actively playing; the kit remains the sole instrument on screen.  \n\n- **Frames\u202f0025‑0030** – The view widens again to include dancers and stage props; the drum set stays in the background but no new instruments appear.  \n\n- **Frame\u202f0031** – The camera cuts to **Lady\u202fGaga**, who steps forward holding a **white electric guitar**. This is the first non‑percussion instrument in the sequence.  \n\n- **Frames\u202f0032‑0035** – Gaga continues to pose and lip‑sync with the guitar; the drummer and drum kit remain in the background.  \n\n**Verification of “first instrument”**  \n- No bass, piano, or guitar is present in frames\u202f0014‑0018.  \n- The drum kit’s debut in **frame\u202f0019** precedes the guitar’s appearance in **frame\u202f0031** by 12 frames.  \n\n**Conclusion** – The earliest visible musical instrument is the **drum kit** (frame\u202f0019), played by the drummer on the raised platform, followed later by Lady\u202fGaga’s electric guitar. This confirms that “drum kit” is indeed the first instrument shown.', 'failed_images': []}
+
+Question Being Answered: What was the first instrument to appear in the video?
+
+Answer Choices (0-indexed: 0=A, 1=B, 2=C, 3=D, 4=E):
+  0 (=A): Bass
+  1 (=B): Drum kit
+  2 (=C): Electric piano
+  3 (=D): Guitar
+
+Given Answer: 1
+Evidence Frames Used: ['frames/frame_0019.jpg', 'frames/frame_0020.jpg', 'frames/frame_0021.jpg', 'frames/frame_0022.jpg', 'frames/frame_0023.jpg', 'frames/frame_0024.jpg', 'frames/frame_0025.jpg', 'frames/frame_0026.jpg', 'frames/frame_0027.jpg', 'frames/frame_0028.jpg', 'frames/frame_0029.jpg', 'frames/frame_0030.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Person 1 (Female Singer): Description: Blonde woman wearing a green and black zebra-print outfit, singing into a microphone on a stage.
+Person 2 (Drummer): Description: Man with short dark hair, wearing a white shirt with a black pattern, playing drums on a stage.
+Person 3 (Guitarist): Description: Man with curly blonde hair, wearing a black and white patterned shirt, playing an electric guitar on a stage.
+Person 4 (Female Guitarist): Description: Woman with curly blonde hair, wearing a black and white patterned dress, playing an electric guitar on a stage.
+
+SCENES:
+Scene 1 (Concert Venue) : Description: A large crowd is gathered in a darkened venue, watching a concert on a stage with bright lights and large screens. [Frame 1-18]
+Scene 2 (Drumming Performance) : Description: A man is playing drums on a dark stage with blue lighting. [Frame 19-30]
+Scene 3 (Guitar Performance) : Description: A woman is playing an electric guitar on a stage with a blue and purple background. [Frame 34-46]
+Scene 4 (Christina Aguilera Performance) : Description: Christina Aguilera is singing into a microphone on a stage with a pink background and a band behind her. [Frame 106-114]
+Scene 5 (Lady Gaga Performance) : Description: Lady Gaga is performing on a stage with a green and black zebra-print outfit and a microphone. [Frame 130-133]
+Scene 6 (Outdoor Concert) : Description: A large crowd is gathered in a darkened outdoor venue, watching a concert on a stage with bright lights and large screens. [Frame 151-154]
+Scene 7 (Rainbow Stage) : Description: A stage is set with a large rainbow-colored arch and a band performing in front of it, surrounded by a crowd of people in a darkened venue. [Frame 162-166]
+Scene 8 (Red Stage) : Description: A stage is lit up with red lights, and a performer is singing into a microphone, surrounded by dancers in red and black outfits. [Frame 369-375]
+Scene 9 (Fireworks Display) : Description: Fireworks are exploding in the night sky above a stage with a large screen displaying a performer. [Frame 4970-4972]
+
+EVENTS:
+Event 1 (Concert Start) : Description: The concert begins with a large screen displaying "PRESS START" in white pixelated font. [Frame 1]
+Event 2 (Drumming Solo) : Description: The drummer is enthusiastically playing a large drum set on a darkened stage with blue lighting. [Frame 23]
+Event 3 (Guitar Solo) : Description: The female guitarist is playing an electric guitar on a stage with a blue and purple background. [Frame 34]
+Event 4 (Christina Aguilera Sings) : Description: Christina Aguilera is singing into a microphone on a stage with a pink background. [Frame 106]
+Event 5 (Lady Gaga Performs) : Description: Lady Gaga is performing on a stage with a green and black zebra-print outfit and a microphone. [Frame 130]
+Event 6 (Fireworks Display) : Description: Fireworks are exploding in the night sky above a stage with a large screen displaying a performer. [Frame 4970]
+
+================================================================================
+Generated at: 2026-01-11 21:46:08
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. A musical instrument is visible in the frame
+  Q2. The instrument is being played or is clearly present on stage
+  Q3. This is the earliest occurrence of an instrument in the video
+  Q4. The instrument type can be visually identified (e.g., drum kit, guitar, etc.)
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 4)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, ALWAYS pick what YOU think is the best answer choice:
+   - Review ALL answer choices listed above (A, B, C, D, E, etc.) and their content
+   - Based ONLY on the VLM visual evidence, determine which answer choice CONTENT is MOST correct
+   - Find the INDEX of that answer choice in the list
+   - ⚠️ CRITICAL: Output the INDEX (0, 1, 2, 3, or 4), NOT the literal answer content
+   - Example: If choice C (index 2) says "5 people" and you counted 5 people, output 2 (not 5!)
+   - Example: If choice B (index 1) says "Robert Hardy" and that's correct, output 1 (not "Robert Hardy"!)
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 4,
+    "criteria_percentage": <criteria_passed / 4>,
+    "base_confidence": <(criteria_passed / 4) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <INDEX of best answer choice: MUST be exactly 0, 1, 2, 3, or 4 (where 0=A, 1=B, 2=C, 3=D, 4=E). Output the INDEX not the content!>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- ⚠️ CRITICAL: critic_answer_choice must be an INDEX (0-4), never a literal answer like "5" or "Robert Hardy"
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "A musical instrument is visible in the frame",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms drum kit is clearly visible starting from Frame 6 (0-indexed Frame 19)"
+        },
+        {
+            "criterion": "The instrument is being played or is clearly present on stage",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM states drummer is actively playing the kit from Frame 7 onward"
+        },
+        {
+            "criterion": "This is the earliest occurrence of an instrument in the video",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms drum kit appears in Frame 6 (0-indexed Frame 19) before any other instruments (guitar appears in Frame 21/0-indexed Frame 31)"
+        },
+        {
+            "criterion": "The instrument type can be visually identified (e.g., drum kit, guitar, etc.)",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM specifically identifies it as a drum kit with visible components (snare, toms, cymbals, bass drum)"
+        }
+    ],
+    "question_criteria_passed": 4,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 4,
+    "criteria_total": 4,
+    "criteria_percentage": 1.0,
+    "base_confidence": 100.0,
+    "confidence": 100.0,
+    "critic_answer_choice": 1,
+    "critic_reasoning": "The VLM verification clearly confirms that a drum kit (answer choice 1/B) is the first visible musical instrument, appearing in frame 19 (0-indexed) and being actively played before any other instruments appear in the video sequence.",
+    "possible_errors": [],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'A musical instrument is visible in the frame', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms drum kit is clearly visible starting from Frame 6 (0-indexed Frame 19)'}, {'criterion': 'The instrument is being played or is clearly present on stage', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM states drummer is actively playing the kit from Frame 7 onward'}, {'criterion': 'This is the earliest occurrence of an instrument in the video', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms drum kit appears in Frame 6 (0-indexed Frame 19) before any other instruments (guitar appears in Frame 21/0-indexed Frame 31)'}, {'criterion': 'The instrument type can be visually identified (e.g., drum kit, guitar, etc.)', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM specifically identifies it as a drum kit with visible components (snare, toms, cymbals, bass drum)'}], 'question_criteria_passed': 4, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 4, 'criteria_total': 4, 'criteria_percentage': 1.0, 'base_confidence': 100.0, 'confidence': 100.0, 'critic_answer_choice': 1, 'critic_reasoning': 'The VLM verification clearly confirms that a drum kit (answer choice 1/B) is the first visible musical instrument, appearing in frame 19 (0-indexed) and being actively played before any other instruments appear in the video sequence.', 'possible_errors': [], 'suggestion': None}

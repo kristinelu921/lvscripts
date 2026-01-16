@@ -1,0 +1,192 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_2317.jpg", "frames/frame_2318.jpg", "frames/frame_2319.jpg", "frames/frame_2320.jpg", "frames/frame_2321.jpg", "frames/frame_2322.jpg", "frames/frame_2323.jpg", "frames/frame_2324.jpg", "frames/frame_2325.jpg", "frames/frame_2326.jpg", "frames/frame_2327.jpg", "frames/frame_2328.jpg", "frames/frame_2329.jpg", "frames/frame_2330.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '0' is correct for the question: What are the costumes of the dancers between 03:30-04:20? Check the question criteria: ['Dancers are present in the frame', 'Dancers are wearing TV-like hoods', 'Dancers are wearing tight clothing', \"The color of the dancers' tight clothing\", 'The scene occurs between 03:30-04:20 in the video']. Pay attention to timestamps and temporal sequences. Specifically verify if the dancers are wearing TV-like hoods and tight red clothes as claimed in answer choice 0."
+}
+Frames to verify: ['frames/frame_2317.jpg', 'frames/frame_2318.jpg', 'frames/frame_2319.jpg', 'frames/frame_2320.jpg', 'frames/frame_2321.jpg', 'frames/frame_2322.jpg', 'frames/frame_2323.jpg', 'frames/frame_2324.jpg', 'frames/frame_2325.jpg', 'frames/frame_2326.jpg', 'frames/frame_2327.jpg', 'frames/frame_2328.jpg', 'frames/frame_2329.jpg', 'frames/frame_2330.jpg']
+VLM Prompt: Video context: Based on the provided SET of frame-by-frame captions data, here is a global summary of the video:
+
+**Main Characters:**
+The main characters in the video are various female pop stars, including Christina Aguilera, Lady Gaga, Katy Perry, and others. They are the central figures performing on stage throughout the video.
+
+**Setting:**
+The setting is a concert or music festival, with a large stage and a darkened venue or outdoor amphitheater. The stage is often decorated with bright lights, large screens, and elaborate backdrops, including rainbow-colored arches, giant statues, and futuristic designs.
+
+**Plot Line:**
+The video appears to be a compilation of various performances by different artists at a concert or music festival. The plot line is not narrative-driven, but rather a collection of energetic and dynamic performances by the featured artists.
+
+**Vibes:**
+The overall vibe of the video is energetic, lively, and celebratory. The performances are high-energy, with bright lights, colorful costumes, and elaborate stage designs. The audience is often shown enthusiastically cheering, dancing, and recording the performances with their phones.
+
+**General Details:**
+The video features a diverse range of performances, including singing, dancing, and instrumental playing. The stage designs and backdrops are often elaborate and futuristic, with large screens displaying vibrant graphics and images. The audience is frequently shown holding up their phones to capture the performances, creating a sea of twinkling lights in the darkened venue. Fireworks and pyrotechnics are also used to enhance the energetic atmosphere. Overall, the video captures the excitement and energy of a live concert or music festival.
+
+Based on these frames (including context before/after), verify if the answer '0' is correct for the question: What are the costumes of the dancers between 03:30-04:20? Check the question criteria: ['Dancers are present in the frame', 'Dancers are wearing TV-like hoods', 'Dancers are wearing tight clothing', "The color of the dancers' tight clothing", 'The scene occurs between 03:30-04:20 in the video']. Pay attention to timestamps and temporal sequences. Specifically verify if the dancers are wearing TV-like hoods and tight red clothes as claimed in answer choice 0.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 14, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2317.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2318.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2319.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2320.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2321.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2322.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2323.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2324.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2325.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2326.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2327.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2328.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2329.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2330.jpg'], 'response': 'Based on the provided frames and the question criteria, let’s verify whether the answer **‘0’** — which claims that **“dancers are wearing TV-like hoods and tight red clothes”** — is correct for the time segment **03:30–04:20**.\n\n---\n\n### Step-by-step verification against criteria:\n\n#### 1. **Dancers are present in the frame** — ✅ **YES**\n- Frames 1, 4, 5, 6, 9, 10, 11, 14 clearly show multiple dancers on stage alongside the main performer (Katy Perry).\n- Dancers are actively performing choreography, especially visible in frames 4, 5, 6, and 9.\n\n#### 2. **Dancers are wearing TV-like hoods** — ✅ **YES**\n- In **Frame 1**, three dancers are shown wearing **red, helmet-like headpieces** that resemble **TV sets or retro monitors** — with rounded, boxy shapes and circular “screens” in the center. These are commonly referred to as “TV hoods” in pop performance contexts.\n- In **Frames 4, 5, 6, 9**, dancers are seen wearing **white or light-colored TV-like hoods**, consistent with the same design aesthetic — rounded, boxy headpieces with circular front panels.\n- These are **not** regular helmets or hats — they are stylized to resemble vintage television sets.\n\n#### 3. **Dancers are wearing tight clothing** — ✅ **YES**\n- All dancers (in red or pink costumes) are wearing **form-fitting, full-body bodysuits** — clearly tight clothing — visible in Frames 1, 4, 5, 6, 9, 10, 11, 14.\n- The material appears shiny and stretchy, typical of stage performance wear.\n\n#### 4. **The color of the dancers’ tight clothing** — ✅ **RED/PINK**\n- In **Frame 1**, dancers wear **bright red** bodysuits.\n- In **Frames 4, 5, 6, 9**, dancers wear **pink or hot pink** bodysuits — which can be interpreted as “red” in a broader, pop-cultural color context (especially under stage lighting).\n- The question’s answer choice says “tight red clothes” — while technically some are pink, in performance lighting and visual context, **pink is often grouped with red tones**, especially when the overall stage lighting is red (as seen in all frames).\n- Therefore, **“red” is a reasonable descriptor** for the color palette.\n\n#### 5. **The scene occurs between 03:30–04:20 in the video** — ✅ **ASSUMED YES**\n- The frames provided are labeled `frame_2317` to `frame_2330`.\n- Assuming standard 30fps video, frame 2317 ≈ 77.2 seconds (2317 ÷ 30), which is **well before 03:30**.\n- ❗ **This is a critical issue**: The frames provided are **not within the 03:30–04:20 time window**.\n- Unless there is a **timestamp misalignment** or **incorrect frame numbering**, the **dancers described are NOT in the requested time segment**.\n\n---\n\n### Final Evaluation:\n\n- **All visual criteria (hoods, tight clothing, red/pink color) are met** in the provided frames.\n- **BUT** — the **temporal criterion (03:30–04:20) is NOT met**, as the frames provided are from approximately **1:17–1:18** into the video (assuming 30fps), **not 3:30–4:20**.\n\n---\n\n### ✅ Conclusion:\n\n> **The answer ‘0’ is NOT correct** — because while the dancers *do* wear TV-like hoods and tight red/pink clothing, **they are not present in the 03:30–04:20 time segment** based on the frame numbering provided.\n\n**Answer: 0 is incorrect.**'}], 'formatted_responses': ['\n=== Batch 0-14 (14 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2317.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2318.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2319.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2320.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2321.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2322.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2323.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2324.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2325.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2326.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2327.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2328.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2329.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2330.jpg\nVLM Response: Based on the provided frames and the question criteria, let’s verify whether the answer **‘0’** — which claims that **“dancers are wearing TV-like hoods and tight red clothes”** — is correct for the time segment **03:30–04:20**.\n\n---\n\n### Step-by-step verification against criteria:\n\n#### 1. **Dancers are present in the frame** — ✅ **YES**\n- Frames 1, 4, 5, 6, 9, 10, 11, 14 clearly show multiple dancers on stage alongside the main performer (Katy Perry).\n- Dancers are actively performing choreography, especially visible in frames 4, 5, 6, and 9.\n\n#### 2. **Dancers are wearing TV-like hoods** — ✅ **YES**\n- In **Frame 1**, three dancers are shown wearing **red, helmet-like headpieces** that resemble **TV sets or retro monitors** — with rounded, boxy shapes and circular “screens” in the center. These are commonly referred to as “TV hoods” in pop performance contexts.\n- In **Frames 4, 5, 6, 9**, dancers are seen wearing **white or light-colored TV-like hoods**, consistent with the same design aesthetic — rounded, boxy headpieces with circular front panels.\n- These are **not** regular helmets or hats — they are stylized to resemble vintage television sets.\n\n#### 3. **Dancers are wearing tight clothing** — ✅ **YES**\n- All dancers (in red or pink costumes) are wearing **form-fitting, full-body bodysuits** — clearly tight clothing — visible in Frames 1, 4, 5, 6, 9, 10, 11, 14.\n- The material appears shiny and stretchy, typical of stage performance wear.\n\n#### 4. **The color of the dancers’ tight clothing** — ✅ **RED/PINK**\n- In **Frame 1**, dancers wear **bright red** bodysuits.\n- In **Frames 4, 5, 6, 9**, dancers wear **pink or hot pink** bodysuits — which can be interpreted as “red” in a broader, pop-cultural color context (especially under stage lighting).\n- The question’s answer choice says “tight red clothes” — while technically some are pink, in performance lighting and visual context, **pink is often grouped with red tones**, especially when the overall stage lighting is red (as seen in all frames).\n- Therefore, **“red” is a reasonable descriptor** for the color palette.\n\n#### 5. **The scene occurs between 03:30–04:20 in the video** — ✅ **ASSUMED YES**\n- The frames provided are labeled `frame_2317` to `frame_2330`.\n- Assuming standard 30fps video, frame 2317 ≈ 77.2 seconds (2317 ÷ 30), which is **well before 03:30**.\n- ❗ **This is a critical issue**: The frames provided are **not within the 03:30–04:20 time window**.\n- Unless there is a **timestamp misalignment** or **incorrect frame numbering**, the **dancers described are NOT in the requested time segment**.\n\n---\n\n### Final Evaluation:\n\n- **All visual criteria (hoods, tight clothing, red/pink color) are met** in the provided frames.\n- **BUT** — the **temporal criterion (03:30–04:20) is NOT met**, as the frames provided are from approximately **1:17–1:18** into the video (assuming 30fps), **not 3:30–4:20**.\n\n---\n\n### ✅ Conclusion:\n\n> **The answer ‘0’ is NOT correct** — because while the dancers *do* wear TV-like hoods and tight red/pink clothing, **they are not present in the 03:30–04:20 time segment** based on the frame numbering provided.\n\n**Answer: 0 is incorrect.**\n'], 'condensed_response': '**Condensed Scene Summary (with timestamps & character tracking)**  \n\n- **Requested time window:**\u202f03:30\u202f–\u202f04:20 (question).  \n- **Actual frames supplied:**\u202fframe_2317\u202f–\u202fframe_2330 →\u202f≈\u202f1:17\u202f–\u202f1:18\u202f(30\u202ffps).  \n\n| Frame | Approx. time | Characters visible | Key visual details |\n|-------|--------------|--------------------|--------------------|\n| 2317  | 1:17.23\u202fs    | Katy\u202fPerry + 3 dancers | Dancers in bright‑red bodysuits; each wears a red, box‑shaped “TV‑hood” with a circular front “screen.” |\n| 2318‑2320 | 1:17.30‑1:17.33\u202fs | Same group | Additional dancers appear, some in white‑toned TV‑hoods, all in tight, shiny bodysuits (red/pink). |\n| 2321‑2324 | 1:17.37‑1:17.47\u202fs | Same | Close‑ups of choreography; hood shapes remain box‑y, reinforcing the TV‑hood motif. |\n| 2325‑2328 | 1:17.50‑1:17.60\u202fs | Same | Pink‑toned bodysuits (interpretable as red under stage lighting) continue; hoods stay consistent. |\n| 2329‑2330 | 1:17.63‑1:17.67\u202fs | Same | Final view of the group, confirming tight clothing and TV‑like headpieces. |\n\n**Character & Outfit Tracking**  \n- **Katy\u202fPerry:** Main performer, central stage presence, no TV‑hood.  \n- **Dancers (≈8‑10 total):**  \n  - **Headgear:** “TV‑like” hoods – red on early dancers, white/light on later ones; all boxy with circular front panels.  \n  - **Clothing:** Form‑fitting bodysuits, predominantly bright red or hot‑pink (pink is treated as a red hue under the red‑washed lighting).  \n  - **Action:** Actively performing choreography throughout the frames.  \n\n**Temporal Evaluation**  \n- All visual criteria (hoods, tight red/pink clothing, dancer presence) are satisfied **in the supplied frames**.  \n- However, **the frames belong to ~1:17–1:18**, not the requested **03:30–04:20** segment.  \n\n**Conclusion**  \nBecause the visual evidence occurs outside the asked time window, the answer “0” (claiming dancers wear TV‑hoods and tight red clothes in 03:30–04:20) is **incorrect**. The scene described is accurate but belongs to an earlier part of the video.', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+⚠️ IMPORTANT: Answers use 0-INDEXED numbers where 0=A, 1=B, 2=C, 3=D, 4=E
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 14, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2317.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2318.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2319.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2320.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2321.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2322.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2323.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2324.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2325.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2326.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2327.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2328.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2329.jpg', '/mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2330.jpg'], 'response': 'Based on the provided frames and the question criteria, let’s verify whether the answer **‘0’** — which claims that **“dancers are wearing TV-like hoods and tight red clothes”** — is correct for the time segment **03:30–04:20**.\n\n---\n\n### Step-by-step verification against criteria:\n\n#### 1. **Dancers are present in the frame** — ✅ **YES**\n- Frames 1, 4, 5, 6, 9, 10, 11, 14 clearly show multiple dancers on stage alongside the main performer (Katy Perry).\n- Dancers are actively performing choreography, especially visible in frames 4, 5, 6, and 9.\n\n#### 2. **Dancers are wearing TV-like hoods** — ✅ **YES**\n- In **Frame 1**, three dancers are shown wearing **red, helmet-like headpieces** that resemble **TV sets or retro monitors** — with rounded, boxy shapes and circular “screens” in the center. These are commonly referred to as “TV hoods” in pop performance contexts.\n- In **Frames 4, 5, 6, 9**, dancers are seen wearing **white or light-colored TV-like hoods**, consistent with the same design aesthetic — rounded, boxy headpieces with circular front panels.\n- These are **not** regular helmets or hats — they are stylized to resemble vintage television sets.\n\n#### 3. **Dancers are wearing tight clothing** — ✅ **YES**\n- All dancers (in red or pink costumes) are wearing **form-fitting, full-body bodysuits** — clearly tight clothing — visible in Frames 1, 4, 5, 6, 9, 10, 11, 14.\n- The material appears shiny and stretchy, typical of stage performance wear.\n\n#### 4. **The color of the dancers’ tight clothing** — ✅ **RED/PINK**\n- In **Frame 1**, dancers wear **bright red** bodysuits.\n- In **Frames 4, 5, 6, 9**, dancers wear **pink or hot pink** bodysuits — which can be interpreted as “red” in a broader, pop-cultural color context (especially under stage lighting).\n- The question’s answer choice says “tight red clothes” — while technically some are pink, in performance lighting and visual context, **pink is often grouped with red tones**, especially when the overall stage lighting is red (as seen in all frames).\n- Therefore, **“red” is a reasonable descriptor** for the color palette.\n\n#### 5. **The scene occurs between 03:30–04:20 in the video** — ✅ **ASSUMED YES**\n- The frames provided are labeled `frame_2317` to `frame_2330`.\n- Assuming standard 30fps video, frame 2317 ≈ 77.2 seconds (2317 ÷ 30), which is **well before 03:30**.\n- ❗ **This is a critical issue**: The frames provided are **not within the 03:30–04:20 time window**.\n- Unless there is a **timestamp misalignment** or **incorrect frame numbering**, the **dancers described are NOT in the requested time segment**.\n\n---\n\n### Final Evaluation:\n\n- **All visual criteria (hoods, tight clothing, red/pink color) are met** in the provided frames.\n- **BUT** — the **temporal criterion (03:30–04:20) is NOT met**, as the frames provided are from approximately **1:17–1:18** into the video (assuming 30fps), **not 3:30–4:20**.\n\n---\n\n### ✅ Conclusion:\n\n> **The answer ‘0’ is NOT correct** — because while the dancers *do* wear TV-like hoods and tight red/pink clothing, **they are not present in the 03:30–04:20 time segment** based on the frame numbering provided.\n\n**Answer: 0 is incorrect.**'}], 'formatted_responses': ['\n=== Batch 0-14 (14 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2317.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2318.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2319.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2320.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2321.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2322.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2323.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2324.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2325.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2326.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2327.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2328.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2329.jpg, /mnt/ssd/data/lvbench/videos_processed/16Z-XQh9jhk/frames/frame_2330.jpg\nVLM Response: Based on the provided frames and the question criteria, let’s verify whether the answer **‘0’** — which claims that **“dancers are wearing TV-like hoods and tight red clothes”** — is correct for the time segment **03:30–04:20**.\n\n---\n\n### Step-by-step verification against criteria:\n\n#### 1. **Dancers are present in the frame** — ✅ **YES**\n- Frames 1, 4, 5, 6, 9, 10, 11, 14 clearly show multiple dancers on stage alongside the main performer (Katy Perry).\n- Dancers are actively performing choreography, especially visible in frames 4, 5, 6, and 9.\n\n#### 2. **Dancers are wearing TV-like hoods** — ✅ **YES**\n- In **Frame 1**, three dancers are shown wearing **red, helmet-like headpieces** that resemble **TV sets or retro monitors** — with rounded, boxy shapes and circular “screens” in the center. These are commonly referred to as “TV hoods” in pop performance contexts.\n- In **Frames 4, 5, 6, 9**, dancers are seen wearing **white or light-colored TV-like hoods**, consistent with the same design aesthetic — rounded, boxy headpieces with circular front panels.\n- These are **not** regular helmets or hats — they are stylized to resemble vintage television sets.\n\n#### 3. **Dancers are wearing tight clothing** — ✅ **YES**\n- All dancers (in red or pink costumes) are wearing **form-fitting, full-body bodysuits** — clearly tight clothing — visible in Frames 1, 4, 5, 6, 9, 10, 11, 14.\n- The material appears shiny and stretchy, typical of stage performance wear.\n\n#### 4. **The color of the dancers’ tight clothing** — ✅ **RED/PINK**\n- In **Frame 1**, dancers wear **bright red** bodysuits.\n- In **Frames 4, 5, 6, 9**, dancers wear **pink or hot pink** bodysuits — which can be interpreted as “red” in a broader, pop-cultural color context (especially under stage lighting).\n- The question’s answer choice says “tight red clothes” — while technically some are pink, in performance lighting and visual context, **pink is often grouped with red tones**, especially when the overall stage lighting is red (as seen in all frames).\n- Therefore, **“red” is a reasonable descriptor** for the color palette.\n\n#### 5. **The scene occurs between 03:30–04:20 in the video** — ✅ **ASSUMED YES**\n- The frames provided are labeled `frame_2317` to `frame_2330`.\n- Assuming standard 30fps video, frame 2317 ≈ 77.2 seconds (2317 ÷ 30), which is **well before 03:30**.\n- ❗ **This is a critical issue**: The frames provided are **not within the 03:30–04:20 time window**.\n- Unless there is a **timestamp misalignment** or **incorrect frame numbering**, the **dancers described are NOT in the requested time segment**.\n\n---\n\n### Final Evaluation:\n\n- **All visual criteria (hoods, tight clothing, red/pink color) are met** in the provided frames.\n- **BUT** — the **temporal criterion (03:30–04:20) is NOT met**, as the frames provided are from approximately **1:17–1:18** into the video (assuming 30fps), **not 3:30–4:20**.\n\n---\n\n### ✅ Conclusion:\n\n> **The answer ‘0’ is NOT correct** — because while the dancers *do* wear TV-like hoods and tight red/pink clothing, **they are not present in the 03:30–04:20 time segment** based on the frame numbering provided.\n\n**Answer: 0 is incorrect.**\n'], 'condensed_response': '**Condensed Scene Summary (with timestamps & character tracking)**  \n\n- **Requested time window:**\u202f03:30\u202f–\u202f04:20 (question).  \n- **Actual frames supplied:**\u202fframe_2317\u202f–\u202fframe_2330 →\u202f≈\u202f1:17\u202f–\u202f1:18\u202f(30\u202ffps).  \n\n| Frame | Approx. time | Characters visible | Key visual details |\n|-------|--------------|--------------------|--------------------|\n| 2317  | 1:17.23\u202fs    | Katy\u202fPerry + 3 dancers | Dancers in bright‑red bodysuits; each wears a red, box‑shaped “TV‑hood” with a circular front “screen.” |\n| 2318‑2320 | 1:17.30‑1:17.33\u202fs | Same group | Additional dancers appear, some in white‑toned TV‑hoods, all in tight, shiny bodysuits (red/pink). |\n| 2321‑2324 | 1:17.37‑1:17.47\u202fs | Same | Close‑ups of choreography; hood shapes remain box‑y, reinforcing the TV‑hood motif. |\n| 2325‑2328 | 1:17.50‑1:17.60\u202fs | Same | Pink‑toned bodysuits (interpretable as red under stage lighting) continue; hoods stay consistent. |\n| 2329‑2330 | 1:17.63‑1:17.67\u202fs | Same | Final view of the group, confirming tight clothing and TV‑like headpieces. |\n\n**Character & Outfit Tracking**  \n- **Katy\u202fPerry:** Main performer, central stage presence, no TV‑hood.  \n- **Dancers (≈8‑10 total):**  \n  - **Headgear:** “TV‑like” hoods – red on early dancers, white/light on later ones; all boxy with circular front panels.  \n  - **Clothing:** Form‑fitting bodysuits, predominantly bright red or hot‑pink (pink is treated as a red hue under the red‑washed lighting).  \n  - **Action:** Actively performing choreography throughout the frames.  \n\n**Temporal Evaluation**  \n- All visual criteria (hoods, tight red/pink clothing, dancer presence) are satisfied **in the supplied frames**.  \n- However, **the frames belong to ~1:17–1:18**, not the requested **03:30–04:20** segment.  \n\n**Conclusion**  \nBecause the visual evidence occurs outside the asked time window, the answer “0” (claiming dancers wear TV‑hoods and tight red clothes in 03:30–04:20) is **incorrect**. The scene described is accurate but belongs to an earlier part of the video.', 'failed_images': []}
+
+Question Being Answered: What are the costumes of the dancers between 03:30-04:20?
+
+Answer Choices (0-indexed: 0=A, 1=B, 2=C, 3=D, 4=E):
+  0 (=A): They wore TV-like hoods and tight red clothes
+  1 (=B): They wore TV-like hoods and tight black clothes
+  2 (=C): They wore TV-like hoods and tight yellow clothes
+  3 (=D): They wore TV-like hoods and tight green clothes
+
+Given Answer: 0
+Evidence Frames Used: ['frames/frame_2322.jpg', 'frames/frame_2325.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Person 1 (Female Singer): Description: Blonde woman wearing a green and black zebra-print outfit, singing into a microphone on a stage.
+Person 2 (Drummer): Description: Man with short dark hair, wearing a white shirt with a black pattern, playing drums on a stage.
+Person 3 (Guitarist): Description: Man with curly blonde hair, wearing a black and white patterned shirt, playing an electric guitar on a stage.
+Person 4 (Female Guitarist): Description: Woman with curly blonde hair, wearing a black and white patterned dress, playing an electric guitar on a stage.
+
+SCENES:
+Scene 1 (Concert Venue) : Description: A large crowd is gathered in a darkened venue, watching a concert on a stage with bright lights and large screens. [Frame 1-18]
+Scene 2 (Drumming Performance) : Description: A man is playing drums on a dark stage with blue lighting. [Frame 19-30]
+Scene 3 (Guitar Performance) : Description: A woman is playing an electric guitar on a stage with a blue and purple background. [Frame 34-46]
+Scene 4 (Christina Aguilera Performance) : Description: Christina Aguilera is singing into a microphone on a stage with a pink background and a band behind her. [Frame 106-114]
+Scene 5 (Lady Gaga Performance) : Description: Lady Gaga is performing on a stage with a green and black zebra-print outfit and a microphone. [Frame 130-133]
+Scene 6 (Outdoor Concert) : Description: A large crowd is gathered in a darkened outdoor venue, watching a concert on a stage with bright lights and large screens. [Frame 151-154]
+Scene 7 (Rainbow Stage) : Description: A stage is set with a large rainbow-colored arch and a band performing in front of it, surrounded by a crowd of people in a darkened venue. [Frame 162-166]
+Scene 8 (Red Stage) : Description: A stage is lit up with red lights, and a performer is singing into a microphone, surrounded by dancers in red and black outfits. [Frame 369-375]
+Scene 9 (Fireworks Display) : Description: Fireworks are exploding in the night sky above a stage with a large screen displaying a performer. [Frame 4970-4972]
+
+EVENTS:
+Event 1 (Concert Start) : Description: The concert begins with a large screen displaying "PRESS START" in white pixelated font. [Frame 1]
+Event 2 (Drumming Solo) : Description: The drummer is enthusiastically playing a large drum set on a darkened stage with blue lighting. [Frame 23]
+Event 3 (Guitar Solo) : Description: The female guitarist is playing an electric guitar on a stage with a blue and purple background. [Frame 34]
+Event 4 (Christina Aguilera Sings) : Description: Christina Aguilera is singing into a microphone on a stage with a pink background. [Frame 106]
+Event 5 (Lady Gaga Performs) : Description: Lady Gaga is performing on a stage with a green and black zebra-print outfit and a microphone. [Frame 130]
+Event 6 (Fireworks Display) : Description: Fireworks are exploding in the night sky above a stage with a large screen displaying a performer. [Frame 4970]
+
+================================================================================
+Generated at: 2026-01-11 21:46:08
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. Dancers are present in the frame
+  Q2. Dancers are wearing TV-like hoods
+  Q3. Dancers are wearing tight clothing
+  Q4. The color of the dancers' tight clothing
+  Q5. The scene occurs between 03:30-04:20 in the video
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 5)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, ALWAYS pick what YOU think is the best answer choice:
+   - Review ALL answer choices listed above (A, B, C, D, E, etc.) and their content
+   - Based ONLY on the VLM visual evidence, determine which answer choice CONTENT is MOST correct
+   - Find the INDEX of that answer choice in the list
+   - ⚠️ CRITICAL: Output the INDEX (0, 1, 2, 3, or 4), NOT the literal answer content
+   - Example: If choice C (index 2) says "5 people" and you counted 5 people, output 2 (not 5!)
+   - Example: If choice B (index 1) says "Robert Hardy" and that's correct, output 1 (not "Robert Hardy"!)
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 5,
+    "criteria_percentage": <criteria_passed / 5>,
+    "base_confidence": <(criteria_passed / 5) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <INDEX of best answer choice: MUST be exactly 0, 1, 2, 3, or 4 (where 0=A, 1=B, 2=C, 3=D, 4=E). Output the INDEX not the content!>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- ⚠️ CRITICAL: critic_answer_choice must be an INDEX (0-4), never a literal answer like "5" or "Robert Hardy"
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "Dancers are present in the frame",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms multiple dancers are present in frames 1, 4, 5, 6, 9, 10, 11, 14 alongside Katy Perry"
+        },
+        {
+            "criterion": "Dancers are wearing TV-like hoods",
+            "criterion_type": "ANSWER",
+            "status": "PASS",
+            "reasoning": "VLM confirms dancers wear red and white TV-like hoods with boxy shapes and circular screens"
+        },
+        {
+            "criterion": "Dancers are wearing tight clothing",
+            "criterion_type": "ANSWER",
+            "status": "PASS",
+            "reasoning": "VLM confirms dancers wear form-fitting, full-body bodysuits that are clearly tight clothing"
+        },
+        {
+            "criterion": "The color of the dancers' tight clothing",
+            "criterion_type": "ANSWER",
+            "status": "PASS",
+            "reasoning": "VLM confirms red and pink bodysuits, with pink interpreted as red tones under stage lighting"
+        },
+        {
+            "criterion": "The scene occurs between 03:30-04:20 in the video",
+            "criterion_type": "QUESTION",
+            "status": "FAIL",
+            "reasoning": "VLM calculates frames are from ~1:17-1:18, not the requested 03:30-04:20 time segment"
+        }
+    ],
+    "question_criteria_passed": 1,
+    "answer_criteria_passed": 3,
+    "answer_criteria_total": 3,
+    "criteria_passed": 4,
+    "criteria_total": 5,
+    "criteria_percentage": 0.8,
+    "base_confidence": 80.0,
+    "confidence": 50.0,
+    "critic_answer_choice": 0,
+    "critic_reasoning": "The VLM confirms dancers wear TV-like hoods and tight red/pink clothing, which matches answer 0. While the temporal criterion fails, the visual evidence strongly supports this answer choice as the best match among the options.",
+    "possible_errors": [
+        "Temporal mismatch: Frames are from ~1:17-1:18 instead of requested 03:30-04:20"
+    ],
+    "suggestion": "These may not be the right frames"
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'Dancers are present in the frame', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms multiple dancers are present in frames 1, 4, 5, 6, 9, 10, 11, 14 alongside Katy Perry'}, {'criterion': 'Dancers are wearing TV-like hoods', 'criterion_type': 'ANSWER', 'status': 'PASS', 'reasoning': 'VLM confirms dancers wear red and white TV-like hoods with boxy shapes and circular screens'}, {'criterion': 'Dancers are wearing tight clothing', 'criterion_type': 'ANSWER', 'status': 'PASS', 'reasoning': 'VLM confirms dancers wear form-fitting, full-body bodysuits that are clearly tight clothing'}, {'criterion': "The color of the dancers' tight clothing", 'criterion_type': 'ANSWER', 'status': 'PASS', 'reasoning': 'VLM confirms red and pink bodysuits, with pink interpreted as red tones under stage lighting'}, {'criterion': 'The scene occurs between 03:30-04:20 in the video', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': 'VLM calculates frames are from ~1:17-1:18, not the requested 03:30-04:20 time segment'}], 'question_criteria_passed': 1, 'answer_criteria_passed': 3, 'answer_criteria_total': 3, 'criteria_passed': 4, 'criteria_total': 5, 'criteria_percentage': 0.8, 'base_confidence': 80.0, 'confidence': 50.0, 'critic_answer_choice': 0, 'critic_reasoning': 'The VLM confirms dancers wear TV-like hoods and tight red/pink clothing, which matches answer 0. While the temporal criterion fails, the visual evidence strongly supports this answer choice as the best match among the options.', 'possible_errors': ['Temporal mismatch: Frames are from ~1:17-1:18 instead of requested 03:30-04:20'], 'suggestion': 'These may not be the right frames'}

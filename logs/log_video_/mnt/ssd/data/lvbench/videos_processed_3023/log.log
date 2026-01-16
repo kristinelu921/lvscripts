@@ -1,0 +1,211 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0507.jpg", "frames/frame_0508.jpg", "frames/frame_0509.jpg", "frames/frame_0510.jpg", "frames/frame_0511.jpg", "frames/frame_0512.jpg", "frames/frame_0513.jpg", "frames/frame_0514.jpg", "frames/frame_0515.jpg", "frames/frame_0516.jpg", "frames/frame_0517.jpg", "frames/frame_0518.jpg", "frames/frame_0519.jpg", "frames/frame_0520.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '3' (which corresponds to option C: Red) is correct for the question: What color is the hair dryer? Check the question criteria: 1. A hair dryer is present in the frame, 2. The hair dryer is visible clearly enough to determine its color, 3. The hair dryer is being held or placed in a bathroom setting, 4. The hair dryer is a distinct object, not just a background element. Pay attention to timestamps and temporal sequences. Look for a hair dryer in bathroom settings and determine its color if visible."
+}
+Frames to verify: ['frames/frame_0507.jpg', 'frames/frame_0508.jpg', 'frames/frame_0509.jpg', 'frames/frame_0510.jpg', 'frames/frame_0511.jpg', 'frames/frame_0512.jpg', 'frames/frame_0513.jpg', 'frames/frame_0514.jpg', 'frames/frame_0515.jpg', 'frames/frame_0516.jpg', 'frames/frame_0517.jpg', 'frames/frame_0518.jpg', 'frames/frame_0519.jpg', 'frames/frame_0520.jpg']
+VLM Prompt: Video context: After analyzing the provided SET of frame-by-frame captions data for a long video, I've generated a global summary that captures the main characters, setting, plot line, vibes, and general details.
+
+**Main Characters:**
+The main character is a man with short brown or blond hair, wearing a black or red polo shirt, often accompanied by white shorts or pants. He appears to be the central figure throughout the video. Other characters, such as women in various outfits, chefs, waiters, and lifeguards, make appearances but are not as prominent.
+
+**Setting:**
+The video is primarily set in and around the luxurious Burj Al Arab hotel in Dubai, UAE. The setting includes the hotel's exterior and interior, its beach, pool areas, luxurious rooms, and various public spaces like the lobby, restaurants, and bars. The video also captures surrounding cityscapes, beaches, and the Arabian Gulf.
+
+**Plot Line:**
+The video appears to be a promotional or documentary-style content showcasing the luxury and opulence of the Burj Al Arab hotel. The main character, likely a presenter or influencer, gives a tour of the hotel's facilities, rooms, and services. The video highlights the hotel's grandeur, its staff, and the various experiences it offers, such as fine dining, relaxation, and leisure activities.
+
+**Vibes:**
+The overall vibe of the video is one of luxury, sophistication, and relaxation. The tone is generally positive and inviting, showcasing the hotel's high-end amenities and services. The video exudes a sense of exclusivity and opulence, emphasizing the unique experiences available at the Burj Al Arab.
+
+**General Details:**
+The video is likely a promotional content for the Burj Al Arab hotel, highlighting its luxurious features and services. The main character's interactions with the camera and the various settings suggest a guided tour or a documentary-style presentation. The video showcases the hotel's architecture, decor, and ambiance, as well as its staff and the experiences it offers to guests. The overall tone is upscale and inviting, suggesting a high-end travel or hospitality experience.
+
+Based on these frames (including context before/after), verify if the answer '3' (which corresponds to option C: Red) is correct for the question: What color is the hair dryer? Check the question criteria: 1. A hair dryer is present in the frame, 2. The hair dryer is visible clearly enough to determine its color, 3. The hair dryer is being held or placed in a bathroom setting, 4. The hair dryer is a distinct object, not just a background element. Pay attention to timestamps and temporal sequences. Look for a hair dryer in bathroom settings and determine its color if visible.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 14, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0507.jpg', '/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0508.jpg', '/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0509.jpg', '/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0510.jpg', '/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0511.jpg', '/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0512.jpg', '/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0513.jpg', '/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0514.jpg', '/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0515.jpg', '/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0516.jpg', '/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0517.jpg', '/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0518.jpg', '/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0519.jpg', '/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0520.jpg'], 'response': "The answer **'3' (Red)** is **incorrect**.\n\n---\n\n### Verification Based on Question Criteria:\n\n1. **A hair dryer is present in the frame** → ✅  \n   - Frames 6 through 12 clearly show a hair dryer. It is first seen plugged in (Frame 6), then picked up and held (Frames 7–12).\n\n2. **The hair dryer is visible clearly enough to determine its color** → ✅  \n   - The hair dryer is shown in close-up, especially in Frames 7–12. Its body is a distinct **blue** color with a **gold/cream-colored nozzle**.\n\n3. **The hair dryer is being held or placed in a bathroom setting** → ✅  \n   - The setting includes a bathroom vanity with a mirror, electrical outlet, and countertop — typical of a luxury hotel bathroom (Burj Al Arab, as per context). The hair dryer is placed on and then held in front of this vanity.\n\n4. **The hair dryer is a distinct object, not just a background element** → ✅  \n   - The hair dryer is the central focus in Frames 7–12. It is manipulated by hand, shown from multiple angles, and occupies a significant portion of the frame.\n\n---\n\n### Color Determination:\n- The **main body** of the hair dryer is **blue**.\n- The **nozzle** is **gold or cream-colored**.\n- There is **no red** visible on the hair dryer in any frame.\n\n---\n\n### Conclusion:\nThe correct color of the hair dryer is **blue**, not red. Therefore, the answer **'3' (Red)** is **incorrect**.\n\n✅ **Correct Answer: Blue (likely option B, if options are: 1=Black, 2=Blue, 3=Red, etc.)**\n\n--- \n\n**Final Verdict: ❌ Answer '3' is NOT correct.**"}], 'formatted_responses': ["\n=== Batch 0-14 (14 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0507.jpg, /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0508.jpg, /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0509.jpg, /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0510.jpg, /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0511.jpg, /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0512.jpg, /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0513.jpg, /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0514.jpg, /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0515.jpg, /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0516.jpg, /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0517.jpg, /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0518.jpg, /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0519.jpg, /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0520.jpg\nVLM Response: The answer **'3' (Red)** is **incorrect**.\n\n---\n\n### Verification Based on Question Criteria:\n\n1. **A hair dryer is present in the frame** → ✅  \n   - Frames 6 through 12 clearly show a hair dryer. It is first seen plugged in (Frame 6), then picked up and held (Frames 7–12).\n\n2. **The hair dryer is visible clearly enough to determine its color** → ✅  \n   - The hair dryer is shown in close-up, especially in Frames 7–12. Its body is a distinct **blue** color with a **gold/cream-colored nozzle**.\n\n3. **The hair dryer is being held or placed in a bathroom setting** → ✅  \n   - The setting includes a bathroom vanity with a mirror, electrical outlet, and countertop — typical of a luxury hotel bathroom (Burj Al Arab, as per context). The hair dryer is placed on and then held in front of this vanity.\n\n4. **The hair dryer is a distinct object, not just a background element** → ✅  \n   - The hair dryer is the central focus in Frames 7–12. It is manipulated by hand, shown from multiple angles, and occupies a significant portion of the frame.\n\n---\n\n### Color Determination:\n- The **main body** of the hair dryer is **blue**.\n- The **nozzle** is **gold or cream-colored**.\n- There is **no red** visible on the hair dryer in any frame.\n\n---\n\n### Conclusion:\nThe correct color of the hair dryer is **blue**, not red. Therefore, the answer **'3' (Red)** is **incorrect**.\n\n✅ **Correct Answer: Blue (likely option B, if options are: 1=Black, 2=Blue, 3=Red, etc.)**\n\n--- \n\n**Final Verdict: ❌ Answer '3' is NOT correct.**\n"], 'condensed_response': '**Scene Summary (Frames\u202f0507‑0520)**  \n\n- **Location:** Luxury‑hotel bathroom (vanity, mirror, outlet).  \n- **Key Object:** A hair‑dryer that first appears plugged into the outlet (≈\u202fframe\u202f0509) and is then lifted and held by a hand in the subsequent frames (≈\u202fframes\u202f0510‑0512).  \n- **Appearance:** The dryer’s body is a solid **blue**; its nozzle is a **gold/cream‑colored** tip. No red elements are visible on the device.  \n- **Character Tracking:** The only “character” is the hand that grabs the dryer, staying in view from frames\u202f0510‑0512 and guiding the appliance in front of the vanity.  \n\n**Conclusion:** The hair‑dryer’s colour is blue, so the answer “3\u202f=\u202fRed” is incorrect. The correct choice would be the blue option (e.g., “2”).', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 14, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0507.jpg', '/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0508.jpg', '/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0509.jpg', '/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0510.jpg', '/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0511.jpg', '/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0512.jpg', '/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0513.jpg', '/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0514.jpg', '/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0515.jpg', '/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0516.jpg', '/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0517.jpg', '/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0518.jpg', '/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0519.jpg', '/mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0520.jpg'], 'response': "The answer **'3' (Red)** is **incorrect**.\n\n---\n\n### Verification Based on Question Criteria:\n\n1. **A hair dryer is present in the frame** → ✅  \n   - Frames 6 through 12 clearly show a hair dryer. It is first seen plugged in (Frame 6), then picked up and held (Frames 7–12).\n\n2. **The hair dryer is visible clearly enough to determine its color** → ✅  \n   - The hair dryer is shown in close-up, especially in Frames 7–12. Its body is a distinct **blue** color with a **gold/cream-colored nozzle**.\n\n3. **The hair dryer is being held or placed in a bathroom setting** → ✅  \n   - The setting includes a bathroom vanity with a mirror, electrical outlet, and countertop — typical of a luxury hotel bathroom (Burj Al Arab, as per context). The hair dryer is placed on and then held in front of this vanity.\n\n4. **The hair dryer is a distinct object, not just a background element** → ✅  \n   - The hair dryer is the central focus in Frames 7–12. It is manipulated by hand, shown from multiple angles, and occupies a significant portion of the frame.\n\n---\n\n### Color Determination:\n- The **main body** of the hair dryer is **blue**.\n- The **nozzle** is **gold or cream-colored**.\n- There is **no red** visible on the hair dryer in any frame.\n\n---\n\n### Conclusion:\nThe correct color of the hair dryer is **blue**, not red. Therefore, the answer **'3' (Red)** is **incorrect**.\n\n✅ **Correct Answer: Blue (likely option B, if options are: 1=Black, 2=Blue, 3=Red, etc.)**\n\n--- \n\n**Final Verdict: ❌ Answer '3' is NOT correct.**"}], 'formatted_responses': ["\n=== Batch 0-14 (14 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0507.jpg, /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0508.jpg, /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0509.jpg, /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0510.jpg, /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0511.jpg, /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0512.jpg, /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0513.jpg, /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0514.jpg, /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0515.jpg, /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0516.jpg, /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0517.jpg, /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0518.jpg, /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0519.jpg, /mnt/ssd/data/lvbench/videos_processed/iA_69g87Ilw/frames/frame_0520.jpg\nVLM Response: The answer **'3' (Red)** is **incorrect**.\n\n---\n\n### Verification Based on Question Criteria:\n\n1. **A hair dryer is present in the frame** → ✅  \n   - Frames 6 through 12 clearly show a hair dryer. It is first seen plugged in (Frame 6), then picked up and held (Frames 7–12).\n\n2. **The hair dryer is visible clearly enough to determine its color** → ✅  \n   - The hair dryer is shown in close-up, especially in Frames 7–12. Its body is a distinct **blue** color with a **gold/cream-colored nozzle**.\n\n3. **The hair dryer is being held or placed in a bathroom setting** → ✅  \n   - The setting includes a bathroom vanity with a mirror, electrical outlet, and countertop — typical of a luxury hotel bathroom (Burj Al Arab, as per context). The hair dryer is placed on and then held in front of this vanity.\n\n4. **The hair dryer is a distinct object, not just a background element** → ✅  \n   - The hair dryer is the central focus in Frames 7–12. It is manipulated by hand, shown from multiple angles, and occupies a significant portion of the frame.\n\n---\n\n### Color Determination:\n- The **main body** of the hair dryer is **blue**.\n- The **nozzle** is **gold or cream-colored**.\n- There is **no red** visible on the hair dryer in any frame.\n\n---\n\n### Conclusion:\nThe correct color of the hair dryer is **blue**, not red. Therefore, the answer **'3' (Red)** is **incorrect**.\n\n✅ **Correct Answer: Blue (likely option B, if options are: 1=Black, 2=Blue, 3=Red, etc.)**\n\n--- \n\n**Final Verdict: ❌ Answer '3' is NOT correct.**\n"], 'condensed_response': '**Scene Summary (Frames\u202f0507‑0520)**  \n\n- **Location:** Luxury‑hotel bathroom (vanity, mirror, outlet).  \n- **Key Object:** A hair‑dryer that first appears plugged into the outlet (≈\u202fframe\u202f0509) and is then lifted and held by a hand in the subsequent frames (≈\u202fframes\u202f0510‑0512).  \n- **Appearance:** The dryer’s body is a solid **blue**; its nozzle is a **gold/cream‑colored** tip. No red elements are visible on the device.  \n- **Character Tracking:** The only “character” is the hand that grabs the dryer, staying in view from frames\u202f0510‑0512 and guiding the appliance in front of the vanity.  \n\n**Conclusion:** The hair‑dryer’s colour is blue, so the answer “3\u202f=\u202fRed” is incorrect. The correct choice would be the blue option (e.g., “2”).', 'failed_images': []}
+
+Question Being Answered: What color is the hair dryer?
+
+Answer Choices:
+A. Black
+B. White
+C. Red
+D. Blue
+
+Given Answer: 3
+Evidence Frames Used: ['frames/frame_0512.jpg', 'frames/frame_0513.jpg', 'frames/frame_0514.jpg', 'frames/frame_0515.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Man in Black Polo Shirt: A man with short brown or blond hair, wearing a black polo shirt with a white logo.
+Man in White Robe: A man wearing a white robe, often with a blue and gold sash, associated with the Burj Al Arab hotel staff.
+Man in Red Polo Shirt: A man with short brown hair, wearing a red polo shirt, often with sunglasses and sometimes a microphone.
+Lifeguard: A person wearing a blue and white lifeguard uniform.
+
+SCENES:
+Burj Al Arab Exterior: The exterior of the Burj Al Arab hotel, a luxurious white sail-shaped structure on a man-made island.
+Dubai Cityscape: Various views of the Dubai cityscape, including beaches, buildings, and waterfront areas.
+Luxurious Hotel Lobby: Opulent lobby with red and gold decor, large vases, and elegant furniture.
+Luxurious Bathroom: High-end bathroom with blue and gold decor, marble countertops, and large mirrors.
+Beachside Resort: A resort area with white lounge chairs, umbrellas, and palm trees on a sandy beach.
+Infinity Pool: A large infinity pool overlooking the ocean, with lounge chairs and umbrellas nearby.
+MINDSPA SYNCTUITION: A modern, glass-enclosed structure with a white and gold exterior, offering spa services.
+Outdoor Dining Area: An outdoor seating area with white tables and chairs, umbrellas, and a view of the ocean.
+Luxurious Bedroom: A lavish hotel bedroom with a large bed, white linens, and purple curtains.
+Luxurious Living Room: An elegant living room with red and blue furniture, large windows, and a view of the ocean.
+
+EVENTS:
+Man in Black Polo Shirt Exploring: The man in the black polo shirt is seen exploring various areas of the hotel and its surroundings.
+Man in White Robe Interacting with Environment: The man in the white robe is seen performing various tasks, such as carrying luggage and interacting with the hotel environment.
+Man in Red Polo Shirt Presenting: The man in the red polo shirt is seen presenting or speaking on a beach with the Burj Al Arab in the background.
+Breakfast Preparation: A lavish breakfast spread is being prepared and presented in a luxurious dining room.
+People Relaxing by the Pool: Individuals are seen relaxing on lounge chairs and swimming in the infinity pool.
+People Walking through the Hotel: Various people, including the man in the black polo shirt, are seen walking through the hotel's lobby and corridors.
+Dinner or Drinks at Outdoor Restaurant: People are seen dining or having drinks at an outdoor restaurant with umbrellas and a view of the ocean.
+
+Timestamps for the logs will be added as follows:
+
+SCENES:
+Burj Al Arab Exterior: Frame 1-9, 16-30, 1718-1734
+Dubai Cityscape: Frame 1-9, 28-30, 97-106, 1764-1771
+Luxurious Hotel Lobby: Frame 65-87, 1485-1492
+Luxurious Bathroom: Frame 137-163, 1207-1229
+Beachside Resort: Frame 1042-1046, 1230-1236
+Infinity Pool: Frame 959-974, 1337-1345
+MINDSPA SYNCTUITION: Frame 1008-1029
+Outdoor Dining Area: Frame 1038-1047
+Luxurious Bedroom: Frame 853-863, 1744-1751
+Luxurious Living Room: Frame 675-686, 1180-1187
+
+EVENTS:
+Man in Black Polo Shirt Exploring: Frame 31-75, 291-304
+Man in White Robe Interacting with Environment: Frame 50-69
+Man in Red Polo Shirt Presenting: Frame 1731-1749
+Breakfast Preparation: Frame 1639-1717
+People Relaxing by the Pool: Frame 959-974, 1337-1345
+People Walking through the Hotel: Frame 65-87, 1485-1492
+Dinner or Drinks at Outdoor Restaurant: Frame 1353-1374
+
+CHARACTERS:
+Man in Black Polo Shirt: Frame 31-75, 291-304, 668-704
+Man in White Robe: Frame 50-69
+Man in Red Polo Shirt: Frame 1731-1749
+Lifeguard: Frame 1113-1117
+
+================================================================================
+Generated at: 2026-01-11 21:46:19
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. A hair dryer is present in the frame
+  Q2. The hair dryer is visible clearly enough to determine its color
+  Q3. The hair dryer is being held or placed in a bathroom setting
+  Q4. The hair dryer is a distinct object, not just a background element
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 4)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, if criteria_percentage > 0.5 (>50% of criteria pass):
+   - Review ALL answer choices (A, B, C, D, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D)
+5. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - STILL do your best to pick out a correct answer, but also set suggestion to "These may not be the right frames/scene. Continue searching for better evidence."
+   - output your best guess of the answer as a number (0=A, 1=B, 2=C, 3=D, 4=E)
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <number of question criteria that passed>,
+    "criteria_total": 4,
+    "criteria_percentage": <criteria_passed / 4>,
+    "base_confidence": <(criteria_passed / 4) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "A hair dryer is present in the frame",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms hair dryer is clearly visible in frames 6-12, showing it plugged in and then being held"
+        },
+        {
+            "criterion": "The hair dryer is visible clearly enough to determine its color",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM states the hair dryer is shown in close-up, especially in frames 7-12, and clearly describes its blue body with gold/cream nozzle"
+        },
+        {
+            "criterion": "The hair dryer is being held or placed in a bathroom setting",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms bathroom setting with vanity, mirror, electrical outlet, and countertop typical of luxury hotel bathroom"
+        },
+        {
+            "criterion": "The hair dryer is a distinct object, not just a background element",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM states the hair dryer is the central focus in frames 7-12, manipulated by hand, shown from multiple angles, and occupies significant portion of frame"
+        }
+    ],
+    "question_criteria_passed": 4,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 4,
+    "criteria_total": 4,
+    "criteria_percentage": 1.0,
+    "base_confidence": 100,
+    "confidence": 100,
+    "critic_answer_choice": 3,
+    "critic_reasoning": "VLM clearly states the hair dryer's main body is blue with no red visible, and explicitly concludes the correct color is blue, making option D (Blue) the correct choice",
+    "possible_errors": [],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'A hair dryer is present in the frame', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms hair dryer is clearly visible in frames 6-12, showing it plugged in and then being held'}, {'criterion': 'The hair dryer is visible clearly enough to determine its color', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM states the hair dryer is shown in close-up, especially in frames 7-12, and clearly describes its blue body with gold/cream nozzle'}, {'criterion': 'The hair dryer is being held or placed in a bathroom setting', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms bathroom setting with vanity, mirror, electrical outlet, and countertop typical of luxury hotel bathroom'}, {'criterion': 'The hair dryer is a distinct object, not just a background element', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM states the hair dryer is the central focus in frames 7-12, manipulated by hand, shown from multiple angles, and occupies significant portion of frame'}], 'question_criteria_passed': 4, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 4, 'criteria_total': 4, 'criteria_percentage': 1.0, 'base_confidence': 100, 'confidence': 100, 'critic_answer_choice': 3, 'critic_reasoning': "VLM clearly states the hair dryer's main body is blue with no red visible, and explicitly concludes the correct color is blue, making option D (Blue) the correct choice", 'possible_errors': [], 'suggestion': None}

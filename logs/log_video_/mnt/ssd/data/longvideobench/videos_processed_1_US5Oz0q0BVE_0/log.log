@@ -1,0 +1,206 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0000.jpg", "frames/frame_0001.jpg", "frames/frame_0002.jpg", "frames/frame_0003.jpg", "frames/frame_0004.jpg", "frames/frame_0005.jpg", "frames/frame_0006.jpg", "frames/frame_0007.jpg", "frames/frame_0008.jpg", "frames/frame_0009.jpg", "frames/frame_0010.jpg", "frames/frame_0011.jpg", "frames/frame_0012.jpg", "frames/frame_0013.jpg"],
+    "prompt": "Examine these frames to verify if answer '1' (Not wearing glasses) is correct for the question. First, identify if there's a scene matching the question description: A room with two rows of bookshelves, a desk in front of bookshelves, two paintings/artworks on desk (one upright, one lying flat), and a woman dressed in black sitting next to the desk. Then specifically check this woman's face to determine if she is wearing glasses, and if so, what style/color. If no glasses are visible, confirm she is not wearing glasses. Pay attention to frames 5-8 which are the primary evidence frames, and use surrounding frames for context and verification."
+}
+Frames to verify: ['frames/frame_0000.jpg', 'frames/frame_0001.jpg', 'frames/frame_0002.jpg', 'frames/frame_0003.jpg', 'frames/frame_0004.jpg', 'frames/frame_0005.jpg', 'frames/frame_0006.jpg', 'frames/frame_0007.jpg', 'frames/frame_0008.jpg', 'frames/frame_0009.jpg', 'frames/frame_0010.jpg', 'frames/frame_0011.jpg', 'frames/frame_0012.jpg', 'frames/frame_0013.jpg']
+VLM Prompt: Video context: Based on the provided SET of frame-by-frame captions, here is a global summary of the video:
+
+**Main Characters:**
+The primary character appears to be a woman, referred to as Rachel Mustalish in one of the frames, who is likely a scholar or conservator. She is sometimes accompanied by other women.
+
+**Setting:**
+The video is set in a large, dimly lit or well-lit room that appears to be a library, office, or a paper conservation laboratory. The room is equipped with dark brown wooden tables, chairs, tall bookshelves filled with books, and various tools and microscopes.
+
+**Plot Line:**
+The video seems to follow Rachel Mustalish as she examines and discusses large, detailed pencil drawings or prints, likely related to German printmaking and architectural structures. The narrative may revolve around her work or research in a collection with 1.5 million objects, where she discovers hidden treasures.
+
+**Vibes:**
+The overall atmosphere of the video appears to be professional, academic, and contemplative. The dim or soft lighting and the presence of old books and detailed artworks contribute to a studious and cultured ambiance.
+
+**General Details:**
+The video features a mix of close-ups and wide shots showcasing the woman's interactions with the artworks, her gestures, and the surroundings. The subtitles suggest that the video may be a documentary or an educational program with a narrative that is partly driven by the conversation or presentation by Rachel Mustalish. The presence of music in the initial frames adds to the overall tone of the video.
+
+Examine these frames to verify if answer '1' (Not wearing glasses) is correct for the question. First, identify if there's a scene matching the question description: A room with two rows of bookshelves, a desk in front of bookshelves, two paintings/artworks on desk (one upright, one lying flat), and a woman dressed in black sitting next to the desk. Then specifically check this woman's face to determine if she is wearing glasses, and if so, what style/color. If no glasses are visible, confirm she is not wearing glasses. Pay attention to frames 5-8 which are the primary evidence frames, and use surrounding frames for context and verification.
+
+Subtitles visible in these frames:
+  frames/frame_0001.jpg: "[Music]"
+  frames/frame_0002.jpg: "[Music]"
+  frames/frame_0003.jpg: "[Music]"
+  frames/frame_0004.jpg: "[Music]"
+  frames/frame_0005.jpg: "[Music]"
+  frames/frame_0006.jpg: "[Music]"
+  frames/frame_0007.jpg: "[Music]"
+  frames/frame_0009.jpg: "so working in a collection where there"
+  frames/frame_0012.jpg: "are 1.5 million objects you often find"
+
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 14, 'image_paths': ['/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0001.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0002.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0003.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0004.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0005.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0006.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0007.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0008.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0009.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0010.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0011.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0012.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0013.jpg'], 'response': 'Based on the provided frames and instructions, here is the verification:\n\n---\n\n**Step 1: Identify the scene matching the question description**\n\nThe question asks for a scene with:\n- Two rows of bookshelves\n- A desk in front of the bookshelves\n- Two artworks on the desk (one upright, one lying flat)\n- A woman dressed in black sitting next to the desk\n\nThis exact scene is clearly visible in **frames 6–9** (frame_0005.jpg to frame_0008.jpg).\n\n- **Bookshelves**: Two tall, full bookshelves are visible directly behind the woman.\n- **Desk**: A large wooden desk is in front of the bookshelves.\n- **Artworks**: \n  - One large framed print is standing upright on an easel on the desk.\n  - Another large print is lying flat on the desk surface to the woman’s right.\n- **Woman**: A woman is seated in a wooden chair next to the desk, dressed in a dark (black or navy) dress with short sleeves and a ruffled neckline.\n\n✅ This scene matches the description perfectly.\n\n---\n\n**Step 2: Check the woman’s face for glasses**\n\nIn frames 6–9 (especially frames 6, 7, and 8, which are the clearest frontal shots), the woman’s face is clearly visible.\n\n- She is wearing **glasses**.\n- The glasses have **dark, thick frames** — likely black or dark brown.\n- The style is **rectangular or slightly rounded rectangular**, modern and professional-looking.\n\nThis is consistent across all frames where her face is visible (frames 6–9).\n\n---\n\n**Step 3: Conclusion**\n\nThe answer “1” (Not wearing glasses) is **incorrect**.\n\nThe woman in the described scene **is wearing glasses** — specifically, dark-framed, rectangular-style glasses.\n\n---\n\n✅ **Final Answer: 1 is NOT correct. The woman IS wearing glasses.**'}], 'formatted_responses': ['\n=== Batch 0-14 (13 frames) ===\nFrames: /mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0001.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0002.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0003.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0004.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0005.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0006.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0007.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0008.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0009.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0010.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0011.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0012.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0013.jpg\nVLM Response: Based on the provided frames and instructions, here is the verification:\n\n---\n\n**Step 1: Identify the scene matching the question description**\n\nThe question asks for a scene with:\n- Two rows of bookshelves\n- A desk in front of the bookshelves\n- Two artworks on the desk (one upright, one lying flat)\n- A woman dressed in black sitting next to the desk\n\nThis exact scene is clearly visible in **frames 6–9** (frame_0005.jpg to frame_0008.jpg).\n\n- **Bookshelves**: Two tall, full bookshelves are visible directly behind the woman.\n- **Desk**: A large wooden desk is in front of the bookshelves.\n- **Artworks**: \n  - One large framed print is standing upright on an easel on the desk.\n  - Another large print is lying flat on the desk surface to the woman’s right.\n- **Woman**: A woman is seated in a wooden chair next to the desk, dressed in a dark (black or navy) dress with short sleeves and a ruffled neckline.\n\n✅ This scene matches the description perfectly.\n\n---\n\n**Step 2: Check the woman’s face for glasses**\n\nIn frames 6–9 (especially frames 6, 7, and 8, which are the clearest frontal shots), the woman’s face is clearly visible.\n\n- She is wearing **glasses**.\n- The glasses have **dark, thick frames** — likely black or dark brown.\n- The style is **rectangular or slightly rounded rectangular**, modern and professional-looking.\n\nThis is consistent across all frames where her face is visible (frames 6–9).\n\n---\n\n**Step 3: Conclusion**\n\nThe answer “1” (Not wearing glasses) is **incorrect**.\n\nThe woman in the described scene **is wearing glasses** — specifically, dark-framed, rectangular-style glasses.\n\n---\n\n✅ **Final Answer: 1 is NOT correct. The woman IS wearing glasses.**\n'], 'condensed_response': '**Scene Summary (Frames\u202f5‑8 → approx. 2‑3\u202fs into the clip)**  \n\n- **Setting:** Two full‑height bookshelves line the back wall. Directly in front of them sits a large wooden desk.  \n- **Objects on Desk:**  \n  * An upright framed artwork on a small easel (left side).  \n  * A second large print lying flat on the desk surface (right side).  \n- **Character:** A woman in a dark (black‑navy) short‑sleeved dress with a ruffled neckline is seated in a wooden chair beside the desk.  \n\n**Character Details (Frames\u202f6‑8 – clearest frontal views):**  \n- Her face is fully visible.  \n- She is wearing glasses with dark, thick frames (black or dark brown).  \n- The frames are rectangular‑to‑slightly‑rounded, giving a modern, professional look.  \n\n**Conclusion:** The described scene is unmistakably captured in frames\u202f5‑8, and the woman **is wearing dark‑framed glasses**; therefore the answer “1\u202f–\u202fNot wearing glasses” is incorrect.', 'failed_images': [('/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0000.jpg', 'File not found')]}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 14, 'image_paths': ['/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0001.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0002.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0003.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0004.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0005.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0006.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0007.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0008.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0009.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0010.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0011.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0012.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0013.jpg'], 'response': 'Based on the provided frames and instructions, here is the verification:\n\n---\n\n**Step 1: Identify the scene matching the question description**\n\nThe question asks for a scene with:\n- Two rows of bookshelves\n- A desk in front of the bookshelves\n- Two artworks on the desk (one upright, one lying flat)\n- A woman dressed in black sitting next to the desk\n\nThis exact scene is clearly visible in **frames 6–9** (frame_0005.jpg to frame_0008.jpg).\n\n- **Bookshelves**: Two tall, full bookshelves are visible directly behind the woman.\n- **Desk**: A large wooden desk is in front of the bookshelves.\n- **Artworks**: \n  - One large framed print is standing upright on an easel on the desk.\n  - Another large print is lying flat on the desk surface to the woman’s right.\n- **Woman**: A woman is seated in a wooden chair next to the desk, dressed in a dark (black or navy) dress with short sleeves and a ruffled neckline.\n\n✅ This scene matches the description perfectly.\n\n---\n\n**Step 2: Check the woman’s face for glasses**\n\nIn frames 6–9 (especially frames 6, 7, and 8, which are the clearest frontal shots), the woman’s face is clearly visible.\n\n- She is wearing **glasses**.\n- The glasses have **dark, thick frames** — likely black or dark brown.\n- The style is **rectangular or slightly rounded rectangular**, modern and professional-looking.\n\nThis is consistent across all frames where her face is visible (frames 6–9).\n\n---\n\n**Step 3: Conclusion**\n\nThe answer “1” (Not wearing glasses) is **incorrect**.\n\nThe woman in the described scene **is wearing glasses** — specifically, dark-framed, rectangular-style glasses.\n\n---\n\n✅ **Final Answer: 1 is NOT correct. The woman IS wearing glasses.**'}], 'formatted_responses': ['\n=== Batch 0-14 (13 frames) ===\nFrames: /mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0001.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0002.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0003.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0004.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0005.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0006.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0007.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0008.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0009.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0010.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0011.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0012.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0013.jpg\nVLM Response: Based on the provided frames and instructions, here is the verification:\n\n---\n\n**Step 1: Identify the scene matching the question description**\n\nThe question asks for a scene with:\n- Two rows of bookshelves\n- A desk in front of the bookshelves\n- Two artworks on the desk (one upright, one lying flat)\n- A woman dressed in black sitting next to the desk\n\nThis exact scene is clearly visible in **frames 6–9** (frame_0005.jpg to frame_0008.jpg).\n\n- **Bookshelves**: Two tall, full bookshelves are visible directly behind the woman.\n- **Desk**: A large wooden desk is in front of the bookshelves.\n- **Artworks**: \n  - One large framed print is standing upright on an easel on the desk.\n  - Another large print is lying flat on the desk surface to the woman’s right.\n- **Woman**: A woman is seated in a wooden chair next to the desk, dressed in a dark (black or navy) dress with short sleeves and a ruffled neckline.\n\n✅ This scene matches the description perfectly.\n\n---\n\n**Step 2: Check the woman’s face for glasses**\n\nIn frames 6–9 (especially frames 6, 7, and 8, which are the clearest frontal shots), the woman’s face is clearly visible.\n\n- She is wearing **glasses**.\n- The glasses have **dark, thick frames** — likely black or dark brown.\n- The style is **rectangular or slightly rounded rectangular**, modern and professional-looking.\n\nThis is consistent across all frames where her face is visible (frames 6–9).\n\n---\n\n**Step 3: Conclusion**\n\nThe answer “1” (Not wearing glasses) is **incorrect**.\n\nThe woman in the described scene **is wearing glasses** — specifically, dark-framed, rectangular-style glasses.\n\n---\n\n✅ **Final Answer: 1 is NOT correct. The woman IS wearing glasses.**\n'], 'condensed_response': '**Scene Summary (Frames\u202f5‑8 → approx. 2‑3\u202fs into the clip)**  \n\n- **Setting:** Two full‑height bookshelves line the back wall. Directly in front of them sits a large wooden desk.  \n- **Objects on Desk:**  \n  * An upright framed artwork on a small easel (left side).  \n  * A second large print lying flat on the desk surface (right side).  \n- **Character:** A woman in a dark (black‑navy) short‑sleeved dress with a ruffled neckline is seated in a wooden chair beside the desk.  \n\n**Character Details (Frames\u202f6‑8 – clearest frontal views):**  \n- Her face is fully visible.  \n- She is wearing glasses with dark, thick frames (black or dark brown).  \n- The frames are rectangular‑to‑slightly‑rounded, giving a modern, professional look.  \n\n**Conclusion:** The described scene is unmistakably captured in frames\u202f5‑8, and the woman **is wearing dark‑framed glasses**; therefore the answer “1\u202f–\u202fNot wearing glasses” is incorrect.', 'failed_images': [('/mnt/ssd/data/longvideobench/videos_processed_1/US5Oz0q0BVE/frames/frame_0000.jpg', 'File not found')]}
+
+Question Being Answered: In a room with two rows of bookshelves, there is a desk in front of the bookshelves. On the desk are two paintings, one upright and one lying flat. Sitting next to the desk is a woman dressed in black. What style of glasses is this woman wearing?
+
+Answer Choices:
+A. Not wearing glasses
+B. Black-frame glasses
+C. Red-frame glasses
+D. Monocle
+E. Gold-frame glasses
+
+Given Answer: 1
+Evidence Frames Used: ['frames/frame_0005.jpg', 'frames/frame_0006.jpg', 'frames/frame_0007.jpg', 'frames/frame_0008.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Person 1 (Woman with dark hair): Description: A woman with dark or brown hair, appearing in different outfits such as a black short-sleeved shirt, black dress, red cardigan or jacket over a black top.
+
+Person 2 (Rachel Mustalish): Description: A conservator, wearing a black cardigan over a dark shirt.
+
+SCENES:
+Scene 1 (Room with a dark-brown wooden table): Description: A room with a large desk, chair, and wall windows in the background, where a woman examines large pencil drawings. [frames 1-4]
+Scene 2 (Large room with bookshelves): Description: A large room surrounded by tall bookshelves filled with books, where a woman sits at a wooden table. [frames 5-8]
+Scene 3 (Office or study with dark brown furniture): Description: A dimly lit room, likely an office or study with dark brown furniture, where a person places a large pencil drawing on a wooden table. [frames 9-12]
+Scene 4 (Library or office with large windows): Description: A library or office with large windows, where women examine large papers or drawings on tables. [frames 13-18]
+Scene 5 (Paper conservation laboratory): Description: A well-lit laboratory with numerous workstations equipped with microscopes and various tools, where conservator Rachel Mustalish works. [frames 19-20]
+
+EVENTS:
+Event 1 (Examining drawings): Description: A woman examines large pencil drawings or artworks on a table in different rooms. [frames 1-4, 9-18]
+Event 2 (Discussing or presenting): Description: A woman talks with her hands at a table, and conservator Rachel Mustalish gestures with her hands in a laboratory. [frames 5-8, 19-20]
+
+================================================================================
+Generated at: 2026-01-03 10:19:09
+================================================================================
+
+
+
+SUBTITLES IN EVIDENCE FRAMES:
+  frames/frame_0005.jpg: "[Music]"
+  frames/frame_0006.jpg: "[Music]"
+  frames/frame_0007.jpg: "[Music]"
+
+⚠️ IMPORTANT: Use subtitle information to verify text-based questions or questions about visible captions/words.
+
+
+QUESTION-BASED CRITERIA:
+  Q1. Room with two rows of bookshelves
+  Q2. Desk positioned in front of bookshelves
+  Q3. Two paintings/artworks on desk: one upright, one lying flat
+  Q4. Woman sitting next to the desk
+  Q5. Woman dressed in black clothing
+  Q6. Woman wearing glasses (style/color to be determined)
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 6)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, if criteria_percentage > 0.5 (>50% of criteria pass):
+   - Review ALL answer choices (A, B, C, D, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D)
+5. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - Set critic_answer_choice to -1 (indicating frames may not be the right scene)
+   - Set suggestion to "These may not be the right frames/scene. Continue searching for better evidence."
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 6,
+    "criteria_percentage": <criteria_passed / 6>,
+    "base_confidence": <(criteria_passed / 6) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, or -1 if ≤50% criteria pass>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "Room with two rows of bookshelves",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms 'two tall, full bookshelves' directly behind the woman in frames 5-8"
+        },
+        {
+            "criterion": "Desk positioned in front of bookshelves",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM states 'a large wooden desk is in front of the bookshelves'"
+        },
+        {
+            "criterion": "Two paintings/artworks on desk: one upright, one lying flat",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms 'one large framed print standing upright on an easel' and 'another large print lying flat on the desk surface'"
+        },
+        {
+            "criterion": "Woman sitting next to the desk",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM states 'a woman is seated in a wooden chair next to the desk'"
+        },
+        {
+            "criterion": "Woman dressed in black clothing",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM describes 'dressed in a dark (black or navy) dress' which matches the black clothing requirement"
+        },
+        {
+            "criterion": "Woman wearing glasses (style/color to be determined)",
+            "criterion_type": "ANSWER",
+            "status": "PASS",
+            "reasoning": "VLM clearly states 'she is wearing glasses' with 'dark, thick frames - likely black or dark brown'"
+        }
+    ],
+    "question_criteria_passed": 5,
+    "answer_criteria_passed": 1,
+    "answer_criteria_total": 1,
+    "criteria_passed": 6,
+    "criteria_total": 6,
+    "criteria_percentage": 1.0,
+    "base_confidence": 100,
+    "confidence": 100,
+    "critic_answer_choice": 1,
+    "critic_reasoning": "The VLM clearly identifies the woman wearing 'dark, thick frames - likely black or dark brown' which corresponds to answer choice B (Black-frame glasses)",
+    "possible_errors": [],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'Room with two rows of bookshelves', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM confirms 'two tall, full bookshelves' directly behind the woman in frames 5-8"}, {'criterion': 'Desk positioned in front of bookshelves', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM states 'a large wooden desk is in front of the bookshelves'"}, {'criterion': 'Two paintings/artworks on desk: one upright, one lying flat', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM confirms 'one large framed print standing upright on an easel' and 'another large print lying flat on the desk surface'"}, {'criterion': 'Woman sitting next to the desk', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM states 'a woman is seated in a wooden chair next to the desk'"}, {'criterion': 'Woman dressed in black clothing', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM describes 'dressed in a dark (black or navy) dress' which matches the black clothing requirement"}, {'criterion': 'Woman wearing glasses (style/color to be determined)', 'criterion_type': 'ANSWER', 'status': 'PASS', 'reasoning': "VLM clearly states 'she is wearing glasses' with 'dark, thick frames - likely black or dark brown'"}], 'question_criteria_passed': 5, 'answer_criteria_passed': 1, 'answer_criteria_total': 1, 'criteria_passed': 6, 'criteria_total': 6, 'criteria_percentage': 1.0, 'base_confidence': 100, 'confidence': 100, 'critic_answer_choice': 1, 'critic_reasoning': "The VLM clearly identifies the woman wearing 'dark, thick frames - likely black or dark brown' which corresponds to answer choice B (Black-frame glasses)", 'possible_errors': [], 'suggestion': None}

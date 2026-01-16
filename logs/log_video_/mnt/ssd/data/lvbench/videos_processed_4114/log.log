@@ -1,0 +1,172 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0084.jpg", "frames/frame_0085.jpg", "frames/frame_0086.jpg", "frames/frame_0087.jpg", "frames/frame_0088.jpg", "frames/frame_0089.jpg", "frames/frame_0090.jpg", "frames/frame_0091.jpg", "frames/frame_0092.jpg", "frames/frame_0093.jpg", "frames/frame_0094.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '2' is correct for the question: Who starts the game first? Check the question criteria: ['Gymnast positioned at or approaching the uneven bars apparatus', 'Gymnast preparing to perform or starting their routine', 'First competitor in the rotation order', 'Scoreboard showing the start list with order of competitors', 'Announcement or visual indication of the first performer', 'Judge or official signaling the start of the competition']. Pay attention to timestamps and temporal sequences. Look specifically for: 1) A scoreboard display showing the start list with competitor order, 2) Which gymnast is listed as first (position 1), 3) Whether the number '2' corresponds to the correct answer choice (Yao Jinnan), 4) Any visual indicators of the competition starting order."
+}
+Frames to verify: ['frames/frame_0084.jpg', 'frames/frame_0085.jpg', 'frames/frame_0086.jpg', 'frames/frame_0087.jpg', 'frames/frame_0088.jpg', 'frames/frame_0089.jpg', 'frames/frame_0090.jpg', 'frames/frame_0091.jpg', 'frames/frame_0092.jpg', 'frames/frame_0093.jpg', 'frames/frame_0094.jpg']
+VLM Prompt: Video context: Here is a global summary of the provided SET of frame-by-frame captions data for a long video:
+
+**Main Characters:**
+The main characters in this video are female gymnasts, coaches, judges, and officials participating in the artistic gymnastics events, particularly the women's uneven bars final, at the 2012 London Olympics. Some notable gymnasts mentioned include He Kexin from China, Victoria Komova from Russia, Elisabeth Seitz from Germany, Yao Jinnan from China, Elizabeth Tweddle from Great Britain, Aliya Mustafina from Russia, Koko Tsurumi from Japan, and Gabrielle Douglas from the USA.
+
+**Setting:**
+The setting is the North Greenwich Arena in London during the 2012 Summer Olympics. The arena features a prominent pink gymnastics floor with white Olympic logos and various equipment such as uneven bars, balance beams, and vaulting tables. The venue is filled with spectators in the stands, and there are numerous camera operators, judges, and officials on the floor.
+
+**Plot Line:**
+The video appears to follow the women's uneven bars final event at the 2012 London Olympics. The captions depict the gymnasts preparing for and participating in the competition, as well as the reactions of the crowd and the athletes. The video also shows the start lists and final results of the competition, with Aliya Mustafina from Russia winning the gold medal.
+
+**Vibes:**
+The overall vibe of the video is one of excitement, tension, and celebration. The captions convey the energy and enthusiasm of the crowd, as well as the focus and determination of the athletes. The atmosphere is electric, with a sense of national pride and competition.
+
+**General Details:**
+The video is a comprehensive coverage of the women's uneven bars final at the 2012 London Olympics, featuring a mix of competition action, athlete profiles, and crowd reactions. The captions provide a detailed and immersive experience, allowing the viewer to feel as though they are present at the event. The video highlights the skill and athleticism of the gymnasts, as well as the excitement and drama of the competition.
+
+Based on these frames (including context before/after), verify if the answer '2' is correct for the question: Who starts the game first? Check the question criteria: ['Gymnast positioned at or approaching the uneven bars apparatus', 'Gymnast preparing to perform or starting their routine', 'First competitor in the rotation order', 'Scoreboard showing the start list with order of competitors', 'Announcement or visual indication of the first performer', 'Judge or official signaling the start of the competition']. Pay attention to timestamps and temporal sequences. Look specifically for: 1) A scoreboard display showing the start list with competitor order, 2) Which gymnast is listed as first (position 1), 3) Whether the number '2' corresponds to the correct answer choice (Yao Jinnan), 4) Any visual indicators of the competition starting order.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 11, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0084.jpg', '/mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0085.jpg', '/mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0086.jpg', '/mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0087.jpg', '/mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0088.jpg', '/mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0089.jpg', '/mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0090.jpg', '/mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0091.jpg', '/mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0092.jpg', '/mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0093.jpg', '/mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0094.jpg'], 'response': 'The answer **\'2\' is incorrect** for the question "Who starts the game first?" based on the provided frames and criteria.\n\n### Verification against criteria:\n\n1. **Scoreboard showing the start list with order of competitors**:  \n   Frames 1 through 8 clearly display the **"WOMEN\'S UNEVEN BARS FINAL START LIST"** on a large screen. This list is ordered numerically from 1 to 8.\n\n2. **Which gymnast is listed as first (position 1)**:  \n   The gymnast listed in **position 1** is **HE KEXIN** from China (CHN).\n\n3. **Whether the number \'2\' corresponds to the correct answer choice (Yao Jinnan)**:  \n   The gymnast listed in **position 2** is **VICTORIA KOMOVA** from Russia (RUS), **not Yao Jinnan**.  \n   Yao Jinnan is listed in **position 3**.\n\n4. **Any visual indicators of the competition starting order**:  \n   The start list is explicitly shown and remains static across frames 1–8, confirming the official rotation order. There is no visual or auditory cue in frames 9–11 contradicting this order — those frames show the arena setup without any gymnast yet performing.\n\n---\n\n### Conclusion:\n- The **first competitor** to start is **He Kexin (position 1)**.\n- The answer **\'2\'** refers to **Victoria Komova**, who is second in order.\n- Therefore, **\'2\' is not the correct answer** to “Who starts the game first?”\n\n✅ **Final Answer: No, \'2\' is not correct. The correct answer is \'1\' (He Kexin).**'}], 'formatted_responses': ['\n=== Batch 0-11 (11 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0084.jpg, /mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0085.jpg, /mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0086.jpg, /mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0087.jpg, /mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0088.jpg, /mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0089.jpg, /mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0090.jpg, /mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0091.jpg, /mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0092.jpg, /mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0093.jpg, /mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0094.jpg\nVLM Response: The answer **\'2\' is incorrect** for the question "Who starts the game first?" based on the provided frames and criteria.\n\n### Verification against criteria:\n\n1. **Scoreboard showing the start list with order of competitors**:  \n   Frames 1 through 8 clearly display the **"WOMEN\'S UNEVEN BARS FINAL START LIST"** on a large screen. This list is ordered numerically from 1 to 8.\n\n2. **Which gymnast is listed as first (position 1)**:  \n   The gymnast listed in **position 1** is **HE KEXIN** from China (CHN).\n\n3. **Whether the number \'2\' corresponds to the correct answer choice (Yao Jinnan)**:  \n   The gymnast listed in **position 2** is **VICTORIA KOMOVA** from Russia (RUS), **not Yao Jinnan**.  \n   Yao Jinnan is listed in **position 3**.\n\n4. **Any visual indicators of the competition starting order**:  \n   The start list is explicitly shown and remains static across frames 1–8, confirming the official rotation order. There is no visual or auditory cue in frames 9–11 contradicting this order — those frames show the arena setup without any gymnast yet performing.\n\n---\n\n### Conclusion:\n- The **first competitor** to start is **He Kexin (position 1)**.\n- The answer **\'2\'** refers to **Victoria Komova**, who is second in order.\n- Therefore, **\'2\' is not the correct answer** to “Who starts the game first?”\n\n✅ **Final Answer: No, \'2\' is not correct. The correct answer is \'1\' (He Kexin).**\n'], 'condensed_response': '**Scene Summary (Frames\u202f0084‑0094)**  \n\n- **Frames\u202f0084‑0091** – A large arena screen dominates the view, displaying the **“WOMEN’S UNEVEN BARS FINAL START LIST.”** The list is static across these frames and shows the competitors in numeric order:\n\n  1️⃣ **He\u202fKexin (CHN)**  \n  2️⃣ **Victoria\u202fKomova (RUS)**  \n  3️⃣ **Yao\u202fJinnan (CHN)**  \n  4️⃣ … (other gymnasts follow)\n\n- **Frames\u202f0092‑0094** – The camera pulls back to show the competition floor and seating area. No gymnast has yet taken the apparatus; the arena is empty except for officials and equipment, confirming that the start order shown on the screen has not been altered.\n\n**Character Tracking**  \n- The only “characters” visible are the names on the start‑list screen; their positions (1‑8) are clearly legible. No athlete is on the uneven bars yet, so there is no movement to track beyond the static list.\n\n**Answer to the Question “Who starts the game first?”**  \n- The first competitor is **He\u202fKexin (position\u202f1)**.  \n- The answer option **‘2’** corresponds to **Victoria\u202fKomova**, not the starter.  \n\n**Conclusion** – The VLM’s claim that ‘2’ is correct is **incorrect**; the correct answer is **‘1’ (He\u202fKexin)**.', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 11, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0084.jpg', '/mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0085.jpg', '/mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0086.jpg', '/mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0087.jpg', '/mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0088.jpg', '/mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0089.jpg', '/mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0090.jpg', '/mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0091.jpg', '/mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0092.jpg', '/mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0093.jpg', '/mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0094.jpg'], 'response': 'The answer **\'2\' is incorrect** for the question "Who starts the game first?" based on the provided frames and criteria.\n\n### Verification against criteria:\n\n1. **Scoreboard showing the start list with order of competitors**:  \n   Frames 1 through 8 clearly display the **"WOMEN\'S UNEVEN BARS FINAL START LIST"** on a large screen. This list is ordered numerically from 1 to 8.\n\n2. **Which gymnast is listed as first (position 1)**:  \n   The gymnast listed in **position 1** is **HE KEXIN** from China (CHN).\n\n3. **Whether the number \'2\' corresponds to the correct answer choice (Yao Jinnan)**:  \n   The gymnast listed in **position 2** is **VICTORIA KOMOVA** from Russia (RUS), **not Yao Jinnan**.  \n   Yao Jinnan is listed in **position 3**.\n\n4. **Any visual indicators of the competition starting order**:  \n   The start list is explicitly shown and remains static across frames 1–8, confirming the official rotation order. There is no visual or auditory cue in frames 9–11 contradicting this order — those frames show the arena setup without any gymnast yet performing.\n\n---\n\n### Conclusion:\n- The **first competitor** to start is **He Kexin (position 1)**.\n- The answer **\'2\'** refers to **Victoria Komova**, who is second in order.\n- Therefore, **\'2\' is not the correct answer** to “Who starts the game first?”\n\n✅ **Final Answer: No, \'2\' is not correct. The correct answer is \'1\' (He Kexin).**'}], 'formatted_responses': ['\n=== Batch 0-11 (11 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0084.jpg, /mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0085.jpg, /mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0086.jpg, /mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0087.jpg, /mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0088.jpg, /mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0089.jpg, /mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0090.jpg, /mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0091.jpg, /mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0092.jpg, /mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0093.jpg, /mnt/ssd/data/lvbench/videos_processed/rp4NKWb7dXk/frames/frame_0094.jpg\nVLM Response: The answer **\'2\' is incorrect** for the question "Who starts the game first?" based on the provided frames and criteria.\n\n### Verification against criteria:\n\n1. **Scoreboard showing the start list with order of competitors**:  \n   Frames 1 through 8 clearly display the **"WOMEN\'S UNEVEN BARS FINAL START LIST"** on a large screen. This list is ordered numerically from 1 to 8.\n\n2. **Which gymnast is listed as first (position 1)**:  \n   The gymnast listed in **position 1** is **HE KEXIN** from China (CHN).\n\n3. **Whether the number \'2\' corresponds to the correct answer choice (Yao Jinnan)**:  \n   The gymnast listed in **position 2** is **VICTORIA KOMOVA** from Russia (RUS), **not Yao Jinnan**.  \n   Yao Jinnan is listed in **position 3**.\n\n4. **Any visual indicators of the competition starting order**:  \n   The start list is explicitly shown and remains static across frames 1–8, confirming the official rotation order. There is no visual or auditory cue in frames 9–11 contradicting this order — those frames show the arena setup without any gymnast yet performing.\n\n---\n\n### Conclusion:\n- The **first competitor** to start is **He Kexin (position 1)**.\n- The answer **\'2\'** refers to **Victoria Komova**, who is second in order.\n- Therefore, **\'2\' is not the correct answer** to “Who starts the game first?”\n\n✅ **Final Answer: No, \'2\' is not correct. The correct answer is \'1\' (He Kexin).**\n'], 'condensed_response': '**Scene Summary (Frames\u202f0084‑0094)**  \n\n- **Frames\u202f0084‑0091** – A large arena screen dominates the view, displaying the **“WOMEN’S UNEVEN BARS FINAL START LIST.”** The list is static across these frames and shows the competitors in numeric order:\n\n  1️⃣ **He\u202fKexin (CHN)**  \n  2️⃣ **Victoria\u202fKomova (RUS)**  \n  3️⃣ **Yao\u202fJinnan (CHN)**  \n  4️⃣ … (other gymnasts follow)\n\n- **Frames\u202f0092‑0094** – The camera pulls back to show the competition floor and seating area. No gymnast has yet taken the apparatus; the arena is empty except for officials and equipment, confirming that the start order shown on the screen has not been altered.\n\n**Character Tracking**  \n- The only “characters” visible are the names on the start‑list screen; their positions (1‑8) are clearly legible. No athlete is on the uneven bars yet, so there is no movement to track beyond the static list.\n\n**Answer to the Question “Who starts the game first?”**  \n- The first competitor is **He\u202fKexin (position\u202f1)**.  \n- The answer option **‘2’** corresponds to **Victoria\u202fKomova**, not the starter.  \n\n**Conclusion** – The VLM’s claim that ‘2’ is correct is **incorrect**; the correct answer is **‘1’ (He\u202fKexin)**.', 'failed_images': []}
+
+Question Being Answered: Who starts the game first?
+
+Answer Choices:
+A. ELISABETH SEITZ
+B. YAO JINNAN
+C. HE KEXIN
+D. VICTORIA KOMOVA
+
+Given Answer: 2
+Evidence Frames Used: ['frames/frame_0089.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+He Kexin (Young Chinese Female Gymnast): Description: Wearing a black leotard with pink, gold, and white designs and rhinestones, her dark hair pulled back into a bun with a pink bow.
+Victoria Komova (Young Russian Female Gymnast): Description: Wearing a white leotard with red designs and lettering, her dark hair pulled back into a sleek ponytail.
+Elisabeth Seitz (Young German Female Gymnast): Description: Wearing a white Adidas jacket with red accents, her blonde hair tied back in a ponytail.
+Yao Jinnan (Young Chinese Female Gymnast): Description: Wearing a red and white jacket with a Chinese flag and Olympic rings on it, her dark hair tied back into a sleek bun.
+Elizabeth Tweddle (Young British Female Gymnast): Description: Wearing a white Adidas jacket with blue accents and a Team GB logo, her blonde hair tied back in a ponytail.
+Aliya Mustafina (Young Russian Female Gymnast): Description: Wearing a white and red Russian Olympic team uniform with a red patterned scarf-like collar, her dark hair pulled back into a sleek ponytail.
+Koko Tsurumi (Young Japanese Female Gymnast): Description: Wearing a white and red jacket with a Japanese flag on the right side of the chest, her dark hair tied back into a sleek ponytail.
+Gabrielle Douglas (Young American Female Gymnast): Description: Wearing a white USA jacket with red and blue accents, her dark hair pulled back into a tight bun.
+
+SCENES:
+Gymnastics Arena: Description: A large, dimly lit indoor arena with a prominent pink gymnastics floor and a crowd of spectators in the stands. [1-50]
+Backstage Hallway: Description: A purple carpeted hallway with "London 2012" and the Olympic rings printed on the walls. [51-61]
+Gymnastics Arena (Uneven Bars Final): Description: A large arena with a pink floor featuring white Olympic logos and a yellow uneven bars apparatus, surrounded by a crowd of spectators in the stands. [62-74]
+Scoreboard Display: Description: A large blue screen displaying the start list or results of the women's uneven bars final. [75-90]
+Gymnastics Arena (Various Events): Description: A large arena with a pink floor featuring various gymnastics equipment, surrounded by a crowd of spectators in the stands. [91-1965]
+Locker Room/Athletes' Area: Description: A room with a purple wall featuring "London 2012" and the Olympic rings logo, where athletes are gathered, sitting, or standing. [419-427]
+Pink Corridor: Description: A bright pink corridor or hallway with "London 2012" and the Olympic rings printed on the walls. [97-103]
+ Medal Ceremony/ Celebration Area: Description: A crowded area with a purple wall featuring the Olympic rings logo, where athletes are gathered, hugging, and celebrating. [122-124]
+Interview Area: Description: A area with a purple barrier featuring "London 2012" written on it, where athletes are being interviewed. [429-437]
+
+EVENTS:
+Gymnastics Competition (Uneven Bars Final): Description: A women's uneven bars final event in artistic gymnastics at the London 2012 Olympics, with gymnasts performing on the apparatus. [14-50]
+Gymnasts Walking to the Arena: Description: Female gymnasts wearing tracksuits walking through a hallway or corridor towards the competition area. [51-61]
+Scoreboard Display (Start List and Results): Description: A large screen displaying the start list and results of the women's uneven bars final. [75-1995]
+Gymnastics Competition (Various Events): Description: Various gymnastics events taking place in a large arena with a pink floor, featuring different apparatus. [91-1965]
+Athletes Gathering and Celebrating: Description: Athletes gathered in a locker room or team area, celebrating and interacting with each other. [419-427, 122-124, 1771-1889]
+Interviews and Medal Ceremonies: Description: Athletes being interviewed or participating in medal ceremonies. [429-437, 1728-1735]
+Gymnasts Preparing for their Routines: Description: Gymnasts applying chalk to their hands, adjusting their equipment, or preparing for their routines. [227-241]
+Gymnasts Performing on the Uneven Bars: Description: Female gymnasts performing various routines on the uneven bars apparatus. [244-1145]
+
+================================================================================
+Generated at: 2026-01-11 21:46:30
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. Gymnast positioned at or approaching the uneven bars apparatus
+  Q2. Gymnast preparing to perform or starting their routine
+  Q3. First competitor in the rotation order
+  Q4. Scoreboard showing the start list with order of competitors
+  Q5. Announcement or visual indication of the first performer
+  Q6. Judge or official signaling the start of the competition
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 6)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, if criteria_percentage > 0.5 (>50% of criteria pass):
+   - Review ALL answer choices (A, B, C, D, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D)
+5. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - STILL do your best to pick out a correct answer, but also set suggestion to "These may not be the right frames/scene. Continue searching for better evidence."
+   - output your best guess of the answer as a number (0=A, 1=B, 2=C, 3=D, 4=E)
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <number of question criteria that passed>,
+    "criteria_total": 6,
+    "criteria_percentage": <criteria_passed / 6>,
+    "base_confidence": <(criteria_passed / 6) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: {
+    "criteria_results": [
+        {"criterion": "Gymnast positioned at or approaching the uneven bars apparatus", "criterion_type": "QUESTION", "status": "FAIL", "reasoning": "VLM reports no gymnast on apparatus; frames show empty arena setup"},
+        {"criterion": "Gymnast preparing to perform or starting their routine", "criterion_type": "QUESTION", "status": "FAIL", "reasoning": "VLM reports no gymnast performing yet; frames show static start list"},
+        {"criterion": "First competitor in the rotation order", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms start list shows He Kexin as position 1"},
+        {"criterion": "Scoreboard showing the start list with order of competitors", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms frames 1-8 show WOMEN'S UNEVEN BARS FINAL START LIST with order"},
+        {"criterion": "Announcement or visual indication of the first performer", "criterion_type": "QUESTION", "status": "FAIL", "reasoning": "VLM reports no visual/auditory cues indicating first performer; only static list"},
+        {"criterion": "Judge or official signaling the start of the competition", "criterion_type": "QUESTION", "status": "FAIL", "reasoning": "VLM reports no officials signaling start; frames show empty arena"}
+    ],
+    "question_criteria_passed": 2,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 2,
+    "criteria_total": 6,
+    "criteria_percentage": 0.333,
+    "base_confidence": 33.3,
+    "confidence": 33.3,
+    "critic_answer_choice": 2,
+    "critic_reasoning": "VLM confirms start list shows He Kexin (position 1) as first competitor, which corresponds to answer choice C",
+    "possible_errors": [
+        "No gymnast visible on apparatus or preparing to perform",
+        "No visual/auditory indications of first performer",
+        "No officials signaling start of competition"
+    ],
+    "suggestion": "These may not be the right frames/scene. Continue searching for better evidence."
+}
+Critical assessment data: {'criteria_results': [{'criterion': 'Gymnast positioned at or approaching the uneven bars apparatus', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': 'VLM reports no gymnast on apparatus; frames show empty arena setup'}, {'criterion': 'Gymnast preparing to perform or starting their routine', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': 'VLM reports no gymnast performing yet; frames show static start list'}, {'criterion': 'First competitor in the rotation order', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms start list shows He Kexin as position 1'}, {'criterion': 'Scoreboard showing the start list with order of competitors', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM confirms frames 1-8 show WOMEN'S UNEVEN BARS FINAL START LIST with order"}, {'criterion': 'Announcement or visual indication of the first performer', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': 'VLM reports no visual/auditory cues indicating first performer; only static list'}, {'criterion': 'Judge or official signaling the start of the competition', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': 'VLM reports no officials signaling start; frames show empty arena'}], 'question_criteria_passed': 2, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 2, 'criteria_total': 6, 'criteria_percentage': 0.333, 'base_confidence': 33.3, 'confidence': 33.3, 'critic_answer_choice': 2, 'critic_reasoning': 'VLM confirms start list shows He Kexin (position 1) as first competitor, which corresponds to answer choice C', 'possible_errors': ['No gymnast visible on apparatus or preparing to perform', 'No visual/auditory indications of first performer', 'No officials signaling start of competition'], 'suggestion': 'These may not be the right frames/scene. Continue searching for better evidence.'}

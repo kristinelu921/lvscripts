@@ -1,0 +1,278 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0000.jpg", "frames/frame_0001.jpg", "frames/frame_0002.jpg", "frames/frame_0003.jpg", "frames/frame_0004.jpg", "frames/frame_0005.jpg", "frames/frame_0006.jpg", "frames/frame_0007.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '0' (Black) is correct for the question: What color is the cloud layer captured for the second time in the video? Check the question criteria: ['Cloud layer visible in the sky', 'Second occurrence of cloud layer capture in the video', 'Color of the cloud layer', 'Sky with visible cloud formations']. Pay attention to timestamps and temporal sequences. Look for the second occurrence of cloud layer capture in the video sequence and determine its color. Verify if black clouds appear as the second cloud layer capture in this sequence."
+}
+Frames to verify: ['frames/frame_0000.jpg', 'frames/frame_0001.jpg', 'frames/frame_0002.jpg', 'frames/frame_0003.jpg', 'frames/frame_0004.jpg', 'frames/frame_0005.jpg', 'frames/frame_0006.jpg', 'frames/frame_0007.jpg']
+VLM Prompt: Video context: Based on the provided SET of frame-by-frame captions data for a long video, here is a global summary that depicts the main characters, setting, plot line, vibes, and general details:
+
+**Main Characters:**
+
+* Various animals, including:
+	+ Antelopes (e.g., Thomson's gazelles, impalas, oryx)
+	+ Lions (male and female)
+	+ Cheetahs (adults and cubs)
+	+ Ostriches
+	+ Mongooses
+	+ Jackals
+	+ Giraffes
+	+ Zebras
+	+ Hippos
+	+ Birds (e.g., Lilac-breasted Roller, African Fish Eagles, Hadeda Ibis)
+* Humans are not the main focus, but there are some appearances, such as a person in a kayak and a man playing a guitar.
+
+**Setting:**
+
+* The video is set in a savannah or grassland environment, with lush green fields, trees, and bushes.
+* The landscape is often depicted as vast and open, with a clear blue sky and white clouds.
+* There are also scenes featuring rocky terrain, muddy areas, and bodies of water (e.g., ponds, lakes, rivers).
+
+**Plot Line:**
+
+* The video appears to be a nature documentary, showcasing various animals in their natural habitats.
+* The narrative is likely centered around the animals' behaviors, interactions, and habitats.
+* The video may be divided into sections or chapters, with the title "Wild Botswana Nature Documentary" appearing at some point.
+
+**Vibes:**
+
+* The overall tone of the video is serene, peaceful, and observational.
+* The use of natural lighting and cinematography creates a sense of realism and immersion.
+* The video may evoke feelings of wonder, curiosity, and appreciation for the natural world.
+
+**General Details:**
+
+* The video is likely a documentary or educational program focused on wildlife and conservation.
+* The production quality is high, with clear and detailed captions describing the visuals.
+* The video may be part of a larger series or collection, given the presence of credits and sponsor information at the end.
+* The sponsors mentioned include Kwando Safaris, Bush Ways Safaris, Carma Quip, and Maria House Cleaning, suggesting a connection to wildlife tourism and conservation efforts.
+
+Based on these frames (including context before/after), verify if the answer '0' (Black) is correct for the question: What color is the cloud layer captured for the second time in the video? Check the question criteria: ['Cloud layer visible in the sky', 'Second occurrence of cloud layer capture in the video', 'Color of the cloud layer', 'Sky with visible cloud formations']. Pay attention to timestamps and temporal sequences. Look for the second occurrence of cloud layer capture in the video sequence and determine its color. Verify if black clouds appear as the second cloud layer capture in this sequence.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 8, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0001.jpg', '/mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0002.jpg', '/mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0003.jpg', '/mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0004.jpg', '/mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0005.jpg', '/mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0006.jpg', '/mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0007.jpg'], 'response': "The answer **'0' (Black)** is **incorrect** for the question: *What color is the cloud layer captured for the second time in the video?*\n\n---\n\n### Verification Based on Criteria:\n\n#### 1. **Cloud layer visible in the sky**\n- All frames from **Frame 2 to Frame 8** show a sky with visible cloud formations.\n- Frame 2: Dark, cloudy sky (possibly dusk/night or stormy).\n- Frame 3–8: Bright blue sky with white cumulus clouds.\n\n#### 2. **Second occurrence of cloud layer capture in the video**\n- The **first occurrence** of cloud layer capture is **Frame 2**, which shows a dark, overcast sky with grey/black clouds.\n- The **second occurrence** is **Frame 3**, which clearly shows a bright blue sky with **white, fluffy clouds**.\n\n> Therefore, the **second cloud layer capture** is in **Frame 3**, and it is **white**, not black.\n\n#### 3. **Color of the cloud layer (second occurrence)**\n- In Frame 3, the clouds are **white** against a blue sky.\n- This is consistent through Frames 4–8 — all show **white clouds**.\n\n#### 4. **Sky with visible cloud formations**\n- Confirmed in all frames from 2 to 8.\n\n---\n\n### Conclusion:\n\n- The **second cloud layer capture** (Frame 3) shows **white clouds**, not black.\n- **Black clouds** appear only in the **first** capture (Frame 2), likely indicating a different time of day or weather condition.\n- Therefore, the correct color for the **second** cloud layer capture is **white**, not black.\n\n✅ **Final Answer: '0' (Black) is incorrect.**  \n✅ **Correct answer should be '1' (White) or equivalent, depending on the labeling system.**\n\n--- \n\n**Note:** If the system expects a numeric code where '0' = Black and '1' = White, then the correct answer is **1**, not 0."}], 'formatted_responses': ["\n=== Batch 0-8 (7 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0001.jpg, /mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0002.jpg, /mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0003.jpg, /mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0004.jpg, /mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0005.jpg, /mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0006.jpg, /mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0007.jpg\nVLM Response: The answer **'0' (Black)** is **incorrect** for the question: *What color is the cloud layer captured for the second time in the video?*\n\n---\n\n### Verification Based on Criteria:\n\n#### 1. **Cloud layer visible in the sky**\n- All frames from **Frame 2 to Frame 8** show a sky with visible cloud formations.\n- Frame 2: Dark, cloudy sky (possibly dusk/night or stormy).\n- Frame 3–8: Bright blue sky with white cumulus clouds.\n\n#### 2. **Second occurrence of cloud layer capture in the video**\n- The **first occurrence** of cloud layer capture is **Frame 2**, which shows a dark, overcast sky with grey/black clouds.\n- The **second occurrence** is **Frame 3**, which clearly shows a bright blue sky with **white, fluffy clouds**.\n\n> Therefore, the **second cloud layer capture** is in **Frame 3**, and it is **white**, not black.\n\n#### 3. **Color of the cloud layer (second occurrence)**\n- In Frame 3, the clouds are **white** against a blue sky.\n- This is consistent through Frames 4–8 — all show **white clouds**.\n\n#### 4. **Sky with visible cloud formations**\n- Confirmed in all frames from 2 to 8.\n\n---\n\n### Conclusion:\n\n- The **second cloud layer capture** (Frame 3) shows **white clouds**, not black.\n- **Black clouds** appear only in the **first** capture (Frame 2), likely indicating a different time of day or weather condition.\n- Therefore, the correct color for the **second** cloud layer capture is **white**, not black.\n\n✅ **Final Answer: '0' (Black) is incorrect.**  \n✅ **Correct answer should be '1' (White) or equivalent, depending on the labeling system.**\n\n--- \n\n**Note:** If the system expects a numeric code where '0' = Black and '1' = White, then the correct answer is **1**, not 0.\n"], 'condensed_response': '**Condensed Scene Summary (with frame timestamps)**  \n\n| Frame | Approx. Time* | Cloud “character” | Description |\n|-------|---------------|-------------------|-------------|\n| 1 | 00:00:01 | – | No visible cloud layer (clear sky). |\n| 2 | 00:00:02 | **Cloud‑1** | Dark, almost black/gray clouds dominate the sky – likely a stormy or dusk setting. |\n| 3 | 00:00:03 | **Cloud‑2** (second capture) | Bright blue sky with **white, fluffy cumulus clouds**. This is the *second* appearance of a cloud layer in the video. |\n| 4 | 00:00:04 | Cloud‑2 | Same white clouds persist, unchanged in color or shape. |\n| 5 | 00:00:05 | Cloud‑2 | Continued white cloud cover against the blue background. |\n| 6 | 00:00:06 | Cloud‑2 | White clouds remain visible, fully consistent with frame\u202f3. |\n| 7 | 00:00:07 | Cloud‑2 | Final frame shows the same white cloud formation. |\n\n\\*Times are derived from frame order (each frame ≈\u202f1\u202fsecond apart).\n\n**Key points for the question “What color is the cloud layer captured for the second time in the video?”**\n\n- The **first** cloud capture occurs in **Frame\u202f2** (dark/black clouds).  \n- The **second** cloud capture occurs in **Frame\u202f3**, where the clouds are clearly **white**.  \n- Frames\u202f4‑7 maintain this white coloration, confirming the observation.\n\n**Answer condensed:**  \nThe second cloud‑layer capture (Frame\u202f3,\u202f≈\u202f00:00:03) shows **white** clouds, not black. Therefore the correct label is “white” (numeric code\u202f**1** if ‘0\u202f=\u202fblack,\u202f‘1\u202f=\u202fwhite’).', 'failed_images': [('/mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0000.jpg', 'File not found')]}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+⚠️ IMPORTANT: Answers use 0-INDEXED numbers where 0=A, 1=B, 2=C, 3=D, 4=E
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 8, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0001.jpg', '/mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0002.jpg', '/mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0003.jpg', '/mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0004.jpg', '/mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0005.jpg', '/mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0006.jpg', '/mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0007.jpg'], 'response': "The answer **'0' (Black)** is **incorrect** for the question: *What color is the cloud layer captured for the second time in the video?*\n\n---\n\n### Verification Based on Criteria:\n\n#### 1. **Cloud layer visible in the sky**\n- All frames from **Frame 2 to Frame 8** show a sky with visible cloud formations.\n- Frame 2: Dark, cloudy sky (possibly dusk/night or stormy).\n- Frame 3–8: Bright blue sky with white cumulus clouds.\n\n#### 2. **Second occurrence of cloud layer capture in the video**\n- The **first occurrence** of cloud layer capture is **Frame 2**, which shows a dark, overcast sky with grey/black clouds.\n- The **second occurrence** is **Frame 3**, which clearly shows a bright blue sky with **white, fluffy clouds**.\n\n> Therefore, the **second cloud layer capture** is in **Frame 3**, and it is **white**, not black.\n\n#### 3. **Color of the cloud layer (second occurrence)**\n- In Frame 3, the clouds are **white** against a blue sky.\n- This is consistent through Frames 4–8 — all show **white clouds**.\n\n#### 4. **Sky with visible cloud formations**\n- Confirmed in all frames from 2 to 8.\n\n---\n\n### Conclusion:\n\n- The **second cloud layer capture** (Frame 3) shows **white clouds**, not black.\n- **Black clouds** appear only in the **first** capture (Frame 2), likely indicating a different time of day or weather condition.\n- Therefore, the correct color for the **second** cloud layer capture is **white**, not black.\n\n✅ **Final Answer: '0' (Black) is incorrect.**  \n✅ **Correct answer should be '1' (White) or equivalent, depending on the labeling system.**\n\n--- \n\n**Note:** If the system expects a numeric code where '0' = Black and '1' = White, then the correct answer is **1**, not 0."}], 'formatted_responses': ["\n=== Batch 0-8 (7 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0001.jpg, /mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0002.jpg, /mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0003.jpg, /mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0004.jpg, /mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0005.jpg, /mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0006.jpg, /mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0007.jpg\nVLM Response: The answer **'0' (Black)** is **incorrect** for the question: *What color is the cloud layer captured for the second time in the video?*\n\n---\n\n### Verification Based on Criteria:\n\n#### 1. **Cloud layer visible in the sky**\n- All frames from **Frame 2 to Frame 8** show a sky with visible cloud formations.\n- Frame 2: Dark, cloudy sky (possibly dusk/night or stormy).\n- Frame 3–8: Bright blue sky with white cumulus clouds.\n\n#### 2. **Second occurrence of cloud layer capture in the video**\n- The **first occurrence** of cloud layer capture is **Frame 2**, which shows a dark, overcast sky with grey/black clouds.\n- The **second occurrence** is **Frame 3**, which clearly shows a bright blue sky with **white, fluffy clouds**.\n\n> Therefore, the **second cloud layer capture** is in **Frame 3**, and it is **white**, not black.\n\n#### 3. **Color of the cloud layer (second occurrence)**\n- In Frame 3, the clouds are **white** against a blue sky.\n- This is consistent through Frames 4–8 — all show **white clouds**.\n\n#### 4. **Sky with visible cloud formations**\n- Confirmed in all frames from 2 to 8.\n\n---\n\n### Conclusion:\n\n- The **second cloud layer capture** (Frame 3) shows **white clouds**, not black.\n- **Black clouds** appear only in the **first** capture (Frame 2), likely indicating a different time of day or weather condition.\n- Therefore, the correct color for the **second** cloud layer capture is **white**, not black.\n\n✅ **Final Answer: '0' (Black) is incorrect.**  \n✅ **Correct answer should be '1' (White) or equivalent, depending on the labeling system.**\n\n--- \n\n**Note:** If the system expects a numeric code where '0' = Black and '1' = White, then the correct answer is **1**, not 0.\n"], 'condensed_response': '**Condensed Scene Summary (with frame timestamps)**  \n\n| Frame | Approx. Time* | Cloud “character” | Description |\n|-------|---------------|-------------------|-------------|\n| 1 | 00:00:01 | – | No visible cloud layer (clear sky). |\n| 2 | 00:00:02 | **Cloud‑1** | Dark, almost black/gray clouds dominate the sky – likely a stormy or dusk setting. |\n| 3 | 00:00:03 | **Cloud‑2** (second capture) | Bright blue sky with **white, fluffy cumulus clouds**. This is the *second* appearance of a cloud layer in the video. |\n| 4 | 00:00:04 | Cloud‑2 | Same white clouds persist, unchanged in color or shape. |\n| 5 | 00:00:05 | Cloud‑2 | Continued white cloud cover against the blue background. |\n| 6 | 00:00:06 | Cloud‑2 | White clouds remain visible, fully consistent with frame\u202f3. |\n| 7 | 00:00:07 | Cloud‑2 | Final frame shows the same white cloud formation. |\n\n\\*Times are derived from frame order (each frame ≈\u202f1\u202fsecond apart).\n\n**Key points for the question “What color is the cloud layer captured for the second time in the video?”**\n\n- The **first** cloud capture occurs in **Frame\u202f2** (dark/black clouds).  \n- The **second** cloud capture occurs in **Frame\u202f3**, where the clouds are clearly **white**.  \n- Frames\u202f4‑7 maintain this white coloration, confirming the observation.\n\n**Answer condensed:**  \nThe second cloud‑layer capture (Frame\u202f3,\u202f≈\u202f00:00:03) shows **white** clouds, not black. Therefore the correct label is “white” (numeric code\u202f**1** if ‘0\u202f=\u202fblack,\u202f‘1\u202f=\u202fwhite’).', 'failed_images': [('/mnt/ssd/data/lvbench/videos_processed/GcRKREorGSc/frames/frame_0000.jpg', 'File not found')]}
+
+Question Being Answered: What color is the cloud layer captured for the second time in the video?
+
+Answer Choices (0-indexed: 0=A, 1=B, 2=C, 3=D, 4=E):
+  0 (=A): Black
+  1 (=B): Pink
+  2 (=C): Golden
+  3 (=D): Blue
+
+Given Answer: 0
+Evidence Frames Used: ['frames/frame_0001.jpg', 'frames/frame_0002.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Young Dik-dik: A small, tan-colored antelope with large ears and short, thin horns.
+Thomson's Gazelle: A brown antelope with large ears and two thin black horns, white underbelly, and black side stripes.
+Male Lion: A majestic lion with a shaggy mane and golden fur.
+Mongooses: A small, furry, yellow-brown mongoose with a reddish-pink nose and large, round eyes, standing upright on a log.
+Ostriches: Large birds with long necks and legs, black and white feathers.
+Impala: A young antelope with large ears and short, spiky horns, light brown fur.
+Cheetahs: Yellow fur with black spots, some with fluffy manes.
+Vultures: Large birds with dark brown feathers, pink heads, and sharp beaks.
+Wildebeest: Large antelopes with distinctive dark gray coats and curved horns.
+Zebras: Animals with distinctive black and white stripes.
+Giraffes: Tall animals with long necks and distinctive brown and white spots.
+Jackals: Brown and black canines with pointed ears and bushy tails.
+Bat-eared Fox: Small, tan-colored foxes with large, black-tipped ears and bushy tails.
+Hartebeest: Brown antelopes with black markings on their legs and faces, and curved horns.
+Meerkat: Small, light-brown mongooses with darker stripes on their backs and white faces with dark eyes and black noses.
+Hornbill: A bird with a distinctive yellow beak and red facial skin, white and black feathers.
+Ibis: A black bird with a long, curved beak and long legs.
+Lapwing: A black and white bird with a red beak and yellow legs.
+Secretarybird: A large bird with a distinctive crest of long black feathers on the back of its head, gray body, black legs, and orange facial skin.
+Eagle: A large brown bird with a sharp, blue-gray beak and piercing eyes.
+Hippopotamus: Large, brown animals with short legs and a large head.
+
+SCENES:
+Savannah Landscape: A vast, open landscape with green trees and bushes under a blue sky with white clouds. [frame_0001]
+Serene Savannah: A vast savannah landscape with a blue sky and white clouds. [frame_0003]
+Dry Savannah: A dry, arid landscape with yellowish-brown grass and sparse vegetation. [frame_0051]
+Grassland: A vast, open grassland with tall grass and termite mounds. [frame_0056]
+Forest: A dense forest with lush greenery and trees. [frame_0080]
+Watering Hole: A serene body of water surrounded by lush greenery and trees. [frame_1396]
+Desert Landscape: A vast, arid landscape with sparse vegetation and large white rocks. [frame_4507]
+Sunset: A breathtaking sunset with vibrant orange and yellow hues illuminating the sky. [frame_4556]
+Beach: A serene beach scene with a vast expanse of light-colored sand and a line of lush green trees. [frame_3610]
+Wetland: A shallow, muddy wetland with patches of green grass and a few trees. [frame_3293]
+
+EVENTS:
+ Dik-dik peeks out from behind a bush. [frame_0051]
+Thomson's Gazelle grazes peacefully in a savannah. [frame_0071]
+Male Lion lies on the dry, sandy ground, gazing intently to the right. [frame_0076]
+Mongooses stand upright on a log. [frame_0080]
+Ostriches walk on a dirt path in a savannah. [frame_0121]
+Impala peeks out from behind a tree. [frame_0176]
+Cheetahs walk through a dry, sandy area with sparse green vegetation. [frame_0198]
+Vultures gather around a carcass in a dry, grassy field. [frame_0437]
+Wildebeest graze peacefully in a lush green field. [frame_0280]
+Zebras graze peacefully in a lush green field. [frame_1175]
+Giraffes graze on the lush green grass in a vast, open savannah. [frame_1470]
+Jackals play-fight in a grassy field. [frame_0870]
+Bat-eared Foxes lie on the ground in a desert landscape. [frame_4375]
+Hartebeest graze peacefully in a lush green meadow. [frame_2607]
+Meerkat stands upright on its hind legs in a grassy field. [frame_3653]
+Hornbill perches on a branch of a thorny tree. [frame_2452]
+Ibis forages in a shallow, muddy wetland. [frame_2656]
+Lapwing stands on a beige termite mound in a grassy field. [frame_2686]
+Secretarybird stands on top of a lush, green tree. [frame_1958]
+Eagle perches on a weathered tree branch. [frame_2356]
+Hippopotamus grazes in a lush green field. [frame_2380]
+Elephants walk on a dirt path in a grassy field. [frame_2302]
+Zebras and Wildebeest graze together in a grassy field. [frame_2961]
+Cheetahs walk away from the camera across a dry, arid landscape. [frame_2039]
+Giraffes stand together in a lush green field. [frame_2067]
+Thomson's Gazelles graze peacefully in a vast, open grassland. [frame_2080]
+Oryx graze peacefully in a lush green field. [frame_0835]
+Lioness lies in the tall green grass. [frame_2131]
+Wildebeest and Zebras graze together in a grassy field. [frame_2961]
+Birds fly over a murky green pond. [frame_3540]
+Elephants stand near a muddy waterhole. [frame_2302]
+Giraffes stand alone in a lush, open grassland. [frame_2345]
+Hippos float and interact in a body of water. [frame_2362]
+Bat-eared Foxes groom each other in a lush, green field. [frame_4384]
+Meerkat stands upright on its hind legs in a grassy field. [frame_3653]
+Hartebeest graze peacefully in a lush green meadow. [frame_2607]
+Thomson's Gazelles drink from a serene pond. [frame_1396]
+Zebras drink from a shallow body of water. [frame_2843]
+Wildebeest walk on a dirt path near a grassy field. [frame_3096]
+Vultures gather on a dry, sandy terrain. [frame_3310]
+Cheetahs lie on the dry, cracked earth. [frame_2228]
+Giraffes stand together in a lush green field. [frame_2067]
+Thomson's Gazelles run across a vast, open grassland. [frame_3232]
+Zebras run through a shallow body of water. [frame_2843]
+Lioness lies on the ground with her front paws crossed. [frame_3112]
+Male Lion lies on the ground, gazing directly at the camera. [frame_3131]
+Zebras and Wildebeest graze together in a grassy field. [frame_2961]
+Cheetahs play-fight in a dry, rocky terrain. [frame_0733]
+Meerkat stands upright on its hind legs in a grassy field. [frame_3673]
+Hornbill perches on a branch of a thorny tree. [frame_2452]
+Ibis forages in a shallow, muddy wetland. [frame_2656]
+
+================================================================================
+Generated at: 2026-01-11 21:46:20
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. Cloud layer visible in the sky
+  Q2. Second occurrence of cloud layer capture in the video
+  Q3. Color of the cloud layer
+  Q4. Sky with visible cloud formations
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 4)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, ALWAYS pick the best answer choice:
+   - Review ALL answer choices (A, B, C, D, E, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D, 4=E)
+
+5. If criteria_percentage > 0.5 (>50% of criteria pass):
+   - Your chosen answer is well-supported by evidence
+   - Set suggestion to null or provide minor improvements
+
+6. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - Still MUST choose the BEST answer from the available choices (never -1)
+   - But set suggestion to "These may not be the right frames/scene. Consider searching for better evidence. The answer chosen is the BEST match given current evidence."
+   - This signals low confidence but still provides a choice
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 4,
+    "criteria_percentage": <criteria_passed / 4>,
+    "base_confidence": <(criteria_passed / 4) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E - MUST be a valid number 0-4, never -1>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "Cloud layer visible in the sky",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms cloud layers are visible in frames 2-8, with Frame 2 showing dark clouds and Frames 3-8 showing white clouds"
+        },
+        {
+            "criterion": "Second occurrence of cloud layer capture in the video",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM identifies Frame 2 as first cloud capture (dark clouds) and Frame 3 as second cloud capture (white clouds)"
+        },
+        {
+            "criterion": "Color of the cloud layer",
+            "criterion_type": "ANSWER",
+            "status": "FAIL",
+            "reasoning": "VLM states the second cloud capture (Frame 3) shows white clouds, not black as given in answer 0"
+        },
+        {
+            "criterion": "Sky with visible cloud formations",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms visible cloud formations in all frames from 2-8"
+        }
+    ],
+    "question_criteria_passed": 3,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 1,
+    "criteria_passed": 3,
+    "criteria_total": 4,
+    "criteria_percentage": 0.75,
+    "base_confidence": 75,
+    "confidence": 50,
+    "critic_answer_choice": 1,
+    "critic_reasoning": "The VLM clearly identifies Frame 3 as the second cloud capture and states the clouds are white, not black. Among the available choices, 1 (White) is the correct answer based on the visual evidence.",
+    "possible_errors": [
+        "Answer criterion failed: The given answer '0' (Black) is incorrect for the second cloud capture, which VLM identifies as white clouds in Frame 3"
+    ],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'Cloud layer visible in the sky', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms cloud layers are visible in frames 2-8, with Frame 2 showing dark clouds and Frames 3-8 showing white clouds'}, {'criterion': 'Second occurrence of cloud layer capture in the video', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM identifies Frame 2 as first cloud capture (dark clouds) and Frame 3 as second cloud capture (white clouds)'}, {'criterion': 'Color of the cloud layer', 'criterion_type': 'ANSWER', 'status': 'FAIL', 'reasoning': 'VLM states the second cloud capture (Frame 3) shows white clouds, not black as given in answer 0'}, {'criterion': 'Sky with visible cloud formations', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms visible cloud formations in all frames from 2-8'}], 'question_criteria_passed': 3, 'answer_criteria_passed': 0, 'answer_criteria_total': 1, 'criteria_passed': 3, 'criteria_total': 4, 'criteria_percentage': 0.75, 'base_confidence': 75, 'confidence': 50, 'critic_answer_choice': 1, 'critic_reasoning': 'The VLM clearly identifies Frame 3 as the second cloud capture and states the clouds are white, not black. Among the available choices, 1 (White) is the correct answer based on the visual evidence.', 'possible_errors': ["Answer criterion failed: The given answer '0' (Black) is incorrect for the second cloud capture, which VLM identifies as white clouds in Frame 3"], 'suggestion': None}

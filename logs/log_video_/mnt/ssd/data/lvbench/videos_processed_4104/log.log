@@ -1,0 +1,192 @@
+Critic initial response: {
+  "tool": "VLM_QUERY",
+  "frames": [
+    "frames/frame_0105.jpg",
+    "frames/frame_0106.jpg",
+    "frames/frame_0107.jpg",
+    "frames/frame_0108.jpg",
+    "frames/frame_0109.jpg",
+    "frames/frame_0110.jpg",
+    "frames/frame_0111.jpg",
+    "frames/frame_0112.jpg",
+    "frames/frame_0113.jpg",
+    "frames/frame_0114.jpg",
+    "frames/frame_0115.jpg",
+    "frames/frame_0116.jpg",
+    "frames/frame_0117.jpg"
+  ],
+  "prompt": "Based on these frames (including context before/after), verify if the answer '0' is correct for the question: Who is wearing the black mask and orange shirt in the video? Check the question criteria: ['Person wearing a black mask', 'Person wearing an orange shirt', 'Black mask and orange shirt worn simultaneously by same person', 'Person visible in the frame with both clothing items']. Pay attention to timestamps and temporal sequences. Identify which person matches all criteria and verify if answer '0' corresponds to the correct choice."
+}
+Frames to verify: ['frames/frame_0105.jpg', 'frames/frame_0106.jpg', 'frames/frame_0107.jpg', 'frames/frame_0108.jpg', 'frames/frame_0109.jpg', 'frames/frame_0110.jpg', 'frames/frame_0111.jpg', 'frames/frame_0112.jpg', 'frames/frame_0113.jpg', 'frames/frame_0114.jpg', 'frames/frame_0115.jpg', 'frames/frame_0116.jpg', 'frames/frame_0117.jpg']
+VLM Prompt: Video context: Based on the provided frame-by-frame captions data, here is a global summary of the video:
+
+**Main Characters:**
+The main characters in the video are Chinese table tennis players, specifically Fan Zhendong and Ma Long, who are competing in the Men's Singles Gold Medal Match at the Tokyo 2020 Olympics. Other characters that appear include female referees, staff members, photographers, and spectators.
+
+**Setting:**
+The setting is an indoor sports arena, specifically the venue for the table tennis events at the Tokyo 2020 Olympics. The arena has a red floor and seats, with prominent displays of the Olympic rings and "TOKYO 2020" branding.
+
+**Plot Line:**
+The video appears to follow the Men's Singles Gold Medal Match between Fan Zhendong and Ma Long, showcasing their preparation, competition, and the subsequent victory ceremony. The narrative is interspersed with scenes of the players' interactions, reactions, and emotions, as well as the reactions of the spectators and officials.
+
+**Vibes:**
+The overall vibe of the video is one of excitement, tension, and celebration. The captions convey a sense of intensity and focus during the competition, followed by moments of relief, joy, and triumph during the victory ceremony. The atmosphere is formal and professional, with an emphasis on the Olympic spirit.
+
+**General Details:**
+The video is likely a recording of the Men's Singles Gold Medal Match at the Tokyo 2020 Olympics, featuring Fan Zhendong and Ma Long. The captions suggest that the video covers the entire match, including the players' preparation, the competition, and the victory ceremony. The presence of photographers, officials, and spectators adds to the authenticity of the event. The video also highlights the Olympic branding and the COVID-19 protocols in place, as evident from the masks worn by the spectators and officials.
+
+Based on these frames (including context before/after), verify if the answer '0' is correct for the question: Who is wearing the black mask and orange shirt in the video? Check the question criteria: ['Person wearing a black mask', 'Person wearing an orange shirt', 'Black mask and orange shirt worn simultaneously by same person', 'Person visible in the frame with both clothing items']. Pay attention to timestamps and temporal sequences. Identify which person matches all criteria and verify if answer '0' corresponds to the correct choice.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 13, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0105.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0106.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0107.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0108.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0109.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0110.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0111.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0112.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0113.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0114.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0115.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0116.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0117.jpg'], 'response': "The answer **'0'** is **correct**.\n\n---\n\n### Verification against criteria:\n\n**Criteria:**\n1. **Person wearing a black mask**\n2. **Person wearing an orange shirt**\n3. **Black mask and orange shirt worn simultaneously by same person**\n4. **Person visible in the frame with both clothing items**\n\n---\n\n### Analysis:\n\n- In **Frames 5 through 10**, a **female referee** is shown in close-up and medium shots.\n- She is clearly wearing:\n  - A **black face mask** (visible in all frames from 5 to 10).\n  - A **bright orange (or coral/pink-orange) polo shirt** with a collar and logos (visible in all frames from 5 to 10).\n- She is **the same person** in all these frames — no ambiguity.\n- She is **visible in multiple frames** (5–10), satisfying the requirement of being “visible in the frame with both clothing items.”\n\n---\n\n### Why '0' is correct:\n\nIn multiple-choice or indexing contexts (especially in benchmark datasets like LVbench), **'0'** often refers to the **first identified person** in the scene — typically the **female referee** in this sequence, who is the only person matching all four criteria.\n\n- No other person in the 13 frames is seen wearing **both** a black mask **and** an orange shirt.\n- The players (Fan Zhendong and Ma Long) wear red jackets and black shorts — no orange shirts.\n- Other spectators or staff wear masks but not orange shirts.\n- The referee is the **only person** who satisfies **all criteria simultaneously**.\n\n---\n\n✅ Therefore, the answer **'0'** correctly identifies the person wearing the black mask and orange shirt.\n\n**Final Answer: Correct — '0' is the right choice.**"}], 'formatted_responses': ["\n=== Batch 0-13 (13 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0105.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0106.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0107.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0108.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0109.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0110.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0111.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0112.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0113.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0114.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0115.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0116.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0117.jpg\nVLM Response: The answer **'0'** is **correct**.\n\n---\n\n### Verification against criteria:\n\n**Criteria:**\n1. **Person wearing a black mask**\n2. **Person wearing an orange shirt**\n3. **Black mask and orange shirt worn simultaneously by same person**\n4. **Person visible in the frame with both clothing items**\n\n---\n\n### Analysis:\n\n- In **Frames 5 through 10**, a **female referee** is shown in close-up and medium shots.\n- She is clearly wearing:\n  - A **black face mask** (visible in all frames from 5 to 10).\n  - A **bright orange (or coral/pink-orange) polo shirt** with a collar and logos (visible in all frames from 5 to 10).\n- She is **the same person** in all these frames — no ambiguity.\n- She is **visible in multiple frames** (5–10), satisfying the requirement of being “visible in the frame with both clothing items.”\n\n---\n\n### Why '0' is correct:\n\nIn multiple-choice or indexing contexts (especially in benchmark datasets like LVbench), **'0'** often refers to the **first identified person** in the scene — typically the **female referee** in this sequence, who is the only person matching all four criteria.\n\n- No other person in the 13 frames is seen wearing **both** a black mask **and** an orange shirt.\n- The players (Fan Zhendong and Ma Long) wear red jackets and black shorts — no orange shirts.\n- Other spectators or staff wear masks but not orange shirts.\n- The referee is the **only person** who satisfies **all criteria simultaneously**.\n\n---\n\n✅ Therefore, the answer **'0'** correctly identifies the person wearing the black mask and orange shirt.\n\n**Final Answer: Correct — '0' is the right choice.**\n"], 'condensed_response': '**Scene Summary (Frames\u202f0105‑0117)**  \n\n- **Frames\u202f0105‑0109 (mid‑close shots)**: A single female referee dominates the view. She wears a **black face mask** and a **bright orange polo shirt** (collared, with logos). Her face and upper body are clearly visible throughout these frames.  \n- **Frames\u202f0110‑0112 (medium shots)**: The same referee remains the focal point, still displaying both the mask and orange shirt. No other individual in the sequence shows this combination.  \n- **Frames\u202f0113‑0117**: The camera pans to other participants (players in red jackets, spectators, staff). These figures may have masks or other clothing, but **none** combine a black mask with an orange shirt.\n\n**Character Tracking**  \n- **Referee (Person\u202f0)**: Continuously present from frame\u202f0105 to frame\u202f0112, matching all four criteria (black mask, orange shirt, both items on the same person, visible).  \n- **Other persons** (players, spectators): Appear later but do not satisfy the mask‑+‑orange‑shirt condition.\n\n**Conclusion**  \nBecause the only individual meeting the required attributes is the referee—identified as **person\u202f0** in the dataset—the answer “0” is correct.  ', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 13, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0105.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0106.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0107.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0108.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0109.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0110.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0111.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0112.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0113.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0114.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0115.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0116.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0117.jpg'], 'response': "The answer **'0'** is **correct**.\n\n---\n\n### Verification against criteria:\n\n**Criteria:**\n1. **Person wearing a black mask**\n2. **Person wearing an orange shirt**\n3. **Black mask and orange shirt worn simultaneously by same person**\n4. **Person visible in the frame with both clothing items**\n\n---\n\n### Analysis:\n\n- In **Frames 5 through 10**, a **female referee** is shown in close-up and medium shots.\n- She is clearly wearing:\n  - A **black face mask** (visible in all frames from 5 to 10).\n  - A **bright orange (or coral/pink-orange) polo shirt** with a collar and logos (visible in all frames from 5 to 10).\n- She is **the same person** in all these frames — no ambiguity.\n- She is **visible in multiple frames** (5–10), satisfying the requirement of being “visible in the frame with both clothing items.”\n\n---\n\n### Why '0' is correct:\n\nIn multiple-choice or indexing contexts (especially in benchmark datasets like LVbench), **'0'** often refers to the **first identified person** in the scene — typically the **female referee** in this sequence, who is the only person matching all four criteria.\n\n- No other person in the 13 frames is seen wearing **both** a black mask **and** an orange shirt.\n- The players (Fan Zhendong and Ma Long) wear red jackets and black shorts — no orange shirts.\n- Other spectators or staff wear masks but not orange shirts.\n- The referee is the **only person** who satisfies **all criteria simultaneously**.\n\n---\n\n✅ Therefore, the answer **'0'** correctly identifies the person wearing the black mask and orange shirt.\n\n**Final Answer: Correct — '0' is the right choice.**"}], 'formatted_responses': ["\n=== Batch 0-13 (13 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0105.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0106.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0107.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0108.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0109.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0110.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0111.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0112.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0113.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0114.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0115.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0116.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_0117.jpg\nVLM Response: The answer **'0'** is **correct**.\n\n---\n\n### Verification against criteria:\n\n**Criteria:**\n1. **Person wearing a black mask**\n2. **Person wearing an orange shirt**\n3. **Black mask and orange shirt worn simultaneously by same person**\n4. **Person visible in the frame with both clothing items**\n\n---\n\n### Analysis:\n\n- In **Frames 5 through 10**, a **female referee** is shown in close-up and medium shots.\n- She is clearly wearing:\n  - A **black face mask** (visible in all frames from 5 to 10).\n  - A **bright orange (or coral/pink-orange) polo shirt** with a collar and logos (visible in all frames from 5 to 10).\n- She is **the same person** in all these frames — no ambiguity.\n- She is **visible in multiple frames** (5–10), satisfying the requirement of being “visible in the frame with both clothing items.”\n\n---\n\n### Why '0' is correct:\n\nIn multiple-choice or indexing contexts (especially in benchmark datasets like LVbench), **'0'** often refers to the **first identified person** in the scene — typically the **female referee** in this sequence, who is the only person matching all four criteria.\n\n- No other person in the 13 frames is seen wearing **both** a black mask **and** an orange shirt.\n- The players (Fan Zhendong and Ma Long) wear red jackets and black shorts — no orange shirts.\n- Other spectators or staff wear masks but not orange shirts.\n- The referee is the **only person** who satisfies **all criteria simultaneously**.\n\n---\n\n✅ Therefore, the answer **'0'** correctly identifies the person wearing the black mask and orange shirt.\n\n**Final Answer: Correct — '0' is the right choice.**\n"], 'condensed_response': '**Scene Summary (Frames\u202f0105‑0117)**  \n\n- **Frames\u202f0105‑0109 (mid‑close shots)**: A single female referee dominates the view. She wears a **black face mask** and a **bright orange polo shirt** (collared, with logos). Her face and upper body are clearly visible throughout these frames.  \n- **Frames\u202f0110‑0112 (medium shots)**: The same referee remains the focal point, still displaying both the mask and orange shirt. No other individual in the sequence shows this combination.  \n- **Frames\u202f0113‑0117**: The camera pans to other participants (players in red jackets, spectators, staff). These figures may have masks or other clothing, but **none** combine a black mask with an orange shirt.\n\n**Character Tracking**  \n- **Referee (Person\u202f0)**: Continuously present from frame\u202f0105 to frame\u202f0112, matching all four criteria (black mask, orange shirt, both items on the same person, visible).  \n- **Other persons** (players, spectators): Appear later but do not satisfy the mask‑+‑orange‑shirt condition.\n\n**Conclusion**  \nBecause the only individual meeting the required attributes is the referee—identified as **person\u202f0** in the dataset—the answer “0” is correct.  ', 'failed_images': []}
+
+Question Being Answered: Who is wearing the black mask and orange shirt in the video?
+
+Answer Choices:
+A. The referee
+B. The player
+C. The audience
+D. The coach
+
+Given Answer: 0
+Evidence Frames Used: ['frames/frame_0110.jpg', 'frames/frame_0111.jpg', 'frames/frame_0112.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Fan Zhendong: A Chinese table tennis player, wearing a blue shirt with yellow designs and black shorts.
+Ma Long: A Chinese table tennis player, wearing a black shirt with gold accents and black shorts.
+Female Official/Umpire: A woman wearing a pink shirt and black pants, officiating the table tennis match.
+Woman in Blue Shirt: A woman wearing a blue shirt and gray pants, likely a staff member or official.
+Man in Red Jacket: A man wearing a red jacket with gold accents, likely a Chinese athlete or official.
+Dimitrij Ovtcharov: A German table tennis player, wearing a white, red, and black tracksuit with "GERMANY" written on it.
+
+SCENES:
+Table Tennis Arena: A large indoor arena with red seats and a green table tennis table, hosting the table tennis match between Fan Zhendong and Ma Long. [Frame 1-3500]
+Empty Stadium: A large empty stadium with red seats, where the athletes are walking around and preparing for the match. [Frame 3600-4000]
+Victory Ceremony: A scene where the medalists are standing on a podium, holding bouquets of sunflowers and wearing medals. [Frame 4240-4550]
+Medal Ceremony: A scene where the athletes are receiving their medals and bouquets of flowers. [Frame 4520-4780]
+Flags Display: A scene where the national flags of China and Germany are displayed. [Frame 4570-4590]
+Stadium Stands: A scene where spectators are sitting in the stands, wearing face masks and clapping. [Frame 4690-4730]
+
+EVENTS:
+Table Tennis Match: Fan Zhendong and Ma Long are competing in a table tennis match. [Frame 1-3500]
+Victory Ceremony: The medalists are standing on a podium, holding bouquets of sunflowers and wearing medals. [Frame 4240-4550]
+Medal Ceremony: The athletes are receiving their medals and bouquets of flowers. [Frame 4520-4780]
+Flags Display: The national flags of China and Germany are displayed. [Frame 4570-4590]
+Spectators Clapping: Spectators are sitting in the stands, wearing face masks and clapping. [Frame 4690-4730]
+
+================================================================================
+Generated at: 2026-01-11 21:50:14
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. Person wearing a black mask
+  Q2. Person wearing an orange shirt
+  Q3. Black mask and orange shirt worn simultaneously by same person
+  Q4. Person visible in the frame with both clothing items
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 4)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, if criteria_percentage > 0.5 (>50% of criteria pass):
+   - Review ALL answer choices (A, B, C, D, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D)
+5. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - STILL do your best to pick out a correct answer, but also set suggestion to "These may not be the right frames/scene. Continue searching for better evidence."
+   - output your best guess of the answer as a number (0=A, 1=B, 2=C, 3=D, 4=E)
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <number of question criteria that passed>,
+    "criteria_total": 4,
+    "criteria_percentage": <criteria_passed / 4>,
+    "base_confidence": <(criteria_passed / 4) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "Person wearing a black mask",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM clearly identifies a female referee wearing a black face mask in frames 5-10"
+        },
+        {
+            "criterion": "Person wearing an orange shirt",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms the referee wears a bright orange (or coral/pink-orange) polo shirt in frames 5-10"
+        },
+        {
+            "criterion": "Black mask and orange shirt worn simultaneously by same person",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM states the referee wears both items simultaneously and is the same person in all relevant frames"
+        },
+        {
+            "criterion": "Person visible in the frame with both clothing items",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms the referee is visible in multiple frames (5-10) wearing both the black mask and orange shirt"
+        }
+    ],
+    "question_criteria_passed": 4,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 4,
+    "criteria_total": 4,
+    "criteria_percentage": 1.0,
+    "base_confidence": 100,
+    "confidence": 100,
+    "critic_answer_choice": 0,
+    "critic_reasoning": "The VLM clearly identifies the female referee (person 0) as the only individual wearing both a black mask and orange shirt simultaneously across multiple frames, matching all criteria perfectly",
+    "possible_errors": [],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'Person wearing a black mask', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM clearly identifies a female referee wearing a black face mask in frames 5-10'}, {'criterion': 'Person wearing an orange shirt', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms the referee wears a bright orange (or coral/pink-orange) polo shirt in frames 5-10'}, {'criterion': 'Black mask and orange shirt worn simultaneously by same person', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM states the referee wears both items simultaneously and is the same person in all relevant frames'}, {'criterion': 'Person visible in the frame with both clothing items', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms the referee is visible in multiple frames (5-10) wearing both the black mask and orange shirt'}], 'question_criteria_passed': 4, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 4, 'criteria_total': 4, 'criteria_percentage': 1.0, 'base_confidence': 100, 'confidence': 100, 'critic_answer_choice': 0, 'critic_reasoning': 'The VLM clearly identifies the female referee (person 0) as the only individual wearing both a black mask and orange shirt simultaneously across multiple frames, matching all criteria perfectly', 'possible_errors': [], 'suggestion': None}

@@ -1,0 +1,202 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0875.jpg", "frames/frame_0876.jpg", "frames/frame_0877.jpg", "frames/frame_0878.jpg", "frames/frame_0879.jpg", "frames/frame_0880.jpg", "frames/frame_0881.jpg", "frames/frame_0882.jpg", "frames/frame_0883.jpg", "frames/frame_0884.jpg", "frames/frame_0885.jpg", "frames/frame_0886.jpg", "frames/frame_0887.jpg", "frames/frame_0888.jpg", "frames/frame_0889.jpg", "frames/frame_0890.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '3' (He grabs some tissues) is correct for the question: What does the vlogger do at 14:42? Check the question criteria: 1. A person (vlogger) is visible in the frame, 2. The action occurs at the specific time 14:42, 3. The person is performing a specific, identifiable action, 4. The scene context is consistent with a vlogging scenario (e.g., facing camera, speaking to audience, or demonstrating something). Pay attention to timestamps and temporal sequences. Specifically examine if the person is grabbing tissues or performing any of the other answer choices: cracking an egg (0), putting chicken on burger (1), or grabbing bacon slice (2)."
+}
+Frames to verify: ['frames/frame_0875.jpg', 'frames/frame_0876.jpg', 'frames/frame_0877.jpg', 'frames/frame_0878.jpg', 'frames/frame_0879.jpg', 'frames/frame_0880.jpg', 'frames/frame_0881.jpg', 'frames/frame_0882.jpg', 'frames/frame_0883.jpg', 'frames/frame_0884.jpg', 'frames/frame_0885.jpg', 'frames/frame_0886.jpg', 'frames/frame_0887.jpg', 'frames/frame_0888.jpg', 'frames/frame_0889.jpg', 'frames/frame_0890.jpg']
+VLM Prompt: Video context: After analyzing the provided SET of frame-by-frame captions data for a long video, I have distilled a global summary that captures the main characters, setting, plot line, vibes, and general details.
+
+**Main Characters:**
+The main characters in this video are kitchen staff, likely working in a fast-food restaurant or cafeteria. They are predominantly wearing black gloves, with some wearing orange or yellow safety vests. The staff members are the primary focus of the video.
+
+**Setting:**
+The setting is a commercial kitchen, likely in a fast-food restaurant or cafeteria, such as McDonald's. The kitchen is well-equipped with stainless-steel appliances, griddles, and various cooking equipment. The atmosphere is bustling and fast-paced.
+
+**Plot Line:**
+The video appears to follow the kitchen staff as they prepare and cook food, primarily burgers, sandwiches, and breakfast items. The staff members are shown performing various tasks, such as cooking on griddles, assembling sandwiches, and handling ingredients. The video likely showcases the inner workings of a commercial kitchen during a busy period.
+
+**Vibes:**
+The overall vibe of the video is one of efficiency, productivity, and attention to detail. The kitchen staff work together seamlessly, and the atmosphere is energetic and dynamic. The video conveys a sense of urgency and busyness, highlighting the fast-paced nature of a commercial kitchen.
+
+**General Details:**
+
+* The kitchen is well-organized, with various stations and equipment dedicated to specific tasks.
+* The staff members are attentive to food preparation and handling, emphasizing quality and safety.
+* The video showcases a range of food items, including burgers, sandwiches, breakfast items, and salads.
+* The kitchen is likely a high-volume establishment, with multiple staff members working together to prepare and serve a large quantity of food.
+* The atmosphere is professional, with staff members wearing uniforms and following standard kitchen protocols.
+
+Overall, the video provides a behind-the-scenes look at the inner workings of a commercial kitchen, highlighting the hard work and attention to detail required to prepare and serve high-quality food in a fast-paced environment.
+
+Based on these frames (including context before/after), verify if the answer '3' (He grabs some tissues) is correct for the question: What does the vlogger do at 14:42? Check the question criteria: 1. A person (vlogger) is visible in the frame, 2. The action occurs at the specific time 14:42, 3. The person is performing a specific, identifiable action, 4. The scene context is consistent with a vlogging scenario (e.g., facing camera, speaking to audience, or demonstrating something). Pay attention to timestamps and temporal sequences. Specifically examine if the person is grabbing tissues or performing any of the other answer choices: cracking an egg (0), putting chicken on burger (1), or grabbing bacon slice (2).
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 16, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0875.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0876.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0877.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0878.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0879.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0880.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0881.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0882.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0883.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0884.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0885.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0886.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0887.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0888.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0889.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0890.jpg'], 'response': "The answer **'3' (He grabs some tissues)** is **correct** for the question “What does the vlogger do at 14:42?” based on the provided frames and criteria.\n\n---\n\n### ✅ Verification Against Criteria:\n\n**1. A person (vlogger) is visible in the frame**  \n→ Yes. The first-person perspective (POV) shot, with gloved hands visible throughout, strongly indicates the vlogger is the one performing the actions. This is consistent with a vlogging scenario where the camera is mounted on the person’s head or chest.\n\n**2. The action occurs at the specific time 14:42**  \n→ While the exact timestamp “14:42” isn’t labeled on the frames, the sequence of 16 frames (frame_0875 to frame_0890) corresponds to a continuous segment of the video. The action of grabbing tissues occurs in **Frame 9** and **Frame 10**, which fall within this sequence. Assuming the video runs at 30 fps, frame 0883 (Frame 9) corresponds to approximately **14:42** (since 883 / 30 ≈ 29.43 seconds → 00:00:29.43, but if the video is longer and this is a segment from 14:42, the frame numbering may be relative to the clip). Given the context of the question and the provided frames, we accept that this sequence represents the moment at 14:42.\n\n**3. The person is performing a specific, identifiable action**  \n→ Yes. In **Frame 9**, the vlogger’s gloved hand is clearly pulling a blue paper towel (tissue) from a dispenser. In **Frame 10**, the tissue is being crumpled in hand. This is an unambiguous action: **grabbing tissues**.\n\n**4. The scene context is consistent with a vlogging scenario**  \n→ Yes. The POV camera angle, the focus on hands performing tasks, and the detailed documentation of kitchen actions (grilling, cleaning, assembling) are all consistent with a “day in the life” or “behind-the-scenes” vlog from a kitchen worker’s perspective.\n\n---\n\n### ❌ Elimination of Other Answer Choices:\n\n- **0 (cracking an egg)** → No eggs are cracked in any of these frames. The griddle has buns and patties, not eggs.\n- **1 (putting chicken on burger)** → No chicken or burger assembly is shown. The focus is on buns and cleaning.\n- **2 (grabbing bacon slice)** → No bacon is visible or handled in these frames.\n\n---\n\n### ✅ Conclusion:\n\nThe vlogger **grabs tissues** in Frame 9–10, which corresponds to the timestamp in question. All criteria are satisfied.\n\n> **Final Answer: ✅ Correct — '3' (He grabs some tissues)**"}], 'formatted_responses': ["\n=== Batch 0-16 (16 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0875.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0876.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0877.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0878.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0879.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0880.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0881.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0882.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0883.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0884.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0885.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0886.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0887.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0888.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0889.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0890.jpg\nVLM Response: The answer **'3' (He grabs some tissues)** is **correct** for the question “What does the vlogger do at 14:42?” based on the provided frames and criteria.\n\n---\n\n### ✅ Verification Against Criteria:\n\n**1. A person (vlogger) is visible in the frame**  \n→ Yes. The first-person perspective (POV) shot, with gloved hands visible throughout, strongly indicates the vlogger is the one performing the actions. This is consistent with a vlogging scenario where the camera is mounted on the person’s head or chest.\n\n**2. The action occurs at the specific time 14:42**  \n→ While the exact timestamp “14:42” isn’t labeled on the frames, the sequence of 16 frames (frame_0875 to frame_0890) corresponds to a continuous segment of the video. The action of grabbing tissues occurs in **Frame 9** and **Frame 10**, which fall within this sequence. Assuming the video runs at 30 fps, frame 0883 (Frame 9) corresponds to approximately **14:42** (since 883 / 30 ≈ 29.43 seconds → 00:00:29.43, but if the video is longer and this is a segment from 14:42, the frame numbering may be relative to the clip). Given the context of the question and the provided frames, we accept that this sequence represents the moment at 14:42.\n\n**3. The person is performing a specific, identifiable action**  \n→ Yes. In **Frame 9**, the vlogger’s gloved hand is clearly pulling a blue paper towel (tissue) from a dispenser. In **Frame 10**, the tissue is being crumpled in hand. This is an unambiguous action: **grabbing tissues**.\n\n**4. The scene context is consistent with a vlogging scenario**  \n→ Yes. The POV camera angle, the focus on hands performing tasks, and the detailed documentation of kitchen actions (grilling, cleaning, assembling) are all consistent with a “day in the life” or “behind-the-scenes” vlog from a kitchen worker’s perspective.\n\n---\n\n### ❌ Elimination of Other Answer Choices:\n\n- **0 (cracking an egg)** → No eggs are cracked in any of these frames. The griddle has buns and patties, not eggs.\n- **1 (putting chicken on burger)** → No chicken or burger assembly is shown. The focus is on buns and cleaning.\n- **2 (grabbing bacon slice)** → No bacon is visible or handled in these frames.\n\n---\n\n### ✅ Conclusion:\n\nThe vlogger **grabs tissues** in Frame 9–10, which corresponds to the timestamp in question. All criteria are satisfied.\n\n> **Final Answer: ✅ Correct — '3' (He grabs some tissues)**\n"], 'condensed_response': '**Scene Summary (14:42\u202f–\u202fFrames\u202f0875‑0890)**  \n\nThe camera follows the vlogger’s first‑person viewpoint; gloved hands are visible throughout, confirming the vlogger as the active agent. Around the midpoint of the 16‑frame clip (frames\u202f0879‑0880), the vlogger reaches into a blue paper‑towel dispenser, pulls out a sheet, and begins to crumple it in the hand. This brief hand‑only action is the only clear, identifiable activity in the segment and matches the question’s timestamp.\n\n**Character Tracking**  \n- **Vlogger:** Identified by the POV angle and the consistent presence of gloved hands.  \n- **Action:** Grabbing and crumpling a tissue (paper towel).  \n\nAll other possible actions (cracking an egg, adding chicken, grabbing bacon) are absent. Hence, the correct answer to “What does the vlogger do at 14:42?” is **“He grabs some tissues.”**', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+⚠️ IMPORTANT: Answers use 0-INDEXED numbers where 0=A, 1=B, 2=C, 3=D, 4=E
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 16, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0875.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0876.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0877.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0878.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0879.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0880.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0881.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0882.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0883.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0884.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0885.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0886.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0887.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0888.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0889.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0890.jpg'], 'response': "The answer **'3' (He grabs some tissues)** is **correct** for the question “What does the vlogger do at 14:42?” based on the provided frames and criteria.\n\n---\n\n### ✅ Verification Against Criteria:\n\n**1. A person (vlogger) is visible in the frame**  \n→ Yes. The first-person perspective (POV) shot, with gloved hands visible throughout, strongly indicates the vlogger is the one performing the actions. This is consistent with a vlogging scenario where the camera is mounted on the person’s head or chest.\n\n**2. The action occurs at the specific time 14:42**  \n→ While the exact timestamp “14:42” isn’t labeled on the frames, the sequence of 16 frames (frame_0875 to frame_0890) corresponds to a continuous segment of the video. The action of grabbing tissues occurs in **Frame 9** and **Frame 10**, which fall within this sequence. Assuming the video runs at 30 fps, frame 0883 (Frame 9) corresponds to approximately **14:42** (since 883 / 30 ≈ 29.43 seconds → 00:00:29.43, but if the video is longer and this is a segment from 14:42, the frame numbering may be relative to the clip). Given the context of the question and the provided frames, we accept that this sequence represents the moment at 14:42.\n\n**3. The person is performing a specific, identifiable action**  \n→ Yes. In **Frame 9**, the vlogger’s gloved hand is clearly pulling a blue paper towel (tissue) from a dispenser. In **Frame 10**, the tissue is being crumpled in hand. This is an unambiguous action: **grabbing tissues**.\n\n**4. The scene context is consistent with a vlogging scenario**  \n→ Yes. The POV camera angle, the focus on hands performing tasks, and the detailed documentation of kitchen actions (grilling, cleaning, assembling) are all consistent with a “day in the life” or “behind-the-scenes” vlog from a kitchen worker’s perspective.\n\n---\n\n### ❌ Elimination of Other Answer Choices:\n\n- **0 (cracking an egg)** → No eggs are cracked in any of these frames. The griddle has buns and patties, not eggs.\n- **1 (putting chicken on burger)** → No chicken or burger assembly is shown. The focus is on buns and cleaning.\n- **2 (grabbing bacon slice)** → No bacon is visible or handled in these frames.\n\n---\n\n### ✅ Conclusion:\n\nThe vlogger **grabs tissues** in Frame 9–10, which corresponds to the timestamp in question. All criteria are satisfied.\n\n> **Final Answer: ✅ Correct — '3' (He grabs some tissues)**"}], 'formatted_responses': ["\n=== Batch 0-16 (16 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0875.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0876.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0877.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0878.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0879.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0880.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0881.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0882.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0883.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0884.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0885.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0886.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0887.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0888.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0889.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0890.jpg\nVLM Response: The answer **'3' (He grabs some tissues)** is **correct** for the question “What does the vlogger do at 14:42?” based on the provided frames and criteria.\n\n---\n\n### ✅ Verification Against Criteria:\n\n**1. A person (vlogger) is visible in the frame**  \n→ Yes. The first-person perspective (POV) shot, with gloved hands visible throughout, strongly indicates the vlogger is the one performing the actions. This is consistent with a vlogging scenario where the camera is mounted on the person’s head or chest.\n\n**2. The action occurs at the specific time 14:42**  \n→ While the exact timestamp “14:42” isn’t labeled on the frames, the sequence of 16 frames (frame_0875 to frame_0890) corresponds to a continuous segment of the video. The action of grabbing tissues occurs in **Frame 9** and **Frame 10**, which fall within this sequence. Assuming the video runs at 30 fps, frame 0883 (Frame 9) corresponds to approximately **14:42** (since 883 / 30 ≈ 29.43 seconds → 00:00:29.43, but if the video is longer and this is a segment from 14:42, the frame numbering may be relative to the clip). Given the context of the question and the provided frames, we accept that this sequence represents the moment at 14:42.\n\n**3. The person is performing a specific, identifiable action**  \n→ Yes. In **Frame 9**, the vlogger’s gloved hand is clearly pulling a blue paper towel (tissue) from a dispenser. In **Frame 10**, the tissue is being crumpled in hand. This is an unambiguous action: **grabbing tissues**.\n\n**4. The scene context is consistent with a vlogging scenario**  \n→ Yes. The POV camera angle, the focus on hands performing tasks, and the detailed documentation of kitchen actions (grilling, cleaning, assembling) are all consistent with a “day in the life” or “behind-the-scenes” vlog from a kitchen worker’s perspective.\n\n---\n\n### ❌ Elimination of Other Answer Choices:\n\n- **0 (cracking an egg)** → No eggs are cracked in any of these frames. The griddle has buns and patties, not eggs.\n- **1 (putting chicken on burger)** → No chicken or burger assembly is shown. The focus is on buns and cleaning.\n- **2 (grabbing bacon slice)** → No bacon is visible or handled in these frames.\n\n---\n\n### ✅ Conclusion:\n\nThe vlogger **grabs tissues** in Frame 9–10, which corresponds to the timestamp in question. All criteria are satisfied.\n\n> **Final Answer: ✅ Correct — '3' (He grabs some tissues)**\n"], 'condensed_response': '**Scene Summary (14:42\u202f–\u202fFrames\u202f0875‑0890)**  \n\nThe camera follows the vlogger’s first‑person viewpoint; gloved hands are visible throughout, confirming the vlogger as the active agent. Around the midpoint of the 16‑frame clip (frames\u202f0879‑0880), the vlogger reaches into a blue paper‑towel dispenser, pulls out a sheet, and begins to crumple it in the hand. This brief hand‑only action is the only clear, identifiable activity in the segment and matches the question’s timestamp.\n\n**Character Tracking**  \n- **Vlogger:** Identified by the POV angle and the consistent presence of gloved hands.  \n- **Action:** Grabbing and crumpling a tissue (paper towel).  \n\nAll other possible actions (cracking an egg, adding chicken, grabbing bacon) are absent. Hence, the correct answer to “What does the vlogger do at 14:42?” is **“He grabs some tissues.”**', 'failed_images': []}
+
+Question Being Answered: What does the vlogger do at 14:42?
+
+Answer Choices (0-indexed: 0=A, 1=B, 2=C, 3=D, 4=E):
+  0 (=A): He cracks an egg
+  1 (=B): He puts chicken on top of the burger
+  2 (=C): He grabs a beacon slice
+  3 (=D): He grabs some tissues
+
+Given Answer: 3
+Evidence Frames Used: ['frames/frame_0880.jpg', 'frames/frame_0881.jpg', 'frames/frame_0882.jpg', 'frames/frame_0883.jpg', 'frames/frame_0884.jpg', 'frames/frame_0885.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Person 1 (Kitchen Staff): Description: Wearing black gloves, working in a commercial kitchen
+Person 2 (Chef/Cook): Description: Preparing food on a griddle or grill
+Person 3 (Cafeteria Staff): Description: Wearing orange safety vest, working in a cafeteria or food service setting
+Person 4 (Man in Blue Shirt): Description: Standing behind a counter, preparing sandwiches
+
+SCENES:
+Scene 1 (Commercial Kitchen) : Description: Busy kitchen with stainless-steel appliances and equipment [frame_0001 - frame_0081]
+Scene 2 (Cafeteria/Food Court) : Description: Bustling cafeteria or food court with various food items and condiments [frame_0123 - frame_0140]
+Scene 3 (Fast Food Restaurant Kitchen) : Description: Fast food kitchen with griddles, grill, and various cooking equipment [frame_0141 - frame_0259]
+Scene 4 (Cafeteria/Restaurant) : Description: Cafeteria or restaurant setting with buffet counter and various food items [frame_0263 - frame_0304]
+Scene 5 (Airplane Bathroom) : Description: Small, enclosed space with a black trash can, gray wall, and gray floor [frame_0082]
+Scene 6 (Bakery/Cafe) : Description: Bakery or cafe with glass display case and bread [frame_0084 - frame_0085]
+Scene 7 (Food Truck/Kitchen) : Description: Food truck or kitchen with griddle, condiments, and various cooking equipment [frame_0101 - frame_0110]
+Scene 8 (Restaurant Kitchen) : Description: Restaurant kitchen with stainless-steel appliances and equipment [frame_0250 - frame_0300]
+Scene 9 (Cafeteria/Buffet) : Description: Cafeteria or buffet setting with various food items and condiments [frame_0425 - frame_0460]
+Scene 10 (Coffee Roasting Facility) : Description: Coffee roasting facility with large stainless-steel coffee roaster [frame_1259]
+
+EVENTS:
+Event 1 (Griddle Cleaning): Description: Person 1 cleaning a dirty griddle with a scraper [frame_0001 - frame_0015]
+Event 2 (Food Preparation): Description: Person 2 preparing food on a griddle or grill [frame_0016 - frame_0259]
+Event 3 (Sandwich Assembly): Description: Person 3 assembling sandwiches on a yellow cutting board [frame_0162 - frame_0188]
+Event 4 (Food Serving): Description: Person 3 serving food from a buffet counter [frame_0237 - frame_0242]
+Event 5 (Griddle Cooking): Description: Person 2 cooking food on a griddle or grill [frame_0250 - frame_0300]
+Event 6 (Cheese Preparation): Description: Person 1 handling cheese slices or blocks [frame_0399 - frame_0410]
+Event 7 (Burger Assembly): Description: Person 1 assembling burgers on a yellow cutting board [frame_0437 - frame_0450]
+Event 8 (Food Display): Description: Various food items displayed on a buffet counter [frame_0382 - frame_0385]
+Event 9 (Kitchen Cleaning): Description: Person 1 cleaning a dirty griddle or grill with a scraper or brush [frame_0493, frame_0583, frame_0865]
+Event 10 (Food Preparation with Blowtorch): Description: Person 1 using a blowtorch to cook or caramelize food [frame_0073 - frame_0074, frame_0433]
+
+================================================================================
+Generated at: 2026-01-11 21:48:38
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. A person (vlogger) is visible in the frame
+  Q2. The action occurs at the specific time 14:42
+  Q3. The person is performing a specific, identifiable action
+  Q4. The scene context is consistent with a vlogging scenario (e.g., facing camera, speaking to audience, or demonstrating something)
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 4)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, ALWAYS pick the best answer choice:
+   - Review ALL answer choices (A, B, C, D, E, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D, 4=E)
+
+5. If criteria_percentage > 0.5 (>50% of criteria pass):
+   - Your chosen answer is well-supported by evidence
+   - Set suggestion to null or provide minor improvements
+
+6. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - Still MUST choose the BEST answer from the available choices (never -1)
+   - But set suggestion to "These may not be the right frames/scene. Consider searching for better evidence. The answer chosen is the BEST match given current evidence."
+   - This signals low confidence but still provides a choice
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 4,
+    "criteria_percentage": <criteria_passed / 4>,
+    "base_confidence": <(criteria_passed / 4) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E - MUST be a valid number 0-4, never -1>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "A person (vlogger) is visible in the frame",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms first-person perspective with gloved hands visible throughout, indicating the vlogger is performing actions"
+        },
+        {
+            "criterion": "The action occurs at the specific time 14:42",
+            "criterion_type": "QUESTION",
+            "status": "FAIL",
+            "reasoning": "VLM acknowledges exact timestamp isn't labeled on frames and makes assumptions about frame rate and timing that aren't verified"
+        },
+        {
+            "criterion": "The person is performing a specific, identifiable action",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM clearly identifies grabbing tissues from dispenser and crumpling them in hand in frames 9-10"
+        },
+        {
+            "criterion": "The scene context is consistent with a vlogging scenario",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms POV camera angle, focus on hands performing tasks, and kitchen documentation consistent with vlogging"
+        }
+    ],
+    "question_criteria_passed": 3,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 3,
+    "criteria_total": 4,
+    "criteria_percentage": 0.75,
+    "base_confidence": 75,
+    "confidence": 75,
+    "critic_answer_choice": 3,
+    "critic_reasoning": "The VLM clearly identifies tissue grabbing action in frames 9-10, eliminates all other answer choices, and confirms vlogger presence and vlogging context despite timing uncertainty",
+    "possible_errors": [
+        "Timing verification: VLM cannot confirm the action occurs exactly at 14:42, relying on assumptions about frame rate and video structure"
+    ],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'A person (vlogger) is visible in the frame', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms first-person perspective with gloved hands visible throughout, indicating the vlogger is performing actions'}, {'criterion': 'The action occurs at the specific time 14:42', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': "VLM acknowledges exact timestamp isn't labeled on frames and makes assumptions about frame rate and timing that aren't verified"}, {'criterion': 'The person is performing a specific, identifiable action', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM clearly identifies grabbing tissues from dispenser and crumpling them in hand in frames 9-10'}, {'criterion': 'The scene context is consistent with a vlogging scenario', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms POV camera angle, focus on hands performing tasks, and kitchen documentation consistent with vlogging'}], 'question_criteria_passed': 3, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 3, 'criteria_total': 4, 'criteria_percentage': 0.75, 'base_confidence': 75, 'confidence': 75, 'critic_answer_choice': 3, 'critic_reasoning': 'The VLM clearly identifies tissue grabbing action in frames 9-10, eliminates all other answer choices, and confirms vlogger presence and vlogging context despite timing uncertainty', 'possible_errors': ['Timing verification: VLM cannot confirm the action occurs exactly at 14:42, relying on assumptions about frame rate and video structure'], 'suggestion': None}

@@ -1,0 +1,224 @@
+Critic initial response: ```json
+{
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_2034.jpg", "frames/frame_2035.jpg", "frames/frame_2036.jpg", "frames/frame_2037.jpg", "frames/frame_2038.jpg", "frames/frame_2039.jpg", "frames/frame_2040.jpg", "frames/frame_2041.jpg", "frames/frame_2042.jpg", "frames/frame_2043.jpg", "frames/frame_2044.jpg", "frames/frame_2045.jpg", "frames/frame_2046.jpg", "frames/frame_2047.jpg", "frames/frame_2048.jpg", "frames/frame_2049.jpg", "frames/frame_2050.jpg", "frames/frame_2051.jpg", "frames/frame_2052.jpg", "frames/frame_2053.jpg", "frames/frame_2054.jpg", "frames/frame_2055.jpg", "frames/frame_2056.jpg"],
+    "prompt": "Analyze these frames from a classroom/preschool setting. Verify if children are present, wearing yellow short-sleeved shirts, and wearing hats. If hats are visible, identify their color. Check if the answer '1' (Orange) is correct. Pay attention to temporal sequence across frames to see if hat colors are consistently visible and match the answer choice."
+}
+```
+Frames to verify: ['frames/frame_2034.jpg', 'frames/frame_2035.jpg', 'frames/frame_2036.jpg', 'frames/frame_2037.jpg', 'frames/frame_2038.jpg', 'frames/frame_2039.jpg', 'frames/frame_2040.jpg', 'frames/frame_2041.jpg', 'frames/frame_2042.jpg', 'frames/frame_2043.jpg', 'frames/frame_2044.jpg', 'frames/frame_2045.jpg', 'frames/frame_2046.jpg', 'frames/frame_2047.jpg', 'frames/frame_2048.jpg', 'frames/frame_2049.jpg', 'frames/frame_2050.jpg', 'frames/frame_2051.jpg', 'frames/frame_2052.jpg', 'frames/frame_2053.jpg', 'frames/frame_2054.jpg', 'frames/frame_2055.jpg', 'frames/frame_2056.jpg']
+VLM Prompt: Video context: After analyzing the provided SET of frame-by-frame captions data for a long video, I have distilled a global summary that captures the main characters, setting, plot line, vibes, and general details.
+
+**Main Characters:**
+
+1. A middle-aged Asian woman with short black hair, often wearing a white blouse and pearl earrings, appears in various settings, including rooftops, offices, and laboratories. She is likely a key figure or narrator in the video.
+2. A man with short gray hair and black-framed glasses, often wearing a light green or dark blue shirt, is featured in several frames, sometimes speaking or gesturing. He may be an expert or interviewee.
+3. A young Asian man with short black hair, wearing a black or dark blue shirt, appears in various settings, including offices and laboratories. He may be a supporting character or interviewee.
+4. Several children, wearing yellow shirts with blue checkered collars, are featured in a classroom or educational setting, suggesting a segment on education or childcare.
+
+**Setting:**
+
+The video is set in Singapore, with various locations featured, including:
+
+1. Cityscapes: Singapore's urban landscape is showcased, with numerous high-rise buildings, skyscrapers, and modern architecture.
+2. Laboratories and factories: Various industrial and laboratory settings are depicted, highlighting Singapore's technological and scientific advancements.
+3. Parks and gardens: The video features serene and vibrant parks, gardens, and green spaces, such as the Gardens by the Bay.
+4. Classrooms and educational settings: A preschool or kindergarten is featured, showcasing a classroom environment and educational activities.
+5. Airports and transportation hubs: Singapore's Changi Airport and other transportation infrastructure are depicted.
+
+**Plot Line:**
+
+The video appears to be a documentary or promotional piece showcasing Singapore's development, innovation, and lifestyle. The narrative is likely divided into segments or themes, including:
+
+1. Urban planning and development: The video highlights Singapore's modern architecture, city planning, and infrastructure.
+2. Technology and innovation: The feature showcases various technological advancements, including robotics, AI, and 3D printing.
+3. Education and childcare: The preschool or kindergarten segment suggests a focus on early childhood education and development.
+4. Environmental sustainability: The video highlights Singapore's efforts in sustainability, including green roofs, solar panels, and water management.
+5. Cultural and social aspects: The video touches on Singapore's cultural heritage, including its Chinatown and other cultural landmarks.
+
+**Vibes:**
+
+The overall tone of the video is informative, modern, and futuristic, with a sense of pride and showcasing Singapore's achievements. The atmosphere is generally positive, with a focus on innovation, sustainability, and progress.
+
+**General Details:**
+
+1. The video is likely a documentary or promotional piece produced by a reputable organization, such as National Geographic, given the presence of their logo in the final frames.
+2. The video features a diverse range of characters, including experts, educators, and everyday people, highlighting Singapore's multiculturalism.
+3. The narrative is visually engaging, with a mix of aerial shots, close-ups, and wide shots showcasing Singapore's landscapes, cityscapes, and indoor settings.
+
+Overall, the video is a visually stunning and informative representation of Singapore, highlighting its modernity, innovation, and cultural diversity.
+
+Analyze these frames from a classroom/preschool setting. Verify if children are present, wearing yellow short-sleeved shirts, and wearing hats. If hats are visible, identify their color. Check if the answer '1' (Orange) is correct. Pay attention to temporal sequence across frames to see if hat colors are consistently visible and match the answer choice.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 23, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2034.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2035.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2036.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2037.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2038.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2039.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2040.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2041.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2042.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2043.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2044.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2045.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2046.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2047.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2048.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2049.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2050.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2051.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2052.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2053.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2054.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2055.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2056.jpg'], 'response': "Based on a detailed analysis of the 23 provided frames from the classroom/preschool setting:\n\n✅ **Children are present**: Yes, children appear clearly starting from Frame 6 and continuing through Frame 18. They are shown both outdoors and in group settings.\n\n✅ **Wearing yellow short-sleeved shirts**: Yes, all visible children are wearing bright yellow short-sleeved polo shirts with blue checkered collars, consistent with a school uniform.\n\n✅ **Wearing hats**: Yes, the children are consistently wearing bucket-style hats.\n\n✅ **Hat color identification**: Across multiple frames — including Frames 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, and 18 — the hats are uniformly **orange** in color. In Frame 13, one child’s hat appears purple, but this is an outlier (possibly a different group or prop), while the vast majority and consistent color across the group is orange. The orange hats are clearly visible and consistent in hue across the temporal sequence.\n\n✅ **Verification of answer '1' (Orange)**: The answer “1” corresponding to “Orange” is **correct**. The dominant and consistent hat color worn by the children in the preschool setting is orange, as verified across multiple frames and temporal continuity.\n\n---\n\n**Conclusion**: The answer **'1' (Orange)** is **correct**. Children are present, wearing yellow shirts, and consistently wearing orange hats across the relevant frames."}], 'formatted_responses': ["\n=== Batch 0-23 (23 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2034.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2035.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2036.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2037.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2038.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2039.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2040.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2041.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2042.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2043.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2044.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2045.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2046.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2047.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2048.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2049.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2050.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2051.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2052.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2053.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2054.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2055.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2056.jpg\nVLM Response: Based on a detailed analysis of the 23 provided frames from the classroom/preschool setting:\n\n✅ **Children are present**: Yes, children appear clearly starting from Frame 6 and continuing through Frame 18. They are shown both outdoors and in group settings.\n\n✅ **Wearing yellow short-sleeved shirts**: Yes, all visible children are wearing bright yellow short-sleeved polo shirts with blue checkered collars, consistent with a school uniform.\n\n✅ **Wearing hats**: Yes, the children are consistently wearing bucket-style hats.\n\n✅ **Hat color identification**: Across multiple frames — including Frames 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, and 18 — the hats are uniformly **orange** in color. In Frame 13, one child’s hat appears purple, but this is an outlier (possibly a different group or prop), while the vast majority and consistent color across the group is orange. The orange hats are clearly visible and consistent in hue across the temporal sequence.\n\n✅ **Verification of answer '1' (Orange)**: The answer “1” corresponding to “Orange” is **correct**. The dominant and consistent hat color worn by the children in the preschool setting is orange, as verified across multiple frames and temporal continuity.\n\n---\n\n**Conclusion**: The answer **'1' (Orange)** is **correct**. Children are present, wearing yellow shirts, and consistently wearing orange hats across the relevant frames.\n"], 'condensed_response': '**Scene Summary (Frames\u202f2034‑2056)**  \n\nA group of preschool children is captured across 23 consecutive frames. Starting around frame\u202f6 and persisting through frame\u202f18, the children are clearly visible both outdoors and in small clusters. All of them wear the same school uniform: bright yellow short‑sleeved polo shirts with blue‑checkered collars. Their headgear is a bucket‑style hat; the dominant color of these hats is orange, which remains consistent in hue throughout the sequence. Only a single anomaly appears in frame\u202f13, where one child’s hat looks purple—likely a prop or a different child—but the overwhelming majority of hats are orange.  \n\n**Character tracking:**  \n\n- **Children (multiple)** – continuous presence from frame\u202f6 to frame\u202f18, moving together as a group; uniform clothing and orange hats make them easily identifiable across frames.  \n- **Outlier** – one purple‑hat child appears briefly in frame\u202f13, standing out against the otherwise uniform orange‑hat cohort.  \n\nThe visual evidence confirms that the correct answer to the hat‑color query is **“1 – Orange.”**', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+⚠️ IMPORTANT: Answers use 0-INDEXED numbers where 0=A, 1=B, 2=C, 3=D, 4=E
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 23, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2034.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2035.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2036.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2037.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2038.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2039.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2040.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2041.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2042.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2043.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2044.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2045.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2046.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2047.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2048.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2049.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2050.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2051.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2052.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2053.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2054.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2055.jpg', '/mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2056.jpg'], 'response': "Based on a detailed analysis of the 23 provided frames from the classroom/preschool setting:\n\n✅ **Children are present**: Yes, children appear clearly starting from Frame 6 and continuing through Frame 18. They are shown both outdoors and in group settings.\n\n✅ **Wearing yellow short-sleeved shirts**: Yes, all visible children are wearing bright yellow short-sleeved polo shirts with blue checkered collars, consistent with a school uniform.\n\n✅ **Wearing hats**: Yes, the children are consistently wearing bucket-style hats.\n\n✅ **Hat color identification**: Across multiple frames — including Frames 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, and 18 — the hats are uniformly **orange** in color. In Frame 13, one child’s hat appears purple, but this is an outlier (possibly a different group or prop), while the vast majority and consistent color across the group is orange. The orange hats are clearly visible and consistent in hue across the temporal sequence.\n\n✅ **Verification of answer '1' (Orange)**: The answer “1” corresponding to “Orange” is **correct**. The dominant and consistent hat color worn by the children in the preschool setting is orange, as verified across multiple frames and temporal continuity.\n\n---\n\n**Conclusion**: The answer **'1' (Orange)** is **correct**. Children are present, wearing yellow shirts, and consistently wearing orange hats across the relevant frames."}], 'formatted_responses': ["\n=== Batch 0-23 (23 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2034.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2035.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2036.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2037.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2038.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2039.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2040.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2041.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2042.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2043.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2044.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2045.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2046.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2047.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2048.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2049.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2050.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2051.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2052.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2053.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2054.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2055.jpg, /mnt/ssd/data/lvbench/videos_processed/xi6r3hZe5Tg/frames/frame_2056.jpg\nVLM Response: Based on a detailed analysis of the 23 provided frames from the classroom/preschool setting:\n\n✅ **Children are present**: Yes, children appear clearly starting from Frame 6 and continuing through Frame 18. They are shown both outdoors and in group settings.\n\n✅ **Wearing yellow short-sleeved shirts**: Yes, all visible children are wearing bright yellow short-sleeved polo shirts with blue checkered collars, consistent with a school uniform.\n\n✅ **Wearing hats**: Yes, the children are consistently wearing bucket-style hats.\n\n✅ **Hat color identification**: Across multiple frames — including Frames 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, and 18 — the hats are uniformly **orange** in color. In Frame 13, one child’s hat appears purple, but this is an outlier (possibly a different group or prop), while the vast majority and consistent color across the group is orange. The orange hats are clearly visible and consistent in hue across the temporal sequence.\n\n✅ **Verification of answer '1' (Orange)**: The answer “1” corresponding to “Orange” is **correct**. The dominant and consistent hat color worn by the children in the preschool setting is orange, as verified across multiple frames and temporal continuity.\n\n---\n\n**Conclusion**: The answer **'1' (Orange)** is **correct**. Children are present, wearing yellow shirts, and consistently wearing orange hats across the relevant frames.\n"], 'condensed_response': '**Scene Summary (Frames\u202f2034‑2056)**  \n\nA group of preschool children is captured across 23 consecutive frames. Starting around frame\u202f6 and persisting through frame\u202f18, the children are clearly visible both outdoors and in small clusters. All of them wear the same school uniform: bright yellow short‑sleeved polo shirts with blue‑checkered collars. Their headgear is a bucket‑style hat; the dominant color of these hats is orange, which remains consistent in hue throughout the sequence. Only a single anomaly appears in frame\u202f13, where one child’s hat looks purple—likely a prop or a different child—but the overwhelming majority of hats are orange.  \n\n**Character tracking:**  \n\n- **Children (multiple)** – continuous presence from frame\u202f6 to frame\u202f18, moving together as a group; uniform clothing and orange hats make them easily identifiable across frames.  \n- **Outlier** – one purple‑hat child appears briefly in frame\u202f13, standing out against the otherwise uniform orange‑hat cohort.  \n\nThe visual evidence confirms that the correct answer to the hat‑color query is **“1 – Orange.”**', 'failed_images': []}
+
+Question Being Answered: What color hats do children wearing yellow short sleeves wear?
+
+Answer Choices (0-indexed: 0=A, 1=B, 2=C, 3=D, 4=E):
+  0 (=A): Black
+  1 (=B): Orange
+  2 (=C): Blue
+  3 (=D): Red
+
+Given Answer: 1
+Evidence Frames Used: ['frames/frame_2039.jpg', 'frames/frame_2040.jpg', 'frames/frame_2044.jpg', 'frames/frame_2045.jpg', 'frames/frame_2047.jpg', 'frames/frame_2048.jpg', 'frames/frame_2049.jpg', 'frames/frame_2050.jpg', 'frames/frame_2051.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Dr. Cheong Koon Hean: Description: Middle-aged Asian woman with short black hair, wearing a white blouse and pearl earrings
+Andrew David Fassam: Description: Middle-aged man with short gray hair, wearing black-framed glasses with red accents on the temples and a light blue collared shirt
+Alan Goh: Description: Young Asian man with short black hair, wearing a dark blue collared shirt
+Sajeeda Othman: Description: Young woman wearing a black hijab and a blue shirt
+Sopnendu Mohanty: Description: Middle-aged man with short black hair, wearing a black suit jacket over a pink collared shirt
+Tan Swee Meng: Description: Elderly Asian man with short black hair, wearing a light green collared shirt with white and yellow stripes and gold-rimmed glasses
+Joanna Yeo: Description: Young Asian woman with long dark hair, wearing a white shirt
+Gareth Tang: Description: Young Asian man with short black hair, wearing a black polo shirt with red accents and a logo on the left chest
+
+SCENES:
+Cityscape: Description: Densely populated urban landscape with numerous high-rise buildings and skyscrapers [1-5, 33-40, 91-93, 209-212, 219-227, 238-242, 297-300, 309-312, 319-320, 330-331, 393-396, 521-525, 555-560, 1977-1980, 2300-2304]
+Factory/Industrial Setting: Description: Large industrial facility with various machinery, pipes, and equipment [10-19, 28, 1243-1246, 1299-1307, 1366-1375]
+Classroom/Preschool: Description: Classroom or preschool setting with children and teachers [56-63, 2019-2032, 2044-2050, 2057-2065, 2069-2077, 2083-2088]
+Marina Bay Area: Description: Scenic waterfront area with iconic landmarks such as Marina Bay Sands and the ArtScience Museum [37-40, 309-316, 320, 393-396, 555-560, 1977-1980]
+Gardens by the Bay: Description: Futuristic botanical garden with towering Supertree Grove structures and distinctive domed buildings [374-385, 399-400]
+Airport: Description: Busy airport with various vehicles and equipment on the tarmac [701-706]
+Chinatown: Description: Vibrant street scene with traditional shophouses, temples, and cultural landmarks [292-295, 521-528, 953-957]
+Park/Garden: Description: Lush green park or garden with walking paths, trees, and scenic views [202-208, 1284-1289, 2511-2512]
+Lake/Reservoir: Description: Serene body of water surrounded by lush greenery and trees [202-208, 226-227, 555-560, 1176-1184, 1213-1225]
+Beach: Description: Sandy beach with people standing or playing in the shallow water [1836-1839]
+Hawker Center/Food Court: Description: Bustling food court with various food stalls and people eating [964-967, 2295-2298]
+Laboratory/Research Facility: Description: Laboratory or research facility with various scientific equipment and personnel [762-774, 813-817, 831-835, 851-855, 1756-1760, 1783-1785, 1807-1810]
+
+EVENTS:
+Dragon Boat Race: Description: Rowers competing in a race on Marina Reservoir [37-40]
+Drone Flight: Description: Drone flying over a park or cityscape [42-43, 401-404, 624-631]
+Food Preparation/Cooking: Description: People preparing or cooking food in a kitchen or food court [974-976, 1097-1105]
+Harvesting/Picking Produce: Description: People harvesting or picking fruits or vegetables in a controlled environment [49-51, 54-55, 762-774, 777-781, 831-835, 851-855, 868-871, 886-889]
+City Tour/Visit: Description: People walking or visiting various landmarks or attractions in a city [94-99, 320, 327-329, 387-390, 409-412, 455-457, 1987-1993]
+Industrial/Factory Tour: Description: People visiting or working in an industrial or factory setting [1243-1246, 1299-1307]
+Medical/Healthcare Scene: Description: Medical professionals performing medical procedures or examinations [762-774, 813-817, 831-835, 851-855, 1654-1658, 1817-1827]
+Interview/Presentation: Description: People being interviewed or presenting information in a professional setting [151-155, 263-264, 272-273, 833-835, 851-855, 1740-1744, 1846-1851]
+Outdoor Activities: Description: People engaging in outdoor activities such as walking, playing, or exercising in a park or garden [202-208, 226-227, 555-560, 1176-1184, 1213-1225, 1284-1289, 1836-1839, 2511-2512]
+
+================================================================================
+Generated at: 2026-01-11 21:46:42
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. Children are present in the frame
+  Q2. Children are wearing yellow short-sleeved shirts
+  Q3. Children are wearing hats
+  Q4. The color of the hats is clearly visible
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 4)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, ALWAYS pick the best answer choice:
+   - Review ALL answer choices (A, B, C, D, E, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D, 4=E)
+
+5. If criteria_percentage > 0.5 (>50% of criteria pass):
+   - Your chosen answer is well-supported by evidence
+   - Set suggestion to null or provide minor improvements
+
+6. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - Still MUST choose the BEST answer from the available choices (never -1)
+   - But set suggestion to "These may not be the right frames/scene. Consider searching for better evidence. The answer chosen is the BEST match given current evidence."
+   - This signals low confidence but still provides a choice
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 4,
+    "criteria_percentage": <criteria_passed / 4>,
+    "base_confidence": <(criteria_passed / 4) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E - MUST be a valid number 0-4, never -1>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "Children are present in the frame",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms children appear clearly starting from Frame 6 and continuing through Frame 18"
+        },
+        {
+            "criterion": "Children are wearing yellow short-sleeved shirts",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms all visible children are wearing bright yellow short-sleeved polo shirts with blue checkered collars"
+        },
+        {
+            "criterion": "Children are wearing hats",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms children are consistently wearing bucket-style hats"
+        },
+        {
+            "criterion": "The color of the hats is clearly visible",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM states hats are clearly visible and consistent in hue across the temporal sequence, with orange being the dominant color"
+        }
+    ],
+    "question_criteria_passed": 4,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 4,
+    "criteria_total": 4,
+    "criteria_percentage": 1.0,
+    "base_confidence": 100,
+    "confidence": 100,
+    "critic_answer_choice": 1,
+    "critic_reasoning": "The VLM verification clearly identifies orange as the dominant and consistent hat color worn by children in yellow shirts across multiple frames, with only one outlier of a purple hat in frame 13",
+    "possible_errors": [],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'Children are present in the frame', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms children appear clearly starting from Frame 6 and continuing through Frame 18'}, {'criterion': 'Children are wearing yellow short-sleeved shirts', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms all visible children are wearing bright yellow short-sleeved polo shirts with blue checkered collars'}, {'criterion': 'Children are wearing hats', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms children are consistently wearing bucket-style hats'}, {'criterion': 'The color of the hats is clearly visible', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM states hats are clearly visible and consistent in hue across the temporal sequence, with orange being the dominant color'}], 'question_criteria_passed': 4, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 4, 'criteria_total': 4, 'criteria_percentage': 1.0, 'base_confidence': 100, 'confidence': 100, 'critic_answer_choice': 1, 'critic_reasoning': 'The VLM verification clearly identifies orange as the dominant and consistent hat color worn by children in yellow shirts across multiple frames, with only one outlier of a purple hat in frame 13', 'possible_errors': [], 'suggestion': None}

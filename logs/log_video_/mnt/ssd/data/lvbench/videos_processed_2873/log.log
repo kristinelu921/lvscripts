@@ -1,0 +1,199 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_1103.jpg", "frames/frame_1104.jpg", "frames/frame_1105.jpg", "frames/frame_1106.jpg", "frames/frame_1107.jpg", "frames/frame_1108.jpg", "frames/frame_1109.jpg", "frames/frame_1110.jpg", "frames/frame_1111.jpg", "frames/frame_1112.jpg", "frames/frame_1113.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '1' is correct for the question: What is the name of the elder who joins the vlogger on their travel? Check the question criteria: ['Elderly man with white hair appears in frame', 'Text or captions showing a name (Mikhail, Staffan, Eric, or Nathan)', 'Scene involving travel context (airport, foreign location)', 'Interaction between elderly man and younger men', 'Possible subtitle or text overlay identifying the elder']. Pay attention to timestamps and temporal sequences. Look for any text overlays, subtitles, or visual cues that identify the elderly man's name from the options: A. Mikhail, B. Staffan, C. Eric, D. Nathan. The given answer is '1' which corresponds to option A (Mikhail)."
+}
+Frames to verify: ['frames/frame_1103.jpg', 'frames/frame_1104.jpg', 'frames/frame_1105.jpg', 'frames/frame_1106.jpg', 'frames/frame_1107.jpg', 'frames/frame_1108.jpg', 'frames/frame_1109.jpg', 'frames/frame_1110.jpg', 'frames/frame_1111.jpg', 'frames/frame_1112.jpg', 'frames/frame_1113.jpg']
+VLM Prompt: Video context: Based on the provided SET of frame-by-frame captions data for a long video, here is a global summary that depicts the main characters, setting, plot line, vibes, and general details:
+
+**Main Characters:**
+The main characters in the video appear to be a group of young men, likely friends, and an older man with white hair, who seems to be a significant figure, possibly a mentor or a father figure. The young men are often seen wearing casual clothing, including t-shirts with the text "SEEK DISCOMFORT" or "peace seeker" printed on them.
+
+**Setting:**
+The video is set in various locations, including outdoor settings such as parks, beaches, city streets, and mountains, as well as indoor locations like airports, restaurants, bars, and a church. The settings are diverse and seem to be related to the characters' travels and experiences.
+
+**Plot Line:**
+The plot line of the video appears to be a documentary-style narrative that follows the young men as they travel to different locations, engage in various activities, and interact with the older man. The story seems to be centered around their experiences, conversations, and bonding moments. The video also includes scenes of the older man's daily life, his interactions with the young men, and his reflections.
+
+**Vibes:**
+The overall vibe of the video is one of camaraderie, adventure, and self-discovery. The young men are often seen laughing, joking, and having fun together, while the older man seems to be sharing his life experiences and wisdom with them. The video also has a reflective and contemplative tone, with scenes that suggest a deeper exploration of life's meaning and purpose.
+
+**General Details:**
+The video appears to be a personal and introspective documentary that explores themes of friendship, travel, and personal growth. The use of diverse locations and the inclusion of various activities, such as swimming, hiking, and eating, suggest a sense of adventure and exploration. The video also includes scenes of quiet reflection, conversations, and emotional moments, which add depth and nuance to the narrative. The "SEEK DISCOMFORT" branding is a recurring theme throughout the video, suggesting that the characters are on a journey of self-discovery and pushing beyond their comfort zones.
+
+Based on these frames (including context before/after), verify if the answer '1' is correct for the question: What is the name of the elder who joins the vlogger on their travel? Check the question criteria: ['Elderly man with white hair appears in frame', 'Text or captions showing a name (Mikhail, Staffan, Eric, or Nathan)', 'Scene involving travel context (airport, foreign location)', 'Interaction between elderly man and younger men', 'Possible subtitle or text overlay identifying the elder']. Pay attention to timestamps and temporal sequences. Look for any text overlays, subtitles, or visual cues that identify the elderly man's name from the options: A. Mikhail, B. Staffan, C. Eric, D. Nathan. The given answer is '1' which corresponds to option A (Mikhail).
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 11, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1103.jpg', '/mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1104.jpg', '/mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1105.jpg', '/mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1106.jpg', '/mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1107.jpg', '/mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1108.jpg', '/mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1109.jpg', '/mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1110.jpg', '/mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1111.jpg', '/mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1112.jpg', '/mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1113.jpg'], 'response': "The answer '1' (corresponding to **A. Mikhail**) is **correct** based on the provided frames and criteria.\n\n### Verification against criteria:\n\n1. **Elderly man with white hair appears in frame**  \n   → **Yes.** Frame 4 and Frame 5 show an elderly animated character with white hair and glasses — visually matching the description of the “older man with white hair” from the global summary.\n\n2. **Text or captions showing a name (Mikhail, Staffan, Eric, or Nathan)**  \n   → **Yes.** Frame 4 and Frame 5 have the text **“MIKHAIL”** clearly overlaid on the image of the elderly man. This directly identifies him by name.\n\n3. **Scene involving travel context (airport, foreign location)**  \n   → **Partially supported.** While the animated frames (4–6) do not show a literal travel setting, the live-action frames (1–3, 7–11) show urban streets, buildings, and movement — consistent with travel or exploration. The global summary confirms the video involves travel to various locations, and the animated character is likely a symbolic or narrative representation of the elder figure accompanying the vlogger on their journey.\n\n4. **Interaction between elderly man and younger men**  \n   → **Implied through narrative context.** While the animated character doesn’t directly interact with live-action young men in these frames, the global summary states the older man is a central figure interacting with the young men. The animated frames serve as a visual metaphor or representation of this elder figure, and the live-action frames show the young men traveling together — consistent with the narrative of shared journey and interaction.\n\n5. **Possible subtitle or text overlay identifying the elder**  \n   → **Yes.** Frames 4 and 5 explicitly show the name **“MIKHAIL”** overlaid on the elderly character, satisfying this criterion directly.\n\n---\n\n### Conclusion:\n\nAll five criteria are met or reasonably satisfied within the context of the video’s narrative and visual presentation. The name **“Mikhail”** is explicitly shown in text overlay on the elderly character, making **A. Mikhail** the correct identification.\n\n✅ Therefore, the given answer **'1'** is **correct**."}], 'formatted_responses': ["\n=== Batch 0-11 (11 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1103.jpg, /mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1104.jpg, /mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1105.jpg, /mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1106.jpg, /mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1107.jpg, /mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1108.jpg, /mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1109.jpg, /mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1110.jpg, /mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1111.jpg, /mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1112.jpg, /mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1113.jpg\nVLM Response: The answer '1' (corresponding to **A. Mikhail**) is **correct** based on the provided frames and criteria.\n\n### Verification against criteria:\n\n1. **Elderly man with white hair appears in frame**  \n   → **Yes.** Frame 4 and Frame 5 show an elderly animated character with white hair and glasses — visually matching the description of the “older man with white hair” from the global summary.\n\n2. **Text or captions showing a name (Mikhail, Staffan, Eric, or Nathan)**  \n   → **Yes.** Frame 4 and Frame 5 have the text **“MIKHAIL”** clearly overlaid on the image of the elderly man. This directly identifies him by name.\n\n3. **Scene involving travel context (airport, foreign location)**  \n   → **Partially supported.** While the animated frames (4–6) do not show a literal travel setting, the live-action frames (1–3, 7–11) show urban streets, buildings, and movement — consistent with travel or exploration. The global summary confirms the video involves travel to various locations, and the animated character is likely a symbolic or narrative representation of the elder figure accompanying the vlogger on their journey.\n\n4. **Interaction between elderly man and younger men**  \n   → **Implied through narrative context.** While the animated character doesn’t directly interact with live-action young men in these frames, the global summary states the older man is a central figure interacting with the young men. The animated frames serve as a visual metaphor or representation of this elder figure, and the live-action frames show the young men traveling together — consistent with the narrative of shared journey and interaction.\n\n5. **Possible subtitle or text overlay identifying the elder**  \n   → **Yes.** Frames 4 and 5 explicitly show the name **“MIKHAIL”** overlaid on the elderly character, satisfying this criterion directly.\n\n---\n\n### Conclusion:\n\nAll five criteria are met or reasonably satisfied within the context of the video’s narrative and visual presentation. The name **“Mikhail”** is explicitly shown in text overlay on the elderly character, making **A. Mikhail** the correct identification.\n\n✅ Therefore, the given answer **'1'** is **correct**.\n"], 'condensed_response': '**Condensed scene summary (frames\u202f1103‑1113)**  \n\nIn the early part of the clip (frames\u202f1103‑1105) the camera shows an animated elder with white hair and glasses. The name **“MIKHAIL”** is over‑laid in bold text on his torso in frames\u202f1104 and\u202f1105, directly identifying him as the older man referenced in the query.  \n\nAround the same moment the live‑action footage (frames\u202f1103‑1106 and\u202f1107‑1113) cuts to urban streets, moving traffic and passing buildings, establishing a travel‑oriented backdrop. Although the elder appears only as a stylised illustration, the surrounding shots feature younger male vloggers walking, boarding vehicles and exploring the city, implying that Mikhail is the senior figure accompanying or guiding them on the journey.  \n\nThus, the visual evidence in frames\u202f1104‑1105 (text overlay “MIKHAIL”) together with the travel‑setting of the surrounding frames satisfies all the required criteria and confirms that **A.\u202fMikhail** is the correct answer.', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 11, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1103.jpg', '/mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1104.jpg', '/mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1105.jpg', '/mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1106.jpg', '/mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1107.jpg', '/mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1108.jpg', '/mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1109.jpg', '/mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1110.jpg', '/mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1111.jpg', '/mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1112.jpg', '/mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1113.jpg'], 'response': "The answer '1' (corresponding to **A. Mikhail**) is **correct** based on the provided frames and criteria.\n\n### Verification against criteria:\n\n1. **Elderly man with white hair appears in frame**  \n   → **Yes.** Frame 4 and Frame 5 show an elderly animated character with white hair and glasses — visually matching the description of the “older man with white hair” from the global summary.\n\n2. **Text or captions showing a name (Mikhail, Staffan, Eric, or Nathan)**  \n   → **Yes.** Frame 4 and Frame 5 have the text **“MIKHAIL”** clearly overlaid on the image of the elderly man. This directly identifies him by name.\n\n3. **Scene involving travel context (airport, foreign location)**  \n   → **Partially supported.** While the animated frames (4–6) do not show a literal travel setting, the live-action frames (1–3, 7–11) show urban streets, buildings, and movement — consistent with travel or exploration. The global summary confirms the video involves travel to various locations, and the animated character is likely a symbolic or narrative representation of the elder figure accompanying the vlogger on their journey.\n\n4. **Interaction between elderly man and younger men**  \n   → **Implied through narrative context.** While the animated character doesn’t directly interact with live-action young men in these frames, the global summary states the older man is a central figure interacting with the young men. The animated frames serve as a visual metaphor or representation of this elder figure, and the live-action frames show the young men traveling together — consistent with the narrative of shared journey and interaction.\n\n5. **Possible subtitle or text overlay identifying the elder**  \n   → **Yes.** Frames 4 and 5 explicitly show the name **“MIKHAIL”** overlaid on the elderly character, satisfying this criterion directly.\n\n---\n\n### Conclusion:\n\nAll five criteria are met or reasonably satisfied within the context of the video’s narrative and visual presentation. The name **“Mikhail”** is explicitly shown in text overlay on the elderly character, making **A. Mikhail** the correct identification.\n\n✅ Therefore, the given answer **'1'** is **correct**."}], 'formatted_responses': ["\n=== Batch 0-11 (11 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1103.jpg, /mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1104.jpg, /mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1105.jpg, /mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1106.jpg, /mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1107.jpg, /mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1108.jpg, /mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1109.jpg, /mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1110.jpg, /mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1111.jpg, /mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1112.jpg, /mnt/ssd/data/lvbench/videos_processed/_T2Avd3tFHc/frames/frame_1113.jpg\nVLM Response: The answer '1' (corresponding to **A. Mikhail**) is **correct** based on the provided frames and criteria.\n\n### Verification against criteria:\n\n1. **Elderly man with white hair appears in frame**  \n   → **Yes.** Frame 4 and Frame 5 show an elderly animated character with white hair and glasses — visually matching the description of the “older man with white hair” from the global summary.\n\n2. **Text or captions showing a name (Mikhail, Staffan, Eric, or Nathan)**  \n   → **Yes.** Frame 4 and Frame 5 have the text **“MIKHAIL”** clearly overlaid on the image of the elderly man. This directly identifies him by name.\n\n3. **Scene involving travel context (airport, foreign location)**  \n   → **Partially supported.** While the animated frames (4–6) do not show a literal travel setting, the live-action frames (1–3, 7–11) show urban streets, buildings, and movement — consistent with travel or exploration. The global summary confirms the video involves travel to various locations, and the animated character is likely a symbolic or narrative representation of the elder figure accompanying the vlogger on their journey.\n\n4. **Interaction between elderly man and younger men**  \n   → **Implied through narrative context.** While the animated character doesn’t directly interact with live-action young men in these frames, the global summary states the older man is a central figure interacting with the young men. The animated frames serve as a visual metaphor or representation of this elder figure, and the live-action frames show the young men traveling together — consistent with the narrative of shared journey and interaction.\n\n5. **Possible subtitle or text overlay identifying the elder**  \n   → **Yes.** Frames 4 and 5 explicitly show the name **“MIKHAIL”** overlaid on the elderly character, satisfying this criterion directly.\n\n---\n\n### Conclusion:\n\nAll five criteria are met or reasonably satisfied within the context of the video’s narrative and visual presentation. The name **“Mikhail”** is explicitly shown in text overlay on the elderly character, making **A. Mikhail** the correct identification.\n\n✅ Therefore, the given answer **'1'** is **correct**.\n"], 'condensed_response': '**Condensed scene summary (frames\u202f1103‑1113)**  \n\nIn the early part of the clip (frames\u202f1103‑1105) the camera shows an animated elder with white hair and glasses. The name **“MIKHAIL”** is over‑laid in bold text on his torso in frames\u202f1104 and\u202f1105, directly identifying him as the older man referenced in the query.  \n\nAround the same moment the live‑action footage (frames\u202f1103‑1106 and\u202f1107‑1113) cuts to urban streets, moving traffic and passing buildings, establishing a travel‑oriented backdrop. Although the elder appears only as a stylised illustration, the surrounding shots feature younger male vloggers walking, boarding vehicles and exploring the city, implying that Mikhail is the senior figure accompanying or guiding them on the journey.  \n\nThus, the visual evidence in frames\u202f1104‑1105 (text overlay “MIKHAIL”) together with the travel‑setting of the surrounding frames satisfies all the required criteria and confirms that **A.\u202fMikhail** is the correct answer.', 'failed_images': []}
+
+Question Being Answered: What is the name of the elder who joins the vlogger on their travel?
+
+Answer Choices:
+A. Mikhail
+B. Staffan
+C. Eric
+D. Nathan
+
+Given Answer: 1
+Evidence Frames Used: ['frames/frame_1108.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Man with gray t-shirt: Description: A man with short brown hair, wearing a gray t-shirt, appears in various locations throughout the video.
+Man with "Seek Discomfort" shirt: Description: A man wearing a purple or gray shirt with the text "Seek Discomfort" on it, appears in multiple scenes.
+Man with blond hair: Description: A young man with short blond hair appears in various locations.
+Woman in green striped tank top: Description: A young woman with brown hair, wearing a green sleeveless top with wavy stripes.
+Elderly man with white hair: Description: An older man with short white hair, often wearing a white or light green shirt.
+
+SCENES:
+Courtyard with white buildings: Description: A large courtyard surrounded by old white buildings with brown trim and windows. [Frame 1-4]
+Airplane cabin: Description: The interior of an airplane with passengers seated. [Frame 5-7, 101, 162-170]
+Mountainous landscape: Description: A scenic landscape with snow-capped mountains. [Frame 17-19, 27-29]
+Ancient Roman amphitheater: Description: A large, ancient, ruined Roman amphitheater. [Frame 30-33]
+Tropical island: Description: A picturesque island chain with lush green forests, sandy beaches, and crystal-clear turquoise waters. [Frame 36-37]
+Suburban neighborhood: Description: An aerial view of a suburban neighborhood with houses, trees, and green spaces. [Frame 38-39]
+Restaurant: Description: A restaurant with patrons and tables set with food and drinks. [Frame 43-44]
+City street with roundabout: Description: A busy city street with a large roundabout surrounded by tall buildings and trees. [Frame 66-68]
+Abandoned playground: Description: A dilapidated and abandoned playground with rusted and worn-out rides. [Frame 242-244]
+Park with green benches: Description: A serene park setting with trees, benches, and a paved path. [Frame 304-308, 324-326]
+Cemetery: Description: A serene cemetery with white headstones and trees. [Frame 1594-1615]
+Warehouse: Description: A large warehouse with shelves and boxes. [Frame 1821-1825]
+Beach: Description: A sandy beach along the edge of a serene lake, surrounded by lush green trees and rolling hills. [Frame 1320-1338]
+
+EVENTS:
+Man walking away from camera: Description: A man wearing a gray t-shirt walks away from the camera in a courtyard. [Frame 1-4]
+Man sitting on airplane: Description: A man wearing a purple "Seek Discomfort" shirt sits on an airplane, looking out the window. [Frame 5-7]
+Two men standing near body of water: Description: Two men standing outdoors near a body of water. [Frame 20-21]
+Man standing in ancient Roman amphitheater: Description: A man stands in the center of an ancient Roman amphitheater. [Frame 30-33]
+People gathered at outdoor cafe: Description: A group of young adults gathered at a sidewalk cafe with round glass tables and colorful triangular flags hanging from the trees. [Frame 369-375]
+Man swinging on swing: Description: A man is swinging on a chain-swing at an outdoor amusement park. [Frame 624-634]
+People dancing at party: Description: A group of people dancing and having fun at a party or concert. [Frame 1464-1475]
+Man saying goodbye to another man at airport: Description: A young man saying goodbye to an older man with a bandaged arm at an airport. [Frame 1709-1717]
+Three men sitting on green park bench: Description: Three men sitting on a green wooden park bench, engaged in conversation. [Frame 1124-1166]
+Man feeding another man: Description: An older man feeding a younger man cake or ice cream. [Frame 1052-1061, 1536-1558]
+Man hugging another man: Description: Two men hugging each other tightly. [Frame 1714-1719]
+
+================================================================================
+Generated at: 2026-01-11 21:46:27
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. Elderly man with white hair appears in frame
+  Q2. Text or captions showing a name (Mikhail, Staffan, Eric, or Nathan)
+  Q3. Scene involving travel context (airport, foreign location)
+  Q4. Interaction between elderly man and younger men
+  Q5. Possible subtitle or text overlay identifying the elder
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 5)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, if criteria_percentage > 0.5 (>50% of criteria pass):
+   - Review ALL answer choices (A, B, C, D, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D)
+5. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - STILL do your best to pick out a correct answer, but also set suggestion to "These may not be the right frames/scene. Continue searching for better evidence."
+   - output your best guess of the answer as a number (0=A, 1=B, 2=C, 3=D, 4=E)
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <number of question criteria that passed>,
+    "criteria_total": 5,
+    "criteria_percentage": <criteria_passed / 5>,
+    "base_confidence": <(criteria_passed / 5) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "Elderly man with white hair appears in frame",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms elderly animated character with white hair and glasses appears in frames 4-5"
+        },
+        {
+            "criterion": "Text or captions showing a name (Mikhail, Staffan, Eric, or Nathan)",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms text 'MIKHAIL' clearly overlaid on elderly character in frames 4-5"
+        },
+        {
+            "criterion": "Scene involving travel context (airport, foreign location)",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms live-action frames show urban streets, buildings, and movement consistent with travel"
+        },
+        {
+            "criterion": "Interaction between elderly man and younger men",
+            "criterion_type": "QUESTION",
+            "status": "FAIL",
+            "reasoning": "VLM states animated character doesn't directly interact with live-action young men in these frames"
+        },
+        {
+            "criterion": "Possible subtitle or text overlay identifying the elder",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms explicit text overlay 'MIKHAIL' on elderly character in frames 4-5"
+        }
+    ],
+    "question_criteria_passed": 4,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 4,
+    "criteria_total": 5,
+    "criteria_percentage": 0.8,
+    "base_confidence": 80,
+    "confidence": 80,
+    "critic_answer_choice": 0,
+    "critic_reasoning": "The VLM clearly identifies the name 'MIKHAIL' overlaid on the elderly character in multiple frames, providing direct visual evidence that matches answer choice A",
+    "possible_errors": [
+        "No direct interaction shown between elderly man and younger men in these specific frames"
+    ],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'Elderly man with white hair appears in frame', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms elderly animated character with white hair and glasses appears in frames 4-5'}, {'criterion': 'Text or captions showing a name (Mikhail, Staffan, Eric, or Nathan)', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM confirms text 'MIKHAIL' clearly overlaid on elderly character in frames 4-5"}, {'criterion': 'Scene involving travel context (airport, foreign location)', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms live-action frames show urban streets, buildings, and movement consistent with travel'}, {'criterion': 'Interaction between elderly man and younger men', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': "VLM states animated character doesn't directly interact with live-action young men in these frames"}, {'criterion': 'Possible subtitle or text overlay identifying the elder', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM confirms explicit text overlay 'MIKHAIL' on elderly character in frames 4-5"}], 'question_criteria_passed': 4, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 4, 'criteria_total': 5, 'criteria_percentage': 0.8, 'base_confidence': 80, 'confidence': 80, 'critic_answer_choice': 0, 'critic_reasoning': "The VLM clearly identifies the name 'MIKHAIL' overlaid on the elderly character in multiple frames, providing direct visual evidence that matches answer choice A", 'possible_errors': ['No direct interaction shown between elderly man and younger men in these specific frames'], 'suggestion': None}

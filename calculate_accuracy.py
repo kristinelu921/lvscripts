@@ -56,8 +56,11 @@ def process_results(results_file):
     re_eval_original_correct = 0
     re_eval_original_incorrect = 0
 
+    pre_critic_incorrect_list = []
+    discrepancy_list = []
+
     for video in data:
-        video_id = video.get('video_id', 'unknown')
+        #video_id = video.get('video_id', 'unknown')
         for question in video['questions']:
             total_questions += 1
             pre_critic_answer = convert_answer_to_int(question.get('pre_critic_answer', None))
@@ -66,16 +69,19 @@ def process_results(results_file):
             re_evaluated_with_judge = question.get('re_evaluated_with_judge', False)
             if re_evaluated_with_judge:
                 judge_choice = convert_answer_to_int(question.get('judge_choice', None))
-            
+
 
             if pre_critic_answer == correct_answer:
                 pre_critic_correct += 1
+            else:
+                pre_critic_incorrect_list.append(question)
             if critic_answer == correct_answer:
                 critic_correct += 1
             if critic_answer not in [0, 1, 2, 3, 4]:
                 critic_fails += 1
-            if pre_critic_answer != critic_answer:
+            elif pre_critic_answer != critic_answer:
                 num_discrepancies += 1
+                discrepancy_list.append(question)
             if re_evaluated_with_judge:
                 if pre_critic_answer == correct_answer:
                     re_eval_original_correct += 1
@@ -139,6 +145,8 @@ def process_results(results_file):
     print(f"Judge Critic Accuracy: {judge_critic_correct}/{total_judge_questions} = {judge_critic_acc:.2f}%")
     print(f"Judge Pre-Critic Accuracy: {judge_pre_critic_correct}/{total_judge_questions} = {judge_pre_critic_acc:.2f}%")
     print(f"Judge Incorrect Accuracy: {judge_incorrect}/{total_judge_questions} = {judge_incorrect_acc:.2f}%")
+    print(f"Pre-Critic Incorrect List: {len(pre_critic_incorrect_list)}")
+    print(f"Discrepancy List: {len(discrepancy_list)}")
 
     stats = {}
     stats['total_questions'] = total_questions
@@ -156,7 +164,8 @@ def process_results(results_file):
     stats['judge_critic_acc'] = judge_critic_acc
     stats['judge_pre_critic_acc'] = judge_pre_critic_acc
     stats['judge_incorrect_acc'] = judge_incorrect_acc
-
+    stats['pre_critic_incorrect_list'] = pre_critic_incorrect_list
+    stats['discrepancy_list'] = discrepancy_list
     with open(results_file.replace('.json', '_accuracy.json'), 'w') as f:
         json.dump(stats, f, indent=4)
 

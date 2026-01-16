@@ -1,0 +1,210 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0363.jpg", "frames/frame_0364.jpg", "frames/frame_0365.jpg", "frames/frame_0366.jpg", "frames/frame_0367.jpg", "frames/frame_0368.jpg", "frames/frame_0369.jpg", "frames/frame_0370.jpg", "frames/frame_0371.jpg", "frames/frame_0372.jpg", "frames/frame_0373.jpg"],
+    "prompt": "Examine these frames to verify if answer '3' (which corresponds to option D: 'across the stacked frames so basically') is correct for the question about a colorful image with red, orange, and blue colors on a white background. Check if: 1) There is an image with red colors on white background, 2) Orange colors on white background, 3) Blue colors on white background, 4) White background is present, 5) The image contains red, orange and blue elements together, 6) It's a visual diagram/graphic with multiple colors on white. Also verify if the subtitle 'across the stacked frames so basically' appears alongside this colorful image. Pay attention to the temporal sequence to confirm the subtitle appears at the same time as the colorful image."
+}
+Frames to verify: ['frames/frame_0363.jpg', 'frames/frame_0364.jpg', 'frames/frame_0365.jpg', 'frames/frame_0366.jpg', 'frames/frame_0367.jpg', 'frames/frame_0368.jpg', 'frames/frame_0369.jpg', 'frames/frame_0370.jpg', 'frames/frame_0371.jpg', 'frames/frame_0372.jpg', 'frames/frame_0373.jpg']
+VLM Prompt: Video context: The given SET of frame-by-frame captions data appears to be a transcript of a video presentation on the topic of "Reinforcement Learning with Augmented Data" (RAD). The presentation discusses the concept of RAD, its application in machine learning, and its benefits in improving the performance of reinforcement learning models.
+
+**Main Characters:**
+The main characters mentioned in the captions are the authors of the research paper "Reinforcement Learning with Augmented Data", including Michael Laskin, Kimin Lee, Adam Stooke, Lerrel Pinto, Pieter Abbeel, and Aravind Srinivas, all affiliated with UC Berkeley, with Lerrel Pinto also associated with NYU.
+
+**Setting:**
+The setting of the video appears to be an academic or educational context, likely a presentation or lecture on the topic of reinforcement learning and data augmentation.
+
+**Plot Line:**
+The plot line of the video can be summarized as follows:
+
+1. Introduction to Reinforcement Learning with Augmented Data (RAD)
+2. Explanation of the RAD process, including data augmentation techniques such as color jitter and crop
+3. Discussion of the benefits of RAD in improving the performance of reinforcement learning models
+4. Analysis of the generalization ability of RAD on three OpenAI ProcGen environments: BigFish, StarPilot, and Jumper
+5. Comparison of RAD's performance to other baselines, including CURL, PlaNet, Dreamer, SAC+AE, SLACv1, Pixel SAC, and State SAC
+6. Conclusion and summary of the key findings
+
+**Vibes:**
+The overall vibe of the video is informative, technical, and academic, suggesting a presentation or lecture on a specialized topic in machine learning.
+
+**General Details:**
+The video appears to be a detailed and technical discussion of the RAD concept, its application, and its benefits. The captions suggest that the video includes various visual aids, such as diagrams, flowcharts, and graphs, to illustrate the concepts being discussed. The tone is formal and academic, indicating that the video is intended for an audience with a strong background in machine learning and reinforcement learning.
+
+Examine these frames to verify if answer '3' (which corresponds to option D: 'across the stacked frames so basically') is correct for the question about a colorful image with red, orange, and blue colors on a white background. Check if: 1) There is an image with red colors on white background, 2) Orange colors on white background, 3) Blue colors on white background, 4) White background is present, 5) The image contains red, orange and blue elements together, 6) It's a visual diagram/graphic with multiple colors on white. Also verify if the subtitle 'across the stacked frames so basically' appears alongside this colorful image. Pay attention to the temporal sequence to confirm the subtitle appears at the same time as the colorful image.
+
+Subtitles visible in these frames:
+  frames/frame_0363.jpg: "important thing here is that these"
+  frames/frame_0365.jpg: "augmentations are applied consistently"
+  frames/frame_0368.jpg: "across the stacked frames so basically"
+  frames/frame_0371.jpg: "you select on an augmentation and on the"
+  frames/frame_0373.jpg: "scale of that augmentation and then you"
+
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 11, 'image_paths': ['/mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0363.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0364.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0365.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0366.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0367.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0368.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0369.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0370.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0371.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0372.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0373.jpg'], 'response': "Based on the provided frames and subtitles, let’s verify each condition for the question about the colorful image with red, orange, and blue colors on a white background, and whether the subtitle “across the stacked frames so basically” (option D, answer '3') appears alongside it.\n\n---\n\n### **Verification of Image Properties:**\n\n1. **Red colors on white background?**  \n✅ YES. The diagram on the right side of the frames (from frame 0363 to 0373) contains **red hand-drawn arrows and boxes** on a white background. This is clearly visible in all frames.\n\n2. **Orange colors on white background?**  \n✅ YES. In frames 0369–0373, there is a **yellow/orange highlight box** around the text “Augmentations applied consistently across stacked frames”. While not pure orange, this is clearly in the orange/yellow spectrum and is placed on a white background. Additionally, some of the small images in the augmentation grid (e.g., “Color jitter”) contain orange-toned pixels.\n\n3. **Blue colors on white background?**  \n✅ YES. In the grid of small images on the left (e.g., “Cutout color”, “Color jitter”), many of the game/environment screenshots contain **blue elements** (e.g., sky, water, or UI elements). These are displayed on a white background.\n\n4. **White background is present?**  \n✅ YES. The entire slide/diagram has a **white background**, as seen in all 11 frames.\n\n5. **Image contains red, orange, and blue elements together?**  \n✅ YES.  \n- Red: hand-drawn diagram elements.  \n- Orange: highlighted text box (yellow-orange) and some color jittered images.  \n- Blue: visible in the small game screenshots (e.g., sky, water).  \nAll three colors are present simultaneously in the same frame (e.g., frame 0369 onward).\n\n6. **Visual diagram/graphic with multiple colors on white?**  \n✅ YES. The frame contains a **technical diagram** with red annotations, yellow/orange highlights, blue elements in the images, and text — all on a white background. This matches the description of a multi-colored visual graphic.\n\n---\n\n### **Verification of Subtitle Timing:**\n\n- The subtitle **“across the stacked frames so basically”** appears in **frame 0368** (as per the provided subtitle list).\n- Frame 0368 **visually contains** the colorful diagram described above: red arrows/boxes, yellow/orange highlight, blue elements in small images, all on white background.\n- Therefore, the subtitle **does appear at the same time** as the colorful image.\n\n---\n\n### ✅ Final Conclusion:\n\nAll 6 conditions are satisfied. The colorful image with red, orange, and blue elements on a white background is present, and the subtitle “across the stacked frames so basically” appears concurrently with it in frame 0368.\n\n**Answer '3' (option D) is CORRECT.**"}], 'formatted_responses': ["\n=== Batch 0-11 (11 frames) ===\nFrames: /mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0363.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0364.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0365.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0366.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0367.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0368.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0369.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0370.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0371.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0372.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0373.jpg\nVLM Response: Based on the provided frames and subtitles, let’s verify each condition for the question about the colorful image with red, orange, and blue colors on a white background, and whether the subtitle “across the stacked frames so basically” (option D, answer '3') appears alongside it.\n\n---\n\n### **Verification of Image Properties:**\n\n1. **Red colors on white background?**  \n✅ YES. The diagram on the right side of the frames (from frame 0363 to 0373) contains **red hand-drawn arrows and boxes** on a white background. This is clearly visible in all frames.\n\n2. **Orange colors on white background?**  \n✅ YES. In frames 0369–0373, there is a **yellow/orange highlight box** around the text “Augmentations applied consistently across stacked frames”. While not pure orange, this is clearly in the orange/yellow spectrum and is placed on a white background. Additionally, some of the small images in the augmentation grid (e.g., “Color jitter”) contain orange-toned pixels.\n\n3. **Blue colors on white background?**  \n✅ YES. In the grid of small images on the left (e.g., “Cutout color”, “Color jitter”), many of the game/environment screenshots contain **blue elements** (e.g., sky, water, or UI elements). These are displayed on a white background.\n\n4. **White background is present?**  \n✅ YES. The entire slide/diagram has a **white background**, as seen in all 11 frames.\n\n5. **Image contains red, orange, and blue elements together?**  \n✅ YES.  \n- Red: hand-drawn diagram elements.  \n- Orange: highlighted text box (yellow-orange) and some color jittered images.  \n- Blue: visible in the small game screenshots (e.g., sky, water).  \nAll three colors are present simultaneously in the same frame (e.g., frame 0369 onward).\n\n6. **Visual diagram/graphic with multiple colors on white?**  \n✅ YES. The frame contains a **technical diagram** with red annotations, yellow/orange highlights, blue elements in the images, and text — all on a white background. This matches the description of a multi-colored visual graphic.\n\n---\n\n### **Verification of Subtitle Timing:**\n\n- The subtitle **“across the stacked frames so basically”** appears in **frame 0368** (as per the provided subtitle list).\n- Frame 0368 **visually contains** the colorful diagram described above: red arrows/boxes, yellow/orange highlight, blue elements in small images, all on white background.\n- Therefore, the subtitle **does appear at the same time** as the colorful image.\n\n---\n\n### ✅ Final Conclusion:\n\nAll 6 conditions are satisfied. The colorful image with red, orange, and blue elements on a white background is present, and the subtitle “across the stacked frames so basically” appears concurrently with it in frame 0368.\n\n**Answer '3' (option D) is CORRECT.**\n"], 'condensed_response': '**Scene Summary (Frames\u202f0363\u202f–\u202f0373)**  \n\n- **Visual layout:** A white‑background slide that stays visually constant across the batch.  \n  - **Red elements:** Hand‑drawn arrows and boxes on the right side of the slide.  \n  - **Orange element:** A yellow‑orange highlight box framing the caption *“Augmentations applied consistently across stacked frames.”* (prominent from frame\u202f0369 onward).  \n  - **Blue elements:** Small game‑environment screenshots on the left (sky, water, UI) that contain blue tones.  \n\n- **Subtitle timing:** The subtitle **“across the stacked frames so basically”** appears in **frame\u202f0368**, exactly when the colorful diagram (red arrows, orange highlight, blue screenshots) is on screen.\n\n- **Character/element tracking:**  \n  - **Red arrows/boxes** act as the “pointing” characters, staying in the same positions throughout the batch.  \n  - **Orange highlight** enters the view in frame\u202f0369 and remains until the end of the batch.  \n  - **Blue screenshots** are present in every frame, providing a continuous blue visual cue.\n\n**Conclusion:** The multi‑colored diagram (red, orange, blue on white) and the subtitle “across the stacked frames so basically” co‑occur in frame\u202f0368, satisfying the query. Answer\u202f‘3’ (option\u202fD) is correct.', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 11, 'image_paths': ['/mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0363.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0364.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0365.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0366.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0367.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0368.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0369.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0370.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0371.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0372.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0373.jpg'], 'response': "Based on the provided frames and subtitles, let’s verify each condition for the question about the colorful image with red, orange, and blue colors on a white background, and whether the subtitle “across the stacked frames so basically” (option D, answer '3') appears alongside it.\n\n---\n\n### **Verification of Image Properties:**\n\n1. **Red colors on white background?**  \n✅ YES. The diagram on the right side of the frames (from frame 0363 to 0373) contains **red hand-drawn arrows and boxes** on a white background. This is clearly visible in all frames.\n\n2. **Orange colors on white background?**  \n✅ YES. In frames 0369–0373, there is a **yellow/orange highlight box** around the text “Augmentations applied consistently across stacked frames”. While not pure orange, this is clearly in the orange/yellow spectrum and is placed on a white background. Additionally, some of the small images in the augmentation grid (e.g., “Color jitter”) contain orange-toned pixels.\n\n3. **Blue colors on white background?**  \n✅ YES. In the grid of small images on the left (e.g., “Cutout color”, “Color jitter”), many of the game/environment screenshots contain **blue elements** (e.g., sky, water, or UI elements). These are displayed on a white background.\n\n4. **White background is present?**  \n✅ YES. The entire slide/diagram has a **white background**, as seen in all 11 frames.\n\n5. **Image contains red, orange, and blue elements together?**  \n✅ YES.  \n- Red: hand-drawn diagram elements.  \n- Orange: highlighted text box (yellow-orange) and some color jittered images.  \n- Blue: visible in the small game screenshots (e.g., sky, water).  \nAll three colors are present simultaneously in the same frame (e.g., frame 0369 onward).\n\n6. **Visual diagram/graphic with multiple colors on white?**  \n✅ YES. The frame contains a **technical diagram** with red annotations, yellow/orange highlights, blue elements in the images, and text — all on a white background. This matches the description of a multi-colored visual graphic.\n\n---\n\n### **Verification of Subtitle Timing:**\n\n- The subtitle **“across the stacked frames so basically”** appears in **frame 0368** (as per the provided subtitle list).\n- Frame 0368 **visually contains** the colorful diagram described above: red arrows/boxes, yellow/orange highlight, blue elements in small images, all on white background.\n- Therefore, the subtitle **does appear at the same time** as the colorful image.\n\n---\n\n### ✅ Final Conclusion:\n\nAll 6 conditions are satisfied. The colorful image with red, orange, and blue elements on a white background is present, and the subtitle “across the stacked frames so basically” appears concurrently with it in frame 0368.\n\n**Answer '3' (option D) is CORRECT.**"}], 'formatted_responses': ["\n=== Batch 0-11 (11 frames) ===\nFrames: /mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0363.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0364.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0365.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0366.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0367.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0368.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0369.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0370.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0371.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0372.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/to7vCdkLi4s/frames/frame_0373.jpg\nVLM Response: Based on the provided frames and subtitles, let’s verify each condition for the question about the colorful image with red, orange, and blue colors on a white background, and whether the subtitle “across the stacked frames so basically” (option D, answer '3') appears alongside it.\n\n---\n\n### **Verification of Image Properties:**\n\n1. **Red colors on white background?**  \n✅ YES. The diagram on the right side of the frames (from frame 0363 to 0373) contains **red hand-drawn arrows and boxes** on a white background. This is clearly visible in all frames.\n\n2. **Orange colors on white background?**  \n✅ YES. In frames 0369–0373, there is a **yellow/orange highlight box** around the text “Augmentations applied consistently across stacked frames”. While not pure orange, this is clearly in the orange/yellow spectrum and is placed on a white background. Additionally, some of the small images in the augmentation grid (e.g., “Color jitter”) contain orange-toned pixels.\n\n3. **Blue colors on white background?**  \n✅ YES. In the grid of small images on the left (e.g., “Cutout color”, “Color jitter”), many of the game/environment screenshots contain **blue elements** (e.g., sky, water, or UI elements). These are displayed on a white background.\n\n4. **White background is present?**  \n✅ YES. The entire slide/diagram has a **white background**, as seen in all 11 frames.\n\n5. **Image contains red, orange, and blue elements together?**  \n✅ YES.  \n- Red: hand-drawn diagram elements.  \n- Orange: highlighted text box (yellow-orange) and some color jittered images.  \n- Blue: visible in the small game screenshots (e.g., sky, water).  \nAll three colors are present simultaneously in the same frame (e.g., frame 0369 onward).\n\n6. **Visual diagram/graphic with multiple colors on white?**  \n✅ YES. The frame contains a **technical diagram** with red annotations, yellow/orange highlights, blue elements in the images, and text — all on a white background. This matches the description of a multi-colored visual graphic.\n\n---\n\n### **Verification of Subtitle Timing:**\n\n- The subtitle **“across the stacked frames so basically”** appears in **frame 0368** (as per the provided subtitle list).\n- Frame 0368 **visually contains** the colorful diagram described above: red arrows/boxes, yellow/orange highlight, blue elements in small images, all on white background.\n- Therefore, the subtitle **does appear at the same time** as the colorful image.\n\n---\n\n### ✅ Final Conclusion:\n\nAll 6 conditions are satisfied. The colorful image with red, orange, and blue elements on a white background is present, and the subtitle “across the stacked frames so basically” appears concurrently with it in frame 0368.\n\n**Answer '3' (option D) is CORRECT.**\n"], 'condensed_response': '**Scene Summary (Frames\u202f0363\u202f–\u202f0373)**  \n\n- **Visual layout:** A white‑background slide that stays visually constant across the batch.  \n  - **Red elements:** Hand‑drawn arrows and boxes on the right side of the slide.  \n  - **Orange element:** A yellow‑orange highlight box framing the caption *“Augmentations applied consistently across stacked frames.”* (prominent from frame\u202f0369 onward).  \n  - **Blue elements:** Small game‑environment screenshots on the left (sky, water, UI) that contain blue tones.  \n\n- **Subtitle timing:** The subtitle **“across the stacked frames so basically”** appears in **frame\u202f0368**, exactly when the colorful diagram (red arrows, orange highlight, blue screenshots) is on screen.\n\n- **Character/element tracking:**  \n  - **Red arrows/boxes** act as the “pointing” characters, staying in the same positions throughout the batch.  \n  - **Orange highlight** enters the view in frame\u202f0369 and remains until the end of the batch.  \n  - **Blue screenshots** are present in every frame, providing a continuous blue visual cue.\n\n**Conclusion:** The multi‑colored diagram (red, orange, blue on white) and the subtitle “across the stacked frames so basically” co‑occur in frame\u202f0368, satisfying the query. Answer\u202f‘3’ (option\u202fD) is correct.', 'failed_images': []}
+
+Question Being Answered: In the picture, there is an image with colors like red, orange, and blue on a white background. Alongside which subtitles does this screen appear?
+
+Answer Choices:
+A. whatever 300 points in this Walker if and okay crop is the most the most effective
+B. frames then you can decide on a on a
+
+C. quite grandiose so we'll dive into it
+D. across the stacked frames so basically
+
+Given Answer: 3
+Evidence Frames Used: ['frames/frame_0368.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Narrator: The narrator is explaining the concept of "Reinforcement Learning with Augmented Data" in a video presentation.
+
+SCENES:
+Title Page: The title page of a research paper titled "Reinforcement Learning with Augmented Data" lists the authors and their affiliations. [Frame 1-41]
+Diagram of RAD: A diagram illustrating the process of "Reinforcement Learning with Augmented Data" (RAD). [Frame 43-65]
+Data Augmentation: A diagram and text explaining data augmentation techniques. [Frame 67-73]
+Reinforcement Learning: A diagram and text explaining reinforcement learning. [Frame 74-80]
+Supervised Learning: A diagram and text explaining supervised learning and its relation to data augmentation. [Frame 81-85]
+Whiteboard: A whiteboard with handwritten notes and diagrams illustrating the concept of "Reinforcement Learning with Augmented Data". [Frame 101-105]
+Research Paper: A page from a research paper discussing data augmentation techniques and their application to reinforcement learning. [Frame 234-1338]
+
+EVENTS:
+Introduction to RAD: The narrator introduces the concept of "Reinforcement Learning with Augmented Data" (RAD). [Frame 1]
+Explanation of RAD: The narrator explains the process of RAD using a diagram. [Frame 43]
+Discussion of Data Augmentation: The narrator discusses data augmentation techniques and their application to reinforcement learning. [Frame 67]
+Explanation of Reinforcement Learning: The narrator explains the concept of reinforcement learning. [Frame 74]
+Comparison of RAD and CURL: The narrator compares the performance of RAD and CURL. [Frame 1065]
+
+================================================================================
+Generated at: 2026-01-03 10:19:58
+================================================================================
+
+
+
+SUBTITLES IN EVIDENCE FRAMES:
+  frames/frame_0368.jpg: "across the stacked frames so basically"
+
+⚠️ IMPORTANT: Use subtitle information to verify text-based questions or questions about visible captions/words.
+
+
+QUESTION-BASED CRITERIA:
+  Q1. Image with red colors visible on white background
+  Q2. Image with orange colors visible on white background
+  Q3. Image with blue colors visible on white background
+  Q4. White background in the image
+  Q5. Colorful image containing red, orange and blue elements
+  Q6. Visual diagram or graphic with multiple colors on white
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 6)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, if criteria_percentage > 0.5 (>50% of criteria pass):
+   - Review ALL answer choices (A, B, C, D, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D)
+5. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - Set critic_answer_choice to -1 (indicating frames may not be the right scene)
+   - Set suggestion to "These may not be the right frames/scene. Continue searching for better evidence."
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 6,
+    "criteria_percentage": <criteria_passed / 6>,
+    "base_confidence": <(criteria_passed / 6) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, or -1 if ≤50% criteria pass>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "Image with red colors visible on white background",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms red hand-drawn arrows and boxes on white background in all frames"
+        },
+        {
+            "criterion": "Image with orange colors visible on white background",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms yellow/orange highlight box and orange-toned pixels in color jitter images on white background"
+        },
+        {
+            "criterion": "Image with blue colors visible on white background",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms blue elements in game screenshots (sky, water, UI) on white background"
+        },
+        {
+            "criterion": "White background in the image",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms entire slide/diagram has white background in all frames"
+        },
+        {
+            "criterion": "Colorful image containing red, orange and blue elements",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms all three colors present simultaneously (red arrows, orange highlight, blue screenshots)"
+        },
+        {
+            "criterion": "Visual diagram or graphic with multiple colors on white",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms technical diagram with red annotations, yellow/orange highlights, blue elements on white background"
+        }
+    ],
+    "question_criteria_passed": 6,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 6,
+    "criteria_total": 6,
+    "criteria_percentage": 1.0,
+    "base_confidence": 100,
+    "confidence": 100,
+    "critic_answer_choice": 3,
+    "critic_reasoning": "The VLM verification confirms all visual criteria are met in frame 0368: red/orange/blue colors on white background in a technical diagram. The subtitle 'across the stacked frames so basically' appears in this exact frame, making option D (answer '3') the correct choice.",
+    "possible_errors": [],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'Image with red colors visible on white background', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms red hand-drawn arrows and boxes on white background in all frames'}, {'criterion': 'Image with orange colors visible on white background', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms yellow/orange highlight box and orange-toned pixels in color jitter images on white background'}, {'criterion': 'Image with blue colors visible on white background', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms blue elements in game screenshots (sky, water, UI) on white background'}, {'criterion': 'White background in the image', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms entire slide/diagram has white background in all frames'}, {'criterion': 'Colorful image containing red, orange and blue elements', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms all three colors present simultaneously (red arrows, orange highlight, blue screenshots)'}, {'criterion': 'Visual diagram or graphic with multiple colors on white', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms technical diagram with red annotations, yellow/orange highlights, blue elements on white background'}], 'question_criteria_passed': 6, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 6, 'criteria_total': 6, 'criteria_percentage': 1.0, 'base_confidence': 100, 'confidence': 100, 'critic_answer_choice': 3, 'critic_reasoning': "The VLM verification confirms all visual criteria are met in frame 0368: red/orange/blue colors on white background in a technical diagram. The subtitle 'across the stacked frames so basically' appears in this exact frame, making option D (answer '3') the correct choice.", 'possible_errors': [], 'suggestion': None}

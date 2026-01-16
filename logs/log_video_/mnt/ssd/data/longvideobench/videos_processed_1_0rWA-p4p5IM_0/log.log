@@ -1,0 +1,216 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0000.jpg", "frames/frame_0001.jpg", "frames/frame_0002.jpg", "frames/frame_0003.jpg", "frames/frame_0004.jpg", "frames/frame_0005.jpg", "frames/frame_0006.jpg", "frames/frame_0007.jpg", "frames/frame_0008.jpg", "frames/frame_0009.jpg", "frames/frame_0010.jpg", "frames/frame_0011.jpg", "frames/frame_0012.jpg", "frames/frame_0013.jpg", "frames/frame_0014.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '2' is correct for the question: On a white surface, there is a small silver bowl with a piece of cake inside it. A person, whose face is not visible, is using a tool to take the cake out of the bowl. Where does the cake appear? Check the question criteria: ['White surface visible in the frame', 'Small silver bowl visible on the surface', 'Piece of cake inside the silver bowl', \"Person's hands or body visible (face not shown)\", 'Tool being used to remove cake from bowl']. Pay attention to timestamps and temporal sequences. Look for visual evidence showing where the cake is placed after being removed from the silver bowl to determine if it appears in a teacup, red bag, silver plate, bucket with alcohol, or black plate."
+}
+Frames to verify: ['frames/frame_0000.jpg', 'frames/frame_0001.jpg', 'frames/frame_0002.jpg', 'frames/frame_0003.jpg', 'frames/frame_0004.jpg', 'frames/frame_0005.jpg', 'frames/frame_0006.jpg', 'frames/frame_0007.jpg', 'frames/frame_0008.jpg', 'frames/frame_0009.jpg', 'frames/frame_0010.jpg', 'frames/frame_0011.jpg', 'frames/frame_0012.jpg', 'frames/frame_0013.jpg', 'frames/frame_0014.jpg']
+VLM Prompt: Video context: After analyzing the given SET of frame-by-frame captions data for a long video, I have derived a global summary that captures the main characters, setting, plot line, vibes, and general details.
+
+**Main Characters:**
+
+1. A baker or a person preparing a cake (likely the main character, but not explicitly shown in most frames)
+2. A smiling woman with short black hair and a black T-shirt (appears in frames 14-16)
+
+**Setting:**
+
+1. A kitchen or bakery with a white marble countertop, industrial equipment, and a brick wall.
+2. A teal or green background, possibly a table or countertop.
+3. A black chalkboard or graphic background with white illustrations.
+
+**Plot Line:**
+
+The video appears to be a recipe or tutorial video for making a birthday cake, specifically the "ULTIMATE BIRTHDAY CAKE" as mentioned in the graphics. The video progresses from preparing the cake batter to frosting and decorating the cake, showcasing various steps and details. The narrative is interspersed with shots of the finished cake, the smiling woman holding bread, and graphics with text and illustrations.
+
+**Vibes:**
+
+1. Festive and celebratory, with the use of colorful sprinkles, confetti, and party supplies.
+2. Informative and instructional, with a focus on showcasing the preparation and decoration of the cake.
+3. Upbeat and cheerful, with the presence of a smiling woman and the overall bright and colorful visuals.
+
+**General Details:**
+
+1. The video features a mix of close-up shots of hands preparing the cake, the finished cake, and the smiling woman holding bread.
+2. The graphics with "TASTY 101" and "ULTIMATE BIRTHDAY CAKE" suggest that the video is part of a series or a branded content.
+3. The use of music and subtitles in some frames indicates that the video is intended to be engaging and easy to follow.
+
+Overall, the video appears to be a lively and informative recipe video that showcases the preparation of a birthday cake, with a focus on visuals, music, and engaging narrative.
+
+Based on these frames (including context before/after), verify if the answer '2' is correct for the question: On a white surface, there is a small silver bowl with a piece of cake inside it. A person, whose face is not visible, is using a tool to take the cake out of the bowl. Where does the cake appear? Check the question criteria: ['White surface visible in the frame', 'Small silver bowl visible on the surface', 'Piece of cake inside the silver bowl', "Person's hands or body visible (face not shown)", 'Tool being used to remove cake from bowl']. Pay attention to timestamps and temporal sequences. Look for visual evidence showing where the cake is placed after being removed from the silver bowl to determine if it appears in a teacup, red bag, silver plate, bucket with alcohol, or black plate.
+
+Subtitles visible in these frames:
+  frames/frame_0003.jpg: "tender sweet and best of all festive"
+  frames/frame_0005.jpg: "this birthday cake is our go-to and we"
+  frames/frame_0007.jpg: "have a few tricks to make it perfect"
+  frames/frame_0009.jpg: "maybe you've made this from the box"
+  frames/frame_0011.jpg: "before but today if you want to up your"
+  frames/frame_0013.jpg: "game you have come to the right place"
+
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 15, 'image_paths': ['/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0001.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0002.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0003.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0004.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0005.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0006.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0007.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0008.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0009.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0010.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0011.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0012.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0013.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0014.jpg'], 'response': "Based on the provided frames and the question criteria, the answer **'2' is NOT correct**.\n\n### Reasoning:\n\nThe question asks:  \n> *On a white surface, there is a small silver bowl with a piece of cake inside it. A person, whose face is not visible, is using a tool to take the cake out of the bowl. Where does the cake appear?*  \n> *(Options: teacup, red bag, silver plate, bucket with alcohol, black plate)*\n\nWe must verify **all 5 criteria**:\n\n1. **White surface visible in the frame** → ✅ Yes, seen in frames 5–6 (overhead shot of cake on turntable, surrounded by white countertop).\n\n2. **Small silver bowl visible on the surface** → ❌ **NO**. There is **no small silver bowl** visible in any of the 15 frames. The bowls shown are:\n   - A **yellow bowl** with sprinkles (frame 5)\n   - A **red bowl** with sprinkles (frame 5)\n   - A **large glass mixing bowl** (frames 7–8)\n   - No small *silver* bowl is present.\n\n3. **Piece of cake inside the silver bowl** → ❌ **NO**. Since there is no silver bowl, there is no cake inside one.\n\n4. **Person’s hands or body visible (face not shown)** → ✅ Yes, hands are visible in frames 5–6, 9–10, 12–14.\n\n5. **Tool being used to remove cake from bowl** → ❌ **NO**. No tool is shown being used to remove cake *from a silver bowl*, because no such bowl exists in the frames.\n\n---\n\n### Additionally — Where does the cake appear after being removed?\n\nEven if we ignore the missing silver bowl, the cake is never shown being removed *from a bowl* in the first place. The cake is shown:\n- Being frosted on a turntable (frames 5–6)\n- Being smoothed with a bench scraper (frames 9–10)\n- Being sliced (frame 11)\n- A slice being lifted out (frames 12–14) — **this slice is placed on nothing; it’s just held up for display**\n\nThere is **no visual evidence** that the cake appears in a:\n- teacup ❌\n- red bag ❌\n- silver plate ❌\n- bucket with alcohol ❌\n- black plate ❌\n\nThe slice is simply held in hand against a teal background — **not placed on any of the listed objects**.\n\n---\n\n### Conclusion:\n\nThe scenario described in the question **does not occur** in any of the 15 frames. The **silver bowl does not exist**, and therefore, the cake is not removed from it. The answer **'2'** (whatever it refers to — likely one of the listed containers) **cannot be correct** because the entire premise is unsupported by visual evidence.\n\n✅ Final Answer: **No, '2' is not correct.**"}], 'formatted_responses': ["\n=== Batch 0-15 (14 frames) ===\nFrames: /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0001.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0002.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0003.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0004.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0005.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0006.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0007.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0008.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0009.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0010.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0011.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0012.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0013.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0014.jpg\nVLM Response: Based on the provided frames and the question criteria, the answer **'2' is NOT correct**.\n\n### Reasoning:\n\nThe question asks:  \n> *On a white surface, there is a small silver bowl with a piece of cake inside it. A person, whose face is not visible, is using a tool to take the cake out of the bowl. Where does the cake appear?*  \n> *(Options: teacup, red bag, silver plate, bucket with alcohol, black plate)*\n\nWe must verify **all 5 criteria**:\n\n1. **White surface visible in the frame** → ✅ Yes, seen in frames 5–6 (overhead shot of cake on turntable, surrounded by white countertop).\n\n2. **Small silver bowl visible on the surface** → ❌ **NO**. There is **no small silver bowl** visible in any of the 15 frames. The bowls shown are:\n   - A **yellow bowl** with sprinkles (frame 5)\n   - A **red bowl** with sprinkles (frame 5)\n   - A **large glass mixing bowl** (frames 7–8)\n   - No small *silver* bowl is present.\n\n3. **Piece of cake inside the silver bowl** → ❌ **NO**. Since there is no silver bowl, there is no cake inside one.\n\n4. **Person’s hands or body visible (face not shown)** → ✅ Yes, hands are visible in frames 5–6, 9–10, 12–14.\n\n5. **Tool being used to remove cake from bowl** → ❌ **NO**. No tool is shown being used to remove cake *from a silver bowl*, because no such bowl exists in the frames.\n\n---\n\n### Additionally — Where does the cake appear after being removed?\n\nEven if we ignore the missing silver bowl, the cake is never shown being removed *from a bowl* in the first place. The cake is shown:\n- Being frosted on a turntable (frames 5–6)\n- Being smoothed with a bench scraper (frames 9–10)\n- Being sliced (frame 11)\n- A slice being lifted out (frames 12–14) — **this slice is placed on nothing; it’s just held up for display**\n\nThere is **no visual evidence** that the cake appears in a:\n- teacup ❌\n- red bag ❌\n- silver plate ❌\n- bucket with alcohol ❌\n- black plate ❌\n\nThe slice is simply held in hand against a teal background — **not placed on any of the listed objects**.\n\n---\n\n### Conclusion:\n\nThe scenario described in the question **does not occur** in any of the 15 frames. The **silver bowl does not exist**, and therefore, the cake is not removed from it. The answer **'2'** (whatever it refers to — likely one of the listed containers) **cannot be correct** because the entire premise is unsupported by visual evidence.\n\n✅ Final Answer: **No, '2' is not correct.**\n"], 'condensed_response': '**Condensed Scene Summary (Frames\u202f1‑14)**  \n\n- **Setting:** A white countertop (visible in frames\u202f5‑6) serves as the background.  \n- **Characters/Hands:** The only visible “person” is represented by hands; the face never appears. Hands are seen in frames\u202f5‑6,\u202f9‑10,\u202f12‑14.  \n- **Tools:** A bench‑scraper/spatula is used to smooth a cake (frames\u202f9‑10). No other tool is shown taking a cake out of a bowl.  \n- **Objects & Cake Progression:**  \n  * **Frames\u202f5‑6:** A cake sits on a turntable; surrounding bowls are **yellow** and **red** (both with sprinkles) and a **large clear mixing bowl**—none are small silver bowls.  \n  * **Frame\u202f11:** The cake is sliced.  \n  * **Frames\u202f12‑14:** A slice is lifted and held aloft against a teal background; it is not placed on any plate, cup, bag, or bucket.  \n\n- **Missing Elements Relative to the Question:**  \n  1. No **small silver bowl** is present.  \n  2. Consequently, there is no cake **inside** a silver bowl.  \n  3. No tool is shown removing cake *from* such a bowl.  \n  4. The cake slice is never deposited onto any of the listed containers (teacup, red bag, silver plate, bucket with alcohol, black plate).\n\n**Answer to the Multiple‑Choice Prompt**  \nBecause the visual evidence for a silver bowl and the subsequent placement of the cake does not exist, option **‘2’** (the second listed choice) cannot be correct.\n\n**Final Verdict:** **‘2’ is NOT correct.**', 'failed_images': [('/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0000.jpg', 'File not found')]}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 15, 'image_paths': ['/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0001.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0002.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0003.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0004.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0005.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0006.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0007.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0008.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0009.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0010.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0011.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0012.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0013.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0014.jpg'], 'response': "Based on the provided frames and the question criteria, the answer **'2' is NOT correct**.\n\n### Reasoning:\n\nThe question asks:  \n> *On a white surface, there is a small silver bowl with a piece of cake inside it. A person, whose face is not visible, is using a tool to take the cake out of the bowl. Where does the cake appear?*  \n> *(Options: teacup, red bag, silver plate, bucket with alcohol, black plate)*\n\nWe must verify **all 5 criteria**:\n\n1. **White surface visible in the frame** → ✅ Yes, seen in frames 5–6 (overhead shot of cake on turntable, surrounded by white countertop).\n\n2. **Small silver bowl visible on the surface** → ❌ **NO**. There is **no small silver bowl** visible in any of the 15 frames. The bowls shown are:\n   - A **yellow bowl** with sprinkles (frame 5)\n   - A **red bowl** with sprinkles (frame 5)\n   - A **large glass mixing bowl** (frames 7–8)\n   - No small *silver* bowl is present.\n\n3. **Piece of cake inside the silver bowl** → ❌ **NO**. Since there is no silver bowl, there is no cake inside one.\n\n4. **Person’s hands or body visible (face not shown)** → ✅ Yes, hands are visible in frames 5–6, 9–10, 12–14.\n\n5. **Tool being used to remove cake from bowl** → ❌ **NO**. No tool is shown being used to remove cake *from a silver bowl*, because no such bowl exists in the frames.\n\n---\n\n### Additionally — Where does the cake appear after being removed?\n\nEven if we ignore the missing silver bowl, the cake is never shown being removed *from a bowl* in the first place. The cake is shown:\n- Being frosted on a turntable (frames 5–6)\n- Being smoothed with a bench scraper (frames 9–10)\n- Being sliced (frame 11)\n- A slice being lifted out (frames 12–14) — **this slice is placed on nothing; it’s just held up for display**\n\nThere is **no visual evidence** that the cake appears in a:\n- teacup ❌\n- red bag ❌\n- silver plate ❌\n- bucket with alcohol ❌\n- black plate ❌\n\nThe slice is simply held in hand against a teal background — **not placed on any of the listed objects**.\n\n---\n\n### Conclusion:\n\nThe scenario described in the question **does not occur** in any of the 15 frames. The **silver bowl does not exist**, and therefore, the cake is not removed from it. The answer **'2'** (whatever it refers to — likely one of the listed containers) **cannot be correct** because the entire premise is unsupported by visual evidence.\n\n✅ Final Answer: **No, '2' is not correct.**"}], 'formatted_responses': ["\n=== Batch 0-15 (14 frames) ===\nFrames: /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0001.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0002.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0003.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0004.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0005.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0006.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0007.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0008.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0009.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0010.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0011.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0012.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0013.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0014.jpg\nVLM Response: Based on the provided frames and the question criteria, the answer **'2' is NOT correct**.\n\n### Reasoning:\n\nThe question asks:  \n> *On a white surface, there is a small silver bowl with a piece of cake inside it. A person, whose face is not visible, is using a tool to take the cake out of the bowl. Where does the cake appear?*  \n> *(Options: teacup, red bag, silver plate, bucket with alcohol, black plate)*\n\nWe must verify **all 5 criteria**:\n\n1. **White surface visible in the frame** → ✅ Yes, seen in frames 5–6 (overhead shot of cake on turntable, surrounded by white countertop).\n\n2. **Small silver bowl visible on the surface** → ❌ **NO**. There is **no small silver bowl** visible in any of the 15 frames. The bowls shown are:\n   - A **yellow bowl** with sprinkles (frame 5)\n   - A **red bowl** with sprinkles (frame 5)\n   - A **large glass mixing bowl** (frames 7–8)\n   - No small *silver* bowl is present.\n\n3. **Piece of cake inside the silver bowl** → ❌ **NO**. Since there is no silver bowl, there is no cake inside one.\n\n4. **Person’s hands or body visible (face not shown)** → ✅ Yes, hands are visible in frames 5–6, 9–10, 12–14.\n\n5. **Tool being used to remove cake from bowl** → ❌ **NO**. No tool is shown being used to remove cake *from a silver bowl*, because no such bowl exists in the frames.\n\n---\n\n### Additionally — Where does the cake appear after being removed?\n\nEven if we ignore the missing silver bowl, the cake is never shown being removed *from a bowl* in the first place. The cake is shown:\n- Being frosted on a turntable (frames 5–6)\n- Being smoothed with a bench scraper (frames 9–10)\n- Being sliced (frame 11)\n- A slice being lifted out (frames 12–14) — **this slice is placed on nothing; it’s just held up for display**\n\nThere is **no visual evidence** that the cake appears in a:\n- teacup ❌\n- red bag ❌\n- silver plate ❌\n- bucket with alcohol ❌\n- black plate ❌\n\nThe slice is simply held in hand against a teal background — **not placed on any of the listed objects**.\n\n---\n\n### Conclusion:\n\nThe scenario described in the question **does not occur** in any of the 15 frames. The **silver bowl does not exist**, and therefore, the cake is not removed from it. The answer **'2'** (whatever it refers to — likely one of the listed containers) **cannot be correct** because the entire premise is unsupported by visual evidence.\n\n✅ Final Answer: **No, '2' is not correct.**\n"], 'condensed_response': '**Condensed Scene Summary (Frames\u202f1‑14)**  \n\n- **Setting:** A white countertop (visible in frames\u202f5‑6) serves as the background.  \n- **Characters/Hands:** The only visible “person” is represented by hands; the face never appears. Hands are seen in frames\u202f5‑6,\u202f9‑10,\u202f12‑14.  \n- **Tools:** A bench‑scraper/spatula is used to smooth a cake (frames\u202f9‑10). No other tool is shown taking a cake out of a bowl.  \n- **Objects & Cake Progression:**  \n  * **Frames\u202f5‑6:** A cake sits on a turntable; surrounding bowls are **yellow** and **red** (both with sprinkles) and a **large clear mixing bowl**—none are small silver bowls.  \n  * **Frame\u202f11:** The cake is sliced.  \n  * **Frames\u202f12‑14:** A slice is lifted and held aloft against a teal background; it is not placed on any plate, cup, bag, or bucket.  \n\n- **Missing Elements Relative to the Question:**  \n  1. No **small silver bowl** is present.  \n  2. Consequently, there is no cake **inside** a silver bowl.  \n  3. No tool is shown removing cake *from* such a bowl.  \n  4. The cake slice is never deposited onto any of the listed containers (teacup, red bag, silver plate, bucket with alcohol, black plate).\n\n**Answer to the Multiple‑Choice Prompt**  \nBecause the visual evidence for a silver bowl and the subsequent placement of the cake does not exist, option **‘2’** (the second listed choice) cannot be correct.\n\n**Final Verdict:** **‘2’ is NOT correct.**', 'failed_images': [('/mnt/ssd/data/longvideobench/videos_processed_1/0rWA-p4p5IM/frames/frame_0000.jpg', 'File not found')]}
+
+Question Being Answered: On a white surface, there is a small silver bowl with a piece of cake inside it. A person, whose face is not visible, is using a tool to take the cake out of the bowl. Where does the cake appear?
+
+Answer Choices:
+A. In a teacup
+B. In a red bag
+C. On a silver plate
+D. In a bucket with alcohol
+E. On a black plate
+
+Given Answer: 2
+Evidence Frames Used: ['frames/frame_0005.jpg', 'frames/frame_0006.jpg', 'frames/frame_0007.jpg', 'frames/frame_0008.jpg', 'frames/frame_0009.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Person 1 (Smiling Woman): Description: A smiling woman with short black hair, wearing a black T-shirt, standing in a kitchen or bakery.
+
+Person 2 (Hand/Finger Holder): Description: A person with brown or dark-skinned hands, possibly the same person as Person 1 or a different individual.
+
+SCENES:
+Scene 1 (Kitchen/Bakery) : Description: A kitchen or bakery setting with industrial equipment, a brick wall, and a white table. [frame_0014]
+Scene 2 (Cake Decorating/Table Setting) : Description: A white marble countertop or table with various baking supplies and colorful party decorations. [frame_0004]
+Scene 3 (Teal Background) : Description: A plain teal background used for displaying cakes. [frame_0002]
+Scene 4 (Dark/Black Background) : Description: A dark or black background, possibly a chalkboard or a dark-colored wall. [frame_0008]
+Scene 5 (Graphic/Chalkboard) : Description: A black chalkboard or graphic with white illustrations of food items and cooking utensils. [frame_0023]
+
+EVENTS:
+Event 1 (Cake Preparation/Decoration) : Description: Various hands preparing and decorating cakes with frosting, sprinkles, and other toppings. [frame_0001]
+Event 2 (Cake Display/Slicing) : Description: Displaying and slicing a decorated cake. [frame_0010]
+Event 3 (Bread Handling) : Description: Person 1 handling and displaying loaves of bread. [frame_0014]
+Event 4 (Sprinkles Handling) : Description: Hands handling and playing with rainbow-colored sprinkles. [frame_0017]
+
+================================================================================
+Generated at: 2026-01-03 10:19:08
+================================================================================
+
+
+
+SUBTITLES IN EVIDENCE FRAMES:
+  frames/frame_0005.jpg: "this birthday cake is our go-to and we"
+  frames/frame_0007.jpg: "have a few tricks to make it perfect"
+  frames/frame_0009.jpg: "maybe you've made this from the box"
+
+⚠️ IMPORTANT: Use subtitle information to verify text-based questions or questions about visible captions/words.
+
+
+QUESTION-BASED CRITERIA:
+  Q1. White surface visible in the frame
+  Q2. Small silver bowl visible on the surface
+  Q3. Piece of cake inside the silver bowl
+  Q4. Person's hands or body visible (face not shown)
+  Q5. Tool being used to remove cake from bowl
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 5)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, if criteria_percentage > 0.5 (>50% of criteria pass):
+   - Review ALL answer choices (A, B, C, D, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D)
+5. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - Set critic_answer_choice to -1 (indicating frames may not be the right scene)
+   - Set suggestion to "These may not be the right frames/scene. Continue searching for better evidence."
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 5,
+    "criteria_percentage": <criteria_passed / 5>,
+    "base_confidence": <(criteria_passed / 5) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, or -1 if ≤50% criteria pass>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "White surface visible in the frame",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms white countertop visible in frames 5-6"
+        },
+        {
+            "criterion": "Small silver bowl visible on the surface",
+            "criterion_type": "QUESTION",
+            "status": "FAIL",
+            "reasoning": "VLM reports no small silver bowl present; only yellow, red, and glass bowls seen"
+        },
+        {
+            "criterion": "Piece of cake inside the silver bowl",
+            "criterion_type": "QUESTION",
+            "status": "FAIL",
+            "reasoning": "No silver bowl exists, so cannot have cake inside it"
+        },
+        {
+            "criterion": "Person's hands or body visible (face not shown)",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms hands visible in multiple frames (5-6, 9-10, 12-14)"
+        },
+        {
+            "criterion": "Tool being used to remove cake from bowl",
+            "criterion_type": "QUESTION",
+            "status": "FAIL",
+            "reasoning": "No tool shown removing cake from a silver bowl as no such bowl exists"
+        }
+    ],
+    "question_criteria_passed": 2,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 2,
+    "criteria_total": 5,
+    "criteria_percentage": 0.4,
+    "base_confidence": 40.0,
+    "confidence": 40.0,
+    "critic_answer_choice": -1,
+    "critic_reasoning": "The VLM verification shows that the core premise of the question (a small silver bowl with cake being removed) does not exist in these frames. Only 2 of 5 criteria pass, indicating these are likely not the correct frames for answering this question.",
+    "possible_errors": [
+        "No small silver bowl present in any frame",
+        "No cake inside a silver bowl (since no silver bowl exists)",
+        "No tool shown removing cake from a silver bowl"
+    ],
+    "suggestion": "These may not be the right frames/scene. Continue searching for better evidence."
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'White surface visible in the frame', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms white countertop visible in frames 5-6'}, {'criterion': 'Small silver bowl visible on the surface', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': 'VLM reports no small silver bowl present; only yellow, red, and glass bowls seen'}, {'criterion': 'Piece of cake inside the silver bowl', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': 'No silver bowl exists, so cannot have cake inside it'}, {'criterion': "Person's hands or body visible (face not shown)", 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms hands visible in multiple frames (5-6, 9-10, 12-14)'}, {'criterion': 'Tool being used to remove cake from bowl', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': 'No tool shown removing cake from a silver bowl as no such bowl exists'}], 'question_criteria_passed': 2, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 2, 'criteria_total': 5, 'criteria_percentage': 0.4, 'base_confidence': 40.0, 'confidence': 40.0, 'critic_answer_choice': -1, 'critic_reasoning': 'The VLM verification shows that the core premise of the question (a small silver bowl with cake being removed) does not exist in these frames. Only 2 of 5 criteria pass, indicating these are likely not the correct frames for answering this question.', 'possible_errors': ['No small silver bowl present in any frame', 'No cake inside a silver bowl (since no silver bowl exists)', 'No tool shown removing cake from a silver bowl'], 'suggestion': 'These may not be the right frames/scene. Continue searching for better evidence.'}

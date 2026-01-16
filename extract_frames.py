@@ -16,6 +16,8 @@ from pathlib import Path
 import argparse
 from datetime import datetime
 import json
+from multiprocessing import Pool, cpu_count
+from functools import partial
 
 
 def get_video_id_from_filename(video_path):
@@ -83,9 +85,11 @@ def extract_frames(video_path, output_dir, fps=1, overwrite=False):
 
     cmd = [
         'ffmpeg',
+        '-threads', '0',  # Use all available CPU threads
         '-i', str(video_path),
-        '-vf', f'fps={fps}',
+        '-vf', f"fps={fps},scale='if(gte(iw,ih),-1,224)':'if(gte(iw,ih),224,-1)'",
         '-q:v', '2',  # High quality JPEG
+        '-threads', '0',  # Thread count for encoder
         output_pattern,
         '-y' if overwrite else '-n'  # Overwrite or skip existing
     ]
@@ -128,7 +132,65 @@ def extract_frames(video_path, output_dir, fps=1, overwrite=False):
         }
 
 
-def process_videos(video_source_dir, output_base_dir, fps=1, overwrite=False, video_ext=None):
+def process_single_video(args):
+    """
+    Process a single video (used for parallel processing).
+
+    Args:
+        args: Tuple of (video_path, output_base_dir, fps, overwrite, index, total)
+
+    Returns:
+        Dictionary with video processing result
+    """
+    video_path, output_base_dir, fps, overwrite, index, total = args
+    video_path = Path(video_path)
+    output_base_dir = Path(output_base_dir)
+
+    # Skip empty files
+    if video_path.stat().st_size == 0:
+        print(f"[{index}/{total}] {video_path.name} - EMPTY FILE, skipping")
+        return {
+            'video_id': get_video_id_from_filename(video_path),
+            'video_path': str(video_path),
+            'status': 'skipped',
+            'frames_extracted': 0,
+            'message': 'Empty file'
+        }
+
+    print(f"\n[{index}/{total}] Processing: {video_path.name}")
+
+    # Get video ID from filename
+    video_id = get_video_id_from_filename(video_path)
+    print(f"  Video ID: {video_id}")
+
+    # Create video directory structure
+    video_dir = output_base_dir / video_id
+    frames_dir = video_dir / 'frames'
+
+    # Extract frames
+    extraction_result = extract_frames(
+        video_path=video_path,
+        output_dir=frames_dir,
+        fps=fps,
+        overwrite=overwrite
+    )
+
+    # Build result
+    video_result = {
+        'video_id': video_id,
+        'video_path': str(video_path),
+        'frames_dir': str(frames_dir),
+        'status': extraction_result['status'],
+        'frames_extracted': extraction_result['frames_extracted']
+    }
+
+    if extraction_result['status'] == 'error':
+        video_result['error'] = extraction_result.get('error', 'Unknown error')
+
+    return video_result
+
+
+def process_videos(video_source_dir, output_base_dir, fps=1, overwrite=False, video_ext=None, parallel_jobs=1):
     """
     Process all videos in source directory.
 
@@ -138,6 +200,7 @@ def process_videos(video_source_dir, output_base_dir, fps=1, overwrite=False, vi
         fps: Frames per second to extract
         overwrite: Whether to overwrite existing frames
         video_ext: List of video extensions to process (default: common formats)
+        parallel_jobs: Number of parallel jobs (1 = sequential, 0 = auto)
 
     Returns:
         Dictionary with processing results
@@ -162,6 +225,10 @@ def process_videos(video_source_dir, output_base_dir, fps=1, overwrite=False, vi
         print(f"Looking for extensions: {video_ext}")
         return None
 
+    # Determine number of parallel jobs
+    if parallel_jobs == 0:
+        parallel_jobs = cpu_count()
+
     print(f"\n{'='*70}")
     print(f"FRAME EXTRACTION")
     print(f"{'='*70}")
@@ -169,6 +236,7 @@ def process_videos(video_source_dir, output_base_dir, fps=1, overwrite=False, vi
     print(f"Output directory: {output_base_dir}")
     print(f"Videos found: {len(video_files)}")
     print(f"FPS: {fps}")
+    print(f"Parallel jobs: {parallel_jobs}")
     print(f"{'='*70}\n")
 
     results = {
@@ -180,49 +248,30 @@ def process_videos(video_source_dir, output_base_dir, fps=1, overwrite=False, vi
         'videos': []
     }
 
-    for i, video_path in enumerate(sorted(video_files), 1):
-        # Skip empty files
-        if video_path.stat().st_size == 0:
-            print(f"[{i}/{len(video_files)}] {video_path.name} - EMPTY FILE, skipping")
-            results['skipped'] += 1
-            continue
+    # Prepare arguments for parallel processing
+    sorted_videos = sorted(video_files)
+    video_args = [
+        (video_path, output_base_dir, fps, overwrite, i, len(video_files))
+        for i, video_path in enumerate(sorted_videos, 1)
+    ]
 
-        print(f"\n[{i}/{len(video_files)}] Processing: {video_path.name}")
+    # Process videos (parallel or sequential)
+    if parallel_jobs > 1:
+        with Pool(processes=parallel_jobs) as pool:
+            video_results = pool.map(process_single_video, video_args)
+    else:
+        video_results = [process_single_video(args) for args in video_args]
 
-        # Get video ID from filename
-        video_id = get_video_id_from_filename(video_path)
-        print(f"  Video ID: {video_id}")
-
-        # Create video directory structure
-        video_dir = output_base_dir / video_id
-        frames_dir = video_dir / 'frames'
-
-        # Extract frames
-        extraction_result = extract_frames(
-            video_path=video_path,
-            output_dir=frames_dir,
-            fps=fps,
-            overwrite=overwrite
-        )
-
-        # Update results
-        video_result = {
-            'video_id': video_id,
-            'video_path': str(video_path),
-            'frames_dir': str(frames_dir),
-            'status': extraction_result['status'],
-            'frames_extracted': extraction_result['frames_extracted']
-        }
-
-        if extraction_result['status'] == 'success':
+    # Aggregate results
+    for video_result in video_results:
+        if video_result['status'] == 'success':
             results['processed'] += 1
-            results['total_frames'] += extraction_result['frames_extracted']
-        elif extraction_result['status'] == 'skipped':
+            results['total_frames'] += video_result['frames_extracted']
+        elif video_result['status'] == 'skipped':
             results['skipped'] += 1
-            results['total_frames'] += extraction_result['frames_extracted']
+            results['total_frames'] += video_result.get('frames_extracted', 0)
         else:
             results['errors'] += 1
-            video_result['error'] = extraction_result.get('error', 'Unknown error')
 
         results['videos'].append(video_result)
 
@@ -269,6 +318,12 @@ Examples:
   # Extract frames from all videos in directory
   python extract_frames.py /path/to/videos /path/to/output
 
+  # Process videos in parallel (4 jobs)
+  python extract_frames.py /path/to/videos /path/to/output -j 4
+
+  # Auto-detect CPU count and use all cores
+  python extract_frames.py /path/to/videos /path/to/output -j 0
+
   # Overwrite existing frames
   python extract_frames.py /path/to/videos /path/to/output --overwrite
 
@@ -290,6 +345,8 @@ Examples:
                        help='Overwrite existing frames')
     parser.add_argument('--ext', nargs='+',
                        help='Video file extensions to process (default: .mp4 .avi .mov .mkv .flv .wmv .webm)')
+    parser.add_argument('--jobs', '-j', type=int, default=1,
+                       help='Number of parallel jobs (0 = auto-detect CPU count, default: 1)')
     parser.add_argument('--check-ffmpeg', action='store_true',
                        help='Check if ffmpeg is installed and exit')
 
@@ -317,7 +374,8 @@ Examples:
         output_base_dir=args.output_base_dir,
         fps=args.fps,
         overwrite=args.overwrite,
-        video_ext=args.ext
+        video_ext=args.ext,
+        parallel_jobs=args.jobs
     )
 
     if results is None:

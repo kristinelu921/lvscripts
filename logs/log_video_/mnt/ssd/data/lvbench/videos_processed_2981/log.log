@@ -1,0 +1,214 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0998.jpg", "frames/frame_0999.jpg", "frames/frame_1000.jpg", "frames/frame_1001.jpg", "frames/frame_1002.jpg", "frames/frame_1003.jpg", "frames/frame_1004.jpg", "frames/frame_1005.jpg", "frames/frame_1006.jpg", "frames/frame_1007.jpg", "frames/frame_1008.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '1' (His) is correct for the question: Thomas sleeps at ___ house. Check the question criteria: 1) Thomas is present in the frame, 2) Thomas is in a sleeping position (lying down, eyes closed, in a bed or similar), 3) The location appears to be a house or residential setting, 4) Other people may be present in the scene, 5) Contextual clues about the house's ownership (e.g., unfamiliar setting, personal belongings). Pay attention to timestamps and temporal sequences. Look for visual evidence showing Thomas sleeping and determine whose house it appears to be based on contextual clues."
+}
+Frames to verify: ['frames/frame_0998.jpg', 'frames/frame_0999.jpg', 'frames/frame_1000.jpg', 'frames/frame_1001.jpg', 'frames/frame_1002.jpg', 'frames/frame_1003.jpg', 'frames/frame_1004.jpg', 'frames/frame_1005.jpg', 'frames/frame_1006.jpg', 'frames/frame_1007.jpg', 'frames/frame_1008.jpg']
+VLM Prompt: Video context: Based on the provided SET of frame-by-frame captions data, here is a global summary of the video:
+
+**Main Characters:**
+The main characters in the video are a group of young men, likely friends, who are the central figures throughout the narrative. They are often seen together, engaging in various activities, and are the focus of the story. Some of the men are identified by names such as Ammar, Staffan, and Thomas.
+
+**Setting:**
+The video is set in various locations, primarily in Lebanon, with scenes showcasing the cityscape of Beirut, its streets, buildings, and landmarks. The setting also extends to other environments, including a beach, a mountainous region, a flower shop, a restaurant, and a nightclub. The video captures a mix of urban and natural landscapes.
+
+**Plot Line:**
+The plot line appears to be a travel vlog or documentary-style narrative that follows the group of young men as they explore Lebanon, engage in various activities, and experience different aspects of the country's culture. The video includes scenes of protests, economic crisis, and daily life, suggesting that it may be exploring themes related to the country's challenges and the characters' personal journeys.
+
+**Vibes:**
+The overall vibe of the video is energetic, lively, and adventurous, with a sense of camaraderie among the main characters. The tone is often humorous and lighthearted, with moments of surprise and excitement. The video also conveys a sense of cultural exploration and appreciation, as the characters interact with locals and experience different aspects of Lebanese culture.
+
+**General Details:**
+The video features a diverse range of scenes, including:
+
+* Protests and demonstrations in Lebanon
+* Scenes of daily life, such as shopping, eating, and socializing
+* Travel and exploration, including visits to beaches, mountains, and cultural landmarks
+* Interactions with locals, including shopkeepers, restaurant staff, and other individuals
+* Moments of humor and playfulness among the main characters
+* Scenes of economic hardship and crisis in Lebanon
+* Cultural and social events, such as parties and celebrations
+
+The video appears to be a documentary or travel vlog that aims to showcase the beauty and complexity of Lebanon, while also exploring themes related to identity, culture, and friendship.
+
+Based on these frames (including context before/after), verify if the answer '1' (His) is correct for the question: Thomas sleeps at ___ house. Check the question criteria: 1) Thomas is present in the frame, 2) Thomas is in a sleeping position (lying down, eyes closed, in a bed or similar), 3) The location appears to be a house or residential setting, 4) Other people may be present in the scene, 5) Contextual clues about the house's ownership (e.g., unfamiliar setting, personal belongings). Pay attention to timestamps and temporal sequences. Look for visual evidence showing Thomas sleeping and determine whose house it appears to be based on contextual clues.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 11, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_0998.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_0999.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1000.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1001.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1002.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1003.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1004.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1005.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1006.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1007.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1008.jpg'], 'response': 'Based on the provided frames and the question criteria, the answer **‘1’ (His)** is **not correct**.\n\n### Reasoning:\n\nThe question is: **“Thomas sleeps at ___ house.”**\n\nWe must verify the following criteria:\n\n1. **Thomas is present in the frame** — ✅  \n   Thomas is visible in frames 1–11, standing outdoors at night, smiling and interacting with another man (likely Ammar or Staffan).\n\n2. **Thomas is in a sleeping position (lying down, eyes closed, in a bed or similar)** — ❌  \n   Thomas is **standing upright**, fully awake, smiling, and engaged in conversation. There is **no visual evidence** that he is sleeping or even preparing to sleep.\n\n3. **The location appears to be a house or residential setting** — ⚠️ Partially  \n   The background shows buildings and streetlights, suggesting an urban residential area, but the scene is **outdoors on a street**, not inside a house.\n\n4. **Other people may be present** — ✅  \n   Another man is present, holding a phone and talking to Thomas.\n\n5. **Contextual clues about the house’s ownership** — ⚠️  \n   The subtitle in frames 5–6 says: *“So can he sleep over at your house tonight?”* — This implies someone is asking if Thomas can stay at **the other person’s house**. The response in frames 9–11 is *“Yeah it’s okay”*, suggesting **permission is granted** for Thomas to stay at **the other person’s house** — not his own.\n\n---\n\n### Conclusion:\n\n- Thomas is **not sleeping** in any of these frames.\n- The question implies a **past or future event** (Thomas sleeping), but the frames only show a **conversation about sleeping over**.\n- Even if we infer the *intended future action*, the context suggests Thomas will sleep at **someone else’s house** (“your house”), not his own.\n\nTherefore, **“His” is incorrect**.\n\n✅ **Correct answer should be “Someone else’s” or “Ammar’s/Staffan’s”** — depending on who is being addressed — but **not “His”**.\n\n---\n\n**Final Verdict: ❌ The answer ‘1’ (His) is NOT correct.**'}], 'formatted_responses': ['\n=== Batch 0-11 (11 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_0998.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_0999.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1000.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1001.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1002.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1003.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1004.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1005.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1006.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1007.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1008.jpg\nVLM Response: Based on the provided frames and the question criteria, the answer **‘1’ (His)** is **not correct**.\n\n### Reasoning:\n\nThe question is: **“Thomas sleeps at ___ house.”**\n\nWe must verify the following criteria:\n\n1. **Thomas is present in the frame** — ✅  \n   Thomas is visible in frames 1–11, standing outdoors at night, smiling and interacting with another man (likely Ammar or Staffan).\n\n2. **Thomas is in a sleeping position (lying down, eyes closed, in a bed or similar)** — ❌  \n   Thomas is **standing upright**, fully awake, smiling, and engaged in conversation. There is **no visual evidence** that he is sleeping or even preparing to sleep.\n\n3. **The location appears to be a house or residential setting** — ⚠️ Partially  \n   The background shows buildings and streetlights, suggesting an urban residential area, but the scene is **outdoors on a street**, not inside a house.\n\n4. **Other people may be present** — ✅  \n   Another man is present, holding a phone and talking to Thomas.\n\n5. **Contextual clues about the house’s ownership** — ⚠️  \n   The subtitle in frames 5–6 says: *“So can he sleep over at your house tonight?”* — This implies someone is asking if Thomas can stay at **the other person’s house**. The response in frames 9–11 is *“Yeah it’s okay”*, suggesting **permission is granted** for Thomas to stay at **the other person’s house** — not his own.\n\n---\n\n### Conclusion:\n\n- Thomas is **not sleeping** in any of these frames.\n- The question implies a **past or future event** (Thomas sleeping), but the frames only show a **conversation about sleeping over**.\n- Even if we infer the *intended future action*, the context suggests Thomas will sleep at **someone else’s house** (“your house”), not his own.\n\nTherefore, **“His” is incorrect**.\n\n✅ **Correct answer should be “Someone else’s” or “Ammar’s/Staffan’s”** — depending on who is being addressed — but **not “His”**.\n\n---\n\n**Final Verdict: ❌ The answer ‘1’ (His) is NOT correct.**\n'], 'condensed_response': '**Scene Summary (Frames\u202f0998\u202f–\u202f1008)**  \n\n- **Thomas** appears in every frame, standing upright on a street at night. He is awake, smiling, and engaged in a dialogue with a second male figure (likely Ammar or Staffan), who holds a phone.  \n- **Other male character** is also present throughout, mirroring Thomas’s posture and reacting to the conversation.  \n- **Setting:** Outdoor urban environment; streetlights and nearby buildings suggest a residential area, but the characters are not inside any house.  \n- **Dialogue cues:** Subtitles in frames\u202f1005‑1006 read “*So can he sleep over at your house tonight?*” and frames\u202f1009‑1011 (the next three frames) show the reply “*Yeah, it’s okay*.” This indicates a discussion about Thomas staying over at the other person’s house, not at his own.  \n\n**Key points for the question “Thomas sleeps at ___ house.”**  \n\n1. **Presence:** Thomas is visible – ✅  \n2. **Sleeping posture:** He is standing, eyes open – ❌ (no evidence of sleeping)  \n3. **Location:** The scene is outdoors, not inside a house – ⚠️ (only a suggestion of a house in the dialogue)  \n4. **Other people:** The second man is present – ✅  \n5. **Ownership cue:** The conversation points to Thomas staying at *the other person’s* house, not his own.  \n\n**Conclusion:** The answer “His” (Thomas’s house) contradicts the visual and textual evidence. The correct fill‑in should refer to *someone else’s* house (e.g., “Ammar’s/Staffan’s”).', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+⚠️ IMPORTANT: Answers use 0-INDEXED numbers where 0=A, 1=B, 2=C, 3=D, 4=E
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 11, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_0998.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_0999.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1000.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1001.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1002.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1003.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1004.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1005.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1006.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1007.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1008.jpg'], 'response': 'Based on the provided frames and the question criteria, the answer **‘1’ (His)** is **not correct**.\n\n### Reasoning:\n\nThe question is: **“Thomas sleeps at ___ house.”**\n\nWe must verify the following criteria:\n\n1. **Thomas is present in the frame** — ✅  \n   Thomas is visible in frames 1–11, standing outdoors at night, smiling and interacting with another man (likely Ammar or Staffan).\n\n2. **Thomas is in a sleeping position (lying down, eyes closed, in a bed or similar)** — ❌  \n   Thomas is **standing upright**, fully awake, smiling, and engaged in conversation. There is **no visual evidence** that he is sleeping or even preparing to sleep.\n\n3. **The location appears to be a house or residential setting** — ⚠️ Partially  \n   The background shows buildings and streetlights, suggesting an urban residential area, but the scene is **outdoors on a street**, not inside a house.\n\n4. **Other people may be present** — ✅  \n   Another man is present, holding a phone and talking to Thomas.\n\n5. **Contextual clues about the house’s ownership** — ⚠️  \n   The subtitle in frames 5–6 says: *“So can he sleep over at your house tonight?”* — This implies someone is asking if Thomas can stay at **the other person’s house**. The response in frames 9–11 is *“Yeah it’s okay”*, suggesting **permission is granted** for Thomas to stay at **the other person’s house** — not his own.\n\n---\n\n### Conclusion:\n\n- Thomas is **not sleeping** in any of these frames.\n- The question implies a **past or future event** (Thomas sleeping), but the frames only show a **conversation about sleeping over**.\n- Even if we infer the *intended future action*, the context suggests Thomas will sleep at **someone else’s house** (“your house”), not his own.\n\nTherefore, **“His” is incorrect**.\n\n✅ **Correct answer should be “Someone else’s” or “Ammar’s/Staffan’s”** — depending on who is being addressed — but **not “His”**.\n\n---\n\n**Final Verdict: ❌ The answer ‘1’ (His) is NOT correct.**'}], 'formatted_responses': ['\n=== Batch 0-11 (11 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_0998.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_0999.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1000.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1001.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1002.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1003.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1004.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1005.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1006.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1007.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_1008.jpg\nVLM Response: Based on the provided frames and the question criteria, the answer **‘1’ (His)** is **not correct**.\n\n### Reasoning:\n\nThe question is: **“Thomas sleeps at ___ house.”**\n\nWe must verify the following criteria:\n\n1. **Thomas is present in the frame** — ✅  \n   Thomas is visible in frames 1–11, standing outdoors at night, smiling and interacting with another man (likely Ammar or Staffan).\n\n2. **Thomas is in a sleeping position (lying down, eyes closed, in a bed or similar)** — ❌  \n   Thomas is **standing upright**, fully awake, smiling, and engaged in conversation. There is **no visual evidence** that he is sleeping or even preparing to sleep.\n\n3. **The location appears to be a house or residential setting** — ⚠️ Partially  \n   The background shows buildings and streetlights, suggesting an urban residential area, but the scene is **outdoors on a street**, not inside a house.\n\n4. **Other people may be present** — ✅  \n   Another man is present, holding a phone and talking to Thomas.\n\n5. **Contextual clues about the house’s ownership** — ⚠️  \n   The subtitle in frames 5–6 says: *“So can he sleep over at your house tonight?”* — This implies someone is asking if Thomas can stay at **the other person’s house**. The response in frames 9–11 is *“Yeah it’s okay”*, suggesting **permission is granted** for Thomas to stay at **the other person’s house** — not his own.\n\n---\n\n### Conclusion:\n\n- Thomas is **not sleeping** in any of these frames.\n- The question implies a **past or future event** (Thomas sleeping), but the frames only show a **conversation about sleeping over**.\n- Even if we infer the *intended future action*, the context suggests Thomas will sleep at **someone else’s house** (“your house”), not his own.\n\nTherefore, **“His” is incorrect**.\n\n✅ **Correct answer should be “Someone else’s” or “Ammar’s/Staffan’s”** — depending on who is being addressed — but **not “His”**.\n\n---\n\n**Final Verdict: ❌ The answer ‘1’ (His) is NOT correct.**\n'], 'condensed_response': '**Scene Summary (Frames\u202f0998\u202f–\u202f1008)**  \n\n- **Thomas** appears in every frame, standing upright on a street at night. He is awake, smiling, and engaged in a dialogue with a second male figure (likely Ammar or Staffan), who holds a phone.  \n- **Other male character** is also present throughout, mirroring Thomas’s posture and reacting to the conversation.  \n- **Setting:** Outdoor urban environment; streetlights and nearby buildings suggest a residential area, but the characters are not inside any house.  \n- **Dialogue cues:** Subtitles in frames\u202f1005‑1006 read “*So can he sleep over at your house tonight?*” and frames\u202f1009‑1011 (the next three frames) show the reply “*Yeah, it’s okay*.” This indicates a discussion about Thomas staying over at the other person’s house, not at his own.  \n\n**Key points for the question “Thomas sleeps at ___ house.”**  \n\n1. **Presence:** Thomas is visible – ✅  \n2. **Sleeping posture:** He is standing, eyes open – ❌ (no evidence of sleeping)  \n3. **Location:** The scene is outdoors, not inside a house – ⚠️ (only a suggestion of a house in the dialogue)  \n4. **Other people:** The second man is present – ✅  \n5. **Ownership cue:** The conversation points to Thomas staying at *the other person’s* house, not his own.  \n\n**Conclusion:** The answer “His” (Thomas’s house) contradicts the visual and textual evidence. The correct fill‑in should refer to *someone else’s* house (e.g., “Ammar’s/Staffan’s”).', 'failed_images': []}
+
+Question Being Answered: Thomas sleeps at ___ house.
+
+Answer Choices (0-indexed: 0=A, 1=B, 2=C, 3=D, 4=E):
+  0 (=A): A stranger's
+  1 (=B): His
+  2 (=C): A friend's
+  3 (=D): A stranger's friend's
+
+Given Answer: 1
+Evidence Frames Used: ['frames/frame_1003.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Ammar (Young Man with Short Dark Hair and Beard): Wearing a white T-shirt and a black backpack, often seen walking and talking to the camera.
+Staffan (Young Man with Short Blond Hair and Beard): Wearing a black shirt and a silver chain, often seen walking and interacting with Ammar.
+Thomas (Young Man with Short Brown Hair and Beard): Wearing a white T-shirt and a black backpack, often seen with Ammar and Staffan.
+Man in Red Shirt: Wearing a red shirt, seen driving a car.
+Man in Black Shirt with "Love Over Fear": Wearing a black T-shirt with "Love Over Fear" printed on it, often seen taking selfies and walking in the city.
+Woman in Green Tank Top: Wearing a green tank top with a graphic design, seen walking and talking on the phone.
+Woman in Blue Hijab: Wearing a blue hijab and a white shirt with blue flowers, seen sitting and talking with men at a table.
+Older Woman in Flower Shop: Wearing a black and white patterned shirt, seen standing and working in a flower shop.
+
+SCENES:
+Crowd Gathering (Frames 1-8): A crowd of people gathering in a city street, some wearing masks and holding flags.
+Newspaper Clippings (Frames 9-14): A series of newspaper clippings with headlines about the "World's Angriest Countries".
+Cityscape (Frames 15-18): An aerial view of a densely populated city with numerous high-rise buildings.
+Protest Scene (Frames 26-29, 1898-1903): A crowd of people protesting in the street, some holding flags and banners.
+Explosion Scene (Frames 65-66): A large explosion occurring in a city, with a massive plume of smoke rising.
+Beirut Cityscape (Frames 78-82): An aerial view of Beirut cityscape with numerous buildings and roads.
+Airport Scene (Frames 83-121): A bustling airport terminal with people walking and interacting.
+Park Gathering (Frames 123-128): A group of young adults gathering in a park, celebrating and posing for photos.
+City Street Scene (Frames 130-139, 2037-2045): A busy city street with people walking and interacting.
+Flower Shop (Frames 2040-2054, 2069-2071): A small, cluttered flower shop with various flowers and supplies on display.
+Nightclub Scene (Frames 2062-2067): A crowded nightclub with people dancing and having fun.
+
+EVENTS:
+Protest March (Frames 29, 1899-1903): Thousands of people marching in the streets, holding flags and banners.
+Explosion (Frames 65-66): A large explosion occurring in a city.
+Celebration in Park (Frames 123-128): A group of young adults celebrating and posing for photos in a park.
+Interaction in Flower Shop (Frames 2040-2054): A woman working and interacting with customers in a flower shop.
+Dancing in Nightclub (Frames 2062-2067): A crowd of people dancing and having fun in a nightclub.
+
+================================================================================
+Generated at: 2026-01-11 21:46:08
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. Thomas is present in the frame
+  Q2. Thomas is in a sleeping position (lying down, eyes closed, in a bed or similar)
+  Q3. The location appears to be a house or residential setting
+  Q4. Other people may be present in the scene
+  Q5. Contextual clues about the house's ownership (e.g., unfamiliar setting, personal belongings)
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 5)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, ALWAYS pick the best answer choice:
+   - Review ALL answer choices (A, B, C, D, E, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D, 4=E)
+
+5. If criteria_percentage > 0.5 (>50% of criteria pass):
+   - Your chosen answer is well-supported by evidence
+   - Set suggestion to null or provide minor improvements
+
+6. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - Still MUST choose the BEST answer from the available choices (never -1)
+   - But set suggestion to "These may not be the right frames/scene. Consider searching for better evidence. The answer chosen is the BEST match given current evidence."
+   - This signals low confidence but still provides a choice
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 5,
+    "criteria_percentage": <criteria_passed / 5>,
+    "base_confidence": <(criteria_passed / 5) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E - MUST be a valid number 0-4, never -1>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "Thomas is present in the frame",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms Thomas is visible in all frames, standing outdoors at night"
+        },
+        {
+            "criterion": "Thomas is in a sleeping position (lying down, eyes closed, in a bed or similar)",
+            "criterion_type": "QUESTION",
+            "status": "FAIL",
+            "reasoning": "VLM states Thomas is standing upright, fully awake, smiling, and engaged in conversation - no evidence of sleeping"
+        },
+        {
+            "criterion": "The location appears to be a house or residential setting",
+            "criterion_type": "QUESTION",
+            "status": "FAIL",
+            "reasoning": "VLM reports scene is outdoors on a street, not inside a house, though background suggests urban residential area"
+        },
+        {
+            "criterion": "Other people may be present in the scene",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms another man is present, holding a phone and talking to Thomas"
+        },
+        {
+            "criterion": "Contextual clues about the house's ownership (e.g., unfamiliar setting, personal belongings)",
+            "criterion_type": "QUESTION",
+            "status": "FAIL",
+            "reasoning": "VLM reports dialogue suggests Thomas will sleep at someone else's house ('your house'), not his own"
+        }
+    ],
+    "question_criteria_passed": 2,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 2,
+    "criteria_total": 5,
+    "criteria_percentage": 0.4,
+    "base_confidence": 40,
+    "confidence": 40,
+    "critic_answer_choice": 2,
+    "critic_reasoning": "Based on VLM evidence, the dialogue clearly indicates Thomas will sleep at 'your house' (the other person's house), which aligns with 'A friend's' rather than 'His' house. The frames show a conversation about sleeping over at someone else's residence.",
+    "possible_errors": [
+        "Thomas is not sleeping in any frame",
+        "Scene is outdoors, not inside a house",
+        "Contextual clues point to someone else's house, not Thomas's own"
+    ],
+    "suggestion": "These may not be the right frames/scene. Consider searching for better evidence. The answer chosen is the BEST match given current evidence."
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'Thomas is present in the frame', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms Thomas is visible in all frames, standing outdoors at night'}, {'criterion': 'Thomas is in a sleeping position (lying down, eyes closed, in a bed or similar)', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': 'VLM states Thomas is standing upright, fully awake, smiling, and engaged in conversation - no evidence of sleeping'}, {'criterion': 'The location appears to be a house or residential setting', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': 'VLM reports scene is outdoors on a street, not inside a house, though background suggests urban residential area'}, {'criterion': 'Other people may be present in the scene', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms another man is present, holding a phone and talking to Thomas'}, {'criterion': "Contextual clues about the house's ownership (e.g., unfamiliar setting, personal belongings)", 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': "VLM reports dialogue suggests Thomas will sleep at someone else's house ('your house'), not his own"}], 'question_criteria_passed': 2, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 2, 'criteria_total': 5, 'criteria_percentage': 0.4, 'base_confidence': 40, 'confidence': 40, 'critic_answer_choice': 2, 'critic_reasoning': "Based on VLM evidence, the dialogue clearly indicates Thomas will sleep at 'your house' (the other person's house), which aligns with 'A friend's' rather than 'His' house. The frames show a conversation about sleeping over at someone else's residence.", 'possible_errors': ['Thomas is not sleeping in any frame', 'Scene is outdoors, not inside a house', "Contextual clues point to someone else's house, not Thomas's own"], 'suggestion': 'These may not be the right frames/scene. Consider searching for better evidence. The answer chosen is the BEST match given current evidence.'}

@@ -1,0 +1,186 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0077.jpg", "frames/frame_0078.jpg", "frames/frame_0079.jpg", "frames/frame_0080.jpg", "frames/frame_0081.jpg", "frames/frame_0082.jpg", "frames/frame_0083.jpg", "frames/frame_0084.jpg", "frames/frame_0085.jpg", "frames/frame_0086.jpg", "frames/frame_0087.jpg", "frames/frame_0088.jpg", "frames/frame_0089.jpg", "frames/frame_0090.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '3' (which corresponds to 'Diptyque') is correct for the question: What is the brand of the vlogger's scented candle?. Check the question criteria: 1) A scented candle visible in the frame, 2) Brand name or logo visible on the candle or its container, 3) The candle should be in a setting consistent with the vlogger's environment (desk, bedroom, kitchen, etc.), 4) The candle should be lit or shown as part of the scene setup. Look closely at any candles visible in these frames and identify if the Diptyque brand name or logo is clearly visible on any candle container. Pay attention to the temporal sequence to see if the candle appears consistently in the scene."
+}
+Frames to verify: ['frames/frame_0077.jpg', 'frames/frame_0078.jpg', 'frames/frame_0079.jpg', 'frames/frame_0080.jpg', 'frames/frame_0081.jpg', 'frames/frame_0082.jpg', 'frames/frame_0083.jpg', 'frames/frame_0084.jpg', 'frames/frame_0085.jpg', 'frames/frame_0086.jpg', 'frames/frame_0087.jpg', 'frames/frame_0088.jpg', 'frames/frame_0089.jpg', 'frames/frame_0090.jpg']
+VLM Prompt: Video context: Based on the provided frame-by-frame captions data, here is a global summary of the video:
+
+**Main Characters:**
+The main character is a woman with long, dark hair, often wearing a beige or white sweater. She is the central figure throughout the video, and her actions and activities drive the plot.
+
+**Setting:**
+The video is set in a modern, minimalist home or hotel room, with white walls, countertops, and furniture. The setting is often brightly lit, with an emphasis on clean lines and simple decor. The video also features various rooms, including a bathroom, bedroom, kitchen, and dining area.
+
+**Plot Line:**
+The video appears to be a relaxing, slow-paced, and calming visual narrative that follows the daily routine of the main character. The plot is not driven by a specific storyline or conflict but rather by the character's daily activities, which include:
+
+* Morning routine (brushing teeth, washing face, etc.)
+* Preparing and drinking tea or coffee
+* Writing in a notebook or journal
+* Practicing self-care (using a humidifier, lighting candles, etc.)
+* Doing laundry and ironing clothes
+* Watering plants
+* Cooking and preparing meals (including making sandwiches and French fries)
+* Eating and enjoying her food
+* Engaging in creative activities (painting, coloring, etc.)
+
+**Vibes:**
+The overall vibe of the video is calming, peaceful, and serene. The use of soft lighting, pastel colors, and gentle movements creates a soothing atmosphere. The video also conveys a sense of mindfulness and self-care, as the main character engages in various relaxing activities.
+
+**General Details:**
+The video features a mix of close-up shots and wider scenes, showcasing the main character's interactions with various objects and environments. The captions highlight the attention to detail in the video, with a focus on the textures, colors, and sounds of the objects and settings. The video also includes some abstract shots, such as the beige fabric texture in frame 0163.
+
+Overall, the video appears to be a visually pleasing and calming experience, inviting the viewer to slow down and appreciate the simple moments in life.
+
+Based on these frames (including context before/after), verify if the answer '3' (which corresponds to 'Diptyque') is correct for the question: What is the brand of the vlogger's scented candle?. Check the question criteria: 1) A scented candle visible in the frame, 2) Brand name or logo visible on the candle or its container, 3) The candle should be in a setting consistent with the vlogger's environment (desk, bedroom, kitchen, etc.), 4) The candle should be lit or shown as part of the scene setup. Look closely at any candles visible in these frames and identify if the Diptyque brand name or logo is clearly visible on any candle container. Pay attention to the temporal sequence to see if the candle appears consistently in the scene.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 14, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0077.jpg', '/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0078.jpg', '/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0079.jpg', '/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0080.jpg', '/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0081.jpg', '/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0082.jpg', '/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0083.jpg', '/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0084.jpg', '/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0085.jpg', '/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0086.jpg', '/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0087.jpg', '/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0088.jpg', '/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0089.jpg', '/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0090.jpg'], 'response': "The answer **'3' (Diptyque)** is **incorrect**.\n\n### Verification Based on Criteria:\n\n1. **Scented candle visible in the frame?**  \n   ✅ Yes — A scented candle in a glass jar is clearly visible in multiple frames (e.g., 0077–0090).\n\n2. **Brand name or logo visible on the candle or its container?**  \n   ❌ **No** — In frames **0082–0085**, the label on the candle is clearly legible and reads **“Jo Malone London”**, not “Diptyque”. The logo and typography are unmistakably Jo Malone’s branding.\n\n3. **Candle in a setting consistent with the vlogger’s environment?**  \n   ✅ Yes — The candle is placed on a white desk/surface, next to a digital clock and skincare products, consistent with the minimalist, serene aesthetic described in the global summary.\n\n4. **Candle lit or shown as part of the scene setup?**  \n   ✅ Yes — The candle is lit in frames 0078–0085 and remains lit in subsequent frames (0086–0090), contributing to the ambient, calming atmosphere.\n\n---\n\n### Conclusion:\nThe brand of the scented candle is **Jo Malone London**, not Diptyque. The label is clearly visible and legible in multiple frames. Therefore, the correct answer should correspond to **Jo Malone**, not Diptyque.\n\n✅ **Final Answer: '3' (Diptyque) is incorrect.**"}], 'formatted_responses': ["\n=== Batch 0-14 (14 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0077.jpg, /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0078.jpg, /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0079.jpg, /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0080.jpg, /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0081.jpg, /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0082.jpg, /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0083.jpg, /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0084.jpg, /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0085.jpg, /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0086.jpg, /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0087.jpg, /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0088.jpg, /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0089.jpg, /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0090.jpg\nVLM Response: The answer **'3' (Diptyque)** is **incorrect**.\n\n### Verification Based on Criteria:\n\n1. **Scented candle visible in the frame?**  \n   ✅ Yes — A scented candle in a glass jar is clearly visible in multiple frames (e.g., 0077–0090).\n\n2. **Brand name or logo visible on the candle or its container?**  \n   ❌ **No** — In frames **0082–0085**, the label on the candle is clearly legible and reads **“Jo Malone London”**, not “Diptyque”. The logo and typography are unmistakably Jo Malone’s branding.\n\n3. **Candle in a setting consistent with the vlogger’s environment?**  \n   ✅ Yes — The candle is placed on a white desk/surface, next to a digital clock and skincare products, consistent with the minimalist, serene aesthetic described in the global summary.\n\n4. **Candle lit or shown as part of the scene setup?**  \n   ✅ Yes — The candle is lit in frames 0078–0085 and remains lit in subsequent frames (0086–0090), contributing to the ambient, calming atmosphere.\n\n---\n\n### Conclusion:\nThe brand of the scented candle is **Jo Malone London**, not Diptyque. The label is clearly visible and legible in multiple frames. Therefore, the correct answer should correspond to **Jo Malone**, not Diptyque.\n\n✅ **Final Answer: '3' (Diptyque) is incorrect.**\n"], 'condensed_response': '**Scene Summary (Frames\u202f0077‑0090)**  \n\n- **Setting:** A minimalist white desk\u202f—\u202fdigital clock, skincare bottles, and a glass‑jar scented candle. The ambience is soft and calming, matching the vlogger’s “serene‑aesthetic” style.  \n- **Character(s):** The vlogger (hands briefly visible) reaches for and places the candle on the desk. No other people appear.  \n- **Candle details:**  \n  - **Lit:** The flame is visible from frame\u202f0078 onward and stays lit through frame\u202f0090.  \n  - **Brand identification:** In frames\u202f0082‑0085 the label is clearly readable and reads **“Jo\u202fMalone\u202fLondon.”** The Jo\u202fMalone logo and typography are unmistakable; no Diptyque branding is shown.  \n- **Conclusion:** The candle in the scene is a **Jo\u202fMalone\u202fLondon** scented candle, not Diptyque. The answer “3 (Diptyque)” is therefore incorrect.', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 14, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0077.jpg', '/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0078.jpg', '/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0079.jpg', '/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0080.jpg', '/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0081.jpg', '/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0082.jpg', '/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0083.jpg', '/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0084.jpg', '/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0085.jpg', '/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0086.jpg', '/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0087.jpg', '/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0088.jpg', '/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0089.jpg', '/mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0090.jpg'], 'response': "The answer **'3' (Diptyque)** is **incorrect**.\n\n### Verification Based on Criteria:\n\n1. **Scented candle visible in the frame?**  \n   ✅ Yes — A scented candle in a glass jar is clearly visible in multiple frames (e.g., 0077–0090).\n\n2. **Brand name or logo visible on the candle or its container?**  \n   ❌ **No** — In frames **0082–0085**, the label on the candle is clearly legible and reads **“Jo Malone London”**, not “Diptyque”. The logo and typography are unmistakably Jo Malone’s branding.\n\n3. **Candle in a setting consistent with the vlogger’s environment?**  \n   ✅ Yes — The candle is placed on a white desk/surface, next to a digital clock and skincare products, consistent with the minimalist, serene aesthetic described in the global summary.\n\n4. **Candle lit or shown as part of the scene setup?**  \n   ✅ Yes — The candle is lit in frames 0078–0085 and remains lit in subsequent frames (0086–0090), contributing to the ambient, calming atmosphere.\n\n---\n\n### Conclusion:\nThe brand of the scented candle is **Jo Malone London**, not Diptyque. The label is clearly visible and legible in multiple frames. Therefore, the correct answer should correspond to **Jo Malone**, not Diptyque.\n\n✅ **Final Answer: '3' (Diptyque) is incorrect.**"}], 'formatted_responses': ["\n=== Batch 0-14 (14 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0077.jpg, /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0078.jpg, /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0079.jpg, /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0080.jpg, /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0081.jpg, /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0082.jpg, /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0083.jpg, /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0084.jpg, /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0085.jpg, /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0086.jpg, /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0087.jpg, /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0088.jpg, /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0089.jpg, /mnt/ssd/data/lvbench/videos_processed/jp2M1hIEtsk/frames/frame_0090.jpg\nVLM Response: The answer **'3' (Diptyque)** is **incorrect**.\n\n### Verification Based on Criteria:\n\n1. **Scented candle visible in the frame?**  \n   ✅ Yes — A scented candle in a glass jar is clearly visible in multiple frames (e.g., 0077–0090).\n\n2. **Brand name or logo visible on the candle or its container?**  \n   ❌ **No** — In frames **0082–0085**, the label on the candle is clearly legible and reads **“Jo Malone London”**, not “Diptyque”. The logo and typography are unmistakably Jo Malone’s branding.\n\n3. **Candle in a setting consistent with the vlogger’s environment?**  \n   ✅ Yes — The candle is placed on a white desk/surface, next to a digital clock and skincare products, consistent with the minimalist, serene aesthetic described in the global summary.\n\n4. **Candle lit or shown as part of the scene setup?**  \n   ✅ Yes — The candle is lit in frames 0078–0085 and remains lit in subsequent frames (0086–0090), contributing to the ambient, calming atmosphere.\n\n---\n\n### Conclusion:\nThe brand of the scented candle is **Jo Malone London**, not Diptyque. The label is clearly visible and legible in multiple frames. Therefore, the correct answer should correspond to **Jo Malone**, not Diptyque.\n\n✅ **Final Answer: '3' (Diptyque) is incorrect.**\n"], 'condensed_response': '**Scene Summary (Frames\u202f0077‑0090)**  \n\n- **Setting:** A minimalist white desk\u202f—\u202fdigital clock, skincare bottles, and a glass‑jar scented candle. The ambience is soft and calming, matching the vlogger’s “serene‑aesthetic” style.  \n- **Character(s):** The vlogger (hands briefly visible) reaches for and places the candle on the desk. No other people appear.  \n- **Candle details:**  \n  - **Lit:** The flame is visible from frame\u202f0078 onward and stays lit through frame\u202f0090.  \n  - **Brand identification:** In frames\u202f0082‑0085 the label is clearly readable and reads **“Jo\u202fMalone\u202fLondon.”** The Jo\u202fMalone logo and typography are unmistakable; no Diptyque branding is shown.  \n- **Conclusion:** The candle in the scene is a **Jo\u202fMalone\u202fLondon** scented candle, not Diptyque. The answer “3 (Diptyque)” is therefore incorrect.', 'failed_images': []}
+
+Question Being Answered: What is the brand of the vlogger's scented candle?
+
+Answer Choices:
+A. London
+B. Cire Trudon
+C. Diptyque
+D. Jo Malone
+
+Given Answer: 3
+Evidence Frames Used: ['frames/frame_0082.jpg', 'frames/frame_0083.jpg', 'frames/frame_0084.jpg', 'frames/frame_0085.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Person 1 (Woman with dark hair): Description: A woman with long dark hair, wearing a beige sweater or sweatshirt and sometimes matching sweatpants or pants.
+Person 2 (Man in black shirt): Description: A man wearing a black shirt and hat.
+
+SCENES:
+Scene 1 (Dark Room with Text "day off morning"): Description: A dark room with the words "day off morning" displayed in white or light gray text against a black background. [frames/frame_0004 - frames/frame_0011]
+Scene 2 (Bathroom): Description: A bathroom with a woman standing in front of a white countertop with various toiletries. [frames/frame_0012 - frames/frame_0015]
+Scene 3 (Bedroom): Description: A bedroom with white walls and a bed, where the woman is making the bed. [frames/frame_0016 - frames/frame_0023]
+Scene 4 (Hotel Room/Kitchen): Description: A hotel room or kitchen with a white countertop, where the woman is performing various activities such as pouring water, holding a wine glass, and operating a humidifier. [frames/frame_0025 - frames/frame_0039]
+Scene 5 (Desk/Workspace): Description: A desk or workspace with a white surface, where the woman is writing, holding a phone, and surrounded by various objects such as candles, a digital clock, and a humidifier. [frames/frame_0040 - frames/frame_0145]
+Scene 6 (Bedroom/Desk): Description: A bedroom with a white desk, where the woman is writing, holding a phone, and surrounded by various objects such as candles and a digital clock. [frames/frame_0146 - frames/frame_0151]
+Scene 7 (Closet): Description: A closet with clothes hanging inside, where the woman is browsing through the clothes. [frames/frame_0166 - frames/frame_0181]
+Scene 8 (Dressing Room/ Bedroom): Description: A dressing room or bedroom with a white table, where the woman is folding and ironing clothes. [frames/frame_0182 - frames/frame_0205]
+Scene 9 (Kitchen/Bathroom): Description: A kitchen or bathroom with a white countertop, where the woman is performing various activities such as washing dishes, holding a mug, and surrounded by various objects. [frames/frame_0202 - frames/frame_0235]
+Scene 10 (Living Room/Bedroom): Description: A living room or bedroom with a white wall, where the woman is standing near a white desk or counter with various objects on it. [frames/frame_0236 - frames/frame_0244]
+Scene 11 (Ironing Board): Description: An ironing board with a gray cover, where the woman is ironing clothes. [frames/frame_0262 - frames/frame_0275]
+Scene 12 (Bedroom/Window): Description: A bedroom with a window featuring white and gray curtains, where the woman is standing and adjusting the curtains. [frames/frame_0282 - frames/frame_0285]
+Scene 13 (Balcony/Patio): Description: A balcony or patio with a wooden planter box containing green plants, where the woman is watering the plants. [frames/frame_0353 - frames/frame_0359]
+Scene 14 (Small Indoor Gardening Area): Description: A small indoor gardening area with a metal railing, a wooden planter box containing green plants, and a white air conditioning unit. [frames/frame_0365 - frames/frame_0369]
+Scene 15 (Kitchen/Cooking): Description: A kitchen with a gray granite countertop, where the woman is preparing a meal, cooking, and performing various activities. [frames/frame_0396 - frames/frame_0458]
+Scene 16 (Dining Room): Description: A dining room with a white round table and wooden legs, where the woman is placing a glass cup and a pink napkin. [frames/frame_0460 - frames/frame_0475]
+Scene 17 (Kitchen/Dishes): Description: A kitchen with a stainless steel sink, where the woman is washing dishes and wearing yellow rubber gloves. [frames/frame_0476 - frames/frame_0498]
+Scene 18 (Kitchen/Countertop): Description: A kitchen countertop with various objects such as a coffee machine, jars, and a sink. [frames/frame_1962 - frames/frame_1975]
+Scene 19 (Kitchen/Drawer): Description: A kitchen drawer filled with various utensils and items. [frames/frame_1964 - frames/frame_1975]
+Scene 20 (Dining Room/Table Setting): Description: A dining room with a white table, a red placemat, and various dishes and utensils. [frames/frame_2105 - frames/frame_2128]
+Scene 21 (Kitchen/Cooking/Soup): Description: A kitchen with a black induction cooktop, where the woman is cooking and preparing various soups and dishes. [frames/frame_2096 - frames/frame_2128]
+
+EVENTS:
+Event 1 (Making Bed): Description: The woman is making the bed in the bedroom. [frames/frame_0016 - frames/frame_0023]
+Event 2 (Preparing Tea/Drink): Description: The woman is preparing tea or a drink in the kitchen or bathroom. [frames/frame_0202 - frames/frame_0235]
+Event 3 (Writing/Creating Art): Description: The woman is writing or creating art at a white desk or table. [frames/frame_0124 - frames/frame_0145]
+Event 4 (Browsing through Clothes): Description: The woman is browsing through clothes in the closet. [frames/frame_0166 - frames/frame_0181]
+Event 5 (Ironing Clothes): Description: The woman is ironing clothes on an ironing board. [frames/frame_0262 - frames/frame_0275]
+Event 6 (Watering Plants): Description: The woman is watering plants in a wooden planter box on the balcony or patio. [frames/frame_0353 - frames/frame_0359]
+Event 7 (Preparing Meal/Cooking): Description: The woman is preparing a meal and cooking in the kitchen. [frames/frame_0396 - frames/frame_0458]
+Event 8 (Washing Dishes): Description: The woman is washing dishes in the kitchen sink. [frames/frame_0476 - frames/frame_0495]
+Event 9 (Creating Art/Cards): Description: The woman is creating art and cards at a white table. [frames/frame_1171 - frames/frame_1345]
+Event 10 (Eating Meal): Description: The woman is eating a meal at a table with various dishes and utensils. [frames/frame_1917 - frames/frame_1940]
+
+================================================================================
+Generated at: 2026-01-11 21:46:18
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. A scented candle visible in the frame
+  Q2. Brand name or logo visible on the candle or its container
+  Q3. The candle should be in a setting consistent with the vlogger's environment (desk, bedroom, kitchen, etc.)
+  Q4. The candle should be lit or shown as part of the scene setup
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 4)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, if criteria_percentage > 0.5 (>50% of criteria pass):
+   - Review ALL answer choices (A, B, C, D, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D)
+5. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - STILL do your best to pick out a correct answer, but also set suggestion to "These may not be the right frames/scene. Continue searching for better evidence."
+   - output your best guess of the answer as a number (0=A, 1=B, 2=C, 3=D, 4=E)
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <number of question criteria that passed>,
+    "criteria_total": 4,
+    "criteria_percentage": <criteria_passed / 4>,
+    "base_confidence": <(criteria_passed / 4) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {"criterion": "A scented candle visible in the frame", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms a scented candle in a glass jar is clearly visible in multiple frames (0077-0090)"},
+        {"criterion": "Brand name or logo visible on the candle or its container", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms the label is clearly legible and reads 'Jo Malone London' in frames 0082-0085"},
+        {"criterion": "The candle should be in a setting consistent with the vlogger's environment", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms the candle is on a white desk/surface with other items, consistent with the minimalist aesthetic"},
+        {"criterion": "The candle should be lit or shown as part of the scene setup", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms the candle is lit in frames 0078-0085 and remains lit through frame 0090"}
+    ],
+    "question_criteria_passed": 4,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 4,
+    "criteria_total": 4,
+    "criteria_percentage": 1.0,
+    "base_confidence": 100,
+    "confidence": 100,
+    "critic_answer_choice": 3,
+    "critic_reasoning": "The VLM evidence clearly shows the candle brand is Jo Malone London, not Diptyque. The label is legible and the branding is unmistakable. Therefore, the correct answer should be Jo Malone (option D, which corresponds to number 3 in 0-indexed where A=0, B=1, C=2, D=3)",
+    "possible_errors": [],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'A scented candle visible in the frame', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms a scented candle in a glass jar is clearly visible in multiple frames (0077-0090)'}, {'criterion': 'Brand name or logo visible on the candle or its container', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM confirms the label is clearly legible and reads 'Jo Malone London' in frames 0082-0085"}, {'criterion': "The candle should be in a setting consistent with the vlogger's environment", 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms the candle is on a white desk/surface with other items, consistent with the minimalist aesthetic'}, {'criterion': 'The candle should be lit or shown as part of the scene setup', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms the candle is lit in frames 0078-0085 and remains lit through frame 0090'}], 'question_criteria_passed': 4, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 4, 'criteria_total': 4, 'criteria_percentage': 1.0, 'base_confidence': 100, 'confidence': 100, 'critic_answer_choice': 3, 'critic_reasoning': 'The VLM evidence clearly shows the candle brand is Jo Malone London, not Diptyque. The label is legible and the branding is unmistakable. Therefore, the correct answer should be Jo Malone (option D, which corresponds to number 3 in 0-indexed where A=0, B=1, C=2, D=3)', 'possible_errors': [], 'suggestion': None}

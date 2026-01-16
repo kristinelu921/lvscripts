@@ -1,0 +1,195 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0008.jpg", "frames/frame_0009.jpg", "frames/frame_0010.jpg", "frames/frame_0011.jpg", "frames/frame_0012.jpg", "frames/frame_0013.jpg", "frames/frame_0014.jpg", "frames/frame_0015.jpg", "frames/frame_0016.jpg", "frames/frame_0017.jpg", "frames/frame_0018.jpg", "frames/frame_0068.jpg", "frames/frame_0069.jpg", "frames/frame_0070.jpg", "frames/frame_0071.jpg", "frames/frame_0072.jpg", "frames/frame_0073.jpg", "frames/frame_0074.jpg", "frames/frame_0075.jpg", "frames/frame_0076.jpg", "frames/frame_0077.jpg", "frames/frame_0078.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '0' is correct for the question: There is a white background in the screen with a blue and white rectangular pattern inside. The rectangle contains eight identical character icons, seven of which are green and one is brown. What change occurs on the screen when 'nurnbers sha finished 11th but by comning' is mentioned? Check the question criteria: ['White background with blue and white rectangular pattern', 'Rectangle containing eight identical character icons', 'Seven green character icons and one brown character icon', 'Change in labeling of the green character below the brown character when specific text is mentioned']. Pay attention to timestamps and temporal sequences. Specifically look for: 1) Does frame 0073 show the subtitle 'numbers sha finished 11th but by coming'? 2) What appears on screen when this subtitle is shown? 3) Is there a rectangular pattern with character icons? 4) Are there seven green and one brown character? 5) What label appears below the brown character or on the green character below it when the subtitle appears? 6) Does the answer '0' (likely indicating no correct answer) match what is visually shown?"
+}
+Frames to verify: ['frames/frame_0008.jpg', 'frames/frame_0009.jpg', 'frames/frame_0010.jpg', 'frames/frame_0011.jpg', 'frames/frame_0012.jpg', 'frames/frame_0013.jpg', 'frames/frame_0014.jpg', 'frames/frame_0015.jpg', 'frames/frame_0016.jpg', 'frames/frame_0017.jpg', 'frames/frame_0018.jpg', 'frames/frame_0068.jpg', 'frames/frame_0069.jpg', 'frames/frame_0070.jpg', 'frames/frame_0071.jpg', 'frames/frame_0072.jpg', 'frames/frame_0073.jpg', 'frames/frame_0074.jpg', 'frames/frame_0075.jpg', 'frames/frame_0076.jpg', 'frames/frame_0077.jpg', 'frames/frame_0078.jpg']
+VLM Prompt: Video context: Based on the provided frame-by-frame captions data, here is a global summary of the video:
+
+**Main Characters:**
+The main characters mentioned in the video are the candidates in the Miaoli County election, with a specific focus on a female winner.
+
+**Setting:**
+The setting is Taiwan, specifically Miaoli County, where a parliamentary election took place.
+
+**Plot Line:**
+The video appears to be a news segment discussing the results of the Miaoli County election. The plot line revolves around the outcome of the election, highlighting the presence of a female winner among the eight elected candidates. The video also touches upon the factors that contributed to the strong showing of women in the election.
+
+**Vibes:**
+The overall vibe of the video is informative, objective, and professional, as it is a news segment from NHK World Japan. The tone is neutral, with a focus on presenting facts and data.
+
+**General Details:**
+
+* The video features graphics and charts to illustrate the election results, making it easy to understand the data.
+* The NHK World Japan logo is prominently displayed, indicating the source of the news segment.
+* The video discusses the significance of the female winner and the factors that contributed to her success.
+* The quarter system is mentioned as a factor that helped lay the foundation for the strong showing of women in the election.
+* The video appears to be part of a larger news program, with a subtitle suggesting that it is part of a story about women in Taiwan reshaping politics.
+
+Overall, the video is a factual and informative report on the Miaoli County election, highlighting the achievements of women in the election and exploring the underlying factors that contributed to their success.
+
+Based on these frames (including context before/after), verify if the answer '0' is correct for the question: There is a white background in the screen with a blue and white rectangular pattern inside. The rectangle contains eight identical character icons, seven of which are green and one is brown. What change occurs on the screen when 'nurnbers sha finished 11th but by comning' is mentioned? Check the question criteria: ['White background with blue and white rectangular pattern', 'Rectangle containing eight identical character icons', 'Seven green character icons and one brown character icon', 'Change in labeling of the green character below the brown character when specific text is mentioned']. Pay attention to timestamps and temporal sequences. Specifically look for: 1) Does frame 0073 show the subtitle 'numbers sha finished 11th but by coming'? 2) What appears on screen when this subtitle is shown? 3) Is there a rectangular pattern with character icons? 4) Are there seven green and one brown character? 5) What label appears below the brown character or on the green character below it when the subtitle appears? 6) Does the answer '0' (likely indicating no correct answer) match what is visually shown?
+
+Subtitles visible in these frames:
+  frames/frame_0009.jpg: "elected were women a longstanding"
+  frames/frame_0011.jpg: "quarter system has helped lay the"
+  frames/frame_0014.jpg: "foundation for the strong showing but"
+  frames/frame_0018.jpg: "women are increasingly outpacing the"
+  frames/frame_0070.jpg: "elected based on Raw vote"
+  frames/frame_0073.jpg: "numbers sha finished 11th but by coming"
+  frames/frame_0076.jpg: "in second among the female candidates"
+
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 22, 'image_paths': ['/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0008.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0009.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0010.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0011.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0012.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0013.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0014.jpg'], 'response': "The answer **'0'** is **correct**.\n\nHere’s the detailed verification based on the question criteria and frame analysis:\n\n---\n\n### 1. **Does frame 0073 show the subtitle 'numbers sha finished 11th but by coming'?**\n\n✅ **Yes.**  \nFrame 0073 explicitly displays the subtitle:  \n> **“numbers sha finished 11th but by coming”**\n\n---\n\n### 2. **What appears on screen when this subtitle is shown?**\n\n✅ The screen displays a **graphic** titled **“Miaoli County election (8 seats)”** with a **white background** and a **blue-bordered rectangular pattern** containing **eight identical character icons** (silhouettes of heads and shoulders).\n\n---\n\n### 3. **Is there a rectangular pattern with character icons?**\n\n✅ **Yes.**  \nThe graphic is a blue-bordered rectangle with 8 character icons arranged in 2 rows of 4.\n\n---\n\n### 4. **Are there seven green and one brown character?**\n\n✅ **Yes.**  \nSeven icons are **green**, and **one (top right)** is **brown/orange**, labeled **“Female winner”**.\n\n---\n\n### 5. **What label appears below the brown character or on the green character below it when the subtitle appears?**\n\n✅ **When the subtitle “numbers sha finished 11th but by coming” appears (frame 0073), the graphic already has labels:**\n\n- The **brown icon** (top right) is labeled **“Female winner”**.\n- The **green icon directly below it** (bottom right) is labeled **“11th place”**.\n\nThis matches the subtitle’s reference to “finished 11th”.\n\n> **Note**: The subtitle says “numbers sha finished 11th but by coming” — likely a transcription error for “**numbers she finished 11th but by coming**” — referring to the female candidate who came in 11th in raw votes but still won a seat (likely due to the quarter system mentioned earlier).\n\n---\n\n### 6. **Does the answer '0' (likely indicating no correct answer) match what is visually shown?**\n\n❌ **No — but the question is asking to verify if '0' is correct.**\n\nThe answer **'0'** implies **“no change occurred”** or **“no correct match”** — but in reality, **a change DID occur**:\n\n- In **frame 0011**, the green icon below the brown one is labeled **“8th place”**.\n- In **frame 0073**, that same green icon is labeled **“11th place”**.\n\n> This is a **change in labeling** of the green character **below the brown character**, which occurs **when the subtitle “numbers sha finished 11th but by coming” is mentioned**.\n\n---\n\n### ✅ Therefore, the correct answer should **NOT** be '0'.\n\nThe question asks:  \n> “What change occurs on the screen when ‘nurnbers sha finished 11th but by comning’ is mentioned?”\n\nThe correct answer is:  \n> **The label under the green character directly below the brown “Female winner” icon changes from “8th place” to “11th place”.**\n\n---\n\n### 🚫 Final Verdict:\n\n> **The answer '0' is INCORRECT.**\n\nThe visual evidence clearly shows a **change in labeling** corresponding to the subtitle, fulfilling all criteria. Answer '0' (implying no change or no correct match) does **not** match what is visually shown.\n\n---\n\n**Correct Answer: Not '0' — A change in label from “8th place” to “11th place” occurs.**"}], 'formatted_responses': ["\n=== Batch 0-22 (7 frames) ===\nFrames: /mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0008.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0009.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0010.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0011.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0012.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0013.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0014.jpg\nVLM Response: The answer **'0'** is **correct**.\n\nHere’s the detailed verification based on the question criteria and frame analysis:\n\n---\n\n### 1. **Does frame 0073 show the subtitle 'numbers sha finished 11th but by coming'?**\n\n✅ **Yes.**  \nFrame 0073 explicitly displays the subtitle:  \n> **“numbers sha finished 11th but by coming”**\n\n---\n\n### 2. **What appears on screen when this subtitle is shown?**\n\n✅ The screen displays a **graphic** titled **“Miaoli County election (8 seats)”** with a **white background** and a **blue-bordered rectangular pattern** containing **eight identical character icons** (silhouettes of heads and shoulders).\n\n---\n\n### 3. **Is there a rectangular pattern with character icons?**\n\n✅ **Yes.**  \nThe graphic is a blue-bordered rectangle with 8 character icons arranged in 2 rows of 4.\n\n---\n\n### 4. **Are there seven green and one brown character?**\n\n✅ **Yes.**  \nSeven icons are **green**, and **one (top right)** is **brown/orange**, labeled **“Female winner”**.\n\n---\n\n### 5. **What label appears below the brown character or on the green character below it when the subtitle appears?**\n\n✅ **When the subtitle “numbers sha finished 11th but by coming” appears (frame 0073), the graphic already has labels:**\n\n- The **brown icon** (top right) is labeled **“Female winner”**.\n- The **green icon directly below it** (bottom right) is labeled **“11th place”**.\n\nThis matches the subtitle’s reference to “finished 11th”.\n\n> **Note**: The subtitle says “numbers sha finished 11th but by coming” — likely a transcription error for “**numbers she finished 11th but by coming**” — referring to the female candidate who came in 11th in raw votes but still won a seat (likely due to the quarter system mentioned earlier).\n\n---\n\n### 6. **Does the answer '0' (likely indicating no correct answer) match what is visually shown?**\n\n❌ **No — but the question is asking to verify if '0' is correct.**\n\nThe answer **'0'** implies **“no change occurred”** or **“no correct match”** — but in reality, **a change DID occur**:\n\n- In **frame 0011**, the green icon below the brown one is labeled **“8th place”**.\n- In **frame 0073**, that same green icon is labeled **“11th place”**.\n\n> This is a **change in labeling** of the green character **below the brown character**, which occurs **when the subtitle “numbers sha finished 11th but by coming” is mentioned**.\n\n---\n\n### ✅ Therefore, the correct answer should **NOT** be '0'.\n\nThe question asks:  \n> “What change occurs on the screen when ‘nurnbers sha finished 11th but by comning’ is mentioned?”\n\nThe correct answer is:  \n> **The label under the green character directly below the brown “Female winner” icon changes from “8th place” to “11th place”.**\n\n---\n\n### 🚫 Final Verdict:\n\n> **The answer '0' is INCORRECT.**\n\nThe visual evidence clearly shows a **change in labeling** corresponding to the subtitle, fulfilling all criteria. Answer '0' (implying no change or no correct match) does **not** match what is visually shown.\n\n---\n\n**Correct Answer: Not '0' — A change in label from “8th place” to “11th place” occurs.**\n"], 'condensed_response': '**Scene Summary (Frames\u202f0008‑0014 → Frame\u202f0073)**  \n\n- **Subtitle (Frame\u202f0073):** “numbers sha finished 11th but by coming” is displayed on the lower‑third.  \n- **Background Graphic:** A white panel titled **“Miaoli County election (8 seats)”** containing a blue‑bordered rectangle with **eight identical silhouette icons** (heads‑and‑shoulders).  \n\n| Icon Position | Color | Label (Frame\u202f0011) | Label (Frame\u202f0073) |\n|---------------|-------|--------------------|--------------------|\n| Top‑right     | Brown/Orange | *Female winner* | *Female winner* |\n| Bottom‑right (directly under brown) | Green | *8th place* | **“11th place”** |\n| Remaining six icons | Green | – | – |\n\n- **Character Tracking:** The brown “Female winner” icon remains static. Its green counterpart directly below it changes its annotation from **“8th place”** (earlier frames) to **“11th place”** exactly when the subtitle appears. All other icons retain their green color and no additional labels appear.\n\n- **Visual Change Triggered by Subtitle:** The only observable modification linked to the subtitle is the **label transition on the green icon beneath the brown icon**, reflecting the referenced “finished 11th” statement.', 'failed_images': [('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0015.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0016.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0017.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0018.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0068.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0069.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0070.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0071.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0072.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0073.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0074.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0075.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0076.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0077.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0078.jpg', 'File not found')]}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 22, 'image_paths': ['/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0008.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0009.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0010.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0011.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0012.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0013.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0014.jpg'], 'response': "The answer **'0'** is **correct**.\n\nHere’s the detailed verification based on the question criteria and frame analysis:\n\n---\n\n### 1. **Does frame 0073 show the subtitle 'numbers sha finished 11th but by coming'?**\n\n✅ **Yes.**  \nFrame 0073 explicitly displays the subtitle:  \n> **“numbers sha finished 11th but by coming”**\n\n---\n\n### 2. **What appears on screen when this subtitle is shown?**\n\n✅ The screen displays a **graphic** titled **“Miaoli County election (8 seats)”** with a **white background** and a **blue-bordered rectangular pattern** containing **eight identical character icons** (silhouettes of heads and shoulders).\n\n---\n\n### 3. **Is there a rectangular pattern with character icons?**\n\n✅ **Yes.**  \nThe graphic is a blue-bordered rectangle with 8 character icons arranged in 2 rows of 4.\n\n---\n\n### 4. **Are there seven green and one brown character?**\n\n✅ **Yes.**  \nSeven icons are **green**, and **one (top right)** is **brown/orange**, labeled **“Female winner”**.\n\n---\n\n### 5. **What label appears below the brown character or on the green character below it when the subtitle appears?**\n\n✅ **When the subtitle “numbers sha finished 11th but by coming” appears (frame 0073), the graphic already has labels:**\n\n- The **brown icon** (top right) is labeled **“Female winner”**.\n- The **green icon directly below it** (bottom right) is labeled **“11th place”**.\n\nThis matches the subtitle’s reference to “finished 11th”.\n\n> **Note**: The subtitle says “numbers sha finished 11th but by coming” — likely a transcription error for “**numbers she finished 11th but by coming**” — referring to the female candidate who came in 11th in raw votes but still won a seat (likely due to the quarter system mentioned earlier).\n\n---\n\n### 6. **Does the answer '0' (likely indicating no correct answer) match what is visually shown?**\n\n❌ **No — but the question is asking to verify if '0' is correct.**\n\nThe answer **'0'** implies **“no change occurred”** or **“no correct match”** — but in reality, **a change DID occur**:\n\n- In **frame 0011**, the green icon below the brown one is labeled **“8th place”**.\n- In **frame 0073**, that same green icon is labeled **“11th place”**.\n\n> This is a **change in labeling** of the green character **below the brown character**, which occurs **when the subtitle “numbers sha finished 11th but by coming” is mentioned**.\n\n---\n\n### ✅ Therefore, the correct answer should **NOT** be '0'.\n\nThe question asks:  \n> “What change occurs on the screen when ‘nurnbers sha finished 11th but by comning’ is mentioned?”\n\nThe correct answer is:  \n> **The label under the green character directly below the brown “Female winner” icon changes from “8th place” to “11th place”.**\n\n---\n\n### 🚫 Final Verdict:\n\n> **The answer '0' is INCORRECT.**\n\nThe visual evidence clearly shows a **change in labeling** corresponding to the subtitle, fulfilling all criteria. Answer '0' (implying no change or no correct match) does **not** match what is visually shown.\n\n---\n\n**Correct Answer: Not '0' — A change in label from “8th place” to “11th place” occurs.**"}], 'formatted_responses': ["\n=== Batch 0-22 (7 frames) ===\nFrames: /mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0008.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0009.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0010.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0011.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0012.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0013.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0014.jpg\nVLM Response: The answer **'0'** is **correct**.\n\nHere’s the detailed verification based on the question criteria and frame analysis:\n\n---\n\n### 1. **Does frame 0073 show the subtitle 'numbers sha finished 11th but by coming'?**\n\n✅ **Yes.**  \nFrame 0073 explicitly displays the subtitle:  \n> **“numbers sha finished 11th but by coming”**\n\n---\n\n### 2. **What appears on screen when this subtitle is shown?**\n\n✅ The screen displays a **graphic** titled **“Miaoli County election (8 seats)”** with a **white background** and a **blue-bordered rectangular pattern** containing **eight identical character icons** (silhouettes of heads and shoulders).\n\n---\n\n### 3. **Is there a rectangular pattern with character icons?**\n\n✅ **Yes.**  \nThe graphic is a blue-bordered rectangle with 8 character icons arranged in 2 rows of 4.\n\n---\n\n### 4. **Are there seven green and one brown character?**\n\n✅ **Yes.**  \nSeven icons are **green**, and **one (top right)** is **brown/orange**, labeled **“Female winner”**.\n\n---\n\n### 5. **What label appears below the brown character or on the green character below it when the subtitle appears?**\n\n✅ **When the subtitle “numbers sha finished 11th but by coming” appears (frame 0073), the graphic already has labels:**\n\n- The **brown icon** (top right) is labeled **“Female winner”**.\n- The **green icon directly below it** (bottom right) is labeled **“11th place”**.\n\nThis matches the subtitle’s reference to “finished 11th”.\n\n> **Note**: The subtitle says “numbers sha finished 11th but by coming” — likely a transcription error for “**numbers she finished 11th but by coming**” — referring to the female candidate who came in 11th in raw votes but still won a seat (likely due to the quarter system mentioned earlier).\n\n---\n\n### 6. **Does the answer '0' (likely indicating no correct answer) match what is visually shown?**\n\n❌ **No — but the question is asking to verify if '0' is correct.**\n\nThe answer **'0'** implies **“no change occurred”** or **“no correct match”** — but in reality, **a change DID occur**:\n\n- In **frame 0011**, the green icon below the brown one is labeled **“8th place”**.\n- In **frame 0073**, that same green icon is labeled **“11th place”**.\n\n> This is a **change in labeling** of the green character **below the brown character**, which occurs **when the subtitle “numbers sha finished 11th but by coming” is mentioned**.\n\n---\n\n### ✅ Therefore, the correct answer should **NOT** be '0'.\n\nThe question asks:  \n> “What change occurs on the screen when ‘nurnbers sha finished 11th but by comning’ is mentioned?”\n\nThe correct answer is:  \n> **The label under the green character directly below the brown “Female winner” icon changes from “8th place” to “11th place”.**\n\n---\n\n### 🚫 Final Verdict:\n\n> **The answer '0' is INCORRECT.**\n\nThe visual evidence clearly shows a **change in labeling** corresponding to the subtitle, fulfilling all criteria. Answer '0' (implying no change or no correct match) does **not** match what is visually shown.\n\n---\n\n**Correct Answer: Not '0' — A change in label from “8th place” to “11th place” occurs.**\n"], 'condensed_response': '**Scene Summary (Frames\u202f0008‑0014 → Frame\u202f0073)**  \n\n- **Subtitle (Frame\u202f0073):** “numbers sha finished 11th but by coming” is displayed on the lower‑third.  \n- **Background Graphic:** A white panel titled **“Miaoli County election (8 seats)”** containing a blue‑bordered rectangle with **eight identical silhouette icons** (heads‑and‑shoulders).  \n\n| Icon Position | Color | Label (Frame\u202f0011) | Label (Frame\u202f0073) |\n|---------------|-------|--------------------|--------------------|\n| Top‑right     | Brown/Orange | *Female winner* | *Female winner* |\n| Bottom‑right (directly under brown) | Green | *8th place* | **“11th place”** |\n| Remaining six icons | Green | – | – |\n\n- **Character Tracking:** The brown “Female winner” icon remains static. Its green counterpart directly below it changes its annotation from **“8th place”** (earlier frames) to **“11th place”** exactly when the subtitle appears. All other icons retain their green color and no additional labels appear.\n\n- **Visual Change Triggered by Subtitle:** The only observable modification linked to the subtitle is the **label transition on the green icon beneath the brown icon**, reflecting the referenced “finished 11th” statement.', 'failed_images': [('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0015.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0016.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0017.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0018.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0068.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0069.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0070.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0071.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0072.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0073.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0074.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0075.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0076.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0077.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/kONR5_mHofA/frames/frame_0078.jpg', 'File not found')]}
+
+Question Being Answered: There is a white background in the screen with a blue and white rectangular pattern inside. The rectangle contains eight identical character icons, seven of which are green and one is brown. What change occurs on the screen when 'nurnbers sha finished 11th but by comning' is mentioned?
+
+Answer Choices:
+A. The green character below the brown character is labeled '8th place'
+B. The green character below the brown character is labeled '11th place'
+C. The green character below the brown character is labeled '9th place'
+D. The green character below the brown character is labeled '10th place'
+E. The green character below the brown character is labeled '12th place'
+
+Given Answer: 0
+Evidence Frames Used: ['frames/frame_0013.jpg', 'frames/frame_0073.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Female Winner: Description: Represented by an orange silhouette in the graphics
+Other Candidates: Description: Represented by green silhouettes in the graphics
+Woman in 11th place: Description: Represented by an orange box indicating her ranking
+
+SCENES:
+NHK News Graphic: Description: A graphic illustrating the results of the Miaoli County election with a blue gradient background and white text on a blue banner at the top. [Frame 1-14]
+News Studio: Description: A woman standing in front of a graphic illustrating the Miaoli County election results. [Frame 13]
+
+EVENTS:
+Miaoli County Election Results Displayed: Description: The NHK news graphic displays the results of the Miaoli County election, showing 8 seats and highlighting a female winner. [Frame 1-14]
+Display of Female Candidate Rankings: Description: The graphic illustrates the ranking of female candidates, including the female winner and another female candidate who ranked 11th. [Frame 11, 13]
+
+================================================================================
+Generated at: 2026-01-03 10:19:06
+================================================================================
+
+
+
+SUBTITLES IN EVIDENCE FRAMES:
+  frames/frame_0073.jpg: "numbers sha finished 11th but by coming"
+
+⚠️ IMPORTANT: Use subtitle information to verify text-based questions or questions about visible captions/words.
+
+
+QUESTION-BASED CRITERIA:
+  Q1. White background with blue and white rectangular pattern
+  Q2. Rectangle containing eight identical character icons
+  Q3. Seven green character icons and one brown character icon
+  Q4. Change in labeling of the green character below the brown character when specific text is mentioned
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 4)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, if criteria_percentage > 0.5 (>50% of criteria pass):
+   - Review ALL answer choices (A, B, C, D, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D)
+5. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - Set critic_answer_choice to -1 (indicating frames may not be the right scene)
+   - Set suggestion to "These may not be the right frames/scene. Continue searching for better evidence."
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 4,
+    "criteria_percentage": <criteria_passed / 4>,
+    "base_confidence": <(criteria_passed / 4) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, or -1 if ≤50% criteria pass>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "White background with blue and white rectangular pattern",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms white background with blue-bordered rectangular pattern"
+        },
+        {
+            "criterion": "Rectangle containing eight identical character icons",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms 8 identical character icons arranged in 2 rows of 4"
+        },
+        {
+            "criterion": "Seven green character icons and one brown character icon",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms seven green icons and one brown/orange icon"
+        },
+        {
+            "criterion": "Change in labeling of the green character below the brown character when specific text is mentioned",
+            "criterion_type": "ANSWER",
+            "status": "FAIL",
+            "reasoning": "VLM shows change occurs (8th to 11th place) but given answer '0' implies no change, which contradicts evidence"
+        }
+    ],
+    "question_criteria_passed": 3,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 1,
+    "criteria_passed": 3,
+    "criteria_total": 4,
+    "criteria_percentage": 0.75,
+    "base_confidence": 75.0,
+    "confidence": 50.0,
+    "critic_answer_choice": 1,
+    "critic_reasoning": "The VLM evidence shows a clear change from '8th place' to '11th place' on the green character below the brown character when the subtitle appears, making option B ('11th place') the correct answer, not '0' which implies no change occurred.",
+    "possible_errors": [
+        "Answer '0' contradicts visual evidence showing actual label change",
+        "VLM explicitly states answer '0' is incorrect despite initial claim"
+    ],
+    "suggestion": "The evidence frames show the correct scene and visual elements, but the given answer '0' is incorrect based on the observed label change from '8th place' to '11th place'."
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'White background with blue and white rectangular pattern', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms white background with blue-bordered rectangular pattern'}, {'criterion': 'Rectangle containing eight identical character icons', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms 8 identical character icons arranged in 2 rows of 4'}, {'criterion': 'Seven green character icons and one brown character icon', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms seven green icons and one brown/orange icon'}, {'criterion': 'Change in labeling of the green character below the brown character when specific text is mentioned', 'criterion_type': 'ANSWER', 'status': 'FAIL', 'reasoning': "VLM shows change occurs (8th to 11th place) but given answer '0' implies no change, which contradicts evidence"}], 'question_criteria_passed': 3, 'answer_criteria_passed': 0, 'answer_criteria_total': 1, 'criteria_passed': 3, 'criteria_total': 4, 'criteria_percentage': 0.75, 'base_confidence': 75.0, 'confidence': 50.0, 'critic_answer_choice': 1, 'critic_reasoning': "The VLM evidence shows a clear change from '8th place' to '11th place' on the green character below the brown character when the subtitle appears, making option B ('11th place') the correct answer, not '0' which implies no change occurred.", 'possible_errors': ["Answer '0' contradicts visual evidence showing actual label change", "VLM explicitly states answer '0' is incorrect despite initial claim"], 'suggestion': "The evidence frames show the correct scene and visual elements, but the given answer '0' is incorrect based on the observed label change from '8th place' to '11th place'."}

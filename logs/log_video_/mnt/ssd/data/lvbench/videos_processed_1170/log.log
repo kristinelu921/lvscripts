@@ -1,0 +1,206 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0543.jpg", "frames/frame_0544.jpg", "frames/frame_0545.jpg", "frames/frame_0546.jpg", "frames/frame_0547.jpg", "frames/frame_0548.jpg", "frames/frame_0549.jpg", "frames/frame_0550.jpg", "frames/frame_0551.jpg", "frames/frame_0552.jpg", "frames/frame_0553.jpg", "frames/frame_0554.jpg", "frames/frame_0555.jpg", "frames/frame_0556.jpg", "frames/frame_0557.jpg", "frames/frame_0558.jpg", "frames/frame_0559.jpg", "frames/frame_0560.jpg"],
+    "prompt": "Examine these frames to verify if answer '3' is correct for 'How much does a ramen set cost in the second ramen shop?' Check: 1) Ramen restaurant setting with visible pricing, 2) Menu board/sign showing ramen set prices, 3) Currency symbol (¥ or $) near prices, 4) Specific price amount readable, 5) This is the second distinct ramen shop in video sequence. Identify the price shown for ramen sets and confirm the currency used. Note the temporal sequence to verify this is the second ramen shop."
+}
+Frames to verify: ['frames/frame_0543.jpg', 'frames/frame_0544.jpg', 'frames/frame_0545.jpg', 'frames/frame_0546.jpg', 'frames/frame_0547.jpg', 'frames/frame_0548.jpg', 'frames/frame_0549.jpg', 'frames/frame_0550.jpg', 'frames/frame_0551.jpg', 'frames/frame_0552.jpg', 'frames/frame_0553.jpg', 'frames/frame_0554.jpg', 'frames/frame_0555.jpg', 'frames/frame_0556.jpg', 'frames/frame_0557.jpg', 'frames/frame_0558.jpg', 'frames/frame_0559.jpg', 'frames/frame_0560.jpg']
+VLM Prompt: Video context: Based on the provided SET of frame-by-frame captions data, here is a global summary of the video:
+
+**Main Characters:**
+The main characters in the video are a young Asian man and woman. The man is often seen wearing a white headband with blue and red designs, a black shirt, and jeans. The woman has long brown hair and is often dressed in a yellow dress or top with white floral patterns.
+
+**Setting:**
+The video is set in various locations in Japan, primarily in Tokyo and other cities. The settings include restaurants, food stalls, train stations, streets, markets, and rural areas. The video showcases a mix of urban and rural landscapes, highlighting Japan's diverse culture and cuisine.
+
+**Plot Line:**
+The video appears to be a documentary or travel vlog that follows the man and woman as they explore Japan's food culture. The narrative is non-linear, with the couple visiting various restaurants, food stalls, and markets, trying different Japanese dishes, and interacting with locals. The video also features scenes of food preparation, cooking, and the couple's reactions to the food they try.
+
+**Vibes:**
+The overall vibe of the video is lively, vibrant, and enthusiastic, with a focus on showcasing Japan's rich food culture. The tone is generally positive and celebratory, with the couple's interactions and reactions to the food they try conveying a sense of excitement and joy.
+
+**General Details:**
+The video features a diverse range of Japanese cuisine, including sushi, ramen, tempura, and street food. The couple visits various restaurants, from high-end establishments to casual street food stalls, and interacts with chefs, restaurant owners, and locals. The video also showcases Japan's urban and rural landscapes, including city streets, train stations, and countryside scenery. The overall atmosphere is lively and engaging, with a focus on showcasing the country's culinary delights and cultural experiences.
+
+Examine these frames to verify if answer '3' is correct for 'How much does a ramen set cost in the second ramen shop?' Check: 1) Ramen restaurant setting with visible pricing, 2) Menu board/sign showing ramen set prices, 3) Currency symbol (¥ or $) near prices, 4) Specific price amount readable, 5) This is the second distinct ramen shop in video sequence. Identify the price shown for ramen sets and confirm the currency used. Note the temporal sequence to verify this is the second ramen shop.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 18, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0543.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0544.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0545.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0546.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0547.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0548.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0549.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0550.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0551.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0552.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0553.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0554.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0555.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0556.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0557.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0558.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0559.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0560.jpg'], 'response': 'Based on the provided frames and the verification criteria, **answer \'3\' is NOT correct** for the question "How much does a ramen set cost in the second ramen shop?".\n\nHere’s the detailed verification:\n\n---\n\n**1. Ramen restaurant setting with visible pricing?**  \n✅ **Yes.** Frames 6–13 show a ramen restaurant interior with a menu board featuring multiple ramen options and prices.\n\n**2. Menu board/sign showing ramen set prices?**  \n✅ **Yes.** Frames 9–13 show a close-up of a menu board with multiple ramen dishes and their prices clearly displayed.\n\n**3. Currency symbol (¥ or $) near prices?**  \n❌ **No.** While the prices are visible (e.g., 850, 950, 150, 250), **no currency symbol (¥ or $) is visible next to any of the prices** in any of the frames. The context implies Japanese yen (¥), but **the symbol itself is not present** in the visual data.\n\n**4. Specific price amount readable?**  \n✅ **Yes.** Prices such as “850”, “950”, “150”, and “250” are clearly legible on the menu buttons.\n\n**5. This is the second distinct ramen shop in video sequence?**  \n⚠️ **Cannot be confirmed from these 18 frames alone.**  \n- These frames (0543–0560) appear to show **one continuous ramen shop visit**:  \n  - Frames 1–3: Hand-drawn menu board (likely inside the restaurant).  \n  - Frames 4–5: Close-up of ramen noodles being handled.  \n  - Frames 6–13: Electronic menu board with prices.  \n  - Frames 14–16: The man and woman outside or near the entrance (sign says “Noodle” and “B.1”, possibly the shop name/location).  \n  - Frames 17–18: Ramen noodles being cooked.  \n→ This sequence suggests **a single ramen shop**, not the second one.  \n→ **Without prior frames showing a first ramen shop**, we cannot verify this is the *second* one.\n\n---\n\n**Conclusion:**\n\n- **Answer \'3\' is incorrect** because:\n  1. The currency symbol (¥) is **not visible** in any frame, violating criterion #3.\n  2. There is **no evidence in these 18 frames** that this is the *second* ramen shop — it appears to be the first or only one shown in this clip.\n\nEven if the price “850” or “950” were the intended answer, the **lack of currency symbol** and **uncertainty about shop sequence** invalidate the correctness of answer \'3\' based on the verification criteria.\n\n---\n\n✅ **Final Answer: NO, answer \'3\' is not correct.**'}], 'formatted_responses': ['\n=== Batch 0-18 (18 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0543.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0544.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0545.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0546.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0547.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0548.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0549.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0550.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0551.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0552.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0553.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0554.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0555.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0556.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0557.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0558.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0559.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0560.jpg\nVLM Response: Based on the provided frames and the verification criteria, **answer \'3\' is NOT correct** for the question "How much does a ramen set cost in the second ramen shop?".\n\nHere’s the detailed verification:\n\n---\n\n**1. Ramen restaurant setting with visible pricing?**  \n✅ **Yes.** Frames 6–13 show a ramen restaurant interior with a menu board featuring multiple ramen options and prices.\n\n**2. Menu board/sign showing ramen set prices?**  \n✅ **Yes.** Frames 9–13 show a close-up of a menu board with multiple ramen dishes and their prices clearly displayed.\n\n**3. Currency symbol (¥ or $) near prices?**  \n❌ **No.** While the prices are visible (e.g., 850, 950, 150, 250), **no currency symbol (¥ or $) is visible next to any of the prices** in any of the frames. The context implies Japanese yen (¥), but **the symbol itself is not present** in the visual data.\n\n**4. Specific price amount readable?**  \n✅ **Yes.** Prices such as “850”, “950”, “150”, and “250” are clearly legible on the menu buttons.\n\n**5. This is the second distinct ramen shop in video sequence?**  \n⚠️ **Cannot be confirmed from these 18 frames alone.**  \n- These frames (0543–0560) appear to show **one continuous ramen shop visit**:  \n  - Frames 1–3: Hand-drawn menu board (likely inside the restaurant).  \n  - Frames 4–5: Close-up of ramen noodles being handled.  \n  - Frames 6–13: Electronic menu board with prices.  \n  - Frames 14–16: The man and woman outside or near the entrance (sign says “Noodle” and “B.1”, possibly the shop name/location).  \n  - Frames 17–18: Ramen noodles being cooked.  \n→ This sequence suggests **a single ramen shop**, not the second one.  \n→ **Without prior frames showing a first ramen shop**, we cannot verify this is the *second* one.\n\n---\n\n**Conclusion:**\n\n- **Answer \'3\' is incorrect** because:\n  1. The currency symbol (¥) is **not visible** in any frame, violating criterion #3.\n  2. There is **no evidence in these 18 frames** that this is the *second* ramen shop — it appears to be the first or only one shown in this clip.\n\nEven if the price “850” or “950” were the intended answer, the **lack of currency symbol** and **uncertainty about shop sequence** invalidate the correctness of answer \'3\' based on the verification criteria.\n\n---\n\n✅ **Final Answer: NO, answer \'3\' is not correct.**\n'], 'condensed_response': '**Scene Summary (Frames\u202f0543\u202f–\u202f0560)**  \n\n- **0543‑0545** – The camera is inside a ramen shop. A hand‑drawn menu board hangs on the wall; a **man** (early\u202f30s, dark jacket) and a **woman** (late\u202f20s, light coat) stand near it, looking at the list of dishes.  \n\n- **0546‑0548** – The view shifts to the kitchen area: a pair of chopsticks lifts a steaming bowl of noodles, emphasizing the shop’s food‑preparation vibe.  \n\n- **0549‑0553** – The frame tightens on an **electronic menu board**. Several ramen sets are displayed with their **numeric prices** (e.g., “850”, “950”, “150”, “250”). No currency symbol (¥ or $) appears beside the numbers.  \n\n- **0554‑0557** – The perspective moves back to the entrance area. The **man** checks a door sign that reads “Noodle” and “B.1”, while the **woman** peers out the doorway, suggesting they are about to exit or have just entered.  \n\n- **0558‑0560** – The camera returns to the kitchen: a pot of broth bubbles and a chef (off‑screen) places noodles into it, reinforcing the restaurant setting.\n\n**Key Points for the Question**  \n\n1. **Ramen‑shop environment** – Clearly visible throughout the clip.  \n2. **Menu with prices** – Prices are legible, but the currency symbol is absent.  \n3. **Shop identity** – The frames show a single continuous shop visit; there is no visual cue that this is the *second* ramen shop in the video sequence.  \n\nBecause the currency marker is missing and the footage does not establish that the location is the second ramen shop, the proposed answer “3” (which would rely on a specific price) cannot be confirmed as correct.', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 18, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0543.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0544.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0545.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0546.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0547.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0548.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0549.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0550.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0551.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0552.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0553.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0554.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0555.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0556.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0557.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0558.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0559.jpg', '/mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0560.jpg'], 'response': 'Based on the provided frames and the verification criteria, **answer \'3\' is NOT correct** for the question "How much does a ramen set cost in the second ramen shop?".\n\nHere’s the detailed verification:\n\n---\n\n**1. Ramen restaurant setting with visible pricing?**  \n✅ **Yes.** Frames 6–13 show a ramen restaurant interior with a menu board featuring multiple ramen options and prices.\n\n**2. Menu board/sign showing ramen set prices?**  \n✅ **Yes.** Frames 9–13 show a close-up of a menu board with multiple ramen dishes and their prices clearly displayed.\n\n**3. Currency symbol (¥ or $) near prices?**  \n❌ **No.** While the prices are visible (e.g., 850, 950, 150, 250), **no currency symbol (¥ or $) is visible next to any of the prices** in any of the frames. The context implies Japanese yen (¥), but **the symbol itself is not present** in the visual data.\n\n**4. Specific price amount readable?**  \n✅ **Yes.** Prices such as “850”, “950”, “150”, and “250” are clearly legible on the menu buttons.\n\n**5. This is the second distinct ramen shop in video sequence?**  \n⚠️ **Cannot be confirmed from these 18 frames alone.**  \n- These frames (0543–0560) appear to show **one continuous ramen shop visit**:  \n  - Frames 1–3: Hand-drawn menu board (likely inside the restaurant).  \n  - Frames 4–5: Close-up of ramen noodles being handled.  \n  - Frames 6–13: Electronic menu board with prices.  \n  - Frames 14–16: The man and woman outside or near the entrance (sign says “Noodle” and “B.1”, possibly the shop name/location).  \n  - Frames 17–18: Ramen noodles being cooked.  \n→ This sequence suggests **a single ramen shop**, not the second one.  \n→ **Without prior frames showing a first ramen shop**, we cannot verify this is the *second* one.\n\n---\n\n**Conclusion:**\n\n- **Answer \'3\' is incorrect** because:\n  1. The currency symbol (¥) is **not visible** in any frame, violating criterion #3.\n  2. There is **no evidence in these 18 frames** that this is the *second* ramen shop — it appears to be the first or only one shown in this clip.\n\nEven if the price “850” or “950” were the intended answer, the **lack of currency symbol** and **uncertainty about shop sequence** invalidate the correctness of answer \'3\' based on the verification criteria.\n\n---\n\n✅ **Final Answer: NO, answer \'3\' is not correct.**'}], 'formatted_responses': ['\n=== Batch 0-18 (18 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0543.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0544.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0545.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0546.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0547.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0548.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0549.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0550.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0551.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0552.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0553.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0554.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0555.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0556.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0557.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0558.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0559.jpg, /mnt/ssd/data/lvbench/videos_processed/KktLi3UifPY/frames/frame_0560.jpg\nVLM Response: Based on the provided frames and the verification criteria, **answer \'3\' is NOT correct** for the question "How much does a ramen set cost in the second ramen shop?".\n\nHere’s the detailed verification:\n\n---\n\n**1. Ramen restaurant setting with visible pricing?**  \n✅ **Yes.** Frames 6–13 show a ramen restaurant interior with a menu board featuring multiple ramen options and prices.\n\n**2. Menu board/sign showing ramen set prices?**  \n✅ **Yes.** Frames 9–13 show a close-up of a menu board with multiple ramen dishes and their prices clearly displayed.\n\n**3. Currency symbol (¥ or $) near prices?**  \n❌ **No.** While the prices are visible (e.g., 850, 950, 150, 250), **no currency symbol (¥ or $) is visible next to any of the prices** in any of the frames. The context implies Japanese yen (¥), but **the symbol itself is not present** in the visual data.\n\n**4. Specific price amount readable?**  \n✅ **Yes.** Prices such as “850”, “950”, “150”, and “250” are clearly legible on the menu buttons.\n\n**5. This is the second distinct ramen shop in video sequence?**  \n⚠️ **Cannot be confirmed from these 18 frames alone.**  \n- These frames (0543–0560) appear to show **one continuous ramen shop visit**:  \n  - Frames 1–3: Hand-drawn menu board (likely inside the restaurant).  \n  - Frames 4–5: Close-up of ramen noodles being handled.  \n  - Frames 6–13: Electronic menu board with prices.  \n  - Frames 14–16: The man and woman outside or near the entrance (sign says “Noodle” and “B.1”, possibly the shop name/location).  \n  - Frames 17–18: Ramen noodles being cooked.  \n→ This sequence suggests **a single ramen shop**, not the second one.  \n→ **Without prior frames showing a first ramen shop**, we cannot verify this is the *second* one.\n\n---\n\n**Conclusion:**\n\n- **Answer \'3\' is incorrect** because:\n  1. The currency symbol (¥) is **not visible** in any frame, violating criterion #3.\n  2. There is **no evidence in these 18 frames** that this is the *second* ramen shop — it appears to be the first or only one shown in this clip.\n\nEven if the price “850” or “950” were the intended answer, the **lack of currency symbol** and **uncertainty about shop sequence** invalidate the correctness of answer \'3\' based on the verification criteria.\n\n---\n\n✅ **Final Answer: NO, answer \'3\' is not correct.**\n'], 'condensed_response': '**Scene Summary (Frames\u202f0543\u202f–\u202f0560)**  \n\n- **0543‑0545** – The camera is inside a ramen shop. A hand‑drawn menu board hangs on the wall; a **man** (early\u202f30s, dark jacket) and a **woman** (late\u202f20s, light coat) stand near it, looking at the list of dishes.  \n\n- **0546‑0548** – The view shifts to the kitchen area: a pair of chopsticks lifts a steaming bowl of noodles, emphasizing the shop’s food‑preparation vibe.  \n\n- **0549‑0553** – The frame tightens on an **electronic menu board**. Several ramen sets are displayed with their **numeric prices** (e.g., “850”, “950”, “150”, “250”). No currency symbol (¥ or $) appears beside the numbers.  \n\n- **0554‑0557** – The perspective moves back to the entrance area. The **man** checks a door sign that reads “Noodle” and “B.1”, while the **woman** peers out the doorway, suggesting they are about to exit or have just entered.  \n\n- **0558‑0560** – The camera returns to the kitchen: a pot of broth bubbles and a chef (off‑screen) places noodles into it, reinforcing the restaurant setting.\n\n**Key Points for the Question**  \n\n1. **Ramen‑shop environment** – Clearly visible throughout the clip.  \n2. **Menu with prices** – Prices are legible, but the currency symbol is absent.  \n3. **Shop identity** – The frames show a single continuous shop visit; there is no visual cue that this is the *second* ramen shop in the video sequence.  \n\nBecause the currency marker is missing and the footage does not establish that the location is the second ramen shop, the proposed answer “3” (which would rely on a specific price) cannot be confirmed as correct.', 'failed_images': []}
+
+Question Being Answered: How much does a ramen set cost in the second ramen shop?
+
+Answer Choices:
+A. $10
+B. ￥100
+C. $100
+D. 100 Japanese Yen
+
+Given Answer: 3
+Evidence Frames Used: ['frames/frame_0548.jpg', 'frames/frame_0549.jpg', 'frames/frame_0550.jpg', 'frames/frame_0551.jpg', 'frames/frame_0552.jpg', 'frames/frame_0553.jpg', 'frames/frame_0554.jpg', 'frames/frame_0555.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Man with White Headband: A man wearing a white headband with various designs, often seen in different settings such as restaurants, kitchens, and outdoors.
+Woman in Yellow Dress: A young woman with long brown hair, wearing a yellow dress with white floral patterns, appearing in various locations including restaurants, train stations, and city streets.
+Man with Red Bandana: A man wearing a red bandana, seen in different contexts such as city streets, restaurants, and kitchens.
+Woman with Long Brown Hair: A young woman with long brown hair, appearing in various settings, sometimes wearing different outfits.
+
+SCENES:
+Small Japanese Restaurant: A cozy, dimly lit restaurant with a wooden counter and Japanese decor. [frame_0001-0005]
+Train Station: A bustling train station with escalators and signs. [frame_0023-0026]
+Busy City Street: A crowded city street with tall buildings and people walking. [frame_0027-0029]
+Commercial Kitchen: A kitchen with stainless steel appliances and various cooking equipment. [frame_0040-0042]
+Market: A bustling market scene with a Japanese flag and various souvenir items. [frame_0059-0062]
+Coastal Town: A scenic coastal town with a sandy beach and a lighthouse. [frame_0063]
+Muddy Beach: A vast, muddy beach or tidal flat with people working or playing. [frame_0076-0082]
+Convenience Store (7-Eleven): A convenience store with shelves stocked with various products. [frame_0183-0237]
+Ramen Restaurant: A restaurant serving ramen noodles. [frame_0312-0327]
+Rice Field: A vast field of tall, yellowish-green rice plants. [frame_0739-0745]
+Destroyed Neighborhood: A devastating scene of destruction, likely after a natural disaster. [frame_1526-1535]
+Traditional Japanese Building: A traditional Japanese building with a tiled roof. [frame_1783-1784]
+Japanese Garden: A serene Japanese garden with a weathered wooden torii gate and a small shrine. [frame_1785-1787]
+Mochi Preparation: A traditional Japanese mochi-making activity in a serene garden. [frame_1791-1795]
+Beach: A sandy beach with people walking or engaging in activities. [frame_2375-2385]
+Mountain Peak: A snow-capped mountain peak with a person sitting or standing on it. [frame_3120-3124]
+Harbor: A harbor with boats docked at the pier. [frame_2432-2440]
+City Street at Night: A bustling city street at night with people walking and cars driving by. [frame_5295-5300]
+Street Food Stall: A street food stall with people eating and socializing. [frame_5302-5311]
+Yatai (Japanese Street Food Stall): A Japanese street food stall with a red awning and signs. [frame_6029]
+Food Cart: A food cart with a vendor serving customers. [frame_5332-5347]
+
+EVENTS:
+Eating Ramen: A man and woman eating ramen noodles with chopsticks and spoons. [frame_0174-0177]
+Sharing Food: A man and woman sharing a meal together. [frame_0480-0481]
+Mochi Preparation: Three men preparing traditional Japanese mochi. [frame_1791-1795]
+Mudflat Harvesting: People working together in a muddy, shallow body of water. [frame_4532-4535]
+Dancing: A man and woman dancing together in front of a food stall. [frame_0563-0564]
+Cooking Demonstration: A chef preparing food on a teppanyaki grill. [frame_4293-4300]
+Meat Inspection: People in white lab coats inspecting large pieces of raw meat. [frame_4103-4114]
+Food Stall Service: A vendor serving customers at a food stall. [frame_5302-5311]
+Street Food Enjoyment: People eating and socializing at a street food stall. [frame_5302-5311]
+Mudflat Harvesting Discussion: A man and woman discussing or explaining something related to mudflat harvesting. [frame_4532-4535]
+
+================================================================================
+Generated at: 2026-01-11 21:50:23
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. A ramen restaurant setting with visible pricing information
+  Q2. A menu board or sign displaying prices for ramen sets
+  Q3. Japanese yen currency symbol (¥) or dollar sign ($) near price numbers
+  Q4. The specific price amount visible and readable in the frame
+  Q5. The restaurant is the second distinct ramen shop visited in the video sequence
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 5)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, if criteria_percentage > 0.5 (>50% of criteria pass):
+   - Review ALL answer choices (A, B, C, D, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D)
+5. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - STILL do your best to pick out a correct answer, but also set suggestion to "These may not be the right frames/scene. Continue searching for better evidence."
+   - output your best guess of the answer as a number (0=A, 1=B, 2=C, 3=D, 4=E)
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <number of question criteria that passed>,
+    "criteria_total": 5,
+    "criteria_percentage": <criteria_passed / 5>,
+    "base_confidence": <(criteria_passed / 5) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "A ramen restaurant setting with visible pricing information",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms ramen restaurant interior with menu board featuring prices"
+        },
+        {
+            "criterion": "A menu board or sign displaying prices for ramen sets",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms electronic menu board with ramen set prices clearly displayed"
+        },
+        {
+            "criterion": "Japanese yen currency symbol (¥) or dollar sign ($) near price numbers",
+            "criterion_type": "QUESTION",
+            "status": "FAIL",
+            "reasoning": "VLM explicitly states no currency symbol (¥ or $) is visible next to any prices"
+        },
+        {
+            "criterion": "The specific price amount visible and readable in the frame",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms prices like 850, 950, 150, 250 are clearly legible"
+        },
+        {
+            "criterion": "The restaurant is the second distinct ramen shop visited in the video sequence",
+            "criterion_type": "QUESTION",
+            "status": "FAIL",
+            "reasoning": "VLM cannot confirm this is the second shop - appears to be first/only one shown in these frames"
+        }
+    ],
+    "question_criteria_passed": 3,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 3,
+    "criteria_total": 5,
+    "criteria_percentage": 0.6,
+    "base_confidence": 60,
+    "confidence": 50,
+    "critic_answer_choice": 3,
+    "critic_reasoning": "Despite the VLM's rejection of answer '3', the evidence shows prices of 850 and 950 which would correspond to 850 yen or 950 yen. Among the choices, D (100 Japanese Yen) is numerically closest to the visible prices, though none match exactly. The VLM's main objections are the missing currency symbol and shop sequence uncertainty, but the visible numeric prices suggest a yen-based pricing system.",
+    "possible_errors": [
+        "No currency symbol visible near prices",
+        "Cannot confirm this is the second ramen shop in sequence"
+    ],
+    "suggestion": "These may not be the right frames/scene. Continue searching for better evidence."
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'A ramen restaurant setting with visible pricing information', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms ramen restaurant interior with menu board featuring prices'}, {'criterion': 'A menu board or sign displaying prices for ramen sets', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms electronic menu board with ramen set prices clearly displayed'}, {'criterion': 'Japanese yen currency symbol (¥) or dollar sign ($) near price numbers', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': 'VLM explicitly states no currency symbol (¥ or $) is visible next to any prices'}, {'criterion': 'The specific price amount visible and readable in the frame', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms prices like 850, 950, 150, 250 are clearly legible'}, {'criterion': 'The restaurant is the second distinct ramen shop visited in the video sequence', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': 'VLM cannot confirm this is the second shop - appears to be first/only one shown in these frames'}], 'question_criteria_passed': 3, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 3, 'criteria_total': 5, 'criteria_percentage': 0.6, 'base_confidence': 60, 'confidence': 50, 'critic_answer_choice': 3, 'critic_reasoning': "Despite the VLM's rejection of answer '3', the evidence shows prices of 850 and 950 which would correspond to 850 yen or 950 yen. Among the choices, D (100 Japanese Yen) is numerically closest to the visible prices, though none match exactly. The VLM's main objections are the missing currency symbol and shop sequence uncertainty, but the visible numeric prices suggest a yen-based pricing system.", 'possible_errors': ['No currency symbol visible near prices', 'Cannot confirm this is the second ramen shop in sequence'], 'suggestion': 'These may not be the right frames/scene. Continue searching for better evidence.'}

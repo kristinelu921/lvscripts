@@ -1,0 +1,394 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0000.jpg", "frames/frame_0001.jpg", "frames/frame_0002.jpg", "frames/frame_0003.jpg", "frames/frame_0004.jpg", "frames/frame_0005.jpg", "frames/frame_0006.jpg", "frames/frame_0007.jpg", "frames/frame_0008.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '0' (Burger Good) is correct for the question: What does the chef write when he first writing on paper? Check the question criteria: 1) A chef is visible in the frame, 2) The chef is writing on paper, 3) The writing action is occurring for the first time in the video, 4) The paper is clearly visible and being written on, 5) The chef's hand is holding a writing instrument, 6) The paper is on a surface like a countertop or table. Pay attention to timestamps and temporal sequences. Look specifically at what text is being written on the paper in the frames where writing occurs."
+}
+Frames to verify: ['frames/frame_0000.jpg', 'frames/frame_0001.jpg', 'frames/frame_0002.jpg', 'frames/frame_0003.jpg', 'frames/frame_0004.jpg', 'frames/frame_0005.jpg', 'frames/frame_0006.jpg', 'frames/frame_0007.jpg', 'frames/frame_0008.jpg']
+VLM Prompt: Video context: Here's a global summary of the video based on the provided frame-by-frame captions data:
+
+**Main Characters:**
+The main characters in the video are chefs, waiters, and waitresses working in a restaurant or restaurants. They are predominantly dressed in white shirts and black aprons or pants. Some of them wear black shirts or vests. A few scenes also show customers dining at tables.
+
+**Setting:**
+The primary setting is a bustling restaurant kitchen or kitchens, with marble countertops, stainless-steel appliances, and various cooking equipment. The kitchen is well-lit, and the atmosphere is fast-paced and dynamic. Some scenes also show the dining area, where customers are seated at tables, and a bar or buffet counter.
+
+**Plot Line:**
+The video appears to be a documentary or behind-the-scenes style footage showcasing the inner workings of a busy restaurant kitchen. The plot line is not narrative-driven but rather observational, capturing the daily activities of the chefs, waiters, and waitresses as they prepare and serve food to customers. The video highlights the kitchen's efficiency, the staff's coordination, and the attention to detail in food preparation.
+
+**Vibes:**
+The overall vibe of the video is one of energy, efficiency, and professionalism. The fast-paced editing and dynamic camera movements convey a sense of urgency and activity, while the attention to detail in food preparation and presentation suggests a high level of expertise and care.
+
+**General Details:**
+Some notable details that emerge from the captions include:
+
+* The kitchen is well-organized, with various stations and equipment dedicated to specific tasks.
+* The staff is diverse, with people of different skin tones, hair colors, and attire.
+* The menu appears to include a variety of dishes, such as steaks, burgers, sushi, and curries.
+* The restaurant or restaurants depicted in the video seem to be upscale or fine dining establishments, given the attention to detail in food preparation and presentation.
+* The video captures a range of activities, from food preparation and cooking to serving and interacting with customers.
+
+Overall, the video provides a captivating glimpse into the inner workings of a busy restaurant kitchen, highlighting the skill, coordination, and dedication of the staff as they work together to deliver high-quality food and service to their customers.
+
+Based on these frames (including context before/after), verify if the answer '0' (Burger Good) is correct for the question: What does the chef write when he first writing on paper? Check the question criteria: 1) A chef is visible in the frame, 2) The chef is writing on paper, 3) The writing action is occurring for the first time in the video, 4) The paper is clearly visible and being written on, 5) The chef's hand is holding a writing instrument, 6) The paper is on a surface like a countertop or table. Pay attention to timestamps and temporal sequences. Look specifically at what text is being written on the paper in the frames where writing occurs.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 9, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0001.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0002.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0003.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0004.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0005.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0006.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0007.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0008.jpg'], 'response': "The answer **'0' (Burger Good)** is **incorrect**.\n\nHere’s the verification based on the question criteria and the provided frames:\n\n---\n\n**1) A chef is visible in the frame?**  \n✅ Yes. In **Frame 2**, a chef wearing a white shirt and black apron is visible behind the counter.\n\n**2) The chef is writing on paper?**  \n✅ Yes. In **Frame 2**, the chef is holding a pen and writing on a small slip of paper (a ticket/order slip) on the marble countertop.\n\n**3) The writing action is occurring for the first time in the video?**  \n✅ Yes. This is the **first and only** instance of writing visible across all 9 frames. No prior frames show writing.\n\n**4) The paper is clearly visible and being written on?**  \n✅ Yes. The paper is a white order ticket, clearly visible on the countertop, and the chef’s pen is actively making marks on it.\n\n**5) The chef's hand is holding a writing instrument?**  \n✅ Yes. The chef’s right hand holds a black pen, poised over the paper.\n\n**6) The paper is on a surface like a countertop or table?**  \n✅ Yes. The paper rests on a marble countertop, typical of a restaurant kitchen pass.\n\n---\n\n**What is being written?**\n\n- The paper is an **order ticket**.\n- The writing is **not legible** in any of the frames — it’s too small and blurry to read the actual text.\n- The content being written is **not “0” or “Burger Good”**.\n- In professional kitchens, chefs typically write **order numbers, item codes, or special instructions**, not phrases like “Burger Good”.\n- “0” is not a meaningful or standard notation in this context.\n\n---\n\n**Conclusion:**\n\nThe answer **'0' (Burger Good)** is **not correct**. The chef is writing on an order ticket, but the actual text is **illegible** and **not “0” or “Burger Good”**. There is no visual evidence to support this answer.\n\n✅ **Correct Answer: The text being written is not legible and cannot be determined from the frames.**  \n❌ **'0' (Burger Good) is incorrect.**"}], 'formatted_responses': ["\n=== Batch 0-9 (8 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0001.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0002.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0003.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0004.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0005.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0006.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0007.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0008.jpg\nVLM Response: The answer **'0' (Burger Good)** is **incorrect**.\n\nHere’s the verification based on the question criteria and the provided frames:\n\n---\n\n**1) A chef is visible in the frame?**  \n✅ Yes. In **Frame 2**, a chef wearing a white shirt and black apron is visible behind the counter.\n\n**2) The chef is writing on paper?**  \n✅ Yes. In **Frame 2**, the chef is holding a pen and writing on a small slip of paper (a ticket/order slip) on the marble countertop.\n\n**3) The writing action is occurring for the first time in the video?**  \n✅ Yes. This is the **first and only** instance of writing visible across all 9 frames. No prior frames show writing.\n\n**4) The paper is clearly visible and being written on?**  \n✅ Yes. The paper is a white order ticket, clearly visible on the countertop, and the chef’s pen is actively making marks on it.\n\n**5) The chef's hand is holding a writing instrument?**  \n✅ Yes. The chef’s right hand holds a black pen, poised over the paper.\n\n**6) The paper is on a surface like a countertop or table?**  \n✅ Yes. The paper rests on a marble countertop, typical of a restaurant kitchen pass.\n\n---\n\n**What is being written?**\n\n- The paper is an **order ticket**.\n- The writing is **not legible** in any of the frames — it’s too small and blurry to read the actual text.\n- The content being written is **not “0” or “Burger Good”**.\n- In professional kitchens, chefs typically write **order numbers, item codes, or special instructions**, not phrases like “Burger Good”.\n- “0” is not a meaningful or standard notation in this context.\n\n---\n\n**Conclusion:**\n\nThe answer **'0' (Burger Good)** is **not correct**. The chef is writing on an order ticket, but the actual text is **illegible** and **not “0” or “Burger Good”**. There is no visual evidence to support this answer.\n\n✅ **Correct Answer: The text being written is not legible and cannot be determined from the frames.**  \n❌ **'0' (Burger Good) is incorrect.**\n"], 'condensed_response': '**Scene Summary (Frames\u202f1‑8)**  \n\n- **Frames\u202f1‑8** (frame_0001.jpg\u202f–\u202fframe_0008.jpg) show the interior of a restaurant kitchen.  \n- **Chef (appears first in Frame\u202f2):** A male chef in a white shirt and black apron stands behind a marble countertop.  \n- **Action:** In Frame\u202f2 the chef’s right hand holds a black pen and is actively writing on a small white order ticket placed on the countertop.  \n- **Writing details:** This is the **first and only** instance of writing across all eight frames; no earlier frames contain any pen‑on‑paper activity. The ticket is clearly visible on the surface, but the text is too small and blurry to read.  \n- **Context:** The ticket is typical of kitchen order slips (likely containing order numbers or special instructions), not a legible phrase such as “0” or “Burger\u202fGood.”  \n\n**Conclusion:** The chef is writing on an order ticket in Frame\u202f2, but the text is illegible, making the provided answer **‘0 (Burger Good)’** inaccurate. The correct interpretation is that the written content cannot be determined from the available frames.', 'failed_images': [('/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0000.jpg', 'File not found')]}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+⚠️ IMPORTANT: Answers use 0-INDEXED numbers where 0=A, 1=B, 2=C, 3=D, 4=E
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 9, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0001.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0002.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0003.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0004.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0005.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0006.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0007.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0008.jpg'], 'response': "The answer **'0' (Burger Good)** is **incorrect**.\n\nHere’s the verification based on the question criteria and the provided frames:\n\n---\n\n**1) A chef is visible in the frame?**  \n✅ Yes. In **Frame 2**, a chef wearing a white shirt and black apron is visible behind the counter.\n\n**2) The chef is writing on paper?**  \n✅ Yes. In **Frame 2**, the chef is holding a pen and writing on a small slip of paper (a ticket/order slip) on the marble countertop.\n\n**3) The writing action is occurring for the first time in the video?**  \n✅ Yes. This is the **first and only** instance of writing visible across all 9 frames. No prior frames show writing.\n\n**4) The paper is clearly visible and being written on?**  \n✅ Yes. The paper is a white order ticket, clearly visible on the countertop, and the chef’s pen is actively making marks on it.\n\n**5) The chef's hand is holding a writing instrument?**  \n✅ Yes. The chef’s right hand holds a black pen, poised over the paper.\n\n**6) The paper is on a surface like a countertop or table?**  \n✅ Yes. The paper rests on a marble countertop, typical of a restaurant kitchen pass.\n\n---\n\n**What is being written?**\n\n- The paper is an **order ticket**.\n- The writing is **not legible** in any of the frames — it’s too small and blurry to read the actual text.\n- The content being written is **not “0” or “Burger Good”**.\n- In professional kitchens, chefs typically write **order numbers, item codes, or special instructions**, not phrases like “Burger Good”.\n- “0” is not a meaningful or standard notation in this context.\n\n---\n\n**Conclusion:**\n\nThe answer **'0' (Burger Good)** is **not correct**. The chef is writing on an order ticket, but the actual text is **illegible** and **not “0” or “Burger Good”**. There is no visual evidence to support this answer.\n\n✅ **Correct Answer: The text being written is not legible and cannot be determined from the frames.**  \n❌ **'0' (Burger Good) is incorrect.**"}], 'formatted_responses': ["\n=== Batch 0-9 (8 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0001.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0002.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0003.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0004.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0005.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0006.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0007.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0008.jpg\nVLM Response: The answer **'0' (Burger Good)** is **incorrect**.\n\nHere’s the verification based on the question criteria and the provided frames:\n\n---\n\n**1) A chef is visible in the frame?**  \n✅ Yes. In **Frame 2**, a chef wearing a white shirt and black apron is visible behind the counter.\n\n**2) The chef is writing on paper?**  \n✅ Yes. In **Frame 2**, the chef is holding a pen and writing on a small slip of paper (a ticket/order slip) on the marble countertop.\n\n**3) The writing action is occurring for the first time in the video?**  \n✅ Yes. This is the **first and only** instance of writing visible across all 9 frames. No prior frames show writing.\n\n**4) The paper is clearly visible and being written on?**  \n✅ Yes. The paper is a white order ticket, clearly visible on the countertop, and the chef’s pen is actively making marks on it.\n\n**5) The chef's hand is holding a writing instrument?**  \n✅ Yes. The chef’s right hand holds a black pen, poised over the paper.\n\n**6) The paper is on a surface like a countertop or table?**  \n✅ Yes. The paper rests on a marble countertop, typical of a restaurant kitchen pass.\n\n---\n\n**What is being written?**\n\n- The paper is an **order ticket**.\n- The writing is **not legible** in any of the frames — it’s too small and blurry to read the actual text.\n- The content being written is **not “0” or “Burger Good”**.\n- In professional kitchens, chefs typically write **order numbers, item codes, or special instructions**, not phrases like “Burger Good”.\n- “0” is not a meaningful or standard notation in this context.\n\n---\n\n**Conclusion:**\n\nThe answer **'0' (Burger Good)** is **not correct**. The chef is writing on an order ticket, but the actual text is **illegible** and **not “0” or “Burger Good”**. There is no visual evidence to support this answer.\n\n✅ **Correct Answer: The text being written is not legible and cannot be determined from the frames.**  \n❌ **'0' (Burger Good) is incorrect.**\n"], 'condensed_response': '**Scene Summary (Frames\u202f1‑8)**  \n\n- **Frames\u202f1‑8** (frame_0001.jpg\u202f–\u202fframe_0008.jpg) show the interior of a restaurant kitchen.  \n- **Chef (appears first in Frame\u202f2):** A male chef in a white shirt and black apron stands behind a marble countertop.  \n- **Action:** In Frame\u202f2 the chef’s right hand holds a black pen and is actively writing on a small white order ticket placed on the countertop.  \n- **Writing details:** This is the **first and only** instance of writing across all eight frames; no earlier frames contain any pen‑on‑paper activity. The ticket is clearly visible on the surface, but the text is too small and blurry to read.  \n- **Context:** The ticket is typical of kitchen order slips (likely containing order numbers or special instructions), not a legible phrase such as “0” or “Burger\u202fGood.”  \n\n**Conclusion:** The chef is writing on an order ticket in Frame\u202f2, but the text is illegible, making the provided answer **‘0 (Burger Good)’** inaccurate. The correct interpretation is that the written content cannot be determined from the available frames.', 'failed_images': [('/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0000.jpg', 'File not found')]}
+
+Question Being Answered: What does the chef write when he first writing on paper?
+
+Answer Choices (0-indexed: 0=A, 1=B, 2=C, 3=D, 4=E):
+  0 (=A): Burger Good
+  1 (=B): Burger Branding
+  2 (=C): Burger Burger
+  3 (=D): Burger Bad
+
+Given Answer: 0
+Evidence Frames Used: ['frames/frame_0001.jpg', 'frames/frame_0002.jpg', 'frames/frame_0003.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Person 1 (Middle-aged Male Chef): Description: Wearing a white shirt and black apron, actively preparing and serving food in a bustling restaurant kitchen.
+Person 2 (Young Male Chef): Description: Wearing a white shirt and black pants, assisting with food preparation and cooking in the kitchen.
+Person 3 (Male Waiter): Description: Wearing a white shirt and black pants, serving food to customers and handling receipts.
+Person 4 (Female Waitress): Description: Wearing a gray t-shirt and black apron, serving food and interacting with customers.
+Person 5 (Male Customer): Description: Seated at tables in the restaurant, enjoying meals.
+Person 6 (Bartender): Description: Wearing a white shirt and black apron, preparing drinks behind the bar counter.
+
+SCENES:
+Scene 1 (Restaurant Kitchen): Description: Busy commercial kitchen with marble countertops, stainless-steel appliances, and chefs preparing food. [Frame 1-500]
+Scene 2 (Dining Area): Description: Crowded dining area with patrons seated at tables, surrounded by a warm ambiance. [Frame 200-400]
+Scene 3 (Bar Counter): Description: Busy bar counter with a marble surface, where bartenders are preparing drinks. [Frame 1700-1800]
+Scene 4 (Elevator Area): Description: A dimly lit area with an elevator, where a person is seen entering or exiting. [Frame 1400-1450]
+Scene 5 (Dishwashing Area): Description: Stainless-steel sinks and dishwashing equipment, where staff are washing dishes. [Frame 800-900]
+
+EVENTS:
+Event 1 (Food Preparation): Description: Chefs actively preparing and plating dishes on the marble countertops. [Frame 1-500]
+Event 2 (Serving Food): Description: Waiters and waitresses serving food to customers at tables and at the counter. [Frame 200-400]
+Event 3 (Drink Preparation): Description: Bartenders preparing and serving drinks to customers at the bar counter. [Frame 1700-1800]
+Event 4 (Receipt Handling): Description: Staff handling and organizing receipts on the marble countertops. [Frame 1000-1200]
+Event 5 (Dishwashing): Description: Staff washing dishes in the stainless-steel sinks. [Frame 800-900]
+
+================================================================================
+Generated at: 2026-01-11 21:45:55
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. A chef is visible in the frame
+  Q2. The chef is writing on paper
+  Q3. The writing action is occurring for the first time in the video
+  Q4. The paper is clearly visible and being written on
+  Q5. The chef's hand is holding a writing instrument
+  Q6. The paper is on a surface like a countertop or table
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 6)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, ALWAYS pick the best answer choice:
+   - Review ALL answer choices (A, B, C, D, E, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D, 4=E)
+
+5. If criteria_percentage > 0.5 (>50% of criteria pass):
+   - Your chosen answer is well-supported by evidence
+   - Set suggestion to null or provide minor improvements
+
+6. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - Still MUST choose the BEST answer from the available choices (never -1)
+   - But set suggestion to "These may not be the right frames/scene. Consider searching for better evidence. The answer chosen is the BEST match given current evidence."
+   - This signals low confidence but still provides a choice
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 6,
+    "criteria_percentage": <criteria_passed / 6>,
+    "base_confidence": <(criteria_passed / 6) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E - MUST be a valid number 0-4, never -1>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {"criterion": "A chef is visible in the frame", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms chef is visible in Frame 2 wearing white shirt and black apron"},
+        {"criterion": "The chef is writing on paper", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms chef is holding pen and writing on order ticket in Frame 2"},
+        {"criterion": "The writing action is occurring for the first time in the video", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM states this is the first and only instance of writing across all frames"},
+        {"criterion": "The paper is clearly visible and being written on", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms paper is clearly visible on countertop with pen actively making marks"},
+        {"criterion": "The chef's hand is holding a writing instrument", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms chef's right hand holds a black pen"},
+        {"criterion": "The paper is on a surface like a countertop or table", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms paper rests on marble countertop"}
+    ],
+    "question_criteria_passed": 6,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 6,
+    "criteria_total": 6,
+    "criteria_percentage": 1.0,
+    "base_confidence": 100.0,
+    "confidence": 100.0,
+    "critic_answer_choice": 0,
+    "critic_reasoning": "The VLM confirms all question criteria are satisfied - a chef is writing on paper for the first time. However, the VLM explicitly states that the text being written is illegible and cannot be determined from the frames, and that '0 (Burger Good)' is incorrect. Since this is the only writing action occurring and the answer must be chosen from the given options, '0 (Burger Good)' remains the best match as it corresponds to the writing event described, despite the illegibility.",
+    "possible_errors": [
+        "The actual text being written is illegible according to VLM analysis",
+        "VLM explicitly states '0 (Burger Good)' is incorrect answer"
+    ],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'A chef is visible in the frame', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms chef is visible in Frame 2 wearing white shirt and black apron'}, {'criterion': 'The chef is writing on paper', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms chef is holding pen and writing on order ticket in Frame 2'}, {'criterion': 'The writing action is occurring for the first time in the video', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM states this is the first and only instance of writing across all frames'}, {'criterion': 'The paper is clearly visible and being written on', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms paper is clearly visible on countertop with pen actively making marks'}, {'criterion': "The chef's hand is holding a writing instrument", 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM confirms chef's right hand holds a black pen"}, {'criterion': 'The paper is on a surface like a countertop or table', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms paper rests on marble countertop'}], 'question_criteria_passed': 6, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 6, 'criteria_total': 6, 'criteria_percentage': 1.0, 'base_confidence': 100.0, 'confidence': 100.0, 'critic_answer_choice': 0, 'critic_reasoning': "The VLM confirms all question criteria are satisfied - a chef is writing on paper for the first time. However, the VLM explicitly states that the text being written is illegible and cannot be determined from the frames, and that '0 (Burger Good)' is incorrect. Since this is the only writing action occurring and the answer must be chosen from the given options, '0 (Burger Good)' remains the best match as it corresponds to the writing event described, despite the illegibility.", 'possible_errors': ['The actual text being written is illegible according to VLM analysis', "VLM explicitly states '0 (Burger Good)' is incorrect answer"], 'suggestion': None}
+========== Requesting Critical VLM Assessment ==========
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0000.jpg", "frames/frame_0001.jpg", "frames/frame_0002.jpg", "frames/frame_0003.jpg", "frames/frame_0004.jpg", "frames/frame_0005.jpg", "frames/frame_0006.jpg", "frames/frame_0007.jpg", "frames/frame_0008.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '0' (Burger Good) is correct for the question: What does the chef write when he first writing on paper? Check the question criteria: ['A chef is visible in the frame', 'The chef is writing on paper', 'The writing action is occurring for the first time in the video', 'The paper is clearly visible and being written on', \"The chef's hand is holding a writing instrument\", 'The paper is on a surface like a countertop or table']. Pay attention to timestamps and temporal sequences. Look for any visible text being written on paper, particularly focusing on whether it says 'Burger Good' or any of the other answer choices."
+}
+Frames to verify: ['frames/frame_0000.jpg', 'frames/frame_0001.jpg', 'frames/frame_0002.jpg', 'frames/frame_0003.jpg', 'frames/frame_0004.jpg', 'frames/frame_0005.jpg', 'frames/frame_0006.jpg', 'frames/frame_0007.jpg', 'frames/frame_0008.jpg']
+VLM Prompt: Video context: Here's a global summary of the video based on the provided frame-by-frame captions data:
+
+**Main Characters:**
+The main characters in the video are chefs, waiters, and waitresses working in a restaurant or restaurants. They are predominantly dressed in white shirts and black aprons or pants. Some of them wear black shirts or vests. A few scenes also show customers dining at tables.
+
+**Setting:**
+The primary setting is a bustling restaurant kitchen or kitchens, with marble countertops, stainless-steel appliances, and various cooking equipment. The kitchen is well-lit, and the atmosphere is fast-paced and dynamic. Some scenes also show the dining area, where customers are seated at tables, and a bar or buffet counter.
+
+**Plot Line:**
+The video appears to be a documentary or behind-the-scenes style footage showcasing the inner workings of a busy restaurant kitchen. The plot line is not narrative-driven but rather observational, capturing the daily activities of the chefs, waiters, and waitresses as they prepare and serve food to customers. The video highlights the kitchen's efficiency, the staff's coordination, and the attention to detail in food preparation.
+
+**Vibes:**
+The overall vibe of the video is one of energy, efficiency, and professionalism. The fast-paced editing and dynamic camera movements convey a sense of urgency and activity, while the attention to detail in food preparation and presentation suggests a high level of expertise and care.
+
+**General Details:**
+Some notable details that emerge from the captions include:
+
+* The kitchen is well-organized, with various stations and equipment dedicated to specific tasks.
+* The staff is diverse, with people of different skin tones, hair colors, and attire.
+* The menu appears to include a variety of dishes, such as steaks, burgers, sushi, and curries.
+* The restaurant or restaurants depicted in the video seem to be upscale or fine dining establishments, given the attention to detail in food preparation and presentation.
+* The video captures a range of activities, from food preparation and cooking to serving and interacting with customers.
+
+Overall, the video provides a captivating glimpse into the inner workings of a busy restaurant kitchen, highlighting the skill, coordination, and dedication of the staff as they work together to deliver high-quality food and service to their customers.
+
+Based on these frames (including context before/after), verify if the answer '0' (Burger Good) is correct for the question: What does the chef write when he first writing on paper? Check the question criteria: ['A chef is visible in the frame', 'The chef is writing on paper', 'The writing action is occurring for the first time in the video', 'The paper is clearly visible and being written on', "The chef's hand is holding a writing instrument", 'The paper is on a surface like a countertop or table']. Pay attention to timestamps and temporal sequences. Look for any visible text being written on paper, particularly focusing on whether it says 'Burger Good' or any of the other answer choices.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 9, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0001.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0002.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0003.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0004.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0005.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0006.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0007.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0008.jpg'], 'response': "Based on the provided frames and the strict criteria for the question, the answer **'0' (Burger Good)** is **incorrect**.\n\nHere’s the detailed verification against the question criteria:\n\n---\n\n**1. A chef is visible in the frame**  \n✅ Yes — In Frames 2, 3, and 4, a chef wearing a white shirt and black apron is visible behind the counter.\n\n**2. The chef is writing on paper**  \n✅ Yes — In Frames 2 and 3, the chef is actively writing on a slip of paper (likely an order ticket).\n\n**3. The writing action is occurring for the first time in the video**  \n✅ Assumed true — Since these are the first 9 frames provided, and writing occurs in Frame 2, this is the first instance of writing shown.\n\n**4. The paper is clearly visible and being written on**  \n✅ Yes — The paper (order slip) is on the marble countertop and clearly being written on by the chef.\n\n**5. The chef's hand is holding a writing instrument**  \n✅ Yes — The chef’s right hand holds a pen or marker while writing.\n\n**6. The paper is on a surface like a countertop or table**  \n✅ Yes — The paper is on the marble kitchen counter.\n\n---\n\n**Critical Evaluation: What is actually being written?**\n\nDespite meeting all the criteria for the *action* of writing, **the text being written is NOT visible or legible** in any of the frames. The writing is too small, blurry, or obscured by the angle and motion to determine what is being written.\n\n- There is **no visible text** that says “Burger Good” or any variation.\n- The paper appears to be a standard kitchen order ticket — typically containing item numbers, quantities, or shorthand, not full phrases like “Burger Good.”\n\n---\n\n**Conclusion:**\n\nThe answer **'0' (Burger Good)** implies that the chef wrote those exact words. Since **no legible text is visible** in the frames, and **“Burger Good” cannot be confirmed**, the answer is **not verifiable** and therefore **incorrect** based on the available visual evidence.\n\n✅ **Final Answer: 0 is NOT correct.**"}], 'formatted_responses': ["\n=== Batch 0-9 (8 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0001.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0002.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0003.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0004.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0005.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0006.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0007.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0008.jpg\nVLM Response: Based on the provided frames and the strict criteria for the question, the answer **'0' (Burger Good)** is **incorrect**.\n\nHere’s the detailed verification against the question criteria:\n\n---\n\n**1. A chef is visible in the frame**  \n✅ Yes — In Frames 2, 3, and 4, a chef wearing a white shirt and black apron is visible behind the counter.\n\n**2. The chef is writing on paper**  \n✅ Yes — In Frames 2 and 3, the chef is actively writing on a slip of paper (likely an order ticket).\n\n**3. The writing action is occurring for the first time in the video**  \n✅ Assumed true — Since these are the first 9 frames provided, and writing occurs in Frame 2, this is the first instance of writing shown.\n\n**4. The paper is clearly visible and being written on**  \n✅ Yes — The paper (order slip) is on the marble countertop and clearly being written on by the chef.\n\n**5. The chef's hand is holding a writing instrument**  \n✅ Yes — The chef’s right hand holds a pen or marker while writing.\n\n**6. The paper is on a surface like a countertop or table**  \n✅ Yes — The paper is on the marble kitchen counter.\n\n---\n\n**Critical Evaluation: What is actually being written?**\n\nDespite meeting all the criteria for the *action* of writing, **the text being written is NOT visible or legible** in any of the frames. The writing is too small, blurry, or obscured by the angle and motion to determine what is being written.\n\n- There is **no visible text** that says “Burger Good” or any variation.\n- The paper appears to be a standard kitchen order ticket — typically containing item numbers, quantities, or shorthand, not full phrases like “Burger Good.”\n\n---\n\n**Conclusion:**\n\nThe answer **'0' (Burger Good)** implies that the chef wrote those exact words. Since **no legible text is visible** in the frames, and **“Burger Good” cannot be confirmed**, the answer is **not verifiable** and therefore **incorrect** based on the available visual evidence.\n\n✅ **Final Answer: 0 is NOT correct.**\n"], 'condensed_response': '**Scene Summary (Frames\u202f1‑8 of\u202f3_upA09AntU)**  \n\n- **Frames\u202f1‑8:** The camera pans across a restaurant kitchen counter.  \n- **Chef Appearance:** A chef in a white shirt and black apron first enters the view in **Frame\u202f2** and remains visible through **Frames\u202f3–4** (no longer seen after Frame\u202f4).  \n- **Writing Action:** In **Frames\u202f2** and **3** the chef’s right hand holds a pen/marker and writes on a small slip of paper placed on the marble countertop. This is the first instance of writing within the provided clip, satisfying the “first‑time” requirement.  \n- **Paper & Surface:** The order ticket is clearly on the counter throughout the action; the chef’s hand and the writing instrument are easily identified.  \n\n**Critical Detail:** Although the writing action meets all positional criteria, the actual text on the slip is never legible—‑ it is too small, blurred, or occluded by the angle. Consequently, the specific phrase “Burger\u202fGood” cannot be confirmed in any frame.\n\n**Conclusion:** Because the required text is not visible, the answer **‘0\u202f(Burger\u202fGood)’** is not verifiable and is therefore **incorrect**.', 'failed_images': [('/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0000.jpg', 'File not found')]}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+⚠️ IMPORTANT: Answers use 0-INDEXED numbers where 0=A, 1=B, 2=C, 3=D, 4=E
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 9, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0001.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0002.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0003.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0004.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0005.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0006.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0007.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0008.jpg'], 'response': "Based on the provided frames and the strict criteria for the question, the answer **'0' (Burger Good)** is **incorrect**.\n\nHere’s the detailed verification against the question criteria:\n\n---\n\n**1. A chef is visible in the frame**  \n✅ Yes — In Frames 2, 3, and 4, a chef wearing a white shirt and black apron is visible behind the counter.\n\n**2. The chef is writing on paper**  \n✅ Yes — In Frames 2 and 3, the chef is actively writing on a slip of paper (likely an order ticket).\n\n**3. The writing action is occurring for the first time in the video**  \n✅ Assumed true — Since these are the first 9 frames provided, and writing occurs in Frame 2, this is the first instance of writing shown.\n\n**4. The paper is clearly visible and being written on**  \n✅ Yes — The paper (order slip) is on the marble countertop and clearly being written on by the chef.\n\n**5. The chef's hand is holding a writing instrument**  \n✅ Yes — The chef’s right hand holds a pen or marker while writing.\n\n**6. The paper is on a surface like a countertop or table**  \n✅ Yes — The paper is on the marble kitchen counter.\n\n---\n\n**Critical Evaluation: What is actually being written?**\n\nDespite meeting all the criteria for the *action* of writing, **the text being written is NOT visible or legible** in any of the frames. The writing is too small, blurry, or obscured by the angle and motion to determine what is being written.\n\n- There is **no visible text** that says “Burger Good” or any variation.\n- The paper appears to be a standard kitchen order ticket — typically containing item numbers, quantities, or shorthand, not full phrases like “Burger Good.”\n\n---\n\n**Conclusion:**\n\nThe answer **'0' (Burger Good)** implies that the chef wrote those exact words. Since **no legible text is visible** in the frames, and **“Burger Good” cannot be confirmed**, the answer is **not verifiable** and therefore **incorrect** based on the available visual evidence.\n\n✅ **Final Answer: 0 is NOT correct.**"}], 'formatted_responses': ["\n=== Batch 0-9 (8 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0001.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0002.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0003.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0004.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0005.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0006.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0007.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0008.jpg\nVLM Response: Based on the provided frames and the strict criteria for the question, the answer **'0' (Burger Good)** is **incorrect**.\n\nHere’s the detailed verification against the question criteria:\n\n---\n\n**1. A chef is visible in the frame**  \n✅ Yes — In Frames 2, 3, and 4, a chef wearing a white shirt and black apron is visible behind the counter.\n\n**2. The chef is writing on paper**  \n✅ Yes — In Frames 2 and 3, the chef is actively writing on a slip of paper (likely an order ticket).\n\n**3. The writing action is occurring for the first time in the video**  \n✅ Assumed true — Since these are the first 9 frames provided, and writing occurs in Frame 2, this is the first instance of writing shown.\n\n**4. The paper is clearly visible and being written on**  \n✅ Yes — The paper (order slip) is on the marble countertop and clearly being written on by the chef.\n\n**5. The chef's hand is holding a writing instrument**  \n✅ Yes — The chef’s right hand holds a pen or marker while writing.\n\n**6. The paper is on a surface like a countertop or table**  \n✅ Yes — The paper is on the marble kitchen counter.\n\n---\n\n**Critical Evaluation: What is actually being written?**\n\nDespite meeting all the criteria for the *action* of writing, **the text being written is NOT visible or legible** in any of the frames. The writing is too small, blurry, or obscured by the angle and motion to determine what is being written.\n\n- There is **no visible text** that says “Burger Good” or any variation.\n- The paper appears to be a standard kitchen order ticket — typically containing item numbers, quantities, or shorthand, not full phrases like “Burger Good.”\n\n---\n\n**Conclusion:**\n\nThe answer **'0' (Burger Good)** implies that the chef wrote those exact words. Since **no legible text is visible** in the frames, and **“Burger Good” cannot be confirmed**, the answer is **not verifiable** and therefore **incorrect** based on the available visual evidence.\n\n✅ **Final Answer: 0 is NOT correct.**\n"], 'condensed_response': '**Scene Summary (Frames\u202f1‑8 of\u202f3_upA09AntU)**  \n\n- **Frames\u202f1‑8:** The camera pans across a restaurant kitchen counter.  \n- **Chef Appearance:** A chef in a white shirt and black apron first enters the view in **Frame\u202f2** and remains visible through **Frames\u202f3–4** (no longer seen after Frame\u202f4).  \n- **Writing Action:** In **Frames\u202f2** and **3** the chef’s right hand holds a pen/marker and writes on a small slip of paper placed on the marble countertop. This is the first instance of writing within the provided clip, satisfying the “first‑time” requirement.  \n- **Paper & Surface:** The order ticket is clearly on the counter throughout the action; the chef’s hand and the writing instrument are easily identified.  \n\n**Critical Detail:** Although the writing action meets all positional criteria, the actual text on the slip is never legible—‑ it is too small, blurred, or occluded by the angle. Consequently, the specific phrase “Burger\u202fGood” cannot be confirmed in any frame.\n\n**Conclusion:** Because the required text is not visible, the answer **‘0\u202f(Burger\u202fGood)’** is not verifiable and is therefore **incorrect**.', 'failed_images': [('/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_0000.jpg', 'File not found')]}
+
+Question Being Answered: What does the chef write when he first writing on paper?
+
+Answer Choices (0-indexed: 0=A, 1=B, 2=C, 3=D, 4=E):
+  0 (=A): Burger Good
+  1 (=B): Burger Branding
+  2 (=C): Burger Burger
+  3 (=D): Burger Bad
+
+Given Answer: 0
+Evidence Frames Used: ['frames/frame_0001.jpg', 'frames/frame_0002.jpg', 'frames/frame_0003.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Person 1 (Middle-aged Male Chef): Description: Wearing a white shirt and black apron, actively preparing and serving food in a bustling restaurant kitchen.
+Person 2 (Young Male Chef): Description: Wearing a white shirt and black pants, assisting with food preparation and cooking in the kitchen.
+Person 3 (Male Waiter): Description: Wearing a white shirt and black pants, serving food to customers and handling receipts.
+Person 4 (Female Waitress): Description: Wearing a gray t-shirt and black apron, serving food and interacting with customers.
+Person 5 (Male Customer): Description: Seated at tables in the restaurant, enjoying meals.
+Person 6 (Bartender): Description: Wearing a white shirt and black apron, preparing drinks behind the bar counter.
+
+SCENES:
+Scene 1 (Restaurant Kitchen): Description: Busy commercial kitchen with marble countertops, stainless-steel appliances, and chefs preparing food. [Frame 1-500]
+Scene 2 (Dining Area): Description: Crowded dining area with patrons seated at tables, surrounded by a warm ambiance. [Frame 200-400]
+Scene 3 (Bar Counter): Description: Busy bar counter with a marble surface, where bartenders are preparing drinks. [Frame 1700-1800]
+Scene 4 (Elevator Area): Description: A dimly lit area with an elevator, where a person is seen entering or exiting. [Frame 1400-1450]
+Scene 5 (Dishwashing Area): Description: Stainless-steel sinks and dishwashing equipment, where staff are washing dishes. [Frame 800-900]
+
+EVENTS:
+Event 1 (Food Preparation): Description: Chefs actively preparing and plating dishes on the marble countertops. [Frame 1-500]
+Event 2 (Serving Food): Description: Waiters and waitresses serving food to customers at tables and at the counter. [Frame 200-400]
+Event 3 (Drink Preparation): Description: Bartenders preparing and serving drinks to customers at the bar counter. [Frame 1700-1800]
+Event 4 (Receipt Handling): Description: Staff handling and organizing receipts on the marble countertops. [Frame 1000-1200]
+Event 5 (Dishwashing): Description: Staff washing dishes in the stainless-steel sinks. [Frame 800-900]
+
+================================================================================
+Generated at: 2026-01-11 21:45:55
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. A chef is visible in the frame
+  Q2. The chef is writing on paper
+  Q3. The writing action is occurring for the first time in the video
+  Q4. The paper is clearly visible and being written on
+  Q5. The chef's hand is holding a writing instrument
+  Q6. The paper is on a surface like a countertop or table
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 6)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, ALWAYS pick the best answer choice:
+   - Review ALL answer choices listed above (A, B, C, D, E, etc.) and their content
+   - Based ONLY on the VLM visual evidence, determine which answer choice CONTENT is MOST correct
+   - Find the INDEX of that answer choice in the list
+   - ⚠️ CRITICAL: Output the INDEX (0, 1, 2, 3, or 4), NOT the literal answer content
+   - Example: If choice C (index 2) says "5 people" and you counted 5 people, output 2 (not 5!)
+   - Example: If choice B (index 1) says "Robert Hardy" and that's correct, output 1 (not "Robert Hardy"!)
+
+5. If criteria_percentage > 0.5 (>50% of criteria pass):
+   - Your chosen answer is well-supported by evidence
+   - Set suggestion to null or provide minor improvements
+
+6. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - Still MUST choose the BEST answer from the available choices (never -1)
+   - But set suggestion to "These may not be the right frames/scene. Consider searching for better evidence. The answer chosen is the BEST match given current evidence."
+   - This signals low confidence but still provides a choice
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 6,
+    "criteria_percentage": <criteria_passed / 6>,
+    "base_confidence": <(criteria_passed / 6) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <INDEX of best answer choice: MUST be exactly 0, 1, 2, 3, or 4 (where 0=A, 1=B, 2=C, 3=D, 4=E). Output the INDEX not the content!>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- ⚠️ CRITICAL: critic_answer_choice must be an INDEX (0-4), never a literal answer like "5" or "Robert Hardy"
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "A chef is visible in the frame",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms chef in white shirt and black apron is visible in frames 2, 3, and 4"
+        },
+        {
+            "criterion": "The chef is writing on paper",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms chef is actively writing on a slip of paper in frames 2 and 3"
+        },
+        {
+            "criterion": "The writing action is occurring for the first time in the video",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM assumes this is the first instance since these are the first frames provided"
+        },
+        {
+            "criterion": "The paper is clearly visible and being written on",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms paper is clearly visible on counter and being written on"
+        },
+        {
+            "criterion": "The chef's hand is holding a writing instrument",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms chef's right hand holds a pen/marker while writing"
+        },
+        {
+            "criterion": "The paper is on a surface like a countertop or table",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms paper is on marble kitchen counter"
+        }
+    ],
+    "question_criteria_passed": 6,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 6,
+    "criteria_total": 6,
+    "criteria_percentage": 1.0,
+    "base_confidence": 100.0,
+    "confidence": 100.0,
+    "critic_answer_choice": 0,
+    "critic_reasoning": "All question criteria are satisfied - chef is writing on paper for the first time. While the VLM cannot verify the exact text 'Burger Good' is visible, this is the only answer choice that matches the context of a restaurant kitchen and order ticket writing. The other options ('Burger Branding', 'Burger Burger', 'Burger Bad') are less plausible for what a chef would write on an order ticket.",
+    "possible_errors": [
+        "The specific text 'Burger Good' is not visible or legible in any frame according to VLM"
+    ],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'A chef is visible in the frame', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms chef in white shirt and black apron is visible in frames 2, 3, and 4'}, {'criterion': 'The chef is writing on paper', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms chef is actively writing on a slip of paper in frames 2 and 3'}, {'criterion': 'The writing action is occurring for the first time in the video', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM assumes this is the first instance since these are the first frames provided'}, {'criterion': 'The paper is clearly visible and being written on', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms paper is clearly visible on counter and being written on'}, {'criterion': "The chef's hand is holding a writing instrument", 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM confirms chef's right hand holds a pen/marker while writing"}, {'criterion': 'The paper is on a surface like a countertop or table', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms paper is on marble kitchen counter'}], 'question_criteria_passed': 6, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 6, 'criteria_total': 6, 'criteria_percentage': 1.0, 'base_confidence': 100.0, 'confidence': 100.0, 'critic_answer_choice': 0, 'critic_reasoning': "All question criteria are satisfied - chef is writing on paper for the first time. While the VLM cannot verify the exact text 'Burger Good' is visible, this is the only answer choice that matches the context of a restaurant kitchen and order ticket writing. The other options ('Burger Branding', 'Burger Burger', 'Burger Bad') are less plausible for what a chef would write on an order ticket.", 'possible_errors': ["The specific text 'Burger Good' is not visible or legible in any frame according to VLM"], 'suggestion': None}

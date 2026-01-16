@@ -94,7 +94,7 @@ async def query_model_iterative_with_retry(model, question, uid, vid_path, candi
             # Set 60 second timeout for the entire iterative process
             result = await asyncio.wait_for(
                 query_model_iterative(model, question, uid, vid_path, candidates=candidates),
-                timeout=180  # 3 minute timeout
+                timeout=240  # 3 minute timeout
             )
             print(f"Successfully completed on attempt {attempt + 1}")
             if output_file:
@@ -203,6 +203,25 @@ INSTRUCTIONS FOR RE-EVALUATION:
 ⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence. Do not refuse to answer.
 
 IMPORTANT: It is ALSO TOTALLY POSSIBLE that your original answer was CORRECT. Do your best to keep the old reasoning in mind, any new reasoning you have, and compare the two and use your best judgment to determine a final answer.
+
+🔢 ANSWER FORMAT REQUIREMENT:
+When you provide your FINAL_ANSWER, your answer field MUST be a single NUMBER (0, 1, 2, 3, 4) corresponding to the answer choices:
+  - 0 = Choice A
+  - 1 = Choice B
+  - 2 = Choice C
+  - 3 = Choice D
+  - 4 = Choice E
+
+Do NOT use letters (A, B, C, D, E). Use ONLY numbers (0, 1, 2, 3, 4).
+
+Example FINAL_ANSWER format:
+{
+    "tool": "FINAL_ANSWER",
+    "answer": "2",  ← MUST be a number string like "0", "1", "2", etc.
+    "reasoning": "...",
+    "frames": ["frames/frame_0001.jpg", ...],
+    "answer_criteria": ["criterion 1", "criterion 2"]
+}
 """
 
     return enhanced
@@ -352,10 +371,29 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
                 # The parsed response has "frames" field, not "evidence_frame_numbers"
                 message = f"FINAL_ANSWER: {parsed_response}"
                 log(message, f"logs/log_video_{vid_path}_{question_uid}")
+
+                # Convert answer to int format (handle both letter and number responses)
+                raw_answer = parsed_response.get("answer")
+                if isinstance(raw_answer, str):
+                    raw_answer = raw_answer.strip().upper()
+                    # If it's a letter (A, B, C, D, E), convert to number
+                    if raw_answer in ['A', 'B', 'C', 'D', 'E']:
+                        parsed_answer = ord(raw_answer) - ord('A')
+                    # If it's already a number string, convert to int
+                    elif raw_answer.isdigit():
+                        parsed_answer = int(raw_answer)
+                    else:
+                        # Fallback: try to parse as is
+                        parsed_answer = raw_answer
+                elif isinstance(raw_answer, int):
+                    parsed_answer = raw_answer
+                else:
+                    parsed_answer = raw_answer
+
                 new_response = {
                     "uid": question_uid,
                     "question": question,
-                    "answer": parsed_response.get("answer"),
+                    "answer": parsed_answer,  # Now always an int (0, 1, 2, 3, 4)
                     "reasoning": parsed_response.get("reasoning"),
                     "evidence_frame_numbers": parsed_response.get("frames")  # Map "frames" to "evidence_frame_numbers"
                 }
@@ -590,12 +628,12 @@ async def re_evaluate_low_confidence_answers(
     # Identify questions needing re-evaluation
     questions_to_reevaluate = []
     for assessment in critic_assessments:
-        if assessment.get("confidence", 100) < confidence_threshold:
+        if assessment.get("confidence", 100) <= confidence_threshold:
             # Add candidates to assessment for easy access
             assessment['candidates'] = candidates_by_uid.get(assessment.get('uid'), [])
             questions_to_reevaluate.append(assessment)
     
-    print(f"Found {len(questions_to_reevaluate)} questions with confidence < {confidence_threshold}")
+    print(f"Found {len(questions_to_reevaluate)} questions with confidence <= {confidence_threshold}")
     
     # Re-evaluate each low-confidence question
     re_evaluated_results = []
@@ -747,7 +785,7 @@ async def re_evaluate_low_confidence_answers(
     
     # Add high-confidence answers (no re-evaluation needed)
     for assessment in critic_assessments:
-        if assessment.get("confidence", 100) >= confidence_threshold:
+        if assessment.get("confidence", 100) > confidence_threshold:
             assessment["re_evaluated"] = False
             final_results.append(assessment)
     

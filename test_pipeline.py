@@ -54,7 +54,7 @@ def convert_answer_format(answer, from_format='letter', to_format='letter'):
 class PipelineTester:
     """Test harness for video QA pipeline"""
 
-    def __init__(self, video_folder, questions_path, output_dir='test_results', gt_format='index', query_aware=True, vlm_model="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8", llm_model="deepseek-ai/DeepSeek-V3.1", use_no_vlm=False, num_trials=1, video_batch_size=1):
+    def __init__(self, video_folder, questions_path, output_dir='test_results', gt_format='index', query_aware=True, vlm_model="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8", llm_model="deepseek-ai/DeepSeek-V3.1", use_no_vlm=False, num_trials=1, video_batch_size=1, reverse=False):
         """
         Args:
             video_folder: Directory containing video folders
@@ -67,6 +67,7 @@ class PipelineTester:
             use_no_vlm: If True, use caption search only without VLM queries (default: False)
             num_trials: Number of trials to run for majority voting (default: 1 = no majority voting)
             video_batch_size: Number of videos to process in parallel (default: 1 = sequential)
+            reverse: If True, process videos in reverse alphabetical order (default: False)
         """
         self.video_folder = Path(video_folder)
         self.questions_path = Path(questions_path)
@@ -79,6 +80,7 @@ class PipelineTester:
         self.use_no_vlm = use_no_vlm  # Caption search only mode
         self.num_trials = num_trials  # Number of trials for majority voting
         self.video_batch_size = video_batch_size  # Number of videos to process in parallel
+        self.reverse = reverse  # Process videos in reverse order
 
         # Load questions
         with open(self.questions_path, 'r') as f:
@@ -259,7 +261,7 @@ class PipelineTester:
                                     'majority_count': majority_result['majority_count']
                                 }
 
-                            print(f"  📊 Majority Vote: {final_answer} ({majority_result['majority_count']}/{self.num_trials} votes)")
+                            print(f"  Majority Vote: {final_answer} ({majority_result['majority_count']}/{self.num_trials} votes)")
                             print(f"     Vote Distribution: {majority_result['vote_counts']}")
                             print(f"     Agreement Rate: {majority_result['agreement_rate']*100:.1f}%")
                         else:
@@ -435,7 +437,7 @@ class PipelineTester:
 
         # Phase 3: Re-evaluation (for low confidence answers < 70%)
         if mode == 'full' and results['post_critic_results']:
-            low_conf_count = sum(1 for r in results['post_critic_results'] if r['critic_confidence'] < 70 and r['critic_confidence'] >= 0)
+            low_conf_count = sum(1 for r in results['post_critic_results'] if r['critic_confidence'] <= 50 and r['critic_confidence'] >= 0)
 
             if low_conf_count > 0:
                 print(f"\n🔄 Phase 3: Re-evaluating {low_conf_count} low-confidence answers (< 70%)...")
@@ -444,7 +446,7 @@ class PipelineTester:
                     re_eval_results = await re_evaluate_low_confidence_answers(
                         vid_dir=str(self.video_folder),
                         num=video_id,
-                        confidence_threshold=70,
+                        confidence_threshold=50,
                         llm_model=self.llm_model,
                         vlm_model=self.vlm_model
                     )
@@ -509,8 +511,10 @@ class PipelineTester:
                     r['final_answer'] = int(r['final_answer'])
                 elif r['final_answer'] in ['A', 'B', 'C', 'D', 'E']:
                     r['final_answer'] = convert_answer_format(r['final_answer'], from_format='letter', to_format='index')
+                elif r['final_answer'] in [0, 1, 2, 3, 4]:
+                    r['final_answer'] = int(r['final_answer'])
                 else:
-                    continue
+                    pass
                 if r['correct_choice_idx'] is not None:
                     # Check if final_answer matches ground truth
                     r['is_correct_post_critic'] = (r['final_answer'] == r['correct_choice_idx'])
@@ -542,6 +546,13 @@ class PipelineTester:
         """
         testable_videos = self.get_testable_videos()
 
+        # Sort videos alphabetically by video_id
+        testable_videos = sorted(testable_videos, key=lambda v: v['video_id'])
+
+        # Reverse if requested
+        if self.reverse:
+            testable_videos = list(reversed(testable_videos))
+
         # Filter by video_ids if specified
         if video_ids:
             testable_videos = [v for v in testable_videos if v['video_id'] in video_ids]
@@ -556,11 +567,18 @@ class PipelineTester:
 
         caption_type_label = "Query-Aware Captions" if self.query_aware else "Regular Captions"
         vlm_mode_label = "Caption Search Only (No VLM)" if self.use_no_vlm else "Full Pipeline (with VLM)"
+        order_label = "[REVERSE ORDER]" if self.reverse else "[FORWARD ORDER]"
 
         print(f"\n{'='*60}")
-        print(f"PIPELINE TEST SUITE")
+        print(f"PIPELINE TEST SUITE {order_label}")
         print(f"{'='*60}")
         print(f"Videos to test: {len(testable_videos)}")
+        if self.reverse:
+            print(f"Order: REVERSE (Z → A)")
+            print(f"First video: {testable_videos[0]['video_id']}")
+            print(f"Last video: {testable_videos[-1]['video_id']}")
+        else:
+            print(f"Order: FORWARD (A → Z)")
         print(f"Total questions: {sum(v['num_questions'] for v in testable_videos)}")
         print(f"Caption type: {caption_type_label}")
         print(f"VLM mode: {vlm_mode_label}")
@@ -959,6 +977,8 @@ async def main():
                        help='Number of trials for majority voting (default: 1 = no majority voting, e.g., 5 for 5 trials)')
     parser.add_argument('--video-batch-size', type=int, default=1,
                        help='Number of videos to process in parallel (default: 1 = sequential, e.g., 3 for 3 videos at once)')
+    parser.add_argument('--reverse', action='store_true', default=False,
+                       help='Process videos in reverse alphabetical order (useful for parallel processing)')
 
     args = parser.parse_args()
 
@@ -973,7 +993,8 @@ async def main():
         llm_model=args.llm_model,
         use_no_vlm=args.no_vlm,
         num_trials=args.num_trials,
-        video_batch_size=args.video_batch_size
+        video_batch_size=args.video_batch_size,
+        reverse=args.reverse
     )
 
     # Run tests

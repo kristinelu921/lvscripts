@@ -1,0 +1,216 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0052.jpg", "frames/frame_0053.jpg", "frames/frame_0054.jpg", "frames/frame_0055.jpg", "frames/frame_0056.jpg", "frames/frame_0057.jpg", "frames/frame_0058.jpg", "frames/frame_0059.jpg", "frames/frame_0060.jpg", "frames/frame_0061.jpg", "frames/frame_0062.jpg", "frames/frame_0063.jpg", "frames/frame_0064.jpg", "frames/frame_0065.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '1' (Changes from a strip shape to a triangular shape) is correct for the question: On a wooden-colored table, after a strip of meat in a glass bowl is placed into a coffee-colored pot, what change occurs to the strip of meat? Check the question criteria: ['wooden-colored table surface', 'glass bowl containing a strip of meat', 'coffee-colored pot', 'strip of meat being placed into the pot', 'visual change in the strip of meat's form after placement']. Pay attention to timestamps and temporal sequences."
+}
+Frames to verify: ['frames/frame_0052.jpg', 'frames/frame_0053.jpg', 'frames/frame_0054.jpg', 'frames/frame_0055.jpg', 'frames/frame_0056.jpg', 'frames/frame_0057.jpg', 'frames/frame_0058.jpg', 'frames/frame_0059.jpg', 'frames/frame_0060.jpg', 'frames/frame_0061.jpg', 'frames/frame_0062.jpg', 'frames/frame_0063.jpg', 'frames/frame_0064.jpg', 'frames/frame_0065.jpg']
+VLM Prompt: Video context: Based on the provided frame-by-frame captions data, here is a global summary of the video:
+
+**Main Characters:** The main characters in the video are not explicitly mentioned, but there are appearances of a woman's hands and a person's hands throughout the video, suggesting that the video might be presented by a chef or a cooking influencer.
+
+**Setting:** The setting of the video is primarily a kitchen or a cooking environment. The background colors and surfaces vary, including wooden tables, gray countertops, and white surfaces.
+
+**Plot Line:** The plot line of the video revolves around cooking and preparing various burger recipes. The video starts with an introduction showcasing different burger recipes and then proceeds to demonstrate the preparation of several burgers, including a black bean burger, a cheese-stuffed burger, and a chicken parmesan burger. The video also includes segments on preparing ingredients, such as caramelized onions and mushrooms, and cooking techniques, like making rice cakes.
+
+**Vibes:** The overall vibe of the video is informative, engaging, and appetizing. The use of close-up shots, colorful ingredients, and cooking techniques creates a visually appealing atmosphere. The background music, indicated by the repeated "Subtitle: [Music]" throughout the captions, adds to the energetic and lively tone of the video.
+
+**General Details:**
+
+* The video appears to be a cooking tutorial or a recipe video, focusing on various burger recipes.
+* The video includes a mix of close-up shots, overhead shots, and shots showcasing the cooking process.
+* The captions suggest that the video includes text overlays with ingredient names, cooking instructions, and other relevant information.
+* The video ends with a promotion for "Tasty Kitchenware" available exclusively at Walmart, indicating that the video is likely a sponsored content or a promotional material for the brand.
+* The overall tone of the video is upbeat and engaging, making it suitable for a cooking or food-related channel.
+
+Based on these frames (including context before/after), verify if the answer '1' (Changes from a strip shape to a triangular shape) is correct for the question: On a wooden-colored table, after a strip of meat in a glass bowl is placed into a coffee-colored pot, what change occurs to the strip of meat? Check the question criteria: ['wooden-colored table surface', 'glass bowl containing a strip of meat', 'coffee-colored pot', 'strip of meat being placed into the pot', 'visual change in the strip of meat's form after placement']. Pay attention to timestamps and temporal sequences.
+
+Subtitles visible in these frames:
+  frames/frame_0052.jpg: "[Music]"
+  frames/frame_0053.jpg: "[Music]"
+  frames/frame_0054.jpg: "[Music]"
+  frames/frame_0055.jpg: "[Music]"
+  frames/frame_0056.jpg: "[Music]"
+  frames/frame_0057.jpg: "[Music]"
+  frames/frame_0058.jpg: "[Music]"
+  frames/frame_0059.jpg: "[Music]"
+  frames/frame_0060.jpg: "[Music]"
+  frames/frame_0061.jpg: "[Music]"
+  frames/frame_0062.jpg: "[Music]"
+  frames/frame_0063.jpg: "[Music]"
+  frames/frame_0064.jpg: "[Music]"
+  frames/frame_0065.jpg: "[Music]"
+
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 14, 'image_paths': ['/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0052.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0053.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0054.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0055.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0056.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0057.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0058.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0059.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0060.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0061.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0062.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0063.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0064.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0065.jpg'], 'response': "The answer **'1' (Changes from a strip shape to a triangular shape)** is **incorrect** based on the provided frames and the specified criteria.\n\n### Analysis Against Criteria:\n\n1. **Wooden-colored table surface**:  \n   - Frame 1 (0052) shows a wooden-colored table.  \n   - However, **none of the subsequent frames (0057–0065) showing the strip of meat (bacon) or the pot/skillet are on a wooden-colored table**. Frame 0057–0065 show a **gray countertop or surface**, not wooden.  \n   → **Criterion not fully met**.\n\n2. **Glass bowl containing a strip of meat**:  \n   - **No glass bowl is visible** in any frame.  \n   - The bacon strip is handled directly over a baking tray (frames 0057–0058) or later added to a skillet (frame 0065), but **never in a glass bowl**.  \n   → **Criterion not met**.\n\n3. **Coffee-colored pot**:  \n   - The skillet shown in frames 0061–0065 is **black cast iron**, not “coffee-colored.” While “coffee-colored” is subjective, it typically implies brownish tones, not black.  \n   → **Criterion not clearly met**.\n\n4. **Strip of meat being placed into the pot**:  \n   - The bacon strips are placed on a **baking tray** (frames 0057–0058), not into a pot.  \n   - Later, **sliced onions** (not meat) are placed into the skillet (frame 0065).  \n   → **No strip of meat is placed into a pot in these frames**.  \n   → **Criterion not met**.\n\n5. **Visual change in the strip of meat's form after placement**:  \n   - The bacon is woven into a lattice (frame 0059) and baked (frame 0060), but **this is not “placement into a pot”** and **no triangular shape is formed**.  \n   - The bacon remains in **strip or woven form**, never becomes triangular.  \n   → **No such change occurs**.\n\n---\n\n### Conclusion:\n\nNone of the required visual events described in the question occur in the provided frames. The answer “Changes from a strip shape to a triangular shape” is **not supported** by any visual evidence in these frames.\n\n✅ **Final Answer: 0 (Incorrect)**"}], 'formatted_responses': ["\n=== Batch 0-14 (14 frames) ===\nFrames: /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0052.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0053.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0054.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0055.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0056.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0057.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0058.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0059.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0060.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0061.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0062.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0063.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0064.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0065.jpg\nVLM Response: The answer **'1' (Changes from a strip shape to a triangular shape)** is **incorrect** based on the provided frames and the specified criteria.\n\n### Analysis Against Criteria:\n\n1. **Wooden-colored table surface**:  \n   - Frame 1 (0052) shows a wooden-colored table.  \n   - However, **none of the subsequent frames (0057–0065) showing the strip of meat (bacon) or the pot/skillet are on a wooden-colored table**. Frame 0057–0065 show a **gray countertop or surface**, not wooden.  \n   → **Criterion not fully met**.\n\n2. **Glass bowl containing a strip of meat**:  \n   - **No glass bowl is visible** in any frame.  \n   - The bacon strip is handled directly over a baking tray (frames 0057–0058) or later added to a skillet (frame 0065), but **never in a glass bowl**.  \n   → **Criterion not met**.\n\n3. **Coffee-colored pot**:  \n   - The skillet shown in frames 0061–0065 is **black cast iron**, not “coffee-colored.” While “coffee-colored” is subjective, it typically implies brownish tones, not black.  \n   → **Criterion not clearly met**.\n\n4. **Strip of meat being placed into the pot**:  \n   - The bacon strips are placed on a **baking tray** (frames 0057–0058), not into a pot.  \n   - Later, **sliced onions** (not meat) are placed into the skillet (frame 0065).  \n   → **No strip of meat is placed into a pot in these frames**.  \n   → **Criterion not met**.\n\n5. **Visual change in the strip of meat's form after placement**:  \n   - The bacon is woven into a lattice (frame 0059) and baked (frame 0060), but **this is not “placement into a pot”** and **no triangular shape is formed**.  \n   - The bacon remains in **strip or woven form**, never becomes triangular.  \n   → **No such change occurs**.\n\n---\n\n### Conclusion:\n\nNone of the required visual events described in the question occur in the provided frames. The answer “Changes from a strip shape to a triangular shape” is **not supported** by any visual evidence in these frames.\n\n✅ **Final Answer: 0 (Incorrect)**\n"], 'condensed_response': '**Condensed Scene Summary (Frames\u202f0052‑0065)**  \n\n| Frame | Key Visuals & Actors | What Happens |\n|-------|----------------------|--------------|\n| **0052** | Wooden‑colored table, right‑handed cook (hand visible) | Sets up a clean surface – the only frame that shows the required wooden table. |\n| **0053‑0056** | Same table, no glass bowl, empty countertop | Cook prepares the area; no meat or pot is present yet. |\n| **0057‑0058** | Gray countertop replaces the wooden surface, a baking tray, a strip of raw bacon held by the same cook’s hand | The bacon is placed **directly on the tray** (no glass bowl). |\n| **0059** | Cook’s hand weaves the bacon strip into a lattice on the tray | The strip changes shape **only by weaving**, not into a triangle. |\n| **0060** | Oven‑type heat source (or continued baking) over the tray | Bacon is being baked; still a woven strip. |\n| **0061‑0064** | Black cast‑iron skillet (appears “coffee‑colored” only if you count black as very dark), no glass bowl, cook’s hand reaching toward skillet | The skillet is introduced, but it is **black**, not a brown/coffee‑colored pot. |\n| **0065** | Skillet filled with sliced onions (no meat), cook’s hand adding the onions | **No strip of meat** is placed into the pot; instead vegetables are added. |\n\n### Overall Assessment  \n- **Wooden table**: present only in frame\u202f0052; disappears afterward.  \n- **Glass bowl**: never appears.  \n- **Coffee‑colored pot**: the skillet is black, not the described brown tone.  \n- **Strip of meat placement**: bacon is never dropped into a pot; it stays on a tray, then is baked, then is replaced by onions in the skillet.  \n- **Shape change to triangle**: the bacon is woven, not reshaped into a triangular form.\n\n**Result:** The visual narrative does **not** contain the events required by the question (strip‑to‑triangular transformation inside a pot on a wooden table). Hence the answer “Changes from a strip shape to a triangular shape” is unsupported.', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 14, 'image_paths': ['/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0052.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0053.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0054.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0055.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0056.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0057.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0058.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0059.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0060.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0061.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0062.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0063.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0064.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0065.jpg'], 'response': "The answer **'1' (Changes from a strip shape to a triangular shape)** is **incorrect** based on the provided frames and the specified criteria.\n\n### Analysis Against Criteria:\n\n1. **Wooden-colored table surface**:  \n   - Frame 1 (0052) shows a wooden-colored table.  \n   - However, **none of the subsequent frames (0057–0065) showing the strip of meat (bacon) or the pot/skillet are on a wooden-colored table**. Frame 0057–0065 show a **gray countertop or surface**, not wooden.  \n   → **Criterion not fully met**.\n\n2. **Glass bowl containing a strip of meat**:  \n   - **No glass bowl is visible** in any frame.  \n   - The bacon strip is handled directly over a baking tray (frames 0057–0058) or later added to a skillet (frame 0065), but **never in a glass bowl**.  \n   → **Criterion not met**.\n\n3. **Coffee-colored pot**:  \n   - The skillet shown in frames 0061–0065 is **black cast iron**, not “coffee-colored.” While “coffee-colored” is subjective, it typically implies brownish tones, not black.  \n   → **Criterion not clearly met**.\n\n4. **Strip of meat being placed into the pot**:  \n   - The bacon strips are placed on a **baking tray** (frames 0057–0058), not into a pot.  \n   - Later, **sliced onions** (not meat) are placed into the skillet (frame 0065).  \n   → **No strip of meat is placed into a pot in these frames**.  \n   → **Criterion not met**.\n\n5. **Visual change in the strip of meat's form after placement**:  \n   - The bacon is woven into a lattice (frame 0059) and baked (frame 0060), but **this is not “placement into a pot”** and **no triangular shape is formed**.  \n   - The bacon remains in **strip or woven form**, never becomes triangular.  \n   → **No such change occurs**.\n\n---\n\n### Conclusion:\n\nNone of the required visual events described in the question occur in the provided frames. The answer “Changes from a strip shape to a triangular shape” is **not supported** by any visual evidence in these frames.\n\n✅ **Final Answer: 0 (Incorrect)**"}], 'formatted_responses': ["\n=== Batch 0-14 (14 frames) ===\nFrames: /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0052.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0053.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0054.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0055.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0056.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0057.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0058.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0059.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0060.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0061.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0062.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0063.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0064.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/wxWo44MoCTI/frames/frame_0065.jpg\nVLM Response: The answer **'1' (Changes from a strip shape to a triangular shape)** is **incorrect** based on the provided frames and the specified criteria.\n\n### Analysis Against Criteria:\n\n1. **Wooden-colored table surface**:  \n   - Frame 1 (0052) shows a wooden-colored table.  \n   - However, **none of the subsequent frames (0057–0065) showing the strip of meat (bacon) or the pot/skillet are on a wooden-colored table**. Frame 0057–0065 show a **gray countertop or surface**, not wooden.  \n   → **Criterion not fully met**.\n\n2. **Glass bowl containing a strip of meat**:  \n   - **No glass bowl is visible** in any frame.  \n   - The bacon strip is handled directly over a baking tray (frames 0057–0058) or later added to a skillet (frame 0065), but **never in a glass bowl**.  \n   → **Criterion not met**.\n\n3. **Coffee-colored pot**:  \n   - The skillet shown in frames 0061–0065 is **black cast iron**, not “coffee-colored.” While “coffee-colored” is subjective, it typically implies brownish tones, not black.  \n   → **Criterion not clearly met**.\n\n4. **Strip of meat being placed into the pot**:  \n   - The bacon strips are placed on a **baking tray** (frames 0057–0058), not into a pot.  \n   - Later, **sliced onions** (not meat) are placed into the skillet (frame 0065).  \n   → **No strip of meat is placed into a pot in these frames**.  \n   → **Criterion not met**.\n\n5. **Visual change in the strip of meat's form after placement**:  \n   - The bacon is woven into a lattice (frame 0059) and baked (frame 0060), but **this is not “placement into a pot”** and **no triangular shape is formed**.  \n   - The bacon remains in **strip or woven form**, never becomes triangular.  \n   → **No such change occurs**.\n\n---\n\n### Conclusion:\n\nNone of the required visual events described in the question occur in the provided frames. The answer “Changes from a strip shape to a triangular shape” is **not supported** by any visual evidence in these frames.\n\n✅ **Final Answer: 0 (Incorrect)**\n"], 'condensed_response': '**Condensed Scene Summary (Frames\u202f0052‑0065)**  \n\n| Frame | Key Visuals & Actors | What Happens |\n|-------|----------------------|--------------|\n| **0052** | Wooden‑colored table, right‑handed cook (hand visible) | Sets up a clean surface – the only frame that shows the required wooden table. |\n| **0053‑0056** | Same table, no glass bowl, empty countertop | Cook prepares the area; no meat or pot is present yet. |\n| **0057‑0058** | Gray countertop replaces the wooden surface, a baking tray, a strip of raw bacon held by the same cook’s hand | The bacon is placed **directly on the tray** (no glass bowl). |\n| **0059** | Cook’s hand weaves the bacon strip into a lattice on the tray | The strip changes shape **only by weaving**, not into a triangle. |\n| **0060** | Oven‑type heat source (or continued baking) over the tray | Bacon is being baked; still a woven strip. |\n| **0061‑0064** | Black cast‑iron skillet (appears “coffee‑colored” only if you count black as very dark), no glass bowl, cook’s hand reaching toward skillet | The skillet is introduced, but it is **black**, not a brown/coffee‑colored pot. |\n| **0065** | Skillet filled with sliced onions (no meat), cook’s hand adding the onions | **No strip of meat** is placed into the pot; instead vegetables are added. |\n\n### Overall Assessment  \n- **Wooden table**: present only in frame\u202f0052; disappears afterward.  \n- **Glass bowl**: never appears.  \n- **Coffee‑colored pot**: the skillet is black, not the described brown tone.  \n- **Strip of meat placement**: bacon is never dropped into a pot; it stays on a tray, then is baked, then is replaced by onions in the skillet.  \n- **Shape change to triangle**: the bacon is woven, not reshaped into a triangular form.\n\n**Result:** The visual narrative does **not** contain the events required by the question (strip‑to‑triangular transformation inside a pot on a wooden table). Hence the answer “Changes from a strip shape to a triangular shape” is unsupported.', 'failed_images': []}
+
+Question Being Answered: On a wooden-colored table, after a strip of meat in a glass bowl is placed into a coffee-colored pot, what change occurs to the strip of meat?
+
+Answer Choices:
+A. Changes from a strip shape to a triangular shape
+B. Changes from a strip shape to a pie shape
+C. Changes from a strip shape to a pentagonal shape
+D. Changes from a strip shape to a paste-like state
+
+Given Answer: 1
+Evidence Frames Used: ['frames/frame_0057.jpg', 'frames/frame_0058.jpg', 'frames/frame_0059.jpg', 'frames/frame_0060.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Person 1 (Woman): Description: Hands and arms visible, wearing a black watch on her left wrist, fair skin
+Person 2 (Man): Description: Hands and arms visible, fair skin, sometimes wearing a black long-sleeved shirt
+Person 3 (Woman): Description: Hands visible, fair skin, mint-green nail polish
+
+SCENES:
+Scene 1 (Kitchen or Dining Setting) : Description: Various kitchen activities, cooking, and food preparation [frames 1-38]
+Scene 2 (Kitchen Counter) : Description: Preparing meat patties and other ingredients on a gray wooden countertop [frames 39-63]
+Scene 3 (Cooking Station) : Description: Cooking and assembling burgers on a stovetop or induction cooker [frames 64-120]
+Scene 4 (Wooden Table or Cutting Board) : Description: Preparing and assembling final burger dishes on a wooden surface [frames 121-170]
+Scene 5 (Gray Countertop) : Description: Preparing mushroom and cheese-stuffed burgers on a gray surface [frames 171-210]
+Scene 6 (White Surface) : Description: Assembling and presenting final dishes on a white surface or plate [frames 211-260]
+Scene 7 (Dark Brown Wooden Table) : Description: Final assembly and presentation of dishes on a dark brown wooden table [frames 261-300]
+Scene 8 (Light Blue Background) : Description: Promotional graphics and advertisements for Tasty Kitchenware [frames 361-385]
+
+EVENTS:
+Event 1 (Preparing Ingredients) : Description: Chopping, sautéing, and mixing various ingredients for burger recipes [frames 6-38]
+Event 2 (Assembling Burgers) : Description: Assembling and cooking burger patties with various fillings and toppings [frames 39-120]
+Event 3 (Cooking and Plating) : Description: Cooking and presenting final burger dishes on various surfaces [frames 121-260]
+Event 4 (Promoting Tasty Kitchenware) : Description: Displaying promotional graphics and advertisements for Tasty Kitchenware [frames 361-385]
+
+================================================================================
+Generated at: 2026-01-03 10:19:10
+================================================================================
+
+
+
+SUBTITLES IN EVIDENCE FRAMES:
+  frames/frame_0057.jpg: "[Music]"
+  frames/frame_0058.jpg: "[Music]"
+  frames/frame_0059.jpg: "[Music]"
+  frames/frame_0060.jpg: "[Music]"
+
+⚠️ IMPORTANT: Use subtitle information to verify text-based questions or questions about visible captions/words.
+
+
+QUESTION-BASED CRITERIA:
+  Q1. wooden-colored table surface
+  Q2. glass bowl containing a strip of meat
+  Q3. coffee-colored pot
+  Q4. strip of meat being placed into the pot
+  Q5. visual change in the strip of meat's form after placement
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 5)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, if criteria_percentage > 0.5 (>50% of criteria pass):
+   - Review ALL answer choices (A, B, C, D, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D)
+5. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - Set critic_answer_choice to -1 (indicating frames may not be the right scene)
+   - Set suggestion to "These may not be the right frames/scene. Continue searching for better evidence."
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 5,
+    "criteria_percentage": <criteria_passed / 5>,
+    "base_confidence": <(criteria_passed / 5) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, or -1 if ≤50% criteria pass>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "wooden-colored table surface",
+            "criterion_type": "QUESTION",
+            "status": "FAIL",
+            "reasoning": "VLM reports wooden table only in frame 0052, but subsequent frames show gray countertop instead of wooden surface"
+        },
+        {
+            "criterion": "glass bowl containing a strip of meat",
+            "criterion_type": "QUESTION",
+            "status": "FAIL",
+            "reasoning": "VLM explicitly states 'No glass bowl is visible in any frame'"
+        },
+        {
+            "criterion": "coffee-colored pot",
+            "criterion_type": "QUESTION",
+            "status": "FAIL",
+            "reasoning": "VLM states the skillet shown is black cast iron, not coffee-colored (brownish tones)"
+        },
+        {
+            "criterion": "strip of meat being placed into the pot",
+            "criterion_type": "QUESTION",
+            "status": "FAIL",
+            "reasoning": "VLM reports bacon placed on baking tray, not into pot; later onions (not meat) added to skillet"
+        },
+        {
+            "criterion": "visual change in the strip of meat's form after placement",
+            "criterion_type": "ANSWER",
+            "status": "FAIL",
+            "reasoning": "VLM states bacon is woven into lattice but remains in strip/woven form, never becomes triangular"
+        }
+    ],
+    "question_criteria_passed": 0,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 1,
+    "criteria_passed": 0,
+    "criteria_total": 5,
+    "criteria_percentage": 0.0,
+    "base_confidence": 0.0,
+    "confidence": 0.0,
+    "critic_answer_choice": -1,
+    "critic_reasoning": "All 5 criteria failed according to VLM verification. No visual evidence supports any of the described events: no wooden table where meat is handled, no glass bowl, no coffee-colored pot, no meat placed into pot, and no shape change to triangular form.",
+    "possible_errors": [
+        "Wooden table surface not present in relevant frames",
+        "No glass bowl visible in any frame",
+        "Pot is black cast iron, not coffee-colored",
+        "Meat placed on baking tray, not into pot",
+        "No triangular shape change observed - bacon remains in strip/woven form"
+    ],
+    "suggestion": "These may not be the right frames/scene. Continue searching for better evidence."
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'wooden-colored table surface', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': 'VLM reports wooden table only in frame 0052, but subsequent frames show gray countertop instead of wooden surface'}, {'criterion': 'glass bowl containing a strip of meat', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': "VLM explicitly states 'No glass bowl is visible in any frame'"}, {'criterion': 'coffee-colored pot', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': 'VLM states the skillet shown is black cast iron, not coffee-colored (brownish tones)'}, {'criterion': 'strip of meat being placed into the pot', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': 'VLM reports bacon placed on baking tray, not into pot; later onions (not meat) added to skillet'}, {'criterion': "visual change in the strip of meat's form after placement", 'criterion_type': 'ANSWER', 'status': 'FAIL', 'reasoning': 'VLM states bacon is woven into lattice but remains in strip/woven form, never becomes triangular'}], 'question_criteria_passed': 0, 'answer_criteria_passed': 0, 'answer_criteria_total': 1, 'criteria_passed': 0, 'criteria_total': 5, 'criteria_percentage': 0.0, 'base_confidence': 0.0, 'confidence': 0.0, 'critic_answer_choice': -1, 'critic_reasoning': 'All 5 criteria failed according to VLM verification. No visual evidence supports any of the described events: no wooden table where meat is handled, no glass bowl, no coffee-colored pot, no meat placed into pot, and no shape change to triangular form.', 'possible_errors': ['Wooden table surface not present in relevant frames', 'No glass bowl visible in any frame', 'Pot is black cast iron, not coffee-colored', 'Meat placed on baking tray, not into pot', 'No triangular shape change observed - bacon remains in strip/woven form'], 'suggestion': 'These may not be the right frames/scene. Continue searching for better evidence.'}

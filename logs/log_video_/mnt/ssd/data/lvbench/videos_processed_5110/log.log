@@ -1,0 +1,157 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_1205.jpg", "frames/frame_1206.jpg", "frames/frame_1207.jpg", "frames/frame_1208.jpg", "frames/frame_1209.jpg", "frames/frame_1210.jpg", "frames/frame_1211.jpg", "frames/frame_1212.jpg", "frames/frame_1213.jpg", "frames/frame_1214.jpg", "frames/frame_1215.jpg", "frames/frame_1216.jpg", "frames/frame_1217.jpg", "frames/frame_1218.jpg", "frames/frame_1219.jpg", "frames/frame_1220.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '0' is correct for the question: What color bag does the medical care technician carry in the backstage during Andrew Stanton's performance? Check the question criteria: ['Andrew Stanton performing on stage', 'Backstage area with medical personnel', 'Person wearing medical/EMT uniform carrying a bag', 'Visible bag being carried by medical technician', 'Backstage setting during a performance', 'Medical equipment or first aid supplies']. Pay attention to timestamps and temporal sequences. Look specifically for: 1) Andrew Stanton performing on stage, 2) Backstage area with medical personnel, 3) Person wearing medical/EMT uniform carrying a bag, 4) Visible bag being carried by medical technician, 5) Backstage setting during a performance, 6) Medical equipment or first aid supplies. Identify the color of any bag carried by medical personnel in backstage areas."
+}
+Frames to verify: ['frames/frame_1205.jpg', 'frames/frame_1206.jpg', 'frames/frame_1207.jpg', 'frames/frame_1208.jpg', 'frames/frame_1209.jpg', 'frames/frame_1210.jpg', 'frames/frame_1211.jpg', 'frames/frame_1212.jpg', 'frames/frame_1213.jpg', 'frames/frame_1214.jpg', 'frames/frame_1215.jpg', 'frames/frame_1216.jpg', 'frames/frame_1217.jpg', 'frames/frame_1218.jpg', 'frames/frame_1219.jpg', 'frames/frame_1220.jpg']
+VLM Prompt: Video context: Failed to generate after 3 attempts: Error code: 503 - The server is overloaded or not ready yet.
+
+Based on these frames (including context before/after), verify if the answer '0' is correct for the question: What color bag does the medical care technician carry in the backstage during Andrew Stanton's performance? Check the question criteria: ['Andrew Stanton performing on stage', 'Backstage area with medical personnel', 'Person wearing medical/EMT uniform carrying a bag', 'Visible bag being carried by medical technician', 'Backstage setting during a performance', 'Medical equipment or first aid supplies']. Pay attention to timestamps and temporal sequences. Look specifically for: 1) Andrew Stanton performing on stage, 2) Backstage area with medical personnel, 3) Person wearing medical/EMT uniform carrying a bag, 4) Visible bag being carried by medical technician, 5) Backstage setting during a performance, 6) Medical equipment or first aid supplies. Identify the color of any bag carried by medical personnel in backstage areas.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 16, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1205.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1206.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1207.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1208.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1209.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1210.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1211.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1212.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1213.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1214.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1215.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1216.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1217.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1218.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1219.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1220.jpg'], 'response': "The answer '0' is **incorrect**.\n\n---\n\n### Verification Based on Criteria:\n\n1. **Andrew Stanton performing on stage**  \n   → Confirmed. Frames 1–5, 9–10, 11, 13–16 show a performer (Andrew Stanton) on stage, doing a dangerous act involving swords and contortion. The presence of judges and audience confirms it’s a live performance.\n\n2. **Backstage area with medical personnel**  \n   → Confirmed. Frames 6–8 show a man in a dark uniform with a large bag, standing near red curtains and stage lighting — consistent with a backstage area. He is not on the main stage but in a transitional or support zone.\n\n3. **Person wearing medical/EMT uniform carrying a bag**  \n   → Confirmed. The man in frames 6–8 is wearing a dark green polo with visible insignia (likely medical/EMT) and is carrying a large red-and-black bag on his back. The bag resembles a first aid or medical response bag.\n\n4. **Visible bag being carried by medical technician**  \n   → Confirmed. The red-and-black bag is clearly visible on his back in frames 6–8. It is large, structured, and has zippers and straps — consistent with medical equipment transport.\n\n5. **Backstage setting during a performance**  \n   → Confirmed. The red curtains, stage lighting, and proximity to the performance area (visible in frame 6 with the star-shaped stage light) indicate this is backstage during the live act.\n\n6. **Medical equipment or first aid supplies**  \n   → Implied. While the contents aren’t visible, the bag’s design and the person’s uniform strongly suggest it contains medical equipment. The context of a dangerous performance (sword swallowing, contortion) necessitates medical standby.\n\n---\n\n### Color of the Bag:\n\nThe bag carried by the medical technician is **red and black**.  \n→ The dominant color visible is **red**, with black accents/straps.\n\n---\n\n### Conclusion:\n\nThe correct answer should reflect the **color of the bag**, which is **red** (or red and black).  \nAnswering ‘0’ is **not correct** — it does not correspond to any color or valid response to the question.\n\n✅ **Final Answer: Incorrect. The bag is red and black, not “0”.**"}], 'formatted_responses': ["\n=== Batch 0-16 (16 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1205.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1206.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1207.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1208.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1209.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1210.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1211.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1212.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1213.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1214.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1215.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1216.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1217.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1218.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1219.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1220.jpg\nVLM Response: The answer '0' is **incorrect**.\n\n---\n\n### Verification Based on Criteria:\n\n1. **Andrew Stanton performing on stage**  \n   → Confirmed. Frames 1–5, 9–10, 11, 13–16 show a performer (Andrew Stanton) on stage, doing a dangerous act involving swords and contortion. The presence of judges and audience confirms it’s a live performance.\n\n2. **Backstage area with medical personnel**  \n   → Confirmed. Frames 6–8 show a man in a dark uniform with a large bag, standing near red curtains and stage lighting — consistent with a backstage area. He is not on the main stage but in a transitional or support zone.\n\n3. **Person wearing medical/EMT uniform carrying a bag**  \n   → Confirmed. The man in frames 6–8 is wearing a dark green polo with visible insignia (likely medical/EMT) and is carrying a large red-and-black bag on his back. The bag resembles a first aid or medical response bag.\n\n4. **Visible bag being carried by medical technician**  \n   → Confirmed. The red-and-black bag is clearly visible on his back in frames 6–8. It is large, structured, and has zippers and straps — consistent with medical equipment transport.\n\n5. **Backstage setting during a performance**  \n   → Confirmed. The red curtains, stage lighting, and proximity to the performance area (visible in frame 6 with the star-shaped stage light) indicate this is backstage during the live act.\n\n6. **Medical equipment or first aid supplies**  \n   → Implied. While the contents aren’t visible, the bag’s design and the person’s uniform strongly suggest it contains medical equipment. The context of a dangerous performance (sword swallowing, contortion) necessitates medical standby.\n\n---\n\n### Color of the Bag:\n\nThe bag carried by the medical technician is **red and black**.  \n→ The dominant color visible is **red**, with black accents/straps.\n\n---\n\n### Conclusion:\n\nThe correct answer should reflect the **color of the bag**, which is **red** (or red and black).  \nAnswering ‘0’ is **not correct** — it does not correspond to any color or valid response to the question.\n\n✅ **Final Answer: Incorrect. The bag is red and black, not “0”.**\n"], 'condensed_response': '**Condensed Scene Summary (Frames\u202f1205‑1220)**  \n\n- **Frames\u202f1205‑1209 (stage)** – Andrew\u202fStanton is the central performer, executing a high‑risk act with swords and contortion. Judges and an audience are visible, confirming a live competition‑style performance.  \n\n- **Frames\u202f1210‑1212 (backstage transition)** – A man in a dark‑green EMT‑style polo and a medical insignia steps into view beside red curtains and stage‑lighting rigs. He carries a large, structured **red‑and‑black bag** slung across his back.  \n\n- **Frames\u202f1213‑1220 (stage return)** – Andrew continues his act while the medical technician remains in the backstage area, positioned near the curtains and close enough to intervene if needed. The bag stays clearly visible throughout his brief appearances.  \n\n**Key details**  \n- **Andrew Stanton** – performer, always on‑stage.  \n- **Medical technician** – backstage, wearing EMT uniform, carrying the red‑dominant bag (red with black accents).  \n- **Setting** – live stage with audience/judges; immediate backstage zone marked by red curtains and lighting, indicating the performance is in progress.  \n\n**Answer to the question** – The bag’s dominant color is **red** (with black detailing).', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 16, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1205.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1206.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1207.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1208.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1209.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1210.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1211.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1212.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1213.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1214.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1215.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1216.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1217.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1218.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1219.jpg', '/mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1220.jpg'], 'response': "The answer '0' is **incorrect**.\n\n---\n\n### Verification Based on Criteria:\n\n1. **Andrew Stanton performing on stage**  \n   → Confirmed. Frames 1–5, 9–10, 11, 13–16 show a performer (Andrew Stanton) on stage, doing a dangerous act involving swords and contortion. The presence of judges and audience confirms it’s a live performance.\n\n2. **Backstage area with medical personnel**  \n   → Confirmed. Frames 6–8 show a man in a dark uniform with a large bag, standing near red curtains and stage lighting — consistent with a backstage area. He is not on the main stage but in a transitional or support zone.\n\n3. **Person wearing medical/EMT uniform carrying a bag**  \n   → Confirmed. The man in frames 6–8 is wearing a dark green polo with visible insignia (likely medical/EMT) and is carrying a large red-and-black bag on his back. The bag resembles a first aid or medical response bag.\n\n4. **Visible bag being carried by medical technician**  \n   → Confirmed. The red-and-black bag is clearly visible on his back in frames 6–8. It is large, structured, and has zippers and straps — consistent with medical equipment transport.\n\n5. **Backstage setting during a performance**  \n   → Confirmed. The red curtains, stage lighting, and proximity to the performance area (visible in frame 6 with the star-shaped stage light) indicate this is backstage during the live act.\n\n6. **Medical equipment or first aid supplies**  \n   → Implied. While the contents aren’t visible, the bag’s design and the person’s uniform strongly suggest it contains medical equipment. The context of a dangerous performance (sword swallowing, contortion) necessitates medical standby.\n\n---\n\n### Color of the Bag:\n\nThe bag carried by the medical technician is **red and black**.  \n→ The dominant color visible is **red**, with black accents/straps.\n\n---\n\n### Conclusion:\n\nThe correct answer should reflect the **color of the bag**, which is **red** (or red and black).  \nAnswering ‘0’ is **not correct** — it does not correspond to any color or valid response to the question.\n\n✅ **Final Answer: Incorrect. The bag is red and black, not “0”.**"}], 'formatted_responses': ["\n=== Batch 0-16 (16 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1205.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1206.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1207.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1208.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1209.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1210.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1211.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1212.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1213.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1214.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1215.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1216.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1217.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1218.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1219.jpg, /mnt/ssd/data/lvbench/videos_processed/pe_LddfHAUU/frames/frame_1220.jpg\nVLM Response: The answer '0' is **incorrect**.\n\n---\n\n### Verification Based on Criteria:\n\n1. **Andrew Stanton performing on stage**  \n   → Confirmed. Frames 1–5, 9–10, 11, 13–16 show a performer (Andrew Stanton) on stage, doing a dangerous act involving swords and contortion. The presence of judges and audience confirms it’s a live performance.\n\n2. **Backstage area with medical personnel**  \n   → Confirmed. Frames 6–8 show a man in a dark uniform with a large bag, standing near red curtains and stage lighting — consistent with a backstage area. He is not on the main stage but in a transitional or support zone.\n\n3. **Person wearing medical/EMT uniform carrying a bag**  \n   → Confirmed. The man in frames 6–8 is wearing a dark green polo with visible insignia (likely medical/EMT) and is carrying a large red-and-black bag on his back. The bag resembles a first aid or medical response bag.\n\n4. **Visible bag being carried by medical technician**  \n   → Confirmed. The red-and-black bag is clearly visible on his back in frames 6–8. It is large, structured, and has zippers and straps — consistent with medical equipment transport.\n\n5. **Backstage setting during a performance**  \n   → Confirmed. The red curtains, stage lighting, and proximity to the performance area (visible in frame 6 with the star-shaped stage light) indicate this is backstage during the live act.\n\n6. **Medical equipment or first aid supplies**  \n   → Implied. While the contents aren’t visible, the bag’s design and the person’s uniform strongly suggest it contains medical equipment. The context of a dangerous performance (sword swallowing, contortion) necessitates medical standby.\n\n---\n\n### Color of the Bag:\n\nThe bag carried by the medical technician is **red and black**.  \n→ The dominant color visible is **red**, with black accents/straps.\n\n---\n\n### Conclusion:\n\nThe correct answer should reflect the **color of the bag**, which is **red** (or red and black).  \nAnswering ‘0’ is **not correct** — it does not correspond to any color or valid response to the question.\n\n✅ **Final Answer: Incorrect. The bag is red and black, not “0”.**\n"], 'condensed_response': '**Condensed Scene Summary (Frames\u202f1205‑1220)**  \n\n- **Frames\u202f1205‑1209 (stage)** – Andrew\u202fStanton is the central performer, executing a high‑risk act with swords and contortion. Judges and an audience are visible, confirming a live competition‑style performance.  \n\n- **Frames\u202f1210‑1212 (backstage transition)** – A man in a dark‑green EMT‑style polo and a medical insignia steps into view beside red curtains and stage‑lighting rigs. He carries a large, structured **red‑and‑black bag** slung across his back.  \n\n- **Frames\u202f1213‑1220 (stage return)** – Andrew continues his act while the medical technician remains in the backstage area, positioned near the curtains and close enough to intervene if needed. The bag stays clearly visible throughout his brief appearances.  \n\n**Key details**  \n- **Andrew Stanton** – performer, always on‑stage.  \n- **Medical technician** – backstage, wearing EMT uniform, carrying the red‑dominant bag (red with black accents).  \n- **Setting** – live stage with audience/judges; immediate backstage zone marked by red curtains and lighting, indicating the performance is in progress.  \n\n**Answer to the question** – The bag’s dominant color is **red** (with black detailing).', 'failed_images': []}
+
+Question Being Answered: What color bag does the medical care technician carry in the backstage during Andrew Stanton's performance?
+
+Answer Choices:
+A. Red
+B. Blue
+C. Black
+D. Orange
+
+Given Answer: 0
+Evidence Frames Used: ['frames/frame_1210.jpg', 'frames/frame_1211.jpg', 'frames/frame_1212.jpg', 'frames/frame_1213.jpg', 'frames/frame_1214.jpg', 'frames/frame_1215.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Simon Cowell: A middle-aged man with short brown hair and a goatee, often wearing a black shirt or suit.
+Amanda Holden: A blonde woman, often wearing a bright or sparkly dress, sitting in a black leather chair.
+Alesha Dixon: A woman with dark hair, often wearing a black leather jacket and gold jewelry.
+David Walliams: A man with short white hair, often wearing a shiny red jacket or a black shirt.
+Terry Crews: A bald man with a grey goatee, wearing a black suit jacket and white shirt.
+Heidi Klum: A blonde woman, often wearing a sparkly or bright dress, sitting in a black leather chair.
+The Baron of the Universe: A 39-year-old man dressed in a leopard-print robe.
+Papi Flex: A 26-year-old contortionist.
+Cydnee Abbott: A young girl with long brown hair, wearing a purple hoodie and bright pink pants.
+Liberty Barros: A young girl with long brown hair, wearing a white dress.
+Magus Utopia: A magician with a white face paint design and a black hooded cloak.
+Alice Cooper: A man with long black hair, wearing a black shirt or robe, often holding a staff or other objects.
+
+SCENES:
+America's Got Talent Stage: A stage with a large screen displaying the show's logo and judges' names. [frame_0001- frame_0150]
+Britain's Got Talent Stage: A stage with a purple desk and a large screen displaying the show's title. [frame_0151- frame_0556]
+Spain's Got Talent Stage: A stage with a large screen displaying the show's logo and a white judging table. [frame_0563- frame_0729]
+Dark Hallway: A dimly lit hallway with red walls and a low ceiling. [frame_2677- frame_2680]
+Cluttered Room: A dimly lit room with a green table, scattered photographs, and a single hanging light bulb. [frame_2690- frame_2706]
+Magic Show: A stage with a large screen displaying a cityscape and a man performing magic tricks. [frame_0920- frame_0945]
+
+EVENTS:
+Pole Dance Performance: A woman performing a pole dance on a stage. [frame_0002, frame_021]
+Contortionist Act: A person performing a contortionist act on a stage. [frame_044, frame_052]
+Magic Trick: A magician performing a magic trick on a stage. [frame_0920, frame_0945]
+Dance Routine: A group of people performing a choreographed dance routine on a stage. [frame_1468, frame_1491]
+Singing Performance: A person singing into a microphone on a stage. [frame_2462, frame_2471]
+Contortionist Performance: A person performing a contortionist act on a stage. [frame_2487, frame_2495]
+Magic Illusion: A magician performing an illusion on a stage. [frame_2502, frame_2515]
+Fight Scene: Two men engaging in a confrontation on a stage. [frame_1702, frame_1703]
+Award Ceremony: A woman handing an award to a person on a stage. [frame_0990, frame_0995]
+
+================================================================================
+Generated at: 2026-01-11 21:46:03
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. Andrew Stanton performing on stage
+  Q2. Backstage area with medical personnel
+  Q3. Person wearing medical/EMT uniform carrying a bag
+  Q4. Visible bag being carried by medical technician
+  Q5. Backstage setting during a performance
+  Q6. Medical equipment or first aid supplies
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 6)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, if criteria_percentage > 0.5 (>50% of criteria pass):
+   - Review ALL answer choices (A, B, C, D, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D)
+5. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - STILL do your best to pick out a correct answer, but also set suggestion to "These may not be the right frames/scene. Continue searching for better evidence."
+   - output your best guess of the answer as a number (0=A, 1=B, 2=C, 3=D, 4=E)
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <number of question criteria that passed>,
+    "criteria_total": 6,
+    "criteria_percentage": <criteria_passed / 6>,
+    "base_confidence": <(criteria_passed / 6) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {"criterion": "Andrew Stanton performing on stage", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms Andrew Stanton performing dangerous act with swords and contortion on stage with judges and audience visible"},
+        {"criterion": "Backstage area with medical personnel", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms backstage area with red curtains and stage lighting, and medical personnel present"},
+        {"criterion": "Person wearing medical/EMT uniform carrying a bag", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms man in dark green polo with medical insignia carrying a large bag"},
+        {"criterion": "Visible bag being carried by medical technician", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM clearly states the red-and-black bag is visible on his back in multiple frames"},
+        {"criterion": "Backstage setting during a performance", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms backstage area with red curtains and stage lighting during live performance"},
+        {"criterion": "Medical equipment or first aid supplies", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM states bag design and uniform strongly suggest medical equipment, context supports this"}
+    ],
+    "question_criteria_passed": 6,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 6,
+    "criteria_total": 6,
+    "criteria_percentage": 1.0,
+    "base_confidence": 100,
+    "confidence": 100,
+    "critic_answer_choice": 0,
+    "critic_reasoning": "The VLM clearly identifies the bag as 'red and black' with the dominant color being red. This directly corresponds to answer choice A (Red).",
+    "possible_errors": [],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'Andrew Stanton performing on stage', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms Andrew Stanton performing dangerous act with swords and contortion on stage with judges and audience visible'}, {'criterion': 'Backstage area with medical personnel', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms backstage area with red curtains and stage lighting, and medical personnel present'}, {'criterion': 'Person wearing medical/EMT uniform carrying a bag', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms man in dark green polo with medical insignia carrying a large bag'}, {'criterion': 'Visible bag being carried by medical technician', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM clearly states the red-and-black bag is visible on his back in multiple frames'}, {'criterion': 'Backstage setting during a performance', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms backstage area with red curtains and stage lighting during live performance'}, {'criterion': 'Medical equipment or first aid supplies', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM states bag design and uniform strongly suggest medical equipment, context supports this'}], 'question_criteria_passed': 6, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 6, 'criteria_total': 6, 'criteria_percentage': 1.0, 'base_confidence': 100, 'confidence': 100, 'critic_answer_choice': 0, 'critic_reasoning': "The VLM clearly identifies the bag as 'red and black' with the dominant color being red. This directly corresponds to answer choice A (Red).", 'possible_errors': [], 'suggestion': None}

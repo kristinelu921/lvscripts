@@ -1,0 +1,191 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0361.jpg", "frames/frame_0362.jpg", "frames/frame_0363.jpg", "frames/frame_0364.jpg", "frames/frame_0365.jpg", "frames/frame_0366.jpg", "frames/frame_0367.jpg", "frames/frame_0368.jpg", "frames/frame_0369.jpg", "frames/frame_0370.jpg", "frames/frame_0371.jpg", "frames/frame_0372.jpg"],
+    "prompt": "Examine these frames to verify if the answer '2' (which corresponds to option B: backpack) is correct for the question about what item the man is holding. First, confirm if all these conditions are met: 1) White clouds flowing atop a mountain peak, 2) Man wearing a gray coat and black shorts, 3) Man standing in front of a cliff, 4) Man gazing at distant green mountains, 5) Man holding an item in his hand. Then specifically identify what object the man is holding in his hand in these frames. Pay close attention to the temporal sequence and whether the man's hand is visible and what it contains."
+}
+Frames to verify: ['frames/frame_0361.jpg', 'frames/frame_0362.jpg', 'frames/frame_0363.jpg', 'frames/frame_0364.jpg', 'frames/frame_0365.jpg', 'frames/frame_0366.jpg', 'frames/frame_0367.jpg', 'frames/frame_0368.jpg', 'frames/frame_0369.jpg', 'frames/frame_0370.jpg', 'frames/frame_0371.jpg', 'frames/frame_0372.jpg']
+VLM Prompt: Video context: The given SET of frame-by-frame captions data is for a long video that appears to be a travel vlog or an educational video about finding cheap flights. Here is a global summary of the video:
+
+**Main Characters:**
+The main character is Ryan Shirley, the host of the video. He is a young man with curly blond hair. Other characters appear in the video, including a woman with red hair and several people featured in the travel footage.
+
+**Setting:**
+The video is set in various locations around the world, including the United States, Europe, and other international destinations. The settings range from urban cityscapes to natural landscapes, such as mountains, beaches, and waterfalls.
+
+**Plot Line:**
+The video's plot line revolves around Ryan Shirley sharing the tips and tricks for finding affordable flights using Google Flights and Scott's Cheap Flights. The video is divided into two main sections: the first part focuses on using Google Flights to search for cheap flights, while the second part highlights the benefits of using Scott's Cheap Flights for receiving email alerts about cheap flight deals.
+
+**Vibes:**
+The overall vibe of the video is informative, enthusiastic, and adventurous. Ryan Shirley's energy and passion for travel are evident throughout the video. The travel footage showcases the beauty and diversity of various destinations, creating a sense of excitement and wanderlust.
+
+**General Details:**
+The video is a mix of educational content, travel footage, and promotional elements. Ryan Shirley uses a conversational tone to engage the viewer and shares his personal experiences with finding cheap flights. The video includes screenshots of Google Flights and Scott's Cheap Flights, as well as footage of various destinations, to illustrate the tips and tricks being shared. The overall tone is helpful and encouraging, urging viewers to be flexible and take advantage of affordable flight options.
+
+Examine these frames to verify if the answer '2' (which corresponds to option B: backpack) is correct for the question about what item the man is holding. First, confirm if all these conditions are met: 1) White clouds flowing atop a mountain peak, 2) Man wearing a gray coat and black shorts, 3) Man standing in front of a cliff, 4) Man gazing at distant green mountains, 5) Man holding an item in his hand. Then specifically identify what object the man is holding in his hand in these frames. Pay close attention to the temporal sequence and whether the man's hand is visible and what it contains.
+
+Subtitles visible in these frames:
+  frames/frame_0362.jpg: "it that's why I said I hope you guys"
+  frames/frame_0365.jpg: "enjoyed the video subscribe like I got"
+  frames/frame_0368.jpg: "an awesome video I like a one-year"
+  frames/frame_0370.jpg: "summary video like all the crazy"
+  frames/frame_0372.jpg: "traveling I did it's gonna be freaking"
+
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 12, 'image_paths': ['/mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0361.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0362.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0363.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0364.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0365.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0366.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0367.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0368.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0369.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0370.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0371.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0372.jpg'], 'response': "After examining the provided frames, the answer **'2' (backpack)** is **incorrect**.\n\nHere's the detailed breakdown:\n\n---\n\n### **Step 1: Verify the 5 Conditions**\n\nThe question asks to verify if **all** of these conditions are met:\n\n1. **White clouds flowing atop a mountain peak**  \n   → **True** in frames 0371 and 0372: These frames show dramatic white clouds hovering over distant mountain peaks under a blue sky.\n\n2. **Man wearing a gray coat and black shorts**  \n   → **Partially True** in frames 0366–0367: The man is wearing a **light gray long-sleeve shirt** and **black shorts**. However, it is **not a coat** — it’s a casual shirt or sweater. This is a mismatch.\n\n3. **Man standing in front of a cliff**  \n   → **True** in frames 0366–0367: The man is standing on a cliff edge overlooking a vast green mountain range and ocean.\n\n4. **Man gazing at distant green mountains**  \n   → **True** in frames 0366–0367: The man is facing away from the camera, looking out at the green, rugged mountains.\n\n5. **Man holding an item in his hand**  \n   → **True** in frames 0366–0367: The man is holding something in his **right hand**.\n\n---\n\n### **Step 2: Identify What Object the Man is Holding**\n\nIn frames **0366 and 0367**, the man is holding a **black object** in his right hand. It is **not a backpack**. It appears to be:\n\n> **A camera or camera tripod leg** — specifically, it looks like the **handle or leg of a tripod**, possibly with a camera mounted or attached. The shape is cylindrical, black, and held vertically.\n\nThere is **no backpack visible** on the man or in his hands. He is not wearing or carrying a backpack.\n\n---\n\n### **Conclusion**\n\nAlthough 4 out of 5 conditions are met (with a minor discrepancy on “gray coat” vs. “gray shirt”), the **critical error** is in the **object identification**. The man is **not holding a backpack** — he is holding what appears to be **a camera or tripod component**.\n\nTherefore, the answer **'2' (backpack)** is **incorrect**.\n\n✅ **Correct Answer: Not 2 (backpack)** — likely **option 1 (camera)** or **option 3 (tripod)** if those were available.\n\n--- \n\n**Final Verdict: The answer '2' is incorrect.**"}], 'formatted_responses': ["\n=== Batch 0-12 (12 frames) ===\nFrames: /mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0361.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0362.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0363.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0364.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0365.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0366.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0367.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0368.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0369.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0370.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0371.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0372.jpg\nVLM Response: After examining the provided frames, the answer **'2' (backpack)** is **incorrect**.\n\nHere's the detailed breakdown:\n\n---\n\n### **Step 1: Verify the 5 Conditions**\n\nThe question asks to verify if **all** of these conditions are met:\n\n1. **White clouds flowing atop a mountain peak**  \n   → **True** in frames 0371 and 0372: These frames show dramatic white clouds hovering over distant mountain peaks under a blue sky.\n\n2. **Man wearing a gray coat and black shorts**  \n   → **Partially True** in frames 0366–0367: The man is wearing a **light gray long-sleeve shirt** and **black shorts**. However, it is **not a coat** — it’s a casual shirt or sweater. This is a mismatch.\n\n3. **Man standing in front of a cliff**  \n   → **True** in frames 0366–0367: The man is standing on a cliff edge overlooking a vast green mountain range and ocean.\n\n4. **Man gazing at distant green mountains**  \n   → **True** in frames 0366–0367: The man is facing away from the camera, looking out at the green, rugged mountains.\n\n5. **Man holding an item in his hand**  \n   → **True** in frames 0366–0367: The man is holding something in his **right hand**.\n\n---\n\n### **Step 2: Identify What Object the Man is Holding**\n\nIn frames **0366 and 0367**, the man is holding a **black object** in his right hand. It is **not a backpack**. It appears to be:\n\n> **A camera or camera tripod leg** — specifically, it looks like the **handle or leg of a tripod**, possibly with a camera mounted or attached. The shape is cylindrical, black, and held vertically.\n\nThere is **no backpack visible** on the man or in his hands. He is not wearing or carrying a backpack.\n\n---\n\n### **Conclusion**\n\nAlthough 4 out of 5 conditions are met (with a minor discrepancy on “gray coat” vs. “gray shirt”), the **critical error** is in the **object identification**. The man is **not holding a backpack** — he is holding what appears to be **a camera or tripod component**.\n\nTherefore, the answer **'2' (backpack)** is **incorrect**.\n\n✅ **Correct Answer: Not 2 (backpack)** — likely **option 1 (camera)** or **option 3 (tripod)** if those were available.\n\n--- \n\n**Final Verdict: The answer '2' is incorrect.**\n"], 'condensed_response': '**Scene Summary (Frames\u202f0366‑0372)**  \nA lone man stands on a cliff edge overlooking a sweeping green mountain range and distant ocean. He faces away from the camera, gazing at the rugged peaks under white clouds that drift above the summit (visible in frames\u202f0371‑0372). His outfit consists of a light‑gray long‑sleeve shirt (not a coat) and black shorts. In his right hand he grips a black, cylindrical object that looks like a camera‑tripod leg (or a handheld camera), not a backpack. The setting, his posture, and the item he holds satisfy most of the query’s conditions, but the object‑identification part is incorrect—answer “2\u202f(backpack)” does not match the visual evidence. The correct identification should refer to a camera or tripod component.', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 12, 'image_paths': ['/mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0361.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0362.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0363.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0364.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0365.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0366.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0367.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0368.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0369.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0370.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0371.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0372.jpg'], 'response': "After examining the provided frames, the answer **'2' (backpack)** is **incorrect**.\n\nHere's the detailed breakdown:\n\n---\n\n### **Step 1: Verify the 5 Conditions**\n\nThe question asks to verify if **all** of these conditions are met:\n\n1. **White clouds flowing atop a mountain peak**  \n   → **True** in frames 0371 and 0372: These frames show dramatic white clouds hovering over distant mountain peaks under a blue sky.\n\n2. **Man wearing a gray coat and black shorts**  \n   → **Partially True** in frames 0366–0367: The man is wearing a **light gray long-sleeve shirt** and **black shorts**. However, it is **not a coat** — it’s a casual shirt or sweater. This is a mismatch.\n\n3. **Man standing in front of a cliff**  \n   → **True** in frames 0366–0367: The man is standing on a cliff edge overlooking a vast green mountain range and ocean.\n\n4. **Man gazing at distant green mountains**  \n   → **True** in frames 0366–0367: The man is facing away from the camera, looking out at the green, rugged mountains.\n\n5. **Man holding an item in his hand**  \n   → **True** in frames 0366–0367: The man is holding something in his **right hand**.\n\n---\n\n### **Step 2: Identify What Object the Man is Holding**\n\nIn frames **0366 and 0367**, the man is holding a **black object** in his right hand. It is **not a backpack**. It appears to be:\n\n> **A camera or camera tripod leg** — specifically, it looks like the **handle or leg of a tripod**, possibly with a camera mounted or attached. The shape is cylindrical, black, and held vertically.\n\nThere is **no backpack visible** on the man or in his hands. He is not wearing or carrying a backpack.\n\n---\n\n### **Conclusion**\n\nAlthough 4 out of 5 conditions are met (with a minor discrepancy on “gray coat” vs. “gray shirt”), the **critical error** is in the **object identification**. The man is **not holding a backpack** — he is holding what appears to be **a camera or tripod component**.\n\nTherefore, the answer **'2' (backpack)** is **incorrect**.\n\n✅ **Correct Answer: Not 2 (backpack)** — likely **option 1 (camera)** or **option 3 (tripod)** if those were available.\n\n--- \n\n**Final Verdict: The answer '2' is incorrect.**"}], 'formatted_responses': ["\n=== Batch 0-12 (12 frames) ===\nFrames: /mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0361.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0362.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0363.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0364.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0365.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0366.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0367.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0368.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0369.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0370.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0371.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/jJGbXCCU5yc/frames/frame_0372.jpg\nVLM Response: After examining the provided frames, the answer **'2' (backpack)** is **incorrect**.\n\nHere's the detailed breakdown:\n\n---\n\n### **Step 1: Verify the 5 Conditions**\n\nThe question asks to verify if **all** of these conditions are met:\n\n1. **White clouds flowing atop a mountain peak**  \n   → **True** in frames 0371 and 0372: These frames show dramatic white clouds hovering over distant mountain peaks under a blue sky.\n\n2. **Man wearing a gray coat and black shorts**  \n   → **Partially True** in frames 0366–0367: The man is wearing a **light gray long-sleeve shirt** and **black shorts**. However, it is **not a coat** — it’s a casual shirt or sweater. This is a mismatch.\n\n3. **Man standing in front of a cliff**  \n   → **True** in frames 0366–0367: The man is standing on a cliff edge overlooking a vast green mountain range and ocean.\n\n4. **Man gazing at distant green mountains**  \n   → **True** in frames 0366–0367: The man is facing away from the camera, looking out at the green, rugged mountains.\n\n5. **Man holding an item in his hand**  \n   → **True** in frames 0366–0367: The man is holding something in his **right hand**.\n\n---\n\n### **Step 2: Identify What Object the Man is Holding**\n\nIn frames **0366 and 0367**, the man is holding a **black object** in his right hand. It is **not a backpack**. It appears to be:\n\n> **A camera or camera tripod leg** — specifically, it looks like the **handle or leg of a tripod**, possibly with a camera mounted or attached. The shape is cylindrical, black, and held vertically.\n\nThere is **no backpack visible** on the man or in his hands. He is not wearing or carrying a backpack.\n\n---\n\n### **Conclusion**\n\nAlthough 4 out of 5 conditions are met (with a minor discrepancy on “gray coat” vs. “gray shirt”), the **critical error** is in the **object identification**. The man is **not holding a backpack** — he is holding what appears to be **a camera or tripod component**.\n\nTherefore, the answer **'2' (backpack)** is **incorrect**.\n\n✅ **Correct Answer: Not 2 (backpack)** — likely **option 1 (camera)** or **option 3 (tripod)** if those were available.\n\n--- \n\n**Final Verdict: The answer '2' is incorrect.**\n"], 'condensed_response': '**Scene Summary (Frames\u202f0366‑0372)**  \nA lone man stands on a cliff edge overlooking a sweeping green mountain range and distant ocean. He faces away from the camera, gazing at the rugged peaks under white clouds that drift above the summit (visible in frames\u202f0371‑0372). His outfit consists of a light‑gray long‑sleeve shirt (not a coat) and black shorts. In his right hand he grips a black, cylindrical object that looks like a camera‑tripod leg (or a handheld camera), not a backpack. The setting, his posture, and the item he holds satisfy most of the query’s conditions, but the object‑identification part is incorrect—answer “2\u202f(backpack)” does not match the visual evidence. The correct identification should refer to a camera or tripod component.', 'failed_images': []}
+
+Question Being Answered: White clouds are flowing atop the mountain peak. A man wearing a gray coat and black shorts is standing in front of the cliff, gazing at the distant green mountains. What is the item in this man's hand?
+
+Answer Choices:
+A. glasses
+B. backpack
+C. camera
+D. phone
+E. stick
+
+Given Answer: 2
+Evidence Frames Used: ['frames/frame_0366.jpg', 'frames/frame_0367.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Ryan Shirley (Young Man with Curly Blonde Hair): Description: The host of the video, appears in various outdoor locations and is seen speaking to the camera.
+Woman with Red Hair: Description: Appears in a scene swimming in a body of clear green water near a rocky cave.
+Young Woman: Description: Stands alone and looks out over a vast, green, mountainous landscape from atop a grassy cliff.
+
+SCENES:
+Intro/Map Scene : Description: A curved blue line is drawn on a map of the world, connecting various cities across North America, the Atlantic Ocean, and parts of Europe and Africa. [frame_0001 - frame_0006]
+Outdoor/Travel Scene : Description: Various breathtaking landscapes featuring cliffs, mountains, and bodies of water. [frame_0007 - frame_0020, frame_0366 - frame_0403]
+Google Flights Search Scene : Description: Screenshots of the Google Flights website displaying various travel options and search results. [frame_0030 - frame_0247]
+Scott's Cheap Flights Website Scene : Description: Screenshots of the Scott's Cheap Flights website, featuring a serene blue sky with clouds and mountains, and explaining how the service works. [frame_0303 - frame_0365, frame_0377 - frame_0384]
+
+EVENTS:
+Using Google Flights to Search for Cheap Flights: Description: The host demonstrates how to use Google Flights to find affordable flights to Europe. [frame_0030 - frame_0247]
+Planning a Multi-City Trip: Description: The host uses Google Flights to plan a multi-city trip from Denver to London to Reykjavik and back to Denver. [frame_0146 - frame_0176]
+Exploring Cheap Flight Options: Description: The host uses Google Flights to explore various cheap flight options from London to different destinations in Europe. [frame_0248 - frame_0299]
+Signing up for Scott's Cheap Flights: Description: The host promotes Scott's Cheap Flights, a service that sends email alerts for cheap flight deals. [frame_0303 - frame_0365]
+
+================================================================================
+Generated at: 2026-01-03 10:19:10
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. White clouds visible above a mountain peak
+  Q2. Man wearing a gray coat and black shorts
+  Q3. Man standing in front of a cliff
+  Q4. Man gazing at distant green mountains
+  Q5. Man holding an item in his hand
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 5)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, if criteria_percentage > 0.5 (>50% of criteria pass):
+   - Review ALL answer choices (A, B, C, D, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D)
+5. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - Set critic_answer_choice to -1 (indicating frames may not be the right scene)
+   - Set suggestion to "These may not be the right frames/scene. Continue searching for better evidence."
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 5,
+    "criteria_percentage": <criteria_passed / 5>,
+    "base_confidence": <(criteria_passed / 5) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, or -1 if ≤50% criteria pass>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "White clouds visible above a mountain peak",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms white clouds hovering over mountain peaks in frames 0371-0372"
+        },
+        {
+            "criterion": "Man wearing a gray coat and black shorts",
+            "criterion_type": "QUESTION",
+            "status": "FAIL",
+            "reasoning": "VLM reports gray shirt/sweater, not a coat - this is a mismatch"
+        },
+        {
+            "criterion": "Man standing in front of a cliff",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms man standing on cliff edge in frames 0366-0367"
+        },
+        {
+            "criterion": "Man gazing at distant green mountains",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms man facing away, looking at green mountains in frames 0366-0367"
+        },
+        {
+            "criterion": "Man holding an item in his hand",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms man holding a black cylindrical object in right hand"
+        }
+    ],
+    "question_criteria_passed": 4,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 4,
+    "criteria_total": 5,
+    "criteria_percentage": 0.8,
+    "base_confidence": 80.0,
+    "confidence": 50.0,
+    "critic_answer_choice": 2,
+    "critic_reasoning": "The VLM clearly identifies the object as 'a camera or camera tripod leg' and explicitly states it is NOT a backpack. Among the answer choices, 'camera' (option C) is the closest match to the VLM's visual evidence.",
+    "possible_errors": [
+        "Gray coat condition failed - man wears gray shirt/sweater instead of coat",
+        "Backpack identification failed - VLM confirms object is camera/tripod component, not backpack"
+    ],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'White clouds visible above a mountain peak', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms white clouds hovering over mountain peaks in frames 0371-0372'}, {'criterion': 'Man wearing a gray coat and black shorts', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': 'VLM reports gray shirt/sweater, not a coat - this is a mismatch'}, {'criterion': 'Man standing in front of a cliff', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms man standing on cliff edge in frames 0366-0367'}, {'criterion': 'Man gazing at distant green mountains', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms man facing away, looking at green mountains in frames 0366-0367'}, {'criterion': 'Man holding an item in his hand', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms man holding a black cylindrical object in right hand'}], 'question_criteria_passed': 4, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 4, 'criteria_total': 5, 'criteria_percentage': 0.8, 'base_confidence': 80.0, 'confidence': 50.0, 'critic_answer_choice': 2, 'critic_reasoning': "The VLM clearly identifies the object as 'a camera or camera tripod leg' and explicitly states it is NOT a backpack. Among the answer choices, 'camera' (option C) is the closest match to the VLM's visual evidence.", 'possible_errors': ['Gray coat condition failed - man wears gray shirt/sweater instead of coat', 'Backpack identification failed - VLM confirms object is camera/tripod component, not backpack'], 'suggestion': None}

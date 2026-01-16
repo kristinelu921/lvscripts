@@ -1,0 +1,217 @@
+Critic initial response: ```json
+{
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_5390.jpg", "frames/frame_5391.jpg", "frames/frame_5392.jpg", "frames/frame_5393.jpg", "frames/frame_5394.jpg", "frames/frame_5395.jpg", "frames/frame_5396.jpg", "frames/frame_5397.jpg", "frames/frame_5398.jpg", "frames/frame_5399.jpg", "frames/frame_5400.jpg", "frames/frame_5401.jpg", "frames/frame_5402.jpg", "frames/frame_5403.jpg", "frames/frame_5404.jpg", "frames/frame_5405.jpg", "frames/frame_5406.jpg", "frames/frame_5407.jpg", "frames/frame_5408.jpg", "frames/frame_5409.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '0' (Split) is correct for the question: Which movement does the cat, wearing a sparkling black suit, black bow tie, and tight pants, perform? Check the question criteria: ['A cat character wearing a sparkling black suit', 'The cat character wearing a black bow tie', 'The cat character wearing tight pants', 'The cat character performing a dance movement', 'The cat character in a theatrical performance setting', 'Visible movement or dance action being performed']. Pay attention to timestamps and temporal sequences. Specifically look for: 1) A cat character in costume matching the description (sparkling black suit, bow tie, tight pants), 2) The cat performing a dance movement, 3) Whether the movement appears to be a split (legs extended in opposite directions along the floor) versus other dance moves like moonwalk, twerk, or krump."
+}
+```
+Frames to verify: ['frames/frame_5390.jpg', 'frames/frame_5391.jpg', 'frames/frame_5392.jpg', 'frames/frame_5393.jpg', 'frames/frame_5394.jpg', 'frames/frame_5395.jpg', 'frames/frame_5396.jpg', 'frames/frame_5397.jpg', 'frames/frame_5398.jpg', 'frames/frame_5399.jpg', 'frames/frame_5400.jpg', 'frames/frame_5401.jpg', 'frames/frame_5402.jpg', 'frames/frame_5403.jpg', 'frames/frame_5404.jpg', 'frames/frame_5405.jpg', 'frames/frame_5406.jpg', 'frames/frame_5407.jpg', 'frames/frame_5408.jpg', 'frames/frame_5409.jpg']
+VLM Prompt: Video context: Here is a global summary of the video based on the provided frame-by-frame captions:
+
+**Main Characters:**
+
+* A man in a suit ( likely the director or narrator) who appears throughout the video, sitting at a desk or standing on stage.
+* T.S. Eliot, whose work is being referenced and discussed throughout the video.
+* Andrew Lloyd Webber, the composer of the musical "Cats", who is also referenced and discussed.
+* Various performers dressed in cat costumes, who appear in the stage scenes.
+
+**Setting:**
+
+* The video is set in a theatrical setting, with a stage, a large screen or backdrop, and an auditorium or theater.
+* The stage is often dark, with spotlights shining down on the performers or the man at the desk.
+* The backdrop or screen displays various images, text, and graphics, including quotes, illustrations, and credits.
+
+**Plot Line:**
+
+* The video appears to be a documentary or presentation about the musical "Cats" by Andrew Lloyd Webber, based on T.S. Eliot's "Old Possum's Book of Practical Cats".
+* The video explores the origins and themes of the musical, with the man at the desk providing narration and context.
+* The stage scenes feature performers dressed in cat costumes, performing choreographed dance routines and musical numbers.
+* The video also includes credits and acknowledgments to the production team, cast, and crew.
+
+**Vibes:**
+
+* The overall vibe of the video is creative, artistic, and theatrical, with a mix of drama, music, and dance.
+* The use of purple and blue lighting creates a moody and atmospheric setting.
+* The inclusion of cat costumes and feline imagery adds a playful and whimsical touch.
+
+**General Details:**
+
+* The video is a recording of a live theatrical performance or a presentation about the musical "Cats".
+* The production team, cast, and crew are credited throughout the video.
+* The video includes a mix of stage scenes, narration, and graphics, creating a visually engaging and informative experience.
+* The overall tone is informative, creative, and celebratory, highlighting the artistry and craftsmanship that went into creating the musical "Cats".
+
+Based on these frames (including context before/after), verify if the answer '0' (Split) is correct for the question: Which movement does the cat, wearing a sparkling black suit, black bow tie, and tight pants, perform? Check the question criteria: ['A cat character wearing a sparkling black suit', 'The cat character wearing a black bow tie', 'The cat character wearing tight pants', 'The cat character performing a dance movement', 'The cat character in a theatrical performance setting', 'Visible movement or dance action being performed']. Pay attention to timestamps and temporal sequences. Specifically look for: 1) A cat character in costume matching the description (sparkling black suit, bow tie, tight pants), 2) The cat performing a dance movement, 3) Whether the movement appears to be a split (legs extended in opposite directions along the floor) versus other dance moves like moonwalk, twerk, or krump.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 20, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5390.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5391.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5392.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5393.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5394.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5395.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5396.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5397.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5398.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5399.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5400.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5401.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5402.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5403.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5404.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5405.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5406.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5407.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5408.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5409.jpg'], 'response': "Based on the provided frames and the question criteria, the answer **'0' (Split)** is **correct**.\n\nHere’s the verification against each criterion:\n\n1. **A cat character wearing a sparkling black suit** — ✅  \n   From Frame 1 through Frame 20, the central performer is clearly wearing a black, sequined (sparkling) suit that catches the stage lights. The texture and sheen are visible in multiple frames (e.g., Frame 5, Frame 10, Frame 15).\n\n2. **The cat character wearing a black bow tie** — ✅  \n   The performer has a distinct white ruffled collar and a black bow tie visible at the neck (e.g., Frame 5, Frame 6, Frame 10).\n\n3. **The cat character wearing tight pants** — ✅  \n   The costume includes form-fitting black pants that accentuate leg movements (clear in Frame 10, Frame 14, Frame 17).\n\n4. **The cat character performing a dance movement** — ✅  \n   The performer is engaged in a choreographed dance sequence throughout the frames — including struts, leaps, turns, and floor work.\n\n5. **The cat character in a theatrical performance setting** — ✅  \n   The stage is set with theatrical lighting (purple and green swirls), junkyard props, and other performers in cat costumes in the background — consistent with a live “Cats” musical performance.\n\n6. **Visible movement or dance action being performed** — ✅  \n   The performer is in constant motion — walking, posing, leaping, and in Frame 10, executing a clear split.\n\n---\n\n**Critical Frame: Frame 10**  \nIn this frame, the performer is captured mid-movement with **legs extended in opposite directions along the floor** — one leg forward, one leg back — in a full **split** position. The body is low to the ground, arms are extended for balance, and the costume remains fully visible. This matches the definition of a “split” exactly.\n\n---\n\n**Conclusion:**  \nAll six criteria are satisfied, and the specific movement in Frame 10 is unequivocally a **split**. Therefore, the answer **'0' (Split)** is **correct**."}], 'formatted_responses': ["\n=== Batch 0-20 (20 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5390.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5391.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5392.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5393.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5394.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5395.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5396.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5397.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5398.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5399.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5400.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5401.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5402.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5403.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5404.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5405.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5406.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5407.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5408.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5409.jpg\nVLM Response: Based on the provided frames and the question criteria, the answer **'0' (Split)** is **correct**.\n\nHere’s the verification against each criterion:\n\n1. **A cat character wearing a sparkling black suit** — ✅  \n   From Frame 1 through Frame 20, the central performer is clearly wearing a black, sequined (sparkling) suit that catches the stage lights. The texture and sheen are visible in multiple frames (e.g., Frame 5, Frame 10, Frame 15).\n\n2. **The cat character wearing a black bow tie** — ✅  \n   The performer has a distinct white ruffled collar and a black bow tie visible at the neck (e.g., Frame 5, Frame 6, Frame 10).\n\n3. **The cat character wearing tight pants** — ✅  \n   The costume includes form-fitting black pants that accentuate leg movements (clear in Frame 10, Frame 14, Frame 17).\n\n4. **The cat character performing a dance movement** — ✅  \n   The performer is engaged in a choreographed dance sequence throughout the frames — including struts, leaps, turns, and floor work.\n\n5. **The cat character in a theatrical performance setting** — ✅  \n   The stage is set with theatrical lighting (purple and green swirls), junkyard props, and other performers in cat costumes in the background — consistent with a live “Cats” musical performance.\n\n6. **Visible movement or dance action being performed** — ✅  \n   The performer is in constant motion — walking, posing, leaping, and in Frame 10, executing a clear split.\n\n---\n\n**Critical Frame: Frame 10**  \nIn this frame, the performer is captured mid-movement with **legs extended in opposite directions along the floor** — one leg forward, one leg back — in a full **split** position. The body is low to the ground, arms are extended for balance, and the costume remains fully visible. This matches the definition of a “split” exactly.\n\n---\n\n**Conclusion:**  \nAll six criteria are satisfied, and the specific movement in Frame 10 is unequivocally a **split**. Therefore, the answer **'0' (Split)** is **correct**.\n"], 'condensed_response': '**Scene Summary (Frames\u202f5390‑5409)**  \n\n- **Character:** A single cat‑costumed performer is the focal point throughout the 20‑frame clip.  \n- **Costume:** The cat wears a glittering black suit, a white‑ruffed collar with a black bow‑tie, and tight black pants that stay visible in every frame.  \n- **Setting:** A theatrical stage bathed in purple‑green lighting, with junk‑yard‑style props and other cat‑costumed background dancers, evokes a “Cats” musical atmosphere.  \n- **Movement:** The performer executes a continuous dance routine—struts, turns, leaps, and floor work—maintaining clear motion in each frame.  \n\n**Key Moment – Split (Frame\u202f5400\u202f/\u202fframe\u202f10):**  \n- The dancer is captured mid‑split: legs extended in opposite directions (one forward, one backward), torso low to the floor, arms outstretched for balance, and the full costume remains visible. This frame definitively meets the “split” definition.  \n\n**Overall Verdict:** All six criteria (sparkling black suit, black bow‑tie, tight pants, dance action, theatrical setting, and visible movement) are satisfied across the sequence, with the split clearly shown in frame\u202f5400. Hence the answer **‘0 – Split’** is correct.', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+⚠️ IMPORTANT: Answers use 0-INDEXED numbers where 0=A, 1=B, 2=C, 3=D, 4=E
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 20, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5390.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5391.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5392.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5393.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5394.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5395.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5396.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5397.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5398.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5399.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5400.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5401.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5402.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5403.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5404.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5405.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5406.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5407.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5408.jpg', '/mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5409.jpg'], 'response': "Based on the provided frames and the question criteria, the answer **'0' (Split)** is **correct**.\n\nHere’s the verification against each criterion:\n\n1. **A cat character wearing a sparkling black suit** — ✅  \n   From Frame 1 through Frame 20, the central performer is clearly wearing a black, sequined (sparkling) suit that catches the stage lights. The texture and sheen are visible in multiple frames (e.g., Frame 5, Frame 10, Frame 15).\n\n2. **The cat character wearing a black bow tie** — ✅  \n   The performer has a distinct white ruffled collar and a black bow tie visible at the neck (e.g., Frame 5, Frame 6, Frame 10).\n\n3. **The cat character wearing tight pants** — ✅  \n   The costume includes form-fitting black pants that accentuate leg movements (clear in Frame 10, Frame 14, Frame 17).\n\n4. **The cat character performing a dance movement** — ✅  \n   The performer is engaged in a choreographed dance sequence throughout the frames — including struts, leaps, turns, and floor work.\n\n5. **The cat character in a theatrical performance setting** — ✅  \n   The stage is set with theatrical lighting (purple and green swirls), junkyard props, and other performers in cat costumes in the background — consistent with a live “Cats” musical performance.\n\n6. **Visible movement or dance action being performed** — ✅  \n   The performer is in constant motion — walking, posing, leaping, and in Frame 10, executing a clear split.\n\n---\n\n**Critical Frame: Frame 10**  \nIn this frame, the performer is captured mid-movement with **legs extended in opposite directions along the floor** — one leg forward, one leg back — in a full **split** position. The body is low to the ground, arms are extended for balance, and the costume remains fully visible. This matches the definition of a “split” exactly.\n\n---\n\n**Conclusion:**  \nAll six criteria are satisfied, and the specific movement in Frame 10 is unequivocally a **split**. Therefore, the answer **'0' (Split)** is **correct**."}], 'formatted_responses': ["\n=== Batch 0-20 (20 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5390.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5391.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5392.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5393.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5394.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5395.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5396.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5397.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5398.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5399.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5400.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5401.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5402.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5403.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5404.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5405.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5406.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5407.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5408.jpg, /mnt/ssd/data/lvbench/videos_processed/-hgaSElC3wU/frames/frame_5409.jpg\nVLM Response: Based on the provided frames and the question criteria, the answer **'0' (Split)** is **correct**.\n\nHere’s the verification against each criterion:\n\n1. **A cat character wearing a sparkling black suit** — ✅  \n   From Frame 1 through Frame 20, the central performer is clearly wearing a black, sequined (sparkling) suit that catches the stage lights. The texture and sheen are visible in multiple frames (e.g., Frame 5, Frame 10, Frame 15).\n\n2. **The cat character wearing a black bow tie** — ✅  \n   The performer has a distinct white ruffled collar and a black bow tie visible at the neck (e.g., Frame 5, Frame 6, Frame 10).\n\n3. **The cat character wearing tight pants** — ✅  \n   The costume includes form-fitting black pants that accentuate leg movements (clear in Frame 10, Frame 14, Frame 17).\n\n4. **The cat character performing a dance movement** — ✅  \n   The performer is engaged in a choreographed dance sequence throughout the frames — including struts, leaps, turns, and floor work.\n\n5. **The cat character in a theatrical performance setting** — ✅  \n   The stage is set with theatrical lighting (purple and green swirls), junkyard props, and other performers in cat costumes in the background — consistent with a live “Cats” musical performance.\n\n6. **Visible movement or dance action being performed** — ✅  \n   The performer is in constant motion — walking, posing, leaping, and in Frame 10, executing a clear split.\n\n---\n\n**Critical Frame: Frame 10**  \nIn this frame, the performer is captured mid-movement with **legs extended in opposite directions along the floor** — one leg forward, one leg back — in a full **split** position. The body is low to the ground, arms are extended for balance, and the costume remains fully visible. This matches the definition of a “split” exactly.\n\n---\n\n**Conclusion:**  \nAll six criteria are satisfied, and the specific movement in Frame 10 is unequivocally a **split**. Therefore, the answer **'0' (Split)** is **correct**.\n"], 'condensed_response': '**Scene Summary (Frames\u202f5390‑5409)**  \n\n- **Character:** A single cat‑costumed performer is the focal point throughout the 20‑frame clip.  \n- **Costume:** The cat wears a glittering black suit, a white‑ruffed collar with a black bow‑tie, and tight black pants that stay visible in every frame.  \n- **Setting:** A theatrical stage bathed in purple‑green lighting, with junk‑yard‑style props and other cat‑costumed background dancers, evokes a “Cats” musical atmosphere.  \n- **Movement:** The performer executes a continuous dance routine—struts, turns, leaps, and floor work—maintaining clear motion in each frame.  \n\n**Key Moment – Split (Frame\u202f5400\u202f/\u202fframe\u202f10):**  \n- The dancer is captured mid‑split: legs extended in opposite directions (one forward, one backward), torso low to the floor, arms outstretched for balance, and the full costume remains visible. This frame definitively meets the “split” definition.  \n\n**Overall Verdict:** All six criteria (sparkling black suit, black bow‑tie, tight pants, dance action, theatrical setting, and visible movement) are satisfied across the sequence, with the split clearly shown in frame\u202f5400. Hence the answer **‘0 – Split’** is correct.', 'failed_images': []}
+
+Question Being Answered: Which movement does the cat, wearing a sparkling black suit, black bow tie, and tight pants, perform?
+
+Answer Choices (0-indexed: 0=A, 1=B, 2=C, 3=D, 4=E):
+  0 (=A): Split
+  1 (=B): Moonwalk
+  2 (=C): Twerk
+  3 (=D): Krump
+
+Given Answer: 0
+Evidence Frames Used: ['frames/frame_5395.jpg', 'frames/frame_5396.jpg', 'frames/frame_5397.jpg', 'frames/frame_5398.jpg', 'frames/frame_5399.jpg', 'frames/frame_5400.jpg', 'frames/frame_5401.jpg', 'frames/frame_5402.jpg', 'frames/frame_5403.jpg', 'frames/frame_5404.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Man in Grey Suit: A person dressed in a gray suit, sitting at a wooden desk on a dark stage.
+Man in Brown Suit: A person dressed in a brown suit, sitting at a wooden desk on a dark stage.
+Performers in Cat Costumes: A group of people dressed in elaborate cat costumes, performing on stage.
+Andrew Lloyd Webber: A man sitting or standing at a desk, associated with the musical "Cats".
+T.S. Eliot: A man depicted sitting at a desk, writing or reading, associated with the book "Old Possum's Book of Practical Cats".
+Ryan McCann: A man sitting at a desk, associated with the role of Conductor.
+Erika Knutson: A woman sitting or standing at a desk, associated with the role of Stage Manager.
+Cela Zofkie: A woman sitting at a desk, associated with the role of Production Manager.
+Bridget Carlson: A person whose image or quote is displayed on a screen, discussing T.S. Eliot's work.
+Mike Fulmer: A person whose quote is displayed on a screen, discussing the themes and intentions behind T.S. Eliot's poems.
+Woman in Red Dress: A woman dressed in a long red dress, performing on stage.
+Woman in White Costume: A woman dressed in a white costume, performing on stage.
+Man in Black Suit: A man dressed in a black suit, performing or standing on stage.
+Drag Queens: Performers dressed in elaborate costumes and wigs, performing on stage.
+
+SCENES:
+Rating Label Screen: A blue screen displaying a rating label for a motion picture. [Frames 1-8]
+Dark Stage with Man at Desk: A man sitting at a wooden desk on a dark stage. [Frames 9-26, 36-41, 53-66, 68, 71-75, 81-85, 89-92, 99-100, 101-109, 128-129, 155, 162-163, 166-167, 181-185, 188, 190-192, 195, 197-199]
+Musical "Cats" Performance: A vibrant stage performance of the musical "Cats". [Frames 27-35]
+Screen with Credits and Information: A large screen displaying credits and information about the production. [Frames 37-52, 57-61, 67, 69-70, 75-80, 86-88, 93-98]
+Directors Notes Screen: A screen displaying the title "Directors Notes" and a passage of text about the musical "Cats". [Frames 121-135]
+Letter from T.S. Eliot: A screen displaying a typed letter on "THE CRITERION A QUARTERLY REVIEW" letterhead, edited by T.S. Eliot. [Frames 212-235]
+Quote from Lyndall Gordon: A screen displaying a quote from Lyndall Gordon about T.S. Eliot's life and work. [Frames 248-262, 265-275]
+Quote from Bridget Carlson: A screen displaying a quote from Bridget Carlson about T.S. Eliot's poems. [Frames 322-342]
+Quote from Mike Fulmer: A screen displaying a quote from Mike Fulmer about T.S. Eliot's poems. [Frames 348-374]
+Cast List Screen: A screen displaying a list of names in white text on a black background, likely a cast list. [Frames 6651-6688]
+Production Team Screen: A screen displaying a list of names and job titles in white text on a black background, likely a production team list. [Frames 6716-6787]
+The Pit Screen: A screen displaying a list of names and musical instruments or roles in white text on a black background, likely related to the musical performance. [Frames 6804-6834]
+Special Thank You Screen: A screen displaying a message of appreciation to various individuals and groups. [Frames 6880-6915]
+Silver Fox Video Productions Screen: A screen displaying a message stating that the video was filmed and edited by Silver Fox Video Productions. [Frames 6927-6940]
+
+EVENTS:
+Man Sitting at Desk: A man sitting at a wooden desk on a dark stage, writing or reading. [Frames 9-26, 36-41, 53-66, 68, 71-75, 81-85, 89-92, 99-100, 101-109, 128-129, 155, 162-163, 166-167, 181-185, 188, 190-192, 195, 197-199]
+Musical "Cats" Performance: A group of performers dressed in cat costumes performing on stage. [Frames 27-35]
+Credits and Information Displayed: A large screen displaying credits and information about the production. [Frames 37-52, 57-61, 67, 69-70, 75-80, 86-88, 93-98]
+Directors Notes Displayed: A screen displaying the title "Directors Notes" and a passage of text about the musical "Cats". [Frames 121-135]
+Letter from T.S. Eliot Displayed: A screen displaying a typed letter on "THE CRITERION A QUARTERLY REVIEW" letterhead, edited by T.S. Eliot. [Frames 212-235]
+Quote from Lyndall Gordon Displayed: A screen displaying a quote from Lyndall Gordon about T.S. Eliot's life and work. [Frames 248-262, 265-275]
+Quote from Bridget Carlson Displayed: A screen displaying a quote from Bridget Carlson about T.S. Eliot's poems. [Frames 322-342]
+Quote from Mike Fulmer Displayed: A screen displaying a quote from Mike Fulmer about T.S. Eliot's poems. [Frames 348-374]
+Cast List Displayed: A screen displaying a list of names in white text on a black background, likely a cast list. [Frames 6651-6688]
+Production Team Displayed: A screen displaying a list of names and job titles in white text on a black background, likely a production team list. [Frames 6716-6787]
+The Pit Displayed: A screen displaying a list of names and musical instruments or roles in white text on a black background, likely related to the musical performance. [Frames 6804-6834]
+Special Thank You Displayed: A screen displaying a message of appreciation to various individuals and groups. [Frames 6880-6915]
+Silver Fox Video Productions Displayed: A screen displaying a message stating that the video was filmed and edited by Silver Fox Video Productions. [Frames 6927-6940]
+Theatrical Performance: Various performers, including dancers and actors, performing on a stage with elaborate costumes and sets. [Frames 592-664, 1267-1323, 1702-1785, 1807-1828, 1865-1871, 1891-1895, 2129-2156, 2180-2199, 2210-2223, 2240-2263, 2280-2301, 2320-2345, 2360-2387, 2401-2423, 2440-2465, 2480-2507, 2520-2547, 2560-2587, 2600-2627, 2640-2667, 2680-2709]
+Final Bow: A group of performers taking a final bow on a stage. [Frames 3315-3363]
+
+================================================================================
+Generated at: 2026-01-11 21:47:48
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. A cat character wearing a sparkling black suit
+  Q2. The cat character wearing a black bow tie
+  Q3. The cat character wearing tight pants
+  Q4. The cat character performing a dance movement
+  Q5. The cat character in a theatrical performance setting
+  Q6. Visible movement or dance action being performed
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 6)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, ALWAYS pick the best answer choice:
+   - Review ALL answer choices (A, B, C, D, E, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D, 4=E)
+
+5. If criteria_percentage > 0.5 (>50% of criteria pass):
+   - Your chosen answer is well-supported by evidence
+   - Set suggestion to null or provide minor improvements
+
+6. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - Still MUST choose the BEST answer from the available choices (never -1)
+   - But set suggestion to "These may not be the right frames/scene. Consider searching for better evidence. The answer chosen is the BEST match given current evidence."
+   - This signals low confidence but still provides a choice
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 6,
+    "criteria_percentage": <criteria_passed / 6>,
+    "base_confidence": <(criteria_passed / 6) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E - MUST be a valid number 0-4, never -1>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: 
+```json
+{
+    "criteria_results": [
+        {"criterion": "A cat character wearing a sparkling black suit", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms performer wears black sequined suit that catches stage lights"},
+        {"criterion": "The cat character wearing a black bow tie", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms distinct white ruffled collar with black bow tie visible"},
+        {"criterion": "The cat character wearing tight pants", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms form-fitting black pants visible in multiple frames"},
+        {"criterion": "The cat character performing a dance movement", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms choreographed dance sequence including struts, leaps, turns and floor work"},
+        {"criterion": "The cat character in a theatrical performance setting", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms theatrical stage with lighting, props and other cat-costumed performers"},
+        {"criterion": "Visible movement or dance action being performed", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms constant motion including a clear split in Frame 10"}
+    ],
+    "question_criteria_passed": 6,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 6,
+    "criteria_total": 6,
+    "criteria_percentage": 1.0,
+    "base_confidence": 100.0,
+    "confidence": 100.0,
+    "critic_answer_choice": 0,
+    "critic_reasoning": "The VLM verification confirms all six criteria are satisfied, with Frame 10 showing a definitive split movement. The performer's costume (sparkling black suit, bow tie, tight pants), theatrical setting, and dance actions including the split match the question description perfectly.",
+    "possible_errors": [],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'A cat character wearing a sparkling black suit', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms performer wears black sequined suit that catches stage lights'}, {'criterion': 'The cat character wearing a black bow tie', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms distinct white ruffled collar with black bow tie visible'}, {'criterion': 'The cat character wearing tight pants', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms form-fitting black pants visible in multiple frames'}, {'criterion': 'The cat character performing a dance movement', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms choreographed dance sequence including struts, leaps, turns and floor work'}, {'criterion': 'The cat character in a theatrical performance setting', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms theatrical stage with lighting, props and other cat-costumed performers'}, {'criterion': 'Visible movement or dance action being performed', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms constant motion including a clear split in Frame 10'}], 'question_criteria_passed': 6, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 6, 'criteria_total': 6, 'criteria_percentage': 1.0, 'base_confidence': 100.0, 'confidence': 100.0, 'critic_answer_choice': 0, 'critic_reasoning': "The VLM verification confirms all six criteria are satisfied, with Frame 10 showing a definitive split movement. The performer's costume (sparkling black suit, bow tie, tight pants), theatrical setting, and dance actions including the split match the question description perfectly.", 'possible_errors': [], 'suggestion': None}

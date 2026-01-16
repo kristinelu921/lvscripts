@@ -1,0 +1,220 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0158.jpg", "frames/frame_0159.jpg", "frames/frame_0160.jpg", "frames/frame_0161.jpg", "frames/frame_0162.jpg", "frames/frame_0163.jpg", "frames/frame_0164.jpg", "frames/frame_0165.jpg", "frames/frame_0166.jpg", "frames/frame_0167.jpg", "frames/frame_0168.jpg", "frames/frame_0169.jpg", "frames/frame_0170.jpg", "frames/frame_0171.jpg", "frames/frame_0172.jpg"],
+    "prompt": "Examine these consecutive frames to determine why there is water on the road. Check for: 1) Is a road/path clearly visible? 2) Is water covering the road surface? 3) What is the source of the water - is it from the ocean (wave action, high tide), rainfall (wet surfaces, puddles, rain visible), a burst pipe (water spraying, pipe damage), or melting ice (ice/snow visible)? 4) What is the environmental context (coastal area, urban setting, etc.)? 5) Are people/vehicles interacting with the flooded road? 6) Signs of recent weather events. The answer '0' means the correct answer is not among the listed choices - verify if this is accurate based on visual evidence."
+}
+Frames to verify: ['frames/frame_0158.jpg', 'frames/frame_0159.jpg', 'frames/frame_0160.jpg', 'frames/frame_0161.jpg', 'frames/frame_0162.jpg', 'frames/frame_0163.jpg', 'frames/frame_0164.jpg', 'frames/frame_0165.jpg', 'frames/frame_0166.jpg', 'frames/frame_0167.jpg', 'frames/frame_0168.jpg', 'frames/frame_0169.jpg', 'frames/frame_0170.jpg', 'frames/frame_0171.jpg', 'frames/frame_0172.jpg']
+VLM Prompt: Video context: Based on the provided frame-by-frame captions data, here is a global summary of the video:
+
+**Main Characters:**
+
+* The main characters in the video are the people of Kiribati, a Pacific island nation. Specifically, the video features various individuals, including men, women, and children, who are affected by climate change and its consequences.
+* A young man with dark skin and short black hair, wearing a white shirt with a black pattern, is a recurring character in the video.
+
+**Setting:**
+
+* The video is set in Kiribati, a tropical island nation in the Pacific Ocean.
+* The setting includes various locations, such as beaches, villages, and coastal areas, showcasing the island's natural beauty and the impact of climate change.
+
+**Plot Line:**
+
+* The video appears to be a documentary about the effects of climate change on Kiribati.
+* The plot line follows the daily lives of the islanders, highlighting their struggles with flooding, erosion, and other environmental challenges.
+* The video also showcases the island's culture, traditions, and resilience in the face of climate change.
+
+**Vibes:**
+
+* The overall vibe of the video is somber and reflective, with a sense of urgency and concern about the impact of climate change on the island and its people.
+* The video also conveys a sense of resilience and community among the islanders.
+
+**General Details:**
+
+* The video features a mix of aerial footage, interviews, and observational footage, showcasing the island's landscapes, people, and daily life.
+* The video highlights the effects of climate change, including flooding, erosion, and saltwater contamination, and their impact on the island's infrastructure, economy, and culture.
+* The video also touches on the theme of displacement and migration, as some islanders are forced to leave their homes due to the changing climate.
+* The documentary is produced by Markus Henssler and features a report by him, with credits and acknowledgments at the end.
+
+Overall, the video is a poignant and thought-provoking documentary that sheds light on the human impact of climate change in Kiribati, highlighting the need for urgent action to mitigate its effects.
+
+Examine these consecutive frames to determine why there is water on the road. Check for: 1) Is a road/path clearly visible? 2) Is water covering the road surface? 3) What is the source of the water - is it from the ocean (wave action, high tide), rainfall (wet surfaces, puddles, rain visible), a burst pipe (water spraying, pipe damage), or melting ice (ice/snow visible)? 4) What is the environmental context (coastal area, urban setting, etc.)? 5) Are people/vehicles interacting with the flooded road? 6) Signs of recent weather events. The answer '0' means the correct answer is not among the listed choices - verify if this is accurate based on visual evidence.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 15, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0158.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0159.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0160.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0161.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0162.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0163.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0164.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0165.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0166.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0167.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0168.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0169.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0170.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0171.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0172.jpg'], 'response': "Based on the visual evidence in the provided frames, here is the analysis for why there is water on the road:\n\n1.  **Is a road/path clearly visible?** Yes, particularly in frames 6 through 10, a paved road or causeway running parallel to the ocean is clearly visible. An aerial view in frame 15 also shows a road on the island.\n\n2.  **Is water covering the road surface?** Yes, in frames 6 through 10, the road surface is visibly wet and covered with water, especially on the side closest to the ocean. Waves are actively washing over the road.\n\n3.  **What is the source of the water?** The source is unequivocally the ocean. The frames show large waves crashing against a seawall or the edge of the road, sending plumes of spray and water onto the road surface. This is not rainfall (no rain visible, sky is clear in some frames), not a burst pipe (no infrastructure damage or spraying from pipes), and not melting ice (no ice or snow present).\n\n4.  **What is the environmental context?** The context is clearly a coastal area. The video is set in Kiribati, a low-lying Pacific island nation. The frames show the ocean directly adjacent to the road and homes, with palm trees and tropical vegetation. The aerial shot in frame 15 confirms the island's low elevation and proximity of infrastructure to the sea.\n\n5.  **Are people/vehicles interacting with the flooded road?** Yes, in frames 6 through 10, several vehicles (a white van and a dark SUV) are seen driving on the wet road, navigating the area where waves are washing over. In frames 11 through 14, a woman and child are wading through floodwater that has inundated a residential area, which may be near or connected to the road network.\n\n6.  **Signs of recent weather events?** While the sky in frames 6-10 is clear, the violent wave action and the state of the vegetation (bent palm trees in frames 1-2) suggest recent or ongoing strong winds and high seas, consistent with storm surges or king tides, which are exacerbated by climate change and sea-level rise in this region.\n\n**Conclusion:**\n\nThe water on the road is caused by **ocean wave action**, likely during high tide or a storm surge, washing over the low-lying coastal road. This is a direct consequence of the island's geography and the impacts of climate change, as highlighted in the video's global summary.\n\nTherefore, the correct answer is: **from the ocean (wave action, high tide)**."}], 'formatted_responses': ["\n=== Batch 0-15 (15 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0158.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0159.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0160.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0161.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0162.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0163.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0164.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0165.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0166.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0167.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0168.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0169.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0170.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0171.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0172.jpg\nVLM Response: Based on the visual evidence in the provided frames, here is the analysis for why there is water on the road:\n\n1.  **Is a road/path clearly visible?** Yes, particularly in frames 6 through 10, a paved road or causeway running parallel to the ocean is clearly visible. An aerial view in frame 15 also shows a road on the island.\n\n2.  **Is water covering the road surface?** Yes, in frames 6 through 10, the road surface is visibly wet and covered with water, especially on the side closest to the ocean. Waves are actively washing over the road.\n\n3.  **What is the source of the water?** The source is unequivocally the ocean. The frames show large waves crashing against a seawall or the edge of the road, sending plumes of spray and water onto the road surface. This is not rainfall (no rain visible, sky is clear in some frames), not a burst pipe (no infrastructure damage or spraying from pipes), and not melting ice (no ice or snow present).\n\n4.  **What is the environmental context?** The context is clearly a coastal area. The video is set in Kiribati, a low-lying Pacific island nation. The frames show the ocean directly adjacent to the road and homes, with palm trees and tropical vegetation. The aerial shot in frame 15 confirms the island's low elevation and proximity of infrastructure to the sea.\n\n5.  **Are people/vehicles interacting with the flooded road?** Yes, in frames 6 through 10, several vehicles (a white van and a dark SUV) are seen driving on the wet road, navigating the area where waves are washing over. In frames 11 through 14, a woman and child are wading through floodwater that has inundated a residential area, which may be near or connected to the road network.\n\n6.  **Signs of recent weather events?** While the sky in frames 6-10 is clear, the violent wave action and the state of the vegetation (bent palm trees in frames 1-2) suggest recent or ongoing strong winds and high seas, consistent with storm surges or king tides, which are exacerbated by climate change and sea-level rise in this region.\n\n**Conclusion:**\n\nThe water on the road is caused by **ocean wave action**, likely during high tide or a storm surge, washing over the low-lying coastal road. This is a direct consequence of the island's geography and the impacts of climate change, as highlighted in the video's global summary.\n\nTherefore, the correct answer is: **from the ocean (wave action, high tide)**.\n"], 'condensed_response': '**Scene Summary (Frames\u202f0158‑0172)**  \n\nThe footage captures a low‑lying coastal road on a Kiribati island, repeatedly washed by ocean waves.  \n\n- **Frames\u202f0158‑0160** show the road’s straight, paved surface running alongside the sea, with palm trees bending in the background – an early hint of strong wind‑driven surf.  \n- **Frames\u202f0161‑0165** focus on the road itself; the surface is slick and actively covered by spray as large breakers crash against the seawall. A white van and a dark SUV appear, driving cautiously through the shallow surge that rushes over the lane.  \n- **Frames\u202f0166‑0169** continue the vehicle passage, emphasizing the extent of the water that hugs the road’s edge. The sky is clear, confirming the water is not rain‑derived.  \n- **Frames\u202f0170‑0172** shift to a residential area adjacent to the road. A woman accompanied by a child wades through the same floodwater, indicating the inundation has spread beyond the roadway into nearby homes.  \n\n**Key Elements**\n\n- **Source of water:** Direct ocean wave action (high tide or storm‑surge conditions), not precipitation or pipe leakage.  \n- **Environmental context:** Tropical island with low elevation; the sea is in immediate contact with infrastructure, making the road vulnerable to tidal overruns.  \n- **Characters:** Two vehicles (white van, dark SUV) negotiating the wet road; a woman and child navigating the flooded residential zone.  \n\nOverall, the sequence depicts a coastal road being repeatedly overtaken by ocean waves, with both drivers and pedestrians confronting the resulting flood—a vivid illustration of the island’s exposure to sea‑level rise and storm‑induced surges.', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 15, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0158.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0159.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0160.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0161.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0162.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0163.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0164.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0165.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0166.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0167.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0168.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0169.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0170.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0171.jpg', '/mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0172.jpg'], 'response': "Based on the visual evidence in the provided frames, here is the analysis for why there is water on the road:\n\n1.  **Is a road/path clearly visible?** Yes, particularly in frames 6 through 10, a paved road or causeway running parallel to the ocean is clearly visible. An aerial view in frame 15 also shows a road on the island.\n\n2.  **Is water covering the road surface?** Yes, in frames 6 through 10, the road surface is visibly wet and covered with water, especially on the side closest to the ocean. Waves are actively washing over the road.\n\n3.  **What is the source of the water?** The source is unequivocally the ocean. The frames show large waves crashing against a seawall or the edge of the road, sending plumes of spray and water onto the road surface. This is not rainfall (no rain visible, sky is clear in some frames), not a burst pipe (no infrastructure damage or spraying from pipes), and not melting ice (no ice or snow present).\n\n4.  **What is the environmental context?** The context is clearly a coastal area. The video is set in Kiribati, a low-lying Pacific island nation. The frames show the ocean directly adjacent to the road and homes, with palm trees and tropical vegetation. The aerial shot in frame 15 confirms the island's low elevation and proximity of infrastructure to the sea.\n\n5.  **Are people/vehicles interacting with the flooded road?** Yes, in frames 6 through 10, several vehicles (a white van and a dark SUV) are seen driving on the wet road, navigating the area where waves are washing over. In frames 11 through 14, a woman and child are wading through floodwater that has inundated a residential area, which may be near or connected to the road network.\n\n6.  **Signs of recent weather events?** While the sky in frames 6-10 is clear, the violent wave action and the state of the vegetation (bent palm trees in frames 1-2) suggest recent or ongoing strong winds and high seas, consistent with storm surges or king tides, which are exacerbated by climate change and sea-level rise in this region.\n\n**Conclusion:**\n\nThe water on the road is caused by **ocean wave action**, likely during high tide or a storm surge, washing over the low-lying coastal road. This is a direct consequence of the island's geography and the impacts of climate change, as highlighted in the video's global summary.\n\nTherefore, the correct answer is: **from the ocean (wave action, high tide)**."}], 'formatted_responses': ["\n=== Batch 0-15 (15 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0158.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0159.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0160.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0161.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0162.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0163.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0164.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0165.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0166.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0167.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0168.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0169.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0170.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0171.jpg, /mnt/ssd/data/lvbench/videos_processed/TZ0j6kr4ZJ0/frames/frame_0172.jpg\nVLM Response: Based on the visual evidence in the provided frames, here is the analysis for why there is water on the road:\n\n1.  **Is a road/path clearly visible?** Yes, particularly in frames 6 through 10, a paved road or causeway running parallel to the ocean is clearly visible. An aerial view in frame 15 also shows a road on the island.\n\n2.  **Is water covering the road surface?** Yes, in frames 6 through 10, the road surface is visibly wet and covered with water, especially on the side closest to the ocean. Waves are actively washing over the road.\n\n3.  **What is the source of the water?** The source is unequivocally the ocean. The frames show large waves crashing against a seawall or the edge of the road, sending plumes of spray and water onto the road surface. This is not rainfall (no rain visible, sky is clear in some frames), not a burst pipe (no infrastructure damage or spraying from pipes), and not melting ice (no ice or snow present).\n\n4.  **What is the environmental context?** The context is clearly a coastal area. The video is set in Kiribati, a low-lying Pacific island nation. The frames show the ocean directly adjacent to the road and homes, with palm trees and tropical vegetation. The aerial shot in frame 15 confirms the island's low elevation and proximity of infrastructure to the sea.\n\n5.  **Are people/vehicles interacting with the flooded road?** Yes, in frames 6 through 10, several vehicles (a white van and a dark SUV) are seen driving on the wet road, navigating the area where waves are washing over. In frames 11 through 14, a woman and child are wading through floodwater that has inundated a residential area, which may be near or connected to the road network.\n\n6.  **Signs of recent weather events?** While the sky in frames 6-10 is clear, the violent wave action and the state of the vegetation (bent palm trees in frames 1-2) suggest recent or ongoing strong winds and high seas, consistent with storm surges or king tides, which are exacerbated by climate change and sea-level rise in this region.\n\n**Conclusion:**\n\nThe water on the road is caused by **ocean wave action**, likely during high tide or a storm surge, washing over the low-lying coastal road. This is a direct consequence of the island's geography and the impacts of climate change, as highlighted in the video's global summary.\n\nTherefore, the correct answer is: **from the ocean (wave action, high tide)**.\n"], 'condensed_response': '**Scene Summary (Frames\u202f0158‑0172)**  \n\nThe footage captures a low‑lying coastal road on a Kiribati island, repeatedly washed by ocean waves.  \n\n- **Frames\u202f0158‑0160** show the road’s straight, paved surface running alongside the sea, with palm trees bending in the background – an early hint of strong wind‑driven surf.  \n- **Frames\u202f0161‑0165** focus on the road itself; the surface is slick and actively covered by spray as large breakers crash against the seawall. A white van and a dark SUV appear, driving cautiously through the shallow surge that rushes over the lane.  \n- **Frames\u202f0166‑0169** continue the vehicle passage, emphasizing the extent of the water that hugs the road’s edge. The sky is clear, confirming the water is not rain‑derived.  \n- **Frames\u202f0170‑0172** shift to a residential area adjacent to the road. A woman accompanied by a child wades through the same floodwater, indicating the inundation has spread beyond the roadway into nearby homes.  \n\n**Key Elements**\n\n- **Source of water:** Direct ocean wave action (high tide or storm‑surge conditions), not precipitation or pipe leakage.  \n- **Environmental context:** Tropical island with low elevation; the sea is in immediate contact with infrastructure, making the road vulnerable to tidal overruns.  \n- **Characters:** Two vehicles (white van, dark SUV) negotiating the wet road; a woman and child navigating the flooded residential zone.  \n\nOverall, the sequence depicts a coastal road being repeatedly overtaken by ocean waves, with both drivers and pedestrians confronting the resulting flood—a vivid illustration of the island’s exposure to sea‑level rise and storm‑induced surges.', 'failed_images': []}
+
+Question Being Answered: Why is there so much water on the road in the video?
+
+Answer Choices:
+A. Because rising sea levels caused the water to inundate the road
+B. Due to a burst pipe
+C. Because of melting ice
+D. Because of heavy rainfall
+
+Given Answer: 0
+Evidence Frames Used: ['frames/frame_0163.jpg', 'frames/frame_0164.jpg', 'frames/frame_0165.jpg', 'frames/frame_0166.jpg', 'frames/frame_0167.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Man wearing purple sarong: Description: A man with dark skin and short black hair, wearing a purple sarong or shorts, appearing in various scenes throughout the video.
+Man in white shirt with black pattern: Description: A man with dark skin and short black hair, wearing a white shirt with a black pattern, appearing in various scenes throughout the video.
+Young woman in pink shirt: Description: A young woman with dark hair and a pink shirt, appearing in various scenes throughout the video.
+Elderly woman: Description: An elderly woman with gray hair, appearing in various scenes throughout the video, often sitting on a woven mat in a thatched hut.
+Man in gray shirt: Description: A man with dark skin and short black hair, wearing a gray shirt, appearing in various scenes throughout the video.
+Man in black shirt: Description: A man with dark skin and short black hair, wearing a black shirt, appearing in various scenes throughout the video.
+
+SCENES:
+Sandy Beach: Description: A vast, sandy beach with visible cracks and puddles, under a blue sky with scattered clouds. [Frames 1-13]
+Beach with Seaweed and Coral: Description: A sandy beach covered with seaweed and coral, where men are collecting and working with coral. [Frames 15-45]
+Tropical Village: Description: A tropical village with thatched roof huts, lush greenery, and palm trees. [Frames 46-75, 99-102]
+Construction Site: Description: A construction site on a sandy beach, where men are working on a stone wall or seawall. [Frames 77-91]
+Title Card: Description: A title card featuring the title "Kiribati: A Drowning Paradise in the South Pacific" and "A Report by Markus Henssler". [Frames 105-121]
+Aerial View of Kiribati: Description: An aerial view of the island of Kiribati, showcasing its lush greenery, sandy beaches, and crystal-clear turquoise water. [Frames 122-131, 137-145]
+Flooded Coastal Area: Description: A flooded coastal area with large waves crashing against the shore, houses, and buildings. [Frames 147-159]
+Tropical Coastal Town: Description: A serene tropical coastal town with a road running along the right side and a body of water filled with small islands. [Frames 172-179]
+Kiribati Parliament Building: Description: The Kiribati Parliament building, a large white structure with a triangular roof and a crest on the front. [Frame 182]
+Dirt Road in Tropical Village: Description: A dirt road in a tropical village with thatched roof huts and lush greenery. [Frames 185-189]
+Flooded Landscape: Description: A flooded landscape with houses and trees partially submerged in water. [Frames 215-216, 246-247]
+Boat Launch: Description: A scene where men are launching a red, yellow, and white boat into the turquoise water near a rocky shoreline. [Frames 255-258]
+Thatched Hut: Description: A large thatched-roof hut standing on stilts over a sandy beach and shallow water. [Frames 304-305, 368-371]
+Classroom: Description: A classroom with young girls wearing yellow shirts and green skirts, sitting on the floor or at wooden desks. [Frames 1984-2015]
+Industrial Area: Description: An industrial area with men wearing hard hats and work uniforms, working with large ropes and machinery. [Frames 1760-1772]
+Credits Screen: Description: A credits screen featuring a list of production credits and an aerial view of a coastal area. [Frames 2528-2541]
+
+EVENTS:
+Men Collecting Coral: Description: Men collecting and working with coral on a sandy beach. [Frames 15-45]
+People Planting Mangroves: Description: A group of people, including men, women, and children, planting mangrove seedlings on a sandy beach. [Frames 453-462, 478-485]
+Construction Work: Description: Men working on a construction site, building a stone wall or seawall on a sandy beach. [Frames 77-91]
+Traditional Dance: Description: A group of people, dressed in traditional Papua New Guinean attire, performing a cultural dance in a large, open-air structure. [Frames 837-866]
+Food Preparation: Description: Women preparing food in a traditional hut, using a large metal pot over an open flame. [Frames 1064-1075]
+Fishing: Description: Men standing in a body of water at night, illuminated by a torch being held by one of the men. [Frames 2303-2310]
+Fire Dance: Description: Two men performing a traditional dance with fire on a beach at night. [Frames 2280-2297]
+Coconut Grating: Description: Two people sitting on a worn-out wooden table or floor, grating a coconut into a large, light teal-colored bowl. [Frames 1071-1075]
+
+================================================================================
+Generated at: 2026-01-11 21:46:29
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. Road or path visible in the scene
+  Q2. Water covering or flooding the road surface
+  Q3. Visible evidence of the water source (sea, rain, pipe, etc.)
+  Q4. Environmental context around the flooded road
+  Q5. People or vehicles interacting with the flooded road
+  Q6. Signs of recent rainfall or sea water intrusion
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 6)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, if criteria_percentage > 0.5 (>50% of criteria pass):
+   - Review ALL answer choices (A, B, C, D, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D)
+5. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - STILL do your best to pick out a correct answer, but also set suggestion to "These may not be the right frames/scene. Continue searching for better evidence."
+   - output your best guess of the answer as a number (0=A, 1=B, 2=C, 3=D, 4=E)
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <number of question criteria that passed>,
+    "criteria_total": 6,
+    "criteria_percentage": <criteria_passed / 6>,
+    "base_confidence": <(criteria_passed / 6) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "Road or path visible in the scene",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms a paved road/causeway is clearly visible in frames 6-10 and an aerial view shows a road on the island"
+        },
+        {
+            "criterion": "Water covering or flooding the road surface",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM reports road surface is visibly wet and covered with water in frames 6-10, with waves actively washing over the road"
+        },
+        {
+            "criterion": "Visible evidence of the water source (sea, rain, pipe, etc.)",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM unequivocally identifies ocean as source, showing waves crashing against seawall/road edge and explicitly rules out rain, burst pipes, and melting ice"
+        },
+        {
+            "criterion": "Environmental context around the flooded road",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM describes coastal area in Kiribati with ocean adjacent to road and homes, palm trees, tropical vegetation, and confirms low elevation"
+        },
+        {
+            "criterion": "People or vehicles interacting with the flooded road",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM reports vehicles (white van, dark SUV) driving on wet road and woman/child wading through floodwater in residential area"
+        },
+        {
+            "criterion": "Signs of recent rainfall or sea water intrusion",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM notes clear sky (no rain) but observes violent wave action and bent palm trees suggesting strong winds/high seas consistent with storm surges or king tides"
+        }
+    ],
+    "question_criteria_passed": 6,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 6,
+    "criteria_total": 6,
+    "criteria_percentage": 1.0,
+    "base_confidence": 100,
+    "confidence": 100,
+    "critic_answer_choice": 0,
+    "critic_reasoning": "The VLM evidence clearly shows ocean wave action washing over the coastal road, consistent with rising sea levels causing water inundation. The VLM explicitly rules out burst pipes, melting ice, and heavy rainfall as causes, leaving rising sea levels as the only plausible explanation among the choices.",
+    "possible_errors": [],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'Road or path visible in the scene', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms a paved road/causeway is clearly visible in frames 6-10 and an aerial view shows a road on the island'}, {'criterion': 'Water covering or flooding the road surface', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM reports road surface is visibly wet and covered with water in frames 6-10, with waves actively washing over the road'}, {'criterion': 'Visible evidence of the water source (sea, rain, pipe, etc.)', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM unequivocally identifies ocean as source, showing waves crashing against seawall/road edge and explicitly rules out rain, burst pipes, and melting ice'}, {'criterion': 'Environmental context around the flooded road', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM describes coastal area in Kiribati with ocean adjacent to road and homes, palm trees, tropical vegetation, and confirms low elevation'}, {'criterion': 'People or vehicles interacting with the flooded road', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM reports vehicles (white van, dark SUV) driving on wet road and woman/child wading through floodwater in residential area'}, {'criterion': 'Signs of recent rainfall or sea water intrusion', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM notes clear sky (no rain) but observes violent wave action and bent palm trees suggesting strong winds/high seas consistent with storm surges or king tides'}], 'question_criteria_passed': 6, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 6, 'criteria_total': 6, 'criteria_percentage': 1.0, 'base_confidence': 100, 'confidence': 100, 'critic_answer_choice': 0, 'critic_reasoning': 'The VLM evidence clearly shows ocean wave action washing over the coastal road, consistent with rising sea levels causing water inundation. The VLM explicitly rules out burst pipes, melting ice, and heavy rainfall as causes, leaving rising sea levels as the only plausible explanation among the choices.', 'possible_errors': [], 'suggestion': None}

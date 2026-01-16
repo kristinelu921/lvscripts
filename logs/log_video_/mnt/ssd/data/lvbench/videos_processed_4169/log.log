@@ -1,0 +1,196 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0000.jpg", "frames/frame_0001.jpg", "frames/frame_0002.jpg", "frames/frame_0003.jpg", "frames/frame_0004.jpg", "frames/frame_0005.jpg", "frames/frame_0006.jpg", "frames/frame_0007.jpg", "frames/frame_0008.jpg", "frames/frame_0009.jpg"],
+    "prompt": "Analyze these frames from the very beginning of the video to verify if answer '0' (which corresponds to Italy) is correct for 'Which country's flag is being waved at the beginning of the video?'. Check: 1) Is a flag being waved in the opening frames? 2) What national colors/design are visible on any flags? 3) Is a person holding/waving a flag? 4) Is this in spectator stands? 5) Does this occur in the video's opening moments? Identify the country of any flags present and verify if Italy's flag (green, white, red vertical stripes) matches what's shown."
+}
+Frames to verify: ['frames/frame_0000.jpg', 'frames/frame_0001.jpg', 'frames/frame_0002.jpg', 'frames/frame_0003.jpg', 'frames/frame_0004.jpg', 'frames/frame_0005.jpg', 'frames/frame_0006.jpg', 'frames/frame_0007.jpg', 'frames/frame_0008.jpg', 'frames/frame_0009.jpg']
+VLM Prompt: Video context: Here's a global summary of the frame-by-frame captions data for the long video:
+
+**Main Characters:**
+The main characters in this video are the Italian and Brazilian volleyball teams, comprising male athletes wearing blue and yellow uniforms, respectively. Other notable characters include coaches, officials, and spectators, many of whom are dressed in team colors and waving flags.
+
+**Setting:**
+The video is set at the 2016 Rio Olympics, primarily at the Maracanazinho arena, where the men's volleyball gold medal match between Italy and Brazil takes place. The venue is filled with enthusiastic spectators, mostly dressed in yellow and green attire, cheering for Brazil, and some wearing blue jerseys, supporting Italy.
+
+**Plot Line:**
+The video captures the excitement and tension of the Olympic volleyball match between Italy and Brazil. The narrative unfolds through various moments, including team huddles, player interactions, and dramatic plays on the court. The video also showcases the emotional reactions of the players, coaches, and spectators as the match progresses. Ultimately, Brazil emerges victorious, and the team celebrates their win.
+
+**Vibes:**
+The overall atmosphere is one of high energy, excitement, and national pride. The spectators are enthusiastic, cheering, and waving flags, creating an electric ambiance. The players are focused, determined, and emotional, displaying a range of reactions to the game's progression. The video conveys a sense of camaraderie and sportsmanship, as players from both teams shake hands and show respect for each other.
+
+**General Details:**
+The video is a comprehensive coverage of the men's volleyball gold medal match between Italy and Brazil at the 2016 Rio Olympics. It features a mix of close-ups, wide shots, and crowd reactions, providing a detailed and immersive experience. The captions highlight the intensity of the game, the emotions of the players and spectators, and the celebratory atmosphere surrounding the Brazilian team's victory.
+
+Analyze these frames from the very beginning of the video to verify if answer '0' (which corresponds to Italy) is correct for 'Which country's flag is being waved at the beginning of the video?'. Check: 1) Is a flag being waved in the opening frames? 2) What national colors/design are visible on any flags? 3) Is a person holding/waving a flag? 4) Is this in spectator stands? 5) Does this occur in the video's opening moments? Identify the country of any flags present and verify if Italy's flag (green, white, red vertical stripes) matches what's shown.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 10, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0001.jpg', '/mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0002.jpg', '/mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0003.jpg', '/mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0004.jpg', '/mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0005.jpg', '/mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0006.jpg', '/mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0007.jpg', '/mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0008.jpg', '/mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0009.jpg'], 'response': "Based on the analysis of the provided frames from the beginning of the video:\n\n1. **Is a flag being waved in the opening frames?**  \n   → **Yes.** In frames 2 through 5 (i.e., the very beginning of the video), a large flag is clearly visible being held and waved by a spectator.\n\n2. **What national colors/design are visible on any flags?**  \n   → The flag prominently displayed has **vertical stripes of green, white, and red** — the national colors of **Italy**. The design matches the Italian tricolor flag.\n\n3. **Is a person holding/waving a flag?**  \n   → **Yes.** A woman in the spectator stands is holding the flag with both hands, and it is unfurled and visible in multiple consecutive frames (2–5).\n\n4. **Is this in spectator stands?**  \n   → **Yes.** The flag is being waved from the stands, with other spectators visible around the woman, including some wearing Italian team jerseys (e.g., blue jersey with “14” and “Kinder” logo).\n\n5. **Does this occur in the video's opening moments?**  \n   → **Yes.** These frames (2–5) are among the first 10 frames of the video, clearly placing the flag-waving event at the very beginning.\n\n---\n\n✅ **Verification of Country:**  \nThe flag’s design — **green, white, and red vertical stripes** — is the **official flag of Italy**. No other national flag matches this exact design.\n\n---\n\n✅ **Conclusion:**  \nThe answer **‘0’ (which corresponds to Italy)** is **correct**. The flag being waved at the beginning of the video is unequivocally the **Italian flag**, held by a spectator in the stands during the opening moments of the video.\n\n**Final Answer: 0 (Italy) — Correct.**"}], 'formatted_responses': ["\n=== Batch 0-10 (9 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0001.jpg, /mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0002.jpg, /mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0003.jpg, /mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0004.jpg, /mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0005.jpg, /mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0006.jpg, /mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0007.jpg, /mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0008.jpg, /mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0009.jpg\nVLM Response: Based on the analysis of the provided frames from the beginning of the video:\n\n1. **Is a flag being waved in the opening frames?**  \n   → **Yes.** In frames 2 through 5 (i.e., the very beginning of the video), a large flag is clearly visible being held and waved by a spectator.\n\n2. **What national colors/design are visible on any flags?**  \n   → The flag prominently displayed has **vertical stripes of green, white, and red** — the national colors of **Italy**. The design matches the Italian tricolor flag.\n\n3. **Is a person holding/waving a flag?**  \n   → **Yes.** A woman in the spectator stands is holding the flag with both hands, and it is unfurled and visible in multiple consecutive frames (2–5).\n\n4. **Is this in spectator stands?**  \n   → **Yes.** The flag is being waved from the stands, with other spectators visible around the woman, including some wearing Italian team jerseys (e.g., blue jersey with “14” and “Kinder” logo).\n\n5. **Does this occur in the video's opening moments?**  \n   → **Yes.** These frames (2–5) are among the first 10 frames of the video, clearly placing the flag-waving event at the very beginning.\n\n---\n\n✅ **Verification of Country:**  \nThe flag’s design — **green, white, and red vertical stripes** — is the **official flag of Italy**. No other national flag matches this exact design.\n\n---\n\n✅ **Conclusion:**  \nThe answer **‘0’ (which corresponds to Italy)** is **correct**. The flag being waved at the beginning of the video is unequivocally the **Italian flag**, held by a spectator in the stands during the opening moments of the video.\n\n**Final Answer: 0 (Italy) — Correct.**\n"], 'condensed_response': '**Condensed Scene Summary (Frames\u202f2‑5)**  \n\n- **Location:** Spectator stands at the very start of the video (first 10 frames).  \n- **Primary Character:** A woman standing among other fans. She is clearly visible in frames\u202f2,\u202f3,\u202f4, and\u202f5, holding a large flag with both hands and waving it back‑and‑forth.  \n- **Flag Details:** The flag shows vertical green‑white‑red stripes — the exact tricolor of **Italy**.  \n- **Contextual Cues:** Other nearby spectators wear blue jerseys with “14” and “Kinder” logos, reinforcing the Italian‑team atmosphere.  \n\n**Key Timeline**  \n- **Frame\u202f2‑5 (opening seconds):** Woman’s flag‑waving action is continuous, establishing the flag’s presence right at the video’s opening.  \n\n**Conclusion:** The opening scene features a female spectator prominently waving an Italian flag in the stands. The answer “0\u202f(Italy)” is therefore correct.', 'failed_images': [('/mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0000.jpg', 'File not found')]}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 10, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0001.jpg', '/mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0002.jpg', '/mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0003.jpg', '/mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0004.jpg', '/mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0005.jpg', '/mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0006.jpg', '/mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0007.jpg', '/mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0008.jpg', '/mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0009.jpg'], 'response': "Based on the analysis of the provided frames from the beginning of the video:\n\n1. **Is a flag being waved in the opening frames?**  \n   → **Yes.** In frames 2 through 5 (i.e., the very beginning of the video), a large flag is clearly visible being held and waved by a spectator.\n\n2. **What national colors/design are visible on any flags?**  \n   → The flag prominently displayed has **vertical stripes of green, white, and red** — the national colors of **Italy**. The design matches the Italian tricolor flag.\n\n3. **Is a person holding/waving a flag?**  \n   → **Yes.** A woman in the spectator stands is holding the flag with both hands, and it is unfurled and visible in multiple consecutive frames (2–5).\n\n4. **Is this in spectator stands?**  \n   → **Yes.** The flag is being waved from the stands, with other spectators visible around the woman, including some wearing Italian team jerseys (e.g., blue jersey with “14” and “Kinder” logo).\n\n5. **Does this occur in the video's opening moments?**  \n   → **Yes.** These frames (2–5) are among the first 10 frames of the video, clearly placing the flag-waving event at the very beginning.\n\n---\n\n✅ **Verification of Country:**  \nThe flag’s design — **green, white, and red vertical stripes** — is the **official flag of Italy**. No other national flag matches this exact design.\n\n---\n\n✅ **Conclusion:**  \nThe answer **‘0’ (which corresponds to Italy)** is **correct**. The flag being waved at the beginning of the video is unequivocally the **Italian flag**, held by a spectator in the stands during the opening moments of the video.\n\n**Final Answer: 0 (Italy) — Correct.**"}], 'formatted_responses': ["\n=== Batch 0-10 (9 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0001.jpg, /mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0002.jpg, /mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0003.jpg, /mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0004.jpg, /mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0005.jpg, /mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0006.jpg, /mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0007.jpg, /mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0008.jpg, /mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0009.jpg\nVLM Response: Based on the analysis of the provided frames from the beginning of the video:\n\n1. **Is a flag being waved in the opening frames?**  \n   → **Yes.** In frames 2 through 5 (i.e., the very beginning of the video), a large flag is clearly visible being held and waved by a spectator.\n\n2. **What national colors/design are visible on any flags?**  \n   → The flag prominently displayed has **vertical stripes of green, white, and red** — the national colors of **Italy**. The design matches the Italian tricolor flag.\n\n3. **Is a person holding/waving a flag?**  \n   → **Yes.** A woman in the spectator stands is holding the flag with both hands, and it is unfurled and visible in multiple consecutive frames (2–5).\n\n4. **Is this in spectator stands?**  \n   → **Yes.** The flag is being waved from the stands, with other spectators visible around the woman, including some wearing Italian team jerseys (e.g., blue jersey with “14” and “Kinder” logo).\n\n5. **Does this occur in the video's opening moments?**  \n   → **Yes.** These frames (2–5) are among the first 10 frames of the video, clearly placing the flag-waving event at the very beginning.\n\n---\n\n✅ **Verification of Country:**  \nThe flag’s design — **green, white, and red vertical stripes** — is the **official flag of Italy**. No other national flag matches this exact design.\n\n---\n\n✅ **Conclusion:**  \nThe answer **‘0’ (which corresponds to Italy)** is **correct**. The flag being waved at the beginning of the video is unequivocally the **Italian flag**, held by a spectator in the stands during the opening moments of the video.\n\n**Final Answer: 0 (Italy) — Correct.**\n"], 'condensed_response': '**Condensed Scene Summary (Frames\u202f2‑5)**  \n\n- **Location:** Spectator stands at the very start of the video (first 10 frames).  \n- **Primary Character:** A woman standing among other fans. She is clearly visible in frames\u202f2,\u202f3,\u202f4, and\u202f5, holding a large flag with both hands and waving it back‑and‑forth.  \n- **Flag Details:** The flag shows vertical green‑white‑red stripes — the exact tricolor of **Italy**.  \n- **Contextual Cues:** Other nearby spectators wear blue jerseys with “14” and “Kinder” logos, reinforcing the Italian‑team atmosphere.  \n\n**Key Timeline**  \n- **Frame\u202f2‑5 (opening seconds):** Woman’s flag‑waving action is continuous, establishing the flag’s presence right at the video’s opening.  \n\n**Conclusion:** The opening scene features a female spectator prominently waving an Italian flag in the stands. The answer “0\u202f(Italy)” is therefore correct.', 'failed_images': [('/mnt/ssd/data/lvbench/videos_processed/KLIa2UaE2KE/frames/frame_0000.jpg', 'File not found')]}
+
+Question Being Answered: Which country's flag is being waved at the beginning of the video?
+
+Answer Choices:
+A. Italy
+B. China
+C. Brazil
+D. Japan
+
+Given Answer: 0
+Evidence Frames Used: ['frames/frame_0001.jpg', 'frames/frame_0002.jpg', 'frames/frame_0003.jpg', 'frames/frame_0004.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Person 1 (Young Woman): Description: Wearing a blue jersey with "Kinder + Sport" and the number "6" printed on it, holding up an Italian flag.
+Person 2 (Volleyball Player with Number 5 Jersey): Description: Wearing a blue jersey with the number 5 on it.
+Person 3 (Volleyball Player with Number 15 Jersey): Description: Wearing a blue jersey with the number 15 on it, name "BIRARELLI" on the back.
+Person 4 (Brazilian Volleyball Player): Description: Wearing a yellow jersey with blue shorts and a Brazilian flag emblem on the chest.
+Person 5 (Italian Coach): Description: Wearing a black polo shirt with an Italian flag on the sleeve.
+Person 6 (Brazilian Coach): Description: Wearing a blue shirt with "BRASIL" written on the back.
+Person 7 (Volleyball Player with Number 9 Jersey): Description: Wearing a blue jersey with the number 9 on it, name "ZHATKEVICH" on the back.
+Person 8 (Volleyball Player with Number 18 Jersey): Description: Wearing a yellow jersey with blue trim and the name "LUCARELLI" on the back, number "18" on the back.
+Person 9 (Volleyball Player with Number 11 Jersey): Description: Wearing a blue jersey with the number 11 on it, name "BUTI" on the back.
+Person 10 (Volleyball Player with Number 13 Jersey): Description: Wearing a yellow jersey with blue trim and the number 13 on the front.
+
+SCENES:
+Scene 1 (Indoor Stadium): Description: Crowded stadium with spectators watching a volleyball match. [1-10]
+Scene 2 (Volleyball Court): Description: Volleyball court with players wearing blue and yellow uniforms. [5-40]
+Scene 3 (Spectators in the Stands): Description: Crowd of enthusiastic spectators cheering and waving Italian flags. [1-4, 41-46]
+Scene 4 (Brazilian Fans): Description: Crowd of enthusiastic spectators, mostly dressed in yellow and green attire, cheering and waving Brazilian flags. [97-108]
+Scene 5 (Volleyball Match): Description: Volleyball match between Italy and Brazil at the Rio 2016 Olympics. [139-146]
+Scene 6 (Victory Ceremony): Description: Victory ceremony with athletes from Italy and Brazil standing on the podium. [5837-5935]
+Scene 7 (Celebration): Description: Group of Brazilian athletes and staff celebrating and hugging each other. [5910-5950]
+Scene 8 (Medal Ceremony): Description: Medal ceremony with athletes from different countries standing on the podium. [5963-6060]
+
+EVENTS:
+Event 1 (Volleyball Match Start): Description: Volleyball match between Italy and Brazil starts. [5-10]
+Event 2 (Italian Team Huddle): Description: Italian volleyball team gathers in a huddle on the court. [7-14]
+Event 3 (Brazilian Team Celebration): Description: Brazilian volleyball team celebrates a point. [76-82]
+Event 4 (Italian Team Celebration): Description: Italian volleyball team celebrates a point. [25-35]
+Event 5 (Volleyball Match): Description: Volleyball match between Italy and Brazil continues. [139-146, 170-175]
+Event 6 (Timeout): Description: Timeout taken by the Italian volleyball team. [221-225]
+Event 7 (Challenge Requested): Description: Italian team requests a challenge. [515-520]
+Event 8 (Brazilian Team Wins Gold Medal): Description: Brazilian volleyball team wins the gold medal. [5837-5935]
+Event 9 (Victory Ceremony): Description: Victory ceremony with athletes from Italy and Brazil standing on the podium. [5963-6060]
+Event 10 (Celebration): Description: Group of Brazilian athletes and staff celebrating and hugging each other. [5910-5950]
+
+================================================================================
+Generated at: 2026-01-11 21:47:18
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. Flag being waved at the very beginning of the video
+  Q2. Visible flag with recognizable national colors/design
+  Q3. Person holding and waving a flag
+  Q4. Scene showing spectators in stands
+  Q5. Context of the video's opening moments
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 5)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, if criteria_percentage > 0.5 (>50% of criteria pass):
+   - Review ALL answer choices (A, B, C, D, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D)
+5. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - STILL do your best to pick out a correct answer, but also set suggestion to "These may not be the right frames/scene. Continue searching for better evidence."
+   - output your best guess of the answer as a number (0=A, 1=B, 2=C, 3=D, 4=E)
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <number of question criteria that passed>,
+    "criteria_total": 5,
+    "criteria_percentage": <criteria_passed / 5>,
+    "base_confidence": <(criteria_passed / 5) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "Flag being waved at the very beginning of the video",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms flag is clearly visible being waved in frames 2-5, which are among the first 10 frames of the video"
+        },
+        {
+            "criterion": "Visible flag with recognizable national colors/design",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM identifies vertical stripes of green, white, and red - the exact design of the Italian flag"
+        },
+        {
+            "criterion": "Person holding and waving a flag",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms a woman in spectator stands is holding the flag with both hands and waving it"
+        },
+        {
+            "criterion": "Scene showing spectators in stands",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms the flag is being waved from the stands with other spectators visible around the woman"
+        },
+        {
+            "criterion": "Context of the video's opening moments",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms frames 2-5 are among the first 10 frames, placing the flag-waving at the very beginning"
+        }
+    ],
+    "question_criteria_passed": 5,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 5,
+    "criteria_total": 5,
+    "criteria_percentage": 1.0,
+    "base_confidence": 100,
+    "confidence": 100,
+    "critic_answer_choice": 0,
+    "critic_reasoning": "The VLM provides clear visual evidence of an Italian flag (green, white, red vertical stripes) being waved by a spectator in the stands during the opening frames of the video, which directly supports answer choice 0 (Italy)",
+    "possible_errors": [],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'Flag being waved at the very beginning of the video', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms flag is clearly visible being waved in frames 2-5, which are among the first 10 frames of the video'}, {'criterion': 'Visible flag with recognizable national colors/design', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM identifies vertical stripes of green, white, and red - the exact design of the Italian flag'}, {'criterion': 'Person holding and waving a flag', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms a woman in spectator stands is holding the flag with both hands and waving it'}, {'criterion': 'Scene showing spectators in stands', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms the flag is being waved from the stands with other spectators visible around the woman'}, {'criterion': "Context of the video's opening moments", 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms frames 2-5 are among the first 10 frames, placing the flag-waving at the very beginning'}], 'question_criteria_passed': 5, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 5, 'criteria_total': 5, 'criteria_percentage': 1.0, 'base_confidence': 100, 'confidence': 100, 'critic_answer_choice': 0, 'critic_reasoning': 'The VLM provides clear visual evidence of an Italian flag (green, white, red vertical stripes) being waved by a spectator in the stands during the opening frames of the video, which directly supports answer choice 0 (Italy)', 'possible_errors': [], 'suggestion': None}

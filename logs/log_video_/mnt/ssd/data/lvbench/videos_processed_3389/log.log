@@ -1,0 +1,409 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_1080.jpg", "frames/frame_1081.jpg", "frames/frame_1082.jpg", "frames/frame_1083.jpg", "frames/frame_1084.jpg", "frames/frame_1085.jpg", "frames/frame_1086.jpg", "frames/frame_1087.jpg", "frames/frame_1088.jpg", "frames/frame_1089.jpg", "frames/frame_1090.jpg", "frames/frame_1091.jpg", "frames/frame_1092.jpg", "frames/frame_1093.jpg", "frames/frame_1094.jpg", "frames/frame_1095.jpg", "frames/frame_1096.jpg", "frames/frame_1097.jpg", "frames/frame_1098.jpg", "frames/frame_1099.jpg", "frames/frame_1100.jpg", "frames/frame_1101.jpg", "frames/frame_1102.jpg", "frames/frame_1103.jpg", "frames/frame_1104.jpg", "frames/frame_1105.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '4' is correct for the question: What does the chef do after organizing the receipts? Check the question criteria: ['A chef is present in the frame', 'Receipts are being organized or handled', 'The chef performs an action after organizing receipts', 'The action involves a dish (fetching, tasting, putting on plate, cooking)', 'The scene shows kitchen environment with marble countertops or cooking equipment']. Pay attention to timestamps and temporal sequences. Specifically check what action the chef performs immediately after handling receipts and whether it matches any of the answer choices (0=fetch dish, 1=taste dish, 2=put dish on plate, 3=cook dish)."
+}
+Frames to verify: ['frames/frame_1080.jpg', 'frames/frame_1081.jpg', 'frames/frame_1082.jpg', 'frames/frame_1083.jpg', 'frames/frame_1084.jpg', 'frames/frame_1085.jpg', 'frames/frame_1086.jpg', 'frames/frame_1087.jpg', 'frames/frame_1088.jpg', 'frames/frame_1089.jpg', 'frames/frame_1090.jpg', 'frames/frame_1091.jpg', 'frames/frame_1092.jpg', 'frames/frame_1093.jpg', 'frames/frame_1094.jpg', 'frames/frame_1095.jpg', 'frames/frame_1096.jpg', 'frames/frame_1097.jpg', 'frames/frame_1098.jpg', 'frames/frame_1099.jpg', 'frames/frame_1100.jpg', 'frames/frame_1101.jpg', 'frames/frame_1102.jpg', 'frames/frame_1103.jpg', 'frames/frame_1104.jpg', 'frames/frame_1105.jpg']
+VLM Prompt: Video context: Here's a global summary of the video based on the provided frame-by-frame captions data:
+
+**Main Characters:**
+The main characters in the video are chefs, waiters, and waitresses working in a restaurant or restaurants. They are predominantly dressed in white shirts and black aprons or pants. Some of them wear black shirts or vests. A few scenes also show customers dining at tables.
+
+**Setting:**
+The primary setting is a bustling restaurant kitchen or kitchens, with marble countertops, stainless-steel appliances, and various cooking equipment. The kitchen is well-lit, and the atmosphere is fast-paced and dynamic. Some scenes also show the dining area, where customers are seated at tables, and a bar or buffet counter.
+
+**Plot Line:**
+The video appears to be a documentary or behind-the-scenes style footage showcasing the inner workings of a busy restaurant kitchen. The plot line is not narrative-driven but rather observational, capturing the daily activities of the chefs, waiters, and waitresses as they prepare and serve food to customers. The video highlights the kitchen's efficiency, the staff's coordination, and the attention to detail in food preparation.
+
+**Vibes:**
+The overall vibe of the video is one of energy, efficiency, and professionalism. The fast-paced editing and dynamic camera movements convey a sense of urgency and activity, while the attention to detail in food preparation and presentation suggests a high level of expertise and care.
+
+**General Details:**
+Some notable details that emerge from the captions include:
+
+* The kitchen is well-organized, with various stations and equipment dedicated to specific tasks.
+* The staff is diverse, with people of different skin tones, hair colors, and attire.
+* The menu appears to include a variety of dishes, such as steaks, burgers, sushi, and curries.
+* The restaurant or restaurants depicted in the video seem to be upscale or fine dining establishments, given the attention to detail in food preparation and presentation.
+* The video captures a range of activities, from food preparation and cooking to serving and interacting with customers.
+
+Overall, the video provides a captivating glimpse into the inner workings of a busy restaurant kitchen, highlighting the skill, coordination, and dedication of the staff as they work together to deliver high-quality food and service to their customers.
+
+Based on these frames (including context before/after), verify if the answer '4' is correct for the question: What does the chef do after organizing the receipts? Check the question criteria: ['A chef is present in the frame', 'Receipts are being organized or handled', 'The chef performs an action after organizing receipts', 'The action involves a dish (fetching, tasting, putting on plate, cooking)', 'The scene shows kitchen environment with marble countertops or cooking equipment']. Pay attention to timestamps and temporal sequences. Specifically check what action the chef performs immediately after handling receipts and whether it matches any of the answer choices (0=fetch dish, 1=taste dish, 2=put dish on plate, 3=cook dish).
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 26, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1080.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1081.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1082.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1083.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1084.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1085.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1086.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1087.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1088.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1089.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1090.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1091.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1092.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1093.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1094.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1095.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1096.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1097.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1098.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1099.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1100.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1101.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1102.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1103.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1104.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1105.jpg'], 'response': "The answer **'4' is incorrect**.\n\nHere's the verification based on the question criteria and temporal sequence of frames:\n\n---\n\n### **Question Criteria Check:**\n\n1. **A chef is present in the frame** → ✅ Yes. Multiple chefs are visible throughout, especially in the background during receipt handling (Frames 1-15) and later at the cooking stations (Frames 19-26).\n\n2. **Receipts are being organized or handled** → ✅ Yes. From Frame 1 to Frame 15, hands (presumably a chef’s or kitchen expeditor’s) are seen sorting, arranging, and handling paper receipts/order tickets on a stainless steel counter.\n\n3. **The chef performs an action after organizing receipts** → ✅ Yes. After the receipt-organizing phase ends around Frame 15, the camera moves (Frames 16-18), and by Frame 19, the scene shifts to active cooking. The chef’s hands are seen engaging with food shortly after.\n\n4. **The action involves a dish (fetching, tasting, putting on plate, cooking)** → ✅ Yes. From Frame 22 onward, the chef’s hand is holding a pan with cooked food (vegetables and possibly meat) and is actively **plating** the dish onto a white plate. This matches **“put dish on plate”** (option 2).\n\n5. **The scene shows kitchen environment with marble countertops or cooking equipment** → ✅ Yes. The entire sequence takes place in a professional kitchen with stainless steel counters (Frames 1-15) and later marble-patterned countertops (Frames 22-26), along with stoves, pans, and food prep equipment.\n\n---\n\n### **Temporal Sequence & Action After Receipts:**\n\n- **Frames 1–15**: Organizing receipts/order tickets.\n- **Frames 16–18**: Camera pans/shifts — transition phase.\n- **Frames 19–21**: Chef is visible at a station, but not yet interacting with the specific dish.\n- **Frames 22–26**: Chef’s hand holds a pan and **transfers food onto a plate** — clearly **“put dish on plate”**.\n\n---\n\n### **Answer Choices:**\n\n- 0 = fetch dish → ❌ Not observed.\n- 1 = taste dish → ❌ No tasting.\n- 2 = put dish on plate → ✅ **Correct action**.\n- 3 = cook dish → ❌ The dish is already cooked; plating is the next step.\n- 4 = ??? (not defined in criteria) → ❌ Invalid or undefined option.\n\n---\n\n### ✅ **Conclusion:**\n\nThe correct answer should be **2** (put dish on plate), **not 4**.\n\n> **Answer: '4' is incorrect. The correct answer is '2'.**"}], 'formatted_responses': ["\n=== Batch 0-26 (26 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1080.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1081.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1082.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1083.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1084.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1085.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1086.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1087.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1088.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1089.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1090.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1091.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1092.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1093.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1094.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1095.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1096.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1097.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1098.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1099.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1100.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1101.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1102.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1103.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1104.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1105.jpg\nVLM Response: The answer **'4' is incorrect**.\n\nHere's the verification based on the question criteria and temporal sequence of frames:\n\n---\n\n### **Question Criteria Check:**\n\n1. **A chef is present in the frame** → ✅ Yes. Multiple chefs are visible throughout, especially in the background during receipt handling (Frames 1-15) and later at the cooking stations (Frames 19-26).\n\n2. **Receipts are being organized or handled** → ✅ Yes. From Frame 1 to Frame 15, hands (presumably a chef’s or kitchen expeditor’s) are seen sorting, arranging, and handling paper receipts/order tickets on a stainless steel counter.\n\n3. **The chef performs an action after organizing receipts** → ✅ Yes. After the receipt-organizing phase ends around Frame 15, the camera moves (Frames 16-18), and by Frame 19, the scene shifts to active cooking. The chef’s hands are seen engaging with food shortly after.\n\n4. **The action involves a dish (fetching, tasting, putting on plate, cooking)** → ✅ Yes. From Frame 22 onward, the chef’s hand is holding a pan with cooked food (vegetables and possibly meat) and is actively **plating** the dish onto a white plate. This matches **“put dish on plate”** (option 2).\n\n5. **The scene shows kitchen environment with marble countertops or cooking equipment** → ✅ Yes. The entire sequence takes place in a professional kitchen with stainless steel counters (Frames 1-15) and later marble-patterned countertops (Frames 22-26), along with stoves, pans, and food prep equipment.\n\n---\n\n### **Temporal Sequence & Action After Receipts:**\n\n- **Frames 1–15**: Organizing receipts/order tickets.\n- **Frames 16–18**: Camera pans/shifts — transition phase.\n- **Frames 19–21**: Chef is visible at a station, but not yet interacting with the specific dish.\n- **Frames 22–26**: Chef’s hand holds a pan and **transfers food onto a plate** — clearly **“put dish on plate”**.\n\n---\n\n### **Answer Choices:**\n\n- 0 = fetch dish → ❌ Not observed.\n- 1 = taste dish → ❌ No tasting.\n- 2 = put dish on plate → ✅ **Correct action**.\n- 3 = cook dish → ❌ The dish is already cooked; plating is the next step.\n- 4 = ??? (not defined in criteria) → ❌ Invalid or undefined option.\n\n---\n\n### ✅ **Conclusion:**\n\nThe correct answer should be **2** (put dish on plate), **not 4**.\n\n> **Answer: '4' is incorrect. The correct answer is '2'.**\n"], 'condensed_response': '**Condensed Scene Summary (Frames\u202f1080‑1105)**  \n\n- **Frames\u202f1080‑1094:** A kitchen chef is visible in the background, standing at a stainless‑steel counter. Hands—likely the chef’s or the expeditor’s—sort and stack paper receipts/order tickets, clearly handling the paperwork.  \n\n- **Frames\u202f1095‑1098:** The camera pans away, transitioning from the receipt‑organizing area toward the cooking stations. The chef remains in view but is no longer interacting with the tickets.  \n\n- **Frames\u202f1099‑1105:** The focus shifts to a cooking station. The same chef (now foreground) is seen manipulating a pan that contains already‑cooked vegetables (and possibly meat). In the final frames the chef lifts the pan and **places the food onto a white plate**, completing a plating action. The surroundings show typical professional‑kitchen elements: marble‑patterned countertops, stainless‑steel appliances, and a stove.  \n\n**Character Tracking:**  \n1. **Chef\u202fA** – initially in the background handling receipts (1080‑1094).  \n2. **Chef\u202fA** – moves to the foreground cooking station after the camera shift (1099‑1105) and performs the plating action.  \n\n**Temporal Flow:**  \nReceipt handling → camera transition → chef resumes work at the station → **action after receipts = “put dish on plate.”**  \n\nThus, the correct answer to the posed question is option **2 (put dish on plate)**, not option\u202f4.', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+⚠️ IMPORTANT: Answers use 0-INDEXED numbers where 0=A, 1=B, 2=C, 3=D, 4=E
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 26, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1080.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1081.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1082.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1083.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1084.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1085.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1086.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1087.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1088.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1089.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1090.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1091.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1092.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1093.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1094.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1095.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1096.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1097.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1098.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1099.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1100.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1101.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1102.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1103.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1104.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1105.jpg'], 'response': "The answer **'4' is incorrect**.\n\nHere's the verification based on the question criteria and temporal sequence of frames:\n\n---\n\n### **Question Criteria Check:**\n\n1. **A chef is present in the frame** → ✅ Yes. Multiple chefs are visible throughout, especially in the background during receipt handling (Frames 1-15) and later at the cooking stations (Frames 19-26).\n\n2. **Receipts are being organized or handled** → ✅ Yes. From Frame 1 to Frame 15, hands (presumably a chef’s or kitchen expeditor’s) are seen sorting, arranging, and handling paper receipts/order tickets on a stainless steel counter.\n\n3. **The chef performs an action after organizing receipts** → ✅ Yes. After the receipt-organizing phase ends around Frame 15, the camera moves (Frames 16-18), and by Frame 19, the scene shifts to active cooking. The chef’s hands are seen engaging with food shortly after.\n\n4. **The action involves a dish (fetching, tasting, putting on plate, cooking)** → ✅ Yes. From Frame 22 onward, the chef’s hand is holding a pan with cooked food (vegetables and possibly meat) and is actively **plating** the dish onto a white plate. This matches **“put dish on plate”** (option 2).\n\n5. **The scene shows kitchen environment with marble countertops or cooking equipment** → ✅ Yes. The entire sequence takes place in a professional kitchen with stainless steel counters (Frames 1-15) and later marble-patterned countertops (Frames 22-26), along with stoves, pans, and food prep equipment.\n\n---\n\n### **Temporal Sequence & Action After Receipts:**\n\n- **Frames 1–15**: Organizing receipts/order tickets.\n- **Frames 16–18**: Camera pans/shifts — transition phase.\n- **Frames 19–21**: Chef is visible at a station, but not yet interacting with the specific dish.\n- **Frames 22–26**: Chef’s hand holds a pan and **transfers food onto a plate** — clearly **“put dish on plate”**.\n\n---\n\n### **Answer Choices:**\n\n- 0 = fetch dish → ❌ Not observed.\n- 1 = taste dish → ❌ No tasting.\n- 2 = put dish on plate → ✅ **Correct action**.\n- 3 = cook dish → ❌ The dish is already cooked; plating is the next step.\n- 4 = ??? (not defined in criteria) → ❌ Invalid or undefined option.\n\n---\n\n### ✅ **Conclusion:**\n\nThe correct answer should be **2** (put dish on plate), **not 4**.\n\n> **Answer: '4' is incorrect. The correct answer is '2'.**"}], 'formatted_responses': ["\n=== Batch 0-26 (26 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1080.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1081.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1082.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1083.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1084.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1085.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1086.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1087.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1088.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1089.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1090.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1091.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1092.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1093.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1094.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1095.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1096.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1097.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1098.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1099.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1100.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1101.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1102.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1103.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1104.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1105.jpg\nVLM Response: The answer **'4' is incorrect**.\n\nHere's the verification based on the question criteria and temporal sequence of frames:\n\n---\n\n### **Question Criteria Check:**\n\n1. **A chef is present in the frame** → ✅ Yes. Multiple chefs are visible throughout, especially in the background during receipt handling (Frames 1-15) and later at the cooking stations (Frames 19-26).\n\n2. **Receipts are being organized or handled** → ✅ Yes. From Frame 1 to Frame 15, hands (presumably a chef’s or kitchen expeditor’s) are seen sorting, arranging, and handling paper receipts/order tickets on a stainless steel counter.\n\n3. **The chef performs an action after organizing receipts** → ✅ Yes. After the receipt-organizing phase ends around Frame 15, the camera moves (Frames 16-18), and by Frame 19, the scene shifts to active cooking. The chef’s hands are seen engaging with food shortly after.\n\n4. **The action involves a dish (fetching, tasting, putting on plate, cooking)** → ✅ Yes. From Frame 22 onward, the chef’s hand is holding a pan with cooked food (vegetables and possibly meat) and is actively **plating** the dish onto a white plate. This matches **“put dish on plate”** (option 2).\n\n5. **The scene shows kitchen environment with marble countertops or cooking equipment** → ✅ Yes. The entire sequence takes place in a professional kitchen with stainless steel counters (Frames 1-15) and later marble-patterned countertops (Frames 22-26), along with stoves, pans, and food prep equipment.\n\n---\n\n### **Temporal Sequence & Action After Receipts:**\n\n- **Frames 1–15**: Organizing receipts/order tickets.\n- **Frames 16–18**: Camera pans/shifts — transition phase.\n- **Frames 19–21**: Chef is visible at a station, but not yet interacting with the specific dish.\n- **Frames 22–26**: Chef’s hand holds a pan and **transfers food onto a plate** — clearly **“put dish on plate”**.\n\n---\n\n### **Answer Choices:**\n\n- 0 = fetch dish → ❌ Not observed.\n- 1 = taste dish → ❌ No tasting.\n- 2 = put dish on plate → ✅ **Correct action**.\n- 3 = cook dish → ❌ The dish is already cooked; plating is the next step.\n- 4 = ??? (not defined in criteria) → ❌ Invalid or undefined option.\n\n---\n\n### ✅ **Conclusion:**\n\nThe correct answer should be **2** (put dish on plate), **not 4**.\n\n> **Answer: '4' is incorrect. The correct answer is '2'.**\n"], 'condensed_response': '**Condensed Scene Summary (Frames\u202f1080‑1105)**  \n\n- **Frames\u202f1080‑1094:** A kitchen chef is visible in the background, standing at a stainless‑steel counter. Hands—likely the chef’s or the expeditor’s—sort and stack paper receipts/order tickets, clearly handling the paperwork.  \n\n- **Frames\u202f1095‑1098:** The camera pans away, transitioning from the receipt‑organizing area toward the cooking stations. The chef remains in view but is no longer interacting with the tickets.  \n\n- **Frames\u202f1099‑1105:** The focus shifts to a cooking station. The same chef (now foreground) is seen manipulating a pan that contains already‑cooked vegetables (and possibly meat). In the final frames the chef lifts the pan and **places the food onto a white plate**, completing a plating action. The surroundings show typical professional‑kitchen elements: marble‑patterned countertops, stainless‑steel appliances, and a stove.  \n\n**Character Tracking:**  \n1. **Chef\u202fA** – initially in the background handling receipts (1080‑1094).  \n2. **Chef\u202fA** – moves to the foreground cooking station after the camera shift (1099‑1105) and performs the plating action.  \n\n**Temporal Flow:**  \nReceipt handling → camera transition → chef resumes work at the station → **action after receipts = “put dish on plate.”**  \n\nThus, the correct answer to the posed question is option **2 (put dish on plate)**, not option\u202f4.', 'failed_images': []}
+
+Question Being Answered: What does the chef do after organizing the receipts?
+
+Answer Choices (0-indexed: 0=A, 1=B, 2=C, 3=D, 4=E):
+  0 (=A): He fetchs a dish
+  1 (=B): He tastes a dish
+  2 (=C): He puts the dish on a plate
+  3 (=D): He cooks a dish
+
+Given Answer: 4
+Evidence Frames Used: ['frames/frame_1085.jpg', 'frames/frame_1086.jpg', 'frames/frame_1087.jpg', 'frames/frame_1088.jpg', 'frames/frame_1089.jpg', 'frames/frame_1090.jpg', 'frames/frame_1091.jpg', 'frames/frame_1092.jpg', 'frames/frame_1093.jpg', 'frames/frame_1094.jpg', 'frames/frame_1095.jpg', 'frames/frame_1096.jpg', 'frames/frame_1097.jpg', 'frames/frame_1098.jpg', 'frames/frame_1099.jpg', 'frames/frame_1100.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Person 1 (Middle-aged Male Chef): Description: Wearing a white shirt and black apron, actively preparing and serving food in a bustling restaurant kitchen.
+Person 2 (Young Male Chef): Description: Wearing a white shirt and black pants, assisting with food preparation and cooking in the kitchen.
+Person 3 (Male Waiter): Description: Wearing a white shirt and black pants, serving food to customers and handling receipts.
+Person 4 (Female Waitress): Description: Wearing a gray t-shirt and black apron, serving food and interacting with customers.
+Person 5 (Male Customer): Description: Seated at tables in the restaurant, enjoying meals.
+Person 6 (Bartender): Description: Wearing a white shirt and black apron, preparing drinks behind the bar counter.
+
+SCENES:
+Scene 1 (Restaurant Kitchen): Description: Busy commercial kitchen with marble countertops, stainless-steel appliances, and chefs preparing food. [Frame 1-500]
+Scene 2 (Dining Area): Description: Crowded dining area with patrons seated at tables, surrounded by a warm ambiance. [Frame 200-400]
+Scene 3 (Bar Counter): Description: Busy bar counter with a marble surface, where bartenders are preparing drinks. [Frame 1700-1800]
+Scene 4 (Elevator Area): Description: A dimly lit area with an elevator, where a person is seen entering or exiting. [Frame 1400-1450]
+Scene 5 (Dishwashing Area): Description: Stainless-steel sinks and dishwashing equipment, where staff are washing dishes. [Frame 800-900]
+
+EVENTS:
+Event 1 (Food Preparation): Description: Chefs actively preparing and plating dishes on the marble countertops. [Frame 1-500]
+Event 2 (Serving Food): Description: Waiters and waitresses serving food to customers at tables and at the counter. [Frame 200-400]
+Event 3 (Drink Preparation): Description: Bartenders preparing and serving drinks to customers at the bar counter. [Frame 1700-1800]
+Event 4 (Receipt Handling): Description: Staff handling and organizing receipts on the marble countertops. [Frame 1000-1200]
+Event 5 (Dishwashing): Description: Staff washing dishes in the stainless-steel sinks. [Frame 800-900]
+
+================================================================================
+Generated at: 2026-01-11 21:45:55
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. A chef is present in the frame
+  Q2. Receipts are being organized or handled
+  Q3. The chef performs an action after organizing receipts
+  Q4. The action involves a dish (fetching, tasting, putting on plate, cooking)
+  Q5. The scene shows kitchen environment with marble countertops or cooking equipment
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 5)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, ALWAYS pick the best answer choice:
+   - Review ALL answer choices (A, B, C, D, E, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D, 4=E)
+
+5. If criteria_percentage > 0.5 (>50% of criteria pass):
+   - Your chosen answer is well-supported by evidence
+   - Set suggestion to null or provide minor improvements
+
+6. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - Still MUST choose the BEST answer from the available choices (never -1)
+   - But set suggestion to "These may not be the right frames/scene. Consider searching for better evidence. The answer chosen is the BEST match given current evidence."
+   - This signals low confidence but still provides a choice
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 5,
+    "criteria_percentage": <criteria_passed / 5>,
+    "base_confidence": <(criteria_passed / 5) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E - MUST be a valid number 0-4, never -1>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "A chef is present in the frame",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms multiple chefs are visible throughout the frames, especially in background during receipt handling and later at cooking stations"
+        },
+        {
+            "criterion": "Receipts are being organized or handled",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM clearly states hands are seen sorting, arranging, and handling paper receipts/order tickets on stainless steel counter from Frame 1-15"
+        },
+        {
+            "criterion": "The chef performs an action after organizing receipts",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms after receipt-organizing phase ends, chef's hands are seen engaging with food shortly after the transition"
+        },
+        {
+            "criterion": "The action involves a dish (fetching, tasting, putting on plate, cooking)",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM states chef's hand holds a pan with cooked food and is actively plating the dish onto a white plate"
+        },
+        {
+            "criterion": "The scene shows kitchen environment with marble countertops or cooking equipment",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms professional kitchen with stainless steel counters, marble-patterned countertops, stoves, pans, and food prep equipment"
+        }
+    ],
+    "question_criteria_passed": 5,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 5,
+    "criteria_total": 5,
+    "criteria_percentage": 1.0,
+    "base_confidence": 100.0,
+    "confidence": 100.0,
+    "critic_answer_choice": 2,
+    "critic_reasoning": "The VLM explicitly states that the chef's action after organizing receipts is 'put dish on plate' (option 2), and directly refutes the given answer of 4 as incorrect. The visual evidence shows plating action from frames 22-26 where food is transferred from pan to plate.",
+    "possible_errors": [
+        "Given answer 4 is explicitly contradicted by VLM evidence which shows option 2 (put dish on plate) is the correct action"
+    ],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'A chef is present in the frame', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms multiple chefs are visible throughout the frames, especially in background during receipt handling and later at cooking stations'}, {'criterion': 'Receipts are being organized or handled', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM clearly states hands are seen sorting, arranging, and handling paper receipts/order tickets on stainless steel counter from Frame 1-15'}, {'criterion': 'The chef performs an action after organizing receipts', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM confirms after receipt-organizing phase ends, chef's hands are seen engaging with food shortly after the transition"}, {'criterion': 'The action involves a dish (fetching, tasting, putting on plate, cooking)', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM states chef's hand holds a pan with cooked food and is actively plating the dish onto a white plate"}, {'criterion': 'The scene shows kitchen environment with marble countertops or cooking equipment', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms professional kitchen with stainless steel counters, marble-patterned countertops, stoves, pans, and food prep equipment'}], 'question_criteria_passed': 5, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 5, 'criteria_total': 5, 'criteria_percentage': 1.0, 'base_confidence': 100.0, 'confidence': 100.0, 'critic_answer_choice': 2, 'critic_reasoning': "The VLM explicitly states that the chef's action after organizing receipts is 'put dish on plate' (option 2), and directly refutes the given answer of 4 as incorrect. The visual evidence shows plating action from frames 22-26 where food is transferred from pan to plate.", 'possible_errors': ['Given answer 4 is explicitly contradicted by VLM evidence which shows option 2 (put dish on plate) is the correct action'], 'suggestion': None}
+========== Requesting Critical VLM Assessment ==========
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_1080.jpg", "frames/frame_1081.jpg", "frames/frame_1082.jpg", "frames/frame_1083.jpg", "frames/frame_1084.jpg", "frames/frame_1085.jpg", "frames/frame_1086.jpg", "frames/frame_1087.jpg", "frames/frame_1088.jpg", "frames/frame_1089.jpg", "frames/frame_1090.jpg", "frames/frame_1091.jpg", "frames/frame_1092.jpg", "frames/frame_1093.jpg", "frames/frame_1094.jpg", "frames/frame_1095.jpg", "frames/frame_1096.jpg", "frames/frame_1097.jpg", "frames/frame_1098.jpg", "frames/frame_1099.jpg", "frames/frame_1100.jpg", "frames/frame_1101.jpg", "frames/frame_1102.jpg", "frames/frame_1103.jpg", "frames/frame_1104.jpg", "frames/frame_1105.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '4' is correct for the question: What does the chef do after organizing the receipts? Check the question criteria: ['A chef is present in the frame', 'Receipts are being organized or handled', 'The chef performs an action after organizing receipts', 'The action involves a dish (fetching, tasting, putting on plate, cooking)', 'The scene shows kitchen environment with marble countertops or cooking equipment']. Pay attention to timestamps and temporal sequences. Specifically check if the chef cooks a dish after organizing receipts."
+}
+Frames to verify: ['frames/frame_1080.jpg', 'frames/frame_1081.jpg', 'frames/frame_1082.jpg', 'frames/frame_1083.jpg', 'frames/frame_1084.jpg', 'frames/frame_1085.jpg', 'frames/frame_1086.jpg', 'frames/frame_1087.jpg', 'frames/frame_1088.jpg', 'frames/frame_1089.jpg', 'frames/frame_1090.jpg', 'frames/frame_1091.jpg', 'frames/frame_1092.jpg', 'frames/frame_1093.jpg', 'frames/frame_1094.jpg', 'frames/frame_1095.jpg', 'frames/frame_1096.jpg', 'frames/frame_1097.jpg', 'frames/frame_1098.jpg', 'frames/frame_1099.jpg', 'frames/frame_1100.jpg', 'frames/frame_1101.jpg', 'frames/frame_1102.jpg', 'frames/frame_1103.jpg', 'frames/frame_1104.jpg', 'frames/frame_1105.jpg']
+VLM Prompt: Video context: Here's a global summary of the video based on the provided frame-by-frame captions data:
+
+**Main Characters:**
+The main characters in the video are chefs, waiters, and waitresses working in a restaurant or restaurants. They are predominantly dressed in white shirts and black aprons or pants. Some of them wear black shirts or vests. A few scenes also show customers dining at tables.
+
+**Setting:**
+The primary setting is a bustling restaurant kitchen or kitchens, with marble countertops, stainless-steel appliances, and various cooking equipment. The kitchen is well-lit, and the atmosphere is fast-paced and dynamic. Some scenes also show the dining area, where customers are seated at tables, and a bar or buffet counter.
+
+**Plot Line:**
+The video appears to be a documentary or behind-the-scenes style footage showcasing the inner workings of a busy restaurant kitchen. The plot line is not narrative-driven but rather observational, capturing the daily activities of the chefs, waiters, and waitresses as they prepare and serve food to customers. The video highlights the kitchen's efficiency, the staff's coordination, and the attention to detail in food preparation.
+
+**Vibes:**
+The overall vibe of the video is one of energy, efficiency, and professionalism. The fast-paced editing and dynamic camera movements convey a sense of urgency and activity, while the attention to detail in food preparation and presentation suggests a high level of expertise and care.
+
+**General Details:**
+Some notable details that emerge from the captions include:
+
+* The kitchen is well-organized, with various stations and equipment dedicated to specific tasks.
+* The staff is diverse, with people of different skin tones, hair colors, and attire.
+* The menu appears to include a variety of dishes, such as steaks, burgers, sushi, and curries.
+* The restaurant or restaurants depicted in the video seem to be upscale or fine dining establishments, given the attention to detail in food preparation and presentation.
+* The video captures a range of activities, from food preparation and cooking to serving and interacting with customers.
+
+Overall, the video provides a captivating glimpse into the inner workings of a busy restaurant kitchen, highlighting the skill, coordination, and dedication of the staff as they work together to deliver high-quality food and service to their customers.
+
+Based on these frames (including context before/after), verify if the answer '4' is correct for the question: What does the chef do after organizing the receipts? Check the question criteria: ['A chef is present in the frame', 'Receipts are being organized or handled', 'The chef performs an action after organizing receipts', 'The action involves a dish (fetching, tasting, putting on plate, cooking)', 'The scene shows kitchen environment with marble countertops or cooking equipment']. Pay attention to timestamps and temporal sequences. Specifically check if the chef cooks a dish after organizing receipts.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 26, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1080.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1081.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1082.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1083.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1084.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1085.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1086.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1087.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1088.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1089.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1090.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1091.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1092.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1093.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1094.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1095.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1096.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1097.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1098.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1099.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1100.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1101.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1102.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1103.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1104.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1105.jpg'], 'response': "Based on the provided frames and the question criteria, **the answer '4' is NOT correct**.\n\nHere’s the detailed verification against each criterion:\n\n---\n\n### 1. **A chef is present in the frame** ✅  \nYes — multiple chefs are visible in the background throughout the frames (e.g., Frames 1–15, 19–26). They are wearing white shirts and black aprons, consistent with kitchen staff.\n\n---\n\n### 2. **Receipts are being organized or handled** ✅  \nYes — From Frame 1 through Frame 15, a pair of hands (likely a chef or expeditor) is seen sorting, arranging, and handling printed order slips (receipts) on a stainless steel counter. This is clearly the “organizing receipts” phase.\n\n---\n\n### 3. **The chef performs an action after organizing receipts** ✅  \nYes — After Frame 15, the camera moves away from the receipt station (Frame 16–17), and by Frame 19, we see the chef (or same person) moving to a cooking station.\n\n---\n\n### 4. **The action involves a dish (fetching, tasting, putting on plate, cooking)** ✅  \nYes — In Frames 22–26, the chef is seen holding a small pan and **plating food** — specifically, transferring cooked vegetables and sauce onto a plate. This qualifies as “putting on plate,” which is an action involving a dish.\n\n---\n\n### 5. **The scene shows kitchen environment with marble countertops or cooking equipment** ✅  \nYes — The entire video is set in a professional kitchen. Stainless steel countertops are visible throughout. In Frames 22–26, the counter has a **marble-like pattern**, and cooking equipment (pans, stoves, containers) is clearly present.\n\n---\n\n### **Critical Temporal Check: Does the chef cook a dish *after* organizing receipts?**\n\n- **Organizing receipts**: Frames 1–15.\n- **Transition/movement**: Frames 16–18.\n- **Cooking/plating action**: Frames 19–26 — specifically, **Frames 22–26 show plating**, which is part of the cooking/finishing process.\n\n> However — **the chef does NOT cook the dish *after* organizing receipts**. The cooking (actual heating/cooking on stove) appears to have occurred *before* or *during* the receipt organization phase. In Frames 22–26, the chef is **plating** a dish that is already cooked — not actively cooking it.\n\nThe question specifically asks:  \n> “What does the chef do after organizing the receipts? [...] Specifically check if the chef **cooks a dish** after organizing receipts.”\n\n**“Cooking”** implies applying heat or actively preparing the food on the stove — not just plating or finishing.\n\nIn Frame 19–21, we see the chef at a station, but the food in the pan appears already cooked. In Frames 22–26, the chef is plating — **not cooking**.\n\n---\n\n### ✅ Conclusion:\n\nWhile the chef does perform a dish-related action (plating) after organizing receipts, **they do not cook a dish after organizing receipts**. The cooking likely happened earlier or concurrently, not *after*.\n\nTherefore, **if the answer '4' implies that the chef cooks a dish after organizing receipts, it is incorrect**.\n\n---\n\n### Final Answer: ❌ **No, '4' is not correct.**  \nThe chef plates a dish after organizing receipts, but does not cook a dish after organizing receipts."}], 'formatted_responses': ["\n=== Batch 0-26 (26 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1080.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1081.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1082.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1083.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1084.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1085.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1086.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1087.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1088.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1089.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1090.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1091.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1092.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1093.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1094.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1095.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1096.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1097.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1098.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1099.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1100.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1101.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1102.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1103.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1104.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1105.jpg\nVLM Response: Based on the provided frames and the question criteria, **the answer '4' is NOT correct**.\n\nHere’s the detailed verification against each criterion:\n\n---\n\n### 1. **A chef is present in the frame** ✅  \nYes — multiple chefs are visible in the background throughout the frames (e.g., Frames 1–15, 19–26). They are wearing white shirts and black aprons, consistent with kitchen staff.\n\n---\n\n### 2. **Receipts are being organized or handled** ✅  \nYes — From Frame 1 through Frame 15, a pair of hands (likely a chef or expeditor) is seen sorting, arranging, and handling printed order slips (receipts) on a stainless steel counter. This is clearly the “organizing receipts” phase.\n\n---\n\n### 3. **The chef performs an action after organizing receipts** ✅  \nYes — After Frame 15, the camera moves away from the receipt station (Frame 16–17), and by Frame 19, we see the chef (or same person) moving to a cooking station.\n\n---\n\n### 4. **The action involves a dish (fetching, tasting, putting on plate, cooking)** ✅  \nYes — In Frames 22–26, the chef is seen holding a small pan and **plating food** — specifically, transferring cooked vegetables and sauce onto a plate. This qualifies as “putting on plate,” which is an action involving a dish.\n\n---\n\n### 5. **The scene shows kitchen environment with marble countertops or cooking equipment** ✅  \nYes — The entire video is set in a professional kitchen. Stainless steel countertops are visible throughout. In Frames 22–26, the counter has a **marble-like pattern**, and cooking equipment (pans, stoves, containers) is clearly present.\n\n---\n\n### **Critical Temporal Check: Does the chef cook a dish *after* organizing receipts?**\n\n- **Organizing receipts**: Frames 1–15.\n- **Transition/movement**: Frames 16–18.\n- **Cooking/plating action**: Frames 19–26 — specifically, **Frames 22–26 show plating**, which is part of the cooking/finishing process.\n\n> However — **the chef does NOT cook the dish *after* organizing receipts**. The cooking (actual heating/cooking on stove) appears to have occurred *before* or *during* the receipt organization phase. In Frames 22–26, the chef is **plating** a dish that is already cooked — not actively cooking it.\n\nThe question specifically asks:  \n> “What does the chef do after organizing the receipts? [...] Specifically check if the chef **cooks a dish** after organizing receipts.”\n\n**“Cooking”** implies applying heat or actively preparing the food on the stove — not just plating or finishing.\n\nIn Frame 19–21, we see the chef at a station, but the food in the pan appears already cooked. In Frames 22–26, the chef is plating — **not cooking**.\n\n---\n\n### ✅ Conclusion:\n\nWhile the chef does perform a dish-related action (plating) after organizing receipts, **they do not cook a dish after organizing receipts**. The cooking likely happened earlier or concurrently, not *after*.\n\nTherefore, **if the answer '4' implies that the chef cooks a dish after organizing receipts, it is incorrect**.\n\n---\n\n### Final Answer: ❌ **No, '4' is not correct.**  \nThe chef plates a dish after organizing receipts, but does not cook a dish after organizing receipts.\n"], 'condensed_response': '**Scene Summary (Frames\u202f1080‑1105)**  \n\n- **Chef(s) present:** Throughout the clip a kitchen staff member in a white shirt and black apron is visible (frames\u202f1080‑1095, 1099‑1105).  \n\n- **Receipt‑organizing phase (frames\u202f1080‑1094):** The chef’s hands sort printed order slips on a stainless‑steel countertop. The activity is clear‑cut: receipts are lifted, stacked, and aligned.  \n\n- **Transition (frames\u202f1095‑1098):** The camera follows the chef as he steps away from the receipt station, moving toward a cooking station.  \n\n- **Dish‑related action (frames\u202f1099‑1105):**  \n  - **Frames\u202f1099‑1101:** The chef reaches a small pan on the stove; the food inside appears already cooked.  \n  - **Frames\u202f1102‑1105:** He lifts the pan and plates the cooked vegetables and sauce onto a plate, placing it on a marble‑patterned countertop.  \n\n- **Temporal relationship:** The receipt‑organizing activity ends at frame\u202f1094. The subsequent kitchen action is *plating* a pre‑cooked dish (frames\u202f1102‑1105). No heat‑application or cooking takes place after the receipts are organized; the cooking itself must have occurred earlier or concurrently.  \n\n**Conclusion:** After handling the receipts, the chef moves to a station and plates a dish, but does **not** cook a dish after the receipt‑organizing phase. Hence the answer “4” (which asserts a cooking action) is incorrect.', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+⚠️ IMPORTANT: Answers use 0-INDEXED numbers where 0=A, 1=B, 2=C, 3=D, 4=E
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 26, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1080.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1081.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1082.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1083.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1084.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1085.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1086.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1087.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1088.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1089.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1090.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1091.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1092.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1093.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1094.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1095.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1096.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1097.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1098.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1099.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1100.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1101.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1102.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1103.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1104.jpg', '/mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1105.jpg'], 'response': "Based on the provided frames and the question criteria, **the answer '4' is NOT correct**.\n\nHere’s the detailed verification against each criterion:\n\n---\n\n### 1. **A chef is present in the frame** ✅  \nYes — multiple chefs are visible in the background throughout the frames (e.g., Frames 1–15, 19–26). They are wearing white shirts and black aprons, consistent with kitchen staff.\n\n---\n\n### 2. **Receipts are being organized or handled** ✅  \nYes — From Frame 1 through Frame 15, a pair of hands (likely a chef or expeditor) is seen sorting, arranging, and handling printed order slips (receipts) on a stainless steel counter. This is clearly the “organizing receipts” phase.\n\n---\n\n### 3. **The chef performs an action after organizing receipts** ✅  \nYes — After Frame 15, the camera moves away from the receipt station (Frame 16–17), and by Frame 19, we see the chef (or same person) moving to a cooking station.\n\n---\n\n### 4. **The action involves a dish (fetching, tasting, putting on plate, cooking)** ✅  \nYes — In Frames 22–26, the chef is seen holding a small pan and **plating food** — specifically, transferring cooked vegetables and sauce onto a plate. This qualifies as “putting on plate,” which is an action involving a dish.\n\n---\n\n### 5. **The scene shows kitchen environment with marble countertops or cooking equipment** ✅  \nYes — The entire video is set in a professional kitchen. Stainless steel countertops are visible throughout. In Frames 22–26, the counter has a **marble-like pattern**, and cooking equipment (pans, stoves, containers) is clearly present.\n\n---\n\n### **Critical Temporal Check: Does the chef cook a dish *after* organizing receipts?**\n\n- **Organizing receipts**: Frames 1–15.\n- **Transition/movement**: Frames 16–18.\n- **Cooking/plating action**: Frames 19–26 — specifically, **Frames 22–26 show plating**, which is part of the cooking/finishing process.\n\n> However — **the chef does NOT cook the dish *after* organizing receipts**. The cooking (actual heating/cooking on stove) appears to have occurred *before* or *during* the receipt organization phase. In Frames 22–26, the chef is **plating** a dish that is already cooked — not actively cooking it.\n\nThe question specifically asks:  \n> “What does the chef do after organizing the receipts? [...] Specifically check if the chef **cooks a dish** after organizing receipts.”\n\n**“Cooking”** implies applying heat or actively preparing the food on the stove — not just plating or finishing.\n\nIn Frame 19–21, we see the chef at a station, but the food in the pan appears already cooked. In Frames 22–26, the chef is plating — **not cooking**.\n\n---\n\n### ✅ Conclusion:\n\nWhile the chef does perform a dish-related action (plating) after organizing receipts, **they do not cook a dish after organizing receipts**. The cooking likely happened earlier or concurrently, not *after*.\n\nTherefore, **if the answer '4' implies that the chef cooks a dish after organizing receipts, it is incorrect**.\n\n---\n\n### Final Answer: ❌ **No, '4' is not correct.**  \nThe chef plates a dish after organizing receipts, but does not cook a dish after organizing receipts."}], 'formatted_responses': ["\n=== Batch 0-26 (26 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1080.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1081.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1082.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1083.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1084.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1085.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1086.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1087.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1088.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1089.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1090.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1091.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1092.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1093.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1094.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1095.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1096.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1097.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1098.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1099.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1100.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1101.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1102.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1103.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1104.jpg, /mnt/ssd/data/lvbench/videos_processed/3_upA09AntU/frames/frame_1105.jpg\nVLM Response: Based on the provided frames and the question criteria, **the answer '4' is NOT correct**.\n\nHere’s the detailed verification against each criterion:\n\n---\n\n### 1. **A chef is present in the frame** ✅  \nYes — multiple chefs are visible in the background throughout the frames (e.g., Frames 1–15, 19–26). They are wearing white shirts and black aprons, consistent with kitchen staff.\n\n---\n\n### 2. **Receipts are being organized or handled** ✅  \nYes — From Frame 1 through Frame 15, a pair of hands (likely a chef or expeditor) is seen sorting, arranging, and handling printed order slips (receipts) on a stainless steel counter. This is clearly the “organizing receipts” phase.\n\n---\n\n### 3. **The chef performs an action after organizing receipts** ✅  \nYes — After Frame 15, the camera moves away from the receipt station (Frame 16–17), and by Frame 19, we see the chef (or same person) moving to a cooking station.\n\n---\n\n### 4. **The action involves a dish (fetching, tasting, putting on plate, cooking)** ✅  \nYes — In Frames 22–26, the chef is seen holding a small pan and **plating food** — specifically, transferring cooked vegetables and sauce onto a plate. This qualifies as “putting on plate,” which is an action involving a dish.\n\n---\n\n### 5. **The scene shows kitchen environment with marble countertops or cooking equipment** ✅  \nYes — The entire video is set in a professional kitchen. Stainless steel countertops are visible throughout. In Frames 22–26, the counter has a **marble-like pattern**, and cooking equipment (pans, stoves, containers) is clearly present.\n\n---\n\n### **Critical Temporal Check: Does the chef cook a dish *after* organizing receipts?**\n\n- **Organizing receipts**: Frames 1–15.\n- **Transition/movement**: Frames 16–18.\n- **Cooking/plating action**: Frames 19–26 — specifically, **Frames 22–26 show plating**, which is part of the cooking/finishing process.\n\n> However — **the chef does NOT cook the dish *after* organizing receipts**. The cooking (actual heating/cooking on stove) appears to have occurred *before* or *during* the receipt organization phase. In Frames 22–26, the chef is **plating** a dish that is already cooked — not actively cooking it.\n\nThe question specifically asks:  \n> “What does the chef do after organizing the receipts? [...] Specifically check if the chef **cooks a dish** after organizing receipts.”\n\n**“Cooking”** implies applying heat or actively preparing the food on the stove — not just plating or finishing.\n\nIn Frame 19–21, we see the chef at a station, but the food in the pan appears already cooked. In Frames 22–26, the chef is plating — **not cooking**.\n\n---\n\n### ✅ Conclusion:\n\nWhile the chef does perform a dish-related action (plating) after organizing receipts, **they do not cook a dish after organizing receipts**. The cooking likely happened earlier or concurrently, not *after*.\n\nTherefore, **if the answer '4' implies that the chef cooks a dish after organizing receipts, it is incorrect**.\n\n---\n\n### Final Answer: ❌ **No, '4' is not correct.**  \nThe chef plates a dish after organizing receipts, but does not cook a dish after organizing receipts.\n"], 'condensed_response': '**Scene Summary (Frames\u202f1080‑1105)**  \n\n- **Chef(s) present:** Throughout the clip a kitchen staff member in a white shirt and black apron is visible (frames\u202f1080‑1095, 1099‑1105).  \n\n- **Receipt‑organizing phase (frames\u202f1080‑1094):** The chef’s hands sort printed order slips on a stainless‑steel countertop. The activity is clear‑cut: receipts are lifted, stacked, and aligned.  \n\n- **Transition (frames\u202f1095‑1098):** The camera follows the chef as he steps away from the receipt station, moving toward a cooking station.  \n\n- **Dish‑related action (frames\u202f1099‑1105):**  \n  - **Frames\u202f1099‑1101:** The chef reaches a small pan on the stove; the food inside appears already cooked.  \n  - **Frames\u202f1102‑1105:** He lifts the pan and plates the cooked vegetables and sauce onto a plate, placing it on a marble‑patterned countertop.  \n\n- **Temporal relationship:** The receipt‑organizing activity ends at frame\u202f1094. The subsequent kitchen action is *plating* a pre‑cooked dish (frames\u202f1102‑1105). No heat‑application or cooking takes place after the receipts are organized; the cooking itself must have occurred earlier or concurrently.  \n\n**Conclusion:** After handling the receipts, the chef moves to a station and plates a dish, but does **not** cook a dish after the receipt‑organizing phase. Hence the answer “4” (which asserts a cooking action) is incorrect.', 'failed_images': []}
+
+Question Being Answered: What does the chef do after organizing the receipts?
+
+Answer Choices (0-indexed: 0=A, 1=B, 2=C, 3=D, 4=E):
+  0 (=A): He fetchs a dish
+  1 (=B): He tastes a dish
+  2 (=C): He puts the dish on a plate
+  3 (=D): He cooks a dish
+
+Given Answer: 4
+Evidence Frames Used: ['frames/frame_1085.jpg', 'frames/frame_1086.jpg', 'frames/frame_1087.jpg', 'frames/frame_1088.jpg', 'frames/frame_1089.jpg', 'frames/frame_1090.jpg', 'frames/frame_1091.jpg', 'frames/frame_1092.jpg', 'frames/frame_1093.jpg', 'frames/frame_1094.jpg', 'frames/frame_1095.jpg', 'frames/frame_1096.jpg', 'frames/frame_1097.jpg', 'frames/frame_1098.jpg', 'frames/frame_1099.jpg', 'frames/frame_1100.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Person 1 (Middle-aged Male Chef): Description: Wearing a white shirt and black apron, actively preparing and serving food in a bustling restaurant kitchen.
+Person 2 (Young Male Chef): Description: Wearing a white shirt and black pants, assisting with food preparation and cooking in the kitchen.
+Person 3 (Male Waiter): Description: Wearing a white shirt and black pants, serving food to customers and handling receipts.
+Person 4 (Female Waitress): Description: Wearing a gray t-shirt and black apron, serving food and interacting with customers.
+Person 5 (Male Customer): Description: Seated at tables in the restaurant, enjoying meals.
+Person 6 (Bartender): Description: Wearing a white shirt and black apron, preparing drinks behind the bar counter.
+
+SCENES:
+Scene 1 (Restaurant Kitchen): Description: Busy commercial kitchen with marble countertops, stainless-steel appliances, and chefs preparing food. [Frame 1-500]
+Scene 2 (Dining Area): Description: Crowded dining area with patrons seated at tables, surrounded by a warm ambiance. [Frame 200-400]
+Scene 3 (Bar Counter): Description: Busy bar counter with a marble surface, where bartenders are preparing drinks. [Frame 1700-1800]
+Scene 4 (Elevator Area): Description: A dimly lit area with an elevator, where a person is seen entering or exiting. [Frame 1400-1450]
+Scene 5 (Dishwashing Area): Description: Stainless-steel sinks and dishwashing equipment, where staff are washing dishes. [Frame 800-900]
+
+EVENTS:
+Event 1 (Food Preparation): Description: Chefs actively preparing and plating dishes on the marble countertops. [Frame 1-500]
+Event 2 (Serving Food): Description: Waiters and waitresses serving food to customers at tables and at the counter. [Frame 200-400]
+Event 3 (Drink Preparation): Description: Bartenders preparing and serving drinks to customers at the bar counter. [Frame 1700-1800]
+Event 4 (Receipt Handling): Description: Staff handling and organizing receipts on the marble countertops. [Frame 1000-1200]
+Event 5 (Dishwashing): Description: Staff washing dishes in the stainless-steel sinks. [Frame 800-900]
+
+================================================================================
+Generated at: 2026-01-11 21:45:55
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. A chef is present in the frame
+  Q2. Receipts are being organized or handled
+  Q3. The chef performs an action after organizing receipts
+  Q4. The action involves a dish (fetching, tasting, putting on plate, cooking)
+  Q5. The scene shows kitchen environment with marble countertops or cooking equipment
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 5)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, ALWAYS pick the best answer choice:
+   - Review ALL answer choices listed above (A, B, C, D, E, etc.) and their content
+   - Based ONLY on the VLM visual evidence, determine which answer choice CONTENT is MOST correct
+   - Find the INDEX of that answer choice in the list
+   - ⚠️ CRITICAL: Output the INDEX (0, 1, 2, 3, or 4), NOT the literal answer content
+   - Example: If choice C (index 2) says "5 people" and you counted 5 people, output 2 (not 5!)
+   - Example: If choice B (index 1) says "Robert Hardy" and that's correct, output 1 (not "Robert Hardy"!)
+
+5. If criteria_percentage > 0.5 (>50% of criteria pass):
+   - Your chosen answer is well-supported by evidence
+   - Set suggestion to null or provide minor improvements
+
+6. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - Still MUST choose the BEST answer from the available choices (never -1)
+   - But set suggestion to "These may not be the right frames/scene. Consider searching for better evidence. The answer chosen is the BEST match given current evidence."
+   - This signals low confidence but still provides a choice
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 5,
+    "criteria_percentage": <criteria_passed / 5>,
+    "base_confidence": <(criteria_passed / 5) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <INDEX of best answer choice: MUST be exactly 0, 1, 2, 3, or 4 (where 0=A, 1=B, 2=C, 3=D, 4=E). Output the INDEX not the content!>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- ⚠️ CRITICAL: critic_answer_choice must be an INDEX (0-4), never a literal answer like "5" or "Robert Hardy"
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "A chef is present in the frame",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms multiple chefs are visible throughout frames wearing white shirts and black aprons"
+        },
+        {
+            "criterion": "Receipts are being organized or handled",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms hands are sorting, arranging and handling printed order slips (receipts) on counter in frames 1-15"
+        },
+        {
+            "criterion": "The chef performs an action after organizing receipts",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms chef moves to cooking station and performs plating action after receipt organization phase"
+        },
+        {
+            "criterion": "The action involves a dish (fetching, tasting, putting on plate, cooking)",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms chef is plating food - transferring cooked vegetables and sauce onto a plate"
+        },
+        {
+            "criterion": "The scene shows kitchen environment with marble countertops or cooking equipment",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms professional kitchen setting with stainless steel countertops, marble-like pattern, and cooking equipment"
+        }
+    ],
+    "question_criteria_passed": 5,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 5,
+    "criteria_total": 5,
+    "criteria_percentage": 1.0,
+    "base_confidence": 100,
+    "confidence": 50,
+    "critic_answer_choice": 2,
+    "critic_reasoning": "The VLM evidence shows the chef plates a dish after organizing receipts (frames 1102-1105), which corresponds to answer choice C: 'He puts the dish on a plate'. The given answer '4' (cooks a dish) is incorrect as the VLM specifically states cooking occurred before or during receipt organization, not after.",
+    "possible_errors": [
+        "The given answer '4' (cooks a dish) fails because the VLM clearly states the chef does NOT cook a dish after organizing receipts - cooking happened earlier or concurrently"
+    ],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'A chef is present in the frame', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms multiple chefs are visible throughout frames wearing white shirts and black aprons'}, {'criterion': 'Receipts are being organized or handled', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms hands are sorting, arranging and handling printed order slips (receipts) on counter in frames 1-15'}, {'criterion': 'The chef performs an action after organizing receipts', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms chef moves to cooking station and performs plating action after receipt organization phase'}, {'criterion': 'The action involves a dish (fetching, tasting, putting on plate, cooking)', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms chef is plating food - transferring cooked vegetables and sauce onto a plate'}, {'criterion': 'The scene shows kitchen environment with marble countertops or cooking equipment', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms professional kitchen setting with stainless steel countertops, marble-like pattern, and cooking equipment'}], 'question_criteria_passed': 5, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 5, 'criteria_total': 5, 'criteria_percentage': 1.0, 'base_confidence': 100, 'confidence': 50, 'critic_answer_choice': 2, 'critic_reasoning': "The VLM evidence shows the chef plates a dish after organizing receipts (frames 1102-1105), which corresponds to answer choice C: 'He puts the dish on a plate'. The given answer '4' (cooks a dish) is incorrect as the VLM specifically states cooking occurred before or during receipt organization, not after.", 'possible_errors': ["The given answer '4' (cooks a dish) fails because the VLM clearly states the chef does NOT cook a dish after organizing receipts - cooking happened earlier or concurrently"], 'suggestion': None}

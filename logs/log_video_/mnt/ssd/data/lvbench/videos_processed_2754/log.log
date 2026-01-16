@@ -1,0 +1,230 @@
+Critic initial response: ```json
+{
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0002.jpg", "frames/frame_0003.jpg", "frames/frame_0004.jpg", "frames/frame_0005.jpg", "frames/frame_0006.jpg", "frames/frame_0007.jpg", "frames/frame_0008.jpg", "frames/frame_0009.jpg", "frames/frame_0010.jpg", "frames/frame_0011.jpg", "frames/frame_0012.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '2' (which corresponds to 'Lobster') is correct for the question: 'Which animal appears at 00:07?' Check the question criteria: 1) Animal visible in frame at timestamp 00:07, 2) Clear identification of animal species, 3) Animal appears in natural habitat or relevant context, 4) Frame shows distinctive animal features for identification. Pay attention to timestamps and temporal sequences. Look specifically at frame_0007.jpg (00:07 timestamp) and surrounding frames to identify any visible animals and determine if a lobster is clearly present and identifiable."
+}
+```
+Frames to verify: ['frames/frame_0002.jpg', 'frames/frame_0003.jpg', 'frames/frame_0004.jpg', 'frames/frame_0005.jpg', 'frames/frame_0006.jpg', 'frames/frame_0007.jpg', 'frames/frame_0008.jpg', 'frames/frame_0009.jpg', 'frames/frame_0010.jpg', 'frames/frame_0011.jpg', 'frames/frame_0012.jpg']
+VLM Prompt: Video context: After analyzing the provided SET of frame-by-frame captions data for a long video, I have generated a global summary that captures the main characters, setting, plot line, vibes, and general details.
+
+**Main Characters:**
+
+1. A man wearing a red bandana or headband, often dressed in a blue or black shirt, appears throughout the video. He seems to be a central figure, possibly a chef, food enthusiast, or a local guide.
+2. A woman with dark skin and black braided hair, often wearing a white chef's hat and a colorful apron, is another recurring character. She is likely a chef or a key figure in the culinary aspects of the video.
+3. Other characters, such as fishermen, locals, and tourists, make appearances throughout the video, adding to the diversity and richness of the narrative.
+
+**Setting:**
+
+The video is set in the Bahamas, showcasing its picturesque landscapes, beaches, and marine life. The setting includes:
+
+1. Beaches with white sand and turquoise waters
+2. Rocky shorelines and docks
+3. Lush forests and dense vegetation
+4. Outdoor kitchens and cooking stations
+5. Restaurants and bars
+6. Markets and food stalls
+7. Aerial views of the islands and surrounding waters
+
+**Plot Line:**
+
+The video appears to be a documentary or a travelogue that explores the Bahamas, focusing on its cuisine, culture, and natural beauty. The narrative is likely centered around the main characters as they:
+
+1. Explore the local seafood and cuisine
+2. Showcase traditional cooking methods and recipes
+3. Interact with locals and share their stories
+4. Highlight the unique landscapes and ecosystems of the Bahamas
+
+**Vibes:**
+
+The overall vibe of the video is:
+
+1. Relaxed and casual, with a focus on enjoying the beauty of the Bahamas
+2. Cultural and informative, highlighting the local cuisine and traditions
+3. Adventurous and exploratory, with a sense of discovery and excitement
+4. Warm and inviting, with a focus on the people and their stories
+
+**General Details:**
+
+1. The video features a diverse range of scenes, from cooking and eating to exploring the outdoors and interacting with locals.
+2. The color palette is vibrant, with a focus on turquoise waters, green vegetation, and colorful characters.
+3. The tone is generally lighthearted and entertaining, with a sense of curiosity and wonder.
+4. The video appears to be a mix of documentary-style footage, interviews, and observational moments, creating a engaging and immersive viewing experience.
+
+Based on these frames (including context before/after), verify if the answer '2' (which corresponds to 'Lobster') is correct for the question: 'Which animal appears at 00:07?' Check the question criteria: 1) Animal visible in frame at timestamp 00:07, 2) Clear identification of animal species, 3) Animal appears in natural habitat or relevant context, 4) Frame shows distinctive animal features for identification. Pay attention to timestamps and temporal sequences. Look specifically at frame_0007.jpg (00:07 timestamp) and surrounding frames to identify any visible animals and determine if a lobster is clearly present and identifiable.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 11, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0002.jpg', '/mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0003.jpg', '/mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0004.jpg', '/mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0005.jpg', '/mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0006.jpg', '/mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0007.jpg', '/mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0008.jpg', '/mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0009.jpg', '/mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0010.jpg', '/mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0011.jpg', '/mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0012.jpg'], 'response': "Yes, the answer **'2' (Lobster)** is **correct** for the question **'Which animal appears at 00:07?'**\n\n### Verification Against Criteria:\n\n1. **Animal visible in frame at timestamp 00:07**  \n   → Frame 6 (frame_0007.jpg) clearly shows a close-up of a lobster’s head and claws. The timestamp 00:07 corresponds to this frame.\n\n2. **Clear identification of animal species**  \n   → The animal displays unmistakable features of a **spiny lobster** (Panulirus argus), including:\n   - Long, spiny antennae with black-and-white banding\n   - Spiny carapace\n   - Distinctive claw structure (though not as large as in true lobsters, consistent with spiny lobsters)\n   - Coloration and texture typical of Caribbean spiny lobsters\n\n3. **Animal appears in natural habitat or relevant context**  \n   → The background shows a blurred dock and water, consistent with a coastal or market setting in the Bahamas (as per global context). Lobsters are a key part of Bahamian seafood culture, often displayed fresh at docks or markets — which aligns with the context of the video.\n\n4. **Frame shows distinctive animal features for identification**  \n   → The close-up shot at 00:07 highlights the lobster’s head, antennae, and spiny carapace — all diagnostic features that allow confident species identification.\n\n---\n\n### Additional Context from Surrounding Frames:\n\n- Frame 4 (00:05) and Frame 5 (00:06) show a pile of lobsters, reinforcing that the animal is part of a seafood display or preparation scene.\n- Frame 7 (00:08) is nearly identical to Frame 6, confirming the lobster is the focal point at this segment.\n- Frames before and after (e.g., 00:02–00:04, 00:09–00:12) show people and coastal scenery, placing the lobster in a culturally and environmentally appropriate context.\n\n---\n\n✅ **Conclusion**: All four criteria are satisfied. The animal visible at 00:07 is clearly identifiable as a **lobster**, and the context supports its relevance. The answer **'2' (Lobster)** is **correct**."}], 'formatted_responses': ["\n=== Batch 0-11 (11 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0002.jpg, /mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0003.jpg, /mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0004.jpg, /mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0005.jpg, /mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0006.jpg, /mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0007.jpg, /mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0008.jpg, /mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0009.jpg, /mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0010.jpg, /mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0011.jpg, /mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0012.jpg\nVLM Response: Yes, the answer **'2' (Lobster)** is **correct** for the question **'Which animal appears at 00:07?'**\n\n### Verification Against Criteria:\n\n1. **Animal visible in frame at timestamp 00:07**  \n   → Frame 6 (frame_0007.jpg) clearly shows a close-up of a lobster’s head and claws. The timestamp 00:07 corresponds to this frame.\n\n2. **Clear identification of animal species**  \n   → The animal displays unmistakable features of a **spiny lobster** (Panulirus argus), including:\n   - Long, spiny antennae with black-and-white banding\n   - Spiny carapace\n   - Distinctive claw structure (though not as large as in true lobsters, consistent with spiny lobsters)\n   - Coloration and texture typical of Caribbean spiny lobsters\n\n3. **Animal appears in natural habitat or relevant context**  \n   → The background shows a blurred dock and water, consistent with a coastal or market setting in the Bahamas (as per global context). Lobsters are a key part of Bahamian seafood culture, often displayed fresh at docks or markets — which aligns with the context of the video.\n\n4. **Frame shows distinctive animal features for identification**  \n   → The close-up shot at 00:07 highlights the lobster’s head, antennae, and spiny carapace — all diagnostic features that allow confident species identification.\n\n---\n\n### Additional Context from Surrounding Frames:\n\n- Frame 4 (00:05) and Frame 5 (00:06) show a pile of lobsters, reinforcing that the animal is part of a seafood display or preparation scene.\n- Frame 7 (00:08) is nearly identical to Frame 6, confirming the lobster is the focal point at this segment.\n- Frames before and after (e.g., 00:02–00:04, 00:09–00:12) show people and coastal scenery, placing the lobster in a culturally and environmentally appropriate context.\n\n---\n\n✅ **Conclusion**: All four criteria are satisfied. The animal visible at 00:07 is clearly identifiable as a **lobster**, and the context supports its relevance. The answer **'2' (Lobster)** is **correct**.\n"], 'condensed_response': None, 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+⚠️ IMPORTANT: Answers use 0-INDEXED numbers where 0=A, 1=B, 2=C, 3=D, 4=E
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 11, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0002.jpg', '/mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0003.jpg', '/mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0004.jpg', '/mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0005.jpg', '/mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0006.jpg', '/mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0007.jpg', '/mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0008.jpg', '/mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0009.jpg', '/mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0010.jpg', '/mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0011.jpg', '/mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0012.jpg'], 'response': "Yes, the answer **'2' (Lobster)** is **correct** for the question **'Which animal appears at 00:07?'**\n\n### Verification Against Criteria:\n\n1. **Animal visible in frame at timestamp 00:07**  \n   → Frame 6 (frame_0007.jpg) clearly shows a close-up of a lobster’s head and claws. The timestamp 00:07 corresponds to this frame.\n\n2. **Clear identification of animal species**  \n   → The animal displays unmistakable features of a **spiny lobster** (Panulirus argus), including:\n   - Long, spiny antennae with black-and-white banding\n   - Spiny carapace\n   - Distinctive claw structure (though not as large as in true lobsters, consistent with spiny lobsters)\n   - Coloration and texture typical of Caribbean spiny lobsters\n\n3. **Animal appears in natural habitat or relevant context**  \n   → The background shows a blurred dock and water, consistent with a coastal or market setting in the Bahamas (as per global context). Lobsters are a key part of Bahamian seafood culture, often displayed fresh at docks or markets — which aligns with the context of the video.\n\n4. **Frame shows distinctive animal features for identification**  \n   → The close-up shot at 00:07 highlights the lobster’s head, antennae, and spiny carapace — all diagnostic features that allow confident species identification.\n\n---\n\n### Additional Context from Surrounding Frames:\n\n- Frame 4 (00:05) and Frame 5 (00:06) show a pile of lobsters, reinforcing that the animal is part of a seafood display or preparation scene.\n- Frame 7 (00:08) is nearly identical to Frame 6, confirming the lobster is the focal point at this segment.\n- Frames before and after (e.g., 00:02–00:04, 00:09–00:12) show people and coastal scenery, placing the lobster in a culturally and environmentally appropriate context.\n\n---\n\n✅ **Conclusion**: All four criteria are satisfied. The animal visible at 00:07 is clearly identifiable as a **lobster**, and the context supports its relevance. The answer **'2' (Lobster)** is **correct**."}], 'formatted_responses': ["\n=== Batch 0-11 (11 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0002.jpg, /mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0003.jpg, /mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0004.jpg, /mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0005.jpg, /mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0006.jpg, /mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0007.jpg, /mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0008.jpg, /mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0009.jpg, /mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0010.jpg, /mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0011.jpg, /mnt/ssd/data/lvbench/videos_processed/evYm0cELO3I/frames/frame_0012.jpg\nVLM Response: Yes, the answer **'2' (Lobster)** is **correct** for the question **'Which animal appears at 00:07?'**\n\n### Verification Against Criteria:\n\n1. **Animal visible in frame at timestamp 00:07**  \n   → Frame 6 (frame_0007.jpg) clearly shows a close-up of a lobster’s head and claws. The timestamp 00:07 corresponds to this frame.\n\n2. **Clear identification of animal species**  \n   → The animal displays unmistakable features of a **spiny lobster** (Panulirus argus), including:\n   - Long, spiny antennae with black-and-white banding\n   - Spiny carapace\n   - Distinctive claw structure (though not as large as in true lobsters, consistent with spiny lobsters)\n   - Coloration and texture typical of Caribbean spiny lobsters\n\n3. **Animal appears in natural habitat or relevant context**  \n   → The background shows a blurred dock and water, consistent with a coastal or market setting in the Bahamas (as per global context). Lobsters are a key part of Bahamian seafood culture, often displayed fresh at docks or markets — which aligns with the context of the video.\n\n4. **Frame shows distinctive animal features for identification**  \n   → The close-up shot at 00:07 highlights the lobster’s head, antennae, and spiny carapace — all diagnostic features that allow confident species identification.\n\n---\n\n### Additional Context from Surrounding Frames:\n\n- Frame 4 (00:05) and Frame 5 (00:06) show a pile of lobsters, reinforcing that the animal is part of a seafood display or preparation scene.\n- Frame 7 (00:08) is nearly identical to Frame 6, confirming the lobster is the focal point at this segment.\n- Frames before and after (e.g., 00:02–00:04, 00:09–00:12) show people and coastal scenery, placing the lobster in a culturally and environmentally appropriate context.\n\n---\n\n✅ **Conclusion**: All four criteria are satisfied. The animal visible at 00:07 is clearly identifiable as a **lobster**, and the context supports its relevance. The answer **'2' (Lobster)** is **correct**.\n"], 'condensed_response': None, 'failed_images': []}
+
+Question Being Answered: Which animal appears at 00:07?
+
+Answer Choices (0-indexed: 0=A, 1=B, 2=C, 3=D, 4=E):
+  0 (=A): Manatee
+  1 (=B): Sea turtle
+  2 (=C): Lobster
+  3 (=D): Clownfish
+
+Given Answer: 2
+Evidence Frames Used: ['frames/frame_0007.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+1. Middle-aged Man with Plaid Shirt and White Headband: A man wearing a plaid shirt and a white headband, appearing in various scenes, often eating or gesturing.
+2. Chef Elrod Munnings: A dark-skinned man with short black hair, wearing a white chef's coat with a red crab logo.
+3. Woman Chef with Braids: A woman with black braids, wearing a white chef's coat and a colorful apron.
+4. Man with Red Bandana and Black Shirt: A man wearing a red bandana and a black shirt, appearing in various scenes, often gesturing or speaking.
+5. Woman with Yellow Head Wrap: A woman wearing a yellow headwrap, a green shirt with white floral patterns, and a white apron.
+6. John Cena: A muscular man wearing a red baseball cap with white designs and a black short-sleeved button-down shirt.
+
+SCENES:
+1. Dock/Fish Market: A bustling waterfront area with people unloading fish and seafood. [Frames 1-100]
+2. Beach/Atlantis Resort: A picturesque beach scene with the Atlantis resort in the background. [Frames 37-45, 222-225]
+3. Outdoor Kitchen/Chef Elrod: An outdoor kitchen setting where Chef Elrod is cooking. [Frames 41, 59, 337-340]
+4. Restaurant/Bar: Various scenes of people eating and drinking at tables or bars. [Frames 169-171, 177-178]
+5. Forest/Wooded Area: A dense forest or wooded area with men walking or working. [Frames 35, 321-323]
+6. Conch Market: A bustling market scene with people selling conch shells. [Frames 101-102]
+7. Grocery Store/Convenience Store: A store with shelves stocked with various products. [Frames 1926-1930]
+8. Wetland/Coastal Area: A serene and expansive wetland or coastal scene. [Frames 3687-3689]
+9. Dark Forest/Nighttime: A dark forest or wooded area at night with men walking or working. [Frames 321-323, 327-330]
+10. Residential Area/Houses: Various scenes of houses and residential areas. [Frames 189-191, 283-285]
+11. Port/Cruise Ships: A bustling port with large cruise ships docked. [Frames 211-213]
+12. Beachside Restaurant/Patios: Outdoor seating areas at restaurants or bars near the beach. [Frames 2127-2135]
+13. Kitchen/Cooking Scenes: Various kitchen settings with people cooking or preparing food. [Frames 41, 337-340, 352-354]
+
+EVENTS:
+1. Men Unloading Fish/Seafood: Men unloading fish and seafood at a dock or market. [Frames 1-10]
+2. Chef Elrod Cooking: Chef Elrod preparing and cooking dishes in an outdoor kitchen. [Frames 41, 337-340]
+3. People Eating/Drinking: Various scenes of people eating and drinking at tables or bars. [Frames 169-171, 177-178]
+4. Men Walking in Forest: Men walking through a dense forest or wooded area. [Frames 35, 321-323]
+5. Conch Shell Preparation: People preparing and cleaning conch shells. [Frames 101-102]
+6. Grocery Shopping: People shopping for groceries or other items at a store. [Frames 1926-1930]
+7. Men Sitting on Beach: Men sitting on a beach or in a relaxed outdoor setting. [Frames 4242-4245]
+8. Men Carrying Pig/Capybara: Men carrying a dead pig or capybara through a wooded or rural area. [Frames 4811-4815]
+9. People Restraining Animals: People restraining or handling animals, such as pigs or goats. [Frames 4721-4725]
+10. Men Gesturing/Speaking: Men gesturing or speaking in various settings, often with a serious or emphatic expression. [Frames 337-340, 352-354]
+11. People Cooking/Preparing Food: Various scenes of people cooking or preparing food in kitchens or outdoor settings. [Frames 41, 337-340, 352-354]
+12. John Cena Speaking: John Cena speaking or gesturing in front of a dark background. [Frames 5390-5393]
+
+================================================================================
+Generated at: 2026-01-11 21:46:41
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. Animal visible in frame at timestamp 00:07
+  Q2. Clear identification of animal species
+  Q3. Animal appears in natural habitat or relevant context
+  Q4. Frame shows distinctive animal features for identification
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 4)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, ALWAYS pick the best answer choice:
+   - Review ALL answer choices (A, B, C, D, E, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D, 4=E)
+
+5. If criteria_percentage > 0.5 (>50% of criteria pass):
+   - Your chosen answer is well-supported by evidence
+   - Set suggestion to null or provide minor improvements
+
+6. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - Still MUST choose the BEST answer from the available choices (never -1)
+   - But set suggestion to "These may not be the right frames/scene. Consider searching for better evidence. The answer chosen is the BEST match given current evidence."
+   - This signals low confidence but still provides a choice
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 4,
+    "criteria_percentage": <criteria_passed / 4>,
+    "base_confidence": <(criteria_passed / 4) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E - MUST be a valid number 0-4, never -1>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "Animal visible in frame at timestamp 00:07",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms Frame 6 (frame_0007.jpg) clearly shows a close-up of a lobster's head and claws at timestamp 00:07"
+        },
+        {
+            "criterion": "Clear identification of animal species",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM identifies it as a spiny lobster (Panulirus argus) with unmistakable features including long spiny antennae, spiny carapace, and distinctive claw structure"
+        },
+        {
+            "criterion": "Animal appears in natural habitat or relevant context",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM notes the background shows a blurred dock and water, consistent with coastal/market setting in Bahamas, aligning with lobster seafood culture context"
+        },
+        {
+            "criterion": "Frame shows distinctive animal features for identification",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM states the close-up shot highlights lobster's head, antennae, and spiny carapace - all diagnostic features allowing confident species identification"
+        }
+    ],
+    "question_criteria_passed": 4,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 4,
+    "criteria_total": 4,
+    "criteria_percentage": 1.0,
+    "base_confidence": 100.0,
+    "confidence": 100.0,
+    "critic_answer_choice": 2,
+    "critic_reasoning": "VLM verification confirms all criteria are satisfied - a lobster is clearly visible and identifiable at timestamp 00:07, making '2' (Lobster) the correct answer",
+    "possible_errors": [],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'Animal visible in frame at timestamp 00:07', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM confirms Frame 6 (frame_0007.jpg) clearly shows a close-up of a lobster's head and claws at timestamp 00:07"}, {'criterion': 'Clear identification of animal species', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM identifies it as a spiny lobster (Panulirus argus) with unmistakable features including long spiny antennae, spiny carapace, and distinctive claw structure'}, {'criterion': 'Animal appears in natural habitat or relevant context', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM notes the background shows a blurred dock and water, consistent with coastal/market setting in Bahamas, aligning with lobster seafood culture context'}, {'criterion': 'Frame shows distinctive animal features for identification', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM states the close-up shot highlights lobster's head, antennae, and spiny carapace - all diagnostic features allowing confident species identification"}], 'question_criteria_passed': 4, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 4, 'criteria_total': 4, 'criteria_percentage': 1.0, 'base_confidence': 100.0, 'confidence': 100.0, 'critic_answer_choice': 2, 'critic_reasoning': "VLM verification confirms all criteria are satisfied - a lobster is clearly visible and identifiable at timestamp 00:07, making '2' (Lobster) the correct answer", 'possible_errors': [], 'suggestion': None}

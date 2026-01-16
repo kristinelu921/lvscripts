@@ -163,7 +163,7 @@ def search_subtitles(embeddings_path: str, query: str, topk: int = 10, fps: floa
 
     # Find top-k similar subtitles
     idx, scores = cosine_topk(query_vec, matrix, k=topk)
-
+    print(f"Found {len(idx)} results")
     # Format results
     results = []
     for rank, (i, score) in enumerate(zip(idx, scores), start=1):
@@ -186,6 +186,8 @@ def search_subtitles(embeddings_path: str, query: str, topk: int = 10, fps: floa
             "time_formatted": format_time(rec["start_sec"])
         }
         results.append(result)
+
+    print(f"Found subtitle matching results: {results}")
 
     return results
 

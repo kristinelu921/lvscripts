@@ -175,10 +175,10 @@ Two models disagreed on the answer to this question. You now have the FULL conve
 Original Question: {question}{candidates_text}
 
 DISAGREEMENT:
-- Original Model chose: {original_letter}
+- Original Model chose: {original_letter} - {candidates[original_answer] if 0 <= original_answer < len(candidates) else 'Unknown'}
   Reasoning: {original_reasoning}
 
-- Critic Model chose: {critic_letter}
+- Critic Model chose: {critic_letter} - {candidates[critic_answer] if 0 <= critic_answer < len(candidates) else 'Unknown'}
   Reasoning: {critic_reasoning}
 
 YOUR TASK AS JUDGE:
@@ -186,25 +186,36 @@ Review the ENTIRE conversation history above. You can see:
 1. How the original model investigated and reasoned
 2. How the critic evaluated the evidence
 
-Now investigate further if needed using caption search and VLM tools, then decide which answer ({original_letter} or {critic_letter}) is MOST CORRECT based on all evidence.
+The critic may have suggested that you look for different frames to investigate. You should investigate further if needed using caption search and VLM tools, then decide which of the ORIGINAL answer choices is MOST CORRECT based on all evidence.
 
-⚠️ CRITICAL: There is ALWAYS a correct answer. Choose the BEST possible answer that most closely matches the evidence.
+Please use your best judgement. 
 
-You MUST choose between ONLY these two options:
-A. {original_letter} (Original model's answer)
-B. {critic_letter} (Critic model's answer)
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices. Choose the BEST possible answer that most closely matches the evidence.
+
+🔢 JUDGE ANSWER FORMAT REQUIREMENT:
+When you provide your FINAL_ANSWER, your answer field MUST be a single NUMBER (0, 1, 2, 3, 4) corresponding to the answer choices:
+  - 0 = Choice A
+  - 1 = Choice B
+  - 2 = Choice C
+  - 3 = Choice D
+  - 4 = Choice E
+
+Do NOT use letters (A, B, C, D, E). Use ONLY numbers (0, 1, 2, 3, 4).
+
+Example FINAL_ANSWER format:
+{{
+    "tool": "FINAL_ANSWER",
+    "answer": "2",  ← MUST be a number string like "0", "1", "2", etc.
+    "reasoning": "Based on the evidence, choice C is correct because...",
+    "frames": ["frames/frame_0001.jpg", ...],
+    "answer_criteria": ["criterion validating your choice"]
+}}
 """
 
     combined_messages.append({
         "role": "user",
         "content": judge_instruction
     })
-
-    # Create simplified candidates for judge
-    judge_candidates = [
-        f"{original_letter} - {candidates[original_answer] if 0 <= original_answer < len(candidates) else 'Original answer'}",
-        f"{critic_letter} - {candidates[critic_answer] if 0 <= critic_answer < len(candidates) else 'Critic answer'}"
-    ]
 
     try:
         # Reuse the full iterative pipeline for the judge WITH FULL CONTEXT
@@ -213,19 +224,25 @@ B. {critic_letter} (Critic model's answer)
             judge_instruction,
             f"{uid}_judge",
             vid_dir,
-            candidates=judge_candidates,
+            candidates=candidates,  # Pass ORIGINAL candidates, not just 2-choice
             use_no_vlm=False,
             pre_existing_messages=combined_messages  # Pass the full conversation history
         )
 
-        # Map judge's answer (0 or 1) back to original/critic choice
-        judge_choice = judge_result.get("answer", 0)
-        if judge_choice == 0:
-            final_answer = original_answer
-        elif judge_choice == 1:
-            final_answer = critic_answer
-        else:
-            # Fallback to original
+        # Judge now directly returns the final answer choice (0-4)
+        final_answer = judge_result.get("answer", original_answer)
+
+        # Convert to int if it's a string
+        if isinstance(final_answer, str):
+            final_answer = final_answer.strip().upper()
+            if final_answer in ['A', 'B', 'C', 'D', 'E']:
+                final_answer = ord(final_answer) - ord('A')
+            elif final_answer.isdigit():
+                final_answer = int(final_answer)
+            else:
+                # Fallback to original if parsing fails
+                final_answer = original_answer
+        elif not isinstance(final_answer, int):
             final_answer = original_answer
 
         return {
@@ -378,7 +395,7 @@ async def critic_assess(critic_model, question, uid, answer, reasoning, evidence
             if assessment_response:
                 message = f"Critical assessment response: {assessment_response}"
                 log(message, f"logs/log_video_{vid_dir}_{uid}")
-                print(f"Critical assessment response: {assessment_response[0:50]}...")
+                print(f"Critical assessment response: {assessment_response}...")
             else:
                 print("Critical assessment response: None")
             
@@ -429,10 +446,9 @@ async def critic_assess(critic_model, question, uid, answer, reasoning, evidence
                     result["criteria_passed"] = assessment_data.get("criteria_passed", 0)
                     result["criteria_total"] = assessment_data.get("criteria_total", len(criteria) if criteria else 0)
                     result["criteria_percentage"] = assessment_data.get("criteria_percentage", 0)
-                    result["critic_answer_choice"] = assessment_data.get("critic_answer_choice", -1)
                     result["critic_reasoning"] = assessment_data.get("critic_reasoning", "")
 
-                    # Check if critic's answer differs from original and criteria > 50%
+                    # Get original answer as number
                     if answer in "01234":
                         original_answer_num = int(answer)
                     elif answer in "ABCDE":
@@ -440,12 +456,40 @@ async def critic_assess(critic_model, question, uid, answer, reasoning, evidence
                     elif isinstance(answer, int):
                         original_answer_num = answer
                     else:
-                        original_answer_num = -1
+                        original_answer_num = 0  # Default to first choice if invalid
 
-                    critic_choice = result.get("critic_answer_choice", -1)
+                    # Get critic's answer choice (with fallback to original if -1 or invalid)
+                    try:
+                        critic_choice = assessment_data.get("critic_answer_choice")
+                    except Exception as e:
+                        with open(f"logs/log_video_{vid_dir}_{uid}_critic_choice_error.json", "w") as f:
+                            json.dump(e, f)
+                        print(f"Error getting critic choice: {e}")
+                        critic_choice = -1
+                        
+                    critic_choice = assessment_data.get("critic_answer_choice", -1)
+                    with open(f"logs/log_video_{vid_dir}_{uid}_critic_choice.json", "w") as f:
+                        json.dump(critic_choice, f)
+                    # Convert to int if string
+                    if isinstance(critic_choice, str):
+                        if critic_choice.isdigit():
+                            critic_choice = int(critic_choice)
+                        elif critic_choice.upper() in 'ABCDE':
+                            critic_choice = ord(critic_choice.upper()) - ord('A')
+                        else:
+                            critic_choice = -1
+
+                    # IMPORTANT: Critic MUST always pick a valid answer (0-4), never -1
+                    # If critic somehow returned -1, default to original answer
+                    if critic_choice == -1 or not isinstance(critic_choice, int) or critic_choice < 0 or critic_choice > 4:
+                        print(f"⚠️ Critic didn't provide valid answer choice (got {critic_choice}), defaulting to original answer {original_answer_num}")
+                        critic_choice = original_answer_num
+
+                    result["critic_answer_choice"] = critic_choice
                     criteria_pct = result.get("criteria_percentage", 0)
 
-                    if criteria_pct > 0.5 and critic_choice != original_answer_num and critic_choice != -1:
+                    # If critic disagrees with original and has reasonable confidence, call judge
+                    if critic_choice != original_answer_num and criteria_pct > 0.5:
                         # Critic disagrees with original answer and criteria >50% - call third party judge
                         print(f"⚠ Critic answer ({critic_choice}) differs from original ({original_answer_num}). Calling third-party judge...")
 
@@ -470,13 +514,8 @@ async def critic_assess(critic_model, question, uid, answer, reasoning, evidence
                         result["requires_reeval"] = (judge_result.get("final_answer") != original_answer_num)
 
                         print(f"→ Third-party judge chose: {judge_result.get('final_answer')}")
-
-                    elif criteria_pct <= 0.5:
-                        # Criteria ≤50% - suggest re-evaluation with different frames
-                        result["requires_reeval"] = True
-                        result["reeval_reason"] = "Frames may not match the right scene (≤50% criteria passed)"
-                        print(f"⚠ Only {criteria_pct*100:.1f}% criteria passed. Suggesting re-evaluation with different frames.")
-
+                    else:\
+                        pass
                 return result
             else:
                 # Fallback: try to extract confidence from response
@@ -484,11 +523,23 @@ async def critic_assess(critic_model, question, uid, answer, reasoning, evidence
                 numbers = re.findall(r'\d+', assessment_response)
                 confidence_score = int(numbers[0]) if numbers else 50
 
+                # Get original answer as number for fallback
+                if answer in "01234":
+                    original_answer_num = int(answer)
+                elif answer in "ABCDE":
+                    original_answer_num = ord(answer) - ord('A')
+                elif isinstance(answer, int):
+                    original_answer_num = answer
+                else:
+                    original_answer_num = 0
+
                 return {
-                    "uid":uid, 
+                    "uid":uid,
                     "question": question,
                     "answer": answer,
                     "confidence": confidence_score,
+                    "critic_answer_choice": original_answer_num,  # Default to original answer
+                    "critic_reasoning": "Could not parse critic response, defaulting to original",
                     "possible_errors": ["Could not parse structured assessment"],
                     "suggestion": "Manual review recommended",
                     "evidence_frame_numbers": evidence_frame_numbers
@@ -584,12 +635,6 @@ async def batch_critic_assess(answers_data, global_summary, ces_logs, vid_dir, n
                     answer_criteria=data.get("answer_criteria", None),  # Pass answer-specific criteria if present
                     candidates=data.get("candidates", [])  # Pass candidates if present
                 )
-                # Log per-question assessment completion
-                try:
-                    with open("answers_logs.json", "a") as log_f:
-                        log_f.write(f"critic assessment completed for uid {data.get('uid')} video {num} in {vid_dir}\n")
-                except Exception:
-                    pass
                 
                 # Save full critic conversation
                 try:
@@ -726,11 +771,6 @@ async def assess_all(video_dir, num,
         output_path = f"{video_dir}/{num}/{num}_critic_assessment.json"
         with open(output_path, "w") as f:
             json.dump(assessments, f, indent = 2)
-        
-
-
-        with open("answers_logs.json", "a") as f:
-            f.write(f"saved critic assessments for video {num} in {video_dir}\n")
         
         return assessments
     else:

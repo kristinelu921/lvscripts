@@ -8,14 +8,14 @@ import numpy as np
 from tqdm import tqdm
 import asyncio
 import time
+from together import Together
 
 FRAME_CAPTION_PATTERN = re.compile(r"^(?P<frame_path>frames/\S+)\s+seconds:\s+(?P<caption>.+)$")
 
+# Load Together API key
 with open("env.json", "r") as f:
     env = json.load(f)
-    openai_key = env["openai_key"]
     together_key = env["together_key"]
-os.environ["OPENAI_API_KEY"] = openai_key
 os.environ["TOGETHER_API_KEY"] = together_key
 
 def _parse_frame_caption(raw: str) -> Optional[Dict[str, Union[str, int]]]:

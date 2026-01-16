@@ -1,0 +1,207 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0678.jpg", "frames/frame_0679.jpg", "frames/frame_0680.jpg", "frames/frame_0681.jpg", "frames/frame_0682.jpg", "frames/frame_0683.jpg", "frames/frame_0684.jpg", "frames/frame_0685.jpg", "frames/frame_0686.jpg", "frames/frame_0687.jpg", "frames/frame_0688.jpg", "frames/frame_0689.jpg", "frames/frame_0690.jpg", "frames/frame_0691.jpg", "frames/frame_0692.jpg", "frames/frame_0693.jpg", "frames/frame_0694.jpg", "frames/frame_0695.jpg", "frames/frame_0696.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '1' (which corresponds to 'B: Cucumber slices') is correct for the question: 'When making the side salad, what does the vlogger put on the tomato slice?'. Check the question criteria: ['Person making a side salad', 'Tomato slice being handled or prepared', 'Ingredient being placed on top of tomato slice', 'Salad preparation station or surface', 'Visible salad components like lettuce, vegetables, dressings']. Pay attention to timestamps and temporal sequences. Look for visual evidence showing a side salad being prepared, a tomato slice being handled, and what ingredient is placed on top of the tomato slice. Verify if cucumber slices are placed on the tomato slice."
+}
+Frames to verify: ['frames/frame_0678.jpg', 'frames/frame_0679.jpg', 'frames/frame_0680.jpg', 'frames/frame_0681.jpg', 'frames/frame_0682.jpg', 'frames/frame_0683.jpg', 'frames/frame_0684.jpg', 'frames/frame_0685.jpg', 'frames/frame_0686.jpg', 'frames/frame_0687.jpg', 'frames/frame_0688.jpg', 'frames/frame_0689.jpg', 'frames/frame_0690.jpg', 'frames/frame_0691.jpg', 'frames/frame_0692.jpg', 'frames/frame_0693.jpg', 'frames/frame_0694.jpg', 'frames/frame_0695.jpg', 'frames/frame_0696.jpg']
+VLM Prompt: Video context: After analyzing the provided SET of frame-by-frame captions data for a long video, I have distilled a global summary that captures the main characters, setting, plot line, vibes, and general details.
+
+**Main Characters:**
+The main characters in this video are kitchen staff, likely working in a fast-food restaurant or cafeteria. They are predominantly wearing black gloves, with some wearing orange or yellow safety vests. The staff members are the primary focus of the video.
+
+**Setting:**
+The setting is a commercial kitchen, likely in a fast-food restaurant or cafeteria, such as McDonald's. The kitchen is well-equipped with stainless-steel appliances, griddles, and various cooking equipment. The atmosphere is bustling and fast-paced.
+
+**Plot Line:**
+The video appears to follow the kitchen staff as they prepare and cook food, primarily burgers, sandwiches, and breakfast items. The staff members are shown performing various tasks, such as cooking on griddles, assembling sandwiches, and handling ingredients. The video likely showcases the inner workings of a commercial kitchen during a busy period.
+
+**Vibes:**
+The overall vibe of the video is one of efficiency, productivity, and attention to detail. The kitchen staff work together seamlessly, and the atmosphere is energetic and dynamic. The video conveys a sense of urgency and busyness, highlighting the fast-paced nature of a commercial kitchen.
+
+**General Details:**
+
+* The kitchen is well-organized, with various stations and equipment dedicated to specific tasks.
+* The staff members are attentive to food preparation and handling, emphasizing quality and safety.
+* The video showcases a range of food items, including burgers, sandwiches, breakfast items, and salads.
+* The kitchen is likely a high-volume establishment, with multiple staff members working together to prepare and serve a large quantity of food.
+* The atmosphere is professional, with staff members wearing uniforms and following standard kitchen protocols.
+
+Overall, the video provides a behind-the-scenes look at the inner workings of a commercial kitchen, highlighting the hard work and attention to detail required to prepare and serve high-quality food in a fast-paced environment.
+
+Based on these frames (including context before/after), verify if the answer '1' (which corresponds to 'B: Cucumber slices') is correct for the question: 'When making the side salad, what does the vlogger put on the tomato slice?'. Check the question criteria: ['Person making a side salad', 'Tomato slice being handled or prepared', 'Ingredient being placed on top of tomato slice', 'Salad preparation station or surface', 'Visible salad components like lettuce, vegetables, dressings']. Pay attention to timestamps and temporal sequences. Look for visual evidence showing a side salad being prepared, a tomato slice being handled, and what ingredient is placed on top of the tomato slice. Verify if cucumber slices are placed on the tomato slice.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 19, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0678.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0679.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0680.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0681.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0682.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0683.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0684.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0685.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0686.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0687.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0688.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0689.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0690.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0691.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0692.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0693.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0694.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0695.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0696.jpg'], 'response': "Based on the provided frames and the question criteria, the answer **'1' (B: Cucumber slices)** is **correct**.\n\n### Verification Against Criteria:\n\n1. **Person making a side salad**  \n   → Frames 1–14 show a person (wearing black gloves) actively assembling a side salad on a white plate. This satisfies the criterion.\n\n2. **Tomato slice being handled or prepared**  \n   → In Frame 6, a tomato slice is placed on top of shredded lettuce. In Frame 7, a second tomato slice is added. This confirms tomato slices are being prepared as part of the salad.\n\n3. **Ingredient being placed on top of tomato slice**  \n   → In Frame 9, the person picks up a cucumber slice. In Frames 10–11, they place **two cucumber slices directly on top of the tomato slices** already on the plate. This is the key visual evidence.\n\n4. **Salad preparation station or surface**  \n   → The entire sequence (Frames 1–14) takes place at a salad prep station with visible bowls of ingredients (shredded lettuce, coleslaw, etc.), tongs, and a yellow cutting board — all consistent with a salad prep area.\n\n5. **Visible salad components like lettuce, vegetables, dressings**  \n   → Shredded lettuce (Frames 3–5), tomato slices (Frames 6–7), cucumber slices (Frames 9–12), and onion rings (Frame 14) are all visible. Dressings or sauces are not explicitly shown, but the presence of multiple vegetables and salad components is confirmed.\n\n---\n\n### Temporal Sequence:\n- Frame 6: Tomato slice placed on lettuce.\n- Frame 7: Second tomato slice added.\n- Frame 9: Cucumber slice picked up.\n- Frames 10–11: Cucumber slices placed **on top of** the tomato slices.\n- Frame 12: Completed layer with cucumber on tomato.\n\n---\n\n### Conclusion:\nThe visual evidence clearly shows that **cucumber slices are placed on top of the tomato slice** during salad assembly. Therefore, the answer **'1' (B: Cucumber slices)** is **correct**. ✅"}], 'formatted_responses': ["\n=== Batch 0-19 (19 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0678.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0679.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0680.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0681.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0682.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0683.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0684.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0685.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0686.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0687.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0688.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0689.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0690.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0691.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0692.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0693.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0694.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0695.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0696.jpg\nVLM Response: Based on the provided frames and the question criteria, the answer **'1' (B: Cucumber slices)** is **correct**.\n\n### Verification Against Criteria:\n\n1. **Person making a side salad**  \n   → Frames 1–14 show a person (wearing black gloves) actively assembling a side salad on a white plate. This satisfies the criterion.\n\n2. **Tomato slice being handled or prepared**  \n   → In Frame 6, a tomato slice is placed on top of shredded lettuce. In Frame 7, a second tomato slice is added. This confirms tomato slices are being prepared as part of the salad.\n\n3. **Ingredient being placed on top of tomato slice**  \n   → In Frame 9, the person picks up a cucumber slice. In Frames 10–11, they place **two cucumber slices directly on top of the tomato slices** already on the plate. This is the key visual evidence.\n\n4. **Salad preparation station or surface**  \n   → The entire sequence (Frames 1–14) takes place at a salad prep station with visible bowls of ingredients (shredded lettuce, coleslaw, etc.), tongs, and a yellow cutting board — all consistent with a salad prep area.\n\n5. **Visible salad components like lettuce, vegetables, dressings**  \n   → Shredded lettuce (Frames 3–5), tomato slices (Frames 6–7), cucumber slices (Frames 9–12), and onion rings (Frame 14) are all visible. Dressings or sauces are not explicitly shown, but the presence of multiple vegetables and salad components is confirmed.\n\n---\n\n### Temporal Sequence:\n- Frame 6: Tomato slice placed on lettuce.\n- Frame 7: Second tomato slice added.\n- Frame 9: Cucumber slice picked up.\n- Frames 10–11: Cucumber slices placed **on top of** the tomato slices.\n- Frame 12: Completed layer with cucumber on tomato.\n\n---\n\n### Conclusion:\nThe visual evidence clearly shows that **cucumber slices are placed on top of the tomato slice** during salad assembly. Therefore, the answer **'1' (B: Cucumber slices)** is **correct**. ✅\n"], 'condensed_response': '**Scene Summary (Frames\u202f0678‑0696)**  \n\nA single operator (the only visible person, wearing black gloves) works at a yellow salad‑prep station. Over the course of the 19‑frame clip the following actions occur:\n\n| Frame | Action |\n|------|--------|\n|\u202f0678‑0682 | The worker stacks shredded lettuce on a white plate. |\n|\u202f0683‑0684 | A tomato slice is placed on the lettuce (first slice). |\n|\u202f0685 | A second tomato slice is added on top of the first. |\n|\u202f0686‑0687 | The worker picks up a cucumber slice with tongs. |\n|\u202f0688‑0689 | Two cucumber slices are placed **directly on top of the tomato slices**. |\n|\u202f0690‑0692 | Additional cucumber slices are added, completing the cucumber‑on‑tomato layer. |\n|\u202f0693‑0695 | Onion rings are scattered over the vegetables; the plate is now a full side‑salad assembly. |\n|\u202f0696 | Final view of the completed salad at the prep station. |\n\n**Key points for the question**  \n\n1. **Person present** – Frames\u202f1‑14 (0678‑0692) clearly show the gloved individual assembling the salad.  \n2. **Tomato handling** – Frames\u202f0683‑0685 capture tomato slices being positioned on the lettuce.  \n3. **Ingredient placed *on* tomato** – Frames\u202f0688‑0689 (and reinforced in 0690‑0692) show cucumber slices stacked on top of the tomato slices.  \n4. **Salad station** – Throughout the clip the background includes bowls of lettuce, coleslaw, tongs, and a yellow cutting board, confirming a dedicated prep surface.  \n5. **Visible components** – Lettuce, tomatoes, cucumber, and onion rings are all in view; dressings are not shown but the vegetable layers are evident.\n\n**Conclusion** – The visual evidence demonstrates that cucumber slices are placed on top of the tomato slices while the salad is being assembled, making the answer **‘1 (B: Cucumber slices)’** correct. ✅', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+⚠️ IMPORTANT: Answers use 0-INDEXED numbers where 0=A, 1=B, 2=C, 3=D, 4=E
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 19, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0678.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0679.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0680.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0681.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0682.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0683.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0684.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0685.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0686.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0687.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0688.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0689.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0690.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0691.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0692.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0693.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0694.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0695.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0696.jpg'], 'response': "Based on the provided frames and the question criteria, the answer **'1' (B: Cucumber slices)** is **correct**.\n\n### Verification Against Criteria:\n\n1. **Person making a side salad**  \n   → Frames 1–14 show a person (wearing black gloves) actively assembling a side salad on a white plate. This satisfies the criterion.\n\n2. **Tomato slice being handled or prepared**  \n   → In Frame 6, a tomato slice is placed on top of shredded lettuce. In Frame 7, a second tomato slice is added. This confirms tomato slices are being prepared as part of the salad.\n\n3. **Ingredient being placed on top of tomato slice**  \n   → In Frame 9, the person picks up a cucumber slice. In Frames 10–11, they place **two cucumber slices directly on top of the tomato slices** already on the plate. This is the key visual evidence.\n\n4. **Salad preparation station or surface**  \n   → The entire sequence (Frames 1–14) takes place at a salad prep station with visible bowls of ingredients (shredded lettuce, coleslaw, etc.), tongs, and a yellow cutting board — all consistent with a salad prep area.\n\n5. **Visible salad components like lettuce, vegetables, dressings**  \n   → Shredded lettuce (Frames 3–5), tomato slices (Frames 6–7), cucumber slices (Frames 9–12), and onion rings (Frame 14) are all visible. Dressings or sauces are not explicitly shown, but the presence of multiple vegetables and salad components is confirmed.\n\n---\n\n### Temporal Sequence:\n- Frame 6: Tomato slice placed on lettuce.\n- Frame 7: Second tomato slice added.\n- Frame 9: Cucumber slice picked up.\n- Frames 10–11: Cucumber slices placed **on top of** the tomato slices.\n- Frame 12: Completed layer with cucumber on tomato.\n\n---\n\n### Conclusion:\nThe visual evidence clearly shows that **cucumber slices are placed on top of the tomato slice** during salad assembly. Therefore, the answer **'1' (B: Cucumber slices)** is **correct**. ✅"}], 'formatted_responses': ["\n=== Batch 0-19 (19 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0678.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0679.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0680.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0681.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0682.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0683.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0684.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0685.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0686.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0687.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0688.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0689.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0690.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0691.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0692.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0693.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0694.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0695.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0696.jpg\nVLM Response: Based on the provided frames and the question criteria, the answer **'1' (B: Cucumber slices)** is **correct**.\n\n### Verification Against Criteria:\n\n1. **Person making a side salad**  \n   → Frames 1–14 show a person (wearing black gloves) actively assembling a side salad on a white plate. This satisfies the criterion.\n\n2. **Tomato slice being handled or prepared**  \n   → In Frame 6, a tomato slice is placed on top of shredded lettuce. In Frame 7, a second tomato slice is added. This confirms tomato slices are being prepared as part of the salad.\n\n3. **Ingredient being placed on top of tomato slice**  \n   → In Frame 9, the person picks up a cucumber slice. In Frames 10–11, they place **two cucumber slices directly on top of the tomato slices** already on the plate. This is the key visual evidence.\n\n4. **Salad preparation station or surface**  \n   → The entire sequence (Frames 1–14) takes place at a salad prep station with visible bowls of ingredients (shredded lettuce, coleslaw, etc.), tongs, and a yellow cutting board — all consistent with a salad prep area.\n\n5. **Visible salad components like lettuce, vegetables, dressings**  \n   → Shredded lettuce (Frames 3–5), tomato slices (Frames 6–7), cucumber slices (Frames 9–12), and onion rings (Frame 14) are all visible. Dressings or sauces are not explicitly shown, but the presence of multiple vegetables and salad components is confirmed.\n\n---\n\n### Temporal Sequence:\n- Frame 6: Tomato slice placed on lettuce.\n- Frame 7: Second tomato slice added.\n- Frame 9: Cucumber slice picked up.\n- Frames 10–11: Cucumber slices placed **on top of** the tomato slices.\n- Frame 12: Completed layer with cucumber on tomato.\n\n---\n\n### Conclusion:\nThe visual evidence clearly shows that **cucumber slices are placed on top of the tomato slice** during salad assembly. Therefore, the answer **'1' (B: Cucumber slices)** is **correct**. ✅\n"], 'condensed_response': '**Scene Summary (Frames\u202f0678‑0696)**  \n\nA single operator (the only visible person, wearing black gloves) works at a yellow salad‑prep station. Over the course of the 19‑frame clip the following actions occur:\n\n| Frame | Action |\n|------|--------|\n|\u202f0678‑0682 | The worker stacks shredded lettuce on a white plate. |\n|\u202f0683‑0684 | A tomato slice is placed on the lettuce (first slice). |\n|\u202f0685 | A second tomato slice is added on top of the first. |\n|\u202f0686‑0687 | The worker picks up a cucumber slice with tongs. |\n|\u202f0688‑0689 | Two cucumber slices are placed **directly on top of the tomato slices**. |\n|\u202f0690‑0692 | Additional cucumber slices are added, completing the cucumber‑on‑tomato layer. |\n|\u202f0693‑0695 | Onion rings are scattered over the vegetables; the plate is now a full side‑salad assembly. |\n|\u202f0696 | Final view of the completed salad at the prep station. |\n\n**Key points for the question**  \n\n1. **Person present** – Frames\u202f1‑14 (0678‑0692) clearly show the gloved individual assembling the salad.  \n2. **Tomato handling** – Frames\u202f0683‑0685 capture tomato slices being positioned on the lettuce.  \n3. **Ingredient placed *on* tomato** – Frames\u202f0688‑0689 (and reinforced in 0690‑0692) show cucumber slices stacked on top of the tomato slices.  \n4. **Salad station** – Throughout the clip the background includes bowls of lettuce, coleslaw, tongs, and a yellow cutting board, confirming a dedicated prep surface.  \n5. **Visible components** – Lettuce, tomatoes, cucumber, and onion rings are all in view; dressings are not shown but the vegetable layers are evident.\n\n**Conclusion** – The visual evidence demonstrates that cucumber slices are placed on top of the tomato slices while the salad is being assembled, making the answer **‘1 (B: Cucumber slices)’** correct. ✅', 'failed_images': []}
+
+Question Being Answered: When making the side salad, what does the vlogger put on the tomato slice?
+
+Answer Choices (0-indexed: 0=A, 1=B, 2=C, 3=D, 4=E):
+  0 (=A): Salad sauce
+  1 (=B): Cucumber slices
+  2 (=C): Onion slices
+  3 (=D): Onion rings
+
+Given Answer: 1
+Evidence Frames Used: ['frames/frame_0683.jpg', 'frames/frame_0684.jpg', 'frames/frame_0685.jpg', 'frames/frame_0686.jpg', 'frames/frame_0687.jpg', 'frames/frame_0688.jpg', 'frames/frame_0689.jpg', 'frames/frame_0690.jpg', 'frames/frame_0691.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Person 1 (Kitchen Staff): Description: Wearing black gloves, working in a commercial kitchen
+Person 2 (Chef/Cook): Description: Preparing food on a griddle or grill
+Person 3 (Cafeteria Staff): Description: Wearing orange safety vest, working in a cafeteria or food service setting
+Person 4 (Man in Blue Shirt): Description: Standing behind a counter, preparing sandwiches
+
+SCENES:
+Scene 1 (Commercial Kitchen) : Description: Busy kitchen with stainless-steel appliances and equipment [frame_0001 - frame_0081]
+Scene 2 (Cafeteria/Food Court) : Description: Bustling cafeteria or food court with various food items and condiments [frame_0123 - frame_0140]
+Scene 3 (Fast Food Restaurant Kitchen) : Description: Fast food kitchen with griddles, grill, and various cooking equipment [frame_0141 - frame_0259]
+Scene 4 (Cafeteria/Restaurant) : Description: Cafeteria or restaurant setting with buffet counter and various food items [frame_0263 - frame_0304]
+Scene 5 (Airplane Bathroom) : Description: Small, enclosed space with a black trash can, gray wall, and gray floor [frame_0082]
+Scene 6 (Bakery/Cafe) : Description: Bakery or cafe with glass display case and bread [frame_0084 - frame_0085]
+Scene 7 (Food Truck/Kitchen) : Description: Food truck or kitchen with griddle, condiments, and various cooking equipment [frame_0101 - frame_0110]
+Scene 8 (Restaurant Kitchen) : Description: Restaurant kitchen with stainless-steel appliances and equipment [frame_0250 - frame_0300]
+Scene 9 (Cafeteria/Buffet) : Description: Cafeteria or buffet setting with various food items and condiments [frame_0425 - frame_0460]
+Scene 10 (Coffee Roasting Facility) : Description: Coffee roasting facility with large stainless-steel coffee roaster [frame_1259]
+
+EVENTS:
+Event 1 (Griddle Cleaning): Description: Person 1 cleaning a dirty griddle with a scraper [frame_0001 - frame_0015]
+Event 2 (Food Preparation): Description: Person 2 preparing food on a griddle or grill [frame_0016 - frame_0259]
+Event 3 (Sandwich Assembly): Description: Person 3 assembling sandwiches on a yellow cutting board [frame_0162 - frame_0188]
+Event 4 (Food Serving): Description: Person 3 serving food from a buffet counter [frame_0237 - frame_0242]
+Event 5 (Griddle Cooking): Description: Person 2 cooking food on a griddle or grill [frame_0250 - frame_0300]
+Event 6 (Cheese Preparation): Description: Person 1 handling cheese slices or blocks [frame_0399 - frame_0410]
+Event 7 (Burger Assembly): Description: Person 1 assembling burgers on a yellow cutting board [frame_0437 - frame_0450]
+Event 8 (Food Display): Description: Various food items displayed on a buffet counter [frame_0382 - frame_0385]
+Event 9 (Kitchen Cleaning): Description: Person 1 cleaning a dirty griddle or grill with a scraper or brush [frame_0493, frame_0583, frame_0865]
+Event 10 (Food Preparation with Blowtorch): Description: Person 1 using a blowtorch to cook or caramelize food [frame_0073 - frame_0074, frame_0433]
+
+================================================================================
+Generated at: 2026-01-11 21:48:38
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. Person making a side salad
+  Q2. Tomato slice being handled or prepared
+  Q3. Ingredient being placed on top of tomato slice
+  Q4. Salad preparation station or surface
+  Q5. Visible salad components like lettuce, vegetables, dressings
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 5)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, ALWAYS pick the best answer choice:
+   - Review ALL answer choices (A, B, C, D, E, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D, 4=E)
+
+5. If criteria_percentage > 0.5 (>50% of criteria pass):
+   - Your chosen answer is well-supported by evidence
+   - Set suggestion to null or provide minor improvements
+
+6. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - Still MUST choose the BEST answer from the available choices (never -1)
+   - But set suggestion to "These may not be the right frames/scene. Consider searching for better evidence. The answer chosen is the BEST match given current evidence."
+   - This signals low confidence but still provides a choice
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 5,
+    "criteria_percentage": <criteria_passed / 5>,
+    "base_confidence": <(criteria_passed / 5) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E - MUST be a valid number 0-4, never -1>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "Person making a side salad",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms person in black gloves actively assembling side salad on white plate in frames 1-14"
+        },
+        {
+            "criterion": "Tomato slice being handled or prepared",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms tomato slices placed on lettuce in frames 6-7 (0683-0685)"
+        },
+        {
+            "criterion": "Ingredient being placed on top of tomato slice",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms cucumber slices placed directly on top of tomato slices in frames 10-11 (0688-0689)"
+        },
+        {
+            "criterion": "Salad preparation station or surface",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms salad prep station with bowls, tongs, and yellow cutting board throughout sequence"
+        },
+        {
+            "criterion": "Visible salad components like lettuce, vegetables, dressings",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms shredded lettuce, tomato slices, cucumber slices, and onion rings visible; dressings not explicitly shown but multiple vegetables confirmed"
+        }
+    ],
+    "question_criteria_passed": 5,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 5,
+    "criteria_total": 5,
+    "criteria_percentage": 1.0,
+    "base_confidence": 100,
+    "confidence": 100,
+    "critic_answer_choice": 1,
+    "critic_reasoning": "VLM clearly shows cucumber slices being placed directly on top of tomato slices during salad assembly in frames 0688-0689, with temporal sequence confirming this action",
+    "possible_errors": [],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'Person making a side salad', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms person in black gloves actively assembling side salad on white plate in frames 1-14'}, {'criterion': 'Tomato slice being handled or prepared', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms tomato slices placed on lettuce in frames 6-7 (0683-0685)'}, {'criterion': 'Ingredient being placed on top of tomato slice', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms cucumber slices placed directly on top of tomato slices in frames 10-11 (0688-0689)'}, {'criterion': 'Salad preparation station or surface', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms salad prep station with bowls, tongs, and yellow cutting board throughout sequence'}, {'criterion': 'Visible salad components like lettuce, vegetables, dressings', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms shredded lettuce, tomato slices, cucumber slices, and onion rings visible; dressings not explicitly shown but multiple vegetables confirmed'}], 'question_criteria_passed': 5, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 5, 'criteria_total': 5, 'criteria_percentage': 1.0, 'base_confidence': 100, 'confidence': 100, 'critic_answer_choice': 1, 'critic_reasoning': 'VLM clearly shows cucumber slices being placed directly on top of tomato slices during salad assembly in frames 0688-0689, with temporal sequence confirming this action', 'possible_errors': [], 'suggestion': None}

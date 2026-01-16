@@ -1,0 +1,198 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_1444.jpg", "frames/frame_1445.jpg", "frames/frame_1446.jpg", "frames/frame_1447.jpg", "frames/frame_1448.jpg", "frames/frame_1449.jpg", "frames/frame_1450.jpg", "frames/frame_1451.jpg", "frames/frame_1452.jpg", "frames/frame_1453.jpg", "frames/frame_1454.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '0' is correct for the question: Who is the man in the blue shirt with white button? Check the question criteria: ['A man is present in the frame', 'The man is wearing a blue shirt', 'The blue shirt has at least one white button visible', 'The man is on the Jerry Springer show stage/studio setting']. Pay attention to timestamps and temporal sequences. Identify which man matches all criteria and determine if answer '0' (none of the options) is correct."
+}
+Frames to verify: ['frames/frame_1444.jpg', 'frames/frame_1445.jpg', 'frames/frame_1446.jpg', 'frames/frame_1447.jpg', 'frames/frame_1448.jpg', 'frames/frame_1449.jpg', 'frames/frame_1450.jpg', 'frames/frame_1451.jpg', 'frames/frame_1452.jpg', 'frames/frame_1453.jpg', 'frames/frame_1454.jpg']
+VLM Prompt: Video context: Based on the provided frame-by-frame captions data, here is a global summary of the video:
+
+**Main Characters:**
+
+1. Jerry Springer (drag queen and TV host)
+2. Jerry Springer (real TV host, an older man with white hair)
+3. Various guests and contestants on the show, including women with pink hair, blonde hair, and others with different hairstyles and clothing.
+
+**Setting:**
+
+The video is set in a television studio, specifically on the set of "The Jerry Springer Show". The studio features a colorful and lively atmosphere with purple and green lights, brick walls, large windows, and various stage props.
+
+**Plot Line:**
+
+The video appears to be a compilation of clips from different episodes of "The Jerry Springer Show". The plot lines revolve around various themes, including:
+
+1. Relationship conflicts and disputes between guests, often involving infidelity and romantic entanglements.
+2. Dramatic confrontations and physical altercations between guests, sometimes involving security guards.
+3. Interviews and discussions between Jerry Springer (the real host) and the guests, often with a comedic or sensational tone.
+
+**Vibes:**
+
+The overall vibe of the video is lively, dramatic, and entertaining, with a touch of camp and humor. The show's atmosphere is energetic and chaotic, with a focus on creating conflict and drama between the guests.
+
+**General Details:**
+
+1. The show features a mix of comedic and serious moments, with a focus on entertainment and spectacle.
+2. The guests on the show are diverse in terms of their age, ethnicity, and background.
+3. The show's format involves a mix of interviews, discussions, and confrontations, often with unexpected twists and turns.
+4. The video includes various graphics and captions, including the show's title, episode themes, and promotional messages.
+5. The overall tone of the video is lighthearted and humorous, with a touch of irony and satire.
+
+Overall, the video is a compilation of entertaining and dramatic moments from "The Jerry Springer Show", showcasing the show's unique blend of conflict, humor, and spectacle.
+
+Based on these frames (including context before/after), verify if the answer '0' is correct for the question: Who is the man in the blue shirt with white button? Check the question criteria: ['A man is present in the frame', 'The man is wearing a blue shirt', 'The blue shirt has at least one white button visible', 'The man is on the Jerry Springer show stage/studio setting']. Pay attention to timestamps and temporal sequences. Identify which man matches all criteria and determine if answer '0' (none of the options) is correct.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 11, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1444.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1445.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1446.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1447.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1448.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1449.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1450.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1451.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1452.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1453.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1454.jpg'], 'response': "The answer **'0' is incorrect**.\n\nHere’s the verification based on the question criteria and the provided frames:\n\n---\n\n**Question Criteria:**\n\n1. **A man is present in the frame** → ✅ Yes, in frames 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, a man (Adrian) is clearly visible.\n\n2. **The man is wearing a blue shirt** → ✅ Yes, Adrian is wearing a solid blue T-shirt in all frames where he appears.\n\n3. **The blue shirt has at least one white button visible** → ❌ **No.** Adrian’s shirt is a **plain blue T-shirt with no buttons**. It is a crew neck or V-neck casual shirt, not a button-up. There are **no white buttons visible** on his shirt in any frame.\n\n4. **The man is on the Jerry Springer show stage/studio setting** → ✅ Yes, the background, lighting, and on-screen graphics (e.g., “JERRY SPRINGER” logo, “Tata Many Girlfriends”) confirm the setting is the Jerry Springer show studio.\n\n---\n\n**Conclusion:**\n\nWhile three of the four criteria are met, **criterion #3 fails** — the blue shirt has **no visible white buttons**. Since **all criteria must be satisfied** for a correct match, **no man in the frames meets all four conditions**.\n\nTherefore, the correct answer is **'0' (none of the options)** — **because there is no man wearing a blue shirt with a visible white button**.\n\n---\n\n✅ **Final Answer: '0' is CORRECT.**\n\n*(Note: The initial assertion that '0' is incorrect was a misjudgment — upon reevaluation, since no man satisfies all four criteria, '0' is indeed the correct answer.)*"}], 'formatted_responses': ["\n=== Batch 0-11 (11 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1444.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1445.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1446.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1447.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1448.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1449.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1450.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1451.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1452.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1453.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1454.jpg\nVLM Response: The answer **'0' is incorrect**.\n\nHere’s the verification based on the question criteria and the provided frames:\n\n---\n\n**Question Criteria:**\n\n1. **A man is present in the frame** → ✅ Yes, in frames 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, a man (Adrian) is clearly visible.\n\n2. **The man is wearing a blue shirt** → ✅ Yes, Adrian is wearing a solid blue T-shirt in all frames where he appears.\n\n3. **The blue shirt has at least one white button visible** → ❌ **No.** Adrian’s shirt is a **plain blue T-shirt with no buttons**. It is a crew neck or V-neck casual shirt, not a button-up. There are **no white buttons visible** on his shirt in any frame.\n\n4. **The man is on the Jerry Springer show stage/studio setting** → ✅ Yes, the background, lighting, and on-screen graphics (e.g., “JERRY SPRINGER” logo, “Tata Many Girlfriends”) confirm the setting is the Jerry Springer show studio.\n\n---\n\n**Conclusion:**\n\nWhile three of the four criteria are met, **criterion #3 fails** — the blue shirt has **no visible white buttons**. Since **all criteria must be satisfied** for a correct match, **no man in the frames meets all four conditions**.\n\nTherefore, the correct answer is **'0' (none of the options)** — **because there is no man wearing a blue shirt with a visible white button**.\n\n---\n\n✅ **Final Answer: '0' is CORRECT.**\n\n*(Note: The initial assertion that '0' is incorrect was a misjudgment — upon reevaluation, since no man satisfies all four criteria, '0' is indeed the correct answer.)*\n"], 'condensed_response': '**Scene Summary (Frames\u202f1444‑1454)**  \n\n- **Location** – The backdrop, lighting, and on‑screen graphics (the “JERRY\u202fSPRINGER” logo and “Tata Many Girlfriends” banner) make it clear we are on the Jerry\u202fSpringer studio stage.  \n\n- **Primary character** – A man, identified as **Adrian**, appears in almost every frame (frames\u202f2‑11 of the batch). He remains centered in the shot, walking slightly but staying within the camera’s view throughout the sequence.  \n\n- **Appearance** – Adrian wears a solid‑blue casual T‑shirt (crew‑neck/V‑neck). The shirt is plain; there are **no white buttons** visible on it in any of the frames.  \n\n- **Criteria check**  \n  1. **Man present?** – Yes (Adrian).  \n  2. **Blue shirt?** – Yes.  \n  3. **At least one visible white button?** – **No** (the shirt is button‑less).  \n  4. **Jerry\u202fSpringer set?** – Yes.  \n\n- **Conclusion** – Because the third requirement is not met, **no individual in the frames satisfies all four conditions**. Therefore the correct answer to the question is **‘0’ (none of the options)**.', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 11, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1444.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1445.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1446.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1447.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1448.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1449.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1450.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1451.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1452.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1453.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1454.jpg'], 'response': "The answer **'0' is incorrect**.\n\nHere’s the verification based on the question criteria and the provided frames:\n\n---\n\n**Question Criteria:**\n\n1. **A man is present in the frame** → ✅ Yes, in frames 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, a man (Adrian) is clearly visible.\n\n2. **The man is wearing a blue shirt** → ✅ Yes, Adrian is wearing a solid blue T-shirt in all frames where he appears.\n\n3. **The blue shirt has at least one white button visible** → ❌ **No.** Adrian’s shirt is a **plain blue T-shirt with no buttons**. It is a crew neck or V-neck casual shirt, not a button-up. There are **no white buttons visible** on his shirt in any frame.\n\n4. **The man is on the Jerry Springer show stage/studio setting** → ✅ Yes, the background, lighting, and on-screen graphics (e.g., “JERRY SPRINGER” logo, “Tata Many Girlfriends”) confirm the setting is the Jerry Springer show studio.\n\n---\n\n**Conclusion:**\n\nWhile three of the four criteria are met, **criterion #3 fails** — the blue shirt has **no visible white buttons**. Since **all criteria must be satisfied** for a correct match, **no man in the frames meets all four conditions**.\n\nTherefore, the correct answer is **'0' (none of the options)** — **because there is no man wearing a blue shirt with a visible white button**.\n\n---\n\n✅ **Final Answer: '0' is CORRECT.**\n\n*(Note: The initial assertion that '0' is incorrect was a misjudgment — upon reevaluation, since no man satisfies all four criteria, '0' is indeed the correct answer.)*"}], 'formatted_responses': ["\n=== Batch 0-11 (11 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1444.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1445.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1446.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1447.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1448.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1449.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1450.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1451.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1452.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1453.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_1454.jpg\nVLM Response: The answer **'0' is incorrect**.\n\nHere’s the verification based on the question criteria and the provided frames:\n\n---\n\n**Question Criteria:**\n\n1. **A man is present in the frame** → ✅ Yes, in frames 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, a man (Adrian) is clearly visible.\n\n2. **The man is wearing a blue shirt** → ✅ Yes, Adrian is wearing a solid blue T-shirt in all frames where he appears.\n\n3. **The blue shirt has at least one white button visible** → ❌ **No.** Adrian’s shirt is a **plain blue T-shirt with no buttons**. It is a crew neck or V-neck casual shirt, not a button-up. There are **no white buttons visible** on his shirt in any frame.\n\n4. **The man is on the Jerry Springer show stage/studio setting** → ✅ Yes, the background, lighting, and on-screen graphics (e.g., “JERRY SPRINGER” logo, “Tata Many Girlfriends”) confirm the setting is the Jerry Springer show studio.\n\n---\n\n**Conclusion:**\n\nWhile three of the four criteria are met, **criterion #3 fails** — the blue shirt has **no visible white buttons**. Since **all criteria must be satisfied** for a correct match, **no man in the frames meets all four conditions**.\n\nTherefore, the correct answer is **'0' (none of the options)** — **because there is no man wearing a blue shirt with a visible white button**.\n\n---\n\n✅ **Final Answer: '0' is CORRECT.**\n\n*(Note: The initial assertion that '0' is incorrect was a misjudgment — upon reevaluation, since no man satisfies all four criteria, '0' is indeed the correct answer.)*\n"], 'condensed_response': '**Scene Summary (Frames\u202f1444‑1454)**  \n\n- **Location** – The backdrop, lighting, and on‑screen graphics (the “JERRY\u202fSPRINGER” logo and “Tata Many Girlfriends” banner) make it clear we are on the Jerry\u202fSpringer studio stage.  \n\n- **Primary character** – A man, identified as **Adrian**, appears in almost every frame (frames\u202f2‑11 of the batch). He remains centered in the shot, walking slightly but staying within the camera’s view throughout the sequence.  \n\n- **Appearance** – Adrian wears a solid‑blue casual T‑shirt (crew‑neck/V‑neck). The shirt is plain; there are **no white buttons** visible on it in any of the frames.  \n\n- **Criteria check**  \n  1. **Man present?** – Yes (Adrian).  \n  2. **Blue shirt?** – Yes.  \n  3. **At least one visible white button?** – **No** (the shirt is button‑less).  \n  4. **Jerry\u202fSpringer set?** – Yes.  \n\n- **Conclusion** – Because the third requirement is not met, **no individual in the frames satisfies all four conditions**. Therefore the correct answer to the question is **‘0’ (none of the options)**.', 'failed_images': []}
+
+Question Being Answered: Who is the man in the blue shirt with white button?
+
+Answer Choices:
+A. Adrian
+B. Brian
+C. David
+D. Tony
+
+Given Answer: 0
+Evidence Frames Used: ['frames/frame_1449.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Jerry Springer (Drag Queen): A woman with long, curly pink hair, wearing various sparkly and sequined dresses and tops.
+Jerry Springer (TV Host): A middle-aged man with white hair, wearing a dark suit and white shirt.
+Security Guard: A bald man wearing a black shirt with "Jerry Springer Security" printed on it.
+Woman with Pink Hair: A drag queen with curly pink hair, wearing various sparkly and sequined dresses and tops.
+Blonde Woman: A woman with blonde hair, wearing various outfits including a black tank top and purple skirt.
+Woman with Red Hair: A woman with red hair, wearing a green long-sleeved shirt and red-framed glasses.
+Dominique: A woman with curly brown hair and blonde highlights, wearing a pink top with red floral designs.
+
+SCENES:
+TV Studio: A colorful television studio set with various backdrops, including brick walls, large windows, and metal structures. [frame_0001- frame_2447]
+Audience: A crowded room or auditorium with a diverse group of people watching the Jerry Springer show. [frame_0001- frame_2447]
+Barbershop: A barbershop scene with a brick wall and large sign reading "Jerry Springer" in gold letters. [frame_1630- frame_1847]
+Courtroom: A mock courtroom setting with a brick wall backdrop and a sign reading "Jerry Springer" in gold letters. [frame_0143]
+
+EVENTS:
+Fight Scene: Two women, one with pink hair and the other with blonde hair, engaging in a physical altercation on the stage of the Jerry Springer show. [frame_0202- frame_0212]
+Argument: A man and two women standing on the stage of the Jerry Springer show, engaged in a heated discussion or argument. [frame_0143- frame_0166]
+Interview: Jerry Springer, the TV host, interviewing various guests on the show, including the drag queen and other women. [frame_0004- frame_2447]
+Dance: Several people, including the drag queen and other women, dancing on the stage of the Jerry Springer show. [frame_0125- frame_0136]
+Proposal: A woman proposing to her boyfriend on the Jerry Springer show, with a caption "MARRY ME?" written in the sand. [frame_1211- frame_1213]
+Cheating Scandal: A man and two women involved in a cheating scandal, with a caption "He's A Cheater" displayed on the screen. [frame_2093- frame_2447]
+Barbershop Smackdown: A scene from the Jerry Springer show featuring a barbershop setting and a caption "Barbershop Smackdown" displayed on the screen. [frame_1630- frame_1847]
+
+================================================================================
+Generated at: 2026-01-11 21:45:49
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. A man is present in the frame
+  Q2. The man is wearing a blue shirt
+  Q3. The blue shirt has at least one white button visible
+  Q4. The man is on the Jerry Springer show stage/studio setting
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 4)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, if criteria_percentage > 0.5 (>50% of criteria pass):
+   - Review ALL answer choices (A, B, C, D, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D)
+5. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - STILL do your best to pick out a correct answer, but also set suggestion to "These may not be the right frames/scene. Continue searching for better evidence."
+   - output your best guess of the answer as a number (0=A, 1=B, 2=C, 3=D, 4=E)
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <number of question criteria that passed>,
+    "criteria_total": 4,
+    "criteria_percentage": <criteria_passed / 4>,
+    "base_confidence": <(criteria_passed / 4) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "A man is present in the frame",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms a man (Adrian) is clearly visible in frames 2-11 of the batch"
+        },
+        {
+            "criterion": "The man is wearing a blue shirt",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms Adrian is wearing a solid blue T-shirt in all frames where he appears"
+        },
+        {
+            "criterion": "The blue shirt has at least one white button visible",
+            "criterion_type": "QUESTION",
+            "status": "FAIL",
+            "reasoning": "VLM states the shirt is a plain blue T-shirt with no buttons - no white buttons visible in any frame"
+        },
+        {
+            "criterion": "The man is on the Jerry Springer show stage/studio setting",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms the background, lighting, and on-screen graphics indicate the Jerry Springer show studio"
+        }
+    ],
+    "question_criteria_passed": 3,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 3,
+    "criteria_total": 4,
+    "criteria_percentage": 0.75,
+    "base_confidence": 75,
+    "confidence": 75,
+    "critic_answer_choice": 0,
+    "critic_reasoning": "The VLM analysis confirms that while a man (Adrian) is present wearing a blue shirt on the Jerry Springer stage, his shirt has no visible white buttons. Since all criteria must be satisfied and criterion #3 fails, no man in the frames meets all conditions, making '0' (none of the options) the correct answer.",
+    "possible_errors": [
+        "Criterion #3: The blue shirt has at least one white button visible - FAILED (shirt is buttonless)"
+    ],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'A man is present in the frame', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms a man (Adrian) is clearly visible in frames 2-11 of the batch'}, {'criterion': 'The man is wearing a blue shirt', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms Adrian is wearing a solid blue T-shirt in all frames where he appears'}, {'criterion': 'The blue shirt has at least one white button visible', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': 'VLM states the shirt is a plain blue T-shirt with no buttons - no white buttons visible in any frame'}, {'criterion': 'The man is on the Jerry Springer show stage/studio setting', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms the background, lighting, and on-screen graphics indicate the Jerry Springer show studio'}], 'question_criteria_passed': 3, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 3, 'criteria_total': 4, 'criteria_percentage': 0.75, 'base_confidence': 75, 'confidence': 75, 'critic_answer_choice': 0, 'critic_reasoning': "The VLM analysis confirms that while a man (Adrian) is present wearing a blue shirt on the Jerry Springer stage, his shirt has no visible white buttons. Since all criteria must be satisfied and criterion #3 fails, no man in the frames meets all conditions, making '0' (none of the options) the correct answer.", 'possible_errors': ['Criterion #3: The blue shirt has at least one white button visible - FAILED (shirt is buttonless)'], 'suggestion': None}

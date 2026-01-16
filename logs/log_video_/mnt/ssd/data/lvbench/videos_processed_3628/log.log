@@ -1,0 +1,188 @@
+Critic initial response: ```json
+{
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0016.jpg", "frames/frame_0017.jpg", "frames/frame_0018.jpg", "frames/frame_0019.jpg", "frames/frame_0020.jpg", "frames/frame_0021.jpg", "frames/frame_0022.jpg", "frames/frame_0023.jpg", "frames/frame_0024.jpg", "frames/frame_0025.jpg", "frames/frame_0026.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '1' (Player 4) is correct for the question: 'Which player is responsible for the first throw-in?'. Check the question criteria: ['A soccer player performing a throw-in action', 'The ball going out of bounds over the touchline', 'A player picking up the ball with both hands to throw it', 'The first occurrence of a throw-in in the match', 'Player wearing either white (Arsenal) or purple (Liverpool) jersey', 'Player number visible on the back of the jersey']. Pay attention to timestamps and temporal sequences. Look for visual evidence of: 1) A player holding the ball with both hands preparing to throw, 2) The ball having gone out of bounds, 3) This being the first throw-in occurrence in the match sequence, 4) The player's jersey number being clearly visible, 5) Whether the player matches the answer choice (Player 4)."
+}
+```
+Frames to verify: ['frames/frame_0016.jpg', 'frames/frame_0017.jpg', 'frames/frame_0018.jpg', 'frames/frame_0019.jpg', 'frames/frame_0020.jpg', 'frames/frame_0021.jpg', 'frames/frame_0022.jpg', 'frames/frame_0023.jpg', 'frames/frame_0024.jpg', 'frames/frame_0025.jpg', 'frames/frame_0026.jpg']
+VLM Prompt: Video context: Based on the provided frame-by-frame captions data, here is a global summary of the video:
+
+**Main Characters:**
+The main characters in the video are soccer players from two teams, Arsenal and Liverpool, as well as their managers, Mikel Arteta and Jurgen Klopp. Some notable players mentioned include Trent Alexander-Arnold, Luis Diaz, and Mohamed Salah.
+
+**Setting:**
+The setting is a soccer stadium, specifically the Emirates Stadium, where a match between Arsenal and Liverpool is taking place. The stadium is filled with a large crowd of spectators, and the atmosphere is electric.
+
+**Plot Line:**
+The video appears to be a recording of a soccer match between Arsenal and Liverpool in the Emirates FA Cup. The match is intense and competitive, with players from both teams engaging in various actions on the field, including running, kicking, and tackling. The game is closely contested, with Liverpool ultimately emerging as the winner, scoring two goals to Arsenal's zero.
+
+**Vibes:**
+The overall vibe of the video is one of excitement, tension, and celebration. The match is intense and closely contested, with moments of high drama and tension. The crowd is energetic and engaged, cheering and reacting to the action on the field. The video also captures moments of joy and celebration, particularly when Liverpool scores their goals and ultimately wins the match.
+
+**General Details:**
+The video is a comprehensive recording of the soccer match, capturing various aspects of the game, including the players' actions, the crowd's reactions, and the stadium's atmosphere. The captions provide a detailed description of each frame, highlighting the key events and moments of the match. The video appears to be a professional recording, possibly from a broadcast or official footage.
+
+Based on these frames (including context before/after), verify if the answer '1' (Player 4) is correct for the question: 'Which player is responsible for the first throw-in?'. Check the question criteria: ['A soccer player performing a throw-in action', 'The ball going out of bounds over the touchline', 'A player picking up the ball with both hands to throw it', 'The first occurrence of a throw-in in the match', 'Player wearing either white (Arsenal) or purple (Liverpool) jersey', 'Player number visible on the back of the jersey']. Pay attention to timestamps and temporal sequences. Look for visual evidence of: 1) A player holding the ball with both hands preparing to throw, 2) The ball having gone out of bounds, 3) This being the first throw-in occurrence in the match sequence, 4) The player's jersey number being clearly visible, 5) Whether the player matches the answer choice (Player 4).
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 11, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0016.jpg', '/mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0017.jpg', '/mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0018.jpg', '/mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0019.jpg', '/mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0020.jpg', '/mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0021.jpg', '/mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0022.jpg', '/mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0023.jpg', '/mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0024.jpg', '/mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0025.jpg', '/mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0026.jpg'], 'response': "Based on the provided frames and the question criteria, the answer **'1' (Player 4)** is **incorrect**.\n\n### Here’s the reasoning:\n\n#### 1. **No throw-in action is visible in any frame.**\n- None of the 11 frames show a player holding the ball with both hands preparing to throw it in.\n- There is no visual evidence of the ball going out of bounds over the touchline.\n- No player is shown picking up the ball or executing a throw-in.\n\n#### 2. **No first throw-in occurrence is captured.**\n- The frames begin with a team huddle (Frames 1–2), followed by crowd reactions (Frames 3–6), and then a close-up of a player (Elliott, #19) from behind (Frames 7–11).\n- There is no temporal sequence indicating the start of play or the first time the ball went out of bounds.\n\n#### 3. **Player number visibility and identity:**\n- The only clearly visible player number is **#19 (Elliott)** in a purple jersey (Liverpool).\n- There is **no player wearing jersey #4** visible in any frame.\n- The answer choice “Player 4” does not match any visible player in the sequence.\n\n#### 4. **Jersey color:**\n- The visible player (Elliott) is wearing purple (Liverpool), which satisfies the jersey color criterion — but again, he is #19, not #4.\n\n#### 5. **Temporal sequence:**\n- The frames do not include the first throw-in of the match — they appear to be from later in the game or even post-goal celebrations or breaks in play (e.g., huddle, crowd shots, player reacting).\n\n---\n\n### Conclusion:\nThere is **no visual evidence** in the provided frames to support that **Player 4** performed the first throw-in — in fact, **Player 4 is not even visible**. The frames do not show any throw-in action at all.\n\n✅ **Final Answer: No, the answer '1' (Player 4) is not correct.**"}], 'formatted_responses': ["\n=== Batch 0-11 (11 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0016.jpg, /mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0017.jpg, /mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0018.jpg, /mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0019.jpg, /mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0020.jpg, /mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0021.jpg, /mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0022.jpg, /mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0023.jpg, /mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0024.jpg, /mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0025.jpg, /mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0026.jpg\nVLM Response: Based on the provided frames and the question criteria, the answer **'1' (Player 4)** is **incorrect**.\n\n### Here’s the reasoning:\n\n#### 1. **No throw-in action is visible in any frame.**\n- None of the 11 frames show a player holding the ball with both hands preparing to throw it in.\n- There is no visual evidence of the ball going out of bounds over the touchline.\n- No player is shown picking up the ball or executing a throw-in.\n\n#### 2. **No first throw-in occurrence is captured.**\n- The frames begin with a team huddle (Frames 1–2), followed by crowd reactions (Frames 3–6), and then a close-up of a player (Elliott, #19) from behind (Frames 7–11).\n- There is no temporal sequence indicating the start of play or the first time the ball went out of bounds.\n\n#### 3. **Player number visibility and identity:**\n- The only clearly visible player number is **#19 (Elliott)** in a purple jersey (Liverpool).\n- There is **no player wearing jersey #4** visible in any frame.\n- The answer choice “Player 4” does not match any visible player in the sequence.\n\n#### 4. **Jersey color:**\n- The visible player (Elliott) is wearing purple (Liverpool), which satisfies the jersey color criterion — but again, he is #19, not #4.\n\n#### 5. **Temporal sequence:**\n- The frames do not include the first throw-in of the match — they appear to be from later in the game or even post-goal celebrations or breaks in play (e.g., huddle, crowd shots, player reacting).\n\n---\n\n### Conclusion:\nThere is **no visual evidence** in the provided frames to support that **Player 4** performed the first throw-in — in fact, **Player 4 is not even visible**. The frames do not show any throw-in action at all.\n\n✅ **Final Answer: No, the answer '1' (Player 4) is not correct.**\n"], 'condensed_response': '**Condensed scene summary (character‑tracking focus)**  \n\n| Frame (≈timestamp) | Visual content | Visible player(s) / ID | Relevant action |\n|--------------------|----------------|------------------------|-----------------|\n| **0016‑0017** (start) | Team huddle on the sideline – players clustered, no ball in hand. | No identifiable numbers. | No throw‑in; pre‑play positioning. |\n| **0018‑0021** | Cut to the stands – crowd reactions, zoom‑outs of the stadium atmosphere. | No players. | Still no ball‑in‑play activity. |\n| **0022‑0026** (later) | Close‑up behind a lone player on the pitch. | **#19 – Elliott** (purple Liverpool jersey). The jersey color matches the “purple” criterion, but the number is 19, not 4. | Player is stationary, looking away from the ball; no throw‑in motion. |\n\n**Key points for the question (“first throw‑in by player\u202f4 in a purple jersey”)**\n\n1. **Throw‑in not captured** – none of the 11 frames show a player holding the ball with both hands, preparing to throw it, or the ball exiting the field.  \n2. **Player\u202f4 never appears** – the only identifiable player is #19 (Elliott). No jersey with number\u202f4 is visible in any frame.  \n3. **Jersey color** – the visible jersey (purple) satisfies the color condition, but the associated number is wrong.  \n\n**Conclusion** – The sequence depicts a huddle, crowd shots, and a stationary view of player\u202f#19; it contains no throw‑in action and does not show player\u202f4. Therefore the proposed answer “Player\u202f4 performed the first throw‑in” is unsupported by the visual evidence.', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+⚠️ IMPORTANT: Answers use 0-INDEXED numbers where 0=A, 1=B, 2=C, 3=D, 4=E
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 11, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0016.jpg', '/mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0017.jpg', '/mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0018.jpg', '/mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0019.jpg', '/mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0020.jpg', '/mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0021.jpg', '/mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0022.jpg', '/mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0023.jpg', '/mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0024.jpg', '/mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0025.jpg', '/mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0026.jpg'], 'response': "Based on the provided frames and the question criteria, the answer **'1' (Player 4)** is **incorrect**.\n\n### Here’s the reasoning:\n\n#### 1. **No throw-in action is visible in any frame.**\n- None of the 11 frames show a player holding the ball with both hands preparing to throw it in.\n- There is no visual evidence of the ball going out of bounds over the touchline.\n- No player is shown picking up the ball or executing a throw-in.\n\n#### 2. **No first throw-in occurrence is captured.**\n- The frames begin with a team huddle (Frames 1–2), followed by crowd reactions (Frames 3–6), and then a close-up of a player (Elliott, #19) from behind (Frames 7–11).\n- There is no temporal sequence indicating the start of play or the first time the ball went out of bounds.\n\n#### 3. **Player number visibility and identity:**\n- The only clearly visible player number is **#19 (Elliott)** in a purple jersey (Liverpool).\n- There is **no player wearing jersey #4** visible in any frame.\n- The answer choice “Player 4” does not match any visible player in the sequence.\n\n#### 4. **Jersey color:**\n- The visible player (Elliott) is wearing purple (Liverpool), which satisfies the jersey color criterion — but again, he is #19, not #4.\n\n#### 5. **Temporal sequence:**\n- The frames do not include the first throw-in of the match — they appear to be from later in the game or even post-goal celebrations or breaks in play (e.g., huddle, crowd shots, player reacting).\n\n---\n\n### Conclusion:\nThere is **no visual evidence** in the provided frames to support that **Player 4** performed the first throw-in — in fact, **Player 4 is not even visible**. The frames do not show any throw-in action at all.\n\n✅ **Final Answer: No, the answer '1' (Player 4) is not correct.**"}], 'formatted_responses': ["\n=== Batch 0-11 (11 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0016.jpg, /mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0017.jpg, /mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0018.jpg, /mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0019.jpg, /mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0020.jpg, /mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0021.jpg, /mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0022.jpg, /mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0023.jpg, /mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0024.jpg, /mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0025.jpg, /mnt/ssd/data/lvbench/videos_processed/rSE2YPcv89U/frames/frame_0026.jpg\nVLM Response: Based on the provided frames and the question criteria, the answer **'1' (Player 4)** is **incorrect**.\n\n### Here’s the reasoning:\n\n#### 1. **No throw-in action is visible in any frame.**\n- None of the 11 frames show a player holding the ball with both hands preparing to throw it in.\n- There is no visual evidence of the ball going out of bounds over the touchline.\n- No player is shown picking up the ball or executing a throw-in.\n\n#### 2. **No first throw-in occurrence is captured.**\n- The frames begin with a team huddle (Frames 1–2), followed by crowd reactions (Frames 3–6), and then a close-up of a player (Elliott, #19) from behind (Frames 7–11).\n- There is no temporal sequence indicating the start of play or the first time the ball went out of bounds.\n\n#### 3. **Player number visibility and identity:**\n- The only clearly visible player number is **#19 (Elliott)** in a purple jersey (Liverpool).\n- There is **no player wearing jersey #4** visible in any frame.\n- The answer choice “Player 4” does not match any visible player in the sequence.\n\n#### 4. **Jersey color:**\n- The visible player (Elliott) is wearing purple (Liverpool), which satisfies the jersey color criterion — but again, he is #19, not #4.\n\n#### 5. **Temporal sequence:**\n- The frames do not include the first throw-in of the match — they appear to be from later in the game or even post-goal celebrations or breaks in play (e.g., huddle, crowd shots, player reacting).\n\n---\n\n### Conclusion:\nThere is **no visual evidence** in the provided frames to support that **Player 4** performed the first throw-in — in fact, **Player 4 is not even visible**. The frames do not show any throw-in action at all.\n\n✅ **Final Answer: No, the answer '1' (Player 4) is not correct.**\n"], 'condensed_response': '**Condensed scene summary (character‑tracking focus)**  \n\n| Frame (≈timestamp) | Visual content | Visible player(s) / ID | Relevant action |\n|--------------------|----------------|------------------------|-----------------|\n| **0016‑0017** (start) | Team huddle on the sideline – players clustered, no ball in hand. | No identifiable numbers. | No throw‑in; pre‑play positioning. |\n| **0018‑0021** | Cut to the stands – crowd reactions, zoom‑outs of the stadium atmosphere. | No players. | Still no ball‑in‑play activity. |\n| **0022‑0026** (later) | Close‑up behind a lone player on the pitch. | **#19 – Elliott** (purple Liverpool jersey). The jersey color matches the “purple” criterion, but the number is 19, not 4. | Player is stationary, looking away from the ball; no throw‑in motion. |\n\n**Key points for the question (“first throw‑in by player\u202f4 in a purple jersey”)**\n\n1. **Throw‑in not captured** – none of the 11 frames show a player holding the ball with both hands, preparing to throw it, or the ball exiting the field.  \n2. **Player\u202f4 never appears** – the only identifiable player is #19 (Elliott). No jersey with number\u202f4 is visible in any frame.  \n3. **Jersey color** – the visible jersey (purple) satisfies the color condition, but the associated number is wrong.  \n\n**Conclusion** – The sequence depicts a huddle, crowd shots, and a stationary view of player\u202f#19; it contains no throw‑in action and does not show player\u202f4. Therefore the proposed answer “Player\u202f4 performed the first throw‑in” is unsupported by the visual evidence.', 'failed_images': []}
+
+Question Being Answered: Which player is responsible for the first throw-in?
+
+Answer Choices (0-indexed: 0=A, 1=B, 2=C, 3=D, 4=E):
+  0 (=A): Player 7
+  1 (=B): Player 4
+  2 (=C): Player 5
+  3 (=D): Player 8
+
+Given Answer: 1
+Evidence Frames Used: ['frames/frame_0021.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Referee: Description: A man wearing a black shirt with a white Nike logo and a "FIFA REFEREE 2023" badge.
+Soccer Player 8 (White Jersey): Description: A soccer player wearing a white jersey with the number 8 on the back.
+RICHARLISON (Purple Jersey): Description: A soccer player wearing a purple jersey with the number 66 and the name "RICHARLISON" on the back.
+ELLIOTT (Purple Jersey): Description: A soccer player wearing a purple jersey with the name "ELLIOTT" and the number "10" or "19" on the back.
+Mikel Arteta: Description: A man with short black hair wearing a black jacket, likely the coach or manager of Arsenal Football Club.
+Jurgen Klopp: Description: A man with a short grey beard wearing a black Liverpool FC jacket and cap, likely the coach or manager of Liverpool Football Club.
+Aaron Ramsdale: Description: A fair-skinned soccer player with short blond hair, wearing a black jersey with white stripes on the shoulders and red and yellow goalie gloves.
+Granit Xhaka: Description: A soccer player wearing a white long-sleeved jersey with "Emirates FLY BETTER" written across the chest, holding a yellow soccer ball above his head with both hands.
+Luis Diaz: Description: A soccer player wearing a purple Liverpool jersey with the number 7 on the back.
+
+SCENES:
+Soccer Match at Emirates Stadium: Description: A soccer match between Arsenal and Liverpool on a green field with white lines, surrounded by a crowd of spectators in the stands and advertisements on the perimeter boards. [frame_0001 - frame_6020]
+Stadium Seats: Description: A section of red and white stadium seats with the Arsenal logo on them, where coaches or staff members are sitting. [frame_0046 - frame_0053]
+Stadium Exterior: Description: The exterior of the Emirates Stadium at night, illuminated and surrounded by a crowd of people. [frame_0065 - frame_0071]
+Coaches' Area: Description: The area where the coaches or managers are standing or sitting, often with a blurred background of spectators in the stands. [frame_0673 - frame_0675]
+
+EVENTS:
+Pre-Game Conversation: Description: The referee and several soccer players are on the field, conversing with each other. [frame_0001 - frame_0005]
+Celebration: Description: Liverpool football players wearing purple jerseys are hugging each other on the green field, celebrating a goal. [frame_0077 - frame_0177]
+Goal Kick: Description: The goalkeeper is standing in front of the goal net, holding a yellow soccer ball. [frame_0140 - frame_0150]
+Corner Kick: Description: A soccer player in a white uniform is about to kick a yellow ball from the corner of the field. [frame_0507 - frame_0514]
+Free Kick: Description: A soccer player in a purple uniform is preparing to take a free kick on a green soccer field with white markings. [frame_2077 - frame_2100]
+Penalty Shootout: Description: The soccer players are taking part in a penalty shootout on a soccer field. [frame_4874]
+Substitution: Description: A Liverpool player is being substituted out of the game, walking off the field with a staff member. [frame_3756 - frame_3765]
+Final Whistle: Description: The referee is blowing a whistle to signal the end of the game. [frame_4826]
+Post-Game Celebration: Description: Liverpool soccer players are hugging and celebrating on the green field after scoring a goal. [frame_5055 - frame_5127]
+Post-Game Handshake: Description: Two soccer players, one from Arsenal and one from Liverpool, are shaking hands on the green field. [frame_6019 - frame_6020]
+
+================================================================================
+Generated at: 2026-01-11 21:49:02
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. A soccer player performing a throw-in action
+  Q2. The ball going out of bounds over the touchline
+  Q3. A player picking up the ball with both hands to throw it
+  Q4. The first occurrence of a throw-in in the match
+  Q5. Player wearing either white (Arsenal) or purple (Liverpool) jersey
+  Q6. Player number visible on the back of the jersey
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 6)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, ALWAYS pick the best answer choice:
+   - Review ALL answer choices listed above (A, B, C, D, E, etc.) and their content
+   - Based ONLY on the VLM visual evidence, determine which answer choice CONTENT is MOST correct
+   - Find the INDEX of that answer choice in the list
+   - ⚠️ CRITICAL: Output the INDEX (0, 1, 2, 3, or 4), NOT the literal answer content
+   - Example: If choice C (index 2) says "5 people" and you counted 5 people, output 2 (not 5!)
+   - Example: If choice B (index 1) says "Robert Hardy" and that's correct, output 1 (not "Robert Hardy"!)
+
+5. If criteria_percentage > 0.5 (>50% of criteria pass):
+   - Your chosen answer is well-supported by evidence
+   - Set suggestion to null or provide minor improvements
+
+6. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - Still MUST choose the BEST answer from the available choices (never -1)
+   - But set suggestion to "These may not be the right frames/scene. Consider searching for better evidence. The answer chosen is the BEST match given current evidence."
+   - This signals low confidence but still provides a choice
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 6,
+    "criteria_percentage": <criteria_passed / 6>,
+    "base_confidence": <(criteria_passed / 6) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <INDEX of best answer choice: MUST be exactly 0, 1, 2, 3, or 4 (where 0=A, 1=B, 2=C, 3=D, 4=E). Output the INDEX not the content!>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- ⚠️ CRITICAL: critic_answer_choice must be an INDEX (0-4), never a literal answer like "5" or "Robert Hardy"
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {"criterion": "A soccer player performing a throw-in action", "criterion_type": "QUESTION", "status": "FAIL", "reasoning": "VLM explicitly states 'No throw-in action is visible in any frame' and 'No player is shown picking up the ball or executing a throw-in'"},
+        {"criterion": "The ball going out of bounds over the touchline", "criterion_type": "QUESTION", "status": "FAIL", "reasoning": "VLM states 'There is no visual evidence of the ball going out of bounds over the touchline'"},
+        {"criterion": "A player picking up the ball with both hands to throw it", "criterion_type": "QUESTION", "status": "FAIL", "reasoning": "VLM states 'No player is shown picking up the ball' and 'None of the 11 frames show a player holding the ball with both hands preparing to throw it in'"},
+        {"criterion": "The first occurrence of a throw-in in the match", "criterion_type": "QUESTION", "status": "FAIL", "reasoning": "VLM states 'No first throw-in occurrence is captured' and 'The frames do not include the first throw-in of the match'"},
+        {"criterion": "Player wearing either white (Arsenal) or purple (Liverpool) jersey", "criterion_type": "ANSWER", "status": "PASS", "reasoning": "VLM confirms visible player #19 Elliott is wearing purple Liverpool jersey, satisfying jersey color criterion"},
+        {"criterion": "Player number visible on the back of the jersey", "criterion_type": "ANSWER", "status": "FAIL", "reasoning": "VLM states 'The only clearly visible player number is #19 (Elliott)' and 'There is no player wearing jersey #4 visible in any frame'"}
+    ],
+    "question_criteria_passed": 0,
+    "answer_criteria_passed": 1,
+    "answer_criteria_total": 2,
+    "criteria_passed": 1,
+    "criteria_total": 6,
+    "criteria_percentage": 0.1667,
+    "base_confidence": 16.67,
+    "confidence": 16.67,
+    "critic_answer_choice": 1,
+    "critic_reasoning": "While the VLM evidence does not support any throw-in action, the answer choice 'Player 4' (index 1) is the only one that matches the purple jersey color criterion mentioned in the question. The VLM confirms a player in purple jersey is visible, though with wrong number (#19 instead of #4). Among the available choices, this is the best match given the limited evidence.",
+    "possible_errors": [
+        "No throw-in action visible in any frame",
+        "No evidence of ball going out of bounds",
+        "No player shown picking up ball with both hands",
+        "First throw-in occurrence not captured",
+        "Player #4 not visible (only #19 Elliott visible)"
+    ],
+    "suggestion": "These may not be the right frames/scene. Consider searching for better evidence. The answer chosen is the BEST match given current evidence."
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'A soccer player performing a throw-in action', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': "VLM explicitly states 'No throw-in action is visible in any frame' and 'No player is shown picking up the ball or executing a throw-in'"}, {'criterion': 'The ball going out of bounds over the touchline', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': "VLM states 'There is no visual evidence of the ball going out of bounds over the touchline'"}, {'criterion': 'A player picking up the ball with both hands to throw it', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': "VLM states 'No player is shown picking up the ball' and 'None of the 11 frames show a player holding the ball with both hands preparing to throw it in'"}, {'criterion': 'The first occurrence of a throw-in in the match', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': "VLM states 'No first throw-in occurrence is captured' and 'The frames do not include the first throw-in of the match'"}, {'criterion': 'Player wearing either white (Arsenal) or purple (Liverpool) jersey', 'criterion_type': 'ANSWER', 'status': 'PASS', 'reasoning': 'VLM confirms visible player #19 Elliott is wearing purple Liverpool jersey, satisfying jersey color criterion'}, {'criterion': 'Player number visible on the back of the jersey', 'criterion_type': 'ANSWER', 'status': 'FAIL', 'reasoning': "VLM states 'The only clearly visible player number is #19 (Elliott)' and 'There is no player wearing jersey #4 visible in any frame'"}], 'question_criteria_passed': 0, 'answer_criteria_passed': 1, 'answer_criteria_total': 2, 'criteria_passed': 1, 'criteria_total': 6, 'criteria_percentage': 0.1667, 'base_confidence': 16.67, 'confidence': 16.67, 'critic_answer_choice': 1, 'critic_reasoning': "While the VLM evidence does not support any throw-in action, the answer choice 'Player 4' (index 1) is the only one that matches the purple jersey color criterion mentioned in the question. The VLM confirms a player in purple jersey is visible, though with wrong number (#19 instead of #4). Among the available choices, this is the best match given the limited evidence.", 'possible_errors': ['No throw-in action visible in any frame', 'No evidence of ball going out of bounds', 'No player shown picking up ball with both hands', 'First throw-in occurrence not captured', 'Player #4 not visible (only #19 Elliott visible)'], 'suggestion': 'These may not be the right frames/scene. Consider searching for better evidence. The answer chosen is the BEST match given current evidence.'}

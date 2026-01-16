@@ -1,0 +1,210 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0040.jpg", "frames/frame_0041.jpg", "frames/frame_0042.jpg", "frames/frame_0043.jpg", "frames/frame_0044.jpg", "frames/frame_0045.jpg", "frames/frame_0046.jpg", "frames/frame_0047.jpg", "frames/frame_0048.jpg", "frames/frame_0049.jpg", "frames/frame_0050.jpg"],
+    "prompt": "Examine these frames to verify if answer '4' (D. A photo) is correct for: 'What is the first human girl holding when she first appears in the video?' Check: 1) Is there a human girl character in these frames? 2) Is she holding an object? 3) Is this her first appearance in the video (check if any earlier frames show human girls)? 4) Is the object clearly identifiable? Pay special attention to frame_0045 where she first appears, and surrounding frames for context."
+}
+Frames to verify: ['frames/frame_0040.jpg', 'frames/frame_0041.jpg', 'frames/frame_0042.jpg', 'frames/frame_0043.jpg', 'frames/frame_0044.jpg', 'frames/frame_0045.jpg', 'frames/frame_0046.jpg', 'frames/frame_0047.jpg', 'frames/frame_0048.jpg', 'frames/frame_0049.jpg', 'frames/frame_0050.jpg']
+VLM Prompt: Video context: Based on the provided SET of frame-by-frame captions data for a long video, I have generated a global summary that depicts the main characters, setting, plot line, vibes, and general details.
+
+**Main Characters:**
+
+1. A young girl with pink or purple hair, often depicted in various scenarios, including flying, standing in a cave, or interacting with other characters.
+2. A green frog-like character, often wearing a purple shirt and hat, who appears to be a main protagonist.
+3. A large, anthropomorphic owl with a blue hat, who is a recurring character throughout the video.
+4. Other various cartoon characters, including fairies, creatures, and animals, who appear in different scenes.
+
+**Setting:**
+
+The video is set in a fantastical world with diverse environments, including:
+1. Forests with yellow and orange foliage.
+2. Caves and rocky landscapes.
+3. Fantastical landscapes with rolling hills, flowers, and trees.
+4. Indoor settings, such as libraries, kitchens, and bedrooms.
+5. Winter landscapes with snow-covered trees and mountains.
+
+**Plot Line:**
+
+The video appears to be a collection of unrelated scenes and storylines, possibly from an animated television series or film. The narrative is not linear, and the scenes jump between different characters and settings. However, some common themes and motifs emerge, such as:
+1. The adventures of the young girl with pink or purple hair and her interactions with other characters.
+2. The green frog-like character's journey through various environments.
+3. The large owl's appearances in different scenarios, often interacting with other characters.
+
+**Vibes:**
+
+The overall vibe of the video is whimsical, fantastical, and playful, with a focus on colorful and imaginative storytelling. The use of bright colors, vibrant landscapes, and anthropomorphic characters creates a sense of wonder and enchantment.
+
+**General Details:**
+
+1. The video features a mix of 2D animation and possibly some 3D elements.
+2. The color palette is predominantly bright and vibrant, with a focus on yellows, blues, and purples.
+3. The video includes a range of fantastical creatures, including fairies, dragons, and anthropomorphic animals.
+4. The narrative is non-linear, with scenes jumping between different characters and storylines.
+5. The video appears to be a collection of episodes or segments from a larger work, possibly an animated television series or film.
+
+Overall, the video is a visually engaging and imaginative collection of scenes and storylines that showcase a range of fantastical characters and environments.
+
+Examine these frames to verify if answer '4' (D. A photo) is correct for: 'What is the first human girl holding when she first appears in the video?' Check: 1) Is there a human girl character in these frames? 2) Is she holding an object? 3) Is this her first appearance in the video (check if any earlier frames show human girls)? 4) Is the object clearly identifiable? Pay special attention to frame_0045 where she first appears, and surrounding frames for context.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 11, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0040.jpg', '/mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0041.jpg', '/mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0042.jpg', '/mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0043.jpg', '/mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0044.jpg', '/mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0045.jpg', '/mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0046.jpg', '/mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0047.jpg', '/mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0048.jpg', '/mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0049.jpg', '/mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0050.jpg'], 'response': 'Based on a careful examination of the 11 provided frames, here is the verification for the answer “4” (D. A photo) to the question: *“What is the first human girl holding when she first appears in the video?”*\n\n---\n\n**1) Is there a human girl character in these frames?**\n\n✅ **Yes.** Frame 0045 clearly shows a human girl with pink/purple hair, wearing a pink dress and blue shoes. She appears to be flying or falling through a golden-yellow background. She is anthropomorphic and clearly identifiable as a human girl character.\n\n---\n\n**2) Is she holding an object?**\n\n❌ **No.** In frame 0045 — her first appearance — her arms are outstretched, and she is not holding any object. Her hands are empty. This is confirmed in surrounding frames (0046, 0048, 0049, 0050) — she is shown flying, tumbling, or being caught, but never holding anything.\n\n---\n\n**3) Is this her first appearance in the video (check if any earlier frames show human girls)?**\n\n✅ **Yes.** Frames 0040–0044 show small, insect-like or fairy-like creatures, some floating in hats or balloons, but none are clearly human girls. The girl in frame 0045 is the first unambiguous human girl character to appear.\n\n---\n\n**4) Is the object clearly identifiable?**\n\n❌ **No — because she is not holding any object.** Since she is not holding anything, the question of identifying the object is moot. The answer “D. A photo” is therefore factually incorrect.\n\n---\n\n### ✅ Final Verdict:\n\n**Answer ‘4’ (D. A photo) is INCORRECT.**\n\nThe first human girl does **not** hold anything when she first appears. She is shown flying or falling with empty hands. There is no photo or any other object in her possession in frame 0045 or surrounding frames.\n\n---\n\n**Suggested Correction:**\nThe correct answer should be: **“She is not holding anything.”** or **“Nothing.”** depending on the available options. If “D. A photo” is the only option that implies she is holding something, then it is definitively wrong.'}], 'formatted_responses': ['\n=== Batch 0-11 (11 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0040.jpg, /mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0041.jpg, /mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0042.jpg, /mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0043.jpg, /mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0044.jpg, /mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0045.jpg, /mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0046.jpg, /mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0047.jpg, /mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0048.jpg, /mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0049.jpg, /mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0050.jpg\nVLM Response: Based on a careful examination of the 11 provided frames, here is the verification for the answer “4” (D. A photo) to the question: *“What is the first human girl holding when she first appears in the video?”*\n\n---\n\n**1) Is there a human girl character in these frames?**\n\n✅ **Yes.** Frame 0045 clearly shows a human girl with pink/purple hair, wearing a pink dress and blue shoes. She appears to be flying or falling through a golden-yellow background. She is anthropomorphic and clearly identifiable as a human girl character.\n\n---\n\n**2) Is she holding an object?**\n\n❌ **No.** In frame 0045 — her first appearance — her arms are outstretched, and she is not holding any object. Her hands are empty. This is confirmed in surrounding frames (0046, 0048, 0049, 0050) — she is shown flying, tumbling, or being caught, but never holding anything.\n\n---\n\n**3) Is this her first appearance in the video (check if any earlier frames show human girls)?**\n\n✅ **Yes.** Frames 0040–0044 show small, insect-like or fairy-like creatures, some floating in hats or balloons, but none are clearly human girls. The girl in frame 0045 is the first unambiguous human girl character to appear.\n\n---\n\n**4) Is the object clearly identifiable?**\n\n❌ **No — because she is not holding any object.** Since she is not holding anything, the question of identifying the object is moot. The answer “D. A photo” is therefore factually incorrect.\n\n---\n\n### ✅ Final Verdict:\n\n**Answer ‘4’ (D. A photo) is INCORRECT.**\n\nThe first human girl does **not** hold anything when she first appears. She is shown flying or falling with empty hands. There is no photo or any other object in her possession in frame 0045 or surrounding frames.\n\n---\n\n**Suggested Correction:**\nThe correct answer should be: **“She is not holding anything.”** or **“Nothing.”** depending on the available options. If “D. A photo” is the only option that implies she is holding something, then it is definitively wrong.\n'], 'condensed_response': '**Scene Summary (Frames\u202f0040‑0050)**  \n\n- **Frames\u202f0040‑0044:** The camera shows a whimsical backdrop populated by small, insect‑like or fairy‑type figures drifting in hats or balloons. No human girl is visible.  \n\n- **Frame\u202f0045 (first human girl):** A girl with pink‑purple hair, a pink dress, and blue shoes appears mid‑air against a golden‑yellow sky. She is either flying or falling; her arms are outstretched and **her hands are empty**—she is not holding any object.  \n\n- **Frames\u202f0046,\u202f0048‑0050:** The same girl continues to tumble through the air or is briefly caught, but she never grasps or carries anything.  \n\n**Character tracking:** The only human female character enters at frame\u202f0045 and remains unarmed throughout the subsequent frames.  \n\n**Answer verification:** Because the girl is not holding any item when she first appears, the proposed answer “D.\u202fA photo” is incorrect. The correct response should be “nothing” (or “she is not holding anything”).', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 11, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0040.jpg', '/mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0041.jpg', '/mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0042.jpg', '/mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0043.jpg', '/mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0044.jpg', '/mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0045.jpg', '/mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0046.jpg', '/mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0047.jpg', '/mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0048.jpg', '/mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0049.jpg', '/mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0050.jpg'], 'response': 'Based on a careful examination of the 11 provided frames, here is the verification for the answer “4” (D. A photo) to the question: *“What is the first human girl holding when she first appears in the video?”*\n\n---\n\n**1) Is there a human girl character in these frames?**\n\n✅ **Yes.** Frame 0045 clearly shows a human girl with pink/purple hair, wearing a pink dress and blue shoes. She appears to be flying or falling through a golden-yellow background. She is anthropomorphic and clearly identifiable as a human girl character.\n\n---\n\n**2) Is she holding an object?**\n\n❌ **No.** In frame 0045 — her first appearance — her arms are outstretched, and she is not holding any object. Her hands are empty. This is confirmed in surrounding frames (0046, 0048, 0049, 0050) — she is shown flying, tumbling, or being caught, but never holding anything.\n\n---\n\n**3) Is this her first appearance in the video (check if any earlier frames show human girls)?**\n\n✅ **Yes.** Frames 0040–0044 show small, insect-like or fairy-like creatures, some floating in hats or balloons, but none are clearly human girls. The girl in frame 0045 is the first unambiguous human girl character to appear.\n\n---\n\n**4) Is the object clearly identifiable?**\n\n❌ **No — because she is not holding any object.** Since she is not holding anything, the question of identifying the object is moot. The answer “D. A photo” is therefore factually incorrect.\n\n---\n\n### ✅ Final Verdict:\n\n**Answer ‘4’ (D. A photo) is INCORRECT.**\n\nThe first human girl does **not** hold anything when she first appears. She is shown flying or falling with empty hands. There is no photo or any other object in her possession in frame 0045 or surrounding frames.\n\n---\n\n**Suggested Correction:**\nThe correct answer should be: **“She is not holding anything.”** or **“Nothing.”** depending on the available options. If “D. A photo” is the only option that implies she is holding something, then it is definitively wrong.'}], 'formatted_responses': ['\n=== Batch 0-11 (11 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0040.jpg, /mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0041.jpg, /mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0042.jpg, /mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0043.jpg, /mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0044.jpg, /mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0045.jpg, /mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0046.jpg, /mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0047.jpg, /mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0048.jpg, /mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0049.jpg, /mnt/ssd/data/lvbench/videos_processed/SRq0weUKskM/frames/frame_0050.jpg\nVLM Response: Based on a careful examination of the 11 provided frames, here is the verification for the answer “4” (D. A photo) to the question: *“What is the first human girl holding when she first appears in the video?”*\n\n---\n\n**1) Is there a human girl character in these frames?**\n\n✅ **Yes.** Frame 0045 clearly shows a human girl with pink/purple hair, wearing a pink dress and blue shoes. She appears to be flying or falling through a golden-yellow background. She is anthropomorphic and clearly identifiable as a human girl character.\n\n---\n\n**2) Is she holding an object?**\n\n❌ **No.** In frame 0045 — her first appearance — her arms are outstretched, and she is not holding any object. Her hands are empty. This is confirmed in surrounding frames (0046, 0048, 0049, 0050) — she is shown flying, tumbling, or being caught, but never holding anything.\n\n---\n\n**3) Is this her first appearance in the video (check if any earlier frames show human girls)?**\n\n✅ **Yes.** Frames 0040–0044 show small, insect-like or fairy-like creatures, some floating in hats or balloons, but none are clearly human girls. The girl in frame 0045 is the first unambiguous human girl character to appear.\n\n---\n\n**4) Is the object clearly identifiable?**\n\n❌ **No — because she is not holding any object.** Since she is not holding anything, the question of identifying the object is moot. The answer “D. A photo” is therefore factually incorrect.\n\n---\n\n### ✅ Final Verdict:\n\n**Answer ‘4’ (D. A photo) is INCORRECT.**\n\nThe first human girl does **not** hold anything when she first appears. She is shown flying or falling with empty hands. There is no photo or any other object in her possession in frame 0045 or surrounding frames.\n\n---\n\n**Suggested Correction:**\nThe correct answer should be: **“She is not holding anything.”** or **“Nothing.”** depending on the available options. If “D. A photo” is the only option that implies she is holding something, then it is definitively wrong.\n'], 'condensed_response': '**Scene Summary (Frames\u202f0040‑0050)**  \n\n- **Frames\u202f0040‑0044:** The camera shows a whimsical backdrop populated by small, insect‑like or fairy‑type figures drifting in hats or balloons. No human girl is visible.  \n\n- **Frame\u202f0045 (first human girl):** A girl with pink‑purple hair, a pink dress, and blue shoes appears mid‑air against a golden‑yellow sky. She is either flying or falling; her arms are outstretched and **her hands are empty**—she is not holding any object.  \n\n- **Frames\u202f0046,\u202f0048‑0050:** The same girl continues to tumble through the air or is briefly caught, but she never grasps or carries anything.  \n\n**Character tracking:** The only human female character enters at frame\u202f0045 and remains unarmed throughout the subsequent frames.  \n\n**Answer verification:** Because the girl is not holding any item when she first appears, the proposed answer “D.\u202fA photo” is incorrect. The correct response should be “nothing” (or “she is not holding anything”).', 'failed_images': []}
+
+Question Being Answered: What is the first human girl holding when she first appears in the video?
+
+Answer Choices:
+A. A bag
+B. A doll
+C. A mobile phone
+D. A photo
+
+Given Answer: 4
+Evidence Frames Used: ['frames/frame_0045.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+1. Cartoon Girl with Pink Hair: Description: A young girl with curly pink hair, often depicted in various outfits and settings.
+2. Cartoon Owl with Blue Hat: Description: A large, brown owl with a white belly, yellow beak, and a blue hat, appearing in multiple scenes.
+3. Cartoon Frog Prince: Description: A green frog wearing a purple shirt and a golden crown, featured in several fantastical settings.
+4. Cartoon Princess: Description: A blonde or yellow-haired girl, often wearing a white or red dress, appearing in various scenes.
+5. Cartoon Bear: Description: A large, tan or gray bear, sometimes wearing a yellow vest or shirt, featured in different environments.
+6. Cartoon Fairy: Description: Small, winged creatures with distinct hair colors and outfits, often appearing in groups.
+7. Cartoon Wolf: Description: A large, gray and yellow wolf-like creature, sometimes wearing a yellow vest, appearing in a few scenes.
+
+SCENES:
+1. Forest with Yellow Leaves : Description: A vibrant autumnal landscape with trees displaying bright yellow and orange foliage. [Frames 19-25]
+2. Fantasy Landscape : Description: A whimsical scene featuring cartoon characters, flowers, and fantastical elements against a blue or purple background. [Frames 26-40]
+3. Cliffside or Rocky Terrain : Description: Scenes depicting rocky cliffs, often with cartoon characters climbing or standing on them. [Frames 71-74]
+4. Cartoon House or Village : Description: Scenes featuring a small white house with a blue roof, often surrounded by trees and a stream. [Frames 75-77]
+5. Cave or Dark Forest : Description: Dark, mysterious environments with purple or dark blue hues, often featuring cartoon creatures. [Frames 203-249]
+6. Library or Study : Description: Scenes showing cartoon characters surrounded by books, often in a cozy or cluttered room. [Frames 253-258, 275-283]
+7. Pond or Lake : Description: Serene water scenes with cartoon characters, often featuring water lilies and other aquatic elements. [Frames 284-296]
+8. Bedroom or Bed : Description: Scenes depicting cartoon characters sleeping or resting in beds, often with flowers or other decorations. [Frames 368-371, 383-385]
+9. Snowing or Winter Landscape : Description: Scenes featuring snow-covered trees, often with cartoon characters playing or interacting in the snow. [Frames 1279-1440]
+10. Laboratory or Workshop : Description: Scenes showing cartoon characters in a cluttered, industrial or scientific environment. [Frames 2053-2081]
+11. Castle or Dungeon : Description: Dark, often purple-hued environments with stone walls and various obstacles or creatures. [Frames 1765-1771]
+
+EVENTS:
+1. Character Introductions : Description: Initial appearances of main cartoon characters, such as the Cartoon Girl with Pink Hair and the Cartoon Owl with Blue Hat. [Frames 26-40]
+2. Character Interactions : Description: Scenes showing interactions between different cartoon characters, often in fantastical or natural environments. [Frames 45-70]
+3. Chasing or Pursuit : Description: Scenes where cartoon characters are chasing or being chased by other characters or creatures. [Frames 100-110]
+4. Sleeping or Resting : Description: Scenes depicting cartoon characters sleeping or resting in various environments. [Frames 368-371, 383-385, 813-839]
+5. Character Development : Description: Scenes showing the development or growth of cartoon characters, often through their interactions or experiences. [Frames 840-920]
+6. Final Credits : Description: The final section of the video displaying credits for the production, including character designers, producers, and other crew members. [Frames 2544-2586]
+
+================================================================================
+Generated at: 2026-01-11 21:46:09
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. A human girl character appears in the frame
+  Q2. The girl is holding an object in her hands
+  Q3. This is the first appearance of a human girl in the video
+  Q4. The object being held is clearly visible and identifiable
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 4)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, if criteria_percentage > 0.5 (>50% of criteria pass):
+   - Review ALL answer choices (A, B, C, D, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D)
+5. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - STILL do your best to pick out a correct answer, but also set suggestion to "These may not be the right frames/scene. Continue searching for better evidence."
+   - output your best guess of the answer as a number (0=A, 1=B, 2=C, 3=D, 4=E)
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <number of question criteria that passed>,
+    "criteria_total": 4,
+    "criteria_percentage": <criteria_passed / 4>,
+    "base_confidence": <(criteria_passed / 4) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "A human girl character appears in the frame",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms a human girl with pink/purple hair appears in frame 0045"
+        },
+        {
+            "criterion": "The girl is holding an object in her hands",
+            "criterion_type": "QUESTION",
+            "status": "FAIL",
+            "reasoning": "VLM explicitly states she is not holding any object, arms are outstretched and hands are empty"
+        },
+        {
+            "criterion": "This is the first appearance of a human girl in the video",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms frames 0040-0044 show only insect-like/fairy creatures, girl first appears in frame 0045"
+        },
+        {
+            "criterion": "The object being held is clearly visible and identifiable",
+            "criterion_type": "QUESTION",
+            "status": "FAIL",
+            "reasoning": "VLM states no object is being held, making this criterion moot and unfulfilled"
+        }
+    ],
+    "question_criteria_passed": 2,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 2,
+    "criteria_total": 4,
+    "criteria_percentage": 0.5,
+    "base_confidence": 50.0,
+    "confidence": 50.0,
+    "critic_answer_choice": 4,
+    "critic_reasoning": "The VLM evidence clearly shows the girl is not holding anything when she first appears. Since none of the answer choices (A. bag, B. doll, C. mobile phone, D. photo) represent 'nothing,' and the given answer '4' (D. photo) is incorrect, the only logical conclusion is that the correct answer should be 'nothing' which corresponds to option 4 (E) in the extended choice set.",
+    "possible_errors": [
+        "The girl is not holding any object in her hands",
+        "No object is visible or identifiable to be held"
+    ],
+    "suggestion": "These may not be the right frames/scene. Continue searching for better evidence."
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'A human girl character appears in the frame', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms a human girl with pink/purple hair appears in frame 0045'}, {'criterion': 'The girl is holding an object in her hands', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': 'VLM explicitly states she is not holding any object, arms are outstretched and hands are empty'}, {'criterion': 'This is the first appearance of a human girl in the video', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms frames 0040-0044 show only insect-like/fairy creatures, girl first appears in frame 0045'}, {'criterion': 'The object being held is clearly visible and identifiable', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': 'VLM states no object is being held, making this criterion moot and unfulfilled'}], 'question_criteria_passed': 2, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 2, 'criteria_total': 4, 'criteria_percentage': 0.5, 'base_confidence': 50.0, 'confidence': 50.0, 'critic_answer_choice': 4, 'critic_reasoning': "The VLM evidence clearly shows the girl is not holding anything when she first appears. Since none of the answer choices (A. bag, B. doll, C. mobile phone, D. photo) represent 'nothing,' and the given answer '4' (D. photo) is incorrect, the only logical conclusion is that the correct answer should be 'nothing' which corresponds to option 4 (E) in the extended choice set.", 'possible_errors': ['The girl is not holding any object in her hands', 'No object is visible or identifiable to be held'], 'suggestion': 'These may not be the right frames/scene. Continue searching for better evidence.'}

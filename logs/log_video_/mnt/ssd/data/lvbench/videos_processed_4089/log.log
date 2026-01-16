@@ -1,0 +1,235 @@
+Critic initial response: We are given a question about a specific timestamp (28:50-28:57) in the video, asking what happens to the ball after Ma Long's final forehand stroke. The answer choices are about the ball's outcome: landing out of bounds, hitting the table edge, being hit back by the opponent, or going into the net.
+
+The provided answer is "2", which corresponds to choice B: "It hits the table edge".
+
+We are to verify this answer by examining the visual evidence from the frames around the timestamp (including context frames). The evidence frames are from frame_1728 to frame_1732, and we have expanded context from frame_1723 to frame_1737.
+
+We must check the criteria derived from the question:
+1. Ma Long executing a forehand stroke with visible racket-ball contact
+2. Ball traveling away from Ma Long after the stroke
+3. Ball's final position relative to table, net, or boundaries
+4. No opponent's racket making contact with the ball
+5. Clear view of the table tennis table and net
+6. Ball trajectory showing whether it goes into net, out of bounds, or hits table edge
+
+We are to create a VLM query to verify the answer based solely on the visual evidence.
+
+The VLM query should be in JSON format with the tool "VLM_QUERY", the list of frames (including the context frames), and a prompt that asks the VLM to verify the answer '2' (which is choice B: "It hits the table edge") by checking the criteria.
+
+Note: The prompt should instruct the VLM to base its analysis on the provided frames and the criteria.
+
+Let's construct the JSON:
+
+{
+    "tool": "VLM_QUERY",
+    "frames": [
+        "frames/frame_1723.jpg",
+        "frames/frame_1724.jpg",
+        "frames/frame_1725.jpg",
+        "frames/frame_1726.jpg",
+        "frames/frame_1727.jpg",
+        "frames/frame_1728.jpg",
+        "frames/frame_1729.jpg",
+        "frames/frame_1730.jpg",
+        "frames/frame_1731.jpg",
+        "frames/frame_1732.jpg",
+        "frames/frame_1733.jpg",
+        "frames/frame_1734.jpg",
+        "frames/frame_1735.jpg",
+        "frames/frame_1736.jpg",
+        "frames/frame_1737.jpg"
+    ],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '2' (which corresponds to choice B: 'It hits the table edge') is correct for the question: 'From 28:50-28:57 in the video, what happens to the ball after Ma Long's final forehand stroke?'. Check the following criteria derived from the question:\n1. Ma Long executing a forehand stroke with visible racket-ball contact\n2. Ball traveling away from Ma Long after the stroke\n3. Ball's final position relative to table, net, or boundaries\n4. No opponent's racket making contact with the ball\n5. Clear view of the table tennis table and net\n6. Ball trajectory showing whether it goes into net, out of bounds, or hits table edge\n\nPay attention to the temporal sequence of events. Specifically, look for Ma Long's forehand stroke and then follow the ball's path to determine its outcome. The answer should be verified only if the visual evidence clearly shows the ball hitting the table edge and not any other outcome."
+}
+
+Note: The prompt explicitly states the answer we are verifying (answer '2' meaning choice B) and the criteria. We are asking the VLM to check if the visual evidence supports that the ball hits the table edge.
+
+We return this as a JSON object.
+```json
+{
+    "tool": "VLM_QUERY",
+    "frames": [
+        "frames/frame_1723.jpg",
+        "frames/frame_1724.jpg",
+        "frames/frame_1725.jpg",
+        "frames/frame_1726.jpg",
+        "frames/frame_1727.jpg",
+        "frames/frame_1728.jpg",
+        "frames/frame_1729.jpg",
+        "frames/frame_1730.jpg",
+        "frames/frame_1731.jpg",
+        "frames/frame_1732.jpg",
+        "frames/frame_1733.jpg",
+        "frames/frame_1734.jpg",
+        "frames/frame_1735.jpg",
+        "frames/frame_1736.jpg",
+        "frames/frame_1737.jpg"
+    ],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '2' (which corresponds to choice B: 'It hits the table edge') is correct for the question: 'From 28:50-28:57 in the video, what happens to the ball after Ma Long's final forehand stroke?'. Check the following criteria derived from the question:\n1. Ma Long executing a forehand stroke with visible racket-ball contact\n2. Ball traveling away from Ma Long after the stroke\n3. Ball's final position relative to table, net, or boundaries\n4. No opponent's racket making contact with the ball\n5. Clear view of the table tennis table and net\n6. Ball trajectory showing whether it goes into net, out of bounds, or hits table edge\n\nPay attention to the temporal sequence of events. Specifically, look for Ma Long's forehand stroke and then follow the ball's path to determine its outcome. The answer should be verified only if the visual evidence clearly shows the ball hitting the table edge and not any other outcome."
+}
+```
+Frames to verify: ['frames/frame_1723.jpg', 'frames/frame_1724.jpg', 'frames/frame_1725.jpg', 'frames/frame_1726.jpg', 'frames/frame_1727.jpg', 'frames/frame_1728.jpg', 'frames/frame_1729.jpg', 'frames/frame_1730.jpg', 'frames/frame_1731.jpg', 'frames/frame_1732.jpg', 'frames/frame_1733.jpg', 'frames/frame_1734.jpg', 'frames/frame_1735.jpg', 'frames/frame_1736.jpg', 'frames/frame_1737.jpg']
+VLM Prompt: Video context: Based on the provided frame-by-frame captions data, here is a global summary of the video:
+
+**Main Characters:**
+The main characters in the video are Chinese table tennis players, specifically Fan Zhendong and Ma Long, who are competing in the Men's Singles Gold Medal Match at the Tokyo 2020 Olympics. Other characters that appear include female referees, staff members, photographers, and spectators.
+
+**Setting:**
+The setting is an indoor sports arena, specifically the venue for the table tennis events at the Tokyo 2020 Olympics. The arena has a red floor and seats, with prominent displays of the Olympic rings and "TOKYO 2020" branding.
+
+**Plot Line:**
+The video appears to follow the Men's Singles Gold Medal Match between Fan Zhendong and Ma Long, showcasing their preparation, competition, and the subsequent victory ceremony. The narrative is interspersed with scenes of the players' interactions, reactions, and emotions, as well as the reactions of the spectators and officials.
+
+**Vibes:**
+The overall vibe of the video is one of excitement, tension, and celebration. The captions convey a sense of intensity and focus during the competition, followed by moments of relief, joy, and triumph during the victory ceremony. The atmosphere is formal and professional, with an emphasis on the Olympic spirit.
+
+**General Details:**
+The video is likely a recording of the Men's Singles Gold Medal Match at the Tokyo 2020 Olympics, featuring Fan Zhendong and Ma Long. The captions suggest that the video covers the entire match, including the players' preparation, the competition, and the victory ceremony. The presence of photographers, officials, and spectators adds to the authenticity of the event. The video also highlights the Olympic branding and the COVID-19 protocols in place, as evident from the masks worn by the spectators and officials.
+
+Based on these frames (including context before/after), verify if the answer '2' (which corresponds to choice B: 'It hits the table edge') is correct for the question: 'From 28:50-28:57 in the video, what happens to the ball after Ma Long's final forehand stroke?'. Check the following criteria derived from the question:
+1. Ma Long executing a forehand stroke with visible racket-ball contact
+2. Ball traveling away from Ma Long after the stroke
+3. Ball's final position relative to table, net, or boundaries
+4. No opponent's racket making contact with the ball
+5. Clear view of the table tennis table and net
+6. Ball trajectory showing whether it goes into net, out of bounds, or hits table edge
+
+Pay attention to the temporal sequence of events. Specifically, look for Ma Long's forehand stroke and then follow the ball's path to determine its outcome. The answer should be verified only if the visual evidence clearly shows the ball hitting the table edge and not any other outcome.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 15, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1723.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1724.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1725.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1726.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1727.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1728.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1729.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1730.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1731.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1732.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1733.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1734.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1735.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1736.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1737.jpg'], 'response': "Based on the provided 15 frames and the specific question — *“From 28:50-28:57 in the video, what happens to the ball after Ma Long's final forehand stroke?”* — we must verify whether the visual evidence supports the answer **“2: It hits the table edge”**.\n\nLet’s evaluate the criteria one by one:\n\n---\n\n**1. Ma Long executing a forehand stroke with visible racket-ball contact**\n\n- In **Frame 10**, Ma Long (in black/purple shirt) is shown mid-forehand stroke, and the ball is clearly visible near his racket.\n- In **Frame 11**, the ball is just leaving his racket, confirming contact.\n- In **Frame 12**, Ma Long is in follow-through motion, and the ball is airborne, traveling toward Fan Zhendong’s side.\n✅ **Confirmed.**\n\n---\n\n**2. Ball traveling away from Ma Long after the stroke**\n\n- From **Frame 11 to Frame 15**, the ball is visibly traveling across the net toward Fan Zhendong’s side of the table.\n✅ **Confirmed.**\n\n---\n\n**3. Ball’s final position relative to table, net, or boundaries**\n\n- In **Frame 15**, the ball is seen landing **on the edge of the table** on Fan Zhendong’s side — specifically, the **side edge (long edge)** of the table, not the playing surface.\n- The ball does not bounce on the playing surface, nor does it go over the net or out of bounds beyond the table — it lands precisely on the edge.\n✅ **Confirmed — ball hits the table edge.**\n\n---\n\n**4. No opponent’s racket making contact with the ball**\n\n- Fan Zhendong is in position to return, but in **Frame 15**, his racket is not near the ball — the ball has already landed on the edge before he can make contact.\n- No subsequent frame shows him touching the ball.\n✅ **Confirmed.**\n\n---\n\n**5. Clear view of the table tennis table and net**\n\n- All frames from 8 to 15 show a clear, unobstructed view of the table, net, and players.\n✅ **Confirmed.**\n\n---\n\n**6. Ball trajectory showing whether it goes into net, out of bounds, or hits table edge**\n\n- The trajectory from **Frame 10 to Frame 15** clearly shows the ball traveling over the net, descending, and landing on the **side edge of the table** — not on the playing surface, not into the net, and not out of bounds beyond the table.\n✅ **Confirmed — hits table edge.**\n\n---\n\n### ✅ Final Verification:\n\nAll six criteria are satisfied by the visual evidence in the provided frames. The ball, after Ma Long’s final forehand stroke, clearly **hits the table edge** on Fan Zhendong’s side, which is a legal point in table tennis (edge ball = good).\n\n---\n\n**Answer: YES, the answer '2' (It hits the table edge) is correct.**"}], 'formatted_responses': ["\n=== Batch 0-15 (15 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1723.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1724.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1725.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1726.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1727.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1728.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1729.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1730.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1731.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1732.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1733.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1734.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1735.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1736.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1737.jpg\nVLM Response: Based on the provided 15 frames and the specific question — *“From 28:50-28:57 in the video, what happens to the ball after Ma Long's final forehand stroke?”* — we must verify whether the visual evidence supports the answer **“2: It hits the table edge”**.\n\nLet’s evaluate the criteria one by one:\n\n---\n\n**1. Ma Long executing a forehand stroke with visible racket-ball contact**\n\n- In **Frame 10**, Ma Long (in black/purple shirt) is shown mid-forehand stroke, and the ball is clearly visible near his racket.\n- In **Frame 11**, the ball is just leaving his racket, confirming contact.\n- In **Frame 12**, Ma Long is in follow-through motion, and the ball is airborne, traveling toward Fan Zhendong’s side.\n✅ **Confirmed.**\n\n---\n\n**2. Ball traveling away from Ma Long after the stroke**\n\n- From **Frame 11 to Frame 15**, the ball is visibly traveling across the net toward Fan Zhendong’s side of the table.\n✅ **Confirmed.**\n\n---\n\n**3. Ball’s final position relative to table, net, or boundaries**\n\n- In **Frame 15**, the ball is seen landing **on the edge of the table** on Fan Zhendong’s side — specifically, the **side edge (long edge)** of the table, not the playing surface.\n- The ball does not bounce on the playing surface, nor does it go over the net or out of bounds beyond the table — it lands precisely on the edge.\n✅ **Confirmed — ball hits the table edge.**\n\n---\n\n**4. No opponent’s racket making contact with the ball**\n\n- Fan Zhendong is in position to return, but in **Frame 15**, his racket is not near the ball — the ball has already landed on the edge before he can make contact.\n- No subsequent frame shows him touching the ball.\n✅ **Confirmed.**\n\n---\n\n**5. Clear view of the table tennis table and net**\n\n- All frames from 8 to 15 show a clear, unobstructed view of the table, net, and players.\n✅ **Confirmed.**\n\n---\n\n**6. Ball trajectory showing whether it goes into net, out of bounds, or hits table edge**\n\n- The trajectory from **Frame 10 to Frame 15** clearly shows the ball traveling over the net, descending, and landing on the **side edge of the table** — not on the playing surface, not into the net, and not out of bounds beyond the table.\n✅ **Confirmed — hits table edge.**\n\n---\n\n### ✅ Final Verification:\n\nAll six criteria are satisfied by the visual evidence in the provided frames. The ball, after Ma Long’s final forehand stroke, clearly **hits the table edge** on Fan Zhendong’s side, which is a legal point in table tennis (edge ball = good).\n\n---\n\n**Answer: YES, the answer '2' (It hits the table edge) is correct.**\n"], 'condensed_response': '**Scene Summary (28:50\u202f–\u202f28:57)**  \n\n- **28:50\u202f–\u202f28:52** – Ma\u202fLong, dressed in a black‑purple shirt, initiates a forehand stroke. Frame\u202f10 (≈28:51) shows his racket making clear contact with the ball; the ball is visible just as it leaves the racket.  \n- **28:52\u202f–\u202f28:54** – The ball arcs over the net toward Fan\u202fZhendong’s side. Frames\u202f11–13 trace its flight, with the ball mid‑air and Ma\u202fLong already in follow‑through.  \n- **28:55\u202f–\u202f28:57** – In the final frames (14‑15, ≈28:56‑28:57) the ball lands on the **side edge of the table** on Fan\u202fZhendong’s side. Fan\u202fZhendong is positioned near the table but his racket does not touch the ball; the ball contacts the edge before he can react.  \n\nAll frames provide an unobstructed view of the table, net, and both players, confirming that after Ma\u202fLong’s last forehand the ball **hits the table edge** (answer “2”). No other contact (net, out‑of‑bounds, opponent’s racket) occurs.', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 15, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1723.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1724.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1725.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1726.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1727.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1728.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1729.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1730.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1731.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1732.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1733.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1734.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1735.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1736.jpg', '/mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1737.jpg'], 'response': "Based on the provided 15 frames and the specific question — *“From 28:50-28:57 in the video, what happens to the ball after Ma Long's final forehand stroke?”* — we must verify whether the visual evidence supports the answer **“2: It hits the table edge”**.\n\nLet’s evaluate the criteria one by one:\n\n---\n\n**1. Ma Long executing a forehand stroke with visible racket-ball contact**\n\n- In **Frame 10**, Ma Long (in black/purple shirt) is shown mid-forehand stroke, and the ball is clearly visible near his racket.\n- In **Frame 11**, the ball is just leaving his racket, confirming contact.\n- In **Frame 12**, Ma Long is in follow-through motion, and the ball is airborne, traveling toward Fan Zhendong’s side.\n✅ **Confirmed.**\n\n---\n\n**2. Ball traveling away from Ma Long after the stroke**\n\n- From **Frame 11 to Frame 15**, the ball is visibly traveling across the net toward Fan Zhendong’s side of the table.\n✅ **Confirmed.**\n\n---\n\n**3. Ball’s final position relative to table, net, or boundaries**\n\n- In **Frame 15**, the ball is seen landing **on the edge of the table** on Fan Zhendong’s side — specifically, the **side edge (long edge)** of the table, not the playing surface.\n- The ball does not bounce on the playing surface, nor does it go over the net or out of bounds beyond the table — it lands precisely on the edge.\n✅ **Confirmed — ball hits the table edge.**\n\n---\n\n**4. No opponent’s racket making contact with the ball**\n\n- Fan Zhendong is in position to return, but in **Frame 15**, his racket is not near the ball — the ball has already landed on the edge before he can make contact.\n- No subsequent frame shows him touching the ball.\n✅ **Confirmed.**\n\n---\n\n**5. Clear view of the table tennis table and net**\n\n- All frames from 8 to 15 show a clear, unobstructed view of the table, net, and players.\n✅ **Confirmed.**\n\n---\n\n**6. Ball trajectory showing whether it goes into net, out of bounds, or hits table edge**\n\n- The trajectory from **Frame 10 to Frame 15** clearly shows the ball traveling over the net, descending, and landing on the **side edge of the table** — not on the playing surface, not into the net, and not out of bounds beyond the table.\n✅ **Confirmed — hits table edge.**\n\n---\n\n### ✅ Final Verification:\n\nAll six criteria are satisfied by the visual evidence in the provided frames. The ball, after Ma Long’s final forehand stroke, clearly **hits the table edge** on Fan Zhendong’s side, which is a legal point in table tennis (edge ball = good).\n\n---\n\n**Answer: YES, the answer '2' (It hits the table edge) is correct.**"}], 'formatted_responses': ["\n=== Batch 0-15 (15 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1723.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1724.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1725.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1726.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1727.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1728.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1729.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1730.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1731.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1732.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1733.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1734.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1735.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1736.jpg, /mnt/ssd/data/lvbench/videos_processed/VTCDQYYKA9o/frames/frame_1737.jpg\nVLM Response: Based on the provided 15 frames and the specific question — *“From 28:50-28:57 in the video, what happens to the ball after Ma Long's final forehand stroke?”* — we must verify whether the visual evidence supports the answer **“2: It hits the table edge”**.\n\nLet’s evaluate the criteria one by one:\n\n---\n\n**1. Ma Long executing a forehand stroke with visible racket-ball contact**\n\n- In **Frame 10**, Ma Long (in black/purple shirt) is shown mid-forehand stroke, and the ball is clearly visible near his racket.\n- In **Frame 11**, the ball is just leaving his racket, confirming contact.\n- In **Frame 12**, Ma Long is in follow-through motion, and the ball is airborne, traveling toward Fan Zhendong’s side.\n✅ **Confirmed.**\n\n---\n\n**2. Ball traveling away from Ma Long after the stroke**\n\n- From **Frame 11 to Frame 15**, the ball is visibly traveling across the net toward Fan Zhendong’s side of the table.\n✅ **Confirmed.**\n\n---\n\n**3. Ball’s final position relative to table, net, or boundaries**\n\n- In **Frame 15**, the ball is seen landing **on the edge of the table** on Fan Zhendong’s side — specifically, the **side edge (long edge)** of the table, not the playing surface.\n- The ball does not bounce on the playing surface, nor does it go over the net or out of bounds beyond the table — it lands precisely on the edge.\n✅ **Confirmed — ball hits the table edge.**\n\n---\n\n**4. No opponent’s racket making contact with the ball**\n\n- Fan Zhendong is in position to return, but in **Frame 15**, his racket is not near the ball — the ball has already landed on the edge before he can make contact.\n- No subsequent frame shows him touching the ball.\n✅ **Confirmed.**\n\n---\n\n**5. Clear view of the table tennis table and net**\n\n- All frames from 8 to 15 show a clear, unobstructed view of the table, net, and players.\n✅ **Confirmed.**\n\n---\n\n**6. Ball trajectory showing whether it goes into net, out of bounds, or hits table edge**\n\n- The trajectory from **Frame 10 to Frame 15** clearly shows the ball traveling over the net, descending, and landing on the **side edge of the table** — not on the playing surface, not into the net, and not out of bounds beyond the table.\n✅ **Confirmed — hits table edge.**\n\n---\n\n### ✅ Final Verification:\n\nAll six criteria are satisfied by the visual evidence in the provided frames. The ball, after Ma Long’s final forehand stroke, clearly **hits the table edge** on Fan Zhendong’s side, which is a legal point in table tennis (edge ball = good).\n\n---\n\n**Answer: YES, the answer '2' (It hits the table edge) is correct.**\n"], 'condensed_response': '**Scene Summary (28:50\u202f–\u202f28:57)**  \n\n- **28:50\u202f–\u202f28:52** – Ma\u202fLong, dressed in a black‑purple shirt, initiates a forehand stroke. Frame\u202f10 (≈28:51) shows his racket making clear contact with the ball; the ball is visible just as it leaves the racket.  \n- **28:52\u202f–\u202f28:54** – The ball arcs over the net toward Fan\u202fZhendong’s side. Frames\u202f11–13 trace its flight, with the ball mid‑air and Ma\u202fLong already in follow‑through.  \n- **28:55\u202f–\u202f28:57** – In the final frames (14‑15, ≈28:56‑28:57) the ball lands on the **side edge of the table** on Fan\u202fZhendong’s side. Fan\u202fZhendong is positioned near the table but his racket does not touch the ball; the ball contacts the edge before he can react.  \n\nAll frames provide an unobstructed view of the table, net, and both players, confirming that after Ma\u202fLong’s last forehand the ball **hits the table edge** (answer “2”). No other contact (net, out‑of‑bounds, opponent’s racket) occurs.', 'failed_images': []}
+
+Question Being Answered: From 28:50-28:57 in the video, what happens to the ball after Ma Long's final forehand stroke?
+
+Answer Choices:
+A. It lands out of bounds
+B. It hits the table edge
+C. It is hit back by the opponent
+D. It goes into the net
+
+Given Answer: 2
+Evidence Frames Used: ['frames/frame_1728.jpg', 'frames/frame_1729.jpg', 'frames/frame_1730.jpg', 'frames/frame_1731.jpg', 'frames/frame_1732.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Fan Zhendong: A Chinese table tennis player, wearing a blue shirt with yellow designs and black shorts.
+Ma Long: A Chinese table tennis player, wearing a black shirt with gold accents and black shorts.
+Female Official/Umpire: A woman wearing a pink shirt and black pants, officiating the table tennis match.
+Woman in Blue Shirt: A woman wearing a blue shirt and gray pants, likely a staff member or official.
+Man in Red Jacket: A man wearing a red jacket with gold accents, likely a Chinese athlete or official.
+Dimitrij Ovtcharov: A German table tennis player, wearing a white, red, and black tracksuit with "GERMANY" written on it.
+
+SCENES:
+Table Tennis Arena: A large indoor arena with red seats and a green table tennis table, hosting the table tennis match between Fan Zhendong and Ma Long. [Frame 1-3500]
+Empty Stadium: A large empty stadium with red seats, where the athletes are walking around and preparing for the match. [Frame 3600-4000]
+Victory Ceremony: A scene where the medalists are standing on a podium, holding bouquets of sunflowers and wearing medals. [Frame 4240-4550]
+Medal Ceremony: A scene where the athletes are receiving their medals and bouquets of flowers. [Frame 4520-4780]
+Flags Display: A scene where the national flags of China and Germany are displayed. [Frame 4570-4590]
+Stadium Stands: A scene where spectators are sitting in the stands, wearing face masks and clapping. [Frame 4690-4730]
+
+EVENTS:
+Table Tennis Match: Fan Zhendong and Ma Long are competing in a table tennis match. [Frame 1-3500]
+Victory Ceremony: The medalists are standing on a podium, holding bouquets of sunflowers and wearing medals. [Frame 4240-4550]
+Medal Ceremony: The athletes are receiving their medals and bouquets of flowers. [Frame 4520-4780]
+Flags Display: The national flags of China and Germany are displayed. [Frame 4570-4590]
+Spectators Clapping: Spectators are sitting in the stands, wearing face masks and clapping. [Frame 4690-4730]
+
+================================================================================
+Generated at: 2026-01-11 21:50:14
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. Ma Long executing a forehand stroke with visible racket-ball contact
+  Q2. Ball traveling away from Ma Long after the stroke
+  Q3. Ball's final position relative to table, net, or boundaries
+  Q4. No opponent's racket making contact with the ball
+  Q5. Clear view of the table tennis table and net
+  Q6. Ball trajectory showing whether it goes into net, out of bounds, or hits table edge
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 6)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, if criteria_percentage > 0.5 (>50% of criteria pass):
+   - Review ALL answer choices (A, B, C, D, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D)
+5. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - STILL do your best to pick out a correct answer, but also set suggestion to "These may not be the right frames/scene. Continue searching for better evidence."
+   - output your best guess of the answer as a number (0=A, 1=B, 2=C, 3=D, 4=E)
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <number of question criteria that passed>,
+    "criteria_total": 6,
+    "criteria_percentage": <criteria_passed / 6>,
+    "base_confidence": <(criteria_passed / 6) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {"criterion": "Ma Long executing a forehand stroke with visible racket-ball contact", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms clear racket-ball contact in frames 10-12 showing Ma Long's forehand stroke"},
+        {"criterion": "Ball traveling away from Ma Long after the stroke", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms ball traveling across net toward Fan Zhendong's side in frames 11-15"},
+        {"criterion": "Ball's final position relative to table, net, or boundaries", "criterion_type": "ANSWER", "status": "PASS", "reasoning": "VLM confirms ball lands on side edge of table on Fan Zhendong's side in frame 15"},
+        {"criterion": "No opponent's racket making contact with the ball", "criterion_type": "ANSWER", "status": "PASS", "reasoning": "VLM confirms Fan Zhendong's racket does not contact the ball before it hits table edge"},
+        {"criterion": "Clear view of the table tennis table and net", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms all frames show unobstructed view of table, net, and players"},
+        {"criterion": "Ball trajectory showing whether it goes into net, out of bounds, or hits table edge", "criterion_type": "ANSWER", "status": "PASS", "reasoning": "VLM confirms trajectory shows ball lands on table edge, not net or out of bounds"}
+    ],
+    "question_criteria_passed": 3,
+    "answer_criteria_passed": 3,
+    "answer_criteria_total": 3,
+    "criteria_passed": 6,
+    "criteria_total": 6,
+    "criteria_percentage": 1.0,
+    "base_confidence": 100.0,
+    "confidence": 100.0,
+    "critic_answer_choice": 1,
+    "critic_reasoning": "VLM verification confirms all criteria are satisfied, with clear visual evidence showing the ball hits the table edge after Ma Long's forehand stroke without opponent contact",
+    "possible_errors": [],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'Ma Long executing a forehand stroke with visible racket-ball contact', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM confirms clear racket-ball contact in frames 10-12 showing Ma Long's forehand stroke"}, {'criterion': 'Ball traveling away from Ma Long after the stroke', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM confirms ball traveling across net toward Fan Zhendong's side in frames 11-15"}, {'criterion': "Ball's final position relative to table, net, or boundaries", 'criterion_type': 'ANSWER', 'status': 'PASS', 'reasoning': "VLM confirms ball lands on side edge of table on Fan Zhendong's side in frame 15"}, {'criterion': "No opponent's racket making contact with the ball", 'criterion_type': 'ANSWER', 'status': 'PASS', 'reasoning': "VLM confirms Fan Zhendong's racket does not contact the ball before it hits table edge"}, {'criterion': 'Clear view of the table tennis table and net', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms all frames show unobstructed view of table, net, and players'}, {'criterion': 'Ball trajectory showing whether it goes into net, out of bounds, or hits table edge', 'criterion_type': 'ANSWER', 'status': 'PASS', 'reasoning': 'VLM confirms trajectory shows ball lands on table edge, not net or out of bounds'}], 'question_criteria_passed': 3, 'answer_criteria_passed': 3, 'answer_criteria_total': 3, 'criteria_passed': 6, 'criteria_total': 6, 'criteria_percentage': 1.0, 'base_confidence': 100.0, 'confidence': 100.0, 'critic_answer_choice': 1, 'critic_reasoning': "VLM verification confirms all criteria are satisfied, with clear visual evidence showing the ball hits the table edge after Ma Long's forehand stroke without opponent contact", 'possible_errors': [], 'suggestion': None}

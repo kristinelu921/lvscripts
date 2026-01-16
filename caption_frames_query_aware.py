@@ -30,7 +30,7 @@ with open("env.json", "r") as f:
 
 async_client_together = AsyncTogether(api_key=together_key)
 
-def create_query_aware_prompt(questions):
+def create_prompt(questions):
     """Create a prompt that includes all questions as context
 
     Args: 
@@ -39,21 +39,26 @@ def create_query_aware_prompt(questions):
     Returns:
         Prompt string with questions embedded
     """
-    if not questions:
-        # Fallback to standard prompt if no questions
-        return """Please write ONE DESCRIPTIVE sentence that includes [subjects], [actions], [location/scene] if possible/relevant. Make sure to include detailed descriptions of subjects, actions, OBJECTS, large text, and the location/scene."""
-
-    questions_text = "\n".join([f"  - {q['question']}" for q in questions])
-
-    prompt = f"""You will be captioning frames from a video that will be used to answer these questions:
-
-{questions_text}
-
-Please caption this frame with ONE DESCRIPTIVE sentence, focusing on details that might help answer these questions. Include [subjects], [actions], [location/scene], OBJECTS, visible text, and any other relevant details. Pay special attention to elements mentioned in the questions above."""
-
-    return prompt
-
-async def process_single_frame_query_aware(frame_path, prompt, semaphore, results, output_file,
+    return """Describe this frame in ONE detailed sentence. Include:         
+    - Count and identify ALL subjects (people, animals, objects) with        
+    specific attributes (colors, clothing, brands, types)                    
+    - Describe ALL actions and what is happening                             
+    - List ALL visible text (signs, labels, numbers, brand names, on-screen  
+    text, captions)                                                          
+    - Specify spatial relationships and positioning (left/right,             
+    foreground/background, next to, holding)                                 
+    - Describe the setting/location/environment                              
+    - Note key visual attributes (colors, sizes, states, emotions,           
+    expressions)                                                             
+                                                                            
+    Be specific and concrete. Examples:                                      
+    - Not "a person" but "a woman in a red Nike jersey"                      
+    - Not "some animals" but "three golden retrievers"                       
+    - Not "text visible" but "sign reads 'EXIT' in white letters"            
+    - Not "on a table" but "silver iPhone on a wooden table next to a blue   
+    coffee mug"                                                              
+    """                   
+async def process_single_frame(frame_path, prompt, semaphore, results, output_file,
                                            file_lock, frame_num, total_frames,
                                            model="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
                                            use_subtitles=False, subtitle_frames=None, model_vlm="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8", model_llm="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8"):
@@ -111,7 +116,7 @@ async def process_single_frame_query_aware(frame_path, prompt, semaphore, result
             print(f"Error processing {frame_path}: {e}")
             return None
 
-async def caption_video_query_aware(video_id, frames_dir, output_file, questions_path,
+async def caption_video(video_id, frames_dir, output_file,
                                    max_concurrent=20, use_subtitles=False, subtitle_frames=None,
                                    query_aware=True, model_vlm="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8", model_llm="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8"):
     """Caption all frames for a video with optional query-aware prompting
@@ -131,7 +136,7 @@ async def caption_video_query_aware(video_id, frames_dir, output_file, questions
     print(f"Using standard (non-query-aware) captioning for video {video_id}")
 
     # Create prompt (query-aware or standard)
-    prompt = create_query_aware_prompt(questions)
+    prompt = create_prompt(questions)
 
     # Get frame files
     frames_path = Path(frames_dir)
@@ -171,7 +176,7 @@ async def caption_video_query_aware(video_id, frames_dir, output_file, questions
     file_lock = asyncio.Lock()
 
     tasks = [
-        process_single_frame_query_aware(
+        process_single_frame(
             frame_path, prompt, semaphore, results, output_file, file_lock,
             i+1, len(frames_to_process), use_subtitles=use_subtitles,
             subtitle_frames=subtitle_frames,
@@ -184,9 +189,9 @@ async def caption_video_query_aware(video_id, frames_dir, output_file, questions
 
     return results
 
-async def process_all_videos_query_aware(vid_folder, questions_path='/mnt/ssd/data/longvideobench/downloaded_videos_questions.json',
+async def process_all_videos(vid_folder,
                                         use_subtitles=False, subtitle_mapping_path='/mnt/ssd/data/longvideobench/subtitles_frame_mapping.json',
-                                        query_aware=True, model_vlm="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8", model_llm="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8"):
+                                        query_aware=True, model_vlm="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8", model_llm="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8", reverse=False):
     """Process all videos with optional query-aware captioning
 
     Args:
@@ -195,19 +200,19 @@ async def process_all_videos_query_aware(vid_folder, questions_path='/mnt/ssd/da
         use_subtitles: Whether to use subtitles
         subtitle_mapping_path: Path to subtitle frame mapping
         query_aware: If True, use questions to guide captioning. If False, use standard captioning.
+        reverse: If True, process videos in reverse alphabetical order
     """
-    # Determine which videos to process
-    if query_aware and os.path.exists(questions_path):
-        # Load all questions to know which videos to process
-        with open(questions_path, 'r') as f:
-            all_questions = json.load(f)
-        video_ids = list(all_questions.keys())
-        print(f"Found {len(video_ids)} videos with questions")
-    else:
-        # Process all videos in the folder
-        video_ids = [d for d in os.listdir(vid_folder)
-                    if os.path.isdir(os.path.join(vid_folder, d))]
-        print(f"Found {len(video_ids)} videos to process")
+
+    video_ids = [d for d in os.listdir(vid_folder)
+                if os.path.isdir(os.path.join(vid_folder, d))]
+
+    # Sort and optionally reverse
+    video_ids = sorted(video_ids, reverse=reverse)
+
+    mode_indicator = "[REVERSE]" if reverse else "[FORWARD]"
+    print(f"{mode_indicator} Found {len(video_ids)} videos to process")
+    if reverse:
+        print(f"{mode_indicator} Processing in REVERSE order: {video_ids[0]} -> {video_ids[-1]}")
 
     # Load subtitle mappings if requested
     subtitle_data = {}
@@ -244,11 +249,10 @@ async def process_all_videos_query_aware(vid_folder, questions_path='/mnt/ssd/da
         print(f"Processing video: {video_id}")
         print(f"{'='*60}")
 
-        await caption_video_query_aware(
+        await caption_video(
             video_id=video_id,
             frames_dir=frames_dir,
             output_file=output_file,
-            questions_path=questions_path,
             max_concurrent=10,
             use_subtitles=use_subtitles,
             subtitle_frames=subtitle_frames,
@@ -259,7 +263,7 @@ async def process_all_videos_query_aware(vid_folder, questions_path='/mnt/ssd/da
 
         print(f"Completed {video_id}")
 
-def sort_captions_query_aware(vid_folder, query_aware=True):
+def sort_captions(vid_folder, query_aware=True):
     """Sort captions by frame number
 
     Args:
@@ -295,7 +299,7 @@ def sort_captions_query_aware(vid_folder, query_aware=True):
                 json.dump(sorted_captions, out_f, indent=2)
             print(f"Saved sorted captions for {video_id}")
 
-async def create_logs_query_aware(captions_file, output_file, prompt_fct, frames_dir,
+async def create_logs(captions_file, output_file, prompt_fct, frames_dir,
                                   model_vlm="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
                                   max_attempts=3):
     """Generate CES logs or global summary for query-aware captions
@@ -373,7 +377,7 @@ async def create_logs_query_aware(captions_file, output_file, prompt_fct, frames
                     f.write(f"Failed to generate after {max_attempts} attempts: {e}")
             continue
 
-async def generate_ces_logs_query_aware(vid_folder, model_vlm='meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8'):
+async def generate_ces_logs(vid_folder, model_vlm='meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8'):
     """Generate CES logs for all videos with query-aware captions
 
     Args:
@@ -390,7 +394,7 @@ async def generate_ces_logs_query_aware(vid_folder, model_vlm='meta-llama/Llama-
         output_file = os.path.join(vid_folder, video_id, 'captions', 'CES_logs.txt')
         frames_dir = os.path.join(vid_folder, video_id, 'frames')
 
-        tasks.append(create_logs_query_aware(
+        tasks.append(create_logs(
             captions_file, output_file, CES_log_prompt, frames_dir, model_vlm=model_vlm
         ))
 
@@ -401,7 +405,7 @@ async def generate_ces_logs_query_aware(vid_folder, model_vlm='meta-llama/Llama-
         if isinstance(result, Exception):
             print(f"Failed to generate CES logs for {video_id}: {result}")
 
-async def generate_global_summaries_query_aware(vid_folder, model_vlm='meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8'):
+async def generate_global_summaries(vid_folder, model_vlm='meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8'):
     """Generate global summaries for all videos with query-aware captions
 
     Args:
@@ -418,7 +422,7 @@ async def generate_global_summaries_query_aware(vid_folder, model_vlm='meta-llam
         output_file = os.path.join(vid_folder, video_id, 'captions', 'global_summary.txt')
         frames_dir = os.path.join(vid_folder, video_id, 'frames')
 
-        tasks.append(create_logs_query_aware(
+        tasks.append(create_logs(
             captions_file, output_file, global_summary_prompt, frames_dir, model_vlm=model_vlm
         ))
 
@@ -429,9 +433,9 @@ async def generate_global_summaries_query_aware(vid_folder, model_vlm='meta-llam
         if isinstance(result, Exception):
             print(f"Failed to generate global summary for {video_id}: {result}")
 
-async def run_all_query_aware_captions(vid_folder, questions_path='/mnt/ssd/data/longvideobench/downloaded_videos_questions.json',
+async def run_all_captions(vid_folder,
                                       use_subtitles=False, subtitle_mapping_path='/mnt/ssd/data/longvideobench/subtitles_frame_mapping.json',
-                                      query_aware=True, model_vlm="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8", model_llm="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8"):
+                                      query_aware=True, model_vlm="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8", model_llm="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8", reverse=False):
     """Run complete caption pipeline including CES logs and global summaries
 
     Args:
@@ -440,6 +444,7 @@ async def run_all_query_aware_captions(vid_folder, questions_path='/mnt/ssd/data
         use_subtitles: Whether to integrate subtitles
         subtitle_mapping_path: Path to subtitle mappings
         query_aware: If True, use questions to guide captioning. If False, use standard captioning.
+        reverse: If True, process videos in reverse alphabetical order
     """
     mode_name = "QUERY-AWARE" if query_aware else "STANDARD"
     print("\n" + "="*80)
@@ -448,12 +453,12 @@ async def run_all_query_aware_captions(vid_folder, questions_path='/mnt/ssd/data
 
     # Step 1: Generate captions
     print(f"Step 1/5: Generating {mode_name.lower()} captions...")
-    await process_all_videos_query_aware(vid_folder, questions_path, use_subtitles, subtitle_mapping_path, query_aware, model_vlm=model_vlm, model_llm=model_llm)
+    await process_all_videos(vid_folder, use_subtitles, subtitle_mapping_path, query_aware, model_vlm=model_vlm, model_llm=model_llm, reverse=reverse)
     print(f"✓ {mode_name} captions generated\n")
 
     # Step 2: Sort captions
     print("Step 2/5: Sorting captions...")
-    sort_captions_query_aware(vid_folder, query_aware)
+    sort_captions(vid_folder, query_aware)
     print("✓ Captions sorted\n")
 
     # Step 3: Embed captions
@@ -467,12 +472,12 @@ async def run_all_query_aware_captions(vid_folder, questions_path='/mnt/ssd/data
 
     # Step 4: Generate global summaries
     print("Step 4/5: Generating global summaries...")
-    await generate_global_summaries_query_aware(vid_folder, model_vlm=model_vlm)
+    await generate_global_summaries(vid_folder, model_vlm=model_vlm)
     print("✓ Global summaries generated\n")
 
     # Step 5: Generate CES logs
     print("Step 5/5: Generating CES logs...")
-    await generate_ces_logs_query_aware(vid_folder, model_vlm=model_vlm)
+    await generate_ces_logs(vid_folder, model_vlm=model_vlm)
     print("✓ CES logs generated\n")
 
     print("="*80)
@@ -487,8 +492,6 @@ async def main():
     )
 
     parser.add_argument('vid_folder', help='Directory containing video folders (named by video_id)')
-    parser.add_argument('--questions', default='/mnt/ssd/data/longvideobench/downloaded_videos_questions.json',
-                       help='Path to questions JSON file')
     parser.add_argument('--use-subtitles', action='store_true',
                        help='Append subtitles to frame captions')
     parser.add_argument('--model-vlm', default="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
@@ -507,43 +510,45 @@ async def main():
                        help='Only generate global summaries (requires sorted captions)')
     parser.add_argument('--sort-only', action='store_true',
                        help='Only sort existing captions')
+    parser.add_argument('--reverse', action='store_true',
+                       help='Process videos in reverse alphabetical order (useful for parallel processing)')
 
     args = parser.parse_args()
 
     if args.run_all:
         # Run complete pipeline
-        await run_all_query_aware_captions(
+        await run_all_captions(
             vid_folder=args.vid_folder,
-            questions_path=args.questions,
             use_subtitles=args.use_subtitles,
             query_aware=args.query_aware,
             model_vlm=args.model_vlm,
-            model_llm=args.model_llm
+            model_llm=args.model_llm,
+            reverse=args.reverse
         )
     elif args.ces_only:
         # Only generate CES logs
         print("Generating CES logs only...")
-        await generate_ces_logs_query_aware(args.vid_folder, model_vlm=args.model_vlm)
+        await generate_ces_logs(args.vid_folder, model_vlm=args.model_vlm)
         print("CES logs complete")
     elif args.summary_only:
         # Only generate global summaries
         print("Generating global summaries only...")
-        await generate_global_summaries_query_aware(args.vid_folder, model_vlm=args.model_vlm)
+        await generate_global_summaries(args.vid_folder, model_vlm=args.model_vlm)
         print("Global summaries complete")
     elif args.sort_only:
         # Only sort captions
         print("Sorting captions only...")
-        sort_captions_query_aware(args.vid_folder, query_aware=args.query_aware)
+        sort_captions(args.vid_folder, query_aware=args.query_aware)
         print("Sorting complete")
     else:
         # Default: only generate captions
-        await process_all_videos_query_aware(
+        await process_all_videos(
             vid_folder=args.vid_folder,
-            questions_path=args.questions,
             use_subtitles=args.use_subtitles,
             query_aware=args.query_aware,
             model_vlm=args.model_vlm,
-            model_llm=args.model_llm
+            model_llm=args.model_llm,
+            reverse=args.reverse
         )
 
         mode_name = "QUERY-AWARE" if args.query_aware else "STANDARD"

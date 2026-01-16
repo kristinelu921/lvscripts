@@ -1,0 +1,226 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0015.jpg", "frames/frame_0016.jpg", "frames/frame_0017.jpg", "frames/frame_0018.jpg", "frames/frame_0019.jpg", "frames/frame_0020.jpg", "frames/frame_0021.jpg", "frames/frame_0022.jpg", "frames/frame_0023.jpg", "frames/frame_0024.jpg", "frames/frame_0025.jpg", "frames/frame_0026.jpg", "frames/frame_0027.jpg", "frames/frame_0028.jpg", "frames/frame_0029.jpg"],
+    "prompt": "Analyze these frames to verify if answer '1' (Placing the tongs on the cutting board) is correct for the question: 'In the top-right corner of the brown cutting board, there are several pieces of already-cut meat. On the left side of the cutting board, there is uncut meat on a metal plate. In the middle of the screen, a person is holding a pair of tongs. What is this person doing?' Check for these specific criteria: 1) Brown cutting board visible, 2) Already-cut meat in top-right corner, 3) Uncut meat on metal plate on left side, 4) Person holding tongs in middle of screen, 5) Person actively using/manipulating tongs, 6) Spatial arrangement matches description. Focus on the person's action with the tongs - are they placing them on the cutting board, or doing something else like transferring meat? Examine the sequence of frames to determine the action."
+}
+Frames to verify: ['frames/frame_0015.jpg', 'frames/frame_0016.jpg', 'frames/frame_0017.jpg', 'frames/frame_0018.jpg', 'frames/frame_0019.jpg', 'frames/frame_0020.jpg', 'frames/frame_0021.jpg', 'frames/frame_0022.jpg', 'frames/frame_0023.jpg', 'frames/frame_0024.jpg', 'frames/frame_0025.jpg', 'frames/frame_0026.jpg', 'frames/frame_0027.jpg', 'frames/frame_0028.jpg', 'frames/frame_0029.jpg']
+VLM Prompt: Video context: After analyzing the provided SET of frame-by-frame captions, I've generated a global summary of the video content.
+
+**Main Characters:**
+The main character appears to be a chef or a cook, likely a fair-skinned individual, as they are the primary person performing actions throughout the video.
+
+**Setting:**
+The setting is a kitchen or a cooking area, with a dark brown wooden table or chopping board as the central workspace. The presence of a metal grill rack and cooking utensils like tongs and knives suggests a cooking or food preparation environment.
+
+**Plot Line:**
+The plot line revolves around the preparation and cooking of various meats, primarily chicken and other poultry or beef. The video showcases the chef handling, cutting, and seasoning the cooked meat, with a focus on roasted chicken. The narrative is more of a cooking demonstration or tutorial, with the chef showcasing their techniques and discussing the characteristics of different types of potatoes (starchy vs. waxy) in relation to making mashed potatoes.
+
+**Vibes:**
+The overall vibe of the video is informative, instructional, and somewhat relaxed, as the chef is demonstrating cooking techniques and sharing knowledge about food. The atmosphere appears to be calm and focused on the cooking process.
+
+**General Details:**
+Some notable details include:
+
+* The chef is working with various meats, including chicken, pork chops, and steak.
+* The cooking is done on a grill, and the chef is using various utensils like tongs, knives, and spatulas.
+* The video includes a discussion about the type of potatoes suitable for making mashed potatoes, specifically mentioning Yukon Gold potatoes.
+* The tone is informative, and the video is likely part of a cooking tutorial, recipe, or demonstration.
+
+Overall, the video appears to be a cooking-related content, possibly from a recipe video, cooking show, or tutorial.
+
+Analyze these frames to verify if answer '1' (Placing the tongs on the cutting board) is correct for the question: 'In the top-right corner of the brown cutting board, there are several pieces of already-cut meat. On the left side of the cutting board, there is uncut meat on a metal plate. In the middle of the screen, a person is holding a pair of tongs. What is this person doing?' Check for these specific criteria: 1) Brown cutting board visible, 2) Already-cut meat in top-right corner, 3) Uncut meat on metal plate on left side, 4) Person holding tongs in middle of screen, 5) Person actively using/manipulating tongs, 6) Spatial arrangement matches description. Focus on the person's action with the tongs - are they placing them on the cutting board, or doing something else like transferring meat? Examine the sequence of frames to determine the action.
+
+Subtitles visible in these frames:
+  frames/frame_0017.jpg: "fluffier inside we're using yukon gold"
+  frames/frame_0018.jpg: "potatoes they're actually somewhere in"
+  frames/frame_0021.jpg: "between a starchy and a waxy potato"
+  frames/frame_0023.jpg: "they're harder to over mash and have a"
+  frames/frame_0025.jpg: "foolproof creamy texture we're going to"
+  frames/frame_0027.jpg: "peel the potatoes before boiling some"
+  frames/frame_0029.jpg: "people like to leave the skin on their"
+
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 15, 'image_paths': ['/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0015.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0016.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0017.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0018.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0019.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0020.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0021.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0022.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0023.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0024.jpg'], 'response': "Based on a detailed analysis of the provided frames and the specific criteria, the answer **'1' (Placing the tongs on the cutting board)** is **incorrect**.\n\nHere is the verification against each criterion:\n\n1.  **Brown cutting board visible**: ✅ Yes, a dark brown wooden cutting board is the central surface in all frames.\n2.  **Already-cut meat in top-right corner**: ✅ Yes, several pieces of sliced, cooked chicken are visible in the top-right portion of the cutting board across multiple frames (e.g., Frame 1, 2, 3, 4, 5, 6, 7).\n3.  **Uncut meat on metal plate on left side**: ✅ Yes, a metal grill rack with a whole roasted chicken (uncut meat) is positioned on the left side of the frame, adjacent to the cutting board (e.g., Frame 1, 2, 3, 4, 5, 6, 7, 8, 9, 10).\n4.  **Person holding tongs in middle of screen**: ✅ Yes, a person's hands are visible in the center of the frame holding tongs (e.g., Frame 8, 9, 10).\n5.  **Person actively using/manipulating tongs**: ✅ Yes, the person is actively using the tongs to pick up a piece of chicken from the grill rack (Frame 9) and place it onto the cutting board (Frame 10). The action is one of *transferring* meat, not placing the tongs down.\n6.  **Spatial arrangement matches description**: ✅ Yes, the spatial arrangement described (cut meat top-right, uncut meat on metal plate left, person with tongs in middle) is accurately depicted in the frames.\n\n**Critical Analysis of the Action:**\n\n*   In **Frame 8**, the person is holding the tongs, poised over the cutting board, but not yet placing them down.\n*   In **Frame 9**, the person uses the tongs to *lift* a piece of chicken from the grill rack on the left.\n*   In **Frame 10**, the person is actively *placing* the chicken piece (held by the tongs) onto the cutting board. The tongs are still being used to hold and position the meat; they are not being set down on the board.\n\nThe person is clearly **transferring meat** from the grill rack to the cutting board using the tongs. There is no frame in this sequence where the person is seen placing the tongs *on* the cutting board as a final resting action. The tongs are an active tool being used for manipulation.\n\nTherefore, the correct action is **transferring meat**, not placing the tongs on the cutting board. Answer '1' is incorrect."}], 'formatted_responses': ["\n=== Batch 0-15 (10 frames) ===\nFrames: /mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0015.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0016.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0017.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0018.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0019.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0020.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0021.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0022.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0023.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0024.jpg\nVLM Response: Based on a detailed analysis of the provided frames and the specific criteria, the answer **'1' (Placing the tongs on the cutting board)** is **incorrect**.\n\nHere is the verification against each criterion:\n\n1.  **Brown cutting board visible**: ✅ Yes, a dark brown wooden cutting board is the central surface in all frames.\n2.  **Already-cut meat in top-right corner**: ✅ Yes, several pieces of sliced, cooked chicken are visible in the top-right portion of the cutting board across multiple frames (e.g., Frame 1, 2, 3, 4, 5, 6, 7).\n3.  **Uncut meat on metal plate on left side**: ✅ Yes, a metal grill rack with a whole roasted chicken (uncut meat) is positioned on the left side of the frame, adjacent to the cutting board (e.g., Frame 1, 2, 3, 4, 5, 6, 7, 8, 9, 10).\n4.  **Person holding tongs in middle of screen**: ✅ Yes, a person's hands are visible in the center of the frame holding tongs (e.g., Frame 8, 9, 10).\n5.  **Person actively using/manipulating tongs**: ✅ Yes, the person is actively using the tongs to pick up a piece of chicken from the grill rack (Frame 9) and place it onto the cutting board (Frame 10). The action is one of *transferring* meat, not placing the tongs down.\n6.  **Spatial arrangement matches description**: ✅ Yes, the spatial arrangement described (cut meat top-right, uncut meat on metal plate left, person with tongs in middle) is accurately depicted in the frames.\n\n**Critical Analysis of the Action:**\n\n*   In **Frame 8**, the person is holding the tongs, poised over the cutting board, but not yet placing them down.\n*   In **Frame 9**, the person uses the tongs to *lift* a piece of chicken from the grill rack on the left.\n*   In **Frame 10**, the person is actively *placing* the chicken piece (held by the tongs) onto the cutting board. The tongs are still being used to hold and position the meat; they are not being set down on the board.\n\nThe person is clearly **transferring meat** from the grill rack to the cutting board using the tongs. There is no frame in this sequence where the person is seen placing the tongs *on* the cutting board as a final resting action. The tongs are an active tool being used for manipulation.\n\nTherefore, the correct action is **transferring meat**, not placing the tongs on the cutting board. Answer '1' is incorrect.\n"], 'condensed_response': '**Condensed scene summary (frames\u202f15‑24)**  \n\n- **Setting:** A dark‑brown wooden cutting board dominates the view.  \n  - *Top‑right corner:* several pieces of already‑sliced cooked chicken.  \n  - *Left side:* a metal grill rack holding a whole roasted chicken (uncut meat).  \n\n- **Character tracking:**  \n  - The only visible actor is a pair of hands centered in the frame, gripping a set of tongs.  \n  - **Frame\u202f8:** Hands hold the tongs, poised above the board but not touching it.  \n  - **Frame\u202f9:** The tongs lift a chicken piece from the grill rack (left side).  \n  - **Frame\u202f10:** The same hands guide the lifted piece onto the cutting board; the tongs remain in use, never placed down.  \n\n- **Action conclusion:** The person is **transferring meat** from the grill rack to the cutting board with the tongs. No frame shows the tongs being set down on the board, so the answer “placing the tongs on the cutting board” is incorrect.', 'failed_images': [('/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0025.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0026.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0027.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0028.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0029.jpg', 'File not found')]}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 15, 'image_paths': ['/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0015.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0016.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0017.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0018.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0019.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0020.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0021.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0022.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0023.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0024.jpg'], 'response': "Based on a detailed analysis of the provided frames and the specific criteria, the answer **'1' (Placing the tongs on the cutting board)** is **incorrect**.\n\nHere is the verification against each criterion:\n\n1.  **Brown cutting board visible**: ✅ Yes, a dark brown wooden cutting board is the central surface in all frames.\n2.  **Already-cut meat in top-right corner**: ✅ Yes, several pieces of sliced, cooked chicken are visible in the top-right portion of the cutting board across multiple frames (e.g., Frame 1, 2, 3, 4, 5, 6, 7).\n3.  **Uncut meat on metal plate on left side**: ✅ Yes, a metal grill rack with a whole roasted chicken (uncut meat) is positioned on the left side of the frame, adjacent to the cutting board (e.g., Frame 1, 2, 3, 4, 5, 6, 7, 8, 9, 10).\n4.  **Person holding tongs in middle of screen**: ✅ Yes, a person's hands are visible in the center of the frame holding tongs (e.g., Frame 8, 9, 10).\n5.  **Person actively using/manipulating tongs**: ✅ Yes, the person is actively using the tongs to pick up a piece of chicken from the grill rack (Frame 9) and place it onto the cutting board (Frame 10). The action is one of *transferring* meat, not placing the tongs down.\n6.  **Spatial arrangement matches description**: ✅ Yes, the spatial arrangement described (cut meat top-right, uncut meat on metal plate left, person with tongs in middle) is accurately depicted in the frames.\n\n**Critical Analysis of the Action:**\n\n*   In **Frame 8**, the person is holding the tongs, poised over the cutting board, but not yet placing them down.\n*   In **Frame 9**, the person uses the tongs to *lift* a piece of chicken from the grill rack on the left.\n*   In **Frame 10**, the person is actively *placing* the chicken piece (held by the tongs) onto the cutting board. The tongs are still being used to hold and position the meat; they are not being set down on the board.\n\nThe person is clearly **transferring meat** from the grill rack to the cutting board using the tongs. There is no frame in this sequence where the person is seen placing the tongs *on* the cutting board as a final resting action. The tongs are an active tool being used for manipulation.\n\nTherefore, the correct action is **transferring meat**, not placing the tongs on the cutting board. Answer '1' is incorrect."}], 'formatted_responses': ["\n=== Batch 0-15 (10 frames) ===\nFrames: /mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0015.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0016.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0017.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0018.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0019.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0020.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0021.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0022.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0023.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0024.jpg\nVLM Response: Based on a detailed analysis of the provided frames and the specific criteria, the answer **'1' (Placing the tongs on the cutting board)** is **incorrect**.\n\nHere is the verification against each criterion:\n\n1.  **Brown cutting board visible**: ✅ Yes, a dark brown wooden cutting board is the central surface in all frames.\n2.  **Already-cut meat in top-right corner**: ✅ Yes, several pieces of sliced, cooked chicken are visible in the top-right portion of the cutting board across multiple frames (e.g., Frame 1, 2, 3, 4, 5, 6, 7).\n3.  **Uncut meat on metal plate on left side**: ✅ Yes, a metal grill rack with a whole roasted chicken (uncut meat) is positioned on the left side of the frame, adjacent to the cutting board (e.g., Frame 1, 2, 3, 4, 5, 6, 7, 8, 9, 10).\n4.  **Person holding tongs in middle of screen**: ✅ Yes, a person's hands are visible in the center of the frame holding tongs (e.g., Frame 8, 9, 10).\n5.  **Person actively using/manipulating tongs**: ✅ Yes, the person is actively using the tongs to pick up a piece of chicken from the grill rack (Frame 9) and place it onto the cutting board (Frame 10). The action is one of *transferring* meat, not placing the tongs down.\n6.  **Spatial arrangement matches description**: ✅ Yes, the spatial arrangement described (cut meat top-right, uncut meat on metal plate left, person with tongs in middle) is accurately depicted in the frames.\n\n**Critical Analysis of the Action:**\n\n*   In **Frame 8**, the person is holding the tongs, poised over the cutting board, but not yet placing them down.\n*   In **Frame 9**, the person uses the tongs to *lift* a piece of chicken from the grill rack on the left.\n*   In **Frame 10**, the person is actively *placing* the chicken piece (held by the tongs) onto the cutting board. The tongs are still being used to hold and position the meat; they are not being set down on the board.\n\nThe person is clearly **transferring meat** from the grill rack to the cutting board using the tongs. There is no frame in this sequence where the person is seen placing the tongs *on* the cutting board as a final resting action. The tongs are an active tool being used for manipulation.\n\nTherefore, the correct action is **transferring meat**, not placing the tongs on the cutting board. Answer '1' is incorrect.\n"], 'condensed_response': '**Condensed scene summary (frames\u202f15‑24)**  \n\n- **Setting:** A dark‑brown wooden cutting board dominates the view.  \n  - *Top‑right corner:* several pieces of already‑sliced cooked chicken.  \n  - *Left side:* a metal grill rack holding a whole roasted chicken (uncut meat).  \n\n- **Character tracking:**  \n  - The only visible actor is a pair of hands centered in the frame, gripping a set of tongs.  \n  - **Frame\u202f8:** Hands hold the tongs, poised above the board but not touching it.  \n  - **Frame\u202f9:** The tongs lift a chicken piece from the grill rack (left side).  \n  - **Frame\u202f10:** The same hands guide the lifted piece onto the cutting board; the tongs remain in use, never placed down.  \n\n- **Action conclusion:** The person is **transferring meat** from the grill rack to the cutting board with the tongs. No frame shows the tongs being set down on the board, so the answer “placing the tongs on the cutting board” is incorrect.', 'failed_images': [('/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0025.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0026.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0027.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0028.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/tdA5atpqaAc/frames/frame_0029.jpg', 'File not found')]}
+
+Question Being Answered: In the top-right corner of the brown cutting board, there are several pieces of already-cut meat. On the left side of the cutting board, there is uncut meat on a metal plate. In the middle of the screen, a person is holding a pair of tongs. What is this person doing?
+
+Answer Choices:
+A. Placing the tongs on the cutting board
+B. Placing the meat from the metal plate onto the cutting board
+C. Using the tongs to grab vegetables
+D. Placing the cut meat from the cutting board onto the metal plate
+E. Putting the tongs into a bowl
+
+Given Answer: 1
+Evidence Frames Used: ['frames/frame_0020.jpg', 'frames/frame_0021.jpg', 'frames/frame_0022.jpg', 'frames/frame_0023.jpg', 'frames/frame_0024.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Person 1: Description: A fair-skinned person, likely a chef or cook, handling and preparing grilled meats.
+
+SCENES:
+Scene 1: Kitchen or Food Preparation Area: Description: A dark brown wooden table or chopping board is the central focus, with various grilled meats and cooking utensils present. [Frame 1]
+
+EVENTS:
+Event 1: Preparing Grilled Meats: Description: The person is handling, cutting, and seasoning various grilled meats on a wooden table. [Frame 1]
+Event 2: Carving Roasted Chicken: Description: The person is carving a roasted chicken into pieces on the wooden table. [Frame 13]
+
+SCENES: 
+No new scene added as the frames seem to be continuous and in the same location.
+
+CHARACTERS:
+No new character added as there is only one person visible in the frames.
+
+EVENTS:
+No new event added, as Event 1 continues throughout the frames. 
+
+To keep the response format-compliant, here are the updated logs:
+
+CHARACTERS:
+Person 1: Description: A fair-skinned person, likely a chef or cook, handling and preparing grilled meats.
+
+SCENES:
+Scene 1: Kitchen or Food Preparation Area: Description: A dark brown wooden table or chopping board is the central focus, with various grilled meats and cooking utensils present. [Frame 1]
+
+EVENTS:
+Event 1: Preparing Grilled Meats: Description: The person is handling, cutting, and seasoning various grilled meats on a wooden table. [Frame 1]
+
+================================================================================
+Generated at: 2026-01-03 10:19:08
+================================================================================
+
+
+
+SUBTITLES IN EVIDENCE FRAMES:
+  frames/frame_0021.jpg: "between a starchy and a waxy potato"
+  frames/frame_0023.jpg: "they're harder to over mash and have a"
+
+⚠️ IMPORTANT: Use subtitle information to verify text-based questions or questions about visible captions/words.
+
+
+QUESTION-BASED CRITERIA:
+  Q1. Brown cutting board visible in the frame
+  Q2. Several pieces of already-cut meat in the top-right corner of the cutting board
+  Q3. Uncut meat on a metal plate on the left side of the cutting board
+  Q4. Person holding a pair of tongs in the middle of the screen
+  Q5. Person is actively using or manipulating the tongs
+  Q6. Spatial arrangement: cutting board with specific meat placement and metal plate with uncut meat
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 6)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, if criteria_percentage > 0.5 (>50% of criteria pass):
+   - Review ALL answer choices (A, B, C, D, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D)
+5. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - Set critic_answer_choice to -1 (indicating frames may not be the right scene)
+   - Set suggestion to "These may not be the right frames/scene. Continue searching for better evidence."
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 6,
+    "criteria_percentage": <criteria_passed / 6>,
+    "base_confidence": <(criteria_passed / 6) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, or -1 if ≤50% criteria pass>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "Brown cutting board visible in the frame",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms 'a dark brown wooden cutting board is the central surface in all frames'"
+        },
+        {
+            "criterion": "Several pieces of already-cut meat in the top-right corner of the cutting board",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms 'several pieces of sliced, cooked chicken are visible in the top-right portion of the cutting board'"
+        },
+        {
+            "criterion": "Uncut meat on a metal plate on the left side of the cutting board",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms 'a metal grill rack with a whole roasted chicken (uncut meat) is positioned on the left side'"
+        },
+        {
+            "criterion": "Person holding a pair of tongs in the middle of the screen",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms 'a person's hands are visible in the center of the frame holding tongs'"
+        },
+        {
+            "criterion": "Person is actively using or manipulating the tongs",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms 'the person is actively using the tongs to pick up a piece of chicken from the grill rack'"
+        },
+        {
+            "criterion": "Spatial arrangement: cutting board with specific meat placement and metal plate with uncut meat",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms 'the spatial arrangement described is accurately depicted in the frames'"
+        }
+    ],
+    "question_criteria_passed": 6,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 6,
+    "criteria_total": 6,
+    "criteria_percentage": 1.0,
+    "base_confidence": 100.0,
+    "confidence": 50.0,
+    "critic_answer_choice": 1,
+    "critic_reasoning": "The VLM evidence clearly shows the person is transferring meat from the metal grill rack to the cutting board using tongs, not placing the tongs down. This matches answer choice B ('Placing the meat from the metal plate onto the cutting board').",
+    "possible_errors": [
+        "Given answer '1' (Placing the tongs on the cutting board) is incorrect according to VLM analysis"
+    ],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'Brown cutting board visible in the frame', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM confirms 'a dark brown wooden cutting board is the central surface in all frames'"}, {'criterion': 'Several pieces of already-cut meat in the top-right corner of the cutting board', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM confirms 'several pieces of sliced, cooked chicken are visible in the top-right portion of the cutting board'"}, {'criterion': 'Uncut meat on a metal plate on the left side of the cutting board', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM confirms 'a metal grill rack with a whole roasted chicken (uncut meat) is positioned on the left side'"}, {'criterion': 'Person holding a pair of tongs in the middle of the screen', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM confirms 'a person's hands are visible in the center of the frame holding tongs'"}, {'criterion': 'Person is actively using or manipulating the tongs', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM confirms 'the person is actively using the tongs to pick up a piece of chicken from the grill rack'"}, {'criterion': 'Spatial arrangement: cutting board with specific meat placement and metal plate with uncut meat', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM confirms 'the spatial arrangement described is accurately depicted in the frames'"}], 'question_criteria_passed': 6, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 6, 'criteria_total': 6, 'criteria_percentage': 1.0, 'base_confidence': 100.0, 'confidence': 50.0, 'critic_answer_choice': 1, 'critic_reasoning': "The VLM evidence clearly shows the person is transferring meat from the metal grill rack to the cutting board using tongs, not placing the tongs down. This matches answer choice B ('Placing the meat from the metal plate onto the cutting board').", 'possible_errors': ["Given answer '1' (Placing the tongs on the cutting board) is incorrect according to VLM analysis"], 'suggestion': None}

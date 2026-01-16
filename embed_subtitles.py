@@ -55,7 +55,7 @@ def load_subtitle_file(path: str):
     with open(path, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
-    records = []
+    records = []re
     for i, entry in enumerate(data):
         start_sec = parse_timestamp_to_seconds(entry["start"])
         end_sec = parse_timestamp_to_seconds(entry["end"])
@@ -150,7 +150,7 @@ def embed_subtitle_file(client, subtitle_path: str, output_path: str, model: str
 
 def main():
     """Embed all subtitle files in the subtitles folder"""
-    subtitles_folder = "/mnt/ssd/data/longvideobench/subtitles_filtered"
+    subtitles_folder = "/mnt/ssd/data/videomme/subtitles_json"
     model = "BAAI/bge-large-en-v1.5"
     batch_size = 100
 

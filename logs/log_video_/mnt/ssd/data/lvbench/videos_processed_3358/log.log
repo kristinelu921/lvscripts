@@ -1,0 +1,200 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0745.jpg", "frames/frame_0746.jpg", "frames/frame_0747.jpg", "frames/frame_0748.jpg", "frames/frame_0749.jpg", "frames/frame_0750.jpg", "frames/frame_0751.jpg", "frames/frame_0752.jpg", "frames/frame_0753.jpg", "frames/frame_0754.jpg", "frames/frame_0755.jpg", "frames/frame_0756.jpg", "frames/frame_0757.jpg", "frames/frame_0758.jpg", "frames/frame_0759.jpg", "frames/frame_0760.jpg", "frames/frame_0761.jpg", "frames/frame_0762.jpg", "frames/frame_0763.jpg", "frames/frame_0764.jpg"],
+    "prompt": "Examine these frames to verify if answer '2' (Fries) is correct for 'What is the side of the no-bun burger?'. Check: 1) Is there a burger without a bun visible? 2) Is there a side dish next to/near it? 3) Is the side clearly identifiable as one of these options: A=Onion rings, B=Salad, C=Fries, D=Chili? 4) Are the no-bun burger and side shown together in the same frame? Pay close attention to the temporal sequence and visual details in each frame."
+}
+Frames to verify: ['frames/frame_0745.jpg', 'frames/frame_0746.jpg', 'frames/frame_0747.jpg', 'frames/frame_0748.jpg', 'frames/frame_0749.jpg', 'frames/frame_0750.jpg', 'frames/frame_0751.jpg', 'frames/frame_0752.jpg', 'frames/frame_0753.jpg', 'frames/frame_0754.jpg', 'frames/frame_0755.jpg', 'frames/frame_0756.jpg', 'frames/frame_0757.jpg', 'frames/frame_0758.jpg', 'frames/frame_0759.jpg', 'frames/frame_0760.jpg', 'frames/frame_0761.jpg', 'frames/frame_0762.jpg', 'frames/frame_0763.jpg', 'frames/frame_0764.jpg']
+VLM Prompt: Video context: After analyzing the provided SET of frame-by-frame captions data for a long video, I have distilled a global summary that captures the main characters, setting, plot line, vibes, and general details.
+
+**Main Characters:**
+The main characters in this video are kitchen staff, likely working in a fast-food restaurant or cafeteria. They are predominantly wearing black gloves, with some wearing orange or yellow safety vests. The staff members are the primary focus of the video.
+
+**Setting:**
+The setting is a commercial kitchen, likely in a fast-food restaurant or cafeteria, such as McDonald's. The kitchen is well-equipped with stainless-steel appliances, griddles, and various cooking equipment. The atmosphere is bustling and fast-paced.
+
+**Plot Line:**
+The video appears to follow the kitchen staff as they prepare and cook food, primarily burgers, sandwiches, and breakfast items. The staff members are shown performing various tasks, such as cooking on griddles, assembling sandwiches, and handling ingredients. The video likely showcases the inner workings of a commercial kitchen during a busy period.
+
+**Vibes:**
+The overall vibe of the video is one of efficiency, productivity, and attention to detail. The kitchen staff work together seamlessly, and the atmosphere is energetic and dynamic. The video conveys a sense of urgency and busyness, highlighting the fast-paced nature of a commercial kitchen.
+
+**General Details:**
+
+* The kitchen is well-organized, with various stations and equipment dedicated to specific tasks.
+* The staff members are attentive to food preparation and handling, emphasizing quality and safety.
+* The video showcases a range of food items, including burgers, sandwiches, breakfast items, and salads.
+* The kitchen is likely a high-volume establishment, with multiple staff members working together to prepare and serve a large quantity of food.
+* The atmosphere is professional, with staff members wearing uniforms and following standard kitchen protocols.
+
+Overall, the video provides a behind-the-scenes look at the inner workings of a commercial kitchen, highlighting the hard work and attention to detail required to prepare and serve high-quality food in a fast-paced environment.
+
+Examine these frames to verify if answer '2' (Fries) is correct for 'What is the side of the no-bun burger?'. Check: 1) Is there a burger without a bun visible? 2) Is there a side dish next to/near it? 3) Is the side clearly identifiable as one of these options: A=Onion rings, B=Salad, C=Fries, D=Chili? 4) Are the no-bun burger and side shown together in the same frame? Pay close attention to the temporal sequence and visual details in each frame.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 20, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0745.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0746.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0747.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0748.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0749.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0750.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0751.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0752.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0753.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0754.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0755.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0756.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0757.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0758.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0759.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0760.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0761.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0762.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0763.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0764.jpg'], 'response': "Based on a detailed analysis of the 20 frames provided, we can verify the correctness of answer '2' (Fries) for the question “What is the side of the no-bun burger?” by checking the four required conditions:\n\n---\n\n**1) Is there a burger without a bun visible?**\n\n✅ **Yes.**  \n- Frame 1: A cooked patty is on the griddle — no bun visible.  \n- Frame 5: The patty is placed on a bed of lettuce on a plate — clearly no top or bottom bun.  \n- Frame 8–10: The assembled item is a patty on lettuce (with tomato and sauce), presented on a plate — definitively a no-bun burger.  \n- Frames 11–20: The no-bun burger remains on the plate without a bun.\n\n---\n\n**2) Is there a side dish next to/near it?**\n\n✅ **Yes.**  \n- Starting in Frame 11, a basket of golden, stick-shaped fried potatoes (fries) is visible next to the plate.  \n- From Frame 12 onward, the staff member uses tongs to place fries directly onto the plate beside the no-bun burger.  \n- In Frames 15–20, the fries are clearly arranged on the same plate as the no-bun burger, confirming they are served together as a side.\n\n---\n\n**3) Is the side clearly identifiable as one of these options: A=Onion rings, B=Salad, C=Fries, D=Chili?**\n\n✅ **Yes — clearly identifiable as C=Fries.**  \n- The side dish consists of elongated, golden-brown, fried potato sticks — visually unmistakable as french fries.  \n- They are served in a paper-lined basket (Frame 11) and then transferred to the plate.  \n- No onion rings (ring-shaped), salad (leafy greens — though there is lettuce *under* the patty, not as a side), or chili (stew-like) are shown as the side dish.  \n- The visual evidence strongly supports “Fries” as the correct identification.\n\n---\n\n**4) Are the no-bun burger and side shown together in the same frame?**\n\n✅ **Yes — repeatedly.**  \n- Frame 11: The no-bun burger on the plate is held next to the basket of fries.  \n- Frame 12: Fries are being placed onto the plate next to the burger.  \n- Frames 13–20: The fries are now on the same plate as the no-bun burger, confirming they are served together as a meal.\n\n---\n\n✅ **Conclusion: All four conditions are satisfied.**\n\n**Answer '2' (Fries) is correct.** The video clearly shows a no-bun burger being served with fries as its side dish, and they are presented together on the same plate in multiple consecutive frames."}], 'formatted_responses': ["\n=== Batch 0-20 (20 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0745.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0746.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0747.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0748.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0749.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0750.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0751.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0752.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0753.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0754.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0755.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0756.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0757.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0758.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0759.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0760.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0761.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0762.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0763.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0764.jpg\nVLM Response: Based on a detailed analysis of the 20 frames provided, we can verify the correctness of answer '2' (Fries) for the question “What is the side of the no-bun burger?” by checking the four required conditions:\n\n---\n\n**1) Is there a burger without a bun visible?**\n\n✅ **Yes.**  \n- Frame 1: A cooked patty is on the griddle — no bun visible.  \n- Frame 5: The patty is placed on a bed of lettuce on a plate — clearly no top or bottom bun.  \n- Frame 8–10: The assembled item is a patty on lettuce (with tomato and sauce), presented on a plate — definitively a no-bun burger.  \n- Frames 11–20: The no-bun burger remains on the plate without a bun.\n\n---\n\n**2) Is there a side dish next to/near it?**\n\n✅ **Yes.**  \n- Starting in Frame 11, a basket of golden, stick-shaped fried potatoes (fries) is visible next to the plate.  \n- From Frame 12 onward, the staff member uses tongs to place fries directly onto the plate beside the no-bun burger.  \n- In Frames 15–20, the fries are clearly arranged on the same plate as the no-bun burger, confirming they are served together as a side.\n\n---\n\n**3) Is the side clearly identifiable as one of these options: A=Onion rings, B=Salad, C=Fries, D=Chili?**\n\n✅ **Yes — clearly identifiable as C=Fries.**  \n- The side dish consists of elongated, golden-brown, fried potato sticks — visually unmistakable as french fries.  \n- They are served in a paper-lined basket (Frame 11) and then transferred to the plate.  \n- No onion rings (ring-shaped), salad (leafy greens — though there is lettuce *under* the patty, not as a side), or chili (stew-like) are shown as the side dish.  \n- The visual evidence strongly supports “Fries” as the correct identification.\n\n---\n\n**4) Are the no-bun burger and side shown together in the same frame?**\n\n✅ **Yes — repeatedly.**  \n- Frame 11: The no-bun burger on the plate is held next to the basket of fries.  \n- Frame 12: Fries are being placed onto the plate next to the burger.  \n- Frames 13–20: The fries are now on the same plate as the no-bun burger, confirming they are served together as a meal.\n\n---\n\n✅ **Conclusion: All four conditions are satisfied.**\n\n**Answer '2' (Fries) is correct.** The video clearly shows a no-bun burger being served with fries as its side dish, and they are presented together on the same plate in multiple consecutive frames.\n"], 'condensed_response': '**Condensed Scene Summary (Frames\u202f0745‑0764)**  \n\nThe clip follows a single kitchen staff member as they prepare and plate a **no‑bun burger** and its side.  \n\n| Time (frame) | Visual / Action |\n|--------------|-----------------|\n| 0745‑0749 | The grill shows a plain cooked patty; no bun is visible. |\n| 0750‑0754 | The patty is transferred onto a bed of lettuce on a plate. The assembled item – patty, lettuce, tomato and sauce – remains bun‑less. |\n| 0755‑0759 | The plated burger stays on the counter; a paper‑lined basket of golden, stick‑shaped potatoes (fries) appears beside it. |\n| 0760‑0762 | The staff member reaches for the basket with tongs, lifts a handful of fries and places them onto the same plate next to the burger. |\n| 0763‑0764 | The final frame shows the burger and a neat pile of fries sharing the plate, confirming they are served together. |\n\n**Character tracking:**  \n- **Kitchen staff (single person)** – handles the patty, plates it, then retrieves and deposits the fries. No other characters appear.  \n\n**Key evidence for the answer:**  \n- The burger is explicitly shown without any bun.  \n- A side dish, clearly identifiable as **fries**, is present next to and then on the same plate as the burger.  \n- The side appears in multiple consecutive frames, satisfying the required conditions.\n\n**Conclusion:** The video validates answer\u202f‘2’ (Fries) as the side served with the no‑bun burger.', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+⚠️ IMPORTANT: Answers use 0-INDEXED numbers where 0=A, 1=B, 2=C, 3=D, 4=E
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 20, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0745.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0746.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0747.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0748.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0749.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0750.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0751.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0752.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0753.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0754.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0755.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0756.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0757.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0758.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0759.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0760.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0761.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0762.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0763.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0764.jpg'], 'response': "Based on a detailed analysis of the 20 frames provided, we can verify the correctness of answer '2' (Fries) for the question “What is the side of the no-bun burger?” by checking the four required conditions:\n\n---\n\n**1) Is there a burger without a bun visible?**\n\n✅ **Yes.**  \n- Frame 1: A cooked patty is on the griddle — no bun visible.  \n- Frame 5: The patty is placed on a bed of lettuce on a plate — clearly no top or bottom bun.  \n- Frame 8–10: The assembled item is a patty on lettuce (with tomato and sauce), presented on a plate — definitively a no-bun burger.  \n- Frames 11–20: The no-bun burger remains on the plate without a bun.\n\n---\n\n**2) Is there a side dish next to/near it?**\n\n✅ **Yes.**  \n- Starting in Frame 11, a basket of golden, stick-shaped fried potatoes (fries) is visible next to the plate.  \n- From Frame 12 onward, the staff member uses tongs to place fries directly onto the plate beside the no-bun burger.  \n- In Frames 15–20, the fries are clearly arranged on the same plate as the no-bun burger, confirming they are served together as a side.\n\n---\n\n**3) Is the side clearly identifiable as one of these options: A=Onion rings, B=Salad, C=Fries, D=Chili?**\n\n✅ **Yes — clearly identifiable as C=Fries.**  \n- The side dish consists of elongated, golden-brown, fried potato sticks — visually unmistakable as french fries.  \n- They are served in a paper-lined basket (Frame 11) and then transferred to the plate.  \n- No onion rings (ring-shaped), salad (leafy greens — though there is lettuce *under* the patty, not as a side), or chili (stew-like) are shown as the side dish.  \n- The visual evidence strongly supports “Fries” as the correct identification.\n\n---\n\n**4) Are the no-bun burger and side shown together in the same frame?**\n\n✅ **Yes — repeatedly.**  \n- Frame 11: The no-bun burger on the plate is held next to the basket of fries.  \n- Frame 12: Fries are being placed onto the plate next to the burger.  \n- Frames 13–20: The fries are now on the same plate as the no-bun burger, confirming they are served together as a meal.\n\n---\n\n✅ **Conclusion: All four conditions are satisfied.**\n\n**Answer '2' (Fries) is correct.** The video clearly shows a no-bun burger being served with fries as its side dish, and they are presented together on the same plate in multiple consecutive frames."}], 'formatted_responses': ["\n=== Batch 0-20 (20 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0745.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0746.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0747.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0748.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0749.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0750.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0751.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0752.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0753.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0754.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0755.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0756.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0757.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0758.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0759.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0760.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0761.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0762.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0763.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_0764.jpg\nVLM Response: Based on a detailed analysis of the 20 frames provided, we can verify the correctness of answer '2' (Fries) for the question “What is the side of the no-bun burger?” by checking the four required conditions:\n\n---\n\n**1) Is there a burger without a bun visible?**\n\n✅ **Yes.**  \n- Frame 1: A cooked patty is on the griddle — no bun visible.  \n- Frame 5: The patty is placed on a bed of lettuce on a plate — clearly no top or bottom bun.  \n- Frame 8–10: The assembled item is a patty on lettuce (with tomato and sauce), presented on a plate — definitively a no-bun burger.  \n- Frames 11–20: The no-bun burger remains on the plate without a bun.\n\n---\n\n**2) Is there a side dish next to/near it?**\n\n✅ **Yes.**  \n- Starting in Frame 11, a basket of golden, stick-shaped fried potatoes (fries) is visible next to the plate.  \n- From Frame 12 onward, the staff member uses tongs to place fries directly onto the plate beside the no-bun burger.  \n- In Frames 15–20, the fries are clearly arranged on the same plate as the no-bun burger, confirming they are served together as a side.\n\n---\n\n**3) Is the side clearly identifiable as one of these options: A=Onion rings, B=Salad, C=Fries, D=Chili?**\n\n✅ **Yes — clearly identifiable as C=Fries.**  \n- The side dish consists of elongated, golden-brown, fried potato sticks — visually unmistakable as french fries.  \n- They are served in a paper-lined basket (Frame 11) and then transferred to the plate.  \n- No onion rings (ring-shaped), salad (leafy greens — though there is lettuce *under* the patty, not as a side), or chili (stew-like) are shown as the side dish.  \n- The visual evidence strongly supports “Fries” as the correct identification.\n\n---\n\n**4) Are the no-bun burger and side shown together in the same frame?**\n\n✅ **Yes — repeatedly.**  \n- Frame 11: The no-bun burger on the plate is held next to the basket of fries.  \n- Frame 12: Fries are being placed onto the plate next to the burger.  \n- Frames 13–20: The fries are now on the same plate as the no-bun burger, confirming they are served together as a meal.\n\n---\n\n✅ **Conclusion: All four conditions are satisfied.**\n\n**Answer '2' (Fries) is correct.** The video clearly shows a no-bun burger being served with fries as its side dish, and they are presented together on the same plate in multiple consecutive frames.\n"], 'condensed_response': '**Condensed Scene Summary (Frames\u202f0745‑0764)**  \n\nThe clip follows a single kitchen staff member as they prepare and plate a **no‑bun burger** and its side.  \n\n| Time (frame) | Visual / Action |\n|--------------|-----------------|\n| 0745‑0749 | The grill shows a plain cooked patty; no bun is visible. |\n| 0750‑0754 | The patty is transferred onto a bed of lettuce on a plate. The assembled item – patty, lettuce, tomato and sauce – remains bun‑less. |\n| 0755‑0759 | The plated burger stays on the counter; a paper‑lined basket of golden, stick‑shaped potatoes (fries) appears beside it. |\n| 0760‑0762 | The staff member reaches for the basket with tongs, lifts a handful of fries and places them onto the same plate next to the burger. |\n| 0763‑0764 | The final frame shows the burger and a neat pile of fries sharing the plate, confirming they are served together. |\n\n**Character tracking:**  \n- **Kitchen staff (single person)** – handles the patty, plates it, then retrieves and deposits the fries. No other characters appear.  \n\n**Key evidence for the answer:**  \n- The burger is explicitly shown without any bun.  \n- A side dish, clearly identifiable as **fries**, is present next to and then on the same plate as the burger.  \n- The side appears in multiple consecutive frames, satisfying the required conditions.\n\n**Conclusion:** The video validates answer\u202f‘2’ (Fries) as the side served with the no‑bun burger.', 'failed_images': []}
+
+Question Being Answered: What is the side of the no-bun burger?
+
+Answer Choices (0-indexed: 0=A, 1=B, 2=C, 3=D, 4=E):
+  0 (=A): Onion rings
+  1 (=B): Salad
+  2 (=C): Fries
+  3 (=D): Chili
+
+Given Answer: 2
+Evidence Frames Used: ['frames/frame_0750.jpg', 'frames/frame_0751.jpg', 'frames/frame_0752.jpg', 'frames/frame_0753.jpg', 'frames/frame_0754.jpg', 'frames/frame_0755.jpg', 'frames/frame_0756.jpg', 'frames/frame_0757.jpg', 'frames/frame_0758.jpg', 'frames/frame_0759.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Person 1 (Kitchen Staff): Description: Wearing black gloves, working in a commercial kitchen
+Person 2 (Chef/Cook): Description: Preparing food on a griddle or grill
+Person 3 (Cafeteria Staff): Description: Wearing orange safety vest, working in a cafeteria or food service setting
+Person 4 (Man in Blue Shirt): Description: Standing behind a counter, preparing sandwiches
+
+SCENES:
+Scene 1 (Commercial Kitchen) : Description: Busy kitchen with stainless-steel appliances and equipment [frame_0001 - frame_0081]
+Scene 2 (Cafeteria/Food Court) : Description: Bustling cafeteria or food court with various food items and condiments [frame_0123 - frame_0140]
+Scene 3 (Fast Food Restaurant Kitchen) : Description: Fast food kitchen with griddles, grill, and various cooking equipment [frame_0141 - frame_0259]
+Scene 4 (Cafeteria/Restaurant) : Description: Cafeteria or restaurant setting with buffet counter and various food items [frame_0263 - frame_0304]
+Scene 5 (Airplane Bathroom) : Description: Small, enclosed space with a black trash can, gray wall, and gray floor [frame_0082]
+Scene 6 (Bakery/Cafe) : Description: Bakery or cafe with glass display case and bread [frame_0084 - frame_0085]
+Scene 7 (Food Truck/Kitchen) : Description: Food truck or kitchen with griddle, condiments, and various cooking equipment [frame_0101 - frame_0110]
+Scene 8 (Restaurant Kitchen) : Description: Restaurant kitchen with stainless-steel appliances and equipment [frame_0250 - frame_0300]
+Scene 9 (Cafeteria/Buffet) : Description: Cafeteria or buffet setting with various food items and condiments [frame_0425 - frame_0460]
+Scene 10 (Coffee Roasting Facility) : Description: Coffee roasting facility with large stainless-steel coffee roaster [frame_1259]
+
+EVENTS:
+Event 1 (Griddle Cleaning): Description: Person 1 cleaning a dirty griddle with a scraper [frame_0001 - frame_0015]
+Event 2 (Food Preparation): Description: Person 2 preparing food on a griddle or grill [frame_0016 - frame_0259]
+Event 3 (Sandwich Assembly): Description: Person 3 assembling sandwiches on a yellow cutting board [frame_0162 - frame_0188]
+Event 4 (Food Serving): Description: Person 3 serving food from a buffet counter [frame_0237 - frame_0242]
+Event 5 (Griddle Cooking): Description: Person 2 cooking food on a griddle or grill [frame_0250 - frame_0300]
+Event 6 (Cheese Preparation): Description: Person 1 handling cheese slices or blocks [frame_0399 - frame_0410]
+Event 7 (Burger Assembly): Description: Person 1 assembling burgers on a yellow cutting board [frame_0437 - frame_0450]
+Event 8 (Food Display): Description: Various food items displayed on a buffet counter [frame_0382 - frame_0385]
+Event 9 (Kitchen Cleaning): Description: Person 1 cleaning a dirty griddle or grill with a scraper or brush [frame_0493, frame_0583, frame_0865]
+Event 10 (Food Preparation with Blowtorch): Description: Person 1 using a blowtorch to cook or caramelize food [frame_0073 - frame_0074, frame_0433]
+
+================================================================================
+Generated at: 2026-01-11 21:48:38
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. A burger without a bun is visible
+  Q2. A side dish is placed next to or near the no-bun burger
+  Q3. The side dish is clearly identifiable as one of the answer choices
+  Q4. The no-bun burger and side dish are shown together in the same frame or scene
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 4)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, ALWAYS pick the best answer choice:
+   - Review ALL answer choices (A, B, C, D, E, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D, 4=E)
+
+5. If criteria_percentage > 0.5 (>50% of criteria pass):
+   - Your chosen answer is well-supported by evidence
+   - Set suggestion to null or provide minor improvements
+
+6. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - Still MUST choose the BEST answer from the available choices (never -1)
+   - But set suggestion to "These may not be the right frames/scene. Consider searching for better evidence. The answer chosen is the BEST match given current evidence."
+   - This signals low confidence but still provides a choice
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 4,
+    "criteria_percentage": <criteria_passed / 4>,
+    "base_confidence": <(criteria_passed / 4) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E - MUST be a valid number 0-4, never -1>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "A burger without a bun is visible",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms no-bun burger visible in multiple frames (Frames 1, 5, 8-10, 11-20) with patty on lettuce, tomato, sauce, no bun"
+        },
+        {
+            "criterion": "A side dish is placed next to or near the no-bun burger",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms fries basket visible next to plate in Frame 11, fries placed on same plate in Frames 12-20"
+        },
+        {
+            "criterion": "The side dish is clearly identifiable as one of the answer choices",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM identifies side as 'elongated, golden-brown, fried potato sticks' - clearly fries (C), not onion rings, salad, or chili"
+        },
+        {
+            "criterion": "The no-bun burger and side dish are shown together in the same frame or scene",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms they appear together in multiple frames (11-20) with fries on same plate as no-bun burger"
+        }
+    ],
+    "question_criteria_passed": 4,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 4,
+    "criteria_total": 4,
+    "criteria_percentage": 1.0,
+    "base_confidence": 100,
+    "confidence": 100,
+    "critic_answer_choice": 2,
+    "critic_reasoning": "VLM provides comprehensive visual evidence showing a no-bun burger being served with fries as the side dish, with both items clearly visible together on the same plate in multiple consecutive frames",
+    "possible_errors": [],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'A burger without a bun is visible', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms no-bun burger visible in multiple frames (Frames 1, 5, 8-10, 11-20) with patty on lettuce, tomato, sauce, no bun'}, {'criterion': 'A side dish is placed next to or near the no-bun burger', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms fries basket visible next to plate in Frame 11, fries placed on same plate in Frames 12-20'}, {'criterion': 'The side dish is clearly identifiable as one of the answer choices', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM identifies side as 'elongated, golden-brown, fried potato sticks' - clearly fries (C), not onion rings, salad, or chili"}, {'criterion': 'The no-bun burger and side dish are shown together in the same frame or scene', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms they appear together in multiple frames (11-20) with fries on same plate as no-bun burger'}], 'question_criteria_passed': 4, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 4, 'criteria_total': 4, 'criteria_percentage': 1.0, 'base_confidence': 100, 'confidence': 100, 'critic_answer_choice': 2, 'critic_reasoning': 'VLM provides comprehensive visual evidence showing a no-bun burger being served with fries as the side dish, with both items clearly visible together on the same plate in multiple consecutive frames', 'possible_errors': [], 'suggestion': None}

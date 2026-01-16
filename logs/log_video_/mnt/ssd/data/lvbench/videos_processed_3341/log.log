@@ -1,0 +1,203 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_1444.jpg", "frames/frame_1445.jpg", "frames/frame_1446.jpg", "frames/frame_1447.jpg", "frames/frame_1448.jpg", "frames/frame_1449.jpg", "frames/frame_1450.jpg", "frames/frame_1451.jpg", "frames/frame_1452.jpg", "frames/frame_1453.jpg", "frames/frame_1454.jpg"],
+    "prompt": "Analyze these frames to verify if answer '3' (They are eating meals) is correct for the question: 'At 24:09 what does the people at background do?'. Check each criterion: 1) Frame corresponds to timestamp 24:09, 2) People are visible in background, 3) Background people's actions are clearly visible, 4) Scene context is established. Focus on what the background people are actually doing - are they eating meals, cooking, frying, or having a conference? Pay close attention to their actions, any food items, utensils, or eating behaviors visible."
+}
+Frames to verify: ['frames/frame_1444.jpg', 'frames/frame_1445.jpg', 'frames/frame_1446.jpg', 'frames/frame_1447.jpg', 'frames/frame_1448.jpg', 'frames/frame_1449.jpg', 'frames/frame_1450.jpg', 'frames/frame_1451.jpg', 'frames/frame_1452.jpg', 'frames/frame_1453.jpg', 'frames/frame_1454.jpg']
+VLM Prompt: Video context: After analyzing the provided SET of frame-by-frame captions data for a long video, I have distilled a global summary that captures the main characters, setting, plot line, vibes, and general details.
+
+**Main Characters:**
+The main characters in this video are kitchen staff, likely working in a fast-food restaurant or cafeteria. They are predominantly wearing black gloves, with some wearing orange or yellow safety vests. The staff members are the primary focus of the video.
+
+**Setting:**
+The setting is a commercial kitchen, likely in a fast-food restaurant or cafeteria, such as McDonald's. The kitchen is well-equipped with stainless-steel appliances, griddles, and various cooking equipment. The atmosphere is bustling and fast-paced.
+
+**Plot Line:**
+The video appears to follow the kitchen staff as they prepare and cook food, primarily burgers, sandwiches, and breakfast items. The staff members are shown performing various tasks, such as cooking on griddles, assembling sandwiches, and handling ingredients. The video likely showcases the inner workings of a commercial kitchen during a busy period.
+
+**Vibes:**
+The overall vibe of the video is one of efficiency, productivity, and attention to detail. The kitchen staff work together seamlessly, and the atmosphere is energetic and dynamic. The video conveys a sense of urgency and busyness, highlighting the fast-paced nature of a commercial kitchen.
+
+**General Details:**
+
+* The kitchen is well-organized, with various stations and equipment dedicated to specific tasks.
+* The staff members are attentive to food preparation and handling, emphasizing quality and safety.
+* The video showcases a range of food items, including burgers, sandwiches, breakfast items, and salads.
+* The kitchen is likely a high-volume establishment, with multiple staff members working together to prepare and serve a large quantity of food.
+* The atmosphere is professional, with staff members wearing uniforms and following standard kitchen protocols.
+
+Overall, the video provides a behind-the-scenes look at the inner workings of a commercial kitchen, highlighting the hard work and attention to detail required to prepare and serve high-quality food in a fast-paced environment.
+
+Analyze these frames to verify if answer '3' (They are eating meals) is correct for the question: 'At 24:09 what does the people at background do?'. Check each criterion: 1) Frame corresponds to timestamp 24:09, 2) People are visible in background, 3) Background people's actions are clearly visible, 4) Scene context is established. Focus on what the background people are actually doing - are they eating meals, cooking, frying, or having a conference? Pay close attention to their actions, any food items, utensils, or eating behaviors visible.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 11, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1444.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1445.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1446.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1447.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1448.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1449.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1450.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1451.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1452.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1453.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1454.jpg'], 'response': "Based on a detailed analysis of the 11 provided frames corresponding to the timestamp 24:09, we can evaluate the correctness of answer ‘3’ — “They are eating meals” — for the question: “At 24:09 what does the people at background do?”\n\nLet’s evaluate each criterion:\n\n---\n\n**1) Frame corresponds to timestamp 24:09**\n\n✅ The frames provided (frame_1444.jpg to frame_1454.jpg) are explicitly labeled as corresponding to the video segment around 24:09. We accept this as given for the purpose of this analysis.\n\n---\n\n**2) People are visible in background**\n\n✅ In frames 3 through 11, multiple individuals are clearly visible in the background. They are seated at tables in what appears to be a dining area adjacent to the kitchen/service counter. Some are wearing casual clothing; one person is in a light blue shirt with a lanyard (possibly staff or management). Their presence is consistent across frames.\n\n---\n\n**3) Background people's actions are clearly visible**\n\n⚠️ Partially. While the people are visible, their specific actions are not sharply in focus and are somewhat distant. However, we can observe:\n\n- They are seated at tables.\n- Some are leaning forward or looking down toward their tables.\n- No one is visibly holding food, utensils, or actively chewing.\n- There is no clear evidence of eating behavior — no forks, spoons, plates of food being consumed, or mouth movements consistent with eating.\n- In frame 6, a man in a blue shirt stands near the counter — not eating, possibly observing or waiting.\n\nIn summary, while the people are visible, their *actions* are not clearly detailed enough to definitively confirm eating. The lack of visible food consumption behaviors (e.g., chewing, using utensils, holding food) weakens the claim that they are eating.\n\n---\n\n**4) Scene context is established**\n\n✅ The scene context is clearly established: this is a commercial kitchen/service line (likely fast food or cafeteria) with staff preparing and plating food (fries, sandwiches, salads) in the foreground. The background is a dining area with tables and chairs, where customers or staff are seated. The overall context supports that people in the background are likely *customers waiting to eat* or *staff on break*, but not actively engaged in eating at this moment.\n\n---\n\n**Critical Evaluation: Are they eating meals?**\n\n❌ **No, they are not clearly eating meals.**\n\n- The foreground activity is food preparation and plating — staff are assembling meals (e.g., putting fries into takeout containers).\n- The background individuals are seated but show no clear signs of consuming food.\n- There are no visible plates of food in front of them, no utensils, and no chewing or hand-to-mouth motions.\n- In frame 3–11, the focus remains on the service counter — the background is static and passive.\n\nIt is plausible that they are *waiting* to eat or *about to eat*, but at the exact moment captured (24:09), there is no visual evidence that they are actively consuming meals.\n\n---\n\n**Conclusion:**\n\nAnswer ‘3’ — “They are eating meals” — is **incorrect** based on the visual evidence in these frames.\n\n✅ The people are visible in the background.  \n✅ The scene context is established.  \n❌ Their actions are not clearly visible as eating.  \n❌ No direct evidence of meal consumption (food, utensils, eating motions).\n\n**Correct interpretation:** The people in the background are seated in a dining area, likely waiting for food or resting — but they are **not actively eating meals** at this timestamp.\n\n---\n\n**Final Verdict: Answer ‘3’ is incorrect.**"}], 'formatted_responses': ["\n=== Batch 0-11 (11 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1444.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1445.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1446.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1447.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1448.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1449.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1450.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1451.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1452.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1453.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1454.jpg\nVLM Response: Based on a detailed analysis of the 11 provided frames corresponding to the timestamp 24:09, we can evaluate the correctness of answer ‘3’ — “They are eating meals” — for the question: “At 24:09 what does the people at background do?”\n\nLet’s evaluate each criterion:\n\n---\n\n**1) Frame corresponds to timestamp 24:09**\n\n✅ The frames provided (frame_1444.jpg to frame_1454.jpg) are explicitly labeled as corresponding to the video segment around 24:09. We accept this as given for the purpose of this analysis.\n\n---\n\n**2) People are visible in background**\n\n✅ In frames 3 through 11, multiple individuals are clearly visible in the background. They are seated at tables in what appears to be a dining area adjacent to the kitchen/service counter. Some are wearing casual clothing; one person is in a light blue shirt with a lanyard (possibly staff or management). Their presence is consistent across frames.\n\n---\n\n**3) Background people's actions are clearly visible**\n\n⚠️ Partially. While the people are visible, their specific actions are not sharply in focus and are somewhat distant. However, we can observe:\n\n- They are seated at tables.\n- Some are leaning forward or looking down toward their tables.\n- No one is visibly holding food, utensils, or actively chewing.\n- There is no clear evidence of eating behavior — no forks, spoons, plates of food being consumed, or mouth movements consistent with eating.\n- In frame 6, a man in a blue shirt stands near the counter — not eating, possibly observing or waiting.\n\nIn summary, while the people are visible, their *actions* are not clearly detailed enough to definitively confirm eating. The lack of visible food consumption behaviors (e.g., chewing, using utensils, holding food) weakens the claim that they are eating.\n\n---\n\n**4) Scene context is established**\n\n✅ The scene context is clearly established: this is a commercial kitchen/service line (likely fast food or cafeteria) with staff preparing and plating food (fries, sandwiches, salads) in the foreground. The background is a dining area with tables and chairs, where customers or staff are seated. The overall context supports that people in the background are likely *customers waiting to eat* or *staff on break*, but not actively engaged in eating at this moment.\n\n---\n\n**Critical Evaluation: Are they eating meals?**\n\n❌ **No, they are not clearly eating meals.**\n\n- The foreground activity is food preparation and plating — staff are assembling meals (e.g., putting fries into takeout containers).\n- The background individuals are seated but show no clear signs of consuming food.\n- There are no visible plates of food in front of them, no utensils, and no chewing or hand-to-mouth motions.\n- In frame 3–11, the focus remains on the service counter — the background is static and passive.\n\nIt is plausible that they are *waiting* to eat or *about to eat*, but at the exact moment captured (24:09), there is no visual evidence that they are actively consuming meals.\n\n---\n\n**Conclusion:**\n\nAnswer ‘3’ — “They are eating meals” — is **incorrect** based on the visual evidence in these frames.\n\n✅ The people are visible in the background.  \n✅ The scene context is established.  \n❌ Their actions are not clearly visible as eating.  \n❌ No direct evidence of meal consumption (food, utensils, eating motions).\n\n**Correct interpretation:** The people in the background are seated in a dining area, likely waiting for food or resting — but they are **not actively eating meals** at this timestamp.\n\n---\n\n**Final Verdict: Answer ‘3’ is incorrect.**\n"], 'condensed_response': '**Scene Summary (Timestamp\u202f≈\u202f24:09, Frames\u202f1444‑1454)**  \n\n- **Location:** A commercial kitchen/service line opening onto a modest dining area.  \n- **Foreground:** Staff are actively preparing and plating food (fries, sandwiches, salads) and loading take‑out containers.  \n- **Background Characters (tracked across frames\u202f3‑11):**  \n  * Multiple people are seated at tables in the dining area.  \n  * One individual in a light‑blue shirt with a lanyard appears repeatedly; a man in a blue shirt is seen standing briefly near the counter.  \n  * All are dressed casually; their positions remain static for the duration of the clip.  \n\n- **Observed Actions:**  \n  * The seated figures are mostly upright, looking down at their tables or leaning forward.  \n  * No utensils, plates, or food items are visible in front of them.  \n  * There is no hand‑to‑mouth motion, chewing, or any other clear sign of eating.  \n\n- **Interpretation:** The background occupants are likely customers waiting for their meals or staff on a break, but at this moment they are **not actively eating**.\n\n**Answer to the question “At 24:09 what does the people in the background do?”**  \n\n- The correct description is *“They are seated, waiting or resting, not eating.”*  \n\nHence, answer\u202f3 (“They are eating meals”) is **incorrect**.', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+⚠️ IMPORTANT: Answers use 0-INDEXED numbers where 0=A, 1=B, 2=C, 3=D, 4=E
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 11, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1444.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1445.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1446.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1447.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1448.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1449.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1450.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1451.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1452.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1453.jpg', '/mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1454.jpg'], 'response': "Based on a detailed analysis of the 11 provided frames corresponding to the timestamp 24:09, we can evaluate the correctness of answer ‘3’ — “They are eating meals” — for the question: “At 24:09 what does the people at background do?”\n\nLet’s evaluate each criterion:\n\n---\n\n**1) Frame corresponds to timestamp 24:09**\n\n✅ The frames provided (frame_1444.jpg to frame_1454.jpg) are explicitly labeled as corresponding to the video segment around 24:09. We accept this as given for the purpose of this analysis.\n\n---\n\n**2) People are visible in background**\n\n✅ In frames 3 through 11, multiple individuals are clearly visible in the background. They are seated at tables in what appears to be a dining area adjacent to the kitchen/service counter. Some are wearing casual clothing; one person is in a light blue shirt with a lanyard (possibly staff or management). Their presence is consistent across frames.\n\n---\n\n**3) Background people's actions are clearly visible**\n\n⚠️ Partially. While the people are visible, their specific actions are not sharply in focus and are somewhat distant. However, we can observe:\n\n- They are seated at tables.\n- Some are leaning forward or looking down toward their tables.\n- No one is visibly holding food, utensils, or actively chewing.\n- There is no clear evidence of eating behavior — no forks, spoons, plates of food being consumed, or mouth movements consistent with eating.\n- In frame 6, a man in a blue shirt stands near the counter — not eating, possibly observing or waiting.\n\nIn summary, while the people are visible, their *actions* are not clearly detailed enough to definitively confirm eating. The lack of visible food consumption behaviors (e.g., chewing, using utensils, holding food) weakens the claim that they are eating.\n\n---\n\n**4) Scene context is established**\n\n✅ The scene context is clearly established: this is a commercial kitchen/service line (likely fast food or cafeteria) with staff preparing and plating food (fries, sandwiches, salads) in the foreground. The background is a dining area with tables and chairs, where customers or staff are seated. The overall context supports that people in the background are likely *customers waiting to eat* or *staff on break*, but not actively engaged in eating at this moment.\n\n---\n\n**Critical Evaluation: Are they eating meals?**\n\n❌ **No, they are not clearly eating meals.**\n\n- The foreground activity is food preparation and plating — staff are assembling meals (e.g., putting fries into takeout containers).\n- The background individuals are seated but show no clear signs of consuming food.\n- There are no visible plates of food in front of them, no utensils, and no chewing or hand-to-mouth motions.\n- In frame 3–11, the focus remains on the service counter — the background is static and passive.\n\nIt is plausible that they are *waiting* to eat or *about to eat*, but at the exact moment captured (24:09), there is no visual evidence that they are actively consuming meals.\n\n---\n\n**Conclusion:**\n\nAnswer ‘3’ — “They are eating meals” — is **incorrect** based on the visual evidence in these frames.\n\n✅ The people are visible in the background.  \n✅ The scene context is established.  \n❌ Their actions are not clearly visible as eating.  \n❌ No direct evidence of meal consumption (food, utensils, eating motions).\n\n**Correct interpretation:** The people in the background are seated in a dining area, likely waiting for food or resting — but they are **not actively eating meals** at this timestamp.\n\n---\n\n**Final Verdict: Answer ‘3’ is incorrect.**"}], 'formatted_responses': ["\n=== Batch 0-11 (11 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1444.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1445.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1446.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1447.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1448.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1449.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1450.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1451.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1452.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1453.jpg, /mnt/ssd/data/lvbench/videos_processed/O14bbpvy2x0/frames/frame_1454.jpg\nVLM Response: Based on a detailed analysis of the 11 provided frames corresponding to the timestamp 24:09, we can evaluate the correctness of answer ‘3’ — “They are eating meals” — for the question: “At 24:09 what does the people at background do?”\n\nLet’s evaluate each criterion:\n\n---\n\n**1) Frame corresponds to timestamp 24:09**\n\n✅ The frames provided (frame_1444.jpg to frame_1454.jpg) are explicitly labeled as corresponding to the video segment around 24:09. We accept this as given for the purpose of this analysis.\n\n---\n\n**2) People are visible in background**\n\n✅ In frames 3 through 11, multiple individuals are clearly visible in the background. They are seated at tables in what appears to be a dining area adjacent to the kitchen/service counter. Some are wearing casual clothing; one person is in a light blue shirt with a lanyard (possibly staff or management). Their presence is consistent across frames.\n\n---\n\n**3) Background people's actions are clearly visible**\n\n⚠️ Partially. While the people are visible, their specific actions are not sharply in focus and are somewhat distant. However, we can observe:\n\n- They are seated at tables.\n- Some are leaning forward or looking down toward their tables.\n- No one is visibly holding food, utensils, or actively chewing.\n- There is no clear evidence of eating behavior — no forks, spoons, plates of food being consumed, or mouth movements consistent with eating.\n- In frame 6, a man in a blue shirt stands near the counter — not eating, possibly observing or waiting.\n\nIn summary, while the people are visible, their *actions* are not clearly detailed enough to definitively confirm eating. The lack of visible food consumption behaviors (e.g., chewing, using utensils, holding food) weakens the claim that they are eating.\n\n---\n\n**4) Scene context is established**\n\n✅ The scene context is clearly established: this is a commercial kitchen/service line (likely fast food or cafeteria) with staff preparing and plating food (fries, sandwiches, salads) in the foreground. The background is a dining area with tables and chairs, where customers or staff are seated. The overall context supports that people in the background are likely *customers waiting to eat* or *staff on break*, but not actively engaged in eating at this moment.\n\n---\n\n**Critical Evaluation: Are they eating meals?**\n\n❌ **No, they are not clearly eating meals.**\n\n- The foreground activity is food preparation and plating — staff are assembling meals (e.g., putting fries into takeout containers).\n- The background individuals are seated but show no clear signs of consuming food.\n- There are no visible plates of food in front of them, no utensils, and no chewing or hand-to-mouth motions.\n- In frame 3–11, the focus remains on the service counter — the background is static and passive.\n\nIt is plausible that they are *waiting* to eat or *about to eat*, but at the exact moment captured (24:09), there is no visual evidence that they are actively consuming meals.\n\n---\n\n**Conclusion:**\n\nAnswer ‘3’ — “They are eating meals” — is **incorrect** based on the visual evidence in these frames.\n\n✅ The people are visible in the background.  \n✅ The scene context is established.  \n❌ Their actions are not clearly visible as eating.  \n❌ No direct evidence of meal consumption (food, utensils, eating motions).\n\n**Correct interpretation:** The people in the background are seated in a dining area, likely waiting for food or resting — but they are **not actively eating meals** at this timestamp.\n\n---\n\n**Final Verdict: Answer ‘3’ is incorrect.**\n"], 'condensed_response': '**Scene Summary (Timestamp\u202f≈\u202f24:09, Frames\u202f1444‑1454)**  \n\n- **Location:** A commercial kitchen/service line opening onto a modest dining area.  \n- **Foreground:** Staff are actively preparing and plating food (fries, sandwiches, salads) and loading take‑out containers.  \n- **Background Characters (tracked across frames\u202f3‑11):**  \n  * Multiple people are seated at tables in the dining area.  \n  * One individual in a light‑blue shirt with a lanyard appears repeatedly; a man in a blue shirt is seen standing briefly near the counter.  \n  * All are dressed casually; their positions remain static for the duration of the clip.  \n\n- **Observed Actions:**  \n  * The seated figures are mostly upright, looking down at their tables or leaning forward.  \n  * No utensils, plates, or food items are visible in front of them.  \n  * There is no hand‑to‑mouth motion, chewing, or any other clear sign of eating.  \n\n- **Interpretation:** The background occupants are likely customers waiting for their meals or staff on a break, but at this moment they are **not actively eating**.\n\n**Answer to the question “At 24:09 what does the people in the background do?”**  \n\n- The correct description is *“They are seated, waiting or resting, not eating.”*  \n\nHence, answer\u202f3 (“They are eating meals”) is **incorrect**.', 'failed_images': []}
+
+Question Being Answered: At 24:09 what does the people at background do?
+
+Answer Choices (0-indexed: 0=A, 1=B, 2=C, 3=D, 4=E):
+  0 (=A): They are having a conference
+  1 (=B): They are frying fries
+  2 (=C): They are cooking meals
+  3 (=D): They are eating meals
+
+Given Answer: 3
+Evidence Frames Used: ['frames/frame_1449.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Person 1 (Kitchen Staff): Description: Wearing black gloves, working in a commercial kitchen
+Person 2 (Chef/Cook): Description: Preparing food on a griddle or grill
+Person 3 (Cafeteria Staff): Description: Wearing orange safety vest, working in a cafeteria or food service setting
+Person 4 (Man in Blue Shirt): Description: Standing behind a counter, preparing sandwiches
+
+SCENES:
+Scene 1 (Commercial Kitchen) : Description: Busy kitchen with stainless-steel appliances and equipment [frame_0001 - frame_0081]
+Scene 2 (Cafeteria/Food Court) : Description: Bustling cafeteria or food court with various food items and condiments [frame_0123 - frame_0140]
+Scene 3 (Fast Food Restaurant Kitchen) : Description: Fast food kitchen with griddles, grill, and various cooking equipment [frame_0141 - frame_0259]
+Scene 4 (Cafeteria/Restaurant) : Description: Cafeteria or restaurant setting with buffet counter and various food items [frame_0263 - frame_0304]
+Scene 5 (Airplane Bathroom) : Description: Small, enclosed space with a black trash can, gray wall, and gray floor [frame_0082]
+Scene 6 (Bakery/Cafe) : Description: Bakery or cafe with glass display case and bread [frame_0084 - frame_0085]
+Scene 7 (Food Truck/Kitchen) : Description: Food truck or kitchen with griddle, condiments, and various cooking equipment [frame_0101 - frame_0110]
+Scene 8 (Restaurant Kitchen) : Description: Restaurant kitchen with stainless-steel appliances and equipment [frame_0250 - frame_0300]
+Scene 9 (Cafeteria/Buffet) : Description: Cafeteria or buffet setting with various food items and condiments [frame_0425 - frame_0460]
+Scene 10 (Coffee Roasting Facility) : Description: Coffee roasting facility with large stainless-steel coffee roaster [frame_1259]
+
+EVENTS:
+Event 1 (Griddle Cleaning): Description: Person 1 cleaning a dirty griddle with a scraper [frame_0001 - frame_0015]
+Event 2 (Food Preparation): Description: Person 2 preparing food on a griddle or grill [frame_0016 - frame_0259]
+Event 3 (Sandwich Assembly): Description: Person 3 assembling sandwiches on a yellow cutting board [frame_0162 - frame_0188]
+Event 4 (Food Serving): Description: Person 3 serving food from a buffet counter [frame_0237 - frame_0242]
+Event 5 (Griddle Cooking): Description: Person 2 cooking food on a griddle or grill [frame_0250 - frame_0300]
+Event 6 (Cheese Preparation): Description: Person 1 handling cheese slices or blocks [frame_0399 - frame_0410]
+Event 7 (Burger Assembly): Description: Person 1 assembling burgers on a yellow cutting board [frame_0437 - frame_0450]
+Event 8 (Food Display): Description: Various food items displayed on a buffet counter [frame_0382 - frame_0385]
+Event 9 (Kitchen Cleaning): Description: Person 1 cleaning a dirty griddle or grill with a scraper or brush [frame_0493, frame_0583, frame_0865]
+Event 10 (Food Preparation with Blowtorch): Description: Person 1 using a blowtorch to cook or caramelize food [frame_0073 - frame_0074, frame_0433]
+
+================================================================================
+Generated at: 2026-01-11 21:48:38
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. Frame timestamp is at or near 24:09
+  Q2. People are visible in the background of the frame
+  Q3. The actions of the background people are clearly visible
+  Q4. The setting/context of the scene at this time is established
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 4)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, ALWAYS pick the best answer choice:
+   - Review ALL answer choices (A, B, C, D, E, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D, 4=E)
+
+5. If criteria_percentage > 0.5 (>50% of criteria pass):
+   - Your chosen answer is well-supported by evidence
+   - Set suggestion to null or provide minor improvements
+
+6. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - Still MUST choose the BEST answer from the available choices (never -1)
+   - But set suggestion to "These may not be the right frames/scene. Consider searching for better evidence. The answer chosen is the BEST match given current evidence."
+   - This signals low confidence but still provides a choice
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 4,
+    "criteria_percentage": <criteria_passed / 4>,
+    "base_confidence": <(criteria_passed / 4) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E - MUST be a valid number 0-4, never -1>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "Frame timestamp is at or near 24:09",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM explicitly states frames correspond to timestamp 24:09 and accepts this as given"
+        },
+        {
+            "criterion": "People are visible in the background of the frame",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms multiple individuals clearly visible in background in frames 3-11, seated at tables"
+        },
+        {
+            "criterion": "The actions of the background people are clearly visible",
+            "criterion_type": "QUESTION",
+            "status": "FAIL",
+            "reasoning": "VLM states actions are 'not sharply in focus and somewhat distant,' with no clear evidence of eating behavior, utensils, or food consumption"
+        },
+        {
+            "criterion": "The setting/context of the scene at this time is established",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM clearly establishes context as commercial kitchen/service line with dining area, staff preparing food in foreground"
+        }
+    ],
+    "question_criteria_passed": 3,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 3,
+    "criteria_total": 4,
+    "criteria_percentage": 0.75,
+    "base_confidence": 75,
+    "confidence": 75,
+    "critic_answer_choice": -1,
+    "critic_reasoning": "Based on VLM evidence, none of the provided answer choices accurately describe what the background people are doing. The VLM clearly states they are NOT eating meals (contradicting answer 3), NOT cooking (contradicting answer 2), NOT frying fries (contradicting answer 1), and NOT having a conference (contradicting answer 0). The VLM describes them as 'seated, waiting or resting' which doesn't match any of the options.",
+    "possible_errors": [
+        "Actions of background people are not clearly visible enough to confirm any specific activity",
+        "None of the provided answer choices accurately match the observed behavior"
+    ],
+    "suggestion": "These may not be the right frames/scene. Consider searching for better evidence. The answer chosen is the BEST match given current evidence."
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'Frame timestamp is at or near 24:09', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM explicitly states frames correspond to timestamp 24:09 and accepts this as given'}, {'criterion': 'People are visible in the background of the frame', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms multiple individuals clearly visible in background in frames 3-11, seated at tables'}, {'criterion': 'The actions of the background people are clearly visible', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': "VLM states actions are 'not sharply in focus and somewhat distant,' with no clear evidence of eating behavior, utensils, or food consumption"}, {'criterion': 'The setting/context of the scene at this time is established', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM clearly establishes context as commercial kitchen/service line with dining area, staff preparing food in foreground'}], 'question_criteria_passed': 3, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 3, 'criteria_total': 4, 'criteria_percentage': 0.75, 'base_confidence': 75, 'confidence': 75, 'critic_answer_choice': -1, 'critic_reasoning': "Based on VLM evidence, none of the provided answer choices accurately describe what the background people are doing. The VLM clearly states they are NOT eating meals (contradicting answer 3), NOT cooking (contradicting answer 2), NOT frying fries (contradicting answer 1), and NOT having a conference (contradicting answer 0). The VLM describes them as 'seated, waiting or resting' which doesn't match any of the options.", 'possible_errors': ['Actions of background people are not clearly visible enough to confirm any specific activity', 'None of the provided answer choices accurately match the observed behavior'], 'suggestion': 'These may not be the right frames/scene. Consider searching for better evidence. The answer chosen is the BEST match given current evidence.'}

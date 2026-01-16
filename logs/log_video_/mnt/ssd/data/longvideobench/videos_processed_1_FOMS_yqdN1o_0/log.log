@@ -1,0 +1,198 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0000.jpg", "frames/frame_0001.jpg", "frames/frame_0002.jpg", "frames/frame_0003.jpg", "frames/frame_0004.jpg", "frames/frame_0005.jpg", "frames/frame_0006.jpg", "frames/frame_0007.jpg", "frames/frame_0008.jpg", "frames/frame_0009.jpg", "frames/frame_0010.jpg", "frames/frame_0011.jpg"],
+    "prompt": "Analyze these frames to verify if answer '3' (She is combing her hair) is correct for the question: 'In a room with warm lighting, a woman dressed in black is sitting on a chair holding a comb. What is she doing?' Check each criterion: 1) Is the room lit with warm lighting? 2) Is there a woman dressed in black? 3) Is she sitting on a chair? 4) Is she holding a comb? 5) What specific action is she performing with the comb? Focus on visual evidence only, not subtitles."
+}
+Frames to verify: ['frames/frame_0000.jpg', 'frames/frame_0001.jpg', 'frames/frame_0002.jpg', 'frames/frame_0003.jpg', 'frames/frame_0004.jpg', 'frames/frame_0005.jpg', 'frames/frame_0006.jpg', 'frames/frame_0007.jpg', 'frames/frame_0008.jpg', 'frames/frame_0009.jpg', 'frames/frame_0010.jpg', 'frames/frame_0011.jpg']
+VLM Prompt: Video context: Based on the provided frame-by-frame captions data, here is a global summary of the video:
+
+**Main Characters:** The main character appears to be a young woman with long brown hair. She is the central figure in most of the frames. There is also another person, likely a hairstylist or a masseuse, who is styling her hair or giving her a massage.
+
+**Setting:** The setting is a cozy, dimly lit room with wood-paneled walls, suggesting a warm and intimate atmosphere. The room is decorated with various objects, including a wine rack, an antique wooden mirror, a dresser with a yellow lamp, and yellow curtains.
+
+**Plot Line:** The plot line appears to be a personal and emotional journey of the main character, who is pregnant. The video seems to be a reflective and contemplative piece, with the main character engaging in various activities such as getting her hair styled, blow-dried, or braided. The subtitles suggest that she is struggling with the early stages of pregnancy and is reflecting on her existence.
+
+**Vibes:** The overall vibe of the video is calm, serene, and introspective. The use of warm lighting, cozy setting, and gentle activities such as hair styling and massage creates a soothing atmosphere. The subtitles also convey a sense of melancholy and self-reflection, adding a layer of depth to the video.
+
+**General Details:** The video appears to be a character-driven, narrative piece that explores the main character's emotions and experiences during early pregnancy. The use of a single location and a limited color palette (with a focus on warm tones) adds to the video's cohesive and introspective feel. The subtitles provide additional context to the main character's thoughts and feelings, creating a richer understanding of the narrative.
+
+Analyze these frames to verify if answer '3' (She is combing her hair) is correct for the question: 'In a room with warm lighting, a woman dressed in black is sitting on a chair holding a comb. What is she doing?' Check each criterion: 1) Is the room lit with warm lighting? 2) Is there a woman dressed in black? 3) Is she sitting on a chair? 4) Is she holding a comb? 5) What specific action is she performing with the comb? Focus on visual evidence only, not subtitles.
+
+Subtitles visible in these frames:
+  frames/frame_0002.jpg: "It’s a cold November with only a thin&nbsp;
+scattering of snow, and the grey skies&nbsp;&nbsp;"
+  frames/frame_0003.jpg: "It’s a cold November with only a thin&nbsp;
+scattering of snow, and the grey skies&nbsp;&nbsp;"
+  frames/frame_0004.jpg: "It’s a cold November with only a thin&nbsp;
+scattering of snow, and the grey skies&nbsp;&nbsp;"
+  frames/frame_0005.jpg: "It’s a cold November with only a thin&nbsp;
+scattering of snow, and the grey skies&nbsp;&nbsp;"
+  frames/frame_0006.jpg: "It’s a cold November with only a thin&nbsp;
+scattering of snow, and the grey skies&nbsp;&nbsp; have reflected my own existence lately. The&nbsp;
+beginning of my pregnancy has left me absolutely&nbsp;&nbsp;"
+  frames/frame_0007.jpg: "have reflected my own existence lately. The&nbsp;
+beginning of my pregnancy has left me absolutely&nbsp;&nbsp;"
+  frames/frame_0008.jpg: "have reflected my own existence lately. The&nbsp;
+beginning of my pregnancy has left me absolutely&nbsp;&nbsp;"
+  frames/frame_0009.jpg: "have reflected my own existence lately. The&nbsp;
+beginning of my pregnancy has left me absolutely&nbsp;&nbsp;"
+  frames/frame_0010.jpg: "have reflected my own existence lately. The&nbsp;
+beginning of my pregnancy has left me absolutely&nbsp;&nbsp;"
+  frames/frame_0011.jpg: "have reflected my own existence lately. The&nbsp;
+beginning of my pregnancy has left me absolutely&nbsp;&nbsp;"
+
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 12, 'image_paths': ['/mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0001.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0002.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0003.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0004.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0005.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0006.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0007.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0008.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0009.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0010.jpg'], 'response': "Based on a frame-by-frame visual analysis, here is the verification of each criterion for the question: “In a room with warm lighting, a woman dressed in black is sitting on a chair holding a comb. What is she doing?” with the proposed answer “3) She is combing her hair.”\n\n---\n\n**1) Is the room lit with warm lighting?**  \n✅ **Yes.**  \nAll frames show a dimly lit room with a warm, golden-yellow ambient light. The wood-paneled walls, yellow curtains, and yellow lamp (visible in frame 6) contribute to a consistently warm lighting atmosphere. No cool or neutral tones dominate the scene.\n\n---\n\n**2) Is there a woman dressed in black?**  \n✅ **Yes.**  \nThe main woman is wearing a dark, long-sleeved top that appears black or very dark navy in all frames (e.g., frames 2–5, 7–11). The color is consistent and visually identifiable as black under the warm lighting.\n\n---\n\n**3) Is she sitting on a chair?**  \n✅ **Yes.**  \nIn frames 2–5 and 7–11, the woman is clearly seated. Her posture — upright, with shoulders relaxed and arms raised to her head — is consistent with someone sitting in a chair. In frame 6, she is seen in a mirror reflection, also seated, with the back of a chair or cushion visible behind her.\n\n---\n\n**4) Is she holding a comb?**  \n❌ **No.**  \nIn frames 2–5 and 7, she is holding a **hairbrush** or **round brush** (with bristles and a cylindrical handle), not a comb. In frame 6, she holds a **hairdryer**, not a comb. In frames 9–11, she is handling a **ribbon or scarf** to tie her braid — no comb is visible.  \nThere is **no visual evidence** in any of the 12 frames that she is holding a comb.\n\n---\n\n**5) What specific action is she performing with the comb?**  \n❌ **Not applicable / Incorrect premise.**  \nSince she is **not holding a comb** in any frame, she is **not performing any action with a comb**. The actions observed are:\n- Brushing or styling hair with a round brush (frames 2–5, 7).\n- Using a hairdryer (frame 6).\n- Braiding her hair and tying it with a ribbon (frames 9–11).\n\n---\n\n### ✅ Final Verdict:  \n**Answer '3' (She is combing her hair) is INCORRECT.**\n\nThe woman is **not holding a comb** in any frame, and therefore **cannot be combing her hair**. The correct visual actions involve brushing, blow-drying, and braiding — none of which involve a comb.\n\n---\n\n**Note:** While the subtitles provide emotional context (pregnancy, melancholy), the question explicitly asks for **visual evidence only**, and the analysis above strictly adheres to that requirement."}], 'formatted_responses': ["\n=== Batch 0-12 (10 frames) ===\nFrames: /mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0001.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0002.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0003.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0004.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0005.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0006.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0007.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0008.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0009.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0010.jpg\nVLM Response: Based on a frame-by-frame visual analysis, here is the verification of each criterion for the question: “In a room with warm lighting, a woman dressed in black is sitting on a chair holding a comb. What is she doing?” with the proposed answer “3) She is combing her hair.”\n\n---\n\n**1) Is the room lit with warm lighting?**  \n✅ **Yes.**  \nAll frames show a dimly lit room with a warm, golden-yellow ambient light. The wood-paneled walls, yellow curtains, and yellow lamp (visible in frame 6) contribute to a consistently warm lighting atmosphere. No cool or neutral tones dominate the scene.\n\n---\n\n**2) Is there a woman dressed in black?**  \n✅ **Yes.**  \nThe main woman is wearing a dark, long-sleeved top that appears black or very dark navy in all frames (e.g., frames 2–5, 7–11). The color is consistent and visually identifiable as black under the warm lighting.\n\n---\n\n**3) Is she sitting on a chair?**  \n✅ **Yes.**  \nIn frames 2–5 and 7–11, the woman is clearly seated. Her posture — upright, with shoulders relaxed and arms raised to her head — is consistent with someone sitting in a chair. In frame 6, she is seen in a mirror reflection, also seated, with the back of a chair or cushion visible behind her.\n\n---\n\n**4) Is she holding a comb?**  \n❌ **No.**  \nIn frames 2–5 and 7, she is holding a **hairbrush** or **round brush** (with bristles and a cylindrical handle), not a comb. In frame 6, she holds a **hairdryer**, not a comb. In frames 9–11, she is handling a **ribbon or scarf** to tie her braid — no comb is visible.  \nThere is **no visual evidence** in any of the 12 frames that she is holding a comb.\n\n---\n\n**5) What specific action is she performing with the comb?**  \n❌ **Not applicable / Incorrect premise.**  \nSince she is **not holding a comb** in any frame, she is **not performing any action with a comb**. The actions observed are:\n- Brushing or styling hair with a round brush (frames 2–5, 7).\n- Using a hairdryer (frame 6).\n- Braiding her hair and tying it with a ribbon (frames 9–11).\n\n---\n\n### ✅ Final Verdict:  \n**Answer '3' (She is combing her hair) is INCORRECT.**\n\nThe woman is **not holding a comb** in any frame, and therefore **cannot be combing her hair**. The correct visual actions involve brushing, blow-drying, and braiding — none of which involve a comb.\n\n---\n\n**Note:** While the subtitles provide emotional context (pregnancy, melancholy), the question explicitly asks for **visual evidence only**, and the analysis above strictly adheres to that requirement.\n"], 'condensed_response': '**Scene Summary (Frames\u202f0001\u202f–\u202f0010)**  \n\n- **Lighting:** Throughout the ten‑frame clip the room is bathed in a warm, golden‑yellow glow (visible wood panels, yellow curtains and a lamp in frame\u202f6). The ambience remains consistently warm from start to finish.  \n\n- **Character:** A single woman dominates the frame. She wears a dark, long‑sleeved top that appears black (or very dark navy) in every shot.  \n\n- **Posture & Setting:** In every frame she is seated on a chair; her upright posture and the visible chair back (or cushion) confirm she is not standing or moving around the room.  \n\n- **Objects in Hand & Actions:**  \n  * **Frames\u202f0002\u202f–\u202f0005 & 0007:** She holds a **round hair‑brush** (cylindrical handle with bristles) and runs it through her hair – a brushing motion.  \n  * **Frame\u202f0006:** A **hair‑dryer** replaces the brush; she directs the airflow at her hair.  \n  * **Frames\u202f0009\u202f–\u202f0010:** She switches to a **ribbon/scarf**, using it to tie off a braid.  \n\n- **Comb Presence:** No comb is visible in any of the ten frames; the objects are a brush, a dryer, then a ribbon. Consequently there is no visual evidence of her “combing” her hair.\n\n**Verdict (relative to the query “In a warm‑lit room, a woman dressed in black is sitting on a chair holding a comb – what is she doing?”)**  \n\nThe visual evidence shows the woman **brushing, blow‑drying, and braiding** her hair, **not combing it**. Therefore the proposed answer “She is combing her hair” is **incorrect**. The correct description of the observed action is *hair‑styling with a brush, dryer, and ribbon*, with no comb present.', 'failed_images': [('/mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0000.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0011.jpg', 'File not found')]}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 12, 'image_paths': ['/mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0001.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0002.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0003.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0004.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0005.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0006.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0007.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0008.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0009.jpg', '/mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0010.jpg'], 'response': "Based on a frame-by-frame visual analysis, here is the verification of each criterion for the question: “In a room with warm lighting, a woman dressed in black is sitting on a chair holding a comb. What is she doing?” with the proposed answer “3) She is combing her hair.”\n\n---\n\n**1) Is the room lit with warm lighting?**  \n✅ **Yes.**  \nAll frames show a dimly lit room with a warm, golden-yellow ambient light. The wood-paneled walls, yellow curtains, and yellow lamp (visible in frame 6) contribute to a consistently warm lighting atmosphere. No cool or neutral tones dominate the scene.\n\n---\n\n**2) Is there a woman dressed in black?**  \n✅ **Yes.**  \nThe main woman is wearing a dark, long-sleeved top that appears black or very dark navy in all frames (e.g., frames 2–5, 7–11). The color is consistent and visually identifiable as black under the warm lighting.\n\n---\n\n**3) Is she sitting on a chair?**  \n✅ **Yes.**  \nIn frames 2–5 and 7–11, the woman is clearly seated. Her posture — upright, with shoulders relaxed and arms raised to her head — is consistent with someone sitting in a chair. In frame 6, she is seen in a mirror reflection, also seated, with the back of a chair or cushion visible behind her.\n\n---\n\n**4) Is she holding a comb?**  \n❌ **No.**  \nIn frames 2–5 and 7, she is holding a **hairbrush** or **round brush** (with bristles and a cylindrical handle), not a comb. In frame 6, she holds a **hairdryer**, not a comb. In frames 9–11, she is handling a **ribbon or scarf** to tie her braid — no comb is visible.  \nThere is **no visual evidence** in any of the 12 frames that she is holding a comb.\n\n---\n\n**5) What specific action is she performing with the comb?**  \n❌ **Not applicable / Incorrect premise.**  \nSince she is **not holding a comb** in any frame, she is **not performing any action with a comb**. The actions observed are:\n- Brushing or styling hair with a round brush (frames 2–5, 7).\n- Using a hairdryer (frame 6).\n- Braiding her hair and tying it with a ribbon (frames 9–11).\n\n---\n\n### ✅ Final Verdict:  \n**Answer '3' (She is combing her hair) is INCORRECT.**\n\nThe woman is **not holding a comb** in any frame, and therefore **cannot be combing her hair**. The correct visual actions involve brushing, blow-drying, and braiding — none of which involve a comb.\n\n---\n\n**Note:** While the subtitles provide emotional context (pregnancy, melancholy), the question explicitly asks for **visual evidence only**, and the analysis above strictly adheres to that requirement."}], 'formatted_responses': ["\n=== Batch 0-12 (10 frames) ===\nFrames: /mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0001.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0002.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0003.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0004.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0005.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0006.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0007.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0008.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0009.jpg, /mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0010.jpg\nVLM Response: Based on a frame-by-frame visual analysis, here is the verification of each criterion for the question: “In a room with warm lighting, a woman dressed in black is sitting on a chair holding a comb. What is she doing?” with the proposed answer “3) She is combing her hair.”\n\n---\n\n**1) Is the room lit with warm lighting?**  \n✅ **Yes.**  \nAll frames show a dimly lit room with a warm, golden-yellow ambient light. The wood-paneled walls, yellow curtains, and yellow lamp (visible in frame 6) contribute to a consistently warm lighting atmosphere. No cool or neutral tones dominate the scene.\n\n---\n\n**2) Is there a woman dressed in black?**  \n✅ **Yes.**  \nThe main woman is wearing a dark, long-sleeved top that appears black or very dark navy in all frames (e.g., frames 2–5, 7–11). The color is consistent and visually identifiable as black under the warm lighting.\n\n---\n\n**3) Is she sitting on a chair?**  \n✅ **Yes.**  \nIn frames 2–5 and 7–11, the woman is clearly seated. Her posture — upright, with shoulders relaxed and arms raised to her head — is consistent with someone sitting in a chair. In frame 6, she is seen in a mirror reflection, also seated, with the back of a chair or cushion visible behind her.\n\n---\n\n**4) Is she holding a comb?**  \n❌ **No.**  \nIn frames 2–5 and 7, she is holding a **hairbrush** or **round brush** (with bristles and a cylindrical handle), not a comb. In frame 6, she holds a **hairdryer**, not a comb. In frames 9–11, she is handling a **ribbon or scarf** to tie her braid — no comb is visible.  \nThere is **no visual evidence** in any of the 12 frames that she is holding a comb.\n\n---\n\n**5) What specific action is she performing with the comb?**  \n❌ **Not applicable / Incorrect premise.**  \nSince she is **not holding a comb** in any frame, she is **not performing any action with a comb**. The actions observed are:\n- Brushing or styling hair with a round brush (frames 2–5, 7).\n- Using a hairdryer (frame 6).\n- Braiding her hair and tying it with a ribbon (frames 9–11).\n\n---\n\n### ✅ Final Verdict:  \n**Answer '3' (She is combing her hair) is INCORRECT.**\n\nThe woman is **not holding a comb** in any frame, and therefore **cannot be combing her hair**. The correct visual actions involve brushing, blow-drying, and braiding — none of which involve a comb.\n\n---\n\n**Note:** While the subtitles provide emotional context (pregnancy, melancholy), the question explicitly asks for **visual evidence only**, and the analysis above strictly adheres to that requirement.\n"], 'condensed_response': '**Scene Summary (Frames\u202f0001\u202f–\u202f0010)**  \n\n- **Lighting:** Throughout the ten‑frame clip the room is bathed in a warm, golden‑yellow glow (visible wood panels, yellow curtains and a lamp in frame\u202f6). The ambience remains consistently warm from start to finish.  \n\n- **Character:** A single woman dominates the frame. She wears a dark, long‑sleeved top that appears black (or very dark navy) in every shot.  \n\n- **Posture & Setting:** In every frame she is seated on a chair; her upright posture and the visible chair back (or cushion) confirm she is not standing or moving around the room.  \n\n- **Objects in Hand & Actions:**  \n  * **Frames\u202f0002\u202f–\u202f0005 & 0007:** She holds a **round hair‑brush** (cylindrical handle with bristles) and runs it through her hair – a brushing motion.  \n  * **Frame\u202f0006:** A **hair‑dryer** replaces the brush; she directs the airflow at her hair.  \n  * **Frames\u202f0009\u202f–\u202f0010:** She switches to a **ribbon/scarf**, using it to tie off a braid.  \n\n- **Comb Presence:** No comb is visible in any of the ten frames; the objects are a brush, a dryer, then a ribbon. Consequently there is no visual evidence of her “combing” her hair.\n\n**Verdict (relative to the query “In a warm‑lit room, a woman dressed in black is sitting on a chair holding a comb – what is she doing?”)**  \n\nThe visual evidence shows the woman **brushing, blow‑drying, and braiding** her hair, **not combing it**. Therefore the proposed answer “She is combing her hair” is **incorrect**. The correct description of the observed action is *hair‑styling with a brush, dryer, and ribbon*, with no comb present.', 'failed_images': [('/mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0000.jpg', 'File not found'), ('/mnt/ssd/data/longvideobench/videos_processed_1/FOMS_yqdN1o/frames/frame_0011.jpg', 'File not found')]}
+
+Question Being Answered: In a room with warm lighting, a woman dressed in black is sitting on a chair holding a comb. What is she doing?
+
+Answer Choices:
+A. She is brushing her teeth
+B. She is washing her face
+C. She is putting on makeup
+D. She is combing her hair
+
+Given Answer: 3
+Evidence Frames Used: ['frames/frame_0004.jpg', 'frames/frame_0006.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Woman with long brown hair: Description: Young woman with long brown hair, wearing a black shirt.
+Hairdresser/Person styling hair: Description: Person styling the woman's hair, wearing a black shirt.
+
+SCENES:
+Cozy wood-paneled room: Description: A room with wood paneling on the walls, featuring various objects such as a wine rack, a dresser with a yellow lamp, and a window with yellow curtains. [frame_0001 - ongoing]
+
+EVENTS:
+Hair styling: Description: The hairdresser is styling the woman's hair using various tools such as a curling iron, hair straightener, and a hair dryer. [frame_0001]
+Woman checking her reflection: Description: The woman is checking her reflection in an ornate wooden mirror. [frame_0005]
+Braiding hair: Description: The woman is braiding her long brown hair and tying a beige lace ribbon around the end of the braid. [frame_0008]
+
+================================================================================
+Generated at: 2026-01-03 10:19:06
+================================================================================
+
+
+
+SUBTITLES IN EVIDENCE FRAMES:
+  frames/frame_0004.jpg: "It’s a cold November with only a thin&nbsp;
+scattering of snow, and the grey skies&nbsp;&nbsp;"
+  frames/frame_0006.jpg: "It’s a cold November with only a thin&nbsp;
+scattering of snow, and the grey skies&nbsp;&nbsp; have reflected my own existence lately. The&nbsp;
+beginning of my pregnancy has left me absolutely&nbsp;&nbsp;"
+
+⚠️ IMPORTANT: Use subtitle information to verify text-based questions or questions about visible captions/words.
+
+
+QUESTION-BASED CRITERIA:
+  Q1. A room with warm lighting
+  Q2. A woman dressed in black
+  Q3. Woman sitting on a chair
+  Q4. Woman holding a comb
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 4)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, if criteria_percentage > 0.5 (>50% of criteria pass):
+   - Review ALL answer choices (A, B, C, D, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D)
+5. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - Set critic_answer_choice to -1 (indicating frames may not be the right scene)
+   - Set suggestion to "These may not be the right frames/scene. Continue searching for better evidence."
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 4,
+    "criteria_percentage": <criteria_passed / 4>,
+    "base_confidence": <(criteria_passed / 4) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, or -1 if ≤50% criteria pass>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "A room with warm lighting",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms warm golden-yellow ambient lighting throughout all frames"
+        },
+        {
+            "criterion": "A woman dressed in black",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms woman wearing dark long-sleeved top visually identifiable as black"
+        },
+        {
+            "criterion": "Woman sitting on a chair",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms woman is clearly seated on a chair in all frames with visible chair/cushion"
+        },
+        {
+            "criterion": "Woman holding a comb",
+            "criterion_type": "QUESTION",
+            "status": "FAIL",
+            "reasoning": "VLM explicitly states no comb visible in any frame - she holds hairbrush, hairdryer, and ribbon instead"
+        }
+    ],
+    "question_criteria_passed": 3,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 3,
+    "criteria_total": 4,
+    "criteria_percentage": 0.75,
+    "base_confidence": 75,
+    "confidence": 50,
+    "critic_answer_choice": -1,
+    "critic_reasoning": "While 3 out of 4 question criteria pass, the critical criterion 'woman holding a comb' fails completely. The VLM shows she is using a hairbrush, hairdryer, and ribbon, not a comb. Since the question premise specifies 'holding a comb' and the proposed answer 'combing her hair' requires this, the evidence frames do not support any of the answer choices as they all assume the premise is correct.",
+    "possible_errors": [
+        "Woman is not holding a comb in any frame - she holds a hairbrush, hairdryer, and ribbon instead"
+    ],
+    "suggestion": "These may not be the right frames/scene. Continue searching for better evidence that shows the woman actually holding a comb as specified in the question premise."
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'A room with warm lighting', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms warm golden-yellow ambient lighting throughout all frames'}, {'criterion': 'A woman dressed in black', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms woman wearing dark long-sleeved top visually identifiable as black'}, {'criterion': 'Woman sitting on a chair', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms woman is clearly seated on a chair in all frames with visible chair/cushion'}, {'criterion': 'Woman holding a comb', 'criterion_type': 'QUESTION', 'status': 'FAIL', 'reasoning': 'VLM explicitly states no comb visible in any frame - she holds hairbrush, hairdryer, and ribbon instead'}], 'question_criteria_passed': 3, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 3, 'criteria_total': 4, 'criteria_percentage': 0.75, 'base_confidence': 75, 'confidence': 50, 'critic_answer_choice': -1, 'critic_reasoning': "While 3 out of 4 question criteria pass, the critical criterion 'woman holding a comb' fails completely. The VLM shows she is using a hairbrush, hairdryer, and ribbon, not a comb. Since the question premise specifies 'holding a comb' and the proposed answer 'combing her hair' requires this, the evidence frames do not support any of the answer choices as they all assume the premise is correct.", 'possible_errors': ['Woman is not holding a comb in any frame - she holds a hairbrush, hairdryer, and ribbon instead'], 'suggestion': 'These may not be the right frames/scene. Continue searching for better evidence that shows the woman actually holding a comb as specified in the question premise.'}

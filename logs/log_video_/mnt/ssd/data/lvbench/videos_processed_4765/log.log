@@ -1,0 +1,189 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_1069.jpg", "frames/frame_1070.jpg", "frames/frame_1071.jpg", "frames/frame_1072.jpg", "frames/frame_1073.jpg", "frames/frame_1074.jpg", "frames/frame_1075.jpg", "frames/frame_1076.jpg", "frames/frame_1077.jpg", "frames/frame_1078.jpg", "frames/frame_1079.jpg", "frames/frame_1080.jpg"],
+    "prompt": "Analyze these basketball game frames to verify if the answer '0' (which corresponds to 'He feels to the ground' - likely a typo for 'He falls to the ground') is correct for the question: 'After Fisher scores, what does the white team No. 20 do?'\n\nCheck these specific criteria:\n1. Is there a player in a white uniform with number 20 visible?\n2. Is there a player with 'Fisher' on their jersey who scores a basket?\n3. What action does the white team number 20 player perform immediately after the score?\n4. Is the scene set on a basketball court during a game?\n\nPay close attention to the temporal sequence: frames 1074-1075 are the evidence frames, with 1069-1073 providing context before and 1076-1080 providing context after. Identify what happens immediately after the scoring play."
+}
+Frames to verify: ['frames/frame_1069.jpg', 'frames/frame_1070.jpg', 'frames/frame_1071.jpg', 'frames/frame_1072.jpg', 'frames/frame_1073.jpg', 'frames/frame_1074.jpg', 'frames/frame_1075.jpg', 'frames/frame_1076.jpg', 'frames/frame_1077.jpg', 'frames/frame_1078.jpg', 'frames/frame_1079.jpg', 'frames/frame_1080.jpg']
+VLM Prompt: Video context: Based on the provided SET of frame-by-frame captions data, here is a global summary of the video:
+
+**Main Characters:**
+The main character in the video is Jimmy Kimmel, an American television host, comedian, and producer. He is the host of the late-night talk show "Jimmy Kimmel Live!". Other notable characters that appear in the video include Terry Crews, Kobe Bryant, and various basketball players from the Los Angeles Lakers team.
+
+**Setting:**
+The setting of the video is primarily the "Jimmy Kimmel Live!" television studio, which features a nighttime cityscape of Los Angeles, including the iconic Hollywood sign, as a backdrop. The studio is decorated with a modern and sleek design. Other settings that appear in the video include basketball arenas, locker rooms, and press conferences.
+
+**Plot Line:**
+The video appears to be a tribute to Kobe Bryant, a legendary basketball player who played for the Los Angeles Lakers. The video showcases Jimmy Kimmel hosting his talk show, interviewing various guests, including Terry Crews and Kobe Bryant, and discussing topics related to the Lakers and Kobe Bryant's career. The video also features footage of Kobe Bryant's basketball games, press conferences, and other notable moments from his career.
+
+**Vibes:**
+The overall vibe of the video is a mix of seriousness, nostalgia, and celebration. The video pays tribute to Kobe Bryant's legacy and achievements, and features a range of emotions, from somber moments to joyful and celebratory scenes.
+
+**General Details:**
+The video is a compilation of various clips from "Jimmy Kimmel Live!" and other sources, featuring a mix of interviews, basketball games, and other footage related to Kobe Bryant and the Los Angeles Lakers. The video is likely a tribute or a documentary-style piece celebrating Kobe Bryant's life and career. The tone is respectful and nostalgic, with a focus on highlighting Kobe Bryant's achievements and impact on the basketball world.
+
+Analyze these basketball game frames to verify if the answer '0' (which corresponds to 'He feels to the ground' - likely a typo for 'He falls to the ground') is correct for the question: 'After Fisher scores, what does the white team No. 20 do?'
+
+Check these specific criteria:
+1. Is there a player in a white uniform with number 20 visible?
+2. Is there a player with 'Fisher' on their jersey who scores a basket?
+3. What action does the white team number 20 player perform immediately after the score?
+4. Is the scene set on a basketball court during a game?
+
+Pay close attention to the temporal sequence: frames 1074-1075 are the evidence frames, with 1069-1073 providing context before and 1076-1080 providing context after. Identify what happens immediately after the scoring play.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 12, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1069.jpg', '/mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1070.jpg', '/mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1071.jpg', '/mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1072.jpg', '/mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1073.jpg', '/mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1074.jpg', '/mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1075.jpg', '/mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1076.jpg', '/mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1077.jpg', '/mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1078.jpg', '/mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1079.jpg', '/mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1080.jpg'], 'response': "Based on a detailed analysis of the provided frames and the specific criteria, the answer **'0' ('He falls to the ground') is correct** for the question: *“After Fisher scores, what does the white team No. 20 do?”*\n\nHere’s the breakdown by criteria:\n\n---\n\n**1. Is there a player in a white uniform with number 20 visible?**\n\n✅ **Yes.** In frames 1074–1080, a player in a white jersey with the number **20** is clearly visible. He is on the court, part of the white team (Los Angeles Lakers, as indicated by the scoreboard and context). He is seen near the basket and later on the floor.\n\n---\n\n**2. Is there a player with 'Fisher' on their jersey who scores a basket?**\n\n✅ **Yes.** In frame **1074**, player **#2** in the white jersey (Derek Fisher) is seen taking a jump shot. In frame **1075**, the ball is shown going through the hoop. The scoreboard updates from LAL 51 to LAL 53 in frame **1076**, confirming the basket was scored by the Lakers. Fisher’s name is not visible on the back in these frames, but given the context (Lakers in The Finals, #2 shooting a clutch shot), this is widely known to be Derek Fisher’s famous 0.4-second shot in Game 5 of the 2004 NBA Finals. The question assumes this identification is valid based on historical context and visual cues.\n\n---\n\n**3. What action does the white team number 20 player perform immediately after the score?**\n\n✅ **He falls to the ground.** In frame **1074**, player #20 is standing near the basket. In frame **1075**, immediately after Fisher’s shot goes in, player #20 is seen **falling backward to the ground** — likely reacting to the play or being bumped during the scramble. He remains on the ground through frames 1076–1078. This is a clear, observable action occurring *immediately after* the score.\n\n---\n\n**4. Is the scene set on a basketball court during a game?**\n\n✅ **Yes.** All frames from 1069–1080 show a live NBA game in progress, with players, referees, scoreboard (showing “The Finals”), and a packed arena. The setting is unmistakably a professional basketball game.\n\n---\n\n**Temporal Sequence Verification:**\n\n- **Before (1069–1073):** Game is in progress, Lakers are playing.\n- **During (1074–1075):** Fisher shoots and scores; player #20 falls to the ground.\n- **After (1076–1080):** Player #20 remains on the floor briefly before getting up; game continues.\n\nThe action of player #20 falling occurs *immediately after* the basket is scored, satisfying the temporal requirement.\n\n---\n\n**Conclusion:**\n\nThe answer **'0' — “He falls to the ground” — is correct**. All four criteria are satisfied, and the visual evidence clearly shows player #20 falling immediately after Fisher’s basket.\n\n✅ **Verified: Correct Answer**"}], 'formatted_responses': ["\n=== Batch 0-12 (12 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1069.jpg, /mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1070.jpg, /mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1071.jpg, /mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1072.jpg, /mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1073.jpg, /mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1074.jpg, /mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1075.jpg, /mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1076.jpg, /mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1077.jpg, /mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1078.jpg, /mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1079.jpg, /mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1080.jpg\nVLM Response: Based on a detailed analysis of the provided frames and the specific criteria, the answer **'0' ('He falls to the ground') is correct** for the question: *“After Fisher scores, what does the white team No. 20 do?”*\n\nHere’s the breakdown by criteria:\n\n---\n\n**1. Is there a player in a white uniform with number 20 visible?**\n\n✅ **Yes.** In frames 1074–1080, a player in a white jersey with the number **20** is clearly visible. He is on the court, part of the white team (Los Angeles Lakers, as indicated by the scoreboard and context). He is seen near the basket and later on the floor.\n\n---\n\n**2. Is there a player with 'Fisher' on their jersey who scores a basket?**\n\n✅ **Yes.** In frame **1074**, player **#2** in the white jersey (Derek Fisher) is seen taking a jump shot. In frame **1075**, the ball is shown going through the hoop. The scoreboard updates from LAL 51 to LAL 53 in frame **1076**, confirming the basket was scored by the Lakers. Fisher’s name is not visible on the back in these frames, but given the context (Lakers in The Finals, #2 shooting a clutch shot), this is widely known to be Derek Fisher’s famous 0.4-second shot in Game 5 of the 2004 NBA Finals. The question assumes this identification is valid based on historical context and visual cues.\n\n---\n\n**3. What action does the white team number 20 player perform immediately after the score?**\n\n✅ **He falls to the ground.** In frame **1074**, player #20 is standing near the basket. In frame **1075**, immediately after Fisher’s shot goes in, player #20 is seen **falling backward to the ground** — likely reacting to the play or being bumped during the scramble. He remains on the ground through frames 1076–1078. This is a clear, observable action occurring *immediately after* the score.\n\n---\n\n**4. Is the scene set on a basketball court during a game?**\n\n✅ **Yes.** All frames from 1069–1080 show a live NBA game in progress, with players, referees, scoreboard (showing “The Finals”), and a packed arena. The setting is unmistakably a professional basketball game.\n\n---\n\n**Temporal Sequence Verification:**\n\n- **Before (1069–1073):** Game is in progress, Lakers are playing.\n- **During (1074–1075):** Fisher shoots and scores; player #20 falls to the ground.\n- **After (1076–1080):** Player #20 remains on the floor briefly before getting up; game continues.\n\nThe action of player #20 falling occurs *immediately after* the basket is scored, satisfying the temporal requirement.\n\n---\n\n**Conclusion:**\n\nThe answer **'0' — “He falls to the ground” — is correct**. All four criteria are satisfied, and the visual evidence clearly shows player #20 falling immediately after Fisher’s basket.\n\n✅ **Verified: Correct Answer**\n"], 'condensed_response': '**Scene Summary (Frames\u202f1069\u202f–\u202f1080)**  \n\n- **Setting:** NBA Finals game, Los\u202fAngeles\u202fLakers (white jerseys) on a basketball court; the scoreboard clearly shows “The\u202fFinals.”  \n\n- **Key Characters:**  \n  - **#20 (white jersey)** – the focal player whose actions are tracked.  \n  - **Derek Fisher (#2, white jersey)** – the shooter whose basket triggers the subsequent action.  \n\n- **Temporal Flow:**  \n\n| Frame | Action |\n|-------|--------|\n| 1069‑1073 | Game in progress; Lakers are on offense. |\n| **1074** | Fisher (player\u202f#2) takes a jump shot; #20 is standing near the basket. |\n| **1075** | The ball swishes through the hoop – the score goes from LAL\u202f51 to LAL\u202f53. |\n| **1075‑1078** | Immediately after the basket, #20 **falls backward to the floor**, landing and staying down through frames\u202f1076‑1078. |\n| 1079‑1080 | #20 remains on the ground briefly, then begins to get up as play continues. |\n\n- **Outcome:** The visual evidence satisfies all required criteria: a white‑uniform player #20 is visible, Fisher scores, and #20’s immediate reaction is to **fall to the ground**. Therefore the correct answer to “After Fisher scores, what does the white team No.\u202f20 do?” is **‘0’ – He falls to the ground**.', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 12, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1069.jpg', '/mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1070.jpg', '/mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1071.jpg', '/mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1072.jpg', '/mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1073.jpg', '/mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1074.jpg', '/mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1075.jpg', '/mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1076.jpg', '/mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1077.jpg', '/mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1078.jpg', '/mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1079.jpg', '/mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1080.jpg'], 'response': "Based on a detailed analysis of the provided frames and the specific criteria, the answer **'0' ('He falls to the ground') is correct** for the question: *“After Fisher scores, what does the white team No. 20 do?”*\n\nHere’s the breakdown by criteria:\n\n---\n\n**1. Is there a player in a white uniform with number 20 visible?**\n\n✅ **Yes.** In frames 1074–1080, a player in a white jersey with the number **20** is clearly visible. He is on the court, part of the white team (Los Angeles Lakers, as indicated by the scoreboard and context). He is seen near the basket and later on the floor.\n\n---\n\n**2. Is there a player with 'Fisher' on their jersey who scores a basket?**\n\n✅ **Yes.** In frame **1074**, player **#2** in the white jersey (Derek Fisher) is seen taking a jump shot. In frame **1075**, the ball is shown going through the hoop. The scoreboard updates from LAL 51 to LAL 53 in frame **1076**, confirming the basket was scored by the Lakers. Fisher’s name is not visible on the back in these frames, but given the context (Lakers in The Finals, #2 shooting a clutch shot), this is widely known to be Derek Fisher’s famous 0.4-second shot in Game 5 of the 2004 NBA Finals. The question assumes this identification is valid based on historical context and visual cues.\n\n---\n\n**3. What action does the white team number 20 player perform immediately after the score?**\n\n✅ **He falls to the ground.** In frame **1074**, player #20 is standing near the basket. In frame **1075**, immediately after Fisher’s shot goes in, player #20 is seen **falling backward to the ground** — likely reacting to the play or being bumped during the scramble. He remains on the ground through frames 1076–1078. This is a clear, observable action occurring *immediately after* the score.\n\n---\n\n**4. Is the scene set on a basketball court during a game?**\n\n✅ **Yes.** All frames from 1069–1080 show a live NBA game in progress, with players, referees, scoreboard (showing “The Finals”), and a packed arena. The setting is unmistakably a professional basketball game.\n\n---\n\n**Temporal Sequence Verification:**\n\n- **Before (1069–1073):** Game is in progress, Lakers are playing.\n- **During (1074–1075):** Fisher shoots and scores; player #20 falls to the ground.\n- **After (1076–1080):** Player #20 remains on the floor briefly before getting up; game continues.\n\nThe action of player #20 falling occurs *immediately after* the basket is scored, satisfying the temporal requirement.\n\n---\n\n**Conclusion:**\n\nThe answer **'0' — “He falls to the ground” — is correct**. All four criteria are satisfied, and the visual evidence clearly shows player #20 falling immediately after Fisher’s basket.\n\n✅ **Verified: Correct Answer**"}], 'formatted_responses': ["\n=== Batch 0-12 (12 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1069.jpg, /mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1070.jpg, /mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1071.jpg, /mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1072.jpg, /mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1073.jpg, /mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1074.jpg, /mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1075.jpg, /mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1076.jpg, /mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1077.jpg, /mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1078.jpg, /mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1079.jpg, /mnt/ssd/data/lvbench/videos_processed/sk00epALZps/frames/frame_1080.jpg\nVLM Response: Based on a detailed analysis of the provided frames and the specific criteria, the answer **'0' ('He falls to the ground') is correct** for the question: *“After Fisher scores, what does the white team No. 20 do?”*\n\nHere’s the breakdown by criteria:\n\n---\n\n**1. Is there a player in a white uniform with number 20 visible?**\n\n✅ **Yes.** In frames 1074–1080, a player in a white jersey with the number **20** is clearly visible. He is on the court, part of the white team (Los Angeles Lakers, as indicated by the scoreboard and context). He is seen near the basket and later on the floor.\n\n---\n\n**2. Is there a player with 'Fisher' on their jersey who scores a basket?**\n\n✅ **Yes.** In frame **1074**, player **#2** in the white jersey (Derek Fisher) is seen taking a jump shot. In frame **1075**, the ball is shown going through the hoop. The scoreboard updates from LAL 51 to LAL 53 in frame **1076**, confirming the basket was scored by the Lakers. Fisher’s name is not visible on the back in these frames, but given the context (Lakers in The Finals, #2 shooting a clutch shot), this is widely known to be Derek Fisher’s famous 0.4-second shot in Game 5 of the 2004 NBA Finals. The question assumes this identification is valid based on historical context and visual cues.\n\n---\n\n**3. What action does the white team number 20 player perform immediately after the score?**\n\n✅ **He falls to the ground.** In frame **1074**, player #20 is standing near the basket. In frame **1075**, immediately after Fisher’s shot goes in, player #20 is seen **falling backward to the ground** — likely reacting to the play or being bumped during the scramble. He remains on the ground through frames 1076–1078. This is a clear, observable action occurring *immediately after* the score.\n\n---\n\n**4. Is the scene set on a basketball court during a game?**\n\n✅ **Yes.** All frames from 1069–1080 show a live NBA game in progress, with players, referees, scoreboard (showing “The Finals”), and a packed arena. The setting is unmistakably a professional basketball game.\n\n---\n\n**Temporal Sequence Verification:**\n\n- **Before (1069–1073):** Game is in progress, Lakers are playing.\n- **During (1074–1075):** Fisher shoots and scores; player #20 falls to the ground.\n- **After (1076–1080):** Player #20 remains on the floor briefly before getting up; game continues.\n\nThe action of player #20 falling occurs *immediately after* the basket is scored, satisfying the temporal requirement.\n\n---\n\n**Conclusion:**\n\nThe answer **'0' — “He falls to the ground” — is correct**. All four criteria are satisfied, and the visual evidence clearly shows player #20 falling immediately after Fisher’s basket.\n\n✅ **Verified: Correct Answer**\n"], 'condensed_response': '**Scene Summary (Frames\u202f1069\u202f–\u202f1080)**  \n\n- **Setting:** NBA Finals game, Los\u202fAngeles\u202fLakers (white jerseys) on a basketball court; the scoreboard clearly shows “The\u202fFinals.”  \n\n- **Key Characters:**  \n  - **#20 (white jersey)** – the focal player whose actions are tracked.  \n  - **Derek Fisher (#2, white jersey)** – the shooter whose basket triggers the subsequent action.  \n\n- **Temporal Flow:**  \n\n| Frame | Action |\n|-------|--------|\n| 1069‑1073 | Game in progress; Lakers are on offense. |\n| **1074** | Fisher (player\u202f#2) takes a jump shot; #20 is standing near the basket. |\n| **1075** | The ball swishes through the hoop – the score goes from LAL\u202f51 to LAL\u202f53. |\n| **1075‑1078** | Immediately after the basket, #20 **falls backward to the floor**, landing and staying down through frames\u202f1076‑1078. |\n| 1079‑1080 | #20 remains on the ground briefly, then begins to get up as play continues. |\n\n- **Outcome:** The visual evidence satisfies all required criteria: a white‑uniform player #20 is visible, Fisher scores, and #20’s immediate reaction is to **fall to the ground**. Therefore the correct answer to “After Fisher scores, what does the white team No.\u202f20 do?” is **‘0’ – He falls to the ground**.', 'failed_images': []}
+
+Question Being Answered: After Fisher scores , what does the white team No. 20 do?
+
+Answer Choices:
+A. He feels to the ground
+B. He waves his elbow
+C. He bows
+D. He waves
+
+Given Answer: 0
+Evidence Frames Used: ['frames/frame_1074.jpg', 'frames/frame_1075.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Jimmy Kimmel (TV Show Host): Description: Middle-aged man with short dark hair, wearing a black suit, white shirt, and purple tie.
+Terry Crews (Guest): Description: Bald, dark-skinned man with a goatee, wearing a gray suit, white shirt, and black tie.
+Kobe Bryant (Guest/Basketball Player): Description: Bald, dark-skinned man with a short beard, wearing various outfits including a gray suit, white shirt, and black tie, or a yellow Lakers jersey.
+Gianna Bryant (Kobe's Daughter): Description: Young girl with dark hair, appearing in various scenes with Kobe Bryant.
+Vanessa Bryant (Kobe's Wife): Description: Woman with dark hair, appearing in scenes with Kobe Bryant and their daughters.
+
+SCENES:
+Late-Night Talk Show Set (Jimmy Kimmel Live!): Description: Stage with a cityscape at night, featuring the iconic "HOLLYWOOD" sign. [Frame 1-2448]
+Basketball Game/Court: Description: Indoor basketball arena with players on the court and spectators in the stands. [Frame 1065-1072, 1565-1572, 2370-2378]
+Press Conference: Description: Room with a blue backdrop featuring the NBA Finals logo and trophy graphics. [Frame 1443-1446]
+Celebratory Event/Locker Room: Description: Room with white walls, wooden strip, and posters, where people are celebrating with champagne. [Frame 2422-2427]
+Basketball Gym/Training: Description: Indoor gym with basketball equipment and a white wall adorned with framed jerseys. [Frame 2406-2409]
+Street/Outdoor: Description: Outdoor setting with a vibrant graffiti wall featuring a large portrait of Kobe Bryant and his daughter Gianna. [Frame 2311-2317]
+Tribute Game/Farewell Ceremony: Description: Packed basketball arena with a large screen displaying a farewell tribute to Kobe Bryant and a shower of yellow confetti. [Frame 2437-2438]
+Family Moment: Description: Kobe Bryant sitting with his daughter Gianna in a crowded arena. [Frame 2417-2421, 2440-2442]
+Quote Screen: Description: Black background with a quote from Kobe Bryant in white text. [Frame 2443-2450]
+
+EVENTS:
+Jimmy Kimmel Hosting: Description: Jimmy Kimmel standing on the stage of "Jimmy Kimmel Live!" with his hands clasped together or gesturing as he speaks. [Frame 1-2448]
+Terry Crews Interview: Description: Terry Crews being interviewed by Jimmy Kimmel on "Jimmy Kimmel Live!" [Frame 300-478]
+Kobe Bryant Interview: Description: Kobe Bryant being interviewed by Jimmy Kimmel on "Jimmy Kimmel Live!" [Frame 0324-0467]
+Kobe Bryant's Basketball Moments: Description: Kobe Bryant playing basketball, celebrating, or being honored. [Frame 1065-1072, 1565-1572, 2370-2378, 2404-2405]
+Kobe Bryant's Family Moments: Description: Kobe Bryant with his family, including his daughter Gianna and wife Vanessa. [Frame 2417-2421, 2440-2442, 2428-2431]
+Tribute to Kobe Bryant: Description: Farewell ceremony or tribute to Kobe Bryant at a basketball game. [Frame 2437-2438]
+
+================================================================================
+Generated at: 2026-01-11 21:45:57
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. A basketball player wearing a white uniform with number 20 visible
+  Q2. A player named Fisher or wearing a jersey with 'Fisher' visible scoring a basket
+  Q3. The white team number 20 player performing an action immediately after the score
+  Q4. The scene is set on a basketball court during a game
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 4)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, if criteria_percentage > 0.5 (>50% of criteria pass):
+   - Review ALL answer choices (A, B, C, D, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D)
+5. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - STILL do your best to pick out a correct answer, but also set suggestion to "These may not be the right frames/scene. Continue searching for better evidence."
+   - output your best guess of the answer as a number (0=A, 1=B, 2=C, 3=D, 4=E)
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <number of question criteria that passed>,
+    "criteria_total": 4,
+    "criteria_percentage": <criteria_passed / 4>,
+    "base_confidence": <(criteria_passed / 4) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "A basketball player wearing a white uniform with number 20 visible",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms white jersey player with number 20 is clearly visible in frames 1074-1080"
+        },
+        {
+            "criterion": "A player named Fisher or wearing a jersey with 'Fisher' visible scoring a basket",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms player #2 scores basket in frames 1074-1075, identified as Derek Fisher based on contextual knowledge"
+        },
+        {
+            "criterion": "The white team number 20 player performing an action immediately after the score",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms player #20 falls to the ground immediately after the basket in frames 1075-1078"
+        },
+        {
+            "criterion": "The scene is set on a basketball court during a game",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms NBA Finals game setting with players, referees, scoreboard, and packed arena in all frames"
+        }
+    ],
+    "question_criteria_passed": 4,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 4,
+    "criteria_total": 4,
+    "criteria_percentage": 1.0,
+    "base_confidence": 100,
+    "confidence": 100,
+    "critic_answer_choice": 0,
+    "critic_reasoning": "The VLM evidence clearly shows player #20 in white uniform falling to the ground immediately after Fisher's basket, which directly matches answer choice A ('He falls to the ground'). The visual sequence from frames 1074-1080 demonstrates this action occurring in the correct temporal sequence.",
+    "possible_errors": [],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'A basketball player wearing a white uniform with number 20 visible', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms white jersey player with number 20 is clearly visible in frames 1074-1080'}, {'criterion': "A player named Fisher or wearing a jersey with 'Fisher' visible scoring a basket", 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms player #2 scores basket in frames 1074-1075, identified as Derek Fisher based on contextual knowledge'}, {'criterion': 'The white team number 20 player performing an action immediately after the score', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms player #20 falls to the ground immediately after the basket in frames 1075-1078'}, {'criterion': 'The scene is set on a basketball court during a game', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms NBA Finals game setting with players, referees, scoreboard, and packed arena in all frames'}], 'question_criteria_passed': 4, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 4, 'criteria_total': 4, 'criteria_percentage': 1.0, 'base_confidence': 100, 'confidence': 100, 'critic_answer_choice': 0, 'critic_reasoning': "The VLM evidence clearly shows player #20 in white uniform falling to the ground immediately after Fisher's basket, which directly matches answer choice A ('He falls to the ground'). The visual sequence from frames 1074-1080 demonstrates this action occurring in the correct temporal sequence.", 'possible_errors': [], 'suggestion': None}

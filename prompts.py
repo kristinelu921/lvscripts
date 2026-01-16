@@ -2,25 +2,54 @@ import json
 import os
 from model_example_query import query_llm, query_llm_async
 
-def initial_prompt(question, candidates=None):
+def initial_prompt(question, candidates=None, use_subtitles=False, subtitles_available=False):
+    """
+    Initial prompt for the video QA pipeline
+
+    Args:
+        question: The question to answer
+        candidates: Optional list of answer choices
+        use_subtitles: Whether subtitle search is enabled
+        subtitles_available: Whether subtitles are available for this video
+    """
     candidates_text = ""
     if candidates:
         candidates_text = "\n\nAnswer Choices:\n"
         for i, choice in enumerate(candidates):
             candidates_text += f"{chr(65+i)}. {choice}\n"
 
+    subtitles_note = ""
+    if use_subtitles and subtitles_available:
+        subtitles_note = "\n\n⚠️ SUBTITLE INFORMATION AVAILABLE:\nSubtitles are available for this video. You MUST use SUBTITLE_SEARCH when:\n- The question quotes specific subtitle text (e.g., \"when the subtitle says 'temples scattered throughout'\")\n- The question asks about dialogue, narration, or spoken words\n- The question references what is being said at a specific moment\n\nExample: \"When the subtitle says 'temples scattered throughout the', what color is the woman's clothing?\"\n→ Use SUBTITLE_SEARCH with query: \"temples scattered throughout the\""
+
     return f"""
 You are a reasoning model whose goal is to answer questions about a video. You cannot see the video, but you can use tools to retrieve information about the video.
 
 You will be given a question and answer choices.
 
-Question: {question}{candidates_text}
+Question: {question}{candidates_text}{subtitles_note}
+
+⚠️ SUBTITLE QUESTION DETECTION:
+FIRST, check if the question references subtitles or spoken content:
+- Does it say "when the subtitle says...", "when the text shows...", "when the narration mentions..."?
+- Does it quote specific words/phrases that appear in subtitles?
+- If YES → You MUST use SUBTITLE_SEARCH as your first tool (not caption search!)
 
 TEMPORAL ATTENTION:
-FIRST, check if the question contains time keywords (after, before, during, when, then, while, first, next, later, etc.):
+NEXT, check if the question contains time keywords (after, before, during, when, then, while, first, next, later, etc.):
 - If present, IDENTIFY and MARK DOWN all temporal relationships and timeframes mentioned
 - Note which events should occur before/after/during other events
 - This temporal information is CRITICAL for finding the right frames
+
+⚠️ QUICK ACTION DETECTION:
+CHECK if the question asks about FAST/QUICK/SUDDEN actions:
+- Hand movements (grabbing, pointing, gesturing, catching, throwing)
+- Objects moving quickly (falling, dropping, flipping, being placed)
+- Facial expressions (sudden smiles, surprise, eye movements)
+- Brief moments (exact timing, precise actions, quick reactions)
+- Keywords: quick, fast, sudden, immediately, instant, rapid, brief, moment
+→ If YES, you will need to use EXTRACT_FINE_FRAMES tool later (after finding the scene) to get higher FPS frames!
+→ Default 1 FPS frames will NOT capture these quick actions - you MUST extract 5-10 FPS for accurate observation
 
 STEP 1: EXTRACT VERIFICATION CRITERIA
 First, carefully analyze the question and extract 4-6 specific, testable criteria that can be verified visually in the video frames. These criteria should be concrete conditions that must be satisfied to answer the question correctly. These criteria should be derived FROM THE QUESTION, NOT THE ANSWER CHOICES. 
@@ -57,6 +86,14 @@ BAD queries (jumbled/unclear):
 - "yellow dress papers office woman"
 - "holding reading yellow"
 
+If subtitles are available, you should use the SUBTITLE_SEARCH tool instead of the CAPTION_SEARCH tool.
+Return the following format:
+```json{{
+    "tool": "SUBTITLE_SEARCH",
+    "query": "the exact subtitle text or phrase mentioned in the question",
+    "topk": 10  // optional, defaults to 10
+}}```
+
 Return your answer in the following json format:
 ```json{{
     "tool": "CAPTION_SEARCH",
@@ -79,18 +116,32 @@ Return your answer in the following json format:
 IMPORTANT: Generate 2-4 search queries. Each should be a natural, structured phrase describing visible elements.
 """
 
-def followup_prompt(json_output, question, candidates=None):
+def followup_prompt(json_output, question, candidates=None, use_subtitles=False, subtitles_available=False):
+    """
+    Followup prompt for the video QA pipeline
+
+    Args:
+        json_output: Previous tool results
+        question: The question to answer
+        candidates: Optional list of answer choices
+        use_subtitles: Whether subtitle search is enabled
+        subtitles_available: Whether subtitles are available for this video
+    """
     candidates_text = ""
     if candidates:
         candidates_text = "\n\nAnswer Choices:\n"
         for i, choice in enumerate(candidates):
             candidates_text += f"{chr(65+i)}. {choice}\n"
 
+    subtitles_section = ""
+    if use_subtitles and subtitles_available:
+        subtitles_section = "\n\n⚠️ SUBTITLE SEARCH \n**CRITICAL**: If the question quotes subtitle text or says \"when the subtitle says...\", you MUST use SUBTITLE_SEARCH first!\n\nUse SUBTITLE_SEARCH when:\n- Question quotes specific words/phrases from subtitles\n- Question says \"when the subtitle says...\", \"when the text shows...\", \"when the narration mentions...\"\n- Question asks about dialogue or spoken content at a specific moment\n\nDo NOT use caption search for subtitle-related questions - captions describe visuals, not spoken words!"
+
     return f"""
 Here is the information we received:
 {json_output}
 
-The question was: {question}{candidates_text}
+The question was: {question}{candidates_text}{subtitles_section}
 
 ⚠️ TEMPORAL ATTENTION ⚠️
 - Frame IDs are TIMESTAMPS: frame_0050.jpg = 50 seconds into the video
@@ -101,17 +152,32 @@ The question was: {question}{candidates_text}
 - Mark down and track ALL timestamps/frame numbers
 - Pay special attention to temporal keywords (after, before, during, when, then, etc.)
 
+⚠️ CRITICAL: 1 FPS LIMITATION ⚠️
+Remember that default frames are at 1 FPS (1 frame per second). This means:
+- Fast movements (hand gestures, throwing, catching) may be MISSED between frames
+- Quick facial expressions or reactions may not be captured
+- Rapid object movements (falling, dropping, flipping) may be blurred or absent
+- Brief actions (blinks, quick glances, sudden movements) may occur between frames
+→ If the question asks about ANY quick/fast/sudden action, you MUST use EXTRACT_FINE_FRAMES (option 6) with higher FPS!
+
 ⚠️ GROUND TRUTH HIERARCHY ⚠️
 VLM observations are GROUND TRUTH. Caption searches are only for LOCATING relevant frames.
 - If VLM has provided observations, those are FACTS about what's in the frames
 - If VLM contradicts caption search results, VLM is ALWAYS correct
 - Caption searches are APPROXIMATIONS to find frames; VLM SEES the actual content
 
-⚠️ CRITICAL ORGANIZATIONAL RULE ⚠️
+⚠️ CRITICAL ORGANIZATIONAL RULE - RECORD TRACKER ⚠️
 After EVERY VLM_QUERY call where you find relevant information, you MUST use RECORD to log the observations with timestamps. This is MANDATORY for:
-- Questions about SEQUENCES of events
-- Questions asking about MULTIPLE locations or objects
+- **Questions about SEQUENCES of events** (e.g., "what happens first, then second, then third")
+- Questions asking about **MULTIPLE locations or objects**
+- Questions with temporal keywords: "before", "after", "during", "when", "then", "first", "next", "later"
 - ANY question where you need to compare or track information across different parts of the video
+
+**SEQUENCING RULE:** When a question asks about ordering events (A, B, C):
+1. Use RECORD to log EACH event with its timestamp when you find it
+2. Use VIEW_RECORDS to see all events sorted by time
+3. Use the FIRST OCCURRENCE of each event to determine order
+4. Do NOT rely on memory - the record tracker maintains chronological order
 
 RECORD is an ORGANIZATIONAL TOOL - use it liberally to keep your evidence organized!
 
@@ -124,6 +190,7 @@ Now, please choose to do EXACTLY ONE of the following:
             "prompt": "...",
         }}
     - ⚠️ REMINDER: After VLM_QUERY, if you found relevant information, your NEXT step should be RECORD (option 2) to log the observations!
+    - ⚠️ CRITICAL: After VLM_QUERY, if the VLM reports MOTION BLUR, or actions appear "mid-motion", or you need to see a QUICK ACTION more clearly, use EXTRACT_FINE_FRAMES (option 6) to get higher FPS frames!
 
 2. Choose to RECORD relevant observations from the VLM results to track evidence across the video. This is CRITICAL for questions requiring you to track SEQUENCES of events across many sections of the video. You MUST use this AFTER VLM_QUERY calls when you find relevant information.
     - ⚠️ MANDATORY after VLM queries that found useful information
@@ -165,15 +232,86 @@ Now, please choose to do EXACTLY ONE of the following:
             ]
         }}
 4. Choose to VIEW ALL RECORDED ENTRIES to review the evidence you've collected so far. This returns all your recorded observations sorted by time, helping you reason about sequences and relationships. Use this when you want to see all the evidence you've gathered through RECORD calls.
+    - **CRITICAL for sequencing questions:** Always VIEW_RECORDS before determining order of events
     - If you choose this, please return the following json format:
         json_output = {{
             "tool": "VIEW_RECORDS"
         }}
-5. Determine your final answer based on the information you have retrieved. ONLY CHOOSE THIS OPTION if you're SURE of your answer. you MUST HAVE VLM/FRAME evidence first. If you are AT ALL unsure, or the answers don't make full sense, you should SEARCH for a different scene or look for more frames. Bias to options 1-4 unless you have CLEAR evidence. For questions about SEQUENCES or MULTIPLE EVENTS, use RECORD (option 2) and VIEW_RECORDS (option 4) to organize your findings before answering. Make sure the letter and the answer match the answer choices given in the question. Your answer MUST be a LETTER (eg: "A", "B", "C", "D", etc.) ONLY, corresponding to the answer choices given in the question.
+5. Choose to SEARCH SUBTITLES using semantic similarity when the question references spoken words, dialogue, or subtitle text. **THIS IS YOUR FIRST CHOICE when the question mentions what is being said!**
+
+    **WHEN TO USE (Priority tool for subtitle questions):**
+    - Question quotes subtitle text: "when the subtitle says 'temples scattered throughout'"
+    - Question references dialogue: "what is being discussed when...", "what does the narrator say about..."
+    - Question asks about spoken content at a specific time
+
+    **EXAMPLES:**
+    - Q: "When the subtitle says 'temples scattered throughout the', what color is the woman's clothing?"
+      → SUBTITLE_SEARCH query: "temples scattered throughout the"
+    - Q: "What is the person doing when the narration mentions 'ancient traditions'?"
+      → SUBTITLE_SEARCH query: "ancient traditions"
+
+    **DO NOT use caption search for these questions - captions describe visuals, not spoken words!**
+
+    If you choose this, please return the following json format:
+        json_output = {{
+            "tool": "SUBTITLE_SEARCH",
+            "query": "the exact subtitle text or phrase mentioned in the question",
+            "topk": 10  // optional, defaults to 10
+        }}
+6. Choose to EXTRACT FINE-GRAINED FRAMES when you need more detailed frames (up to 10 FPS) for a specific moment.
+
+    ⚠️ CRITICAL: USE THIS TOOL PROACTIVELY for questions about:
+    **Quick Physical Actions:**
+    - Hand gestures, pointing, waving, grabbing, catching, throwing
+    - Objects falling, dropping, being placed down, flipping
+    - Chopsticks picking up food, utensils moving, objects being manipulated
+    - People turning their heads, quick glances, sudden movements
+    - Doors opening/closing, lights switching, quick transitions
+
+    **Facial Expressions & Reactions:**
+    - Surprise, shock, sudden smiles, frowns, eye movements
+    - Blinks, winks, eyebrow raises, mouth movements
+    - Quick emotional reactions to events
+
+    **Precise Temporal Events:**
+    - "At what exact moment does X happen?"
+    - "What is the person doing RIGHT when Y occurs?"
+    - Counting rapid sequences (claps, steps, bounces)
+    - Determining exact order of fast events
+
+    **Signs that 1 FPS is NOT enough:**
+    - VLM reports motion blur in 1 FPS frames
+    - Action appears "already completed" or "mid-action" at 1 FPS
+    - Question uses words like: quick, fast, sudden, immediately, instant, rapid, brief
+    - You need to see the START or END of an action, not just the middle
+
+    **How to use:**
+    - Extract 3-5 seconds around the key moment
+    - Use 5-10 FPS for very fast actions (hand motions, falling objects)
+    - Use 3-5 FPS for moderate speed actions (walking, turning, picking up)
+    - Always extract MORE frames rather than fewer when in doubt
+
+    If you choose this, please return the following json format:
+        json_output = {{
+            "tool": "EXTRACT_FINE_GRAINED_FRAMES",
+            "start_second": <float>,
+            "end_second": <float>,
+            "fps": <int between 1-10>  // Use 5-10 FPS for fast actions!
+        }}
+
+7. Determine your final answer based on the information you have retrieved. ONLY CHOOSE THIS OPTION if you're SURE of your answer. you MUST HAVE VLM/FRAME evidence first. If you are AT ALL unsure, or the answers don't make full sense, you should SEARCH for a different scene or look for more frames. Bias to other options unless you have CLEAR evidence. For questions about SEQUENCES or MULTIPLE EVENTS, use RECORD (option 2) and VIEW_RECORDS (option 4) to organize your findings before answering.
 
 ⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence. Do not refuse to answer.
 
-IMPORTANT: THE ANSWER OUTPUT MUST BE A SINGLE NUMBER (eg: 0, 1, 2, 3, 4, etc.) where (0 -> A, 1 -> B, 2 -> C, 3 -> D, etc.). ONLY ONE CHARACTER LONG.
+🔢 ANSWER FORMAT REQUIREMENT:
+Your answer field in FINAL_ANSWER MUST be a single NUMBER (0, 1, 2, 3, 4) corresponding to the answer choices:
+  - 0 = Choice A
+  - 1 = Choice B
+  - 2 = Choice C
+  - 3 = Choice D
+  - 4 = Choice E
+
+Do NOT use letters (A, B, C, D, E). Use ONLY numbers (0, 1, 2, 3, 4) as a STRING.
 
     - When providing FINAL_ANSWER, you MUST also generate ONE ANSWER-SPECIFIC CRITERIA that verify YOUR chosen answer choice is correct. These are DIFFERENT from question criteria - they validate whether YOUR FINAL ANSWER matches the evidence.
 
@@ -234,7 +372,7 @@ json_output = {{
 
 def response_parsing_prompt(response):
     return f"""
-Extract the JSON object from this response. The response contains ONE of these tools: VLM_QUERY, RECORD, VIEW_RECORDS, CAPTION_SEARCH, or FINAL_ANSWER.
+Extract the JSON object from this response. The response contains ONE of these tools: VLM_QUERY, RECORD, VIEW_RECORDS, CAPTION_SEARCH, SUBTITLE_SEARCH, EXTRACT_FINE_GRAINED_FRAMES, or FINAL_ANSWER.
 
 Response to parse:
 {response}
@@ -260,6 +398,21 @@ For RECORD:
 For VIEW_RECORDS:
 {{
     "tool": "VIEW_RECORDS"
+}}
+
+For SUBTITLE_SEARCH:
+{{
+    "tool": "SUBTITLE_SEARCH",
+    "query": "search query matching the wanted subtitle text",
+    "topk": 10  // optional
+}}
+
+For EXTRACT_FINE_GRAINED_FRAMES:
+{{
+    "tool": "EXTRACT_FINE_GRAINED_FRAMES",
+    "start_second": 45.0,
+    "end_second": 47.0,
+    "fps": 5
 }}
 
 For CAPTION_SEARCH:
@@ -600,8 +753,8 @@ CRITIC ANSWER CHOICE DECISION:
    - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
    - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D)
 5. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
-   - Set critic_answer_choice to -1 (indicating frames may not be the right scene)
-   - Set suggestion to "These may not be the right frames/scene. Continue searching for better evidence."
+   - STILL do your best to pick out a correct answer, but also set suggestion to "These may not be the right frames/scene. Continue searching for better evidence."
+   - output your best guess of the answer as a number (0=A, 1=B, 2=C, 3=D, 4=E)
 
 Return ONLY this JSON:
 {{
@@ -612,12 +765,12 @@ Return ONLY this JSON:
     "question_criteria_passed": <number of question criteria that passed>,
     "answer_criteria_passed": <number of answer criteria that passed>,
     "answer_criteria_total": {len(answer_criteria) if answer_criteria else 0},
-    "criteria_passed": <total number of criteria that passed>,
+    "criteria_passed": <number of question criteria that passed>,
     "criteria_total": {total_criteria},
     "criteria_percentage": <criteria_passed / {total_criteria}>,
     "base_confidence": <(criteria_passed / {total_criteria}) * 100>,
     "confidence": <base_confidence OR 50 if any answer criterion failed>,
-    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, or -1 if ≤50% criteria pass>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E>,
     "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
     "possible_errors": [
         <List specific criteria that failed or issues found>

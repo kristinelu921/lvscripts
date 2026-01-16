@@ -1,0 +1,230 @@
+Critic initial response: We are given a question about what three girls do between 07:48-07:50. The answer provided is 3 (which corresponds to D: They are shaking hands). We must verify this answer by examining the visual evidence.
+
+The evidence frames are: ['frames/frame_0468.jpg', 'frames/frame_0469.jpg', 'frames/frame_0470.jpg']
+We are also provided with expanded frames (including ~5 seconds before and after): ['frames/frame_0463.jpg', 'frames/frame_0464.jpg', 'frames/frame_0465.jpg', 'frames/frame_0466.jpg', 'frames/frame_0467.jpg', 'frames/frame_0468.jpg', 'frames/frame_0469.jpg', 'frames/frame_0470.jpg', 'frames/frame_0471.jpg', 'frames/frame_0472.jpg', 'frames/frame_0473.jpg', 'frames/frame_0474.jpg', 'frames/frame_0475.jpg']
+
+We are to create a VLM query to verify the answer. The VLM should check the frames and determine if the action (shaking hands) is occurring and if it meets the criteria.
+
+The criteria from the question are:
+1. Three female characters present in the frame
+2. Characters are performing a specific action together
+3. Action occurs between timestamp 07:48-07:50
+4. Characters are the main three girls from the show
+5. Action is clearly visible and identifiable
+6. No other significant characters or events distracting from the main action
+
+We are to use the expanded frames to get context.
+
+The VLM query should be in JSON format with the tool "VLM_QUERY", the list of frames (the expanded ones), and a prompt that asks the VLM to verify the answer and check the criteria.
+
+Note: The answer is 3, which is option D: They are shaking hands.
+
+Let's create the JSON:
+
+```json
+{
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0463.jpg", "frames/frame_0464.jpg", "frames/frame_0465.jpg", "frames/frame_0466.jpg", "frames/frame_0467.jpg", "frames/frame_0468.jpg", "frames/frame_0469.jpg", "frames/frame_0470.jpg", "frames/frame_0471.jpg", "frames/frame_0472.jpg", "frames/frame_0473.jpg", "frames/frame_0474.jpg", "frames/frame_0475.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '3' (which corresponds to option D: They are shaking hands) is correct for the question: What does the three girls do between 07:48-07:50? Check the question criteria: 1. Three female characters present in the frame, 2. Characters are performing a specific action together, 3. Action occurs between timestamp 07:48-07:50, 4. Characters are the main three girls from the show, 5. Action is clearly visible and identifiable, 6. No other significant characters or events distracting from the main action. Pay attention to timestamps and temporal sequences. Also, note that the answer choices are: 0: bowing, 1: hugging, 2: dancing, 3: shaking hands. Your response should indicate whether the visual evidence shows the three girls shaking hands during the specified time, and if all criteria are met."
+}
+```
+
+However, note that the prompt in the example was slightly different. We should follow the structure of the example but adjust for our question and criteria.
+
+Let me adjust the prompt to match the example's style:
+
+"Based on these frames (including context before/after), verify if the answer '3' is correct for the question: What does the three girls do between 07:48-07:50?. Check the question criteria: ['Three female characters present in the frame', 'Characters are performing a specific action together', 'Action occurs between timestamp 07:48-07:50', 'Characters are the main three girls from the show', 'Action is clearly visible and identifiable', 'No other significant characters or events distracting from the main action']. Pay attention to timestamps and temporal sequences."
+
+We are to return only the JSON.
+
+Final JSON:
+```json
+{
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0463.jpg", "frames/frame_0464.jpg", "frames/frame_0465.jpg", "frames/frame_0466.jpg", "frames/frame_0467.jpg", "frames/frame_0468.jpg", "frames/frame_0469.jpg", "frames/frame_0470.jpg", "frames/frame_0471.jpg", "frames/frame_0472.jpg", "frames/frame_0473.jpg", "frames/frame_0474.jpg", "frames/frame_0475.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '3' is correct for the question: What does the three girls do between 07:48-07:50?. Check the question criteria: ['Three female characters present in the frame', 'Characters are performing a specific action together', 'Action occurs between timestamp 07:48-07:50', 'Characters are the main three girls from the show', 'Action is clearly visible and identifiable', 'No other significant characters or events distracting from the main action']. Pay attention to timestamps and temporal sequences."
+}
+```
+Frames to verify: ['frames/frame_0463.jpg', 'frames/frame_0464.jpg', 'frames/frame_0465.jpg', 'frames/frame_0466.jpg', 'frames/frame_0467.jpg', 'frames/frame_0468.jpg', 'frames/frame_0469.jpg', 'frames/frame_0470.jpg', 'frames/frame_0471.jpg', 'frames/frame_0472.jpg', 'frames/frame_0473.jpg', 'frames/frame_0474.jpg', 'frames/frame_0475.jpg']
+VLM Prompt: Video context: Based on the provided SET of frame-by-frame captions data, here is a global summary of the video:
+
+**Main Characters:**
+The main characters appear to be three young women, often depicted together, with distinct hairstyles and outfits. They are likely the protagonists of the animated series "Totally Spies!". Other characters, such as a muscular man and a man in a black suit, make appearances throughout the video.
+
+**Setting:**
+The video is set in a variety of locations, including:
+
+1. Futuristic cities and landscapes
+2. Beverly Hills, with its iconic archway and palm trees
+3. Various indoor settings, such as offices, classrooms, and nightclubs
+4. Outdoor settings, like parks, beaches, and rooftops
+5. Space and other planetary environments
+
+**Plot Line:**
+The plot line appears to revolve around the adventures of the three main female characters, who are likely spies or involved in some form of espionage or superhero activities. The video showcases their escapades in various locations, including futuristic cities, Beverly Hills, and outer space. The story seems to involve action, suspense, and humor, with the characters facing various challenges and villains.
+
+**Vibes:**
+The overall vibe of the video is energetic, playful, and adventurous, with a mix of action, humor, and excitement. The color palette is vibrant, with a focus on bright colors like pink, purple, and blue. The tone is lighthearted and comedic, suggesting a family-friendly animated series.
+
+**General Details:**
+The video appears to be a promotional or summary video for the animated series "Totally Spies!". It features a mix of scenes showcasing the main characters, their adventures, and the show's themes. The video includes a range of settings, from futuristic cities to outer space, and highlights the show's blend of action, humor, and style. The credits at the end of the video suggest that it is a professionally produced animated series with a significant production team and distribution network.
+
+Based on these frames (including context before/after), verify if the answer '3' (which corresponds to option D: They are shaking hands) is correct for the question: What does the three girls do between 07:48-07:50? Check the question criteria: 1. Three female characters present in the frame, 2. Characters are performing a specific action together, 3. Action occurs between timestamp 07:48-07:50, 4. Characters are the main three girls from the show, 5. Action is clearly visible and identifiable, 6. No other significant characters or events distracting from the main action. Pay attention to timestamps and temporal sequences. Also, note that the answer choices are: 0: bowing, 1: hugging, 2: dancing, 3: shaking hands. Your response should indicate whether the visual evidence shows the three girls shaking hands during the specified time, and if all criteria are met.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 13, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0463.jpg', '/mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0464.jpg', '/mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0465.jpg', '/mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0466.jpg', '/mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0467.jpg', '/mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0468.jpg', '/mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0469.jpg', '/mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0470.jpg', '/mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0471.jpg', '/mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0472.jpg', '/mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0473.jpg', '/mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0474.jpg', '/mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0475.jpg'], 'response': "Based on the visual evidence and the specified criteria, the answer **'3' (shaking hands)** is **correct** for the question: *What do the three girls do between 07:48–07:50?*\n\n---\n\n### ✅ Verification Against Criteria:\n\n1. **Three female characters present in the frame**  \n   → Yes. In Frame 8 (frame_0470.jpg), all three main girls from “Totally Spies!” — the one with black hair (Alex), the blonde (Clover), and the red-haired (Sam) — are clearly visible together.\n\n2. **Characters are performing a specific action together**  \n   → Yes. In Frame 8, they are visibly clasping hands in a unified gesture — specifically, **shaking hands** or joining hands in a team pact. Frame 7 (frame_0469.jpg) shows a close-up of their hands stacked together, reinforcing this.\n\n3. **Action occurs between timestamp 07:48–07:50**  \n   → Assuming frame numbering is sequential and evenly spaced, frames 0469–0470 fall within this window. Frame 7 (0469) and Frame 8 (0470) show the hand action clearly occurring within this timeframe.\n\n4. **Characters are the main three girls from the show**  \n   → Yes. Their distinct appearances (black bob, blonde bob, red long hair) match the main trio of “Totally Spies!” as described in the global context.\n\n5. **Action is clearly visible and identifiable**  \n   → Yes. Frame 7 is a close-up of their hands stacked together, and Frame 8 shows them standing together with hands clasped — unmistakably a handshake or team hand-stack.\n\n6. **No other significant characters or events distracting from the main action**  \n   → Yes. The background is a simple outdoor scene with palm trees and sky. No other characters or major events distract from the central action of the three girls joining hands.\n\n---\n\n### 🟢 Conclusion:\n\nAll six criteria are satisfied. The visual evidence confirms that **the three girls are shaking hands (or performing a team hand-stack)** between 07:48–07:50.\n\n✅ **Answer: 3 (shaking hands) — Correct.**"}], 'formatted_responses': ["\n=== Batch 0-13 (13 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0463.jpg, /mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0464.jpg, /mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0465.jpg, /mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0466.jpg, /mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0467.jpg, /mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0468.jpg, /mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0469.jpg, /mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0470.jpg, /mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0471.jpg, /mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0472.jpg, /mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0473.jpg, /mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0474.jpg, /mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0475.jpg\nVLM Response: Based on the visual evidence and the specified criteria, the answer **'3' (shaking hands)** is **correct** for the question: *What do the three girls do between 07:48–07:50?*\n\n---\n\n### ✅ Verification Against Criteria:\n\n1. **Three female characters present in the frame**  \n   → Yes. In Frame 8 (frame_0470.jpg), all three main girls from “Totally Spies!” — the one with black hair (Alex), the blonde (Clover), and the red-haired (Sam) — are clearly visible together.\n\n2. **Characters are performing a specific action together**  \n   → Yes. In Frame 8, they are visibly clasping hands in a unified gesture — specifically, **shaking hands** or joining hands in a team pact. Frame 7 (frame_0469.jpg) shows a close-up of their hands stacked together, reinforcing this.\n\n3. **Action occurs between timestamp 07:48–07:50**  \n   → Assuming frame numbering is sequential and evenly spaced, frames 0469–0470 fall within this window. Frame 7 (0469) and Frame 8 (0470) show the hand action clearly occurring within this timeframe.\n\n4. **Characters are the main three girls from the show**  \n   → Yes. Their distinct appearances (black bob, blonde bob, red long hair) match the main trio of “Totally Spies!” as described in the global context.\n\n5. **Action is clearly visible and identifiable**  \n   → Yes. Frame 7 is a close-up of their hands stacked together, and Frame 8 shows them standing together with hands clasped — unmistakably a handshake or team hand-stack.\n\n6. **No other significant characters or events distracting from the main action**  \n   → Yes. The background is a simple outdoor scene with palm trees and sky. No other characters or major events distract from the central action of the three girls joining hands.\n\n---\n\n### 🟢 Conclusion:\n\nAll six criteria are satisfied. The visual evidence confirms that **the three girls are shaking hands (or performing a team hand-stack)** between 07:48–07:50.\n\n✅ **Answer: 3 (shaking hands) — Correct.**\n"], 'condensed_response': '**Scene Summary (07:48\u202f–\u202f07:50)**  \n\n- **Characters:** The three main “Totally\u202fSpies!” agents are present throughout the clip: Alex (black bob), Clover (blonde bob) and Sam (red long hair).  \n- **Action:** They come together in the center of the frame and stack/ clasp their hands in a unified gesture—a classic “team hand‑stack” that can be described as shaking hands.  \n- **Visual Evidence:**  \n  - *Frame\u202f0469* (close‑up) shows the three hands already stacked.  \n  - *Frame\u202f0470* (wider view) captures the trio standing side‑by‑side, still holding the hand‑stack.  \n- **Timing:** The frame indices (0469‑0470) fall squarely within the 07:48‑07:50 window, confirming the action occurs at the requested moment.  \n- **Context:** The background is a simple outdoor setting (palm trees, sky) with no other characters or distracting events, keeping the focus on the girls’ coordinated gesture.  \n\n**Conclusion:** Between 07:48 and 07:50, Alex, Clover, and Sam perform a joint hand‑stack/shake, confirming answer **3 – “shaking hands.”**', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+⚠️ IMPORTANT: Answers use 0-INDEXED numbers where 0=A, 1=B, 2=C, 3=D, 4=E
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 13, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0463.jpg', '/mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0464.jpg', '/mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0465.jpg', '/mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0466.jpg', '/mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0467.jpg', '/mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0468.jpg', '/mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0469.jpg', '/mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0470.jpg', '/mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0471.jpg', '/mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0472.jpg', '/mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0473.jpg', '/mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0474.jpg', '/mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0475.jpg'], 'response': "Based on the visual evidence and the specified criteria, the answer **'3' (shaking hands)** is **correct** for the question: *What do the three girls do between 07:48–07:50?*\n\n---\n\n### ✅ Verification Against Criteria:\n\n1. **Three female characters present in the frame**  \n   → Yes. In Frame 8 (frame_0470.jpg), all three main girls from “Totally Spies!” — the one with black hair (Alex), the blonde (Clover), and the red-haired (Sam) — are clearly visible together.\n\n2. **Characters are performing a specific action together**  \n   → Yes. In Frame 8, they are visibly clasping hands in a unified gesture — specifically, **shaking hands** or joining hands in a team pact. Frame 7 (frame_0469.jpg) shows a close-up of their hands stacked together, reinforcing this.\n\n3. **Action occurs between timestamp 07:48–07:50**  \n   → Assuming frame numbering is sequential and evenly spaced, frames 0469–0470 fall within this window. Frame 7 (0469) and Frame 8 (0470) show the hand action clearly occurring within this timeframe.\n\n4. **Characters are the main three girls from the show**  \n   → Yes. Their distinct appearances (black bob, blonde bob, red long hair) match the main trio of “Totally Spies!” as described in the global context.\n\n5. **Action is clearly visible and identifiable**  \n   → Yes. Frame 7 is a close-up of their hands stacked together, and Frame 8 shows them standing together with hands clasped — unmistakably a handshake or team hand-stack.\n\n6. **No other significant characters or events distracting from the main action**  \n   → Yes. The background is a simple outdoor scene with palm trees and sky. No other characters or major events distract from the central action of the three girls joining hands.\n\n---\n\n### 🟢 Conclusion:\n\nAll six criteria are satisfied. The visual evidence confirms that **the three girls are shaking hands (or performing a team hand-stack)** between 07:48–07:50.\n\n✅ **Answer: 3 (shaking hands) — Correct.**"}], 'formatted_responses': ["\n=== Batch 0-13 (13 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0463.jpg, /mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0464.jpg, /mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0465.jpg, /mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0466.jpg, /mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0467.jpg, /mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0468.jpg, /mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0469.jpg, /mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0470.jpg, /mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0471.jpg, /mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0472.jpg, /mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0473.jpg, /mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0474.jpg, /mnt/ssd/data/lvbench/videos_processed/_zrgbA3FMVE/frames/frame_0475.jpg\nVLM Response: Based on the visual evidence and the specified criteria, the answer **'3' (shaking hands)** is **correct** for the question: *What do the three girls do between 07:48–07:50?*\n\n---\n\n### ✅ Verification Against Criteria:\n\n1. **Three female characters present in the frame**  \n   → Yes. In Frame 8 (frame_0470.jpg), all three main girls from “Totally Spies!” — the one with black hair (Alex), the blonde (Clover), and the red-haired (Sam) — are clearly visible together.\n\n2. **Characters are performing a specific action together**  \n   → Yes. In Frame 8, they are visibly clasping hands in a unified gesture — specifically, **shaking hands** or joining hands in a team pact. Frame 7 (frame_0469.jpg) shows a close-up of their hands stacked together, reinforcing this.\n\n3. **Action occurs between timestamp 07:48–07:50**  \n   → Assuming frame numbering is sequential and evenly spaced, frames 0469–0470 fall within this window. Frame 7 (0469) and Frame 8 (0470) show the hand action clearly occurring within this timeframe.\n\n4. **Characters are the main three girls from the show**  \n   → Yes. Their distinct appearances (black bob, blonde bob, red long hair) match the main trio of “Totally Spies!” as described in the global context.\n\n5. **Action is clearly visible and identifiable**  \n   → Yes. Frame 7 is a close-up of their hands stacked together, and Frame 8 shows them standing together with hands clasped — unmistakably a handshake or team hand-stack.\n\n6. **No other significant characters or events distracting from the main action**  \n   → Yes. The background is a simple outdoor scene with palm trees and sky. No other characters or major events distract from the central action of the three girls joining hands.\n\n---\n\n### 🟢 Conclusion:\n\nAll six criteria are satisfied. The visual evidence confirms that **the three girls are shaking hands (or performing a team hand-stack)** between 07:48–07:50.\n\n✅ **Answer: 3 (shaking hands) — Correct.**\n"], 'condensed_response': '**Scene Summary (07:48\u202f–\u202f07:50)**  \n\n- **Characters:** The three main “Totally\u202fSpies!” agents are present throughout the clip: Alex (black bob), Clover (blonde bob) and Sam (red long hair).  \n- **Action:** They come together in the center of the frame and stack/ clasp their hands in a unified gesture—a classic “team hand‑stack” that can be described as shaking hands.  \n- **Visual Evidence:**  \n  - *Frame\u202f0469* (close‑up) shows the three hands already stacked.  \n  - *Frame\u202f0470* (wider view) captures the trio standing side‑by‑side, still holding the hand‑stack.  \n- **Timing:** The frame indices (0469‑0470) fall squarely within the 07:48‑07:50 window, confirming the action occurs at the requested moment.  \n- **Context:** The background is a simple outdoor setting (palm trees, sky) with no other characters or distracting events, keeping the focus on the girls’ coordinated gesture.  \n\n**Conclusion:** Between 07:48 and 07:50, Alex, Clover, and Sam perform a joint hand‑stack/shake, confirming answer **3 – “shaking hands.”**', 'failed_images': []}
+
+Question Being Answered: What does the three girls do between 07:48-07:50?
+
+Answer Choices (0-indexed: 0=A, 1=B, 2=C, 3=D, 4=E):
+  0 (=A): They are bowing
+  1 (=B): They are hugging
+  2 (=C): They are dancing
+  3 (=D): They are shaking hands
+
+Given Answer: 3
+Evidence Frames Used: ['frames/frame_0468.jpg', 'frames/frame_0469.jpg', 'frames/frame_0470.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Blonde Woman: Description: Blonde-haired woman with blue eyes, wearing various outfits throughout the video.
+Red-Haired Woman: Description: Woman with long, fiery red hair and green eyes, often wearing different outfits.
+Dark-Haired Woman: Description: Woman with short or long black hair, appearing in various scenes and outfits.
+Middle-Aged Man in Suit: Description: Balding man with gray hair on the sides, wearing a black suit, white shirt, and dark tie.
+Chef: Description: Man wearing a white chef's hat and blue apron, working in a kitchen.
+Man in Black Suit: Description: Man with short brown hair, wearing a black suit, white shirt, and purple tie, often appearing in futuristic settings.
+
+SCENES:
+Opening Credits: Description: Animated sequence featuring the Marathon Media logo and silhouettes of women running. [1-9]
+Starry Night Sky: Description: Various scenes with a starry night sky background, often with text or characters. [11-21]
+Futuristic Cityscape: Description: Scenes depicting a futuristic city with sleek buildings and neon lights. [22-23]
+Hollywood Sign: Description: Scenes featuring the iconic Hollywood sign on a hillside. [24-25, 125-126]
+Concert or Festival: Description: Scenes showing a large crowd cheering and waving their hands in the air, often with bright stage lights. [32, 71-72, 85-87, 96-100]
+School Hallway: Description: Scenes set in a brightly colored school hallway with purple lockers and yellow walls. [2569-2572, 2579-2581]
+Futuristic Laboratory or Space Station: Description: Scenes depicting a futuristic laboratory or space station with sleek, high-tech equipment and large screens. [1683-1691, 1723-1728]
+Beach Scene: Description: Scenes set on a tropical beach with palm trees and a blue sky. [3291-3294, 3380]
+Desert Landscape: Description: Scenes depicting a vast, orange desert landscape with jagged rocks and a dark, cloudy sky. [1240-1250]
+Prison Cell: Description: Scenes set in a dimly lit prison cell with metal bars and graffiti on the walls. [1337-1350]
+Art Gallery or Museum: Description: Scenes set in a luxurious, grand room with red walls, gold trim, and large paintings or sculptures. [2787-2790, 1942-1945]
+Futuristic Control Room: Description: Scenes depicting a futuristic control room with numerous screens and control panels. [2847-2855]
+
+EVENTS:
+Logo Animation: Description: Animated sequence featuring the Marathon Media logo. [1-9]
+Characters Running: Description: Scenes showing three dark gray silhouettes of women running against a black background. [1-2]
+Concert or Show: Description: Scenes depicting a large crowd cheering and waving their hands in the air, often with bright stage lights. [32, 71-72, 85-87, 96-100]
+Characters Interacting: Description: Scenes showing characters interacting with each other, often with surprised or shocked expressions. [76-80, 2087-2090]
+Fight Scene: Description: Scenes depicting a confrontation or fight between characters. [3868-3892]
+Characters on a Rooftop: Description: Scenes showing characters standing or running on a rooftop with a cityscape or other background. [1484-1488, 1564-1565]
+Characters in a Vehicle: Description: Scenes depicting characters riding in a vehicle, such as a car or train. [1120-1124, 1301-1303]
+Characters in a Futuristic Setting: Description: Scenes showing characters in a futuristic setting, often with sleek, high-tech equipment and large screens. [1683-1691, 1723-1728]
+Characters on a Beach: Description: Scenes set on a tropical beach with palm trees and a blue sky. [3291-3294, 3380]
+Characters in a Desert Landscape: Description: Scenes depicting characters standing or running in a vast, orange desert landscape. [1240-1250]
+Characters in Prison: Description: Scenes set in a dimly lit prison cell with metal bars and graffiti on the walls. [1337-1350]
+
+================================================================================
+Generated at: 2026-01-11 21:50:22
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. Three female characters present in the frame
+  Q2. Characters are performing a specific action together
+  Q3. Action occurs between timestamp 07:48-07:50
+  Q4. Characters are the main three girls from the show
+  Q5. Action is clearly visible and identifiable
+  Q6. No other significant characters or events distracting from the main action
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 6)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, ALWAYS pick the best answer choice:
+   - Review ALL answer choices (A, B, C, D, E, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D, 4=E)
+
+5. If criteria_percentage > 0.5 (>50% of criteria pass):
+   - Your chosen answer is well-supported by evidence
+   - Set suggestion to null or provide minor improvements
+
+6. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - Still MUST choose the BEST answer from the available choices (never -1)
+   - But set suggestion to "These may not be the right frames/scene. Consider searching for better evidence. The answer chosen is the BEST match given current evidence."
+   - This signals low confidence but still provides a choice
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 6,
+    "criteria_percentage": <criteria_passed / 6>,
+    "base_confidence": <(criteria_passed / 6) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E - MUST be a valid number 0-4, never -1>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {"criterion": "Three female characters present in the frame", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms all three main girls (Alex, Clover, Sam) are clearly visible together in Frame 8"},
+        {"criterion": "Characters are performing a specific action together", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms they are clasping hands in a unified gesture - shaking hands or team hand-stack"},
+        {"criterion": "Action occurs between timestamp 07:48-07:50", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms frames 0469-0470 fall within this timeframe based on sequential numbering"},
+        {"criterion": "Characters are the main three girls from the show", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms their distinct appearances match the main trio from Totally Spies!"},
+        {"criterion": "Action is clearly visible and identifiable", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms Frame 7 shows close-up of hands stacked, Frame 8 shows them clasping hands - unmistakable handshake/hand-stack"},
+        {"criterion": "No other significant characters or events distracting from the main action", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms simple outdoor background with no other characters or distracting events"}
+    ],
+    "question_criteria_passed": 6,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 6,
+    "criteria_total": 6,
+    "criteria_percentage": 1.0,
+    "base_confidence": 100,
+    "confidence": 100,
+    "critic_answer_choice": 3,
+    "critic_reasoning": "VLM evidence clearly shows the three girls clasping hands in a unified gesture described as shaking hands or team hand-stack, which directly corresponds to answer choice 3 (shaking hands)",
+    "possible_errors": [],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'Three female characters present in the frame', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms all three main girls (Alex, Clover, Sam) are clearly visible together in Frame 8'}, {'criterion': 'Characters are performing a specific action together', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms they are clasping hands in a unified gesture - shaking hands or team hand-stack'}, {'criterion': 'Action occurs between timestamp 07:48-07:50', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms frames 0469-0470 fall within this timeframe based on sequential numbering'}, {'criterion': 'Characters are the main three girls from the show', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms their distinct appearances match the main trio from Totally Spies!'}, {'criterion': 'Action is clearly visible and identifiable', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms Frame 7 shows close-up of hands stacked, Frame 8 shows them clasping hands - unmistakable handshake/hand-stack'}, {'criterion': 'No other significant characters or events distracting from the main action', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms simple outdoor background with no other characters or distracting events'}], 'question_criteria_passed': 6, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 6, 'criteria_total': 6, 'criteria_percentage': 1.0, 'base_confidence': 100, 'confidence': 100, 'critic_answer_choice': 3, 'critic_reasoning': 'VLM evidence clearly shows the three girls clasping hands in a unified gesture described as shaking hands or team hand-stack, which directly corresponds to answer choice 3 (shaking hands)', 'possible_errors': [], 'suggestion': None}

@@ -1,0 +1,196 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_0926.jpg", "frames/frame_0927.jpg", "frames/frame_0928.jpg", "frames/frame_0929.jpg", "frames/frame_0930.jpg", "frames/frame_0931.jpg", "frames/frame_0932.jpg", "frames/frame_0933.jpg", "frames/frame_0934.jpg", "frames/frame_0935.jpg", "frames/frame_0936.jpg", "frames/frame_0937.jpg", "frames/frame_0938.jpg", "frames/frame_0939.jpg", "frames/frame_0940.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '0' is correct for the question: What color of cloths does Alexis wear?. Check the question criteria: ['Person named Alexis appears in the frame', 'Alexis is wearing clothing that can be identified', 'The clothing color is clearly visible and identifiable', 'The person is identified as Alexis through captions or context']. Pay attention to timestamps and temporal sequences."
+}
+Frames to verify: ['frames/frame_0926.jpg', 'frames/frame_0927.jpg', 'frames/frame_0928.jpg', 'frames/frame_0929.jpg', 'frames/frame_0930.jpg', 'frames/frame_0931.jpg', 'frames/frame_0932.jpg', 'frames/frame_0933.jpg', 'frames/frame_0934.jpg', 'frames/frame_0935.jpg', 'frames/frame_0936.jpg', 'frames/frame_0937.jpg', 'frames/frame_0938.jpg', 'frames/frame_0939.jpg', 'frames/frame_0940.jpg']
+VLM Prompt: Video context: Based on the provided frame-by-frame captions data, here is a global summary of the video:
+
+**Main Characters:**
+
+1. Jerry Springer (drag queen and TV host)
+2. Jerry Springer (real TV host, an older man with white hair)
+3. Various guests and contestants on the show, including women with pink hair, blonde hair, and others with different hairstyles and clothing.
+
+**Setting:**
+
+The video is set in a television studio, specifically on the set of "The Jerry Springer Show". The studio features a colorful and lively atmosphere with purple and green lights, brick walls, large windows, and various stage props.
+
+**Plot Line:**
+
+The video appears to be a compilation of clips from different episodes of "The Jerry Springer Show". The plot lines revolve around various themes, including:
+
+1. Relationship conflicts and disputes between guests, often involving infidelity and romantic entanglements.
+2. Dramatic confrontations and physical altercations between guests, sometimes involving security guards.
+3. Interviews and discussions between Jerry Springer (the real host) and the guests, often with a comedic or sensational tone.
+
+**Vibes:**
+
+The overall vibe of the video is lively, dramatic, and entertaining, with a touch of camp and humor. The show's atmosphere is energetic and chaotic, with a focus on creating conflict and drama between the guests.
+
+**General Details:**
+
+1. The show features a mix of comedic and serious moments, with a focus on entertainment and spectacle.
+2. The guests on the show are diverse in terms of their age, ethnicity, and background.
+3. The show's format involves a mix of interviews, discussions, and confrontations, often with unexpected twists and turns.
+4. The video includes various graphics and captions, including the show's title, episode themes, and promotional messages.
+5. The overall tone of the video is lighthearted and humorous, with a touch of irony and satire.
+
+Overall, the video is a compilation of entertaining and dramatic moments from "The Jerry Springer Show", showcasing the show's unique blend of conflict, humor, and spectacle.
+
+Based on these frames (including context before/after), verify if the answer '0' is correct for the question: What color of cloths does Alexis wear?. Check the question criteria: ['Person named Alexis appears in the frame', 'Alexis is wearing clothing that can be identified', 'The clothing color is clearly visible and identifiable', 'The person is identified as Alexis through captions or context']. Pay attention to timestamps and temporal sequences.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 15, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0926.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0927.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0928.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0929.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0930.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0931.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0932.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0933.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0934.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0935.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0936.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0937.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0938.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0939.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0940.jpg'], 'response': "The answer '0' is **incorrect**.\n\nHere’s the verification based on the question criteria and the provided frames:\n\n---\n\n**1. Person named Alexis appears in the frame**  \n✅ **Yes.** Starting from **Frame 6** and continuing through **Frame 11**, a lower-third graphic clearly identifies the woman in the teal dress as **“ALEXIS”**. The text reads:  \n> “ALEXIS  \n> Boyfriend of six years is dumping her for an online crush”\n\nThis explicitly names her, satisfying the identification criterion.\n\n---\n\n**2. Alexis is wearing clothing that can be identified**  \n✅ **Yes.** Alexis is wearing a form-fitting, short-sleeved, scoop-neck dress. It is clearly visible in multiple frames (e.g., Frames 5–11, 12–13).\n\n---\n\n**3. The clothing color is clearly visible and identifiable**  \n✅ **Yes.** The dress is a distinct **teal or greenish-blue** color. The lighting in the studio is consistent and bright enough to clearly discern the color. It is not ambiguous — it’s a saturated, solid color.\n\n---\n\n**4. The person is identified as Alexis through captions or context**  \n✅ **Yes.** As noted above, the on-screen caption in **Frames 6–11** explicitly labels her as “ALEXIS”.\n\n---\n\n**Conclusion:**\n\nThe question asks: *“What color of cloths does Alexis wear?”*  \nThe correct answer should be **“teal”** or **“green”** (depending on interpretation, but clearly not “0”).\n\nSince **all four criteria are satisfied** and the color is clearly visible and identifiable, the answer **‘0’ is incorrect**.\n\n---\n\n✅ **Final Verdict: ‘0’ is NOT correct.**  \nThe correct color is **teal/green**."}], 'formatted_responses': ["\n=== Batch 0-15 (15 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0926.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0927.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0928.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0929.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0930.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0931.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0932.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0933.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0934.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0935.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0936.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0937.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0938.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0939.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0940.jpg\nVLM Response: The answer '0' is **incorrect**.\n\nHere’s the verification based on the question criteria and the provided frames:\n\n---\n\n**1. Person named Alexis appears in the frame**  \n✅ **Yes.** Starting from **Frame 6** and continuing through **Frame 11**, a lower-third graphic clearly identifies the woman in the teal dress as **“ALEXIS”**. The text reads:  \n> “ALEXIS  \n> Boyfriend of six years is dumping her for an online crush”\n\nThis explicitly names her, satisfying the identification criterion.\n\n---\n\n**2. Alexis is wearing clothing that can be identified**  \n✅ **Yes.** Alexis is wearing a form-fitting, short-sleeved, scoop-neck dress. It is clearly visible in multiple frames (e.g., Frames 5–11, 12–13).\n\n---\n\n**3. The clothing color is clearly visible and identifiable**  \n✅ **Yes.** The dress is a distinct **teal or greenish-blue** color. The lighting in the studio is consistent and bright enough to clearly discern the color. It is not ambiguous — it’s a saturated, solid color.\n\n---\n\n**4. The person is identified as Alexis through captions or context**  \n✅ **Yes.** As noted above, the on-screen caption in **Frames 6–11** explicitly labels her as “ALEXIS”.\n\n---\n\n**Conclusion:**\n\nThe question asks: *“What color of cloths does Alexis wear?”*  \nThe correct answer should be **“teal”** or **“green”** (depending on interpretation, but clearly not “0”).\n\nSince **all four criteria are satisfied** and the color is clearly visible and identifiable, the answer **‘0’ is incorrect**.\n\n---\n\n✅ **Final Verdict: ‘0’ is NOT correct.**  \nThe correct color is **teal/green**.\n"], 'condensed_response': '**Scene Summary (Frames\u202f0926‑0940)**  \n\n- **Character:** Alexis – identified by an on‑screen lower‑third graphic that reads “ALEXIS\u202f/\u202fBoyfriend of six years is dumping her for an online crush.”  \n- **Appearance Window:** The caption appears from **frame\u202f0929 (≈\u202fframe\u202f6 of the batch)** through **frame\u202f0935 (≈\u202fframe\u202f11)**, persisting for several seconds.  \n- **Outfit:** Alexis is wearing a short‑sleeved, form‑fitting dress with a scoop neck. The dress is consistently visible in frames\u202f0928‑0935 and again in frames\u202f0936‑0938.  \n- **Color:** The dress is a saturated **teal/green‑blue** hue that remains clearly distinguishable under the studio lighting throughout the sequence.  \n- **Contextual Confirmation:** The repeated caption, combined with the stable view of the dress, satisfies all verification criteria—named appearance, identifiable clothing, and unmistakable color.  \n\n**Conclusion:** The correct answer to “What color of clothes does Alexis wear?” is **teal (green‑blue)**; the answer “0” is therefore incorrect.', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 15, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0926.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0927.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0928.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0929.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0930.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0931.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0932.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0933.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0934.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0935.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0936.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0937.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0938.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0939.jpg', '/mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0940.jpg'], 'response': "The answer '0' is **incorrect**.\n\nHere’s the verification based on the question criteria and the provided frames:\n\n---\n\n**1. Person named Alexis appears in the frame**  \n✅ **Yes.** Starting from **Frame 6** and continuing through **Frame 11**, a lower-third graphic clearly identifies the woman in the teal dress as **“ALEXIS”**. The text reads:  \n> “ALEXIS  \n> Boyfriend of six years is dumping her for an online crush”\n\nThis explicitly names her, satisfying the identification criterion.\n\n---\n\n**2. Alexis is wearing clothing that can be identified**  \n✅ **Yes.** Alexis is wearing a form-fitting, short-sleeved, scoop-neck dress. It is clearly visible in multiple frames (e.g., Frames 5–11, 12–13).\n\n---\n\n**3. The clothing color is clearly visible and identifiable**  \n✅ **Yes.** The dress is a distinct **teal or greenish-blue** color. The lighting in the studio is consistent and bright enough to clearly discern the color. It is not ambiguous — it’s a saturated, solid color.\n\n---\n\n**4. The person is identified as Alexis through captions or context**  \n✅ **Yes.** As noted above, the on-screen caption in **Frames 6–11** explicitly labels her as “ALEXIS”.\n\n---\n\n**Conclusion:**\n\nThe question asks: *“What color of cloths does Alexis wear?”*  \nThe correct answer should be **“teal”** or **“green”** (depending on interpretation, but clearly not “0”).\n\nSince **all four criteria are satisfied** and the color is clearly visible and identifiable, the answer **‘0’ is incorrect**.\n\n---\n\n✅ **Final Verdict: ‘0’ is NOT correct.**  \nThe correct color is **teal/green**."}], 'formatted_responses': ["\n=== Batch 0-15 (15 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0926.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0927.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0928.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0929.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0930.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0931.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0932.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0933.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0934.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0935.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0936.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0937.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0938.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0939.jpg, /mnt/ssd/data/lvbench/videos_processed/JTa_Ue2MSwc/frames/frame_0940.jpg\nVLM Response: The answer '0' is **incorrect**.\n\nHere’s the verification based on the question criteria and the provided frames:\n\n---\n\n**1. Person named Alexis appears in the frame**  \n✅ **Yes.** Starting from **Frame 6** and continuing through **Frame 11**, a lower-third graphic clearly identifies the woman in the teal dress as **“ALEXIS”**. The text reads:  \n> “ALEXIS  \n> Boyfriend of six years is dumping her for an online crush”\n\nThis explicitly names her, satisfying the identification criterion.\n\n---\n\n**2. Alexis is wearing clothing that can be identified**  \n✅ **Yes.** Alexis is wearing a form-fitting, short-sleeved, scoop-neck dress. It is clearly visible in multiple frames (e.g., Frames 5–11, 12–13).\n\n---\n\n**3. The clothing color is clearly visible and identifiable**  \n✅ **Yes.** The dress is a distinct **teal or greenish-blue** color. The lighting in the studio is consistent and bright enough to clearly discern the color. It is not ambiguous — it’s a saturated, solid color.\n\n---\n\n**4. The person is identified as Alexis through captions or context**  \n✅ **Yes.** As noted above, the on-screen caption in **Frames 6–11** explicitly labels her as “ALEXIS”.\n\n---\n\n**Conclusion:**\n\nThe question asks: *“What color of cloths does Alexis wear?”*  \nThe correct answer should be **“teal”** or **“green”** (depending on interpretation, but clearly not “0”).\n\nSince **all four criteria are satisfied** and the color is clearly visible and identifiable, the answer **‘0’ is incorrect**.\n\n---\n\n✅ **Final Verdict: ‘0’ is NOT correct.**  \nThe correct color is **teal/green**.\n"], 'condensed_response': '**Scene Summary (Frames\u202f0926‑0940)**  \n\n- **Character:** Alexis – identified by an on‑screen lower‑third graphic that reads “ALEXIS\u202f/\u202fBoyfriend of six years is dumping her for an online crush.”  \n- **Appearance Window:** The caption appears from **frame\u202f0929 (≈\u202fframe\u202f6 of the batch)** through **frame\u202f0935 (≈\u202fframe\u202f11)**, persisting for several seconds.  \n- **Outfit:** Alexis is wearing a short‑sleeved, form‑fitting dress with a scoop neck. The dress is consistently visible in frames\u202f0928‑0935 and again in frames\u202f0936‑0938.  \n- **Color:** The dress is a saturated **teal/green‑blue** hue that remains clearly distinguishable under the studio lighting throughout the sequence.  \n- **Contextual Confirmation:** The repeated caption, combined with the stable view of the dress, satisfies all verification criteria—named appearance, identifiable clothing, and unmistakable color.  \n\n**Conclusion:** The correct answer to “What color of clothes does Alexis wear?” is **teal (green‑blue)**; the answer “0” is therefore incorrect.', 'failed_images': []}
+
+Question Being Answered: What color of cloths does Alexis wear?
+
+Answer Choices:
+A. Green
+B. Black
+C. Grey
+D. White
+
+Given Answer: 0
+Evidence Frames Used: ['frames/frame_0931.jpg', 'frames/frame_0932.jpg', 'frames/frame_0935.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Jerry Springer (Drag Queen): A woman with long, curly pink hair, wearing various sparkly and sequined dresses and tops.
+Jerry Springer (TV Host): A middle-aged man with white hair, wearing a dark suit and white shirt.
+Security Guard: A bald man wearing a black shirt with "Jerry Springer Security" printed on it.
+Woman with Pink Hair: A drag queen with curly pink hair, wearing various sparkly and sequined dresses and tops.
+Blonde Woman: A woman with blonde hair, wearing various outfits including a black tank top and purple skirt.
+Woman with Red Hair: A woman with red hair, wearing a green long-sleeved shirt and red-framed glasses.
+Dominique: A woman with curly brown hair and blonde highlights, wearing a pink top with red floral designs.
+
+SCENES:
+TV Studio: A colorful television studio set with various backdrops, including brick walls, large windows, and metal structures. [frame_0001- frame_2447]
+Audience: A crowded room or auditorium with a diverse group of people watching the Jerry Springer show. [frame_0001- frame_2447]
+Barbershop: A barbershop scene with a brick wall and large sign reading "Jerry Springer" in gold letters. [frame_1630- frame_1847]
+Courtroom: A mock courtroom setting with a brick wall backdrop and a sign reading "Jerry Springer" in gold letters. [frame_0143]
+
+EVENTS:
+Fight Scene: Two women, one with pink hair and the other with blonde hair, engaging in a physical altercation on the stage of the Jerry Springer show. [frame_0202- frame_0212]
+Argument: A man and two women standing on the stage of the Jerry Springer show, engaged in a heated discussion or argument. [frame_0143- frame_0166]
+Interview: Jerry Springer, the TV host, interviewing various guests on the show, including the drag queen and other women. [frame_0004- frame_2447]
+Dance: Several people, including the drag queen and other women, dancing on the stage of the Jerry Springer show. [frame_0125- frame_0136]
+Proposal: A woman proposing to her boyfriend on the Jerry Springer show, with a caption "MARRY ME?" written in the sand. [frame_1211- frame_1213]
+Cheating Scandal: A man and two women involved in a cheating scandal, with a caption "He's A Cheater" displayed on the screen. [frame_2093- frame_2447]
+Barbershop Smackdown: A scene from the Jerry Springer show featuring a barbershop setting and a caption "Barbershop Smackdown" displayed on the screen. [frame_1630- frame_1847]
+
+================================================================================
+Generated at: 2026-01-11 21:45:49
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. Person named Alexis appears in the frame
+  Q2. Alexis is wearing clothing that can be identified
+  Q3. The clothing color is clearly visible and identifiable
+  Q4. The person is identified as Alexis through captions or context
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 4)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, if criteria_percentage > 0.5 (>50% of criteria pass):
+   - Review ALL answer choices (A, B, C, D, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D)
+5. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - STILL do your best to pick out a correct answer, but also set suggestion to "These may not be the right frames/scene. Continue searching for better evidence."
+   - output your best guess of the answer as a number (0=A, 1=B, 2=C, 3=D, 4=E)
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <number of question criteria that passed>,
+    "criteria_total": 4,
+    "criteria_percentage": <criteria_passed / 4>,
+    "base_confidence": <(criteria_passed / 4) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "Person named Alexis appears in the frame",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms lower-third graphic identifies woman as 'ALEXIS' in frames 6-11 (frames 0929-0935)"
+        },
+        {
+            "criterion": "Alexis is wearing clothing that can be identified",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms she is wearing a form-fitting, short-sleeved, scoop-neck dress clearly visible in multiple frames"
+        },
+        {
+            "criterion": "The clothing color is clearly visible and identifiable",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms the dress is a distinct teal or greenish-blue color, clearly visible under studio lighting"
+        },
+        {
+            "criterion": "The person is identified as Alexis through captions or context",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms explicit on-screen caption 'ALEXIS' appears in frames 6-11"
+        }
+    ],
+    "question_criteria_passed": 4,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 4,
+    "criteria_total": 4,
+    "criteria_percentage": 1.0,
+    "base_confidence": 100,
+    "confidence": 100,
+    "critic_answer_choice": 0,
+    "critic_reasoning": "VLM clearly identifies the dress color as 'teal' or 'greenish-blue' which corresponds to answer choice A (Green). The VLM explicitly states the answer '0' is incorrect and the correct color is teal/green.",
+    "possible_errors": [],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'Person named Alexis appears in the frame', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM confirms lower-third graphic identifies woman as 'ALEXIS' in frames 6-11 (frames 0929-0935)"}, {'criterion': 'Alexis is wearing clothing that can be identified', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms she is wearing a form-fitting, short-sleeved, scoop-neck dress clearly visible in multiple frames'}, {'criterion': 'The clothing color is clearly visible and identifiable', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms the dress is a distinct teal or greenish-blue color, clearly visible under studio lighting'}, {'criterion': 'The person is identified as Alexis through captions or context', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM confirms explicit on-screen caption 'ALEXIS' appears in frames 6-11"}], 'question_criteria_passed': 4, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 4, 'criteria_total': 4, 'criteria_percentage': 1.0, 'base_confidence': 100, 'confidence': 100, 'critic_answer_choice': 0, 'critic_reasoning': "VLM clearly identifies the dress color as 'teal' or 'greenish-blue' which corresponds to answer choice A (Green). The VLM explicitly states the answer '0' is incorrect and the correct color is teal/green.", 'possible_errors': [], 'suggestion': None}

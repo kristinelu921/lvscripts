@@ -1,0 +1,188 @@
+Critic initial response: 
+```json
+{
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_2063.jpg", "frames/frame_2064.jpg", "frames/frame_2065.jpg", "frames/frame_2066.jpg", "frames/frame_2067.jpg", "frames/frame_2068.jpg", "frames/frame_2069.jpg", "frames/frame_2070.jpg", "frames/frame_2071.jpg", "frames/frame_2072.jpg", "frames/frame_2073.jpg", "frames/frame_2074.jpg", "frames/frame_2075.jpg", "frames/frame_2076.jpg", "frames/frame_2077.jpg", "frames/frame_2078.jpg", "frames/frame_2079.jpg", "frames/frame_2080.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '1' (30% off) is correct for the question: What is the discount on the vlogger's merchandise? Check the question criteria: ['Merchandise display with visible discount percentage', 'Text or sign showing discount information', 'Vlogger or character promoting merchandise with discount', 'Screen or graphic displaying percentage off', 'Price tag or advertisement showing reduced price']. Pay attention to timestamps and temporal sequences. Look for any merchandise being shown or promoted, discount signs, percentage displays, or price tags in the flower shop or other scenes. Verify if there is visual evidence supporting a 30% discount specifically."
+}
+```
+Frames to verify: ['frames/frame_2063.jpg', 'frames/frame_2064.jpg', 'frames/frame_2065.jpg', 'frames/frame_2066.jpg', 'frames/frame_2067.jpg', 'frames/frame_2068.jpg', 'frames/frame_2069.jpg', 'frames/frame_2070.jpg', 'frames/frame_2071.jpg', 'frames/frame_2072.jpg', 'frames/frame_2073.jpg', 'frames/frame_2074.jpg', 'frames/frame_2075.jpg', 'frames/frame_2076.jpg', 'frames/frame_2077.jpg', 'frames/frame_2078.jpg', 'frames/frame_2079.jpg', 'frames/frame_2080.jpg']
+VLM Prompt: Video context: Based on the provided SET of frame-by-frame captions data, here is a global summary of the video:
+
+**Main Characters:**
+The main characters in the video are a group of young men, likely friends, who are the central figures throughout the narrative. They are often seen together, engaging in various activities, and are the focus of the story. Some of the men are identified by names such as Ammar, Staffan, and Thomas.
+
+**Setting:**
+The video is set in various locations, primarily in Lebanon, with scenes showcasing the cityscape of Beirut, its streets, buildings, and landmarks. The setting also extends to other environments, including a beach, a mountainous region, a flower shop, a restaurant, and a nightclub. The video captures a mix of urban and natural landscapes.
+
+**Plot Line:**
+The plot line appears to be a travel vlog or documentary-style narrative that follows the group of young men as they explore Lebanon, engage in various activities, and experience different aspects of the country's culture. The video includes scenes of protests, economic crisis, and daily life, suggesting that it may be exploring themes related to the country's challenges and the characters' personal journeys.
+
+**Vibes:**
+The overall vibe of the video is energetic, lively, and adventurous, with a sense of camaraderie among the main characters. The tone is often humorous and lighthearted, with moments of surprise and excitement. The video also conveys a sense of cultural exploration and appreciation, as the characters interact with locals and experience different aspects of Lebanese culture.
+
+**General Details:**
+The video features a diverse range of scenes, including:
+
+* Protests and demonstrations in Lebanon
+* Scenes of daily life, such as shopping, eating, and socializing
+* Travel and exploration, including visits to beaches, mountains, and cultural landmarks
+* Interactions with locals, including shopkeepers, restaurant staff, and other individuals
+* Moments of humor and playfulness among the main characters
+* Scenes of economic hardship and crisis in Lebanon
+* Cultural and social events, such as parties and celebrations
+
+The video appears to be a documentary or travel vlog that aims to showcase the beauty and complexity of Lebanon, while also exploring themes related to identity, culture, and friendship.
+
+Based on these frames (including context before/after), verify if the answer '1' (30% off) is correct for the question: What is the discount on the vlogger's merchandise? Check the question criteria: ['Merchandise display with visible discount percentage', 'Text or sign showing discount information', 'Vlogger or character promoting merchandise with discount', 'Screen or graphic displaying percentage off', 'Price tag or advertisement showing reduced price']. Pay attention to timestamps and temporal sequences. Look for any merchandise being shown or promoted, discount signs, percentage displays, or price tags in the flower shop or other scenes. Verify if there is visual evidence supporting a 30% discount specifically.
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 18, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2063.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2064.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2065.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2066.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2067.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2068.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2069.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2070.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2071.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2072.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2073.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2074.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2075.jpg'], 'response': "Based on the provided frames and the question criteria, the answer **'1' (30% off)** is **correct**.\n\n### Verification Against Criteria:\n\n1. **Merchandise display with visible discount percentage**  \n   → Frame 8 through Frame 13 show a split-screen graphic. On the right, a man (likely the vlogger or associated with the brand) is wearing a white long-sleeve shirt with a visible logo — this constitutes merchandise display.\n\n2. **Text or sign showing discount information**  \n   → In the center of the screen (Frames 8–13), clear yellow text reads:  \n   > “Check out seekdiscomfort.com for 30% off site wide”  \n   This explicitly states the discount percentage.\n\n3. **Vlogger or character promoting merchandise with discount**  \n   → The man on the right (wearing the branded shirt) is posing in a promotional manner. The man on the left is also smiling and engaging with the camera, consistent with promotional content.\n\n4. **Screen or graphic displaying percentage off**  \n   → The central text overlay is a graphic explicitly displaying “30% off”.\n\n5. **Price tag or advertisement showing reduced price**  \n   → While no individual price tags are shown, the graphic functions as an advertisement promoting a site-wide discount — which satisfies this criterion in the context of digital promotions.\n\n### Temporal Sequence:\n- The discount promotion appears consistently from **Frame 8 to Frame 13**, confirming it’s not a fleeting or accidental display.\n- The frames before (Frames 1–7) show unrelated indoor scenes (hugging, laughing) and black screens — no merchandise or discount info.\n- The discount is clearly presented as part of a promotional segment, likely at the end or during a break in the main content.\n\n### Conclusion:\n✅ All five criteria are met.  \n✅ The discount of **30% off** is explicitly and visually confirmed in multiple frames.  \n✅ The context suggests this is the vlogger’s merchandise (via branding and promotion).\n\n**Therefore, the answer '1' (30% off) is correct.**"}], 'formatted_responses': ["\n=== Batch 0-18 (13 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2063.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2064.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2065.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2066.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2067.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2068.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2069.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2070.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2071.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2072.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2073.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2074.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2075.jpg\nVLM Response: Based on the provided frames and the question criteria, the answer **'1' (30% off)** is **correct**.\n\n### Verification Against Criteria:\n\n1. **Merchandise display with visible discount percentage**  \n   → Frame 8 through Frame 13 show a split-screen graphic. On the right, a man (likely the vlogger or associated with the brand) is wearing a white long-sleeve shirt with a visible logo — this constitutes merchandise display.\n\n2. **Text or sign showing discount information**  \n   → In the center of the screen (Frames 8–13), clear yellow text reads:  \n   > “Check out seekdiscomfort.com for 30% off site wide”  \n   This explicitly states the discount percentage.\n\n3. **Vlogger or character promoting merchandise with discount**  \n   → The man on the right (wearing the branded shirt) is posing in a promotional manner. The man on the left is also smiling and engaging with the camera, consistent with promotional content.\n\n4. **Screen or graphic displaying percentage off**  \n   → The central text overlay is a graphic explicitly displaying “30% off”.\n\n5. **Price tag or advertisement showing reduced price**  \n   → While no individual price tags are shown, the graphic functions as an advertisement promoting a site-wide discount — which satisfies this criterion in the context of digital promotions.\n\n### Temporal Sequence:\n- The discount promotion appears consistently from **Frame 8 to Frame 13**, confirming it’s not a fleeting or accidental display.\n- The frames before (Frames 1–7) show unrelated indoor scenes (hugging, laughing) and black screens — no merchandise or discount info.\n- The discount is clearly presented as part of a promotional segment, likely at the end or during a break in the main content.\n\n### Conclusion:\n✅ All five criteria are met.  \n✅ The discount of **30% off** is explicitly and visually confirmed in multiple frames.  \n✅ The context suggests this is the vlogger’s merchandise (via branding and promotion).\n\n**Therefore, the answer '1' (30% off) is correct.**\n"], 'condensed_response': '**Condensed Scene Summary (Frames\u202f2063‑2075)**  \n\n| Frame range | Visual focus | Characters & actions | Key elements |\n|-------------|--------------|----------------------|--------------|\n| **2063‑2067** (Frames\u202f1‑5) | Indoor setting, no branding | Two people – a man on the left and a woman on the right – are hugging, laughing, and looking at the camera. | No merchandise, no text; serves as a pre‑promo “casual” segment. |\n| **2068‑2070** (Frames\u202f6‑8) | Transition to a split‑screen | The left side still shows the laughing pair; the right side introduces a new man in a white long‑sleeve shirt with a brand logo. | The right‑hand figure begins to pose as a presenter. |\n| **2071‑2075** (Frames\u202f9‑13) | Promotional overlay | The split‑screen remains; the right‑hand man continues to face the camera, gesturing mildly. The left side fades to a black screen. | Central yellow graphic displays the text: **“Check out seekdiscomfort.com for 30% off site wide”** – the explicit “30% off” badge. No individual price tags appear, but the graphic functions as the discount advertisement. |\n\n**Character tracking:**  \n- **Man\u202fA (left)**: present from the start, acts as the vlog‑style host, smiles and engages the camera throughout.  \n- **Man\u202fB (right)**: introduced at frame\u202f2068, wears a branded white shirt, adopts a promotional pose, and is the focal point of the discount graphic.  \n- **Woman**: appears only in the early indoor segment (frames\u202f2063‑2067) and exits before the promotion begins.\n\n**Temporal flow:**  \n1. *Frames\u202f2063‑2067*: casual, non‑promotional interaction.  \n2. *Frames\u202f2068‑2070*: cut to a split‑screen; promotional character (Man\u202fB) appears.  \n3. *Frames\u202f2071‑2075*: sustained display of the “30% off” graphic, satisfying all discount‑criteria (merchandise display, visible percentage, presenter, graphic overlay).\n\n**Conclusion:** The promotional segment from frames\u202f2071‑2075 clearly shows the vlogger (Man\u202fB) endorsing the brand with a visible “30% off” screen‑text overlay, meeting every required criterion. Hence the answer “30% off” is confirmed as correct.', 'failed_images': [('/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2076.jpg', 'File not found'), ('/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2077.jpg', 'File not found'), ('/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2078.jpg', 'File not found'), ('/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2079.jpg', 'File not found'), ('/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2080.jpg', 'File not found')]}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+⚠️ IMPORTANT: Answers use 0-INDEXED numbers where 0=A, 1=B, 2=C, 3=D, 4=E
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 18, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2063.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2064.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2065.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2066.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2067.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2068.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2069.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2070.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2071.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2072.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2073.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2074.jpg', '/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2075.jpg'], 'response': "Based on the provided frames and the question criteria, the answer **'1' (30% off)** is **correct**.\n\n### Verification Against Criteria:\n\n1. **Merchandise display with visible discount percentage**  \n   → Frame 8 through Frame 13 show a split-screen graphic. On the right, a man (likely the vlogger or associated with the brand) is wearing a white long-sleeve shirt with a visible logo — this constitutes merchandise display.\n\n2. **Text or sign showing discount information**  \n   → In the center of the screen (Frames 8–13), clear yellow text reads:  \n   > “Check out seekdiscomfort.com for 30% off site wide”  \n   This explicitly states the discount percentage.\n\n3. **Vlogger or character promoting merchandise with discount**  \n   → The man on the right (wearing the branded shirt) is posing in a promotional manner. The man on the left is also smiling and engaging with the camera, consistent with promotional content.\n\n4. **Screen or graphic displaying percentage off**  \n   → The central text overlay is a graphic explicitly displaying “30% off”.\n\n5. **Price tag or advertisement showing reduced price**  \n   → While no individual price tags are shown, the graphic functions as an advertisement promoting a site-wide discount — which satisfies this criterion in the context of digital promotions.\n\n### Temporal Sequence:\n- The discount promotion appears consistently from **Frame 8 to Frame 13**, confirming it’s not a fleeting or accidental display.\n- The frames before (Frames 1–7) show unrelated indoor scenes (hugging, laughing) and black screens — no merchandise or discount info.\n- The discount is clearly presented as part of a promotional segment, likely at the end or during a break in the main content.\n\n### Conclusion:\n✅ All five criteria are met.  \n✅ The discount of **30% off** is explicitly and visually confirmed in multiple frames.  \n✅ The context suggests this is the vlogger’s merchandise (via branding and promotion).\n\n**Therefore, the answer '1' (30% off) is correct.**"}], 'formatted_responses': ["\n=== Batch 0-18 (13 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2063.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2064.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2065.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2066.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2067.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2068.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2069.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2070.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2071.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2072.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2073.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2074.jpg, /mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2075.jpg\nVLM Response: Based on the provided frames and the question criteria, the answer **'1' (30% off)** is **correct**.\n\n### Verification Against Criteria:\n\n1. **Merchandise display with visible discount percentage**  \n   → Frame 8 through Frame 13 show a split-screen graphic. On the right, a man (likely the vlogger or associated with the brand) is wearing a white long-sleeve shirt with a visible logo — this constitutes merchandise display.\n\n2. **Text or sign showing discount information**  \n   → In the center of the screen (Frames 8–13), clear yellow text reads:  \n   > “Check out seekdiscomfort.com for 30% off site wide”  \n   This explicitly states the discount percentage.\n\n3. **Vlogger or character promoting merchandise with discount**  \n   → The man on the right (wearing the branded shirt) is posing in a promotional manner. The man on the left is also smiling and engaging with the camera, consistent with promotional content.\n\n4. **Screen or graphic displaying percentage off**  \n   → The central text overlay is a graphic explicitly displaying “30% off”.\n\n5. **Price tag or advertisement showing reduced price**  \n   → While no individual price tags are shown, the graphic functions as an advertisement promoting a site-wide discount — which satisfies this criterion in the context of digital promotions.\n\n### Temporal Sequence:\n- The discount promotion appears consistently from **Frame 8 to Frame 13**, confirming it’s not a fleeting or accidental display.\n- The frames before (Frames 1–7) show unrelated indoor scenes (hugging, laughing) and black screens — no merchandise or discount info.\n- The discount is clearly presented as part of a promotional segment, likely at the end or during a break in the main content.\n\n### Conclusion:\n✅ All five criteria are met.  \n✅ The discount of **30% off** is explicitly and visually confirmed in multiple frames.  \n✅ The context suggests this is the vlogger’s merchandise (via branding and promotion).\n\n**Therefore, the answer '1' (30% off) is correct.**\n"], 'condensed_response': '**Condensed Scene Summary (Frames\u202f2063‑2075)**  \n\n| Frame range | Visual focus | Characters & actions | Key elements |\n|-------------|--------------|----------------------|--------------|\n| **2063‑2067** (Frames\u202f1‑5) | Indoor setting, no branding | Two people – a man on the left and a woman on the right – are hugging, laughing, and looking at the camera. | No merchandise, no text; serves as a pre‑promo “casual” segment. |\n| **2068‑2070** (Frames\u202f6‑8) | Transition to a split‑screen | The left side still shows the laughing pair; the right side introduces a new man in a white long‑sleeve shirt with a brand logo. | The right‑hand figure begins to pose as a presenter. |\n| **2071‑2075** (Frames\u202f9‑13) | Promotional overlay | The split‑screen remains; the right‑hand man continues to face the camera, gesturing mildly. The left side fades to a black screen. | Central yellow graphic displays the text: **“Check out seekdiscomfort.com for 30% off site wide”** – the explicit “30% off” badge. No individual price tags appear, but the graphic functions as the discount advertisement. |\n\n**Character tracking:**  \n- **Man\u202fA (left)**: present from the start, acts as the vlog‑style host, smiles and engages the camera throughout.  \n- **Man\u202fB (right)**: introduced at frame\u202f2068, wears a branded white shirt, adopts a promotional pose, and is the focal point of the discount graphic.  \n- **Woman**: appears only in the early indoor segment (frames\u202f2063‑2067) and exits before the promotion begins.\n\n**Temporal flow:**  \n1. *Frames\u202f2063‑2067*: casual, non‑promotional interaction.  \n2. *Frames\u202f2068‑2070*: cut to a split‑screen; promotional character (Man\u202fB) appears.  \n3. *Frames\u202f2071‑2075*: sustained display of the “30% off” graphic, satisfying all discount‑criteria (merchandise display, visible percentage, presenter, graphic overlay).\n\n**Conclusion:** The promotional segment from frames\u202f2071‑2075 clearly shows the vlogger (Man\u202fB) endorsing the brand with a visible “30% off” screen‑text overlay, meeting every required criterion. Hence the answer “30% off” is confirmed as correct.', 'failed_images': [('/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2076.jpg', 'File not found'), ('/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2077.jpg', 'File not found'), ('/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2078.jpg', 'File not found'), ('/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2079.jpg', 'File not found'), ('/mnt/ssd/data/lvbench/videos_processed/JPPMz8fEml0/frames/frame_2080.jpg', 'File not found')]}
+
+Question Being Answered: What is the discount on the vlogger's merchandise?
+
+Answer Choices (0-indexed: 0=A, 1=B, 2=C, 3=D, 4=E):
+  0 (=A): 50% off
+  1 (=B): 30% off
+  2 (=C): 20% off
+  3 (=D): 40% off
+
+Given Answer: 1
+Evidence Frames Used: ['frames/frame_2068.jpg', 'frames/frame_2069.jpg', 'frames/frame_2070.jpg', 'frames/frame_2071.jpg', 'frames/frame_2072.jpg', 'frames/frame_2073.jpg', 'frames/frame_2074.jpg', 'frames/frame_2075.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Ammar (Young Man with Short Dark Hair and Beard): Wearing a white T-shirt and a black backpack, often seen walking and talking to the camera.
+Staffan (Young Man with Short Blond Hair and Beard): Wearing a black shirt and a silver chain, often seen walking and interacting with Ammar.
+Thomas (Young Man with Short Brown Hair and Beard): Wearing a white T-shirt and a black backpack, often seen with Ammar and Staffan.
+Man in Red Shirt: Wearing a red shirt, seen driving a car.
+Man in Black Shirt with "Love Over Fear": Wearing a black T-shirt with "Love Over Fear" printed on it, often seen taking selfies and walking in the city.
+Woman in Green Tank Top: Wearing a green tank top with a graphic design, seen walking and talking on the phone.
+Woman in Blue Hijab: Wearing a blue hijab and a white shirt with blue flowers, seen sitting and talking with men at a table.
+Older Woman in Flower Shop: Wearing a black and white patterned shirt, seen standing and working in a flower shop.
+
+SCENES:
+Crowd Gathering (Frames 1-8): A crowd of people gathering in a city street, some wearing masks and holding flags.
+Newspaper Clippings (Frames 9-14): A series of newspaper clippings with headlines about the "World's Angriest Countries".
+Cityscape (Frames 15-18): An aerial view of a densely populated city with numerous high-rise buildings.
+Protest Scene (Frames 26-29, 1898-1903): A crowd of people protesting in the street, some holding flags and banners.
+Explosion Scene (Frames 65-66): A large explosion occurring in a city, with a massive plume of smoke rising.
+Beirut Cityscape (Frames 78-82): An aerial view of Beirut cityscape with numerous buildings and roads.
+Airport Scene (Frames 83-121): A bustling airport terminal with people walking and interacting.
+Park Gathering (Frames 123-128): A group of young adults gathering in a park, celebrating and posing for photos.
+City Street Scene (Frames 130-139, 2037-2045): A busy city street with people walking and interacting.
+Flower Shop (Frames 2040-2054, 2069-2071): A small, cluttered flower shop with various flowers and supplies on display.
+Nightclub Scene (Frames 2062-2067): A crowded nightclub with people dancing and having fun.
+
+EVENTS:
+Protest March (Frames 29, 1899-1903): Thousands of people marching in the streets, holding flags and banners.
+Explosion (Frames 65-66): A large explosion occurring in a city.
+Celebration in Park (Frames 123-128): A group of young adults celebrating and posing for photos in a park.
+Interaction in Flower Shop (Frames 2040-2054): A woman working and interacting with customers in a flower shop.
+Dancing in Nightclub (Frames 2062-2067): A crowd of people dancing and having fun in a nightclub.
+
+================================================================================
+Generated at: 2026-01-11 21:46:08
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. Merchandise display with visible discount percentage
+  Q2. Text or sign showing discount information
+  Q3. Vlogger or character promoting merchandise with discount
+  Q4. Screen or graphic displaying percentage off
+  Q5. Price tag or advertisement showing reduced price
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 5)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, ALWAYS pick the best answer choice:
+   - Review ALL answer choices (A, B, C, D, E, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D, 4=E)
+
+5. If criteria_percentage > 0.5 (>50% of criteria pass):
+   - Your chosen answer is well-supported by evidence
+   - Set suggestion to null or provide minor improvements
+
+6. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - Still MUST choose the BEST answer from the available choices (never -1)
+   - But set suggestion to "These may not be the right frames/scene. Consider searching for better evidence. The answer chosen is the BEST match given current evidence."
+   - This signals low confidence but still provides a choice
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <total number of criteria that passed>,
+    "criteria_total": 5,
+    "criteria_percentage": <criteria_passed / 5>,
+    "base_confidence": <(criteria_passed / 5) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E - MUST be a valid number 0-4, never -1>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {"criterion": "Merchandise display with visible discount percentage", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms split-screen graphic shows man wearing branded shirt with logo, constituting merchandise display"},
+        {"criterion": "Text or sign showing discount information", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms yellow text reads 'Check out seekdiscomfort.com for 30% off site wide' with explicit discount percentage"},
+        {"criterion": "Vlogger or character promoting merchandise with discount", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms man on right wearing branded shirt is posing in promotional manner, consistent with promotional content"},
+        {"criterion": "Screen or graphic displaying percentage off", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms central text overlay is a graphic explicitly displaying '30% off'"},
+        {"criterion": "Price tag or advertisement showing reduced price", "criterion_type": "QUESTION", "status": "PASS", "reasoning": "VLM confirms the graphic functions as an advertisement promoting site-wide discount, satisfying this criterion"}
+    ],
+    "question_criteria_passed": 5,
+    "answer_criteria_passed": 0,
+    "answer_criteria_total": 0,
+    "criteria_passed": 5,
+    "criteria_total": 5,
+    "criteria_percentage": 1.0,
+    "base_confidence": 100.0,
+    "confidence": 100.0,
+    "critic_answer_choice": 1,
+    "critic_reasoning": "VLM verification confirms all criteria are met with explicit '30% off' text displayed in multiple frames (2071-2075), showing promotional content with branded merchandise and clear discount percentage",
+    "possible_errors": [],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'Merchandise display with visible discount percentage', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms split-screen graphic shows man wearing branded shirt with logo, constituting merchandise display'}, {'criterion': 'Text or sign showing discount information', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM confirms yellow text reads 'Check out seekdiscomfort.com for 30% off site wide' with explicit discount percentage"}, {'criterion': 'Vlogger or character promoting merchandise with discount', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms man on right wearing branded shirt is posing in promotional manner, consistent with promotional content'}, {'criterion': 'Screen or graphic displaying percentage off', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM confirms central text overlay is a graphic explicitly displaying '30% off'"}, {'criterion': 'Price tag or advertisement showing reduced price', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms the graphic functions as an advertisement promoting site-wide discount, satisfying this criterion'}], 'question_criteria_passed': 5, 'answer_criteria_passed': 0, 'answer_criteria_total': 0, 'criteria_passed': 5, 'criteria_total': 5, 'criteria_percentage': 1.0, 'base_confidence': 100.0, 'confidence': 100.0, 'critic_answer_choice': 1, 'critic_reasoning': "VLM verification confirms all criteria are met with explicit '30% off' text displayed in multiple frames (2071-2075), showing promotional content with branded merchandise and clear discount percentage", 'possible_errors': [], 'suggestion': None}

@@ -14,6 +14,7 @@ from typing import Dict, List, Union
 import numpy as np
 from tqdm import tqdm
 from together import Together
+import argparse
 
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent))
@@ -49,7 +50,7 @@ def collect_all_captions(vid_folder, caption_filename='frame_captions_sorted.jso
             continue
 
         if os.path.exists(output_path):
-            print("fiile already exists")
+            print("file already exists")
             skipped.append((video_id, "already done"))
             continue
 
@@ -137,6 +138,16 @@ def embed_all_captions(client, all_texts, model="BAAI/bge-large-en-v1.5", batch_
 
     return np.array(all_embeddings, dtype=np.float32)
 
+def write_video_embedding(video_entry, embeddings):
+    try:
+        output_path = video_entry['output_path']
+        write_jsonl(output_path, video_entry['records'], embeddings)
+        print(f"Written embeddings to {output_path}")
+        return True
+    except Exception as e:
+        print(f"Error writing {output_path}: {e}")
+        return False
+
 
 def write_all_embeddings(video_data, all_embeddings):
     """Write embeddings back to individual video files"""
@@ -163,10 +174,17 @@ def write_all_embeddings(video_data, all_embeddings):
 
 def main():
     """Main entry point"""
-    videos_folder = '/mnt/ssd/data/lvbench/videos_processed'
-    caption_filename = 'frame_captions_sorted.json'
-    model = 'BAAI/bge-large-en-v1.5'
-    batch_size = 100
+    Parser = argparse.ArgumentParser()
+    Parser.add_argument('--videos_folder', type=str, default='/mnt/ssd/data/lvbench/videos_processed')
+    Parser.add_argument('--caption_filename', type=str, default='frame_captions_sorted.json')
+    Parser.add_argument('--model', type=str, default='BAAI/bge-large-en-v1.5')
+    Parser.add_argument('--batch_size', type=int, default=100)
+
+    args = Parser.parse_args()
+    videos_folder = args.videos_folder
+    caption_filename = args.caption_filename
+    model = args.model
+    batch_size = args.batch_size
 
     print("="*70)
     print("TOGETHER AI EMBEDDING - OPTIMIZED BATCH PROCESSING")
@@ -189,22 +207,27 @@ def main():
 
     # Flatten all texts
     all_texts = []
+    failed = []
+    total = 0
+    start_time = time.time()
     for v in video_data:
-        all_texts.extend(v['texts'])
+        #check if done already
+        if os.path.exists(v['output_path']):
+            print(f"File {v['output_path']} already exists")
+            continue
+        try:
+            all_texts = v['texts']
+            print(f"Embedding {len(all_texts)} captions for video {v['video_id']}")
+            vid_embeddings = embed_all_captions(client, all_texts, model, batch_size)
+            print(f"Done embedding captions for video {v['video_id']}")
+            total += len(all_texts)
+            write_video_embedding(v, vid_embeddings)
+        except Exception as e:
+            print(f"Error embedding {v['video_id']}: {e}")
+            failed.append(v['video_id'])
+            continue
 
-    total = len(all_texts)
-    print(f"\nTotal captions to embed: {total:,}")
-
-    # Embed everything
-    start = time.time()
-    all_embeddings = embed_all_captions(client, all_texts, model, batch_size)
-    elapsed = time.time() - start
-
-    print(f"\n✓ Generated {all_embeddings.shape[0]:,} embeddings (dim={all_embeddings.shape[1]})")
-    print(f"✓ Speed: {total/elapsed:.1f} captions/sec ({elapsed:.1f}s total)")
-
-    # Write results
-    failed = write_all_embeddings(video_data, all_embeddings)
+    elapsed = time.time() - start_time
 
     # Summary
     print("\n" + "="*70)

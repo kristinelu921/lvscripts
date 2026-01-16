@@ -1,0 +1,214 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["frames/frame_1920.jpg", "frames/frame_1921.jpg", "frames/frame_1922.jpg", "frames/frame_1923.jpg", "frames/frame_1924.jpg", "frames/frame_1925.jpg", "frames/frame_1926.jpg", "frames/frame_1927.jpg", "frames/frame_1928.jpg", "frames/frame_1929.jpg", "frames/frame_1930.jpg"],
+    "prompt": "Based on these frames (including context before/after), verify if the answer '0' is correct for the question: What is the number of shots by Germany and Italy at the 30:00 mark of the game? Check the question criteria: ['Scoreboard or graphic overlay showing match time at 30:00', 'Visual display of shot statistics for both teams', \"Germany's shot count visible on screen\", \"Italy's shot count visible on screen\", 'Match time indicator showing 30 minutes', 'Statistics graphic overlay during gameplay']. Pay attention to timestamps and temporal sequences. Specifically look for: 1) Is this actually a Germany vs Italy match or Germany vs Spain? 2) Is there a scoreboard/graphic showing 30:00 match time? 3) Are shot statistics displayed for both teams? 4) What are the actual shot counts shown? 5) Does the answer '0' match what's visually displayed?"
+}
+Frames to verify: ['frames/frame_1920.jpg', 'frames/frame_1921.jpg', 'frames/frame_1922.jpg', 'frames/frame_1923.jpg', 'frames/frame_1924.jpg', 'frames/frame_1925.jpg', 'frames/frame_1926.jpg', 'frames/frame_1927.jpg', 'frames/frame_1928.jpg', 'frames/frame_1929.jpg', 'frames/frame_1930.jpg']
+VLM Prompt: Video context: Here is a global summary of the video based on the provided frame-by-frame captions:
+
+**Main Characters:**
+
+* Soccer players from Germany and Spain, including notable players such as Manuel Neuer, Arne Friedrich, Mesut Oezil, Carles Puyol, and David Villa.
+* Coaches and managers, including Joachim Loew (Germany) and Vicente del Bosque (Spain).
+* Referees, including Viktor Kassai.
+
+**Setting:**
+
+* The video is set in a large stadium in Durban, South Africa, during the 2010 FIFA World Cup.
+* The stadium is filled with spectators, and the atmosphere is lively and energetic.
+
+**Plot Line:**
+
+* The video captures a soccer match between Germany and Spain, from the pre-game introductions to the final whistle.
+* The match is intense and competitive, with players from both teams engaging in various actions on the field.
+* The Spanish team ultimately wins the match 1-0, with Carles Puyol scoring the winning goal in the 73rd minute.
+
+**Vibes:**
+
+* The overall vibe of the video is one of excitement, tension, and celebration.
+* The atmosphere in the stadium is electric, with spectators cheering and waving flags.
+* The players' emotions range from focus and determination to joy and disappointment.
+
+**General Details:**
+
+* The video is a comprehensive coverage of the soccer match, including pre-game introductions, player lineups, and the actual game.
+* The captions highlight the actions of the players, coaches, and referees, as well as the reactions of the spectators.
+* The video is likely a recording of a live broadcast, with graphics and scoreboards displayed throughout the match.
+
+Based on these frames (including context before/after), verify if the answer '0' is correct for the question: What is the number of shots by Germany and Italy at the 30:00 mark of the game? Check the question criteria: ['Scoreboard or graphic overlay showing match time at 30:00', 'Visual display of shot statistics for both teams', "Germany's shot count visible on screen", "Italy's shot count visible on screen", 'Match time indicator showing 30 minutes', 'Statistics graphic overlay during gameplay']. Pay attention to timestamps and temporal sequences. Specifically look for: 1) Is this actually a Germany vs Italy match or Germany vs Spain? 2) Is there a scoreboard/graphic showing 30:00 match time? 3) Are shot statistics displayed for both teams? 4) What are the actual shot counts shown? 5) Does the answer '0' match what's visually displayed?
+VLM response: {'batched_responses': [{'batch_start': 0, 'batch_end': 11, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1920.jpg', '/mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1921.jpg', '/mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1922.jpg', '/mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1923.jpg', '/mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1924.jpg', '/mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1925.jpg', '/mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1926.jpg', '/mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1927.jpg', '/mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1928.jpg', '/mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1929.jpg', '/mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1930.jpg'], 'response': 'The answer **\'0\' is incorrect** for the question: *"What is the number of shots by Germany and Italy at the 30:00 mark of the game?"*\n\nHere’s the detailed verification based on the frames and question criteria:\n\n---\n\n### 1. **Is this actually a Germany vs Italy match or Germany vs Spain?**\n✅ **Germany vs Spain** — The scoreboard in every frame clearly shows **GER 0-0 ESP**, with national flags matching Germany and Spain. **Italy is not involved in this match.**  \n→ **The question incorrectly references “Italy” instead of “Spain.”** This alone invalidates the question as posed, but we will proceed assuming it meant “Spain.”\n\n---\n\n### 2. **Is there a scoreboard/graphic showing 30:00 match time?**\n✅ **Yes** — The top-left scoreboard in all 11 frames shows the match time progressing from **30:01 to 30:10**, confirming we are viewing the **30-minute mark** of the game.\n\n---\n\n### 3. **Are shot statistics displayed for both teams?**\n✅ **Yes** — In frames 1–4, a **“SHOTS” graphic overlay** is visible at the bottom center of the screen. It displays:\n- **GER: 0 shots**\n- **ESP: 0 shots**\n\nThis graphic is visible in frames 1–4 (30:01–30:04), and while it disappears in later frames, it is clearly present at the 30:00 mark.\n\n---\n\n### 4. **What are the actual shot counts shown?**\n✅ **Germany: 0 shots**  \n✅ **Spain: 0 shots**  \n→ So, **both teams have 0 shots** at the 30:00 mark, as displayed on-screen.\n\n---\n\n### 5. **Does the answer \'0\' match what\'s visually displayed?**\n⚠️ **Partially, but misleadingly.**  \nThe answer “0” is **technically correct for Germany’s shot count** (0 shots).  \nHowever, the question asks for **“the number of shots by Germany and Italy”** — which implies **a combined total or individual counts for both teams**.\n\nSince:\n- **Italy is not playing**, and\n- **Spain has 0 shots** (not Italy),\n→ The answer “0” **does not correctly reflect the full context** of the question.\n\nIf the question meant “Germany and Spain,” then the shot counts are **0 and 0**, so the *combined total* is **0**, which would make “0” correct.\n\nBut as written — referencing **Italy** — the answer is **incorrect**, because:\n- Italy is not in the match.\n- No shot data for Italy is displayed (and logically cannot be, since they’re not playing).\n\n---\n\n### ✅ Final Verdict:\n**The answer \'0\' is NOT correct** because:\n1. The question references **Italy**, which is **not playing** in this match (it’s Germany vs Spain).\n2. Even if we assume a typo and interpret “Italy” as “Spain,” the answer “0” is ambiguous — it doesn’t specify if it’s for one team or both. The correct answer should clarify **Germany: 0, Spain: 0**.\n3. The question asks for “the number of shots by Germany and Italy” — implying a **combined or dual count**, which cannot be answered as “0” when one team (Italy) is not even present.\n\n---\n\n### 🟢 Correct Answer:\n**“Germany has 0 shots, Spain has 0 shots at the 30:00 mark. Italy is not playing in this match.”**\n\nTherefore, **‘0’ is incorrect** as a standalone answer to the question as phrased.'}], 'formatted_responses': ['\n=== Batch 0-11 (11 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1920.jpg, /mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1921.jpg, /mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1922.jpg, /mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1923.jpg, /mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1924.jpg, /mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1925.jpg, /mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1926.jpg, /mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1927.jpg, /mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1928.jpg, /mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1929.jpg, /mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1930.jpg\nVLM Response: The answer **\'0\' is incorrect** for the question: *"What is the number of shots by Germany and Italy at the 30:00 mark of the game?"*\n\nHere’s the detailed verification based on the frames and question criteria:\n\n---\n\n### 1. **Is this actually a Germany vs Italy match or Germany vs Spain?**\n✅ **Germany vs Spain** — The scoreboard in every frame clearly shows **GER 0-0 ESP**, with national flags matching Germany and Spain. **Italy is not involved in this match.**  \n→ **The question incorrectly references “Italy” instead of “Spain.”** This alone invalidates the question as posed, but we will proceed assuming it meant “Spain.”\n\n---\n\n### 2. **Is there a scoreboard/graphic showing 30:00 match time?**\n✅ **Yes** — The top-left scoreboard in all 11 frames shows the match time progressing from **30:01 to 30:10**, confirming we are viewing the **30-minute mark** of the game.\n\n---\n\n### 3. **Are shot statistics displayed for both teams?**\n✅ **Yes** — In frames 1–4, a **“SHOTS” graphic overlay** is visible at the bottom center of the screen. It displays:\n- **GER: 0 shots**\n- **ESP: 0 shots**\n\nThis graphic is visible in frames 1–4 (30:01–30:04), and while it disappears in later frames, it is clearly present at the 30:00 mark.\n\n---\n\n### 4. **What are the actual shot counts shown?**\n✅ **Germany: 0 shots**  \n✅ **Spain: 0 shots**  \n→ So, **both teams have 0 shots** at the 30:00 mark, as displayed on-screen.\n\n---\n\n### 5. **Does the answer \'0\' match what\'s visually displayed?**\n⚠️ **Partially, but misleadingly.**  \nThe answer “0” is **technically correct for Germany’s shot count** (0 shots).  \nHowever, the question asks for **“the number of shots by Germany and Italy”** — which implies **a combined total or individual counts for both teams**.\n\nSince:\n- **Italy is not playing**, and\n- **Spain has 0 shots** (not Italy),\n→ The answer “0” **does not correctly reflect the full context** of the question.\n\nIf the question meant “Germany and Spain,” then the shot counts are **0 and 0**, so the *combined total* is **0**, which would make “0” correct.\n\nBut as written — referencing **Italy** — the answer is **incorrect**, because:\n- Italy is not in the match.\n- No shot data for Italy is displayed (and logically cannot be, since they’re not playing).\n\n---\n\n### ✅ Final Verdict:\n**The answer \'0\' is NOT correct** because:\n1. The question references **Italy**, which is **not playing** in this match (it’s Germany vs Spain).\n2. Even if we assume a typo and interpret “Italy” as “Spain,” the answer “0” is ambiguous — it doesn’t specify if it’s for one team or both. The correct answer should clarify **Germany: 0, Spain: 0**.\n3. The question asks for “the number of shots by Germany and Italy” — implying a **combined or dual count**, which cannot be answered as “0” when one team (Italy) is not even present.\n\n---\n\n### 🟢 Correct Answer:\n**“Germany has 0 shots, Spain has 0 shots at the 30:00 mark. Italy is not playing in this match.”**\n\nTherefore, **‘0’ is incorrect** as a standalone answer to the question as phrased.\n'], 'condensed_response': '**Scene Summary (30:00 mark, Germany\u202fvs\u202fSpain)**  \n\n- **Teams shown:** Germany (GER) vs. Spain (ESP); Italy never appears.  \n- **Scoreboard:** Displays a 0‑0 tie and a running clock that moves from 30:01 to 30:10, confirming we are at the 30‑minute point.  \n- **Shot statistics:** A “SHOTS” overlay (visible in the first few frames) lists **Germany\u202f0 shots** and **Spain\u202f0 shots**. The graphic disappears after the initial frames but the numbers remain clear at the 30‑minute mark.  \n\n**Answer to the question:**  \n- The question incorrectly names “Italy.” Since Italy isn’t playing, the correct interpretation is Germany\u202fvs\u202fSpain. Both teams have **0 shots** at 30:00.  \n- Therefore, a proper response should be: **“Germany\u202f0 shots, Spain\u202f0 shots (Italy is not in the match).”** The single answer “0” is incomplete/incorrect for the phrasing given.', 'failed_images': []}
+Followup prompt: 
+Critically assess whether the VLM verification supports the given answer by evaluating each criterion.
+
+VLM Verification Results:
+{'batched_responses': [{'batch_start': 0, 'batch_end': 11, 'image_paths': ['/mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1920.jpg', '/mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1921.jpg', '/mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1922.jpg', '/mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1923.jpg', '/mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1924.jpg', '/mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1925.jpg', '/mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1926.jpg', '/mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1927.jpg', '/mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1928.jpg', '/mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1929.jpg', '/mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1930.jpg'], 'response': 'The answer **\'0\' is incorrect** for the question: *"What is the number of shots by Germany and Italy at the 30:00 mark of the game?"*\n\nHere’s the detailed verification based on the frames and question criteria:\n\n---\n\n### 1. **Is this actually a Germany vs Italy match or Germany vs Spain?**\n✅ **Germany vs Spain** — The scoreboard in every frame clearly shows **GER 0-0 ESP**, with national flags matching Germany and Spain. **Italy is not involved in this match.**  \n→ **The question incorrectly references “Italy” instead of “Spain.”** This alone invalidates the question as posed, but we will proceed assuming it meant “Spain.”\n\n---\n\n### 2. **Is there a scoreboard/graphic showing 30:00 match time?**\n✅ **Yes** — The top-left scoreboard in all 11 frames shows the match time progressing from **30:01 to 30:10**, confirming we are viewing the **30-minute mark** of the game.\n\n---\n\n### 3. **Are shot statistics displayed for both teams?**\n✅ **Yes** — In frames 1–4, a **“SHOTS” graphic overlay** is visible at the bottom center of the screen. It displays:\n- **GER: 0 shots**\n- **ESP: 0 shots**\n\nThis graphic is visible in frames 1–4 (30:01–30:04), and while it disappears in later frames, it is clearly present at the 30:00 mark.\n\n---\n\n### 4. **What are the actual shot counts shown?**\n✅ **Germany: 0 shots**  \n✅ **Spain: 0 shots**  \n→ So, **both teams have 0 shots** at the 30:00 mark, as displayed on-screen.\n\n---\n\n### 5. **Does the answer \'0\' match what\'s visually displayed?**\n⚠️ **Partially, but misleadingly.**  \nThe answer “0” is **technically correct for Germany’s shot count** (0 shots).  \nHowever, the question asks for **“the number of shots by Germany and Italy”** — which implies **a combined total or individual counts for both teams**.\n\nSince:\n- **Italy is not playing**, and\n- **Spain has 0 shots** (not Italy),\n→ The answer “0” **does not correctly reflect the full context** of the question.\n\nIf the question meant “Germany and Spain,” then the shot counts are **0 and 0**, so the *combined total* is **0**, which would make “0” correct.\n\nBut as written — referencing **Italy** — the answer is **incorrect**, because:\n- Italy is not in the match.\n- No shot data for Italy is displayed (and logically cannot be, since they’re not playing).\n\n---\n\n### ✅ Final Verdict:\n**The answer \'0\' is NOT correct** because:\n1. The question references **Italy**, which is **not playing** in this match (it’s Germany vs Spain).\n2. Even if we assume a typo and interpret “Italy” as “Spain,” the answer “0” is ambiguous — it doesn’t specify if it’s for one team or both. The correct answer should clarify **Germany: 0, Spain: 0**.\n3. The question asks for “the number of shots by Germany and Italy” — implying a **combined or dual count**, which cannot be answered as “0” when one team (Italy) is not even present.\n\n---\n\n### 🟢 Correct Answer:\n**“Germany has 0 shots, Spain has 0 shots at the 30:00 mark. Italy is not playing in this match.”**\n\nTherefore, **‘0’ is incorrect** as a standalone answer to the question as phrased.'}], 'formatted_responses': ['\n=== Batch 0-11 (11 frames) ===\nFrames: /mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1920.jpg, /mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1921.jpg, /mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1922.jpg, /mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1923.jpg, /mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1924.jpg, /mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1925.jpg, /mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1926.jpg, /mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1927.jpg, /mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1928.jpg, /mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1929.jpg, /mnt/ssd/data/lvbench/videos_processed/oZEVgDXJwCc/frames/frame_1930.jpg\nVLM Response: The answer **\'0\' is incorrect** for the question: *"What is the number of shots by Germany and Italy at the 30:00 mark of the game?"*\n\nHere’s the detailed verification based on the frames and question criteria:\n\n---\n\n### 1. **Is this actually a Germany vs Italy match or Germany vs Spain?**\n✅ **Germany vs Spain** — The scoreboard in every frame clearly shows **GER 0-0 ESP**, with national flags matching Germany and Spain. **Italy is not involved in this match.**  \n→ **The question incorrectly references “Italy” instead of “Spain.”** This alone invalidates the question as posed, but we will proceed assuming it meant “Spain.”\n\n---\n\n### 2. **Is there a scoreboard/graphic showing 30:00 match time?**\n✅ **Yes** — The top-left scoreboard in all 11 frames shows the match time progressing from **30:01 to 30:10**, confirming we are viewing the **30-minute mark** of the game.\n\n---\n\n### 3. **Are shot statistics displayed for both teams?**\n✅ **Yes** — In frames 1–4, a **“SHOTS” graphic overlay** is visible at the bottom center of the screen. It displays:\n- **GER: 0 shots**\n- **ESP: 0 shots**\n\nThis graphic is visible in frames 1–4 (30:01–30:04), and while it disappears in later frames, it is clearly present at the 30:00 mark.\n\n---\n\n### 4. **What are the actual shot counts shown?**\n✅ **Germany: 0 shots**  \n✅ **Spain: 0 shots**  \n→ So, **both teams have 0 shots** at the 30:00 mark, as displayed on-screen.\n\n---\n\n### 5. **Does the answer \'0\' match what\'s visually displayed?**\n⚠️ **Partially, but misleadingly.**  \nThe answer “0” is **technically correct for Germany’s shot count** (0 shots).  \nHowever, the question asks for **“the number of shots by Germany and Italy”** — which implies **a combined total or individual counts for both teams**.\n\nSince:\n- **Italy is not playing**, and\n- **Spain has 0 shots** (not Italy),\n→ The answer “0” **does not correctly reflect the full context** of the question.\n\nIf the question meant “Germany and Spain,” then the shot counts are **0 and 0**, so the *combined total* is **0**, which would make “0” correct.\n\nBut as written — referencing **Italy** — the answer is **incorrect**, because:\n- Italy is not in the match.\n- No shot data for Italy is displayed (and logically cannot be, since they’re not playing).\n\n---\n\n### ✅ Final Verdict:\n**The answer \'0\' is NOT correct** because:\n1. The question references **Italy**, which is **not playing** in this match (it’s Germany vs Spain).\n2. Even if we assume a typo and interpret “Italy” as “Spain,” the answer “0” is ambiguous — it doesn’t specify if it’s for one team or both. The correct answer should clarify **Germany: 0, Spain: 0**.\n3. The question asks for “the number of shots by Germany and Italy” — implying a **combined or dual count**, which cannot be answered as “0” when one team (Italy) is not even present.\n\n---\n\n### 🟢 Correct Answer:\n**“Germany has 0 shots, Spain has 0 shots at the 30:00 mark. Italy is not playing in this match.”**\n\nTherefore, **‘0’ is incorrect** as a standalone answer to the question as phrased.\n'], 'condensed_response': '**Scene Summary (30:00 mark, Germany\u202fvs\u202fSpain)**  \n\n- **Teams shown:** Germany (GER) vs. Spain (ESP); Italy never appears.  \n- **Scoreboard:** Displays a 0‑0 tie and a running clock that moves from 30:01 to 30:10, confirming we are at the 30‑minute point.  \n- **Shot statistics:** A “SHOTS” overlay (visible in the first few frames) lists **Germany\u202f0 shots** and **Spain\u202f0 shots**. The graphic disappears after the initial frames but the numbers remain clear at the 30‑minute mark.  \n\n**Answer to the question:**  \n- The question incorrectly names “Italy.” Since Italy isn’t playing, the correct interpretation is Germany\u202fvs\u202fSpain. Both teams have **0 shots** at 30:00.  \n- Therefore, a proper response should be: **“Germany\u202f0 shots, Spain\u202f0 shots (Italy is not in the match).”** The single answer “0” is incomplete/incorrect for the phrasing given.', 'failed_images': []}
+
+Question Being Answered: What is the number of shots by Germany and Italy at the 30:00 mark of the game?
+
+Answer Choices:
+A. 4:0
+B. 8:4
+C. 0:4
+D. 4:8
+
+Given Answer: 0
+Evidence Frames Used: ['frames/frame_1925.jpg']
+
+Character/Event/Scene logs: ================================================================================
+CHARACTER, EVENT, AND SCENE LOGS
+================================================================================
+
+CHARACTERS:
+Joachim Loew (Coach of Germany): Description: Middle-aged man with short brown hair, wearing a black jacket or blazer.
+Vicente del Bosque (Coach of Spain): Description: Middle-aged man with gray hair and a mustache, wearing a black suit, white shirt, and red tie.
+Carles Puyol: Description: Soccer player with curly brown hair, wearing a red jersey with yellow stripes and the number 5.
+David Villa: Description: Soccer player wearing a red jersey with the number 7 on the back.
+Fernando Torres: Description: Soccer player wearing a red jersey with the number 9 on the front.
+Xabi Alonso: Description: Soccer player wearing a red jersey with the number 14 on the back.
+Pedro: Description: Soccer player wearing a red jersey with the number 18 or 8 on the back.
+Manuel Neuer (German Goalkeeper): Description: Soccer player wearing a yellow uniform with black stripes.
+Mesut Ozil: Description: Soccer player wearing a white jersey with the number 8 on the front.
+Miroslav Klose: Description: Soccer player wearing a white jersey with the number 11 on the front.
+Bastian Schweinsteiger: Description: Soccer player wearing a white jersey with the number 7 on the front.
+Viktor Kassai (Hungarian Referee): Description: Referee wearing a black uniform with yellow accents and a FIFA badge.
+Other Referees: Description: Wearing black uniforms with yellow accents.
+
+SCENES:
+Aerial View of Stadium: Description: Nighttime aerial view of a large stadium with a distinctive arched roof in Durban. [Frames 1-7]
+Crowd in the Stands: Description: Large crowd of people, mostly wearing red and yellow clothing, cheering and celebrating in a stadium. [Frames 8-13]
+Soccer Field: Description: A soccer game being played at night in a large stadium with a full crowd, under bright lights shining from the roof. [Frames 14-3232]
+Stadium Sidelines: Description: Soccer players, coaches, and officials standing or sitting on the sidelines, surrounded by advertisements and spectators. [Frames 3233-5896]
+Post-Game Celebration: Description: Spanish soccer players hugging and celebrating together on the field after winning the game. [Frames 5840-5896]
+
+EVENTS:
+Pre-Game: Description: Teams Germany and Spain preparing to start the game, with players standing on the field and a graphic overlay displaying the starting lineups. [Frames 1-49]
+Game Start: Description: The soccer match between Germany and Spain, with players from both teams, wearing white and red jerseys respectively, engaged in various actions such as running and kicking on a green field with white lines, surrounded by advertisements and spectators in the stands.', 'frames/frame_5490 seconds: The image shows a soccer match between Germany and Spain, with players from both teams in action on the field, surrounded by a crowd of spectators and advertisements on the sidelines.', 'frames/frame_5500 seconds: The image depicts a soccer match between Germany and Spain, with players from both teams in action on the field, surrounded by a crowd of spectators and advertisements on the sidelines.',
+'frames/frame_5561 seconds: A soccer player in a red jersey with the number 6 on his back is seen celebrating a goal, with his arms raised, in a stadium filled with spectators, as the scoreboard displays "GER 0-1 ESP" and the time "72:10".',
+'frames/frame_5892 seconds: The final score of the match between Germany and Spain is displayed on a graphic overlay, showing Spain winning 1-0, with the scorer's name, Puyol, and the time of the goal. [Frames 5886-5892]
+
+================================================================================
+Generated at: 2026-01-11 21:46:14
+================================================================================
+
+
+
+QUESTION-BASED CRITERIA:
+  Q1. Scoreboard or graphic overlay showing match time at 30:00
+  Q2. Visual display of shot statistics for both teams
+  Q3. Germany's shot count visible on screen
+  Q4. Italy's shot count visible on screen
+  Q5. Match time indicator showing 30 minutes
+  Q6. Statistics graphic overlay during gameplay
+
+
+CRITICAL ASSESSMENT TASK:
+For EACH criterion listed above, determine whether it PASSES or FAILS based ONLY on what the VLM actually reports seeing in the frames.
+
+- PASS: The VLM results clearly confirm this criterion is satisfied in the frames
+- FAIL: The VLM results indicate this criterion is NOT satisfied, or there is insufficient evidence
+
+CONFIDENCE CALCULATION RULES:
+1. Count how many criteria pass (criteria_percentage = criteria_passed / 6)
+2. Calculate base_confidence = criteria_percentage * 100
+3. ⚠️ If ANY answer-specific criterion (A1, A2, etc.) FAILS, set confidence = min(50, base_confidence)
+
+⚠️ CRITICAL: There is ALWAYS a correct answer among the choices provided. If all answers seem slightly off or imperfect, you MUST choose the BEST possible answer that most closely matches the evidence.
+
+CRITIC ANSWER CHOICE DECISION:
+4. After evaluating criteria, if criteria_percentage > 0.5 (>50% of criteria pass):
+   - Review ALL answer choices (A, B, C, D, etc.)
+   - Based ONLY on the VLM visual evidence, determine which answer choice is MOST correct
+   - Output your critic_answer_choice as a NUMBER (0=A, 1=B, 2=C, 3=D)
+5. If criteria_percentage ≤ 0.5 (≤50% of criteria pass):
+   - STILL do your best to pick out a correct answer, but also set suggestion to "These may not be the right frames/scene. Continue searching for better evidence."
+   - output your best guess of the answer as a number (0=A, 1=B, 2=C, 3=D, 4=E)
+
+Return ONLY this JSON:
+{
+    "criteria_results": [
+        {"criterion": "criterion text", "criterion_type": "QUESTION or ANSWER", "status": "PASS or FAIL", "reasoning": "brief explanation"},
+        ...
+    ],
+    "question_criteria_passed": <number of question criteria that passed>,
+    "answer_criteria_passed": <number of answer criteria that passed>,
+    "answer_criteria_total": 0,
+    "criteria_passed": <number of question criteria that passed>,
+    "criteria_total": 6,
+    "criteria_percentage": <criteria_passed / 6>,
+    "base_confidence": <(criteria_passed / 6) * 100>,
+    "confidence": <base_confidence OR 50 if any answer criterion failed>,
+    "critic_answer_choice": <NUMBER: 0=A, 1=B, 2=C, 3=D, 4=E>,
+    "critic_reasoning": "<Brief explanation of why you chose this answer based on VLM evidence>",
+    "possible_errors": [
+        <List specific criteria that failed or issues found>
+    ],
+    "suggestion": <"These may not be the right frames" if ≤50%, otherwise null or specific improvement>
+}
+
+IMPORTANT RULES:
+- Evaluate EACH criterion independently based on VLM results
+- Mark criterion as PASS only if VLM clearly confirms it
+- Mark criterion as FAIL if not confirmed or contradicted
+- If ANY answer-specific criterion fails, confidence MUST be ≤50%
+- Base evaluation ONLY on VLM verification results, not speculation
+- Only list errors for criteria that actually failed
+- Return ONLY valid JSON
+
+Critical assessment response: ```json
+{
+    "criteria_results": [
+        {
+            "criterion": "Scoreboard or graphic overlay showing match time at 30:00",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms scoreboard shows match time progressing from 30:01 to 30:10, confirming 30:00 mark"
+        },
+        {
+            "criterion": "Visual display of shot statistics for both teams",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms 'SHOTS' graphic overlay visible showing both GER and ESP shot counts"
+        },
+        {
+            "criterion": "Germany's shot count visible on screen",
+            "criterion_type": "ANSWER",
+            "status": "PASS",
+            "reasoning": "VLM clearly states Germany has 0 shots displayed on the SHOTS graphic"
+        },
+        {
+            "criterion": "Italy's shot count visible on screen",
+            "criterion_type": "ANSWER",
+            "status": "FAIL",
+            "reasoning": "VLM confirms this is Germany vs Spain match, Italy is not playing and no shot data for Italy is displayed"
+        },
+        {
+            "criterion": "Match time indicator showing 30 minutes",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms time shows 30:01-30:10, confirming we are at the 30-minute mark"
+        },
+        {
+            "criterion": "Statistics graphic overlay during gameplay",
+            "criterion_type": "QUESTION",
+            "status": "PASS",
+            "reasoning": "VLM confirms SHOTS graphic overlay is visible in frames 1-4 at the 30:00 mark"
+        }
+    ],
+    "question_criteria_passed": 4,
+    "answer_criteria_passed": 1,
+    "answer_criteria_total": 2,
+    "criteria_passed": 5,
+    "criteria_total": 6,
+    "criteria_percentage": 0.833,
+    "base_confidence": 83.3,
+    "confidence": 50,
+    "critic_answer_choice": 2,
+    "critic_reasoning": "The VLM shows both teams have 0 shots at 30:00 (GER:0, ESP:0). While the question incorrectly mentions Italy instead of Spain, the pattern '0:4' in option C most closely matches the visual evidence of both teams having zero shots, though the correct interpretation would be '0:0' which isn't an option.",
+    "possible_errors": [
+        "Question incorrectly references Italy instead of Spain (actual match is Germany vs Spain)",
+        "No shot data for Italy is available since Italy is not playing in this match"
+    ],
+    "suggestion": null
+}
+```
+Critical assessment data: {'criteria_results': [{'criterion': 'Scoreboard or graphic overlay showing match time at 30:00', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms scoreboard shows match time progressing from 30:01 to 30:10, confirming 30:00 mark'}, {'criterion': 'Visual display of shot statistics for both teams', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': "VLM confirms 'SHOTS' graphic overlay visible showing both GER and ESP shot counts"}, {'criterion': "Germany's shot count visible on screen", 'criterion_type': 'ANSWER', 'status': 'PASS', 'reasoning': 'VLM clearly states Germany has 0 shots displayed on the SHOTS graphic'}, {'criterion': "Italy's shot count visible on screen", 'criterion_type': 'ANSWER', 'status': 'FAIL', 'reasoning': 'VLM confirms this is Germany vs Spain match, Italy is not playing and no shot data for Italy is displayed'}, {'criterion': 'Match time indicator showing 30 minutes', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms time shows 30:01-30:10, confirming we are at the 30-minute mark'}, {'criterion': 'Statistics graphic overlay during gameplay', 'criterion_type': 'QUESTION', 'status': 'PASS', 'reasoning': 'VLM confirms SHOTS graphic overlay is visible in frames 1-4 at the 30:00 mark'}], 'question_criteria_passed': 4, 'answer_criteria_passed': 1, 'answer_criteria_total': 2, 'criteria_passed': 5, 'criteria_total': 6, 'criteria_percentage': 0.833, 'base_confidence': 83.3, 'confidence': 50, 'critic_answer_choice': 2, 'critic_reasoning': "The VLM shows both teams have 0 shots at 30:00 (GER:0, ESP:0). While the question incorrectly mentions Italy instead of Spain, the pattern '0:4' in option C most closely matches the visual evidence of both teams having zero shots, though the correct interpretation would be '0:0' which isn't an option.", 'possible_errors': ['Question incorrectly references Italy instead of Spain (actual match is Germany vs Spain)', 'No shot data for Italy is available since Italy is not playing in this match'], 'suggestion': None}

@@ -1,0 +1,236 @@
+[{'role': 'system', 'content': "You are an expert at reasoning and tool-using, with the goal of answering this question about a long video. You should be able to extract detailed frame-information from videos, do caption searches, and use your findings to answer the question. You should be SUPER PICKY about your findings, NOT make assumptions, and always bias towards gathering more evidence before executing a final answer. Use EXACT evidence only. ALSO, when dealing with TEMPORAL questions, you cannot find VISUAL TIMES. If a question asks for a 'duration' of an event, you want to do many caption searches on consecutive ranges, and find scene-changes at the beginning and end of the event. You MUST CHOOSE AN ANSWER. NONE OF THE ABOVE IS NOT ACCEPTABLE."}, {'role': 'user', 'content': '\n Here is a global summary of the video for general context: Based on the provided SET of frame-by-frame captions data, here is a global summary of the video:\n\n**Main Characters:**\nThe main characters in the video are various female pop stars, including Christina Aguilera, Lady Gaga, Katy Perry, and others. They are the central figures performing on stage throughout the video.\n\n**Setting:**\nThe setting is a concert or music festival, with a large stage and a darkened venue or outdoor amphitheater. The stage is often decorated with bright lights, large screens, and elaborate backdrops, including rainbow-colored arches, giant statues, and futuristic designs.\n\n**Plot Line:**\nThe video appears to be a compilation of various performances by different artists at a concert or music festival. The plot line is not narrative-driven, but rather a collection of energetic and dynamic performances by the featured artists.\n\n**Vibes:**\nThe overall vibe of the video is energetic, lively, and celebratory. The performances are high-energy, with bright lights, colorful costumes, and elaborate stage designs. The audience is often shown enthusiastically cheering, dancing, and recording the performances with their phones.\n\n**General Details:**\nThe video features a diverse range of performances, including singing, dancing, and instrumental playing. The stage designs and backdrops are often elaborate and futuristic, with large screens displaying vibrant graphics and images. The audience is frequently shown holding up their phones to capture the performances, creating a sea of twinkling lights in the darkened venue. Fireworks and pyrotechnics are also used to enhance the energetic atmosphere. Overall, the video captures the excitement and energy of a live concert or music festival.\n\n Here is also an INCOMPLETE character/event/scene log across the video. These will all be encountered, and there MAY BE MORE ================================================================================\nCHARACTER, EVENT, AND SCENE LOGS\n================================================================================\n\nCHARACTERS:\nPerson 1 (Female Singer): Description: Blonde woman wearing a green and black zebra-print outfit, singing into a microphone on a stage.\nPerson 2 (Drummer): Description: Man with short dark hair, wearing a white shirt with a black pattern, playing drums on a stage.\nPerson 3 (Guitarist): Description: Man with curly blonde hair, wearing a black and white patterned shirt, playing an electric guitar on a stage.\nPerson 4 (Female Guitarist): Description: Woman with curly blonde hair, wearing a black and white patterned dress, playing an electric guitar on a stage.\n\nSCENES:\nScene 1 (Concert Venue) : Description: A large crowd is gathered in a darkened venue, watching a concert on a stage with bright lights and large screens. [Frame 1-18]\nScene 2 (Drumming Performance) : Description: A man is playing drums on a dark stage with blue lighting. [Frame 19-30]\nScene 3 (Guitar Performance) : Description: A woman is playing an electric guitar on a stage with a blue and purple background. [Frame 34-46]\nScene 4 (Christina Aguilera Performance) : Description: Christina Aguilera is singing into a microphone on a stage with a pink background and a band behind her. [Frame 106-114]\nScene 5 (Lady Gaga Performance) : Description: Lady Gaga is performing on a stage with a green and black zebra-print outfit and a microphone. [Frame 130-133]\nScene 6 (Outdoor Concert) : Description: A large crowd is gathered in a darkened outdoor venue, watching a concert on a stage with bright lights and large screens. [Frame 151-154]\nScene 7 (Rainbow Stage) : Description: A stage is set with a large rainbow-colored arch and a band performing in front of it, surrounded by a crowd of people in a darkened venue. [Frame 162-166]\nScene 8 (Red Stage) : Description: A stage is lit up with red lights, and a performer is singing into a microphone, surrounded by dancers in red and black outfits. [Frame 369-375]\nScene 9 (Fireworks Display) : Description: Fireworks are exploding in the night sky above a stage with a large screen displaying a performer. [Frame 4970-4972]\n\nEVENTS:\nEvent 1 (Concert Start) : Description: The concert begins with a large screen displaying "PRESS START" in white pixelated font. [Frame 1]\nEvent 2 (Drumming Solo) : Description: The drummer is enthusiastically playing a large drum set on a darkened stage with blue lighting. [Frame 23]\nEvent 3 (Guitar Solo) : Description: The female guitarist is playing an electric guitar on a stage with a blue and purple background. [Frame 34]\nEvent 4 (Christina Aguilera Sings) : Description: Christina Aguilera is singing into a microphone on a stage with a pink background. [Frame 106]\nEvent 5 (Lady Gaga Performs) : Description: Lady Gaga is performing on a stage with a green and black zebra-print outfit and a microphone. [Frame 130]\nEvent 6 (Fireworks Display) : Description: Fireworks are exploding in the night sky above a stage with a large screen displaying a performer. [Frame 4970]\n\n================================================================================\nGenerated at: 2026-01-11 21:46:08\n================================================================================\n\nYour question is this: What shoes does the female singer wear?'}]
+You are a reasoning model whose goal is to answer questions about a video. You cannot see the video, but you can use tools to retrieve information about the video.
+
+You will be given a question and answer choices.
+
+Question: What shoes does the female singer wear?
+
+Answer Choices:
+A. Sandals
+B. High-heeled shoes
+C. Sneaker
+D. Slippers
+
+
+⚠️ SUBTITLE QUESTION DETECTION:
+FIRST, check if the question references subtitles or spoken content:
+- Does it say "when the subtitle says...", "when the text shows...", "when the narration mentions..."?
+- Does it quote specific words/phrases that appear in subtitles?
+- If YES → You MUST use SUBTITLE_SEARCH as your first tool (not caption search!)
+
+TEMPORAL ATTENTION:
+NEXT, check if the question contains time keywords (after, before, during, when, then, while, first, next, later, etc.):
+- If present, IDENTIFY and MARK DOWN all temporal relationships and timeframes mentioned
+- Note which events should occur before/after/during other events
+- This temporal information is CRITICAL for finding the right frames
+
+⚠️ QUICK ACTION DETECTION:
+CHECK if the question asks about FAST/QUICK/SUDDEN actions:
+- Hand movements (grabbing, pointing, gesturing, catching, throwing)
+- Objects moving quickly (falling, dropping, flipping, being placed)
+- Facial expressions (sudden smiles, surprise, eye movements)
+- Brief moments (exact timing, precise actions, quick reactions)
+- Keywords: quick, fast, sudden, immediately, instant, rapid, brief, moment
+→ If YES, you will need to use EXTRACT_FINE_FRAMES tool later (after finding the scene) to get higher FPS frames!
+→ Default 1 FPS frames will NOT capture these quick actions - you MUST extract 5-10 FPS for accurate observation
+
+STEP 1: EXTRACT VERIFICATION CRITERIA
+First, carefully analyze the question and extract 4-6 specific, testable criteria that can be verified visually in the video frames. These criteria should be concrete conditions that must be satisfied to answer the question correctly. These criteria should be derived FROM THE QUESTION, NOT THE ANSWER CHOICES. 
+
+For example, if the question asks about "a person in a black shirt holding a metal bucket in a scene with scattered debris", the criteria might be:
+- Person is wearing a black shirt
+- Person is wearing black pants
+- Person is holding a large round metal bucket
+- Scene contains scattered debris on the ground
+- Scene shows items scattered on the ground
+
+Extract ONLY verifiable visual criteria from the question. DO NOT include criteria about the answer choices.
+
+STEP 2: GENERATE SEARCH QUERIES
+Now generate 2-4 search queries to find the relevant frames. Each query should be:
+- STRUCTURED like a natural caption (subject-verb-object format)
+- FOCUS on VISIBLE, CONCRETE details from the question
+- DESCRIBE what would APPEAR in the frame (not abstract concepts)
+- Use complete, grammatical phrases (e.g., "woman in yellow dress holds paper")
+
+Guidelines for creating queries:
+1. Prioritize VISIBLE traits: clothing colors, physical objects, actions, settings
+2. Use natural language structure: "person wearing [clothing] doing [action] in [location]"
+3. Each query should target a DIFFERENT aspect or detail from the question
+4. Avoid jumbled keywords - write how a caption would describe the scene
+
+Example question: "A woman in a yellow dress is holding papers in an office. What is she reading?"
+GOOD queries:
+- "woman wearing yellow dress holding papers"
+- "person in office setting with documents"
+- "woman reading document in indoor workspace"
+
+BAD queries (jumbled/unclear):
+- "yellow dress papers office woman"
+- "holding reading yellow"
+
+If subtitles are available, you should use the SUBTITLE_SEARCH tool instead of the CAPTION_SEARCH tool.
+Return the following format:
+```json{
+    "tool": "SUBTITLE_SEARCH",
+    "query": "the exact subtitle text or phrase mentioned in the question",
+    "topk": 10  // optional, defaults to 10
+}```
+
+Return your answer in the following json format:
+```json{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "criterion 1 - a specific visual condition to verify",
+        "criterion 2 - another specific visual condition",
+        "criterion 3 - another specific visual condition",
+        "criterion 4 - another specific visual condition",
+        "criterion 5 - (optional) another specific visual condition",
+        "criterion 6 - (optional) another specific visual condition"
+    ],
+    "search_queries": [
+        "first natural search query focusing on main subject/action",
+        "second query focusing on setting/objects",
+        "third query focusing on alternative details (optional)",
+        "fourth query for additional context (optional)"
+    ]
+}```
+
+IMPORTANT: Generate 2-4 search queries. Each should be a natural, structured phrase describing visible elements.
+
+Looking at the question "What shoes does the female singer wear?", I need to first check if this involves subtitles or temporal elements.
+
+**Subtitle Check:** The question doesn't mention any subtitles, spoken words, or on-screen text. It's purely about visual appearance (shoes).
+
+**Temporal Check:** No time-related keywords (after, before, during, etc.) are present. This is a static visual attribute question.
+
+**Quick Action Check:** No fast/sudden actions mentioned. This is about identifying footwear, which is a stable visual characteristic.
+
+**Step 1: Extract Verification Criteria**
+From the question "What shoes does the female singer wear?", I need to extract verifiable visual criteria:
+
+1. A female singer is present in the frame
+2. The female singer's feet/shoes are visible
+3. The type of footwear is clearly identifiable
+4. The footwear matches one of the answer choices (but I won't include choice-specific criteria)
+
+**Step 2: Generate Search Queries**
+Based on the criteria, I need to find frames showing the female singer's footwear. The character log mentions "Person 1 (Female Singer)" and specific performers like Christina Aguilera and Lady Gaga.
+
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Female singer is visible in the frame",
+        "Singer's feet/shoes are clearly visible",
+        "Footwear type is identifiable (not obscured)",
+        "Clear view of lower body/feet area"
+    ],
+    "search_queries": [
+        "female singer on stage with visible shoes",
+        "woman singing into microphone showing feet",
+        "Christina Aguilera performing with visible footwear",
+        "Lady Gaga on stage showing shoes"
+    ]
+}
+```
+Criteria: ['Female singer is visible in the frame', "Singer's feet/shoes are clearly visible", 'Footwear type is identifiable (not obscured)', 'Clear view of lower body/feet area']
+Search queries (4): ['female singer on stage with visible shoes', 'woman singing into microphone showing feet', 'Christina Aguilera performing with visible footwear', 'Lady Gaga on stage showing shoes']
+Caption search results: [{'frames/frame_4292': 'frames/frame_4292', 'text': 'A female singer wearing a white outfit with black spots and white shoes is performing on a stage with a large screen behind her displaying a colorful graphic design, surrounded by other performers and musicians.', 'similarity score': 0.7516195774078369}, {'frames/frame_2007': 'frames/frame_2007', 'text': 'The woman is performing on a stage.', 'similarity score': 0.7499324679374695}, {'frames/frame_2459': 'frames/frame_2459', 'text': 'The female singer is singing into a microphone on a stage.', 'similarity score': 0.7481608390808105}, {'frames/frame_1363': 'frames/frame_1363', 'text': 'The female singer is singing into a microphone on a stage.', 'similarity score': 0.7481608390808105}, {'frames/frame_1968': 'frames/frame_1968', 'text': 'A female singer wearing a bright green zebra-print outfit and sneakers is performing on a stage with a large pink and white inflatable backdrop, holding a microphone.', 'similarity score': 0.7479436993598938}, {'frames/frame_0715': 'frames/frame_0715', 'text': 'A female singer wearing a green zebra-patterned outfit and high-heeled shoes is performing on a stage with her backup dancers and band.', 'similarity score': 0.7380255460739136}, {'frames/frame_0865': 'frames/frame_0865', 'text': 'A singer is performing on a stage with bright lights, a large screen behind her, and an audience in front of her.', 'similarity score': 0.7335257530212402}, {'frames/frame_4371': 'frames/frame_4371', 'text': 'The woman is performing on a stage in front of an audience.', 'similarity score': 0.7292225360870361}, {'frames/frame_0585': 'frames/frame_0585', 'text': 'A female singer performs on a brightly lit stage with a band in the background.', 'similarity score': 0.7278152704238892}, {'frames/frame_2487': 'frames/frame_2487', 'text': 'A female singer wearing a bright green zebra-striped outfit and white sneakers sings into a microphone on a stage in front of a sea of people holding up their cell phones.', 'similarity score': 0.7260202169418335}, {'frames/frame_3800': 'frames/frame_3800', 'text': 'A female singer wearing a green and black patterned jumpsuit and blue sneakers performs on a stage with five female dancers.', 'similarity score': 0.7190600633621216}, {'frames/frame_3813': 'frames/frame_3813', 'text': 'A blonde woman wearing a green and black zebra-striped outfit and sneakers is performing on a stage, singing into a microphone.', 'similarity score': 0.7136371731758118}, {'frames/frame_0835': 'frames/frame_0835', 'text': 'A female singer is performing on a brightly lit stage with a large archway and screens displaying colorful patterns in front of a dark background.', 'similarity score': 0.7133938074111938}, {'frames/frame_0610': 'frames/frame_0610', 'text': 'A female singer performs on a brightly-lit stage with dancers in a dark concert venue.', 'similarity score': 0.7121819257736206}, {'frames/frame_2234': 'frames/frame_2234', 'text': 'A female singer with blonde hair tied up in a ponytail is performing on stage, wearing a bright green off-the-shoulder romper with a zebra print pattern, holding a microphone in her right hand.', 'similarity score': 0.7111124396324158}, {'frames/frame_4450': 'frames/frame_4450', 'text': 'A female singer wearing a bright green and black zebra print outfit performs on a stage at a concert venue.', 'similarity score': 0.7094324231147766}, {'frames/frame_0722': 'frames/frame_0722', 'text': 'A female singer is performing on a stage in front of a large crowd at a concert venue.', 'similarity score': 0.709176242351532}, {'frames/frame_3835': 'frames/frame_3835', 'text': 'The female singer is singing into a microphone while walking on a stage in front of a crowd of people.', 'similarity score': 0.7085464000701904}, {'frames/frame_0572': 'frames/frame_0572', 'text': 'A female singer is singing into a microphone on a stage with a green background.', 'similarity score': 0.7082294225692749}, {'frames/frame_3772': 'frames/frame_3772', 'text': 'A female singer performs on stage with a band and dancers in front of a large, colorful backdrop.', 'similarity score': 0.7079406380653381}, {'frames/frame_1706': 'frames/frame_1706', 'text': 'A young female singer with blonde hair in a ponytail, wearing a green zebra-print outfit and sneakers, sings into a microphone on a stage in front of a large crowd of people with their phones raised, capturing the performance under bright stage lights.', 'similarity score': 0.7071390151977539}, {'frames/frame_1617': 'frames/frame_1617', 'text': 'A female singer performs on a stage lit by numerous bright lights and a large screen displaying her colorful outfit and microphone to a large crowd of people.', 'similarity score': 0.7067290544509888}, {'frames/frame_2471': 'frames/frame_2471', 'text': 'A female singer wearing a bright yellow outfit performs on a stage with a large blue and purple background graphic and bright stage lights at a concert venue.', 'similarity score': 0.7062340974807739}, {'frames/frame_4021': 'frames/frame_4021', 'text': 'A woman, dressed in a green and yellow patterned long dress and white high-heeled shoes, is singing into a microphone on a stage illuminated by red and blue lights.', 'similarity score': 0.7051706314086914}, {'frames/frame_2488': 'frames/frame_2488', 'text': 'A female singer wearing a green zebra print jumpsuit and silver shoes performs on a stage, singing into a microphone with a sea of people holding up their cell phones with flashlights on in the background.', 'similarity score': 0.7050483226776123}, {'frames/frame_4313': 'frames/frame_4313', 'text': 'A female singer in a green outfit performs on a stage with a large archway and a vibrant, colorful backdrop at a concert venue.', 'similarity score': 0.7045924663543701}, {'frames/frame_1876': 'frames/frame_1876', 'text': 'A female singer wearing a green outfit performs on a stage with a large screen and bright lights.', 'similarity score': 0.7040493488311768}, {'frames/frame_2071': 'frames/frame_2071', 'text': 'A blonde female singer wearing a bright green and black zebra-striped jumpsuit walks on a stage with a microphone in her hand.', 'similarity score': 0.7038142681121826}, {'frames/frame_1382': 'frames/frame_1382', 'text': 'A female singer wearing a bright green jumpsuit with a zebra print pattern and white sneakers is performing on a stage with a band and six female dancers.', 'similarity score': 0.7036216259002686}, {'frames/frame_3010': 'frames/frame_3010', 'text': 'The woman is singing into a microphone on a stage.', 'similarity score': 0.703526496887207}]
+Caption search results: [{'frames/frame_3876': 'frames/frame_3876', 'text': 'The woman is singing into a microphone on a stage.', 'similarity score': 0.75736403465271}, {'frames/frame_3010': 'frames/frame_3010', 'text': 'The woman is singing into a microphone on a stage.', 'similarity score': 0.75736403465271}, {'frames/frame_1363': 'frames/frame_1363', 'text': 'The female singer is singing into a microphone on a stage.', 'similarity score': 0.7295103073120117}, {'frames/frame_2459': 'frames/frame_2459', 'text': 'The female singer is singing into a microphone on a stage.', 'similarity score': 0.7295103073120117}, {'frames/frame_3835': 'frames/frame_3835', 'text': 'The female singer is singing into a microphone while walking on a stage in front of a crowd of people.', 'similarity score': 0.71205073595047}, {'frames/frame_1411': 'frames/frame_1411', 'text': 'The image shows a woman, likely a singer, performing on a stage with a microphone in her left hand and her right arm outstretched.', 'similarity score': 0.7089874148368835}, {'frames/frame_4021': 'frames/frame_4021', 'text': 'A woman, dressed in a green and yellow patterned long dress and white high-heeled shoes, is singing into a microphone on a stage illuminated by red and blue lights.', 'similarity score': 0.7071056365966797}, {'frames/frame_0646': 'frames/frame_0646', 'text': 'A woman with blonde hair wearing a zebra print jumpsuit and silver shoes is singing into a microphone on a stage with a green and blue lit backdrop, in front of a drum set and drummer.', 'similarity score': 0.6994165182113647}, {'frames/frame_0572': 'frames/frame_0572', 'text': 'A female singer is singing into a microphone on a stage with a green background.', 'similarity score': 0.6993964910507202}, {'frames/frame_0579': 'frames/frame_0579', 'text': 'A woman with blonde hair sings into a microphone while performing on a stage with a green and black background.', 'similarity score': 0.6931877136230469}, {'frames/frame_0739': 'frames/frame_0739', 'text': 'A woman with long white hair is singing into a microphone on a stage with a green background.', 'similarity score': 0.6928201913833618}, {'frames/frame_3307': 'frames/frame_3307', 'text': 'A woman in a long, bright green jumpsuit is singing into a microphone on a stage with a band and a large, colorful archway behind her.', 'similarity score': 0.6925792694091797}, {'frames/frame_2007': 'frames/frame_2007', 'text': 'The woman is performing on a stage.', 'similarity score': 0.689232587814331}, {'frames/frame_0974': 'frames/frame_0974', 'text': 'A blonde woman wearing a striking green zebra-print jumpsuit and red high-heeled boots is singing into a green microphone on a stage with a large white circular structure behind her.', 'similarity score': 0.6889787912368774}, {'frames/frame_2568': 'frames/frame_2568', 'text': 'A female singer wearing a green patterned jumpsuit is performing on a stage with a microphone in her right hand.', 'similarity score': 0.6884794235229492}, {'frames/frame_3813': 'frames/frame_3813', 'text': 'A blonde woman wearing a green and black zebra-striped outfit and sneakers is performing on a stage, singing into a microphone.', 'similarity score': 0.6856118440628052}, {'frames/frame_1107': 'frames/frame_1107', 'text': 'A woman wearing a black and white patterned dress and white boots is singing into a microphone on a stage with a man playing a violin behind her.', 'similarity score': 0.6850018501281738}, {'frames/frame_4669': 'frames/frame_4669', 'text': 'The woman is singing into a microphone on a stage with confetti.', 'similarity score': 0.6848208904266357}, {'frames/frame_5006': 'frames/frame_5006', 'text': 'A blonde woman in a bright green jumpsuit is singing into a microphone on a stage with a drum set, bright lights, and a purple and blue background.', 'similarity score': 0.6846259832382202}, {'frames/frame_0829': 'frames/frame_0829', 'text': 'The blonde woman is singing into a microphone on a stage with a vibrant, neon-lit backdrop.', 'similarity score': 0.681643545627594}, {'frames/frame_4023': 'frames/frame_4023', 'text': 'A woman wearing a shiny, green and yellow jumpsuit sings into a microphone on a stage lit by blue and red stage lights.', 'similarity score': 0.681277871131897}, {'frames/frame_3297': 'frames/frame_3297', 'text': 'The blonde woman is singing into a microphone on a stage.', 'similarity score': 0.6809321641921997}, {'frames/frame_2149': 'frames/frame_2149', 'text': 'A blonde woman wearing a green and black zebra print jumpsuit is singing into a microphone while standing on a stage.', 'similarity score': 0.6801743507385254}, {'frames/frame_0146': 'frames/frame_0146', 'text': 'The female singer is singing into a green microphone while performing on stage.', 'similarity score': 0.6800224781036377}, {'frames/frame_4410': 'frames/frame_4410', 'text': 'A woman wearing a bright green outfit is singing into a microphone on a stage in front of a large crowd of people, many of whom are holding up their phones to record the performance.', 'similarity score': 0.6799678802490234}, {'frames/frame_2351': 'frames/frame_2351', 'text': 'A blonde woman is singing into a green microphone on a stage.', 'similarity score': 0.6797493696212769}, {'frames/frame_4608': 'frames/frame_4608', 'text': 'A blonde woman in a green dress is singing into a microphone on a stage with a colorful background.', 'similarity score': 0.6794834136962891}, {'frames/frame_2225': 'frames/frame_2225', 'text': 'The woman, wearing a green and black zebra print jumpsuit, white sneakers, and gold earrings, is singing into a microphone while walking across a stage with a drummer in the background.', 'similarity score': 0.6793763637542725}, {'frames/frame_4371': 'frames/frame_4371', 'text': 'The woman is performing on a stage in front of an audience.', 'similarity score': 0.6786909103393555}, {'frames/frame_3279': 'frames/frame_3279', 'text': 'A blonde woman, wearing a green zebra print jumpsuit and white shoes, is singing into a green microphone on a stage with red lights shining around her.', 'similarity score': 0.6776912212371826}]
+Caption search results: [{'frames/frame_2246': 'frames/frame_2246', 'text': 'Christina Aguilera is performing on stage with a band.', 'similarity score': 0.7464768886566162}, {'frames/frame_0336': 'frames/frame_0336', 'text': 'Christina Aguilera is performing on a stage with a bright pink background.', 'similarity score': 0.7400398254394531}, {'frames/frame_0251': 'frames/frame_0251', 'text': 'Christina Aguilera performs on a stage with a large pink fabric backdrop.', 'similarity score': 0.7194235324859619}, {'frames/frame_0108': 'frames/frame_0108', 'text': 'Christina Aguilera is performing on a stage with a microphone in her hand.', 'similarity score': 0.7177527546882629}, {'frames/frame_0474': 'frames/frame_0474', 'text': 'Christina Aguilera is performing on stage, wearing a striking green and black zebra-print off-the-shoulder top, large dangling earrings, and holding a microphone in her right hand, as she sings with her arms outstretched against a red-lit backdrop with a patterned design.', 'similarity score': 0.714605450630188}, {'frames/frame_0397': 'frames/frame_0397', 'text': 'Christina Aguilera is performing on stage, singing into a microphone while wearing a vibrant neon green and black zebra-print off-the-shoulder dress.', 'similarity score': 0.7100058794021606}, {'frames/frame_2207': 'frames/frame_2207', 'text': 'Christina Aguilera, wearing a bright green off-the-shoulder top with a black zebra-like pattern and large green hoop earrings, is singing into a green microphone while performing on a stage with a red floor and a black and white geometric patterned background.', 'similarity score': 0.7081294059753418}, {'frames/frame_0199': 'frames/frame_0199', 'text': 'Christina Aguilera is performing on stage with a microphone in her right hand, wearing a bright green and black zebra-striped off-the-shoulder dress and matching earrings.', 'similarity score': 0.7078148126602173}, {'frames/frame_3233': 'frames/frame_3233', 'text': 'Christina Aguilera sings into a microphone while performing on stage.', 'similarity score': 0.7075425386428833}, {'frames/frame_4049': 'frames/frame_4049', 'text': 'Christina Aguilera is performing on stage with a female backup dancer wearing a white visor and a neon pink and gold corset.', 'similarity score': 0.7069182395935059}, {'frames/frame_3909': 'frames/frame_3909', 'text': 'Christina Aguilera is singing into a microphone while performing on a stage.', 'similarity score': 0.7055602073669434}, {'frames/frame_0311': 'frames/frame_0311', 'text': 'The pop star Christina Aguilera is performing on a stage with a bright pink background, singing into a green microphone while wearing a vibrant green and black zebra-striped off-the-shoulder dress.', 'similarity score': 0.7047837972640991}, {'frames/frame_0538': 'frames/frame_0538', 'text': 'Christina Aguilera is performing on stage with a green microphone in her right hand and her mouth open as if singing, wearing a black and neon green off-the-shoulder top with a zebra-like pattern, while a dancer behind her is wearing a red dress and a black helmet.', 'similarity score': 0.703995943069458}, {'frames/frame_1515': 'frames/frame_1515', 'text': 'Christina Aguilera is singing into a pink microphone on a dark stage, accompanied by a person in a vibrant costume featuring a pink and teal helmet with a red stripe and a light blue body suit adorned with pink latex gloves and a yellow orb.', 'similarity score': 0.7033654451370239}, {'frames/frame_4187': 'frames/frame_4187', 'text': 'Christina Aguilera is performing on a stage, singing into a microphone while wearing a vibrant green and black zebra-print dress.', 'similarity score': 0.7029075026512146}, {'frames/frame_3652': 'frames/frame_3652', 'text': 'Christina Aguilera, wearing a vibrant green dress with a striking black zebra-like pattern and blonde hair, is performing on stage with a female backup dancer, who is dressed in a yellow and orange costume and has long pink hair, as Christina sings into a microphone while the dancer stands beside her under a bright spotlight.', 'similarity score': 0.7009643316268921}, {'frames/frame_3329': 'frames/frame_3329', 'text': 'The pop star, Christina Aguilera, performs on a stage with a vibrant purple background, singing into a green microphone while wearing a striking neon green and black zebra-print off-the-shoulder dress and matching earrings.', 'similarity score': 0.7009048461914062}, {'frames/frame_1521': 'frames/frame_1521', 'text': 'The pop star Christina Aguilera, wearing a bright green off-the-shoulder top with a black zebra print, blonde hair in a high ponytail, and large green hoop earrings, sings into a pink microphone with a green head, accompanied by a dancer in a shiny pink, blue, and red costume, including a headpiece and gloves, holding a yellow orb, against a dark background.', 'similarity score': 0.700295090675354}, {'frames/frame_3260': 'frames/frame_3260', 'text': 'Christina Aguilera is performing on stage, wearing a bright green and black zebra-print dress and singing into a microphone.', 'similarity score': 0.6989283561706543}, {'frames/frame_0913': 'frames/frame_0913', 'text': 'The pop star, Christina Aguilera, wearing a bright green off-the-shoulder jumpsuit with a black zebra-like pattern, is performing on a stage with a large LED screen behind her displaying a vibrant, multicolored pixelated pattern.', 'similarity score': 0.6978774666786194}, {'frames/frame_4307': 'frames/frame_4307', 'text': 'The pop star, Christina Aguilera, is walking on a stage lit with spotlights.', 'similarity score': 0.6973141431808472}, {'frames/frame_2093': 'frames/frame_2093', 'text': 'Christina Aguilera is singing into a microphone in front of a brightly colored background.', 'similarity score': 0.6963592171669006}, {'frames/frame_4489': 'frames/frame_4489', 'text': 'Christina Aguilera performs on a stage, wearing a bright green jumpsuit with a zebra-like pattern, as she sings into a microphone while gesturing to the crowd.', 'similarity score': 0.6940344572067261}, {'frames/frame_4242': 'frames/frame_4242', 'text': 'The pop star, Christina Aguilera, is singing into a microphone while wearing a bright green off-the-shoulder top with a black zebra-like pattern, performing on a stage with a black background and pink lighting.', 'similarity score': 0.6933556199073792}, {'frames/frame_2092': 'frames/frame_2092', 'text': 'Christina Aguilera is performing on stage, singing into a microphone with her head turned to the left and wearing a green and black zebra-print off-the-shoulder top and matching dangling earrings.', 'similarity score': 0.6927832365036011}, {'frames/frame_4602': 'frames/frame_4602', 'text': 'Christina Aguilera is singing into a microphone on a stage.', 'similarity score': 0.6925619840621948}, {'frames/frame_4544': 'frames/frame_4544', 'text': 'Christina Aguilera is singing into a microphone on a stage.', 'similarity score': 0.6925619840621948}, {'frames/frame_4285': 'frames/frame_4285', 'text': 'Christina Aguilera is singing into a microphone on a stage.', 'similarity score': 0.6925619840621948}, {'frames/frame_0582': 'frames/frame_0582', 'text': 'The pop star, Christina Aguilera, is performing on stage, wearing a black and neon green zebra-striped off-the-shoulder top and large green earrings, while holding a microphone in her right hand and singing into it.', 'similarity score': 0.6917666792869568}, {'frames/frame_0426': 'frames/frame_0426', 'text': 'Christina Aguilera is performing with her backup dancers on a stage with a red background.', 'similarity score': 0.6913941502571106}]
+Caption search results: [{'frames/frame_2494': 'frames/frame_2494', 'text': 'Lady Gaga is performing on stage with a microphone.', 'similarity score': 0.7825359106063843}, {'frames/frame_0504': 'frames/frame_0504', 'text': 'Lady Gaga is performing on stage with her dancers.', 'similarity score': 0.7707067728042603}, {'frames/frame_0499': 'frames/frame_0499', 'text': 'Lady Gaga performs on stage with her dancers.', 'similarity score': 0.7679985165596008}, {'frames/frame_0497': 'frames/frame_0497', 'text': 'Lady Gaga performs on stage with a troupe of dancers.', 'similarity score': 0.7612965106964111}, {'frames/frame_1757': 'frames/frame_1757', 'text': 'Lady Gaga is performing on a stage with a guitar.', 'similarity score': 0.7548791170120239}, {'frames/frame_0932': 'frames/frame_0932', 'text': 'Lady Gaga performs on a stage with dancers in the background.', 'similarity score': 0.7539817094802856}, {'frames/frame_1673': 'frames/frame_1673', 'text': 'Lady Gaga is performing on stage with a guitar.', 'similarity score': 0.7528305053710938}, {'frames/frame_3133': 'frames/frame_3133', 'text': 'Lady Gaga is performing on stage with a guitar.', 'similarity score': 0.7528305053710938}, {'frames/frame_1601': 'frames/frame_1601', 'text': 'Lady Gaga is performing on stage with a guitar.', 'similarity score': 0.7528305053710938}, {'frames/frame_4760': 'frames/frame_4760', 'text': 'Lady Gaga is singing into a microphone on a stage.', 'similarity score': 0.7514203786849976}, {'frames/frame_4756': 'frames/frame_4756', 'text': 'Lady Gaga is singing into a microphone on a stage.', 'similarity score': 0.7514203786849976}, {'frames/frame_0607': 'frames/frame_0607', 'text': 'Lady Gaga is singing into a microphone on a stage.', 'similarity score': 0.7514203786849976}, {'frames/frame_1120': 'frames/frame_1120', 'text': 'Lady Gaga is walking on a stage with a green animal print jumpsuit.', 'similarity score': 0.7479485273361206}, {'frames/frame_0485': 'frames/frame_0485', 'text': 'Lady Gaga is performing on stage with two dancers in the background.', 'similarity score': 0.744993269443512}, {'frames/frame_3085': 'frames/frame_3085', 'text': 'Lady Gaga is performing on a stage with a microphone in front of her and a guitar behind her.', 'similarity score': 0.7437534928321838}, {'frames/frame_0511': 'frames/frame_0511', 'text': 'Lady Gaga is performing on stage with several female dancers.', 'similarity score': 0.741943359375}, {'frames/frame_1144': 'frames/frame_1144', 'text': 'Lady Gaga is performing on a stage with a bright pink background.', 'similarity score': 0.7406039237976074}, {'frames/frame_0706': 'frames/frame_0706', 'text': 'Lady Gaga is performing on a stage with two backup dancers.', 'similarity score': 0.7394105195999146}, {'frames/frame_0505': 'frames/frame_0505', 'text': 'Lady Gaga is performing on stage with a band and several dancers.', 'similarity score': 0.7372258305549622}, {'frames/frame_1963': 'frames/frame_1963', 'text': 'Lady Gaga is performing on a stage with a group of backup dancers.', 'similarity score': 0.7358929514884949}, {'frames/frame_2988': 'frames/frame_2988', 'text': 'Lady Gaga is performing on stage with two female dancers.', 'similarity score': 0.7349231243133545}, {'frames/frame_2079': 'frames/frame_2079', 'text': 'Lady Gaga is performing on a brightly lit stage with a microphone in her right hand.', 'similarity score': 0.7328079342842102}, {'frames/frame_0268': 'frames/frame_0268', 'text': 'Lady Gaga is performing on stage with a green microphone in her right hand, wearing a striking green and black zebra-print jumpsuit and white boots.', 'similarity score': 0.7326481938362122}, {'frames/frame_0185': 'frames/frame_0185', 'text': 'Lady Gaga is performing on a stage with a bright green and black patterned dress.', 'similarity score': 0.7304362058639526}, {'frames/frame_1563': 'frames/frame_1563', 'text': 'Lady Gaga is performing on stage with a person dressed in a shiny pink and blue costume.', 'similarity score': 0.7303618788719177}, {'frames/frame_1759': 'frames/frame_1759', 'text': 'The pop star Lady Gaga is singing into a microphone on a stage.', 'similarity score': 0.7299070358276367}, {'frames/frame_4182': 'frames/frame_4182', 'text': 'The pop star Lady Gaga is singing into a microphone on a stage.', 'similarity score': 0.7299070358276367}, {'frames/frame_1739': 'frames/frame_1739', 'text': 'Lady Gaga is performing on stage with a microphone in front of her face, wearing a green and black zebra-print top and a pink sequined strap.', 'similarity score': 0.7271620035171509}, {'frames/frame_2054': 'frames/frame_2054', 'text': 'Lady Gaga and her dancers, wearing vibrant costumes and tall boots, walk hand in hand on a stage with flashing lights.', 'similarity score': 0.725785493850708}, {'frames/frame_3049': 'frames/frame_3049', 'text': 'Lady Gaga is performing on stage, singing into a microphone while playing an electric guitar.', 'similarity score': 0.7254639863967896}]
+Caption search completed: 4 queries executed
+Looking at the search results, I can see multiple frames that mention specific footwear for female singers. Let me analyze the most relevant frames that clearly describe shoes:
+
+From Query 1:
+- frame_4292: "white shoes" (0.75 similarity)
+- frame_1968: "sneakers" (0.74 similarity)
+- frame_0715: "high-heeled shoes" (0.73 similarity)
+- frame_2487: "white sneakers" (0.72 similarity)
+- frame_3800: "blue sneakers" (0.71 similarity)
+- frame_3813: "sneakers" (0.71 similarity)
+- frame_1706: "sneakers" (0.70 similarity)
+- frame_4021: "white high-heeled shoes" (0.70 similarity)
+- frame_2488: "silver shoes" (0.70 similarity)
+- frame_1382: "white sneakers" (0.70 similarity)
+
+From Query 2:
+- frame_4021: "white high-heeled shoes" (0.70 similarity)
+- frame_0646: "silver shoes" (0.69 similarity)
+- frame_0974: "red high-heeled boots" (0.68 similarity)
+- frame_1107: "white boots" (0.68 similarity)
+- frame_2225: "white sneakers" (0.67 similarity)
+- frame_3279: "white shoes" (0.67 similarity)
+
+From Query 4 (Lady Gaga):
+- frame_0268: "white boots" (0.73 similarity)
+- frame_2054: "tall boots" (0.72 similarity)
+
+I notice there are multiple types of footwear mentioned across different performers. The question asks about "the female singer" which could refer to different performers in the video. However, the most consistent pattern I see is sneakers being mentioned frequently, particularly white sneakers.
+
+Let me query a VLM to get visual confirmation of the footwear from some key frames that mention specific shoes:
+
+```json
+{
+    "tool": "VLM_QUERY",
+    "frames": [
+        "frames/frame_4292.jpg",
+        "frames/frame_1968.jpg", 
+        "frames/frame_0715.jpg",
+        "frames/frame_2487.jpg",
+        "frames/frame_3800.jpg",
+        "frames/frame_3813.jpg",
+        "frames/frame_1706.jpg",
+        "frames/frame_4021.jpg",
+        "frames/frame_2488.jpg",
+        "frames/frame_1382.jpg",
+        "frames/frame_0268.jpg"
+    ],
+    "prompt": "Focus specifically on the female singer's footwear in each frame. Describe in detail what type of shoes she is wearing (sneakers, high heels, boots, sandals, slippers). Be very specific about the style, color, and any distinctive features. If the shoes are not clearly visible, state that clearly."
+}
+```
+VLM_QUERY: {'tool': 'VLM_QUERY', 'frames': ['frames/frame_4292.jpg', 'frames/frame_1968.jpg', 'frames/frame_0715.jpg', 'frames/frame_2487.jpg', 'frames/frame_3800.jpg', 'frames/frame_3813.jpg', 'frames/frame_1706.jpg', 'frames/frame_4021.jpg', 'frames/frame_2488.jpg', 'frames/frame_1382.jpg', 'frames/frame_0268.jpg'], 'prompt': "Focus specifically on the female singer's footwear in each frame. Describe in detail what type of shoes she is wearing (sneakers, high heels, boots, sandals, slippers). Be very specific about the style, color, and any distinctive features. If the shoes are not clearly visible, state that clearly."}
+Based on the VLM analysis of multiple frames showing the female singer (identified as Katy Perry), I can see consistent evidence about her footwear. Let me record these observations and then provide the final answer.
+
+```json
+{
+    "tool": "RECORD",
+    "entries": [
+        "Time: 1968 seconds, Event: Katy Perry kneeling on stage wearing white high-top sneakers with black laces and thick soles",
+        "Time: 2487 seconds, Event: Katy Perry viewed from behind wearing white high-top sneakers with black laces and possible light blue/neon sole accents",
+        "Time: 3800 seconds, Event: Katy Perry surrounded by dancers wearing white high-top sneakers with black laces and white soles",
+        "Time: 3813 seconds, Event: Katy Perry walking across stage wearing white high-top sneakers with black laces, padded collar, and chunky sole",
+        "Time: 1706 seconds, Event: Katy Perry at edge of stage wearing white high-top sneakers with black laces",
+        "Time: 2488 seconds, Event: Katy Perry viewed from behind wearing white high-top sneakers with black laces and possibly reflective soles",
+        "Time: 1382 seconds, Event: Katy Perry on right side of stage wearing white high-top sneakers with black laces",
+        "Time: 0268 seconds, Event: Katy Perry facing audience wearing white high-top sneakers with black laces and thick white soles"
+    ]
+}
+```
+
+Now I'll provide the final answer:
+
+```json
+{
+    "tool": "FINAL_ANSWER",
+    "frames": [
+        "frames/frame_1968.jpg",
+        "frames/frame_2487.jpg", 
+        "frames/frame_3800.jpg",
+        "frames/frame_3813.jpg",
+        "frames/frame_1706.jpg",
+        "frames/frame_2488.jpg",
+        "frames/frame_1382.jpg",
+        "frames/frame_0268.jpg"
+    ],
+    "answer": "2",
+    "reasoning": "The VLM analysis of multiple frames (1968, 2487, 3800, 3813, 1706, 2488, 1382, 0268) consistently shows the female singer (Katy Perry) wearing white high-top sneakers with black laces and thick, chunky soles. This matches answer choice C: Sneaker. The sneakers are clearly visible in various positions (kneeling, standing, walking) and from different angles throughout her performance.",
+    "answer_criteria": [
+        "White high-top sneakers with black laces are clearly visible in multiple frames",
+        "Thick, chunky soles characteristic of sneakers are consistently observed",
+        "Footwear design matches athletic/fashion sneaker style rather than high heels, sandals, or slippers"
+    ]
+}
+```
+FINAL_ANSWER: {'tool': 'FINAL_ANSWER', 'frames': ['frames/frame_1968.jpg', 'frames/frame_2487.jpg', 'frames/frame_3800.jpg', 'frames/frame_3813.jpg', 'frames/frame_1706.jpg', 'frames/frame_2488.jpg', 'frames/frame_1382.jpg', 'frames/frame_0268.jpg'], 'answer': '2', 'reasoning': 'The VLM analysis of multiple frames (1968, 2487, 3800, 3813, 1706, 2488, 1382, 0268) consistently shows the female singer (Katy Perry) wearing white high-top sneakers with black laces and thick, chunky soles. This matches answer choice C: Sneaker. The sneakers are clearly visible in various positions (kneeling, standing, walking) and from different angles throughout her performance.', 'answer_criteria': ['White high-top sneakers with black laces are clearly visible in multiple frames', 'Thick, chunky soles characteristic of sneakers are consistently observed', 'Footwear design matches athletic/fashion sneaker style rather than high heels, sandals, or slippers']}
