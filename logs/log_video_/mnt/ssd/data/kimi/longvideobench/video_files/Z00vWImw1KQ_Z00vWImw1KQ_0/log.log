@@ -1,0 +1,373 @@
+[{'role': 'system', 'content': "You are an expert at reasoning and tool-using, with the goal of answering this question about a long video. You should be able to extract detailed frame-information from videos, do caption searches, and use your findings to answer the question. You should be SUPER PICKY about your findings, NOT make assumptions, and always bias towards gathering more evidence before executing a final answer. Use EXACT evidence only. ALSO, when dealing with TEMPORAL questions, you cannot find VISUAL TIMES. If a question asks for a 'duration' of an event, you want to do many caption searches on consecutive ranges, and find scene-changes at the beginning and end of the event. You MUST CHOOSE AN ANSWER. NONE OF THE ABOVE IS NOT ACCEPTABLE."}, {'role': 'user', 'content': '\n Here is a global summary of the video for general context: **Summary:**\n\n- **Main Characters:** The male news anchor, a middle-aged man speaking via live video link from London, and various rescue personnel and officials in Uttarkashi, India.\n\n- **Setting:** 1. The BBC News studio in London with a busy newsroom background, 2. The site of the tunnel collapse in Uttarkashi, India, with emergency vehicles and rescue personnel, and 3. A nighttime scene in Uttarkashi, India, with crowds of rescue workers and media personnel.\n\n- **Plot:** The video clip presents a series of breaking news segments and live reports from the BBC News studio and the site of a tunnel collapse in Uttarkashi, India. The narrative centers around the rescue operation for trapped construction workers, showcasing the efforts of rescue personnel and authorities.\n\n- **Vibes:** The mood is professional and serious in the studio segment, turning urgent and tense as the live reports unfold in Uttarkashi. The atmosphere shifts to hopeful and relieved as news of successful rescues emerges.\n\n- **General Details:** The clip spans various scenes and settings, incorporating on-screen text, news tickers, and live video feeds. The narrative is driven by the unfolding rescue operation, with the BBC News breaking report and live updates providing context and insight into the developing story.\n\n Here is also an INCOMPLETE character/event/scene log across the video. These will all be encountered, and there MAY BE MORE CHARACTERS:\nRescue Worker 1: Description: [Rescued worker wearing a yellow hard hat and white blanket, fatigued] [00s-12s]\nRescue Worker 2: Description: [Woman in glasses and dark green jacket with red collar, medical attention] [00s-12s]\nRescue Worker 3: Description: [Person in orange high-visibility jacket, rescue personnel] [00s-12s]\nNews Anchor: Description: [Male news anchor with gray hair, dark blue suit, white shirt] [0s-12s]\nMan on Live Video Link: Description: [Middle-aged man wearing a dark blazer over a purple shirt, speaking from a home office/study] [94s-106s]\n\nSCENES:\nScene 1 (Uttarkashi Rescue Operation): Description: [Nighttime rescue operation in Uttarkashi, India, with multiple monitors displaying images in a busy newsroom] [0s-94s]\nScene 2 (Ambulance Scene): Description: [Live nighttime scene in Uttarkashi, India, with a green and white ambulance with flashing emergency lights] [12s-94s]\nScene 3 (Live Video Link): Description: [Man speaking via live video link from London, in a home office or study] [94s-106s]\nScene 4 (Rescue Operation): Description: [Chaotic and crowded nighttime rescue operation in Uttarkashi, India, with emergency vehicles and personnel] [106s-226s]\nScene 5 (Ambulance Scene): Description: [Teal and white ambulance with flashing blue and amber emergency lights navigating through dense crowds of rescue workers and media personnel] [106s-226s]\nScene 6 (Tunnel Entrance): Description: [Brightly lit tunnel entrance, with a crowd of rescue workers and officials, and multiple emergency vehicles with flashing lights] [226s-346s]\nScene 7 (Rescue Scene): Description: [Emergency vehicles slowly maneuvering through the crowd, with flashing lights and dense gathering of rescue personnel] [226s-346s]\nScene 8 (Nighttime Rescue Scene): Description: [Nighttime rescue scene in Uttarkashi, India, with an ambulance and multiple rescue vehicles, surrounded by silhouettes of workers and rescue personnel] [466s-476s]\n\nEVENTS:\nEvent 1 (Rescue): Description: [Rescue operation for trapped construction workers in India, with multiple workers rescued] [12s-94s]\nEvent 2 (Breaking News): Description: [Breaking news report about a rescue operation in Uttarkashi, India, with live updates and news tickers] [94s-106s]\nEvent 3 (Rescue Operation): Description: [Successful rescue of at least 35 construction workers from a collapsed tunnel in Uttarkashi, India] [466s-476s]\nYour question is this: On the street, there is an ambulance with a white and green pattern in the middle. To the left is a soldier wearing camouflage clothing, and in the right seat of the ambulance is a person wearing red clothes. On the right side are onlookers. Which character closed the door of the ambulance?'}]You are answering questions about a video using tools to retrieve information.
+
+Question: On the street, there is an ambulance with a white and green pattern in the middle. To the left is a soldier wearing camouflage clothing, and in the right seat of the ambulance is a person wearing red clothes. On the right side are onlookers. Which character closed the door of the ambulance?
+
+Answer Choices:
+A. doctor
+B. police officer wearing sunglasses
+C. person wearing red clothes
+D. woman wearing white clothes
+E. soldier wearing camouflage clothing
+
+
+SUBTITLES AVAILABLE: Use SUBTITLE_SEARCH when the question quotes text, mentions dialogue, or asks about spoken words (e.g., 'when the subtitle says...').
+
+STEP 1: CHECK QUESTION TYPE
+- Subtitle question? (quotes text, asks about dialogue) → Use SUBTITLE_SEARCH first
+- Temporal question? (after/before/when/first/next/last) → Use RECORD after each VLM_QUERY to track events
+- Quick actions? (hand movements, fast motions, sudden reactions) → Use EXTRACT_FINE_FRAMES at 5-10 FPS
+- Small details? (small objects, text, fine features) → Use CROP_OBJECT to zoom in
+
+STEP 2: EXTRACT VERIFICATION CRITERIA
+List 4-6 specific, testable visual criteria from the QUESTION (not answer choices) that must be verified.
+
+Example: "person in black shirt holding metal bucket with scattered debris"
+Criteria:
+- Person wearing black shirt
+- Person wearing black pants
+- Person holding large round metal bucket
+- Scene contains scattered debris on ground
+
+STEP 2.5: PLAN TO TEST EACH ANSWER CHOICE
+Once you have frames, plan to systematically test EACH answer option with VLM queries:
+- Query to verify option A characteristics
+- Query to verify option B characteristics
+- Query to verify option C characteristics
+- Query to verify option D characteristics
+This prevents confirmation bias and ensures you select the answer with STRONGEST visual evidence.
+
+STEP 3: GENERATE SEARCH QUERIES
+Create 2-4 natural search queries (subject-verb-object format) targeting VISIBLE details.
+- Good: "woman wearing yellow dress holding papers", "person in office setting with documents"
+- Bad: "yellow dress papers office woman"
+
+IMPORTANT: After getting clip time ranges from CAPTION_SEARCH, you MUST use VLM_QUERY to visually verify frames in those time ranges.
+DO NOT repeatedly search captions - once you have candidate clips/time ranges, USE VLM_QUERY to look at the frames!
+
+NOTE: CAPTION_SEARCH returns clip time ranges (e.g., "clip_45_67" = 45-67 seconds).
+Use these time ranges to extract frames for VLM_QUERY (e.g., check frames 45-67: frame_0045.jpg to frame_0067.jpg).
+
+Return format:
+```json{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["criterion 1", "criterion 2", "criterion 3", "criterion 4"],
+    "search_queries": ["natural query 1", "natural query 2", "optional query 3", "optional query 4"]
+}```
+
+For subtitle questions: {"tool": "SUBTITLE_SEARCH", "query": "exact subtitle text", "topk": 10}
+For video clip extraction: {"tool": "QUERY_CLIP", "start_frame": 45, "end_frame": 52, "prompt": "Describe the action"}
+
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Ambulance with white and green pattern",
+        "Soldier wearing camouflage clothing to the left of ambulance",
+        "Person wearing red clothes in right seat of ambulance",
+        "Onlookers on the right side",
+        "Someone closing the ambulance door"
+    ],
+    "search_queries": [
+        "ambulance with white and green pattern",
+        "soldier in camouflage near ambulance",
+        "person in red clothes inside ambulance",
+        "onlookers watching ambulance scene",
+        "closing ambulance door"
+    ]
+}
+```
+Search queries (5): ['ambulance with white and green pattern', 'soldier in camouflage near ambulance', 'person in red clothes inside ambulance', 'onlookers watching ambulance scene', 'closing ambulance door']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Ambulance with white and green pattern",
+        "Soldier wearing camouflage clothing to the left of ambulance",
+        "Person wearing red clothes in right seat of ambulance",
+        "Onlookers on the right side",
+        "Someone closing the ambulance door"
+    ],
+    "search_queries": [
+        "ambulance with white and green pattern",
+        "soldier in camouflage near ambulance",
+        "person in red clothes inside ambulance",
+        "crowd of onlookers watching ambulance",
+        "someone closing ambulance door"
+    ]
+}
+Search queries (5): ['ambulance with white and green pattern', 'soldier in camouflage near ambulance', 'person in red clothes inside ambulance', 'crowd of onlookers watching ambulance', 'someone closing ambulance door']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+Looking at the question, I need to identify which character closed the ambulance door in a specific scene. Let me break this down.
+
+**Step 1: Question Type Analysis**
+- This is a visual identification question about a specific action (closing an ambulance door)
+- Not a subtitle question (no dialogue/text mentioned)
+- Not primarily temporal (though timing will be important to find the exact moment)
+- Involves quick actions (door closing) and small details (specific clothing/roles)
+
+**Step 2: Verification Criteria**
+From the question description, I need to verify:
+1. Ambulance with white and green pattern
+2. Soldier wearing camouflage clothing to the left of ambulance
+3. Person wearing red clothes in right seat of ambulance
+4. Onlookers on the right side
+5. The action of closing the ambulance door
+
+**Step 2.5: Answer Choice Testing Plan**
+I'll need to check each option to see which one performs the door-closing action:
+- A. doctor
+- B. police officer wearing sunglasses
+- C. person wearing red clothes
+- D. woman wearing white clothes
+- E. soldier wearing camouflage clothing
+
+**Step 3: Search Strategy**
+Based on the scene descriptions provided, the ambulance scenes occur at:
+- Scene 2 (Ambulance Scene): 12s-94s
+- Scene 5 (Ambulance Scene): 106s-226s
+
+Given the detailed description matches Scene 5 (teal and white ambulance), I'll focus there first.
+
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["ambulance with green/white pattern", "soldier in camouflage", "person in red in right seat", "onlookers on right side", "door closing action"],
+    "search_queries": ["ambulance with green and white pattern", "soldier in camouflage near ambulance", "person wearing red in ambulance seat", "crowd of onlookers watching ambulance"]
+}
+```
+Search queries (5): ['ambulance with green and white pattern', 'soldier in camouflage near ambulance', 'person wearing red in ambulance seat', 'crowd of onlookers watching ambulance', 'closing ambulance door']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Ambulance with white and green pattern",
+        "Soldier wearing camouflage clothing to the left of ambulance",
+        "Person wearing red clothes in right seat of ambulance",
+        "Onlookers on the right side",
+        "Someone closing the ambulance door"
+    ],
+    "search_queries": [
+        "ambulance with white and green pattern",
+        "soldier in camouflage near ambulance",
+        "person in red clothes inside ambulance",
+        "crowd of onlookers watching ambulance",
+        "someone closing ambulance door"
+    ]
+}
+Search queries (5): ['ambulance with white and green pattern', 'soldier in camouflage near ambulance', 'person in red clothes inside ambulance', 'crowd of onlookers watching ambulance', 'someone closing ambulance door']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+Looking at the question, I need to find which character closed the door of a specific ambulance. Let me break this down systematically.
+
+**Step 1: Question Type Analysis**
+This is a visual detail question about a specific action (closing an ambulance door) involving specific characters. It requires visual verification, not subtitle analysis.
+
+**Step 2: Extract Verification Criteria**
+From the question description, I need to verify:
+1. Ambulance with white and green pattern in the middle
+2. Soldier wearing camouflage clothing to the left of ambulance
+3. Person wearing red clothes in the right seat of ambulance
+4. Onlookers on the right side
+5. The action of closing the ambulance door
+
+**Step 3: Plan for Answer Choices**
+I'll need to test each option:
+A. doctor - Look for medical personnel/white coat
+B. police officer wearing sunglasses - Look for police uniform + sunglasses
+C. person wearing red clothes - Already mentioned in criteria
+D. woman wearing white clothes - Female person in white clothing
+E. soldier wearing camouflage clothing - Already mentioned in criteria
+
+**Search Strategy:**
+First, I need to find scenes with the described ambulance configuration, then look for the door-closing action.
+
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["ambulance with white and green pattern", "soldier in camouflage", "person in red clothes in ambulance seat", "onlookers on right side"],
+    "search_queries": ["ambulance with green and white pattern", "soldier in camouflage near ambulance", "person in red sitting in ambulance", "crowd of onlookers watching ambulance"]
+}
+```
+Search queries (4): ['ambulance with green and white pattern', 'soldier in camouflage near ambulance', 'person in red sitting in ambulance', 'crowd of onlookers watching ambulance']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Ambulance with white and green pattern in the middle",
+        "Soldier wearing camouflage clothing to the left of ambulance",
+        "Person wearing red clothes in the right seat of ambulance",
+        "Onlookers on the right side",
+        "Someone closing the ambulance door"
+    ],
+    "search_queries": [
+        "ambulance with white and green pattern",
+        "soldier in camouflage near ambulance",
+        "person in red clothes inside ambulance",
+        "onlookers watching ambulance",
+        "closing ambulance door"
+    ]
+}
+Search queries (5): ['ambulance with white and green pattern', 'soldier in camouflage near ambulance', 'person in red clothes inside ambulance', 'onlookers watching ambulance', 'closing ambulance door']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["ambulance with white and green pattern", "soldier wearing camouflage clothing", "person in right seat of ambulance wearing red clothes", "onlookers on right side of ambulance", "ambulance door closing action"],
+    "search_queries": ["ambulance with white and green pattern", "soldier in camouflage near ambulance", "person in red clothes in ambulance seat", "crowd of onlookers watching ambulance", "closing ambulance door during rescue"]
+}
+```
+Search queries (5): ['ambulance with white and green pattern', 'soldier in camouflage near ambulance', 'person in red clothes in ambulance seat', 'crowd of onlookers watching ambulance', 'closing ambulance door during rescue']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["ambulance with white and green pattern", "soldier wearing camouflage clothing on left", "person wearing red clothes in right seat of ambulance", "onlookers on the right side", "someone closing the ambulance door"],
+    "search_queries": ["ambulance white green pattern", "soldier camouflage ambulance door", "person red clothes ambulance seat", "closing ambulance door", "onlookers watching ambulance"]
+}
+Search queries (5): ['ambulance white green pattern', 'soldier camouflage ambulance door', 'person red clothes ambulance seat', 'closing ambulance door', 'onlookers watching ambulance']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["ambulance with white and green pattern", "soldier wearing camouflage clothing", "person wearing red clothes in right seat of ambulance", "onlookers on the right side", "ambulance door being closed"],
+    "search_queries": ["ambulance with white and green pattern", "soldier in camouflage near ambulance", "person in red clothes sitting in ambulance", "onlookers watching ambulance", "closing ambulance door"]
+}
+```
+Search queries (5): ['ambulance with white and green pattern', 'soldier in camouflage near ambulance', 'person in red clothes sitting in ambulance', 'onlookers watching ambulance', 'closing ambulance door']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+Looking at this question, I need to identify who closed the ambulance door based on specific visual details described.
+
+From the question, I need to verify:
+1. Ambulance with white and green pattern in the middle
+2. Soldier wearing camouflage clothing to the left of ambulance
+3. Person wearing red clothes in the right seat of ambulance
+4. Onlookers on the right side
+5. Someone closing the ambulance door
+
+Based on the scene descriptions provided, I should look at Scene 2 (Ambulance Scene) and Scene 5 (Ambulance Scene) which both show ambulances in Uttarkashi.
+
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["ambulance with white and green pattern", "soldier in camouflage clothing", "person in red clothes in ambulance seat", "onlookers watching", "ambulance door closing"],
+    "search_queries": ["ambulance with green and white pattern", "soldier in camouflage near ambulance", "person in red clothes sitting in ambulance", "crowd watching ambulance", "closing ambulance door"]
+}
+```
+Search queries (5): ['ambulance with green and white pattern', 'soldier in camouflage near ambulance', 'person in red clothes sitting in ambulance', 'crowd watching ambulance', 'closing ambulance door']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+Looking at the question, I need to identify which character closed the door of a specific ambulance. The ambulance has a white and green pattern, there's a soldier in camouflage to the left, a person in red clothes in the right seat, and onlookers on the right.
+
+This is NOT a subtitle question (no dialogue quoted) and NOT a temporal question (not asking about timing/order). It's about identifying a specific action (door closing) by a specific character in a complex scene.
+
+**Verification Criteria from Question:**
+1. Ambulance with white and green color pattern
+2. Soldier wearing camouflage clothing positioned to the left of the ambulance
+3. Person wearing red clothes in the right seat of the ambulance
+4. Onlookers positioned to the right side of the ambulance
+5. Someone closing the ambulance door
+
+**Plan to Test Answer Choices:**
+For each option, I'll need to verify:
+- A: Presence of a doctor and if they closed the door
+- B: Presence of a police officer with sunglasses and if they closed the door
+- C: Person in red clothes and if they closed the door (while in the right seat)
+- D: Woman in white clothes and if they closed the door
+- E: Soldier in camouflage and if they closed the door
+
+**Search Strategy:**
+I should first find the scene with this specific ambulance configuration, then look for door-closing actions.
+
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "ambulance with white and green pattern",
+        "soldier in camouflage to left",
+        "person in red clothes in right seat",
+        "onlookers to the right",
+        "ambulance door closing action"
+    ],
+    "search_queries": [
+        "ambulance with green and white pattern soldier camouflage",
+        "person in red clothes sitting in ambulance right seat",
+        "ambulance door being closed by someone",
+        "crowd of onlookers near ambulance with rescue workers"
+    ]
+}
+```
+Search queries (4): ['ambulance with green and white pattern soldier camouflage', 'person in red clothes sitting in ambulance right seat', 'ambulance door being closed by someone', 'crowd of onlookers near ambulance with rescue workers']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["ambulance with white and green pattern", "soldier wearing camouflage clothing", "person wearing red clothes in right seat of ambulance", "onlookers on right side", "ambulance door closing action"],
+    "search_queries": ["ambulance white green pattern", "soldier camouflage clothing", "person red clothes ambulance", "onlookers watching ambulance", "closing ambulance door"]
+}
+```
+Search queries (5): ['ambulance white green pattern', 'soldier camouflage clothing', 'person red clothes ambulance', 'onlookers watching ambulance', 'closing ambulance door']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+Looking at this question, I need to identify which character closed the ambulance door based on a very specific visual scene. Let me break this down systematically.
+
+**Verification Criteria from the Question:**
+1. Ambulance with white and green pattern in the middle of a street
+2. Soldier wearing camouflage clothing to the left of the ambulance
+3. Person wearing red clothes in the right seat of the ambulance
+4. Onlookers on the right side of the scene
+5. Someone closing the ambulance door
+
+**Plan to Test Each Answer Choice:**
+For each option, I'll need to verify:
+- A: If a doctor is present and closes the door
+- B: If a police officer wearing sunglasses is present and closes the door  
+- C: If the person in red clothes closes the door
+- D: If a woman wearing white clothes is present and closes the door
+- E: If the soldier in camouflage closes the door
+
+**Search Strategy:**
+I'll search for scenes featuring ambulances with green/white patterns first, then examine the specific visual elements described.
+
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["ambulance with green and white pattern", "soldier in camouflage", "person in red clothes in ambulance", "onlookers on right side", "ambulance door closing"],
+    "search_queries": ["green and white ambulance on street", "soldier in camouflage near ambulance", "person in red clothes sitting in ambulance", "crowd of onlookers watching ambulance", "ambulance door being closed"]
+}
+```
+Search queries (5): ['green and white ambulance on street', 'soldier in camouflage near ambulance', 'person in red clothes sitting in ambulance', 'crowd of onlookers watching ambulance', 'ambulance door being closed']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "ambulance with white and green pattern",
+        "soldier wearing camouflage clothing to the left of ambulance",
+        "person wearing red clothes in right seat of ambulance",
+        "onlookers on the right side",
+        "ambulance door being closed"
+    ],
+    "search_queries": [
+        "ambulance with white and green pattern",
+        "soldier in camouflage near ambulance",
+        "person in red clothes inside ambulance",
+        "ambulance door closing",
+        "rescue workers closing ambulance door"
+    ]
+}
+Search queries (5): ['ambulance with white and green pattern', 'soldier in camouflage near ambulance', 'person in red clothes inside ambulance', 'ambulance door closing', 'rescue workers closing ambulance door']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Ambulance with white and green pattern",
+        "Soldier wearing camouflage clothing to the left of ambulance",
+        "Person wearing red clothes in right seat of ambulance",
+        "Onlookers on the right side",
+        "Someone closing the ambulance door"
+    ],
+    "search_queries": [
+        "ambulance with white and green pattern",
+        "soldier in camouflage near ambulance",
+        "person in red clothes inside ambulance",
+        "onlookers watching ambulance",
+        "closing ambulance door"
+    ]
+}
+Search queries (5): ['ambulance with white and green pattern', 'soldier in camouflage near ambulance', 'person in red clothes inside ambulance', 'onlookers watching ambulance', 'closing ambulance door']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.

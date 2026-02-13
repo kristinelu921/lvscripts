@@ -1,8 +1,9 @@
 from model_example_query import query_vlm, query_llm, query_llm_async
-from search_frame_captions import batch_embed_query_async, search_captions
+from search_frame_captions import batch_embed_query_async, search_captions, search_clip_captions
 from search_subtitles import search_subtitles
 from extract_fine_grained_frames import extract_fine_grained_for_pipeline
-from prompts import initial_prompt, followup_prompt, response_parsing_prompt, finish_prompt
+from prompts import initial_prompt, followup_prompt, response_parsing_prompt, finish_prompt, _expand_frames_with_surrounding
+from subtitle_utils import SubtitleLoader
 import math
 import json
 import os
@@ -11,13 +12,13 @@ from together import AsyncTogether, Together
 import asyncio
 json_file_lock = asyncio.Lock()
 
-# Import prompts - will be conditionally switched based on use_no_vlm parameter
+# Import prompts
 import prompts as default_prompts
-import prompts_no_vlm
 
 def get_prompts_module(use_no_vlm=False):
     """Get the appropriate prompts module based on configuration"""
-    return prompts_no_vlm if use_no_vlm else default_prompts
+    # Always use default prompts (no_vlm mode not needed)
+    return default_prompts
 
 def log(message, file_title):
     if not os.path.exists(file_title):
@@ -96,8 +97,11 @@ class Pipeline:
 
 my_model = Pipeline("deepseek-ai/DeepSeek-V3.1", "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8")
 
-async def query_model_iterative_with_retry(model, question, uid, vid_path, output_file, max_retries=15, candidates=None, use_no_vlm=False):
+async def query_model_iterative_with_retry(model, question, uid, vid_path, output_file, max_retries=15, candidates=None, use_no_vlm=False, videos_dir="/mnt/ssd/data/longvideobench/videos", pass_all_subtitles_to_llm=False, subtitles_dir=None, embeddings_path=None):
     """Wrapper to retry query_model_iterative if it hangs"""
+    # Default to frame captions embeddings if not specified
+    if embeddings_path is None:
+        embeddings_path = f"{vid_path}/captions/frame_captions_sorted_embeddings.jsonl"
     if os.path.exists(output_file):
         try:
             with open(output_file, 'r') as f:
@@ -117,14 +121,14 @@ async def query_model_iterative_with_retry(model, question, uid, vid_path, outpu
         except Exception as e:
             print("Checking if q already completed error")
             pass
-    
+
     for attempt in range(max_retries):
         try:
             message = f"Attempt {attempt + 1}/{max_retries} for question: {question[:50]}..."
             log(message, f"logs/log_video_{vid_path}_{uid}")
             # Set 60 second timeout for the entire iterative process
             result = await asyncio.wait_for(
-                query_model_iterative(model, question, uid, vid_path, candidates, use_no_vlm=use_no_vlm),
+                query_model_iterative(model, question, uid, vid_path, candidates, use_no_vlm=use_no_vlm, videos_dir=videos_dir, pass_all_subtitles_to_llm=pass_all_subtitles_to_llm, subtitles_dir=subtitles_dir, embeddings_path=embeddings_path),
                 timeout=240  # 3 minute timeout
             )
             print(f"Successfully completed on attempt {attempt + 1}")
@@ -143,7 +147,7 @@ async def query_model_iterative_with_retry(model, question, uid, vid_path, outpu
                     "uid": uid,
                     "question": question,
                     "answer": "TIMEOUT",
-                    "reasoning": f"Failed to complete after {max_retries, output_file: str = 'collected_answers.json} attempts due to timeout",
+                    "reasoning": f"Failed to complete after {max_retries} attempts due to timeout",
                     "evidence_frame_numbers": []
                 }
                 if output_file:
@@ -183,7 +187,7 @@ async def query_model_iterative_with_retry(model, question, uid, vid_path, outpu
                 }
     return result
     
-async def query_model_iterative(model, question, question_uid, vid_path, candidates=None, use_no_vlm=False, pre_existing_messages=None):
+async def query_model_iterative(model, question, question_uid, vid_path, candidates=None, use_no_vlm=False, pre_existing_messages=None, videos_dir="/mnt/ssd/data/longvideobench/videos", pass_all_subtitles_to_llm=False, subtitles_dir=None, embeddings_path=None):
     """Iteratively query any open-source model to answer questions about video
 
     Args:
@@ -193,7 +197,15 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
         candidates: List of answer choices (optional)
         use_no_vlm: Whether to use no-VLM mode
         pre_existing_messages: Optional list of previous messages to continue conversation from
+        videos_dir: Directory containing source video files (.mp4) for fine-grained frame extraction
+        pass_all_subtitles_to_llm: Whether to pass all video subtitles to LLM in initial prompt
+        subtitles_dir: Directory containing subtitle embeddings (auto-detects if None)
+        embeddings_path: Path to caption embeddings file (auto-detects if None)
     """
+    # Default to frame captions embeddings if not specified
+    if embeddings_path is None:
+        embeddings_path = f"{vid_path}/captions/frame_captions_sorted_embeddings.jsonl"
+
     global_sum_path = vid_path + "/captions/global_summary.txt"
     CES_logs_path = vid_path + "/captions/CES_logs.txt"
     with open(global_sum_path, "r") as f:
@@ -209,9 +221,42 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
 
     # Check if subtitle embeddings are available for this video
     video_id = os.path.basename(vid_path.rstrip('/'))
-    subtitle_embeddings_path = f"/mnt/ssd/data/longvideobench/subtitles_filtered/{video_id}_en_embeddings.jsonl"
+
+    # Auto-detect subtitles directory if not provided
+    if subtitles_dir is None:
+        # Try common subtitle locations based on video path
+        if 'videomme' in vid_path or 'video_mme_long' in vid_path:
+            subtitles_dir = "/mnt/ssd/data/videomme/video_mme_long/subtitles_json"
+        elif 'longvideobench' in vid_path:
+            subtitles_dir = "/mnt/ssd/data/longvideobench/subtitles_val"
+        elif 'lvbench' in vid_path:
+            subtitles_dir = "/mnt/ssd/data/lvbench/subtitles"
+        else:
+            # Default fallback
+            subtitles_dir = "/mnt/ssd/data/videomme/video_mme_long/subtitles_json"
+
+    subtitle_embeddings_path = f"{subtitles_dir}/{video_id}_en_embeddings_alibaba.jsonl"
     subtitles_available = os.path.exists(subtitle_embeddings_path)
     use_subtitles = True  # Enable subtitle search feature
+
+    # Load all subtitles if requested (for passing to LLM in initial prompt)
+    all_subtitles_text = None
+    if pass_all_subtitles_to_llm:
+        subtitle_json_path = f"{subtitles_dir}/{video_id}_en.json"
+        if os.path.exists(subtitle_json_path):
+            try:
+                loader = SubtitleLoader(subtitle_json_path)
+                # Format all subtitles into a readable text format
+                all_subtitles = []
+                for sub in loader.subtitles:
+                    all_subtitles.append(f"[{sub['start']} - {sub['end']}] {sub['line']}")
+                all_subtitles_text = "\n".join(all_subtitles)
+                print(f"✓ Loaded {len(loader.subtitles)} subtitles for LLM initial context")
+            except Exception as e:
+                print(f"⚠️ Failed to load subtitles for LLM: {e}")
+                all_subtitles_text = None
+        else:
+            print(f"⚠️ Subtitle JSON not found for LLM context: {subtitle_json_path}")
 
     if subtitles_available:
         print(f"✓ Subtitles available for video {video_id}")
@@ -229,8 +274,20 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
         print(f"✓ Loaded {len(pre_existing_messages)} pre-existing messages for judge context")
     else:
         model.messages.append({"role": "system", "content": f"You are an expert at reasoning and tool-using, with the goal of answering this question about a long video.{vlm_note} You should be SUPER PICKY about your findings, NOT make assumptions, and always bias towards gathering more evidence before executing a final answer. Use EXACT evidence only. ALSO, when dealing with TEMPORAL questions, you cannot find VISUAL TIMES. If a question asks for a 'duration' of an event, you want to do many caption searches on consecutive ranges, and find scene-changes at the beginning and end of the event. You MUST CHOOSE AN ANSWER. NONE OF THE ABOVE IS NOT ACCEPTABLE."})
-        model.messages.append({"role": "user", "content": "\n Here is a global summary of the video for general context: " + global_summary + "\n\n Here is also an INCOMPLETE character/event/scene log across the video. These will all be encountered, and there MAY BE MORE " + CES_log +
-"\nYour question is this: " + question})
+
+        # Build user content with optional subtitles
+        user_content = "\n Here is a global summary of the video for general context: " + global_summary + "\n\n Here is also an INCOMPLETE character/event/scene log across the video. These will all be encountered, and there MAY BE MORE " + CES_log
+
+        # Add all subtitles if requested
+        if all_subtitles_text:
+            user_content += "\n\n=== COMPLETE VIDEO TRANSCRIPT (All Subtitles) ===\n"
+            user_content += "Below are ALL the subtitles from the entire video with timestamps. You can reference these to understand what is being said throughout the video:\n\n"
+            user_content += all_subtitles_text
+            user_content += "\n\n=== END OF TRANSCRIPT ===\n"
+
+        user_content += "\nYour question is this: " + question
+
+        model.messages.append({"role": "user", "content": user_content})
     prompt = str(model.messages) + prompts.initial_prompt(question, candidates, use_subtitles=use_subtitles, subtitles_available=subtitles_available)
     message = prompt
     log(message, f"logs/log_video_{vid_path}_{question_uid}")
@@ -437,10 +494,19 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
                 log(message, f"logs/log_video_{vid_path}_{question_uid}")
                 print("parsed response: ", parsed_response)
                 print("="*60 + "Querying VLM" + "="*60)
-                prompt = "Here is a global summary of the video for general context: " + global_summary + "\n" + parsed_response.get("prompt")
-                print("PROMPT: ", prompt)
+
+                # Get requested frames and expand them to include ±5 seconds of context
                 frames = parsed_response.get("frames")
-                new_frames = [(f"{vid_path}/" + frame) for frame in frames]
+                expanded_frames = _expand_frames_with_surrounding(frames, seconds_before=5, seconds_after=5)
+                print(f"Original frames ({len(frames)}): {frames}")
+                print(f"Expanded frames ({len(expanded_frames)}): {expanded_frames[:10]}..." if len(expanded_frames) > 10 else f"Expanded frames ({len(expanded_frames)}): {expanded_frames}")
+
+                prompt = "Here is a global summary of the video for general context: " + global_summary + "\n"
+                prompt += f"Note: You are viewing {len(expanded_frames)} frames including ~5 seconds before/after the key frames for context.\n"
+                prompt += parsed_response.get("prompt")
+                print("PROMPT: ", prompt)
+
+                new_frames = [(f"{vid_path}/" + frame) for frame in expanded_frames]
                 retrieved_info = await model.vlm_query(new_frames, prompt)
                 model.messages.append({"role": "vlm response", "content": retrieved_info})
 
@@ -475,9 +541,16 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
 
                 # Perform all searches and collect results
                 all_results = []
+                # Detect if using clip captions based on embeddings path
+                use_clip_search = 'clip_embeddings' in str(embeddings_path)
+
                 for idx, query in enumerate(search_queries):
                     print(f"  Query {idx+1}/{len(search_queries)}: {query}")
-                    results = await search_captions(vid_path, question_uid, query, f"{vid_path}/captions/frame_captions_sorted_embeddings.jsonl", 30)
+                    # Use appropriate search function based on caption type
+                    if use_clip_search:
+                        results = await search_clip_captions(vid_path, question_uid, query, embeddings_path, 30)
+                    else:
+                        results = await search_captions(vid_path, question_uid, query, embeddings_path, 30)
 
                     all_results.append({
                         "query": query,
@@ -526,8 +599,17 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
                 message = f"RECORD: Added {len(entries)} entries. Total records: {len(model.records)}"
                 log(message, f"logs/log_video_{vid_path}_{question_uid}")
 
-                # Confirm to LLM
-                retrieved_info = f"Successfully recorded {len(entries)} event(s). You now have {len(model.records)} total recorded events. Use VIEW_RECORDS to see all of them sorted by time."
+                # AUTOMATICALLY CALL VIEW_RECORDS after RECORD
+                print(f"Automatically viewing {len(model.records)} recorded event(s)")
+
+                retrieved_info = f"Successfully recorded {len(entries)} event(s).\n\n"
+                retrieved_info += f"=== ALL RECORDED EVENTS ({len(model.records)} total) ===\n\n"
+                for idx, record in enumerate(model.records, 1):
+                    retrieved_info += f"{idx}. {record['entry']}\n"
+                retrieved_info += "\n=== END OF RECORDS ===\n"
+                retrieved_info += "\nUse this organized timeline to reason about sequences, relationships, and answer the question."
+
+                log(f"VIEW_RECORDS: Auto-displayed {len(model.records)} records after RECORD", f"logs/log_video_{vid_path}_{question_uid}")
                 model.messages.append({"role": "system", "content": retrieved_info})
 
             elif parsed_response.get("tool") == "VIEW_RECORDS":
@@ -556,8 +638,8 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
                 # Extract video ID from vid_path (e.g., "/path/to/videos_processed/Y0IaijKNGX8")
                 video_id = os.path.basename(vid_path.rstrip('/'))
 
-                # Path to subtitle embeddings
-                embeddings_path = f"/mnt/ssd/data/longvideobench/subtitles_filtered/{video_id}_en_embeddings.jsonl"
+                # Path to subtitle embeddings (use the same subtitles_dir determined earlier)
+                embeddings_path = f"{subtitles_dir}/{video_id}_en_embeddings_alibaba.jsonl"
 
                 try:
                     # Search subtitles using embeddings
@@ -647,7 +729,7 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
                         start_second=start_sec,
                         end_second=end_sec,
                         fps=fps,
-                        videos_dir=os.path.dirname(os.path.dirname(vid_path)) + '/videos',
+                        videos_dir=videos_dir,  # Use the passed videos_dir parameter
                         output_base=os.path.dirname(os.path.dirname(vid_path)),  # Get parent of video folder
                         vid_path=vid_path  # Pass the actual video directory path
                     )
@@ -703,12 +785,101 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
                     log(message, f"logs/log_video_{vid_path}_{question_uid}")
                     model.messages.append({"role": "system", "content": retrieved_info})
 
+            elif parsed_response.get("tool") == "CROP_OBJECT":
+                # Crop specific objects from a frame for detailed analysis
+                from crop_objects_gemini import crop_objects_from_frame
+
+                frame_path_rel = parsed_response.get("frame", "")
+                object_query = parsed_response.get("object_query", "")
+
+                if not frame_path_rel:
+                    retrieved_info = "Error: No frame specified for CROP_OBJECT. Please provide a frame path."
+                    model.messages.append({"role": "system", "content": retrieved_info})
+                    continue
+
+                if not object_query:
+                    retrieved_info = "Error: No object_query specified for CROP_OBJECT. Please describe what object to detect (e.g., 'bird on branch')."
+                    model.messages.append({"role": "system", "content": retrieved_info})
+                    continue
+
+                # Convert relative frame path to absolute
+                frame_path_abs = os.path.join(vid_path, frame_path_rel)
+
+                if not os.path.exists(frame_path_abs):
+                    retrieved_info = f"Error: Frame not found at {frame_path_rel}. Please check the frame path."
+                    model.messages.append({"role": "system", "content": retrieved_info})
+                    continue
+
+                print(f"Cropping objects from {frame_path_rel}")
+                print(f"Object query: '{object_query}'")
+
+                message = f"CROP_OBJECT: Detecting '{object_query}' in {frame_path_rel}"
+                log(message, f"logs/log_video_{vid_path}_{question_uid}")
+
+                try:
+                    # Perform object detection and cropping
+                    result = crop_objects_from_frame(
+                        frame_path=frame_path_abs,
+                        object_query=object_query,
+                        output_dir=None  # Will use default: vid_path/cropped_objects
+                    )
+
+                    if result['success']:
+                        cropped_paths = result['cropped_paths']
+                        detections = result['detections']
+
+                        if cropped_paths:
+                            # Convert absolute paths back to relative paths for LLM
+                            cropped_paths_rel = []
+                            for crop_path in cropped_paths:
+                                # Get path relative to vid_path
+                                rel_path = os.path.relpath(crop_path, vid_path)
+                                cropped_paths_rel.append(rel_path)
+
+                            retrieved_info = f"✓ Successfully detected and cropped {len(cropped_paths)} object(s) matching '{object_query}'\n\n"
+                            retrieved_info += f"Source frame: {frame_path_rel}\n\n"
+                            retrieved_info += "Cropped objects saved to:\n"
+                            for idx, (crop_path, detection) in enumerate(zip(cropped_paths_rel, detections), 1):
+                                label = detection.get('label', 'object')
+                                retrieved_info += f"  {idx}. {crop_path} - {label}\n"
+
+                            retrieved_info += f"\n📌 NEXT STEP: Use VLM_QUERY with these cropped images to analyze fine details.\n"
+                            retrieved_info += f"Example: VLM_QUERY with frames: {cropped_paths_rel[:3]}\n\n"
+                            retrieved_info += "These cropped images show ONLY the detected objects, making it easier to see small details."
+
+                            message = f"CROP_OBJECT: Successfully cropped {len(cropped_paths)} objects"
+                            log(message, f"logs/log_video_{vid_path}_{question_uid}")
+                        else:
+                            retrieved_info = f"⚠️ No objects matching '{object_query}' were detected in {frame_path_rel}.\n\n"
+                            retrieved_info += "SUGGESTIONS:\n"
+                            retrieved_info += "1. Try a different frame - use CAPTION_SEARCH to find frames containing the object\n"
+                            retrieved_info += "2. Modify your object_query to be more general (e.g., 'bird' instead of 'blue bird')\n"
+                            retrieved_info += "3. Use VLM_QUERY on the full frame first to confirm the object is present"
+
+                            message = f"CROP_OBJECT: No objects detected for '{object_query}'"
+                            log(message, f"logs/log_video_{vid_path}_{question_uid}")
+
+                    else:
+                        # Error occurred
+                        error = result.get('error', 'Unknown error')
+                        retrieved_info = f"Error cropping objects: {error}"
+                        message = f"CROP_OBJECT: Error - {error}"
+                        log(message, f"logs/log_video_{vid_path}_{question_uid}")
+
+                    model.messages.append({"role": "crop object results", "content": retrieved_info})
+
+                except Exception as e:
+                    retrieved_info = f"Unexpected error in CROP_OBJECT: {str(e)}"
+                    message = f"CROP_OBJECT: Exception - {str(e)}"
+                    log(message, f"logs/log_video_{vid_path}_{question_uid}")
+                    model.messages.append({"role": "system", "content": retrieved_info})
+
             else:
                 tool_name = parsed_response.get('tool')
                 message = f"Invalid or unrecognized tool: '{tool_name}' (type: {type(tool_name)}, repr: {repr(tool_name)})"
                 log(message, f"logs/log_video_{vid_path}_{question_uid}")
                 print(f"❌ {message}")
-                print(f"   Valid tools: FINAL_ANSWER, VLM_QUERY, CAPTION_SEARCH, RECORD, VIEW_RECORDS, SUBTITLE_SEARCH, EXTRACT_FINE_FRAMES")
+                print(f"   Valid tools: FINAL_ANSWER, VLM_QUERY, CAPTION_SEARCH, RECORD, VIEW_RECORDS, SUBTITLE_SEARCH, EXTRACT_FINE_GRAINED_FRAMES, CROP_OBJECT")
                 print(f"   Parsed response keys: {list(parsed_response.keys())}")
                 continue
 
@@ -744,7 +915,7 @@ Now review the results and choose the most relevant keyframes for VLM querying.
                 else:
                     retrieved_info = "The following is the retrieved information from the caption search: Please read through and choose the most relevant few keyframes.\n" + str(model.messages[-1].get("content", ""))
             elif parsed_response.get("tool") == "VLM_QUERY":
-                retrieved_info = "The following is the retrieved information from the VLM query: Please read through and see if these are the scenes you're looking for. If not, please look for different scenes. If yes, extract detailed and important evidence from them.\n" + str(model.messages[-1].get("content", ""))
+                retrieved_info = "The following is the retrieved information from the VLM query (frames expanded to include ±5 seconds of context for better understanding): Please read through and see if these are the scenes you're looking for. If not, please look for different scenes. If yes, extract detailed and important evidence from them.\n" + str(model.messages[-1].get("content", ""))
             elif parsed_response.get("tool") == "RECORD":
                 retrieved_info = str(model.messages[-1].get("content", ""))
             elif parsed_response.get("tool") == "VIEW_RECORDS":
@@ -754,6 +925,8 @@ Now review the results and choose the most relevant keyframes for VLM querying.
                 print(f"✓ Preparing prompt with SUBTITLE_SEARCH results (length: {len(retrieved_info)} chars)")
             elif parsed_response.get("tool") == "EXTRACT_FINE_GRAINED_FRAMES":
                 retrieved_info = "The following fine-grained frames have been extracted at higher FPS. You can now use VLM_QUERY with these frames to analyze detailed movements and actions.\n" + str(model.messages[-1].get("content", ""))
+            elif parsed_response.get("tool") == "CROP_OBJECT":
+                retrieved_info = "Objects have been detected and cropped from the frame. These cropped images show ONLY the detected objects with fine details. Use VLM_QUERY with the cropped image paths to analyze specific object details.\n" + str(model.messages[-1].get("content", ""))
             else:
                 retrieved_info = str(model.messages[-1].get("content", ""))
 
@@ -798,10 +971,30 @@ Now review the results and choose the most relevant keyframes for VLM querying.
             else:
                 # Return as is if not JSON
                 answer = final_answer
-                if final_answer in "012345":
-                    answer = int(final_answer)
-                elif final_answer in "ABCDE":
-                    answer = ord(final_answer) - ord('A')
+
+                # Try to match answer against candidates if provided
+                if candidates:
+                    # Try exact match first
+                    for idx, candidate in enumerate(candidates):
+                        if str(final_answer).strip().lower() == candidate.strip().lower():
+                            answer = idx
+                            break
+                        # Try matching without punctuation
+                        if str(final_answer).strip().lower() == candidate.strip().rstrip('.').lower():
+                            answer = idx
+                            break
+                        # Try matching if answer is just a number and candidate starts with that number
+                        if str(final_answer).strip() in candidate.split('.')[0].strip():
+                            answer = idx
+                            break
+
+                # Fallback to letter/number parsing if no candidates match
+                if answer == final_answer:
+                    if final_answer in "012345":
+                        answer = int(final_answer)
+                    elif final_answer in "ABCDE":
+                        answer = ord(final_answer) - ord('A')
+
                 result = {
                     "uid": question_uid,
                     "question": question,
@@ -818,10 +1011,36 @@ Now review the results and choose the most relevant keyframes for VLM querying.
                         f.write(f"saved model messages for question {question_uid}, video {vid_path}\n")
 
             answer = parsed_final.get("answer", "")
-            if answer in "012345":
-                answer = int(answer)
-            elif answer in "ABCDE":
-                answer = ord(answer) - ord('A')
+
+            # Try to match answer against candidates if provided
+            if candidates:
+                original_answer = answer
+                for idx, candidate in enumerate(candidates):
+                    if str(answer).strip().lower() == candidate.strip().lower():
+                        answer = idx
+                        break
+                    # Try matching without punctuation
+                    if str(answer).strip().lower() == candidate.strip().rstrip('.').lower():
+                        answer = idx
+                        break
+                    # Try matching if answer is just a number and candidate starts with that number
+                    if str(answer).strip() in candidate.split('.')[0].strip():
+                        answer = idx
+                        break
+
+                # Fallback to letter/number parsing if no match
+                if answer == original_answer:
+                    if answer in "012345":
+                        answer = int(answer)
+                    elif answer in "ABCDE":
+                        answer = ord(answer) - ord('A')
+            else:
+                # No candidates, use letter/number parsing
+                if answer in "012345":
+                    answer = int(answer)
+                elif answer in "ABCDE":
+                    answer = ord(answer) - ord('A')
+
             result = {
                 "uid": question_uid,
                 "question": question,
@@ -839,10 +1058,29 @@ Now review the results and choose the most relevant keyframes for VLM querying.
     log(message, f"logs/log_video_{vid_path}_{question_uid}")
 
     answer = final_answer
-    if final_answer in "012345":
-        answer = int(final_answer)
-    elif final_answer in "ABCDE":
-        answer = ord(final_answer) - ord('A')
+
+    # Try to match answer against candidates if provided
+    if candidates:
+        for idx, candidate in enumerate(candidates):
+            if str(final_answer).strip().lower() == candidate.strip().lower():
+                answer = idx
+                break
+            # Try matching without punctuation
+            if str(final_answer).strip().lower() == candidate.strip().rstrip('.').lower():
+                answer = idx
+                break
+            # Try matching if answer is just a number and candidate starts with that number
+            if str(final_answer).strip() in candidate.split('.')[0].strip():
+                answer = idx
+                break
+
+    # Fallback to letter/number parsing if no match
+    if answer == final_answer:
+        if final_answer in "012345":
+            answer = int(final_answer)
+        elif final_answer in "ABCDE":
+            answer = ord(final_answer) - ord('A')
+
     result = {
         "uid": question_uid,
         "question": question,
@@ -854,7 +1092,7 @@ Now review the results and choose the most relevant keyframes for VLM querying.
         result["criteria"] = question_criteria
     return result
 
-async def answer_question(question_uid, question, vid_folder, vid_num, candidates=None, vlm_model="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8", llm_model="deepseek-ai/DeepSeek-V3.1", use_no_vlm=False):
+async def answer_question(question_uid, question, vid_folder, vid_num, candidates=None, vlm_model="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8", llm_model="deepseek-ai/DeepSeek-V3.1", use_no_vlm=False, videos_dir="/mnt/ssd/data/longvideobench/videos", pass_all_subtitles_to_llm=False, subtitles_dir=None, embeddings_path=None):
     try:
         # Create a separate Pipeline instance for each question to avoid shared state
         #qwen model : Qwen/Qwen3-235B-A22B-Instruct-2507-tput
@@ -864,7 +1102,7 @@ async def answer_question(question_uid, question, vid_folder, vid_num, candidate
         vid_path = curr_folder + "/" + num
         print("vid_path", vid_path) #TODO: remove this
         answers_path = f'{curr_folder}/{num}/{num}_answers.json'
-        answer = await query_model_iterative_with_retry(model, question, question_uid, vid_path, answers_path, candidates=candidates, use_no_vlm=use_no_vlm)
+        answer = await query_model_iterative_with_retry(model, question, question_uid, vid_path, answers_path, candidates=candidates, use_no_vlm=use_no_vlm, videos_dir=videos_dir, pass_all_subtitles_to_llm=pass_all_subtitles_to_llm, subtitles_dir=subtitles_dir, embeddings_path=embeddings_path)
         print("answer", answer)
         return answer
     except Exception as e:

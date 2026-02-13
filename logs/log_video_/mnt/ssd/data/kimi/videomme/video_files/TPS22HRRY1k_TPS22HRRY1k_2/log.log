@@ -1,0 +1,169 @@
+[{'role': 'system', 'content': "You are an expert at reasoning and tool-using, with the goal of answering this question about a long video. You should be able to extract detailed frame-information from videos, do caption searches, and use your findings to answer the question. You should be SUPER PICKY about your findings, NOT make assumptions, and always bias towards gathering more evidence before executing a final answer. Use EXACT evidence only. ALSO, when dealing with TEMPORAL questions, you cannot find VISUAL TIMES. If a question asks for a 'duration' of an event, you want to do many caption searches on consecutive ranges, and find scene-changes at the beginning and end of the event. You MUST CHOOSE AN ANSWER. NONE OF THE ABOVE IS NOT ACCEPTABLE."}, {'role': 'user', 'content': '\n Here is a global summary of the video for general context: **Global Summary:**\n\n**Main Characters:**\n- The fund manager (in a gray suit) \n- Will (a blonde man in a red polo shirt)\n\n**Setting:**\n- A cartoon world with hand-drawn animations.\n\n**Plot:**\n- The video explains the concept of mutual funds and how they work, using a story to illustrate the idea. \n- It introduces the concept of Net Asset Value (NAV) and compares it with Closed-Ended Funds.\n\n**Vibes:**\n- Educational\n- Approachable\n- Simplified\n\n**General Details:**\n- The video is 1 minute and 14 seconds long.\n- It includes colorful hand-drawn animations and cartoon characters.\n- The video is hosted by the "WALL STREET SURVIVOR" logo and website.\n\n Here is also an INCOMPLETE character/event/scene log across the video. These will all be encountered, and there MAY BE MORE CHARACTERS:\nBusinessman (Gray Suit): A cartoon businessman in a gray suit, representing the fund manager who actively manages investments. [00:00-00:20]\nWill (Blonde Man in Red Polo): A blonde man in a red polo shirt, representing the fund creator. [00:21-00:40]\nSEC Figures: Three figures wearing "SEC" badges and sunglasses, explaining that mutual funds are regulated by the Securities and Exchange Commission. [00:21-00:40]\nDiverse Cartoon Investors: Ten diverse cartoon investors who invest in "WILL\'S FUND." [00:41-00:55]\nClosed-Ended Fund Investor: An investor representing a closed-ended fund, where shares are traded between investors rather than being redeemed from the fund itself. [01:34-01:45]\n\nSCENES:\nScene 1: Opening Title Screen: The video opens with the title "WHAT ARE MUTUAL FUNDS?" and the "WALL STREET SURVIVOR" logo. [00:00-00:20]\nScene 2: Will\'s Idea: An hourglass and a prize ribbon appear on Will, followed by question marks and a lightbulb, illustrating his idea to create a fund. [00:21-00:40]\nScene 3: "WILL\'S FUND" Established: Will stands alone as the fund is named and ten diverse cartoon investors appear opposite him. [00:41-00:55]\nScene 4: Net Asset Value (NAV) Introduced: The concept of NAV is introduced, showing a horizontal bar divided into three colored sections and a green pie chart building to show the pooled $10,000 total. [00:56-01:33]\nScene 5: Closed-Ended Funds: The video contrasts this with Closed-Ended Funds, showing a group of investors on the left and one investor on the right, illustrating that shares are traded between investors rather than being redeemed from the fund itself. [01:34-01:45]\n\nEVENTS:\nEvent 1: Mutual Fund Established: "WILL\'S FUND" is established with ten diverse cartoon investors investing $1,000 each, resulting in a pooled $10,000 total. [00:41-00:55]\nEvent 2: Fund Growth: The fund grows 10% to $11,000, with a $100 gain shown on a green pie chart. [00:56-01:33]\nYour question is this: According to the video, which of the following statements is true?'}]You are answering questions about a video using tools to retrieve information.
+
+Question: According to the video, which of the following statements is true?
+
+Answer Choices:
+A. People no longer need to choose their own diversified investment portfolio after buying a mutual fund.
+B. Investors in a closed-ended fund can withdraw their investment without trading to another investor.
+C. Closed-ended funds can continually accept more funds from outsiders.
+D. Anyone can set up a mutual fund at will.
+
+
+STEP 1: CHECK QUESTION TYPE
+- Subtitle question? (quotes text, asks about dialogue) → Use SUBTITLE_SEARCH first
+- Temporal question? (after/before/when/first/next/last) → Use RECORD after each VLM_QUERY to track events
+- Quick actions? (hand movements, fast motions, sudden reactions) → Use EXTRACT_FINE_FRAMES at 5-10 FPS
+- Small details? (small objects, text, fine features) → Use CROP_OBJECT to zoom in
+
+STEP 2: EXTRACT VERIFICATION CRITERIA
+List 4-6 specific, testable visual criteria from the QUESTION (not answer choices) that must be verified.
+
+Example: "person in black shirt holding metal bucket with scattered debris"
+Criteria:
+- Person wearing black shirt
+- Person wearing black pants
+- Person holding large round metal bucket
+- Scene contains scattered debris on ground
+
+STEP 2.5: PLAN TO TEST EACH ANSWER CHOICE
+Once you have frames, plan to systematically test EACH answer option with VLM queries:
+- Query to verify option A characteristics
+- Query to verify option B characteristics
+- Query to verify option C characteristics
+- Query to verify option D characteristics
+This prevents confirmation bias and ensures you select the answer with STRONGEST visual evidence.
+
+STEP 3: GENERATE SEARCH QUERIES
+Create 2-4 natural search queries (subject-verb-object format) targeting VISIBLE details.
+- Good: "woman wearing yellow dress holding papers", "person in office setting with documents"
+- Bad: "yellow dress papers office woman"
+
+IMPORTANT: After getting clip time ranges from CAPTION_SEARCH, you MUST use VLM_QUERY to visually verify frames in those time ranges.
+DO NOT repeatedly search captions - once you have candidate clips/time ranges, USE VLM_QUERY to look at the frames!
+
+NOTE: CAPTION_SEARCH returns clip time ranges (e.g., "clip_45_67" = 45-67 seconds).
+Use these time ranges to extract frames for VLM_QUERY (e.g., check frames 45-67: frame_0045.jpg to frame_0067.jpg).
+
+Return format:
+```json{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["criterion 1", "criterion 2", "criterion 3", "criterion 4"],
+    "search_queries": ["natural query 1", "natural query 2", "optional query 3", "optional query 4"]
+}```
+
+For subtitle questions: {"tool": "SUBTITLE_SEARCH", "query": "exact subtitle text", "topk": 10}
+For video clip extraction: {"tool": "QUERY_CLIP", "start_frame": 45, "end_frame": 52, "prompt": "Describe the action"}
+
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Statements about mutual fund diversification and portfolio management",
+        "Statements about closed-ended fund withdrawal mechanisms",
+        "Statements about closed-ended fund acceptance of new investments",
+        "Statements about requirements for setting up a mutual fund"
+    ],
+    "search_queries": [
+        "diversified investment portfolio mutual fund",
+        "closed-ended fund withdraw investment trade investor",
+        "closed-ended fund accept more funds outsiders",
+        "set up mutual fund at will"
+    ]
+}
+Search queries (4): ['diversified investment portfolio mutual fund', 'closed-ended fund withdraw investment trade investor', 'closed-ended fund accept more funds outsiders', 'set up mutual fund at will']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["mutual fund creation process", "closed-ended fund investment withdrawal", "closed-ended fund accepting new investments", "investment portfolio management after buying mutual fund"],
+    "search_queries": ["create a mutual fund", "withdraw investment from closed-ended fund", "closed-ended fund accept new money", "choose investment portfolio after mutual fund"]
+}
+Search queries (4): ['create a mutual fund', 'withdraw investment from closed-ended fund', 'closed-ended fund accept new money', 'choose investment portfolio after mutual fund']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+Looking at this question about mutual funds in an educational video, I need to verify which statement is true based on the visual content. Let me break this down systematically.
+
+The question asks which statement is true "according to the video," so I need to verify visual evidence for each option.
+
+**Verification Criteria:**
+1. Whether investors still need to manage their own portfolio after buying mutual funds
+2. How closed-ended fund investors can withdraw investments
+3. Whether closed-ended funds can accept new funds from outsiders
+4. Whether anyone can set up a mutual fund
+
+**Search Queries:**
+1. For A: "investors managing their own portfolio after mutual fund purchase"
+2. For B: "closed-ended fund investor withdrawing without trading"
+3. For C: "closed-ended fund accepting more funds from outsiders"
+4. For D: "anyone setting up mutual fund easily"
+
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["investor portfolio management", "closed-ended fund withdrawal process", "closed-ended fund accepting new funds", "setting up mutual fund requirements"],
+    "search_queries": ["investors managing their own portfolio", "closed-ended fund investor withdrawing", "closed-ended fund accepting more money", "anyone can set up mutual fund"]
+}
+```
+Search queries (4): ['investors managing their own portfolio', 'closed-ended fund investor withdrawing', 'closed-ended fund accepting more money', 'anyone can set up mutual fund']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Evidence about whether mutual fund investors still need to choose their own portfolio",
+        "Evidence about how closed-ended fund investors withdraw their investment",
+        "Evidence about whether closed-ended funds accept new funds from outsiders",
+        "Evidence about who can set up a mutual fund"
+    ],
+    "search_queries": [
+        "investors choose their own portfolio after buying mutual fund",
+        "closed-ended fund withdraw investment without trading",
+        "closed-ended funds accept more funds from outsiders",
+        "anyone can set up mutual fund at will"
+    ]
+}
+Search queries (4): ['investors choose their own portfolio after buying mutual fund', 'closed-ended fund withdraw investment without trading', 'closed-ended funds accept more funds from outsiders', 'anyone can set up mutual fund at will']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Statements about mutual fund diversification and investor choice",
+        "Statements about closed-ended fund withdrawal mechanisms",
+        "Statements about closed-ended fund acceptance of new investments",
+        "Statements about requirements for setting up a mutual fund",
+        "Visual representation of SEC regulation or fund creation process"
+    ],
+    "search_queries": [
+        "closed-ended fund withdrawal trading between investors",
+        "closed-ended fund accept new investments outsiders",
+        "setting up mutual fund SEC requirements",
+        "diversified portfolio mutual fund investor choice",
+        "SEC regulates mutual funds"
+    ]
+}
+Search queries (5): ['closed-ended fund withdrawal trading between investors', 'closed-ended fund accept new investments outsiders', 'setting up mutual fund SEC requirements', 'diversified portfolio mutual fund investor choice', 'SEC regulates mutual funds']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["Mutual fund concept explanation", "Closed-ended fund characteristics", "Fund setup requirements", "Investor actions in mutual vs closed-ended funds"],
+    "search_queries": ["closed-ended fund investors withdraw investment", "set up mutual fund requirements", "mutual fund diversified portfolio management", "closed-ended fund accept more funds"]
+}
+Search queries (4): ['closed-ended fund investors withdraw investment', 'set up mutual fund requirements', 'mutual fund diversified portfolio management', 'closed-ended fund accept more funds']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Statements about mutual fund diversification and portfolio management",
+        "Statements about closed-ended fund withdrawal mechanisms",
+        "Statements about closed-ended fund acceptance of new investments",
+        "Statements about requirements for setting up a mutual fund",
+        "Visual explanations of SEC regulations or fund creation processes",
+        "Contrast between mutual funds and closed-ended funds"
+    ],
+    "search_queries": [
+        "closed-ended fund withdraw investment without trading",
+        "closed-ended fund accept more funds from outsiders",
+        "set up mutual fund at will",
+        "SEC regulations mutual fund setup",
+        "diversified investment portfolio mutual fund",
+        "mutual fund versus closed-ended fund differences"
+    ]
+}
+Search queries (6): ['closed-ended fund withdraw investment without trading', 'closed-ended fund accept more funds from outsiders', 'set up mutual fund at will', 'SEC regulations mutual fund setup', 'diversified investment portfolio mutual fund', 'mutual fund versus closed-ended fund differences']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.

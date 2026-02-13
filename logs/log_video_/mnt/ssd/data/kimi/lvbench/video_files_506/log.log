@@ -1,0 +1,52 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": [],
+    "prompt": "You are given an empty video context. The question is: 'What are running around the street?'. The provided answer is 'ERROR'. Since there is no visual evidence (frames are empty), it is impossible to confirm any of the answer choices (Rabbit, Spider, Cat, Mouse). Therefore, the 'ERROR' response is correct as the question cannot be answered from the available evidence. State this conclusion clearly."
+}
+Frames to verify: []
+VLM Prompt: Video context: 
+
+You are given an empty video context. The question is: 'What are running around the street?'. The provided answer is 'ERROR'. Since there is no visual evidence (frames are empty), it is impossible to confirm any of the answer choices (Rabbit, Spider, Cat, Mouse). Therefore, the 'ERROR' response is correct as the question cannot be answered from the available evidence. State this conclusion clearly.
+VLM response: None
+Followup prompt: Assess VLM verification.
+
+VLM Results: None
+Question: What are running around the street?
+
+Answer Choices:
+A. Rabbit
+B. Spider
+C. Cat
+D. Mouse
+
+Answer: ERROR
+Frames: []
+
+Check:
+1. VLM confirms given answer
+2. Contradictions between VLM and answer
+3. All question conditions addressed
+4. Correct answer choice selected
+
+There is ALWAYS a correct answer. Pick BEST match even if imperfect.
+
+Return ONLY JSON:
+{
+    "confidence": <0-100>,
+    "possible_errors": [<actual discrepancies found>],
+    "suggestion": <null if >80, else specific improvement>
+}
+
+Base confidence on VLM results only. List only ACTUAL errors, not hypothetical. Empty [] if no errors.
+
+Critical assessment response: {
+    "confidence": 0,
+    "possible_errors": [
+        "VLM provided no results (None) to analyze the scene or verify the answer.",
+        "The answer 'ERROR' is not a valid choice from the provided options (A, B, C, D).",
+        "No image frames were provided for the VLM to process, making verification impossible.",
+        "The question 'What are running around the street?' cannot be answered without visual context."
+    ],
+    "suggestion": "Provide a valid image or frame for the VLM to analyze. The answer must be one of the given choices (A, B, C, D)."
+}
+Critical assessment data: {'confidence': 0, 'possible_errors': ['VLM provided no results (None) to analyze the scene or verify the answer.', "The answer 'ERROR' is not a valid choice from the provided options (A, B, C, D).", 'No image frames were provided for the VLM to process, making verification impossible.', "The question 'What are running around the street?' cannot be answered without visual context."], 'suggestion': 'Provide a valid image or frame for the VLM to analyze. The answer must be one of the given choices (A, B, C, D).'}

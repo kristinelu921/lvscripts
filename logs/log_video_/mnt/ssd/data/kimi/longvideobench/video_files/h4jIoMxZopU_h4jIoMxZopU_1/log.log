@@ -1,0 +1,67 @@
+[{'role': 'system', 'content': "You are an expert at reasoning and tool-using, with the goal of answering this question about a long video. You should be able to extract detailed frame-information from videos, do caption searches, and use your findings to answer the question. You should be SUPER PICKY about your findings, NOT make assumptions, and always bias towards gathering more evidence before executing a final answer. Use EXACT evidence only. ALSO, when dealing with TEMPORAL questions, you cannot find VISUAL TIMES. If a question asks for a 'duration' of an event, you want to do many caption searches on consecutive ranges, and find scene-changes at the beginning and end of the event. You MUST CHOOSE AN ANSWER. NONE OF THE ABOVE IS NOT ACCEPTABLE."}, {'role': 'user', 'content': '\n Here is a global summary of the video for general context: **Main Characters:**\n\n1. The Bald, Bearded Host (Reid Reimers): The host of SciShow, who appears throughout the video explaining various scientific concepts in an engaging and conversational tone.\n2. The White Unicorn: A mythical creature featured in the video, which is explained to be a combination of a horse and a narwhal.\n3. Narwhals: Marine mammals with a distinctive tusk, which are mentioned as being related to unicorns.\n\n**Setting:**\n\nThe video takes place in a studio or a virtual environment, with a blue background and various graphics and animations used to illustrate scientific concepts.\n\n**Plot:**\n\nThe video explains various scientific concepts related to evolution, biology, and taxonomy, including:\n\n1. The difference between unicorns and narwhals.\n2. The evolutionary biology behind horn development in animals.\n3. The genetic basis of horn development in pecorans (even-toed ungulates).\n4. The taxonomic relationships between ungulates, including perissodactyls (odd-toed ungulates) and artiodactyls (even-toed ungulates).\n\n**Vibes:**\n\nThe video has a friendly, conversational tone, with a focus on educating viewers about scientific concepts in an engaging and accessible way. The use of animations, graphics, and humor helps to make the video entertaining and enjoyable to watch.\n\n**General Details:**\n\nThe video features a mix of live-action footage, animations, and graphics, with a blue background and the SciShow logo appearing throughout. The host is a bald, bearded man who wears a grey short-sleeved button-up shirt with a pink flamingo pattern. The video is produced by Complexly and is available on the SciShow YouTube channel.\n\n Here is also an INCOMPLETE character/event/scene log across the video. These will all be encountered, and there MAY BE MORE CHARACTERS:\nHost (Reid Reimers): Description: Bald, bearded man wearing a grey short-sleeved button-up shirt patterned with pink flamingos [0s-400s]\n\nSCENES:\nScene 1: Blue Background: Description: Host standing against a solid blue background [0s-400s]\nScene 2: CGI Unicorn: Description: CGI rendering of a majestic white unicorn rearing on its hind legs against a golden, cloudy sky [00:02]\nScene 3: Fantasy Landscape: Description: Flock of orange-brown dragons flying in formation over dark, jagged mountains shrouded in thick clouds or mist, with a sunset glowing in the background [00:11]\nScene 4: Host in Unicorn Headband: Description: Host wearing a white plush unicorn headband featuring ears and a spiral horn standing against a solid blue background [0s-40s]\nScene 5: Laboratory Flask: Description: Animated sequence on a dark background: a glowing green laboratory flask bubbles and transforms into a potted plant, which then morphs into the green "SciShow" logo accompanied by a microscope and floating molecular structures [00:00-00:03]\nScene 6: Cladogram: Description: Animated cladogram (evolutionary tree) titled "Ungulate Cladogram (Casual Names)" appears on the blue background illustrating the taxonomic relationships among ungulates [00:21-00:43]\nScene 7: Narwhal Footage: Description: Footage shows narwhals swimming in the ocean, their long tusks visible above the water [00:51-00:56]\nScene 8: Medieval Woodcut: Description: Medieval woodcut illustration labeled *"Of the UNICORN"* showing a traditional unicorn with a single horn [00:55]\nScene 9: Bighorn Sheep and Red Deer: Description: Split-screen image showing a bighorn sheep with curved horns on the left and a red deer with branching antlers on the right [01:09]\nScene 10: Diagram: Description: Scientific diagram illustrating the formation of the neural tube, showing the neural plate folding and the neural crest cells (labeled in green) forming at the top of the tube [01:53]\n\nEVENTS:\nEvent 1: Host puts on Unicorn Headband: Description: Host puts on a white plush unicorn headband featuring ears and a spiral horn [00:21]\nEvent 2: Host gestures to the Camera: Description: Host gestures expressively while speaking directly to the camera [00:03-00:12, 00:43-00:51, 01:14-01:26, 01:32-01:47, 01:47-01:55]\nEvent 3: Host rips his shirt open: Description: Host rips his shirt open in a comedic motion to reveal a white undershirt with sparkles [01:52]\nEvent 4: End Credits: Description: Dark grey end credits screen with green accents, listing production credits and encouraging viewers to support the show [00:10-00:38]\nYour question is this: Two yaks, one large and one small, appeared by the muddy riverbank. The ground by the riverbank is a chaotic mix of yellow earth. The small yak\'s head is resting on the hind legs of the large yak. What did the yak do after coming to the riverbank?'}]You are answering questions about a video using tools to retrieve information.
+
+Question: Two yaks, one large and one small, appeared by the muddy riverbank. The ground by the riverbank is a chaotic mix of yellow earth. The small yak's head is resting on the hind legs of the large yak. What did the yak do after coming to the riverbank?
+
+Answer Choices:
+A. Lowered its head to drink water
+B. Moved backward
+C. Raised its head and made a sound
+D. Left the riverbank
+E. Turned around to look at the small yak
+
+
+SUBTITLES AVAILABLE: Use SUBTITLE_SEARCH when the question quotes text, mentions dialogue, or asks about spoken words (e.g., 'when the subtitle says...').
+
+STEP 1: CHECK QUESTION TYPE
+- Subtitle question? (quotes text, asks about dialogue) → Use SUBTITLE_SEARCH first
+- Temporal question? (after/before/when/first/next/last) → Use RECORD after each VLM_QUERY to track events
+- Quick actions? (hand movements, fast motions, sudden reactions) → Use EXTRACT_FINE_FRAMES at 5-10 FPS
+- Small details? (small objects, text, fine features) → Use CROP_OBJECT to zoom in
+
+STEP 2: EXTRACT VERIFICATION CRITERIA
+List 4-6 specific, testable visual criteria from the QUESTION (not answer choices) that must be verified.
+
+Example: "person in black shirt holding metal bucket with scattered debris"
+Criteria:
+- Person wearing black shirt
+- Person wearing black pants
+- Person holding large round metal bucket
+- Scene contains scattered debris on ground
+
+STEP 2.5: PLAN TO TEST EACH ANSWER CHOICE
+Once you have frames, plan to systematically test EACH answer option with VLM queries:
+- Query to verify option A characteristics
+- Query to verify option B characteristics
+- Query to verify option C characteristics
+- Query to verify option D characteristics
+This prevents confirmation bias and ensures you select the answer with STRONGEST visual evidence.
+
+STEP 3: GENERATE SEARCH QUERIES
+Create 2-4 natural search queries (subject-verb-object format) targeting VISIBLE details.
+- Good: "woman wearing yellow dress holding papers", "person in office setting with documents"
+- Bad: "yellow dress papers office woman"
+
+IMPORTANT: After getting clip time ranges from CAPTION_SEARCH, you MUST use VLM_QUERY to visually verify frames in those time ranges.
+DO NOT repeatedly search captions - once you have candidate clips/time ranges, USE VLM_QUERY to look at the frames!
+
+NOTE: CAPTION_SEARCH returns clip time ranges (e.g., "clip_45_67" = 45-67 seconds).
+Use these time ranges to extract frames for VLM_QUERY (e.g., check frames 45-67: frame_0045.jpg to frame_0067.jpg).
+
+Return format:
+```json{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["criterion 1", "criterion 2", "criterion 3", "criterion 4"],
+    "search_queries": ["natural query 1", "natural query 2", "optional query 3", "optional query 4"]
+}```
+
+For subtitle questions: {"tool": "SUBTITLE_SEARCH", "query": "exact subtitle text", "topk": 10}
+For video clip extraction: {"tool": "QUERY_CLIP", "start_frame": 45, "end_frame": 52, "prompt": "Describe the action"}
+
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["two yaks by muddy riverbank", "small yak's head resting on large yak's hind legs", "chaotic mix of yellow earth ground", "riverbank setting"],
+    "search_queries": ["two yaks by riverbank", "yak resting head on hind legs", "muddy riverbank with yaks", "small yak large yak riverbank"]
+}
+```
+Search queries (4): ['two yaks by riverbank', 'yak resting head on hind legs', 'muddy riverbank with yaks', 'small yak large yak riverbank']

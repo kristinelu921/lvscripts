@@ -8,7 +8,6 @@ test_pipeline /mnt/ssh/data/longvideobench/videos_processed --output-dir run_two
 
 import json
 import os
-import math
 import asyncio
 import argparse
 from pathlib import Path
@@ -54,7 +53,7 @@ def convert_answer_format(answer, from_format='letter', to_format='letter'):
 class PipelineTester:
     """Test harness for video QA pipeline"""
 
-    def __init__(self, video_folder, questions_path, output_dir='test_results', gt_format='index', query_aware=True, vlm_model="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8", llm_model="deepseek-ai/DeepSeek-V3.1", use_no_vlm=False, num_trials=1, video_batch_size=1, reverse=False):
+    def __init__(self, video_folder, questions_path, output_dir='test_results', gt_format='index', query_aware=True, vlm_model="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8", llm_model="deepseek-ai/DeepSeek-V3.1"):
         """
         Args:
             video_folder: Directory containing video folders
@@ -64,10 +63,6 @@ class PipelineTester:
             query_aware: Whether to use query-aware captions (True) or regular captions (False)
             vlm_model: Vision language model to use (default: meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8)
             llm_model: Language model to use (default: deepseek-ai/DeepSeek-V3.1)
-            use_no_vlm: If True, use caption search only without VLM queries (default: False)
-            num_trials: Number of trials to run for majority voting (default: 1 = no majority voting)
-            video_batch_size: Number of videos to process in parallel (default: 1 = sequential)
-            reverse: If True, process videos in reverse alphabetical order (default: False)
         """
         self.video_folder = Path(video_folder)
         self.questions_path = Path(questions_path)
@@ -77,52 +72,30 @@ class PipelineTester:
         self.query_aware = query_aware  # Caption type to use
         self.vlm_model = vlm_model  # Vision language model
         self.llm_model = llm_model  # Language model
-        self.use_no_vlm = use_no_vlm  # Caption search only mode
-        self.num_trials = num_trials  # Number of trials for majority voting
-        self.video_batch_size = video_batch_size  # Number of videos to process in parallel
-        self.reverse = reverse  # Process videos in reverse order
 
         # Load questions
         with open(self.questions_path, 'r') as f:
-            self.all_questions = json.load(f)
+            questions_data = json.load(f)
+
+        # Handle both dict and array formats
+        if isinstance(questions_data, list):
+            # Convert array format to dict format grouped by video_id
+            self.all_questions = {}
+            for q in questions_data:
+                video_id = q.get('video_id') or q.get('id', '').rsplit('_', 1)[0]
+                if video_id not in self.all_questions:
+                    self.all_questions[video_id] = []
+                # Convert to expected format
+                question_obj = {
+                    'uid': q.get('id'),
+                    'question': q.get('question'),
+                    'candidates': q.get('candidates', [])
+                }
+                self.all_questions[video_id].append(question_obj)
+        else:
+            self.all_questions = questions_data
 
         self.test_start_time = datetime.now()
-
-    def get_majority_answer(self, trial_results):
-        """
-        Determine the majority answer from multiple trials
-
-        Args:
-            trial_results: List of answer results from different trials
-
-        Returns:
-            Dict with majority answer and vote counts
-        """
-        from collections import Counter
-
-        # Extract answers from trials
-        answers = []
-        for trial in trial_results:
-            if trial and 'answer' in trial:
-                answer = str(trial['answer']).strip().upper()
-                answers.append(answer)
-
-        if not answers:
-            return None
-
-        # Count votes
-        vote_counts = Counter(answers)
-        majority_answer = vote_counts.most_common(1)[0][0]
-        majority_count = vote_counts[majority_answer]
-
-        return {
-            'majority_answer': majority_answer,
-            'vote_counts': dict(vote_counts),
-            'total_trials': len(answers),
-            'majority_count': majority_count,
-            'agreement_rate': majority_count / len(answers) if answers else 0,
-            'all_trials': trial_results
-        }
 
     def get_testable_videos(self):
         """Get list of videos that are ready for testing (have frames and captions)"""
@@ -132,17 +105,26 @@ class PipelineTester:
             video_dir = self.video_folder / video_id
             frames_dir = video_dir / 'frames'
 
-            # Check for the appropriate caption file based on query_aware toggle
-            if self.query_aware:
+            # Check for the appropriate caption file based on mode
+            # First check for clip_frame_captions (preferred)
+            clip_frame_captions = video_dir / 'clip_frame_captions.json'
+            clip_frame_embeddings = video_dir / 'clip_frame_embeddings.jsonl'
+
+            if clip_frame_captions.exists() and clip_frame_embeddings.exists():
+                captions_file = clip_frame_captions
+                embeddings_file = clip_frame_embeddings
+                caption_type = 'clip_frame'
+                caption_requirement = 'clip frame captions (run caption_frames_together.py)'
+            elif self.query_aware:
                 captions_file = video_dir / 'captions' / 'frame_captions_query_aware.json'
+                embeddings_file = video_dir / 'captions' / 'frame_captions_sorted_embeddings.jsonl'
                 caption_type = 'query_aware'
                 caption_requirement = 'query-aware captions (run caption_frames_query_aware.py first)'
             else:
                 captions_file = video_dir / 'captions' / 'frame_captions.json'
+                embeddings_file = video_dir / 'captions' / 'frame_captions_sorted_embeddings.jsonl'
                 caption_type = 'regular'
                 caption_requirement = 'regular captions (run caption_frames.py first)'
-
-            embeddings_file = video_dir / 'captions' / 'frame_captions_sorted_embeddings.jsonl'
 
             # Check if video is ready
             if not video_dir.exists():
@@ -167,7 +149,8 @@ class PipelineTester:
                 'questions': questions,
                 'num_questions': len(questions),
                 'num_frames': len(list(frames_dir.glob('*.jpg'))),
-                'caption_type': caption_type
+                'caption_type': caption_type,
+                'embeddings_path': str(embeddings_file)
             })
 
         return testable
@@ -204,71 +187,23 @@ class PipelineTester:
 
         # Phase 1: Question Answering
         if mode in ['qa_only', 'full']:
-            if self.num_trials > 1:
-                print(f"\n📝 Phase 1: Running QA Pipeline with Majority Voting ({self.num_trials} trials)...")
-            else:
-                print(f"\n📝 Phase 1: Running QA Pipeline...")
+            print(f"\n📝 Phase 1: Running QA Pipeline...")
 
             for i, q in enumerate(questions):
                 print(f"\nQuestion {i+1}/{len(questions)}: {q['uid']}")
                 print(f"Q: {q['question'][:80]}...")
 
                 try:
-                    # Run multiple trials if num_trials > 1
-                    trial_results = []
-
-                    for trial_num in range(self.num_trials):
-                        if self.num_trials > 1:
-                            print(f"  → Trial {trial_num + 1}/{self.num_trials}...")
-
-                        answer = await answer_question(
-                            question_uid=f"{q['uid']}_trial{trial_num}" if self.num_trials > 1 else q['uid'],
-                            question=q['question'],
-                            vid_folder=self.video_folder,
-                            vid_num=video_id,
-                            candidates=q.get('candidates'),
-                            vlm_model=self.vlm_model,
-                            llm_model=self.llm_model,
-                            use_no_vlm=self.use_no_vlm
-                        )
-
-                        trial_results.append(answer)
-
-                        if self.num_trials > 1 and answer:
-                            print(f"     Answer: {answer.get('answer', 'N/A')}")
-
-                    # Determine final answer based on majority vote or single trial
-                    if self.num_trials > 1:
-                        majority_result = self.get_majority_answer(trial_results)
-                        if majority_result:
-                            # Use majority answer as the final answer
-                            final_answer = majority_result['majority_answer']
-
-                            # Find the first trial with the majority answer to get full details
-                            representative_trial = None
-                            for trial in trial_results:
-                                if trial and str(trial.get('answer', '')).strip().upper() == final_answer:
-                                    representative_trial = trial
-                                    break
-
-                            # Build answer dict with majority voting info
-                            answer = representative_trial if representative_trial else trial_results[0]
-                            if answer:
-                                answer['majority_voting'] = {
-                                    'vote_counts': majority_result['vote_counts'],
-                                    'agreement_rate': majority_result['agreement_rate'],
-                                    'total_trials': majority_result['total_trials'],
-                                    'majority_count': majority_result['majority_count']
-                                }
-
-                            print(f"  Majority Vote: {final_answer} ({majority_result['majority_count']}/{self.num_trials} votes)")
-                            print(f"     Vote Distribution: {majority_result['vote_counts']}")
-                            print(f"     Agreement Rate: {majority_result['agreement_rate']*100:.1f}%")
-                        else:
-                            answer = None
-                    else:
-                        # Single trial, use as-is
-                        answer = trial_results[0] if trial_results else None
+                    answer = await answer_question(
+                        question_uid=q['uid'],
+                        question=q['question'],
+                        vid_folder=self.video_folder,
+                        vid_num=video_id,
+                        candidates=q.get('candidates'),
+                        vlm_model=self.vlm_model,
+                        llm_model=self.llm_model,
+                        embeddings_path=video_info.get('embeddings_path')
+                    )
 
                     if answer:
                         # Check correctness against ground truth
@@ -276,19 +211,14 @@ class PipelineTester:
                         if 'correct_choice' in q and q['correct_choice'] is not None:
                             correct_answer = q['candidates'][q['correct_choice']]
 
-                            # Get predicted answer from model (as letter)
-                            predicted_answer = str(answer.get('answer', '')).strip().upper()
+                            # Get predicted answer from model (already an integer index)
+                            predicted_idx = answer.get('answer')
 
-                            # Check if it's a numeric answer (0-4)
-                            if predicted_answer in ['0', '1', '2', '3', '4']:
-                                predicted_idx = int(predicted_answer)
-                            # Check if it's a letter answer (A-E)
-                            elif predicted_answer in ['A', 'B', 'C', 'D', 'E']:
-                                predicted_idx = convert_answer_format(predicted_answer, from_format='letter', to_format='index')
-                            else:
-                                # Unknown format, try to convert anyway
-                                predicted_idx = convert_answer_format(predicted_answer, from_format='letter', to_format='index')
+                            # Convert to int if it's a string
+                            if isinstance(predicted_idx, str):
+                                predicted_idx = int(predicted_idx)
 
+                            # Compare directly
                             is_correct = (predicted_idx == q['correct_choice'])
 
                         # Store pre-critic answer
@@ -307,9 +237,6 @@ class PipelineTester:
                         # Include criteria if present
                         if 'criteria' in answer:
                             pre_critic_result['criteria'] = answer['criteria']
-                        # Include majority voting data if present
-                        if 'majority_voting' in answer:
-                            pre_critic_result['majority_voting'] = answer['majority_voting']
                         results['pre_critic_answers'].append(pre_critic_result)
 
                         status = "✅ Correct" if is_correct else "❌ Wrong" if is_correct is not None else "⚪ Unknown"
@@ -371,21 +298,6 @@ class PipelineTester:
                             None
                         )
 
-                        # Check if judge made a decision
-                        judge_decision = None
-                        judge_reasoning = None
-                        was_reevaluated = False
-                        if matching_critic and 'judge_decision' in matching_critic:
-                            judge_decision = matching_critic['judge_decision']
-                            judge_reasoning = matching_critic.get('judge_reasoning', '')
-                            was_reevaluated = True
-
-                        # Determine final answer
-                        if was_reevaluated:
-                            final_answer = judge_decision
-                        else:
-                            final_answer = pre_critic['predicted_answer']
-
                         # Create combined result
                         combined = {
                             # Pre-critic info
@@ -403,15 +315,9 @@ class PipelineTester:
                             'critic_confidence': matching_critic.get('confidence', -1) if matching_critic else -1,
                             'critic_possible_errors': matching_critic.get('possible_errors', []) if matching_critic else [],
                             'critic_suggestion': matching_critic.get('suggestion', None) if matching_critic else None,
-                            'critic_answer_choice': matching_critic.get('critic_answer_choice', -1) if matching_critic else -1,
 
-                            # Judge decision (if exists)
-                            'judge_decision': judge_decision,
-                            'judge_reasoning': judge_reasoning,
-                            'was_reevaluated_by_judge': was_reevaluated,
-
-                            # Post-critic answer (uses judge decision if available, otherwise original)
-                            'final_answer': final_answer,
+                            # Post-critic answer (for now, same as pre-critic unless re-evaluation implemented)
+                            'final_answer': pre_critic['predicted_answer'],  # Can be updated if re-evaluation is used
                         }
 
                         results['post_critic_results'].append(combined)
@@ -437,7 +343,7 @@ class PipelineTester:
 
         # Phase 3: Re-evaluation (for low confidence answers < 70%)
         if mode == 'full' and results['post_critic_results']:
-            low_conf_count = sum(1 for r in results['post_critic_results'] if r['critic_confidence'] <= 50 and r['critic_confidence'] >= 0)
+            low_conf_count = sum(1 for r in results['post_critic_results'] if r['critic_confidence'] < 70 and r['critic_confidence'] >= 0)
 
             if low_conf_count > 0:
                 print(f"\n🔄 Phase 3: Re-evaluating {low_conf_count} low-confidence answers (< 70%)...")
@@ -446,9 +352,7 @@ class PipelineTester:
                     re_eval_results = await re_evaluate_low_confidence_answers(
                         vid_dir=str(self.video_folder),
                         num=video_id,
-                        confidence_threshold=50,
-                        llm_model=self.llm_model,
-                        vlm_model=self.vlm_model
+                        confidence_threshold=70
                     )
 
                     if re_eval_results:
@@ -466,18 +370,10 @@ class PipelineTester:
 
                                         # Check correctness of re-evaluated answer
                                         if 'correct_choice_idx' in post_critic and post_critic['correct_choice_idx'] is not None:
-                                            re_eval_answer = str(re_eval.get('answer', '')).strip().upper()
-
-                                            # Check if it's a numeric answer (0-4)
-                                            if re_eval_answer in ['0', '1', '2', '3', '4']:
-                                                predicted_idx = int(re_eval_answer)
-                                            # Check if it's a letter answer (A-E)
-                                            elif re_eval_answer in ['A', 'B', 'C', 'D', 'E']:
-                                                predicted_idx = convert_answer_format(re_eval_answer, from_format='letter', to_format='index')
-                                            else:
-                                                # Unknown format, try to convert anyway
-                                                predicted_idx = convert_answer_format(re_eval_answer, from_format='letter', to_format='index')
-
+                                            if "0" or "1" or "2" or "3" or "4" in re_eval.get('answer'):
+                                                predicted_answer = int(re_eval.get('answer'))
+                                            elif "A" or "B" or "C" or "D" or "E" in re_eval.get('answer'):
+                                                predicted_answer = convert_answer_format(re_eval.get('answer'), from_format='letter', to_format='index')
                                             results['post_critic_results'][i]['is_correct_after_reeval'] = (predicted_idx == post_critic['correct_choice_idx'])
 
                                         break
@@ -500,38 +396,15 @@ class PipelineTester:
                 results['accuracy_pre_critic'] = correct_count / total_with_gt
                 print(f"\n📊 Pre-Critic Accuracy: {correct_count}/{total_with_gt} ({results['accuracy_pre_critic']*100:.1f}%)")
 
-        # Calculate accuracy (post-critic) - uses final_answer which includes judge decisions
+        # Calculate accuracy (post-critic) - currently same as pre-critic unless re-evaluation is implemented
         if results['post_critic_results']:
-            # Count questions that were re-evaluated by judge
-            judge_reevals = sum(1 for r in results['post_critic_results'] if r['was_reevaluated_by_judge'])
-
-            # Recalculate correctness based on final_answer (not pre-critic answer)
-            for r in results['post_critic_results']:
-                if r['final_answer'] in ['0', '1', '2', '3', '4']:
-                    r['final_answer'] = int(r['final_answer'])
-                elif r['final_answer'] in ['A', 'B', 'C', 'D', 'E']:
-                    r['final_answer'] = convert_answer_format(r['final_answer'], from_format='letter', to_format='index')
-                elif r['final_answer'] in [0, 1, 2, 3, 4]:
-                    r['final_answer'] = int(r['final_answer'])
-                else:
-                    pass
-                if r['correct_choice_idx'] is not None:
-                    # Check if final_answer matches ground truth
-                    r['is_correct_post_critic'] = (r['final_answer'] == r['correct_choice_idx'])
-                else:
-                    r['is_correct_post_critic'] = None
-
-            correct_count = sum(1 for r in results['post_critic_results'] if r.get('is_correct_post_critic'))
-            total_with_gt = sum(1 for r in results['post_critic_results'] if r.get('is_correct_post_critic') is not None)
+            correct_count = sum(1 for r in results['post_critic_results'] if r['is_correct'])
+            total_with_gt = sum(1 for r in results['post_critic_results'] if r['is_correct'] is not None)
             if total_with_gt > 0:
                 results['accuracy_post_critic'] = correct_count / total_with_gt
-                results['num_judge_reevaluations'] = judge_reevals
-
-                # Show if different from pre-critic or if judge made decisions
-                if results['accuracy_post_critic'] != results['accuracy_pre_critic'] or judge_reevals > 0:
+                # Only show if different from pre-critic
+                if results['accuracy_post_critic'] != results['accuracy_pre_critic']:
                     print(f"📊 Post-Critic Accuracy: {correct_count}/{total_with_gt} ({results['accuracy_post_critic']*100:.1f}%)")
-                    if judge_reevals > 0:
-                        print(f"   → {judge_reevals} answers re-evaluated by judge")
 
         return results
 
@@ -546,13 +419,6 @@ class PipelineTester:
         """
         testable_videos = self.get_testable_videos()
 
-        # Sort videos alphabetically by video_id
-        testable_videos = sorted(testable_videos, key=lambda v: v['video_id'])
-
-        # Reverse if requested
-        if self.reverse:
-            testable_videos = list(reversed(testable_videos))
-
         # Filter by video_ids if specified
         if video_ids:
             testable_videos = [v for v in testable_videos if v['video_id'] in video_ids]
@@ -566,56 +432,27 @@ class PipelineTester:
             return None
 
         caption_type_label = "Query-Aware Captions" if self.query_aware else "Regular Captions"
-        vlm_mode_label = "Caption Search Only (No VLM)" if self.use_no_vlm else "Full Pipeline (with VLM)"
-        order_label = "[REVERSE ORDER]" if self.reverse else "[FORWARD ORDER]"
 
         print(f"\n{'='*60}")
-        print(f"PIPELINE TEST SUITE {order_label}")
+        print(f"PIPELINE TEST SUITE")
         print(f"{'='*60}")
         print(f"Videos to test: {len(testable_videos)}")
-        if self.reverse:
-            print(f"Order: REVERSE (Z → A)")
-            print(f"First video: {testable_videos[0]['video_id']}")
-            print(f"Last video: {testable_videos[-1]['video_id']}")
-        else:
-            print(f"Order: FORWARD (A → Z)")
         print(f"Total questions: {sum(v['num_questions'] for v in testable_videos)}")
         print(f"Caption type: {caption_type_label}")
-        print(f"VLM mode: {vlm_mode_label}")
         print(f"Mode: {mode}")
         print(f"{'='*60}\n")
 
         all_results = []
 
-        batch_size = getattr(self, 'video_batch_size', 1)
-        num_batches = math.ceil(len(testable_videos) / batch_size)
+        for i, video_info in enumerate(testable_videos):
+            print(f"\n[{i+1}/{len(testable_videos)}] Testing {video_info['video_id']}...")
 
-        for batch_idx in range(num_batches):
-            start_idx = batch_idx * batch_size
-            end_idx = min(start_idx + batch_size, len(testable_videos))
-            batch_videos = testable_videos[start_idx:end_idx]
-        
-            print(f"PROCESSING BATCH {batch_idx+1}/{num_batches} ({len(batch_videos)} videos)...")
-            tasks = []
-            for i, video_info in enumerate(batch_videos):
-                abs_idx = start_idx + i
-                tasks.append(self.test_single_video(video_info, mode=mode))
-            
-            batch_results = await asyncio.gather(*tasks, return_exceptions=True)
+            result = await self.test_single_video(video_info, mode=mode)
+            all_results.append(result)
 
-            for i, result in enumerate(batch_results):
-                if isinstance(result, Exception):
-                    print(f"Error processing video {batch_videos[i]['video_id']}: {result}")
-                    all_results.append({
-                        'video_id': batch_videos[i]['video_id'],
-                        'errors': [f"Error processing video {batch_videos[i]['video_id']}: {result}"]
-                    })
-                else:
-                    print(f"✅ Processed video {batch_videos[i]['video_id']}")
-                    all_results.append(result)
-
-                if i % 10 == 0 or i == len(testable_videos) - 1:
-                    self.save_results(all_results, partial=True)
+            # Save intermediate results
+            if i % 10 == 0 or i == len(testable_videos) - 1:
+                self.save_results(all_results, partial=True)
 
         # Generate final report
         report = self.generate_report(all_results)
@@ -638,10 +475,7 @@ class PipelineTester:
                 'duration_seconds': (datetime.now() - self.test_start_time).total_seconds(),
                 'video_folder': str(self.video_folder),
                 'questions_path': str(self.questions_path),
-                'caption_type': 'query_aware' if self.query_aware else 'regular',
-                'use_no_vlm': self.use_no_vlm,
-                'num_trials': self.num_trials,
-                'majority_voting_enabled': self.num_trials > 1
+                'caption_type': 'query_aware' if self.query_aware else 'regular'
             },
             'summary': {
                 'total_videos': len(all_results),
@@ -667,40 +501,16 @@ class PipelineTester:
                 'accuracy_percentage': f"{(correct / with_gt * 100):.2f}%" if with_gt > 0 else "N/A"
             }
 
-            # Add majority voting statistics if enabled
-            if self.num_trials > 1:
-                answers_with_voting = [qa for qa in all_pre_critic if 'majority_voting' in qa]
-                if answers_with_voting:
-                    agreement_rates = [qa['majority_voting']['agreement_rate'] for qa in answers_with_voting]
-                    avg_agreement = sum(agreement_rates) / len(agreement_rates) if agreement_rates else 0
-
-                    report['qa_performance_pre_critic']['majority_voting'] = {
-                        'avg_agreement_rate': avg_agreement,
-                        'avg_agreement_percentage': f"{(avg_agreement * 100):.1f}%",
-                        'unanimous_answers': sum(1 for qa in answers_with_voting if qa['majority_voting']['agreement_rate'] == 1.0),
-                        'split_decisions': sum(1 for qa in answers_with_voting if qa['majority_voting']['agreement_rate'] < 0.6)
-                    }
-
         # Critic Performance (from post_critic_results)
         all_post_critic = [c for r in all_results for c in r['post_critic_results']]
         if all_post_critic:
             confidences = [c['critic_confidence'] for c in all_post_critic if c['critic_confidence'] >= 0]
 
-            # Calculate correlation between confidence and correctness (using post-critic correctness)
-            correct_high_conf = sum(1 for c in all_post_critic if c.get('is_correct_post_critic') and c['critic_confidence'] >= 80)
-            wrong_high_conf = sum(1 for c in all_post_critic if not c.get('is_correct_post_critic') and c['critic_confidence'] >= 80)
-            correct_low_conf = sum(1 for c in all_post_critic if c.get('is_correct_post_critic') and c['critic_confidence'] < 50)
-            wrong_low_conf = sum(1 for c in all_post_critic if not c.get('is_correct_post_critic') and c['critic_confidence'] < 50)
-
-            # Judge statistics
-            judge_reevals = [c for c in all_post_critic if c.get('was_reevaluated_by_judge')]
-            total_judge_reevals = len(judge_reevals)
-
-            # Judge improved accuracy?
-            judge_corrections = sum(1 for c in judge_reevals
-                                   if c.get('is_correct_post_critic') and not c['is_correct'])
-            judge_made_worse = sum(1 for c in judge_reevals
-                                  if not c.get('is_correct_post_critic') and c['is_correct'])
+            # Calculate correlation between confidence and correctness
+            correct_high_conf = sum(1 for c in all_post_critic if c['is_correct'] and c['critic_confidence'] >= 80)
+            wrong_high_conf = sum(1 for c in all_post_critic if not c['is_correct'] and c['critic_confidence'] >= 80)
+            correct_low_conf = sum(1 for c in all_post_critic if c['is_correct'] and c['critic_confidence'] < 50)
+            wrong_low_conf = sum(1 for c in all_post_critic if not c['is_correct'] and c['critic_confidence'] < 50)
 
             report['critic_performance'] = {
                 'total_assessed': len(all_post_critic),
@@ -713,26 +523,8 @@ class PipelineTester:
                     'wrong_with_high_confidence': wrong_high_conf,
                     'correct_with_low_confidence': correct_low_conf,
                     'wrong_with_low_confidence': wrong_low_conf
-                },
-                'judge_reevaluations': {
-                    'total_reevaluated': total_judge_reevals,
-                    'judge_corrected_errors': judge_corrections,
-                    'judge_introduced_errors': judge_made_worse,
-                    'net_improvement': judge_corrections - judge_made_worse
                 }
             }
-
-            # Post-critic accuracy
-            post_critic_correct = sum(1 for c in all_post_critic if c.get('is_correct_post_critic'))
-            post_critic_with_gt = sum(1 for c in all_post_critic if c.get('is_correct_post_critic') is not None)
-            if post_critic_with_gt > 0:
-                report['qa_performance_post_critic'] = {
-                    'total_answered': len(all_post_critic),
-                    'with_ground_truth': post_critic_with_gt,
-                    'correct': post_critic_correct,
-                    'accuracy': post_critic_correct / post_critic_with_gt,
-                    'accuracy_percentage': f"{(post_critic_correct / post_critic_with_gt * 100):.2f}%"
-                }
 
         # Per-video summary
         for result in all_results:
@@ -742,7 +534,6 @@ class PipelineTester:
                 'caption_type': result.get('caption_type', 'unknown'),
                 'accuracy_pre_critic': result.get('accuracy_pre_critic'),
                 'accuracy_post_critic': result.get('accuracy_post_critic'),
-                'num_judge_reevaluations': result.get('num_judge_reevaluations', 0),
                 'avg_confidence': result['avg_confidence'],
                 'errors': len(result['errors'])
             }
@@ -762,43 +553,6 @@ class PipelineTester:
 
         if not partial:
             print(f"\n💾 Detailed results saved to: {output_path}")
-
-            # Also save simplified results with only requested fields
-            simplified_results = []
-            for result in results:
-                video_result = {
-                    'video_id': result['video_id'],
-                    'num_questions': result['num_questions'],
-                    'num_frames': result.get('num_frames', 'N/A'),
-                    'questions': []
-                }
-
-                for q in result.get('post_critic_results', []):
-                    simplified_q = {
-                        'uid': q['uid'],
-                        'question': q['question'],
-                        'candidates': q.get('candidates', []),
-                        'pre_critic_answer': q['predicted_answer'],
-                        'reasoning': q.get('reasoning', ''),
-                        'correct_choice_idx': q['correct_choice_idx'],
-                        'correct_answer': q['correct_answer'],
-                        'is_correct': q.get('is_correct_post_critic'),
-                        'evidence_frames': q['evidence_frames'],
-                        'criteria': q.get('criteria', []),
-                        'critic_confidence': q['critic_confidence'],
-                        'critic_answer': q.get('critic_answer_choice', -1),
-                        'judge_choice': q.get('judge_decision') if q.get('was_reevaluated_by_judge') else None,
-                        'judge_reasoning': q.get('judge_reasoning', '') if q.get('was_reevaluated_by_judge') else None,
-                        're_evaluated_with_judge': q.get('was_reevaluated_by_judge', False)
-                    }
-                    video_result['questions'].append(simplified_q)
-
-                simplified_results.append(video_result)
-
-            simplified_path = self.output_dir / f"simplified_results_{timestamp}.json"
-            with open(simplified_path, 'w') as f:
-                json.dump(simplified_results, f, indent=2)
-            print(f"💾 Simplified results saved to: {simplified_path}")
 
     def save_report(self, report, all_results):
         """Save report to JSON and text"""
@@ -833,18 +587,6 @@ class PipelineTester:
                 f.write("\n\nQA PERFORMANCE (PRE-CRITIC)\n")
                 f.write("-"*70 + "\n")
                 for key, value in report['qa_performance_pre_critic'].items():
-                    if key == 'majority_voting' and isinstance(value, dict):
-                        f.write(f"\nMajority Voting Statistics:\n")
-                        for mv_key, mv_value in value.items():
-                            f.write(f"  {mv_key}: {mv_value}\n")
-                    else:
-                        f.write(f"{key}: {value}\n")
-
-            # QA Performance (Post-Critic)
-            if report.get('qa_performance_post_critic'):
-                f.write("\n\nQA PERFORMANCE (POST-CRITIC)\n")
-                f.write("-"*70 + "\n")
-                for key, value in report['qa_performance_post_critic'].items():
                     f.write(f"{key}: {value}\n")
 
             # Critic Performance
@@ -852,16 +594,7 @@ class PipelineTester:
                 f.write("\n\nCRITIC PERFORMANCE\n")
                 f.write("-"*70 + "\n")
                 for key, value in report['critic_performance'].items():
-                    if key == 'judge_reevaluations' and isinstance(value, dict):
-                        f.write(f"\nJudge Re-evaluations:\n")
-                        for judge_key, judge_value in value.items():
-                            f.write(f"  {judge_key}: {judge_value}\n")
-                    elif key == 'calibration' and isinstance(value, dict):
-                        f.write(f"\nCalibration:\n")
-                        for cal_key, cal_value in value.items():
-                            f.write(f"  {cal_key}: {cal_value}\n")
-                    else:
-                        f.write(f"{key}: {value}\n")
+                    f.write(f"{key}: {value}\n")
 
             # Per-video results
             f.write("\n\nPER-VIDEO RESULTS\n")
@@ -873,8 +606,6 @@ class PipelineTester:
                     f.write(f"  Pre-Critic Accuracy: {video['accuracy_pre_critic']*100:.1f}%\n")
                 if video.get('accuracy_post_critic') is not None and video['accuracy_post_critic'] != video.get('accuracy_pre_critic'):
                     f.write(f"  Post-Critic Accuracy: {video['accuracy_post_critic']*100:.1f}%\n")
-                if video.get('num_judge_reevaluations', 0) > 0:
-                    f.write(f"  Judge Re-evaluations: {video['num_judge_reevaluations']}\n")
                 if video['avg_confidence'] is not None:
                     f.write(f"  Avg Confidence: {video['avg_confidence']:.1f}%\n")
                 if video['errors']:
@@ -887,18 +618,10 @@ class PipelineTester:
                 f.write(f"\n{result['video_id']}:\n")
                 f.write("-"*70 + "\n")
                 for q in result['post_critic_results']:
-                    # Use post-critic correctness
-                    status = "✅" if q.get('is_correct_post_critic') else "❌" if q.get('is_correct_post_critic') is not None else "⚪"
+                    status = "✅" if q['is_correct'] else "❌" if q['is_correct'] is not None else "⚪"
                     f.write(f"\n{q['uid']}: {status}\n")
                     f.write(f"  Q: {q['question'][:100]}...\n")
                     f.write(f"  Predicted: {q['predicted_answer']} | Correct: {q['correct_answer']}\n")
-
-                    # Show judge decision if exists
-                    if q.get('was_reevaluated_by_judge'):
-                        f.write(f"  ⚖️  Judge Re-evaluated: Original={q['predicted_answer']} → Judge={q['judge_decision']}\n")
-                        if q.get('judge_reasoning'):
-                            f.write(f"     Judge Reasoning: {q['judge_reasoning'][:100]}...\n")
-
                     f.write(f"  Critic Confidence: {q['critic_confidence']}%\n")
                     if q.get('critic_possible_errors'):
                         f.write(f"  Possible Errors: {', '.join(q['critic_possible_errors'])}\n")
@@ -918,8 +641,8 @@ class PipelineTester:
         print("TEST SUMMARY")
         print(f"{'='*70}")
 
-        if report.get('qa_performance_pre_critic'):
-            qa = report['qa_performance_pre_critic']
+        if report['qa_performance']:
+            qa = report['qa_performance']
             print(f"\n📝 QA Performance:")
             print(f"   Questions answered: {qa['total_answered']}")
             print(f"   Accuracy: {qa['accuracy_percentage']}")
@@ -952,7 +675,7 @@ async def main():
     )
 
     parser.add_argument('video_folder', help='Directory containing video folders')
-    parser.add_argument('--questions', default='/mnt/ssd/data/longvideobench/downloaded_videos_questions.json',
+    parser.add_argument('--questions', default='/mnt/ssh/data/longvideobench/downloaded_videos_questions.json',
                        help='Path to questions JSON')
     parser.add_argument('--output-dir', default='test_results',
                        help='Directory for test results')
@@ -968,17 +691,8 @@ async def main():
                        help='Use query-aware captions instead of regular captions')
     parser.add_argument('--vlm-model', type=str, default='meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8',
                        help='Vision language model to use (default: meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8)')
-    #'Qwen/Qwen2.5-VL-72B-Instruct'
     parser.add_argument('--llm-model', type=str, default='deepseek-ai/DeepSeek-V3.1',
                        help='Language model to use (default: deepseek-ai/DeepSeek-V3.1)')
-    parser.add_argument('--no-vlm', action='store_true', default=False,
-                       help='Use caption search only without VLM queries (uses prompts_no_vlm.py)')
-    parser.add_argument('--num-trials', type=int, default=1,
-                       help='Number of trials for majority voting (default: 1 = no majority voting, e.g., 5 for 5 trials)')
-    parser.add_argument('--video-batch-size', type=int, default=1,
-                       help='Number of videos to process in parallel (default: 1 = sequential, e.g., 3 for 3 videos at once)')
-    parser.add_argument('--reverse', action='store_true', default=False,
-                       help='Process videos in reverse alphabetical order (useful for parallel processing)')
 
     args = parser.parse_args()
 
@@ -990,11 +704,7 @@ async def main():
         gt_format=args.gt_format,
         query_aware=args.query_aware,
         vlm_model=args.vlm_model,
-        llm_model=args.llm_model,
-        use_no_vlm=args.no_vlm,
-        num_trials=args.num_trials,
-        video_batch_size=args.video_batch_size,
-        reverse=args.reverse
+        llm_model=args.llm_model
     )
 
     # Run tests

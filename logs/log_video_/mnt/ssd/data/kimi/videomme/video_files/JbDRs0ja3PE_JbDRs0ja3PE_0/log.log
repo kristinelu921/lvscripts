@@ -1,0 +1,177 @@
+[{'role': 'system', 'content': "You are an expert at reasoning and tool-using, with the goal of answering this question about a long video. You should be able to extract detailed frame-information from videos, do caption searches, and use your findings to answer the question. You should be SUPER PICKY about your findings, NOT make assumptions, and always bias towards gathering more evidence before executing a final answer. Use EXACT evidence only. ALSO, when dealing with TEMPORAL questions, you cannot find VISUAL TIMES. If a question asks for a 'duration' of an event, you want to do many caption searches on consecutive ranges, and find scene-changes at the beginning and end of the event. You MUST CHOOSE AN ANSWER. NONE OF THE ABOVE IS NOT ACCEPTABLE."}, {'role': 'user', 'content': '\n Here is a global summary of the video for general context: **Main Characters:** None\n\n**Setting:** \n\n- Mostly an abstract, void-like black background with contrasting colors for the fluid dynamics.\n- A human heart, lungs, and other medical imagery in a black background.\n- An indeterminate, abstract space with swirling smoke and liquid droplets.\n\n**Plot:** \n\n- The video features various abstract fluid dynamics, medical imagery, and animations.\n- The first part showcases the interaction between a golden liquid and white smoke.\n- The second part features CGI animations of human anatomy and medical imagery rendered in fire and smoke.\n- The third part is a warning message about the risks of mixing drugs, featuring a monochrome vortex and static text.\n\n**Vibes:** \n\n- Dramatic and abstract, with high contrast and artistic visuals.\n- Mysterious, hypnotic, and clinical, with a focus on fluid dynamics and medical imagery.\n- Somber, cautionary, and clinical, with a serious warning message.\n\n**General Details:** \n\n- The video features a mix of slow-motion photography, CGI animations, and abstract fluid dynamics.\n- The color palette ranges from dark blacks and grays to warm golden hues and fiery oranges.\n- The mood and style vary throughout the video, from dramatic and artistic to somber and cautionary.\n\n Here is also an INCOMPLETE character/event/scene log across the video. These will all be encountered, and there MAY BE MORE CHARACTERS:\nNone \n\nSCENES:\nScene 1 (Contrasting Substances): Description: [A black background featuring a stream of golden, amber-colored liquid interacting with white smoke or powder] [00:00:00 - 00:00:11]\n\nScene 2 (Abstract Animation): Description: [A glowing, amber-colored liquid forms a horizontal ring, surrounded by white smoke; the liquid structure destabilizes and the smoke coalesces into a question mark shape] [00:00:05 - 00:00:08]\n\nScene 3 (Fluid Dynamics): Description: [An extreme close-up view of a dynamic interaction between liquid and vapor against a pitch-black background, with the liquid reflecting warm amber and orange highlights] [00:00:08 - 00:00:09]\n\nScene 4 (Liquid Patterns): Description: [An abstract, fluid scene with swirling patterns of molten gold, amber, and black, interspersed with wispy white and gray tendrils] [00:00:09 - 00:00:11]\n\nScene 5 (Heart and Lungs): Description: [CGI animations of human anatomy and medical imagery rendered in fire and smoke against a solid black background] [00:00:11 - 00:00:23]\n\nScene 6 (Smoke Vortex): Description: [A disorienting, monochrome vortex of swirling smoke or clouds that spirals inward toward a dark center, creating a tunnel-like effect] [00:00:23 - 00:00:30]\n\nEVENTS:\nNone\nYour question is this: Which human organ is visible in the video?'}]You are answering questions about a video using tools to retrieve information.
+
+Question: Which human organ is visible in the video?
+
+Answer Choices:
+A. Stomach.
+B. Liver.
+C. Lungs.
+D. Kidneys.
+
+
+STEP 1: CHECK QUESTION TYPE
+- Subtitle question? (quotes text, asks about dialogue) → Use SUBTITLE_SEARCH first
+- Temporal question? (after/before/when/first/next/last) → Use RECORD after each VLM_QUERY to track events
+- Quick actions? (hand movements, fast motions, sudden reactions) → Use EXTRACT_FINE_FRAMES at 5-10 FPS
+- Small details? (small objects, text, fine features) → Use CROP_OBJECT to zoom in
+
+STEP 2: EXTRACT VERIFICATION CRITERIA
+List 4-6 specific, testable visual criteria from the QUESTION (not answer choices) that must be verified.
+
+Example: "person in black shirt holding metal bucket with scattered debris"
+Criteria:
+- Person wearing black shirt
+- Person wearing black pants
+- Person holding large round metal bucket
+- Scene contains scattered debris on ground
+
+STEP 2.5: PLAN TO TEST EACH ANSWER CHOICE
+Once you have frames, plan to systematically test EACH answer option with VLM queries:
+- Query to verify option A characteristics
+- Query to verify option B characteristics
+- Query to verify option C characteristics
+- Query to verify option D characteristics
+This prevents confirmation bias and ensures you select the answer with STRONGEST visual evidence.
+
+STEP 3: GENERATE SEARCH QUERIES
+Create 2-4 natural search queries (subject-verb-object format) targeting VISIBLE details.
+- Good: "woman wearing yellow dress holding papers", "person in office setting with documents"
+- Bad: "yellow dress papers office woman"
+
+IMPORTANT: After getting clip time ranges from CAPTION_SEARCH, you MUST use VLM_QUERY to visually verify frames in those time ranges.
+DO NOT repeatedly search captions - once you have candidate clips/time ranges, USE VLM_QUERY to look at the frames!
+
+NOTE: CAPTION_SEARCH returns clip time ranges (e.g., "clip_45_67" = 45-67 seconds).
+Use these time ranges to extract frames for VLM_QUERY (e.g., check frames 45-67: frame_0045.jpg to frame_0067.jpg).
+
+Return format:
+```json{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["criterion 1", "criterion 2", "criterion 3", "criterion 4"],
+    "search_queries": ["natural query 1", "natural query 2", "optional query 3", "optional query 4"]
+}```
+
+For subtitle questions: {"tool": "SUBTITLE_SEARCH", "query": "exact subtitle text", "topk": 10}
+For video clip extraction: {"tool": "QUERY_CLIP", "start_frame": 45, "end_frame": 52, "prompt": "Describe the action"}
+
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["Human heart visible", "Human lungs visible", "Medical imagery of organs", "CGI animation of anatomy"],
+    "search_queries": ["human heart", "human lungs", "medical imagery", "anatomy animation"]
+}
+Search queries (4): ['human heart', 'human lungs', 'medical imagery', 'anatomy animation']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["Human heart", "Human lungs", "CGI medical imagery", "Anatomy rendered in fire and smoke"],
+    "search_queries": ["human heart anatomy", "lungs medical imagery", "CGI human organs", "heart and lungs animation"]
+}
+Search queries (4): ['human heart anatomy', 'lungs medical imagery', 'CGI human organs', 'heart and lungs animation']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["Human organ visible", "Anatomical structure", "Medical imagery", "Heart shape", "Lung shape", "Internal organ"],
+    "search_queries": ["human heart anatomy", "lungs medical imagery", "internal organs visible", "human anatomy CGI animation"]
+}
+```
+Search queries (4): ['human heart anatomy', 'lungs medical imagery', 'internal organs visible', 'human anatomy CGI animation']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["presence of human organs", "visible heart anatomy", "visible lungs anatomy", "visible stomach anatomy", "visible liver anatomy", "visible kidneys anatomy"],
+    "search_queries": ["human organs visible", "heart anatomy", "lungs anatomy", "stomach organ", "liver organ", "kidneys organ"]
+}
+```
+Search queries (6): ['human organs visible', 'heart anatomy', 'lungs anatomy', 'stomach organ', 'liver organ', 'kidneys organ']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["Human organ visible in video", "Heart anatomy", "Lungs anatomy", "Medical imagery of organs", "CGI animation of human anatomy"],
+    "search_queries": ["human heart", "human lungs", "medical organ imagery", "CGI anatomy animation"]
+}
+```
+Search queries (4): ['human heart', 'human lungs', 'medical organ imagery', 'CGI anatomy animation']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["Human organ visible in video", "Anatomical structure resembling heart", "Anatomical structure resembling lungs", "Anatomical structure resembling stomach", "Anatomical structure resembling liver", "Anatomical structure resembling kidneys"],
+    "search_queries": ["human heart anatomy", "lungs organ visible", "medical imagery organs", "CGI human anatomy"]
+}
+```
+Search queries (4): ['human heart anatomy', 'lungs organ visible', 'medical imagery organs', 'CGI human anatomy']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["Human organ visible", "Anatomical structure", "Medical imagery", "Internal body part"],
+    "search_queries": ["human organ anatomy", "heart lungs medical imagery", "internal organs visible", "human anatomy CGI animation"]
+}
+```
+Search queries (4): ['human organ anatomy', 'heart lungs medical imagery', 'internal organs visible', 'human anatomy CGI animation']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["Visible human organ", "Anatomical structure resembling heart", "Anatomical structure resembling lungs", "Anatomical structure resembling stomach", "Anatomical structure resembling liver", "Anatomical structure resembling kidneys"],
+    "search_queries": ["human heart anatomy", "lungs organ visible", "medical imagery human organs", "CGI animation human anatomy"]
+}
+Search queries (4): ['human heart anatomy', 'lungs organ visible', 'medical imagery human organs', 'CGI animation human anatomy']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["Human organ visible", "Anatomical structure", "Medical imagery", "Internal body part"],
+    "search_queries": ["human organ", "heart or lungs", "medical anatomy", "internal organs"]
+}
+```
+Search queries (4): ['human organ', 'heart or lungs', 'medical anatomy', 'internal organs']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["human organ visible", "anatomical structure", "medical imagery", "internal body part"],
+    "search_queries": ["human organ", "anatomy", "medical imagery", "heart lungs"]
+}
+```
+Search queries (4): ['human organ', 'anatomy', 'medical imagery', 'heart lungs']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["Visible human organ", "Organ shape and structure", "Anatomical features", "Medical imagery"],
+    "search_queries": ["human organ", "heart", "lungs", "medical anatomy"]
+}
+Search queries (4): ['human organ', 'heart', 'lungs', 'medical anatomy']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["human organ visible", "heart anatomy", "lungs anatomy", "medical imagery", "internal organ"],
+    "search_queries": ["human heart", "human lungs", "medical anatomy", "internal organ"]
+}
+```
+Search queries (4): ['human heart', 'human lungs', 'medical anatomy', 'internal organ']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["visual appearance of human stomach", "visual appearance of human liver", "visual appearance of human lungs", "visual appearance of human kidneys", "CGI medical imagery of organs", "anatomical structures against black background"],
+    "search_queries": ["human heart and lungs medical imagery", "CGI animation of human anatomy", "human organs rendered in fire and smoke", "medical imagery against black background"]
+}
+Search queries (4): ['human heart and lungs medical imagery', 'CGI animation of human anatomy', 'human organs rendered in fire and smoke', 'medical imagery against black background']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["visible human organ", "anatomical structure resembling a human organ", "medical imagery of internal organs", "heart shape with vessels", "lung shape with bronchial tubes", "kidney bean shaped organ"],
+    "search_queries": ["human heart anatomy", "lungs medical imagery", "human organs visible", "kidneys anatomy"]
+}
+Search queries (4): ['human heart anatomy', 'lungs medical imagery', 'human organs visible', 'kidneys anatomy']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["Human organ", "Heart", "Lungs", "Medical imagery"],
+    "search_queries": ["human heart", "human lungs", "medical anatomy", "human organs"]
+}
+Search queries (4): ['human heart', 'human lungs', 'medical anatomy', 'human organs']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.

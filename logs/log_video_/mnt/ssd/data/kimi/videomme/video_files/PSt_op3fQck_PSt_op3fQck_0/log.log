@@ -1,0 +1,253 @@
+[{'role': 'system', 'content': "You are an expert at reasoning and tool-using, with the goal of answering this question about a long video. You should be able to extract detailed frame-information from videos, do caption searches, and use your findings to answer the question. You should be SUPER PICKY about your findings, NOT make assumptions, and always bias towards gathering more evidence before executing a final answer. Use EXACT evidence only. ALSO, when dealing with TEMPORAL questions, you cannot find VISUAL TIMES. If a question asks for a 'duration' of an event, you want to do many caption searches on consecutive ranges, and find scene-changes at the beginning and end of the event. You MUST CHOOSE AN ANSWER. NONE OF THE ABOVE IS NOT ACCEPTABLE."}, {'role': 'user', 'content': '\n Here is a global summary of the video for general context: **Summary:**\n\nThis animated video, created with a hand-drawn, cardboard aesthetic, uses a travel experience as a metaphor for diversity and inclusion. The sequence covers key concepts such as cultural context, stereotypes, and cross-cultural miscommunication.\n\n**Main Characters:**\n\n- Stick-figure passengers and airline staff members, each displaying diverse features, such as different skin tones, hairstyles, and facial expressions.\n- A central character who speaks, and the listeners who interpret the message differently.\n\n**Setting:**\n\n- Airport check-in area\n- Service counters\n- Airplane boarding area\n- Cockpit of an airplane\n\n**Plot:**\n\n- The video opens with a globe and an airplane, setting the scene for international travel.\n- It then shifts to a line of stick-figure characters, each representing a diverse individual, standing beneath a sign reading "International Departures."\n- The characters make eye contact, suggesting communication or connection across cultural lines.\n- Thought bubbles appear, revealing stereotypes, and a central character speaks, but the listeners interpret the message differently, illustrating how cultural context alters meaning.\n- The video then shifts to a depiction of an airline travel experience, where passengers and staff members interact in a lighthearted atmosphere.\n- The final segment illustrates concepts of intercultural communication, using gauges and a cardboard airplane to visualize different cultural dimensions and communication challenges.\n\n**Vibes:**\n\n- Neutral and educational, shifting to a demonstration of cross-cultural miscommunication and differing perspectives.\n- Upbeat, optimistic, and whimsical, conveyed through smiling characters, waving gestures, whistling, and the warm, sketch-like animation style.\n- Educational and whimsical, using simple animations to visualize complex cultural dimensions and communication challenges across different societies.\n\n**General Details:**\n\n- The video is created with a consistent hand-drawn, cardboard aesthetic.\n- Visible text includes "International Departures," "QUEUE HERE!," "FLEXI CHECK IN," "Have your ticket and passport ready," "AIRLINE," and "DIVERSITY DASHBOARD."\n- The mood shifts throughout the video, from neutral and educational to upbeat and whimsical.\n\n Here is also an INCOMPLETE character/event/scene log across the video. These will all be encountered, and there MAY BE MORE CHARACTERS:\n1. Stick Figure 1: Character from the "International Departures" scene with a turban. [0s]\n2. Stick Figure 2: Character from the "International Departures" scene with shaded skin and textured hair. [0s]\n3. Stick Figure 3: Character from the "International Departures" scene with a varied facial expression. [0s]\n4. Flight Attendant: Diverse flight attendant with curly hair and sunglasses. [52s]\n5. Ground Crew Member: High-visibility vest-wearing ground crew member waving. [52s]\n6. Passenger: Whistling passenger with a suitcase. [52s]\n7. Airline Staff Member 1: Woman wearing a patterned shirt with palm trees. [25s]\n8. Airline Staff Member 2: Woman wearing a patterned shirt with flowers. [25s]\n9. Airline Staff Member 3: Man wearing a suit with a tie. [25s]\n10. Airline Staff Member 4: Man wearing a suit with a tie. [25s]\n11. Pilot: Smiling pilot of a cardboard airplane. [52s]\n12. Dr. Deborah Swallow: Speaker, Author, Consultant. [115s]\n\nSCENES:\nScene 1: Cardboard-textured background with a hand-drawn globe spinning slowly. [0s-3s]\nScene 2: Line of five simple stick-figure characters standing beneath a sign reading “International Departures” with an airplane icon. [3s-9s]\nScene 3: Camera zooms in on pairs of characters making eye contact. [9s-14s]\nScene 4: Thought bubbles appear, revealing stereotypes. [14s-17s]\nScene 5: Central character speaks, and listeners interpret the message differently. [17s-25s]\nScene 6: Airport check-in area with simple, smiling stick-figure passengers queuing in an organized line marked by black ropes. [25s-6s]\nScene 7: Four diverse airline staff members standing behind service counters. [6s-10s]\nScene 8: Passengers are shown boarding an airplane via mobile stairs. [10s-15s]\nScene 9: Close-up of a smiling flight attendant with curly hair and sunglasses. [15s-19s]\nScene 10: Stylized airplane cockpit instrument panel labeled “DIVERSITY DASHBOARD” in bold letters. [19s-26s]\nScene 11: Three illustrated gauges on a cardboard background. [52s-11s]\nScene 12: Cardboard airplane with a propeller and a smiling pilot flies across various landscapes drawn on cardboard. [11s-34s]\nScene 13: Communication differences: five stick figures on the left display confused or uncertain expressions. [34s-41s]\nScene 14: Figure on the right speaks in geometric shapes. [41s-60s]\nScene 15: Black screen displaying text identifying "DR. DEBORAH SWALLOW" as a "Speaker, Author, Consultant" and "LEADING AUTHORITY ON INTERCULTURAL COMMUNICATION". [60s-115s]\n\nEVENTS:\nEvent 1: Airplane flies past characters in the "International Departures" scene. [0s-3s]\nEvent 2: Passengers move forward in the airport check-in area. [3s-6s]\nEvent 3: Airplane boards passengers via mobile stairs. [6s-10s]\nEvent 4: Flight attendant appears in the cockpit of an airplane. [10s-15s]\nEvent 5: Ground crew member waves as passengers board the airplane. [10s-15s]\nEvent 6: Passenger whistles as they walk past. [10s-15s]\nEvent 7: Cardboard airplane flies across various landscapes. [11s-34s]\nEvent 8: Pilot speaks in geometric shapes. [41s-60s]\nEvent 9: Dr. Deborah Swallow\'s bio appears on screen. [60s-115s]\nYour question is this: What can be learned from this video?'}]You are answering questions about a video using tools to retrieve information.
+
+Question: What can be learned from this video?
+
+Answer Choices:
+A. The history of intercultural conflicts and disputes.
+B. Quick ways to grasp the fundamentals of intercultural communication. understanding.
+C. Techniques for mastering a foreign language in a short period of time.
+D. Strategies for resolving international political conflicts.
+
+
+STEP 1: CHECK QUESTION TYPE
+- Subtitle question? (quotes text, asks about dialogue) → Use SUBTITLE_SEARCH first
+- Temporal question? (after/before/when/first/next/last) → Use RECORD after each VLM_QUERY to track events
+- Quick actions? (hand movements, fast motions, sudden reactions) → Use EXTRACT_FINE_FRAMES at 5-10 FPS
+- Small details? (small objects, text, fine features) → Use CROP_OBJECT to zoom in
+
+STEP 2: EXTRACT VERIFICATION CRITERIA
+List 4-6 specific, testable visual criteria from the QUESTION (not answer choices) that must be verified.
+
+Example: "person in black shirt holding metal bucket with scattered debris"
+Criteria:
+- Person wearing black shirt
+- Person wearing black pants
+- Person holding large round metal bucket
+- Scene contains scattered debris on ground
+
+STEP 2.5: PLAN TO TEST EACH ANSWER CHOICE
+Once you have frames, plan to systematically test EACH answer option with VLM queries:
+- Query to verify option A characteristics
+- Query to verify option B characteristics
+- Query to verify option C characteristics
+- Query to verify option D characteristics
+This prevents confirmation bias and ensures you select the answer with STRONGEST visual evidence.
+
+STEP 3: GENERATE SEARCH QUERIES
+Create 2-4 natural search queries (subject-verb-object format) targeting VISIBLE details.
+- Good: "woman wearing yellow dress holding papers", "person in office setting with documents"
+- Bad: "yellow dress papers office woman"
+
+IMPORTANT: After getting clip time ranges from CAPTION_SEARCH, you MUST use VLM_QUERY to visually verify frames in those time ranges.
+DO NOT repeatedly search captions - once you have candidate clips/time ranges, USE VLM_QUERY to look at the frames!
+
+NOTE: CAPTION_SEARCH returns clip time ranges (e.g., "clip_45_67" = 45-67 seconds).
+Use these time ranges to extract frames for VLM_QUERY (e.g., check frames 45-67: frame_0045.jpg to frame_0067.jpg).
+
+Return format:
+```json{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["criterion 1", "criterion 2", "criterion 3", "criterion 4"],
+    "search_queries": ["natural query 1", "natural query 2", "optional query 3", "optional query 4"]
+}```
+
+For subtitle questions: {"tool": "SUBTITLE_SEARCH", "query": "exact subtitle text", "topk": 10}
+For video clip extraction: {"tool": "QUERY_CLIP", "start_frame": 45, "end_frame": 52, "prompt": "Describe the action"}
+
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Visual evidence of intercultural communication concepts",
+        "Presence of educational content about diversity and inclusion",
+        "Demonstration of cross-cultural miscommunication",
+        "Visualization of cultural dimensions or communication challenges",
+        "Appearance of 'DIVERSITY DASHBOARD' instrument panel",
+        "Presence of Dr. Deborah Swallow as intercultural communication expert"
+    ],
+    "search_queries": [
+        "DIVERSITY DASHBOARD instrument panel",
+        "intercultural communication concepts visualization",
+        "Dr. Deborah Swallow speaker author consultant",
+        "cross-cultural miscommunication demonstration",
+        "cultural dimensions gauges cardboard background"
+    ]
+}
+```
+Search queries (5): ['DIVERSITY DASHBOARD instrument panel', 'intercultural communication concepts visualization', 'Dr. Deborah Swallow speaker author consultant', 'cross-cultural miscommunication demonstration', 'cultural dimensions gauges cardboard background']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Visual evidence of intercultural communication concepts",
+        "Educational content about diversity and inclusion",
+        "Demonstration of cross-cultural miscommunication",
+        "Visualization of cultural dimensions",
+        "Presence of stereotypes or thought bubbles about cultural differences",
+        "Appearance of the 'DIVERSITY DASHBOARD' instrument panel"
+    ],
+    "search_queries": [
+        "thought bubbles with stereotypes about culture",
+        "DIVERSITY DASHBOARD instrument panel with gauges",
+        "stick figures showing confused expressions about communication",
+        "character speaking and listeners interpreting differently"
+    ]
+}
+Search queries (4): ['thought bubbles with stereotypes about culture', 'DIVERSITY DASHBOARD instrument panel with gauges', 'stick figures showing confused expressions about communication', 'character speaking and listeners interpreting differently']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["educational content about intercultural communication", "visualization of cultural dimensions", "demonstration of cross-cultural miscommunication", "explanation of diversity concepts", "metaphors for cultural understanding"],
+    "search_queries": ["intercultural communication", "cultural dimensions", "cross-cultural miscommunication", "diversity dashboard", "cultural context", "stereotypes"]
+}
+```
+Search queries (6): ['intercultural communication', 'cultural dimensions', 'cross-cultural miscommunication', 'diversity dashboard', 'cultural context', 'stereotypes']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["educational content about cultural differences", "visualization of intercultural communication concepts", "explanation of stereotypes and miscommunication", "presentation of cultural dimensions", "diversity and inclusion themes", "Dr. Deborah Swallow as intercultural communication authority"],
+    "search_queries": ["intercultural communication", "cultural differences", "diversity dashboard", "stereotypes thought bubbles", "cross-cultural miscommunication", "Dr. Deborah Swallow"]
+}
+Search queries (6): ['intercultural communication', 'cultural differences', 'diversity dashboard', 'stereotypes thought bubbles', 'cross-cultural miscommunication', 'Dr. Deborah Swallow']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Visual depiction of intercultural communication concepts",
+        "Illustration of cultural differences or miscommunication",
+        "Educational content about diversity and inclusion",
+        "Presence of instructional gauges or dashboards",
+        "Appearance of an expert or authority figure on the topic",
+        "Text or visuals explaining communication fundamentals"
+    ],
+    "search_queries": [
+        "intercultural communication explained with visual examples",
+        "diversity dashboard showing cultural dimensions",
+        "Dr. Deborah Swallow speaking about intercultural communication",
+        "stick figures demonstrating cross-cultural misunderstanding"
+    ]
+}
+Search queries (4): ['intercultural communication explained with visual examples', 'diversity dashboard showing cultural dimensions', 'Dr. Deborah Swallow speaking about intercultural communication', 'stick figures demonstrating cross-cultural misunderstanding']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["video content about intercultural communication", "educational content on diversity", "demonstration of cross-cultural miscommunication", "visualization of cultural dimensions", "explanation of stereotypes and cultural context"],
+    "search_queries": ["intercultural communication", "diversity and inclusion", "cross-cultural miscommunication", "cultural dimensions", "stereotypes and cultural context"]
+}
+Search queries (5): ['intercultural communication', 'diversity and inclusion', 'cross-cultural miscommunication', 'cultural dimensions', 'stereotypes and cultural context']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Content about intercultural communication",
+        "Educational visuals demonstrating cultural concepts",
+        "Presence of instructional gauges or dashboards",
+        "Explanation of diversity, stereotypes, or cultural differences",
+        "Speaker or authority figure presenting information"
+    ],
+    "search_queries": [
+        "intercultural communication",
+        "diversity dashboard",
+        "cultural stereotypes",
+        "Dr. Deborah Swallow"
+    ]
+}
+Search queries (4): ['intercultural communication', 'diversity dashboard', 'cultural stereotypes', 'Dr. Deborah Swallow']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Visual presence of educational content about intercultural communication",
+        "Visual depiction of cultural diversity (e.g., diverse characters, cultural symbols)",
+        "Visual representation of communication challenges or differences",
+        "Visual elements explaining concepts (gauges, diagrams, thought bubbles)",
+        "Textual evidence of learning objectives (e.g., 'DIVERSITY DASHBOARD')",
+        "Presence of an expert or authority figure (Dr. Deborah Swallow)"
+    ],
+    "search_queries": [
+        "intercultural communication educational content",
+        "diverse characters with different cultural backgrounds",
+        "thought bubbles showing stereotypes or different perspectives",
+        "DIVERSITY DASHBOARD instrument panel",
+        "Dr. Deborah Swallow speaker author consultant"
+    ]
+}
+Search queries (5): ['intercultural communication educational content', 'diverse characters with different cultural backgrounds', 'thought bubbles showing stereotypes or different perspectives', 'DIVERSITY DASHBOARD instrument panel', 'Dr. Deborah Swallow speaker author consultant']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["educational content about intercultural communication", "visualization of cultural dimensions", "demonstration of cross-cultural miscommunication", "metaphor for diversity and inclusion", "explanation of cultural context and stereotypes"],
+    "search_queries": ["intercultural communication", "cultural dimensions", "cross-cultural miscommunication", "diversity and inclusion", "cultural context stereotypes"]
+}
+Search queries (5): ['intercultural communication', 'cultural dimensions', 'cross-cultural miscommunication', 'diversity and inclusion', 'cultural context stereotypes']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["educational content about intercultural communication", "visualization of cultural dimensions", "demonstration of cross-cultural miscommunication", "examples of stereotypes and different perspectives", "metaphor of travel for diversity and inclusion", "DIVERSITY DASHBOARD instrument panel"],
+    "search_queries": ["intercultural communication", "cultural dimensions", "cross-cultural miscommunication", "stereotypes", "diversity and inclusion", "DIVERSITY DASHBOARD"]
+}
+Search queries (6): ['intercultural communication', 'cultural dimensions', 'cross-cultural miscommunication', 'stereotypes', 'diversity and inclusion', 'DIVERSITY DASHBOARD']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Presence of educational content about intercultural communication",
+        "Visualization of cultural concepts like stereotypes or miscommunication",
+        "Depiction of diversity among characters (different appearances, expressions)",
+        "Use of metaphors like travel to explain cultural concepts",
+        "Appearance of text or labels related to diversity and communication",
+        "Inclusion of an expert or authority figure on intercultural topics"
+    ],
+    "search_queries": [
+        "intercultural communication concepts explained",
+        "diversity and inclusion educational content",
+        "cultural stereotypes visualization",
+        "cross-cultural miscommunication examples",
+        "Dr. Deborah Swallow authority on intercultural communication"
+    ]
+}
+Search queries (5): ['intercultural communication concepts explained', 'diversity and inclusion educational content', 'cultural stereotypes visualization', 'cross-cultural miscommunication examples', 'Dr. Deborah Swallow authority on intercultural communication']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["visual explanation of cultural communication concepts", "demonstration of cross-cultural miscommunication", "educational content about diversity and inclusion", "visualization of cultural dimensions", "discussion of stereotypes and interpretation differences"],
+    "search_queries": ["explanation of intercultural communication", "cross-cultural miscommunication demonstration", "educational diversity content", "cultural dimensions visualization", "stereotypes and interpretation differences"]
+}
+Search queries (5): ['explanation of intercultural communication', 'cross-cultural miscommunication demonstration', 'educational diversity content', 'cultural dimensions visualization', 'stereotypes and interpretation differences']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["educational content about intercultural communication", "visual metaphors for cultural understanding", "demonstration of cross-cultural miscommunication", "gauges or dashboard labeled with diversity concepts", "characters from different cultures interacting"],
+    "search_queries": ["intercultural communication", "diversity dashboard", "cultural context", "cross-cultural miscommunication"]
+}
+Search queries (4): ['intercultural communication', 'diversity dashboard', 'cultural context', 'cross-cultural miscommunication']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Content about intercultural communication concepts",
+        "Visual depiction of cross-cultural miscommunication",
+        "Educational information about diversity and inclusion",
+        "Illustration of stereotypes and cultural contexts",
+        "Visualization of cultural dimensions and communication challenges",
+        "Appearance of Dr. Deborah Swallow as an authority on intercultural communication"
+    ],
+    "search_queries": [
+        "intercultural communication concepts and examples",
+        "cross-cultural miscommunication illustrated with thought bubbles",
+        "diversity and inclusion educational content",
+        "stereotypes and cultural context visualization",
+        "cultural dimensions dashboard or gauges",
+        "Dr. Deborah Swallow speaker on intercultural communication"
+    ]
+}
+Search queries (6): ['intercultural communication concepts and examples', 'cross-cultural miscommunication illustrated with thought bubbles', 'diversity and inclusion educational content', 'stereotypes and cultural context visualization', 'cultural dimensions dashboard or gauges', 'Dr. Deborah Swallow speaker on intercultural communication']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["educational content about intercultural communication", "visualization of cultural dimensions", "demonstration of cross-cultural miscommunication", "metaphor for diversity and inclusion", "explanation of cultural context and stereotypes"],
+    "search_queries": ["intercultural communication", "cultural dimensions", "cross-cultural miscommunication", "diversity and inclusion", "cultural context stereotypes"]
+}
+Search queries (5): ['intercultural communication', 'cultural dimensions', 'cross-cultural miscommunication', 'diversity and inclusion', 'cultural context stereotypes']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.

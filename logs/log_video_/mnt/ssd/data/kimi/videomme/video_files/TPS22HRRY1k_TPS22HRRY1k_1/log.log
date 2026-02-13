@@ -1,0 +1,241 @@
+[{'role': 'system', 'content': "You are an expert at reasoning and tool-using, with the goal of answering this question about a long video. You should be able to extract detailed frame-information from videos, do caption searches, and use your findings to answer the question. You should be SUPER PICKY about your findings, NOT make assumptions, and always bias towards gathering more evidence before executing a final answer. Use EXACT evidence only. ALSO, when dealing with TEMPORAL questions, you cannot find VISUAL TIMES. If a question asks for a 'duration' of an event, you want to do many caption searches on consecutive ranges, and find scene-changes at the beginning and end of the event. You MUST CHOOSE AN ANSWER. NONE OF THE ABOVE IS NOT ACCEPTABLE."}, {'role': 'user', 'content': '\n Here is a global summary of the video for general context: **Global Summary:**\n\n**Main Characters:**\n- The fund manager (in a gray suit) \n- Will (a blonde man in a red polo shirt)\n\n**Setting:**\n- A cartoon world with hand-drawn animations.\n\n**Plot:**\n- The video explains the concept of mutual funds and how they work, using a story to illustrate the idea. \n- It introduces the concept of Net Asset Value (NAV) and compares it with Closed-Ended Funds.\n\n**Vibes:**\n- Educational\n- Approachable\n- Simplified\n\n**General Details:**\n- The video is 1 minute and 14 seconds long.\n- It includes colorful hand-drawn animations and cartoon characters.\n- The video is hosted by the "WALL STREET SURVIVOR" logo and website.\n\n Here is also an INCOMPLETE character/event/scene log across the video. These will all be encountered, and there MAY BE MORE CHARACTERS:\nBusinessman (Gray Suit): A cartoon businessman in a gray suit, representing the fund manager who actively manages investments. [00:00-00:20]\nWill (Blonde Man in Red Polo): A blonde man in a red polo shirt, representing the fund creator. [00:21-00:40]\nSEC Figures: Three figures wearing "SEC" badges and sunglasses, explaining that mutual funds are regulated by the Securities and Exchange Commission. [00:21-00:40]\nDiverse Cartoon Investors: Ten diverse cartoon investors who invest in "WILL\'S FUND." [00:41-00:55]\nClosed-Ended Fund Investor: An investor representing a closed-ended fund, where shares are traded between investors rather than being redeemed from the fund itself. [01:34-01:45]\n\nSCENES:\nScene 1: Opening Title Screen: The video opens with the title "WHAT ARE MUTUAL FUNDS?" and the "WALL STREET SURVIVOR" logo. [00:00-00:20]\nScene 2: Will\'s Idea: An hourglass and a prize ribbon appear on Will, followed by question marks and a lightbulb, illustrating his idea to create a fund. [00:21-00:40]\nScene 3: "WILL\'S FUND" Established: Will stands alone as the fund is named and ten diverse cartoon investors appear opposite him. [00:41-00:55]\nScene 4: Net Asset Value (NAV) Introduced: The concept of NAV is introduced, showing a horizontal bar divided into three colored sections and a green pie chart building to show the pooled $10,000 total. [00:56-01:33]\nScene 5: Closed-Ended Funds: The video contrasts this with Closed-Ended Funds, showing a group of investors on the left and one investor on the right, illustrating that shares are traded between investors rather than being redeemed from the fund itself. [01:34-01:45]\n\nEVENTS:\nEvent 1: Mutual Fund Established: "WILL\'S FUND" is established with ten diverse cartoon investors investing $1,000 each, resulting in a pooled $10,000 total. [00:41-00:55]\nEvent 2: Fund Growth: The fund grows 10% to $11,000, with a $100 gain shown on a green pie chart. [00:56-01:33]\nYour question is this: Which best summarizes the content of the video?'}]You are answering questions about a video using tools to retrieve information.
+
+Question: Which best summarizes the content of the video?
+
+Answer Choices:
+A. The process of registering a new mutual fund with the regulator and the associated legal requirements.
+B. A basic explanation of what mutual funds are, and how they work.
+C. A basic explanation of what national debts are, how they work and some key terms management.
+D. The benefits and risks of investing in mutual funds as compared to other investment options such as individual stocks and bonds.
+
+
+STEP 1: CHECK QUESTION TYPE
+- Subtitle question? (quotes text, asks about dialogue) → Use SUBTITLE_SEARCH first
+- Temporal question? (after/before/when/first/next/last) → Use RECORD after each VLM_QUERY to track events
+- Quick actions? (hand movements, fast motions, sudden reactions) → Use EXTRACT_FINE_FRAMES at 5-10 FPS
+- Small details? (small objects, text, fine features) → Use CROP_OBJECT to zoom in
+
+STEP 2: EXTRACT VERIFICATION CRITERIA
+List 4-6 specific, testable visual criteria from the QUESTION (not answer choices) that must be verified.
+
+Example: "person in black shirt holding metal bucket with scattered debris"
+Criteria:
+- Person wearing black shirt
+- Person wearing black pants
+- Person holding large round metal bucket
+- Scene contains scattered debris on ground
+
+STEP 2.5: PLAN TO TEST EACH ANSWER CHOICE
+Once you have frames, plan to systematically test EACH answer option with VLM queries:
+- Query to verify option A characteristics
+- Query to verify option B characteristics
+- Query to verify option C characteristics
+- Query to verify option D characteristics
+This prevents confirmation bias and ensures you select the answer with STRONGEST visual evidence.
+
+STEP 3: GENERATE SEARCH QUERIES
+Create 2-4 natural search queries (subject-verb-object format) targeting VISIBLE details.
+- Good: "woman wearing yellow dress holding papers", "person in office setting with documents"
+- Bad: "yellow dress papers office woman"
+
+IMPORTANT: After getting clip time ranges from CAPTION_SEARCH, you MUST use VLM_QUERY to visually verify frames in those time ranges.
+DO NOT repeatedly search captions - once you have candidate clips/time ranges, USE VLM_QUERY to look at the frames!
+
+NOTE: CAPTION_SEARCH returns clip time ranges (e.g., "clip_45_67" = 45-67 seconds).
+Use these time ranges to extract frames for VLM_QUERY (e.g., check frames 45-67: frame_0045.jpg to frame_0067.jpg).
+
+Return format:
+```json{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["criterion 1", "criterion 2", "criterion 3", "criterion 4"],
+    "search_queries": ["natural query 1", "natural query 2", "optional query 3", "optional query 4"]
+}```
+
+For subtitle questions: {"tool": "SUBTITLE_SEARCH", "query": "exact subtitle text", "topk": 10}
+For video clip extraction: {"tool": "QUERY_CLIP", "start_frame": 45, "end_frame": 52, "prompt": "Describe the action"}
+
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["mutual fund explanation", "how mutual funds work", "Net Asset Value (NAV) explanation", "closed-ended funds comparison", "pooled investments", "fund manager role"],
+    "search_queries": ["explanation of mutual funds", "how mutual funds work", "Net Asset Value NAV", "closed-ended funds", "pooled investments", "fund manager"]
+}
+Search queries (6): ['explanation of mutual funds', 'how mutual funds work', 'Net Asset Value NAV', 'closed-ended funds', 'pooled investments', 'fund manager']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Presence of mutual fund explanation",
+        "Visual representation of how mutual funds work",
+        "Mention or depiction of Net Asset Value (NAV)",
+        "Comparison with closed-ended funds",
+        "Characters discussing fund creation and investment",
+        "Educational visuals about pooled investments"
+    ],
+    "search_queries": [
+        "mutual funds explanation",
+        "how mutual funds work",
+        "Net Asset Value NAV",
+        "closed-ended funds comparison",
+        "pooled investment fund",
+        "WILL'S FUND establishment"
+    ]
+}
+Search queries (6): ['mutual funds explanation', 'how mutual funds work', 'Net Asset Value NAV', 'closed-ended funds comparison', 'pooled investment fund', "WILL'S FUND establishment"]
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Mutual fund explanation or definition",
+        "How mutual funds work mechanism",
+        "National debt content or terminology",
+        "SEC registration or legal requirements",
+        "Investment benefits/risks comparison"
+    ],
+    "search_queries": [
+        "what are mutual funds and how they work",
+        "explanation of mutual funds",
+        "national debt explanation",
+        "SEC registration requirements",
+        "benefits and risks of mutual funds"
+    ]
+}
+Search queries (5): ['what are mutual funds and how they work', 'explanation of mutual funds', 'national debt explanation', 'SEC registration requirements', 'benefits and risks of mutual funds']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Evidence of mutual funds being explained",
+        "Visual explanation of how mutual funds work",
+        "Presence of Net Asset Value (NAV) concept",
+        "Comparison with Closed-Ended Funds",
+        "Illustration of pooled investments from multiple investors",
+        "Educational presentation style with cartoons"
+    ],
+    "search_queries": [
+        "Net Asset Value NAV explanation",
+        "mutual funds how they work",
+        "pooled investments from multiple investors",
+        "closed-ended funds comparison"
+    ]
+}
+Search queries (4): ['Net Asset Value NAV explanation', 'mutual funds how they work', 'pooled investments from multiple investors', 'closed-ended funds comparison']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["mutual fund explanation", "how mutual funds work", "Net Asset Value (NAV)", "closed-ended funds", "pooled investments", "fund manager"],
+    "search_queries": ["explanation of mutual funds", "how mutual funds work", "Net Asset Value NAV", "closed-ended funds", "pooled investments", "fund manager"]
+}
+Search queries (6): ['explanation of mutual funds', 'how mutual funds work', 'Net Asset Value NAV', 'closed-ended funds', 'pooled investments', 'fund manager']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Visual explanation of mutual funds",
+        "Visual explanation of how mutual funds work",
+        "Mention or visualization of Net Asset Value (NAV)",
+        "Comparison with closed-ended funds",
+        "Pooling of investor money",
+        "Regulatory aspects (SEC)"
+    ],
+    "search_queries": [
+        "explanation of what mutual funds are",
+        "how mutual funds work animation",
+        "Net Asset Value NAV explanation",
+        "closed-ended funds comparison",
+        "investors pooling money into fund",
+        "SEC regulation of mutual funds"
+    ]
+}
+Search queries (6): ['explanation of what mutual funds are', 'how mutual funds work animation', 'Net Asset Value NAV explanation', 'closed-ended funds comparison', 'investors pooling money into fund', 'SEC regulation of mutual funds']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["mutual funds explanation", "how mutual funds work", "Net Asset Value (NAV)", "pooled investments", "fund manager role", "closed-ended funds comparison"],
+    "search_queries": ["mutual funds explained", "how mutual funds work", "Net Asset Value NAV", "pooled investment fund", "fund manager role", "closed-ended funds"]
+}
+Search queries (6): ['mutual funds explained', 'how mutual funds work', 'Net Asset Value NAV', 'pooled investment fund', 'fund manager role', 'closed-ended funds']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Visual explanation of mutual funds concept",
+        "Appearance of 'WALL STREET SURVIVOR' logo",
+        "Cartoon characters explaining investment concepts",
+        "Visual representation of Net Asset Value (NAV)",
+        "Comparison between mutual funds and closed-end funds",
+        "Pooling of investor money ($10,000 total)"
+    ],
+    "search_queries": [
+        "mutual funds explanation with cartoon characters",
+        "Net Asset Value NAV explained visually",
+        "closed-end funds comparison with mutual funds",
+        "WALL STREET SURVIVOR logo appearance"
+    ]
+}
+Search queries (4): ['mutual funds explanation with cartoon characters', 'Net Asset Value NAV explained visually', 'closed-end funds comparison with mutual funds', 'WALL STREET SURVIVOR logo appearance']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["mutual fund explanation", "Net Asset Value (NAV)", "pooled investments", "fund manager role", "closed-ended funds", "SEC regulation"],
+    "search_queries": ["mutual funds explained", "Net Asset Value NAV", "pooled investment fund", "fund manager role", "closed-ended funds", "SEC regulation mutual funds"]
+}
+```
+Search queries (6): ['mutual funds explained', 'Net Asset Value NAV', 'pooled investment fund', 'fund manager role', 'closed-ended funds', 'SEC regulation mutual funds']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["mutual funds explanation", "how mutual funds work", "Net Asset Value (NAV)", "closed-ended funds comparison", "fund manager character", "investors pooling money"],
+    "search_queries": ["explanation of mutual funds", "how mutual funds work", "Net Asset Value NAV", "closed-ended funds", "fund manager in gray suit", "investors pooling money"]
+}
+```
+Search queries (6): ['explanation of mutual funds', 'how mutual funds work', 'Net Asset Value NAV', 'closed-ended funds', 'fund manager in gray suit', 'investors pooling money']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["mutual fund explanation", "how mutual funds work", "Net Asset Value (NAV)", "closed-ended funds", "pooled investor money", "fund manager role"],
+    "search_queries": ["explanation of mutual funds", "how mutual funds work", "Net Asset Value NAV", "closed-ended funds", "pooled investment money", "fund manager managing investments"]
+}
+Search queries (6): ['explanation of mutual funds', 'how mutual funds work', 'Net Asset Value NAV', 'closed-ended funds', 'pooled investment money', 'fund manager managing investments']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["mutual fund explanation", "how mutual funds work", "Net Asset Value (NAV)", "closed-ended funds", "pooled investments", "fund manager"],
+    "search_queries": ["explanation of mutual funds", "how mutual funds work", "Net Asset Value NAV", "closed-ended funds", "pooled investments", "fund manager"]
+}
+Search queries (6): ['explanation of mutual funds', 'how mutual funds work', 'Net Asset Value NAV', 'closed-ended funds', 'pooled investments', 'fund manager']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["mutual fund explanation", "how mutual funds work", "Net Asset Value (NAV)", "closed-ended funds", "pooled investments", "fund manager"],
+    "search_queries": ["explanation of mutual funds", "how mutual funds work", "Net Asset Value NAV", "closed-ended funds", "pooled investments", "fund manager"]
+}
+Search queries (6): ['explanation of mutual funds', 'how mutual funds work', 'Net Asset Value NAV', 'closed-ended funds', 'pooled investments', 'fund manager']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Evidence of mutual fund explanation",
+        "Visual representation of how mutual funds work",
+        "Presence of Net Asset Value (NAV) concept",
+        "Mention or visualization of closed-ended funds",
+        "Investors pooling money into a fund",
+        "Educational content about investment vehicles"
+    ],
+    "search_queries": [
+        "mutual funds explanation with animations",
+        "Net Asset Value NAV visualization",
+        "closed-ended funds explanation",
+        "investors pooling money into mutual fund"
+    ]
+}
+Search queries (4): ['mutual funds explanation with animations', 'Net Asset Value NAV visualization', 'closed-ended funds explanation', 'investors pooling money into mutual fund']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["mutual fund explanation", "Net Asset Value (NAV) concept", "pooled investment from multiple investors", "fund manager actively managing investments", "SEC regulation of mutual funds", "comparison with closed-ended funds"],
+    "search_queries": ["explanation of what mutual funds are", "Net Asset Value NAV concept", "pooled investment from multiple investors", "fund manager actively managing investments", "SEC regulates mutual funds", "closed-ended funds comparison"]
+}
+Search queries (6): ['explanation of what mutual funds are', 'Net Asset Value NAV concept', 'pooled investment from multiple investors', 'fund manager actively managing investments', 'SEC regulates mutual funds', 'closed-ended funds comparison']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.

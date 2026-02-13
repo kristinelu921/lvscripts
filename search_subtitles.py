@@ -59,11 +59,11 @@ def l2_normalize(matrix: np.ndarray, eps: float = 1e-12) -> np.ndarray:
     return matrix / norms
 
 
-def embed_query(query: str, client: Together, model: str = "BAAI/bge-large-en-v1.5") -> np.ndarray:
+def embed_query(query: str, client: Together, model: str = "Alibaba-NLP/gte-modernbert-base") -> np.ndarray:
     """Embed a query string using Together AI
 
     Returns:
-        L2-normalized embedding vector
+        L2-normalized embedding vector (768 dims, matches subtitle embeddings)
     """
     response = client.embeddings.create(model=model, input=query)
     vec = np.asarray(response.data[0].embedding, dtype=np.float32)

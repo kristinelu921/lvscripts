@@ -479,10 +479,11 @@ async def search_captions(vid_path, question_uid, query, embeddings_path, topk=3
     """
     import os
 
-    # Use Together AI with BAAI/bge-large-en-v1.5 (1024 dimensions, L2 normalized)
+    # Use local sentence-transformers with Alibaba-NLP/gte-modernbert-base (768 dimensions, L2 normalized)
     # This MUST match the model used for embedding the captions
-    provider = "together"
-    model_name = "BAAI/bge-large-en-v1.5"
+    # Using local embeddings to avoid Together AI rate limits (model not available on serverless)
+    provider = "sbert"
+    model_name = "Alibaba-NLP/gte-modernbert-base"
 
     print(f"Searching captions with Together AI ({model_name})")
     print(f"Embeddings path: {embeddings_path}")
@@ -520,6 +521,137 @@ async def search_captions(vid_path, question_uid, query, embeddings_path, topk=3
     message = f"Caption search results: {results}"
     log(message, f"logs/log_video_{vid_path}_{question_uid}")
     return results
+
+
+async def search_clip_captions(vid_path, question_uid, query, embeddings_path, topk=30):
+    """Search clip captions using semantic similarity with nvidia/NV-Embed-v2
+
+    Args:
+        vid_path: Path to video directory
+        question_uid: Unique question identifier
+        query: Search query text
+        embeddings_path: Path to clip embeddings JSONL file
+        topk: Number of top results to return
+
+    Returns:
+        List of search results with clip time ranges and similarity scores
+    """
+    import os
+    from together import Together
+
+    print(f"Searching clip captions with nvidia/NV-Embed-v2")
+    print(f"Embeddings path: {embeddings_path}")
+
+    # Use Together AI for nvidia/NV-Embed-v2 embeddings
+    # This must match the model used for embedding the clip captions
+    client = Together(api_key=together_key)
+
+    # Embed the query
+    try:
+        response = client.embeddings.create(
+            model="nvidia/NV-Embed-v2",
+            input=[query]
+        )
+        query_emb = np.array(response.data[0].embedding)
+        # Normalize
+        query_emb = query_emb / np.linalg.norm(query_emb)
+        query_emb = query_emb.reshape(1, -1)
+        print(f"✓ Query embedded: {query[:100]}..." if len(query) > 100 else f"✓ Query embedded: {query}")
+    except Exception as e:
+        print(f"Error embedding query: {e}")
+        return []
+
+    # Load pre-computed clip embeddings
+    records, matrix = load_jsonl_embeddings(embeddings_path)
+    print(f"  Loaded {len(records)} clip embeddings (shape: {matrix.shape})")
+
+    # Check dimension compatibility
+    if query_emb.shape[1] != matrix.shape[1]:
+        raise ValueError(
+            f"Dimension mismatch: query embedding has {query_emb.shape[1]} dims "
+            f"but caption embeddings have {matrix.shape[1]} dims. "
+            f"Ensure query and captions use the same embedding model."
+        )
+
+    # Find most similar clips using cosine similarity
+    idx, scores = cosine_topk(query_emb, matrix, k=topk)
+
+    results = []
+    for rank, (i, score) in enumerate(zip(idx, scores), start=1):
+        rec = dict(records[int(i)])
+        result = {
+            "id": rec["id"],  # e.g., "clip_0_120"
+            "text": rec["text"],
+            "similarity score": float(score),
+            "start": rec.get("start", 0),
+            "end": rec.get("end", 0)
+        }
+        results.append(result)
+
+    print(f"✓ Found top {len(results)} similar clips (scores: {scores[0]:.3f} to {scores[-1]:.3f})")
+    message = f"Clip caption search results: {results}"
+    log(message, f"logs/log_video_{vid_path}_{question_uid}")
+    return results
+
+
+async def search_multi_caption_types(vid_path, question_uid, query, caption_types=None, topk=30):
+    """Search multiple caption types using semantic similarity
+
+    Args:
+        vid_path: Path to video directory
+        question_uid: Unique question identifier
+        query: Search query text
+        caption_types: List of caption types to search. Options: ['characters_actions', 'objects', 'scene_setting_mood', 'frames']
+                      If None, searches all available types.
+        topk: Number of top results to return per caption type
+
+    Returns:
+        Dictionary mapping caption types to search results
+    """
+    import os
+
+    # Default to searching all types if none specified
+    if caption_types is None:
+        caption_types = ['characters_actions', 'objects', 'scene_setting_mood', 'frames']
+
+    # Map caption types to their embedding file paths
+    caption_type_files = {
+        'characters_actions': 'captions/clip_captions_characters_embeddings.jsonl',
+        'objects': 'captions/clip_captions_objects_embeddings.jsonl',
+        'scene_setting_mood': 'captions/clip_captions_scene_embeddings.jsonl',
+        'frames': 'captions/frame_captions_sorted_embeddings.jsonl'
+    }
+
+    results_by_type = {}
+
+    for caption_type in caption_types:
+        if caption_type not in caption_type_files:
+            print(f"⚠ Warning: Unknown caption type '{caption_type}', skipping")
+            continue
+
+        embeddings_path = os.path.join(vid_path, caption_type_files[caption_type])
+
+        if not os.path.exists(embeddings_path):
+            print(f"⚠ Warning: Embeddings not found for {caption_type} at {embeddings_path}, skipping")
+            continue
+
+        print(f"\n--- Searching {caption_type} captions ---")
+
+        try:
+            # Search this caption type
+            results = await search_captions(
+                vid_path=vid_path,
+                question_uid=question_uid,
+                query=query,
+                embeddings_path=embeddings_path,
+                topk=topk
+            )
+            results_by_type[caption_type] = results
+        except Exception as e:
+            print(f"✗ Error searching {caption_type}: {e}")
+            results_by_type[caption_type] = []
+
+    return results_by_type
     
 def main():
     parser = argparse.ArgumentParser(

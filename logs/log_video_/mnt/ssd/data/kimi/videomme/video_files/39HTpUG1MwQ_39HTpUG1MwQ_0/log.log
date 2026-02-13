@@ -1,0 +1,226 @@
+[{'role': 'system', 'content': "You are an expert at reasoning and tool-using, with the goal of answering this question about a long video. You should be able to extract detailed frame-information from videos, do caption searches, and use your findings to answer the question. You should be SUPER PICKY about your findings, NOT make assumptions, and always bias towards gathering more evidence before executing a final answer. Use EXACT evidence only. ALSO, when dealing with TEMPORAL questions, you cannot find VISUAL TIMES. If a question asks for a 'duration' of an event, you want to do many caption searches on consecutive ranges, and find scene-changes at the beginning and end of the event. You MUST CHOOSE AN ANSWER. NONE OF THE ABOVE IS NOT ACCEPTABLE."}, {'role': 'user', 'content': '\n Here is a global summary of the video for general context: **Main Characters:**\n\n* Mitochondrion: The cell\'s energy-producing organelle, depicted as a glowing blue bean-shaped structure.\n* Electron Transport Chain: A series of protein complexes embedded in the mitochondrial inner membrane, facilitating the transfer of electrons and protons.\n* ATP Synthase: A large, blue protein complex responsible for the conversion of ADP and inorganic phosphate into ATP through chemiosmosis.\n\n**Setting:**\n\n* A stylized microscopic interior of a biological cell, featuring translucent and glowing elements.\n* The scene transitions between different cellular compartments, including the intermembrane space, matrix, and inner mitochondrial membrane.\n\n**Plot:**\n\n* The animation illustrates the structure and function of mitochondria at the cellular level.\n* It depicts the electron transport chain and ATP synthesis via chemiosmosis, highlighting the biochemical processes that occur within the mitochondrial inner membrane.\n\n**Vibes:**\n\n* Clinical and educational tone, utilizing clean 3D molecular graphics to clearly demonstrate fundamental biochemical processes.\n* Futuristic and high-tech scientific visualization, with glowing effects and contrasting colors to enhance visual clarity.\n\n**General Details:**\n\n* The animation starts with a white screen displaying the text "Excerpt from a biomedical animation project."\n* Various text labels and watermarks (CORTICAL STUDIOS and WEHImovies) appear throughout the clip to identify the different components and structures.\n* The clip fades to white at 00:21, marking the end of the animation.\n\n Here is also an INCOMPLETE character/event/scene log across the video. These will all be encountered, and there MAY BE MORE CHARACTERS:\n\nMitochondrion: The mitochondrion is a bean-shaped organelle within the cell, responsible for energy production. [00:07-00:29]\n\nProtein Complexes: Large, teal-colored protein structures embedded in the inner mitochondrial membrane, labeled as "complex I," "complex III," and "complex IV." [00:53-01:02]\n\nCoenzyme Q: Small, mobile green carrier that moves within the inner membrane. [63s-75s]\n\nCytochrome c: Small green protein residing in the intermembrane space near Complex III. [63s-75s]\n\nATP Synthase: Large, blue protein complex embedded in the inner mitochondrial membrane, responsible for ATP synthesis via chemiosmosis. [75s-102s]\n\nSCENES:\n\nScene 1: Translucent, spherical cell floating in a blue-gray fluid environment. [00:07-00:16]\n\nScene 2: Single, glowing blue mitochondrion. [00:17-00:29]\n\nScene 3: Cross-section of the inner mitochondrial membrane, displaying the electron transport chain. [63s-75s]\n\nScene 4: Horizontal phospholipid bilayer membrane with embedded protein complexes, illustrating ATP synthesis via chemiosmosis. [75s-102s]\n\nEVENTS:\n\nEvent 1: Electron transport chain: NADH binds to Complex I, releasing an electron and a proton, which gets pumped into the intermembrane space. The electron travels through Complex I, reducing coenzyme Q to CoQH2, then to Complex III and to Cyt c, before being transferred to Complex IV, where electrons, protons, and oxygen converge to form water. [63s-75s]\n\nEvent 2: ATP synthesis via chemiosmosis: Protons accumulate in the upper compartment, creating an electrochemical gradient. ATP synthase rotates mechanically as protons flow through it, driving the catalytic conversion of ADP and inorganic phosphate into ATP. [75s-102s]\nYour question is this: What organelle is depicted at the beginning of the video?'}]You are answering questions about a video using tools to retrieve information.
+
+Question: What organelle is depicted at the beginning of the video?
+
+Answer Choices:
+A. Mitochondrion.
+B. Ribosome.
+C. Chloroplast.
+D. Golgi apparatus.
+
+
+STEP 1: CHECK QUESTION TYPE
+- Subtitle question? (quotes text, asks about dialogue) → Use SUBTITLE_SEARCH first
+- Temporal question? (after/before/when/first/next/last) → Use RECORD after each VLM_QUERY to track events
+- Quick actions? (hand movements, fast motions, sudden reactions) → Use EXTRACT_FINE_FRAMES at 5-10 FPS
+- Small details? (small objects, text, fine features) → Use CROP_OBJECT to zoom in
+
+STEP 2: EXTRACT VERIFICATION CRITERIA
+List 4-6 specific, testable visual criteria from the QUESTION (not answer choices) that must be verified.
+
+Example: "person in black shirt holding metal bucket with scattered debris"
+Criteria:
+- Person wearing black shirt
+- Person wearing black pants
+- Person holding large round metal bucket
+- Scene contains scattered debris on ground
+
+STEP 2.5: PLAN TO TEST EACH ANSWER CHOICE
+Once you have frames, plan to systematically test EACH answer option with VLM queries:
+- Query to verify option A characteristics
+- Query to verify option B characteristics
+- Query to verify option C characteristics
+- Query to verify option D characteristics
+This prevents confirmation bias and ensures you select the answer with STRONGEST visual evidence.
+
+STEP 3: GENERATE SEARCH QUERIES
+Create 2-4 natural search queries (subject-verb-object format) targeting VISIBLE details.
+- Good: "woman wearing yellow dress holding papers", "person in office setting with documents"
+- Bad: "yellow dress papers office woman"
+
+IMPORTANT: After getting clip time ranges from CAPTION_SEARCH, you MUST use VLM_QUERY to visually verify frames in those time ranges.
+DO NOT repeatedly search captions - once you have candidate clips/time ranges, USE VLM_QUERY to look at the frames!
+
+NOTE: CAPTION_SEARCH returns clip time ranges (e.g., "clip_45_67" = 45-67 seconds).
+Use these time ranges to extract frames for VLM_QUERY (e.g., check frames 45-67: frame_0045.jpg to frame_0067.jpg).
+
+Return format:
+```json{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["criterion 1", "criterion 2", "criterion 3", "criterion 4"],
+    "search_queries": ["natural query 1", "natural query 2", "optional query 3", "optional query 4"]
+}```
+
+For subtitle questions: {"tool": "SUBTITLE_SEARCH", "query": "exact subtitle text", "topk": 10}
+For video clip extraction: {"tool": "QUERY_CLIP", "start_frame": 45, "end_frame": 52, "prompt": "Describe the action"}
+
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["presence of a translucent spherical cell", "floating in a blue-gray fluid environment", "glowing blue bean-shaped organelle", "text labels identifying the organelle"],
+    "search_queries": ["translucent spherical cell floating", "glowing blue bean shaped organelle", "mitochondrion at beginning of video", "cell organelle blue fluid"]
+}
+Search queries (4): ['translucent spherical cell floating', 'glowing blue bean shaped organelle', 'mitochondrion at beginning of video', 'cell organelle blue fluid']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Visual appearance of the organelle at the very start of the video",
+        "Shape and color of the organelle",
+        "Text labels or identifiers near the organelle",
+        "Contextual cellular environment around the organelle"
+    ],
+    "search_queries": [
+        "mitochondrion at beginning of video",
+        "organelle shown at start",
+        "bean-shaped blue organelle",
+        "first organelle depicted"
+    ]
+}
+Search queries (4): ['mitochondrion at beginning of video', 'organelle shown at start', 'bean-shaped blue organelle', 'first organelle depicted']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["bean-shaped organelle", "glowing blue structure", "energy-producing organelle", "mitochondrion structure", "cellular organelle at video start"],
+    "search_queries": ["bean-shaped organelle at beginning", "glowing blue mitochondrion", "mitochondrion at start of video", "cellular energy organelle introduction"]
+}
+```
+Search queries (4): ['bean-shaped organelle at beginning', 'glowing blue mitochondrion', 'mitochondrion at start of video', 'cellular energy organelle introduction']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["presence of an organelle structure", "visual characteristics matching known organelles", "location within the cell", "size and shape of the organelle"],
+    "search_queries": ["mitochondrion organelle", "ribosome organelle", "chloroplast organelle", "golgi apparatus organelle", "beginning of video cell structure"]
+}
+Search queries (5): ['mitochondrion organelle', 'ribosome organelle', 'chloroplast organelle', 'golgi apparatus organelle', 'beginning of video cell structure']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["organelle visible at video start", "bean-shaped structure", "glowing blue organelle", "mitochondrion structure"],
+    "search_queries": ["mitochondrion at beginning", "organelle at start", "bean-shaped organelle", "glowing blue structure"]
+}
+```
+Search queries (4): ['mitochondrion at beginning', 'organelle at start', 'bean-shaped organelle', 'glowing blue structure']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["Bean-shaped organelle", "Glowing blue structure", "Appears at the very start of the video", "Located inside a cell"],
+    "search_queries": ["mitochondrion at beginning", "bean shaped organelle", "glowing blue organelle", "start of video cell interior"]
+}
+Search queries (4): ['mitochondrion at beginning', 'bean shaped organelle', 'glowing blue organelle', 'start of video cell interior']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["Organelle visible at video start", "Bean-shaped structure", "Glowing blue organelle", "Structure inside a cell"],
+    "search_queries": ["mitochondrion at beginning", "organelle at start", "bean-shaped organelle", "glowing blue structure"]
+}
+```
+Search queries (4): ['mitochondrion at beginning', 'organelle at start', 'bean-shaped organelle', 'glowing blue structure']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Bean-shaped organelle",
+        "Glowing blue structure",
+        "Appears at the very start of the video",
+        "Within a cell",
+        "Energy-producing organelle"
+    ],
+    "search_queries": [
+        "mitochondrion at beginning",
+        "bean shaped organelle",
+        "glowing blue structure start",
+        "first organelle shown"
+    ]
+}
+Search queries (4): ['mitochondrion at beginning', 'bean shaped organelle', 'glowing blue structure start', 'first organelle shown']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["organelle visible in first scene", "structure shown at video start", "initial visual focus of video", "bean-shaped organelle", "glowing blue structure"],
+    "search_queries": ["mitochondrion at beginning", "organelle shown first", "initial cell structure", "bean-shaped organelle start"]
+}
+```
+Search queries (4): ['mitochondrion at beginning', 'organelle shown first', 'initial cell structure', 'bean-shaped organelle start']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Bean-shaped organelle",
+        "Glowing blue structure",
+        "Organelle at the very start of the video",
+        "Cellular organelle in a microscopic view"
+    ],
+    "search_queries": [
+        "bean shaped organelle",
+        "glowing blue organelle",
+        "mitochondrion at beginning",
+        "first organelle shown"
+    ]
+}
+Search queries (4): ['bean shaped organelle', 'glowing blue organelle', 'mitochondrion at beginning', 'first organelle shown']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["visual appearance of the organelle", "location within the cell", "shape of the organelle", "color of the organelle", "text labels identifying the organelle"],
+    "search_queries": ["mitochondrion at beginning of video", "organelle shown first", "first organelle depicted", "bean-shaped organelle", "glowing blue organelle"]
+}
+Search queries (5): ['mitochondrion at beginning of video', 'organelle shown first', 'first organelle depicted', 'bean-shaped organelle', 'glowing blue organelle']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Organelle visible on screen",
+        "Bean-shaped organelle",
+        "Glowing blue structure",
+        "Located within a cell",
+        "Appears at the very start of the video (first few seconds)"
+    ],
+    "search_queries": [
+        "mitochondrion organelle at beginning",
+        "bean shaped organelle cell",
+        "glowing blue organelle start",
+        "first organelle shown video"
+    ]
+}
+Search queries (4): ['mitochondrion organelle at beginning', 'bean shaped organelle cell', 'glowing blue organelle start', 'first organelle shown video']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["organelle visible at video start", "first visual element after opening text", "structure visible between 00:00-00:10", "bean-shaped organelle"],
+    "search_queries": ["mitochondrion at beginning of video", "organelle shown first", "what appears after excerpt text", "first cellular structure shown"]
+}
+```
+Search queries (4): ['mitochondrion at beginning of video', 'organelle shown first', 'what appears after excerpt text', 'first cellular structure shown']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Organelle visible at the very start of the video (0-5 seconds)",
+        "Bean-shaped structure",
+        "Glowing blue appearance",
+        "Located within a cell",
+        "Energy-producing organelle"
+    ],
+    "search_queries": [
+        "mitochondrion at beginning of video",
+        "bean shaped organelle",
+        "glowing blue cellular structure",
+        "energy producing organelle in cell"
+    ]
+}
+Search queries (4): ['mitochondrion at beginning of video', 'bean shaped organelle', 'glowing blue cellular structure', 'energy producing organelle in cell']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["organelle visible at video start", "first visual element after opening text", "cellular structure shown at beginning", "initial organelle depiction"],
+    "search_queries": ["mitochondrion at beginning", "organelle shown first", "cellular structure at start", "first organelle depicted"]
+}
+```
+Search queries (4): ['mitochondrion at beginning', 'organelle shown first', 'cellular structure at start', 'first organelle depicted']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.

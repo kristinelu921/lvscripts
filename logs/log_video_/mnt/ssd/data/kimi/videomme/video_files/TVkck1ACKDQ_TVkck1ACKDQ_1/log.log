@@ -1,0 +1,289 @@
+[{'role': 'system', 'content': "You are an expert at reasoning and tool-using, with the goal of answering this question about a long video. You should be able to extract detailed frame-information from videos, do caption searches, and use your findings to answer the question. You should be SUPER PICKY about your findings, NOT make assumptions, and always bias towards gathering more evidence before executing a final answer. Use EXACT evidence only. ALSO, when dealing with TEMPORAL questions, you cannot find VISUAL TIMES. If a question asks for a 'duration' of an event, you want to do many caption searches on consecutive ranges, and find scene-changes at the beginning and end of the event. You MUST CHOOSE AN ANSWER. NONE OF THE ABOVE IS NOT ACCEPTABLE."}, {'role': 'user', 'content': "\n Here is a global summary of the video for general context: **Main Characters:**\n\n1. Shannon Baker - A young woman with light brown hair, appearing in multiple scenes.\n2. The woman in the white lab coat (name not mentioned) - A female character with long brown hair, interacting with anatomical models.\n\n**Setting:**\n\nThe video takes place in various educational or medical settings, including:\n\n1. A laboratory or classroom setting with white lab tables, anatomical torso models, and a bright, even lighting.\n2. A clinical or professional environment, such as a medical office or hospital corridor.\n3. A bright, clinical setting with white walls and cabinetry.\n4. A science classroom or laboratory with white lab tables, stools, and anatomical models.\n\n**Plot:**\n\nThe video appears to be a promotional or introductory clip for a biomedical science program or a student testimonial. It features a young woman, Shannon Baker, discussing her academic pursuits and experiences in a biomedical science program. The video also showcases a woman in a white lab coat interacting with anatomical models, suggesting a medical or educational context.\n\n**Vibes:**\n\nThe mood of the video is professional, academic, and instructional, suggesting a serious and focused tone. The atmosphere is clinical, focused, and educational, with a bright and even lighting setting.\n\n**General Details:**\n\n* The video spans approximately 30 seconds, with multiple scenes and settings.\n* The video features a mix of medium close-up and close-up shots, with a static camera setup in some scenes.\n* The video includes text overlays, such as the University of Queensland branding and a student testimonial with the speaker's name and academic title.\n* The video ends with a static university logo screen and a URL on the screen.\n\n Here is also an INCOMPLETE character/event/scene log across the video. These will all be encountered, and there MAY BE MORE CHARACTERS:\nPerson 1: Description: Young woman with light brown hair, black sleeveless blouse with white polka dots. [0s-14s]\nPerson 2: Description: Woman with long brown hair in a ponytail, dark blue sleeveless blouse with white polka dots. [3s-11s]\nPerson 3: Description: Person with long brown hair, wearing a white lab coat. [6s-11s]\nPerson 4: Description: Woman with light brown hair in a ponytail, wearing a white lab coat. [11s-14s]\nPerson 5: Description: Young woman with light brown hair pulled back, wearing a black sleeveless blouse with white polka dots. [14s-30s]\n\nSCENES:\nScene 1: Description: Laboratory or classroom setting, featuring Person 1 and a purple text overlay. [0s-3s]\nScene 2: Description: Clinical or professional environment, featuring Person 2 getting dressed in a white lab coat. [3s-6s]\nScene 3: Description: Classroom or laboratory setting, featuring Person 3 interacting with an anatomical model. [6s-11s]\nScene 4: Description: Clinical setting with a headless anatomical mannequin, featuring Person 4 examining the model. [11s-14s]\nScene 5: Description: Science classroom or laboratory setting, featuring Person 5 speaking to the camera. [14s-19s]\nScene 6: Description: Classroom or laboratory setting, featuring Person 5 speaking to the camera with a blurred anatomical model in the background. [19s-30s]\n\nEVENTS:\nEvent 1: Description: Person 3 removes a dark brown organ (the liver) from an anatomical model. [6s-11s]\nEvent 2: Description: Person 5 transitions to the University of Queensland branding screen. [19s-30s]\nYour question is this: What is the purpose of the video?"}]You are answering questions about a video using tools to retrieve information.
+
+Question: What is the purpose of the video?
+
+Answer Choices:
+A. Promotion for a hospital.
+B. Admissions brochure for a school.
+C. Introduction of a newly established medical laboratory.
+D. Introduction of excellent characters.
+
+
+STEP 1: CHECK QUESTION TYPE
+- Subtitle question? (quotes text, asks about dialogue) → Use SUBTITLE_SEARCH first
+- Temporal question? (after/before/when/first/next/last) → Use RECORD after each VLM_QUERY to track events
+- Quick actions? (hand movements, fast motions, sudden reactions) → Use EXTRACT_FINE_FRAMES at 5-10 FPS
+- Small details? (small objects, text, fine features) → Use CROP_OBJECT to zoom in
+
+STEP 2: EXTRACT VERIFICATION CRITERIA
+List 4-6 specific, testable visual criteria from the QUESTION (not answer choices) that must be verified.
+
+Example: "person in black shirt holding metal bucket with scattered debris"
+Criteria:
+- Person wearing black shirt
+- Person wearing black pants
+- Person holding large round metal bucket
+- Scene contains scattered debris on ground
+
+STEP 2.5: PLAN TO TEST EACH ANSWER CHOICE
+Once you have frames, plan to systematically test EACH answer option with VLM queries:
+- Query to verify option A characteristics
+- Query to verify option B characteristics
+- Query to verify option C characteristics
+- Query to verify option D characteristics
+This prevents confirmation bias and ensures you select the answer with STRONGEST visual evidence.
+
+STEP 3: GENERATE SEARCH QUERIES
+Create 2-4 natural search queries (subject-verb-object format) targeting VISIBLE details.
+- Good: "woman wearing yellow dress holding papers", "person in office setting with documents"
+- Bad: "yellow dress papers office woman"
+
+IMPORTANT: After getting clip time ranges from CAPTION_SEARCH, you MUST use VLM_QUERY to visually verify frames in those time ranges.
+DO NOT repeatedly search captions - once you have candidate clips/time ranges, USE VLM_QUERY to look at the frames!
+
+NOTE: CAPTION_SEARCH returns clip time ranges (e.g., "clip_45_67" = 45-67 seconds).
+Use these time ranges to extract frames for VLM_QUERY (e.g., check frames 45-67: frame_0045.jpg to frame_0067.jpg).
+
+Return format:
+```json{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["criterion 1", "criterion 2", "criterion 3", "criterion 4"],
+    "search_queries": ["natural query 1", "natural query 2", "optional query 3", "optional query 4"]
+}```
+
+For subtitle questions: {"tool": "SUBTITLE_SEARCH", "query": "exact subtitle text", "topk": 10}
+For video clip extraction: {"tool": "QUERY_CLIP", "start_frame": 45, "end_frame": 52, "prompt": "Describe the action"}
+
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "University of Queensland branding or logo",
+        "Student testimonial text overlay",
+        "Promotional language about a program or course",
+        "Biomedical science program mentioned",
+        "Academic or educational context"
+    ],
+    "search_queries": [
+        "University of Queensland",
+        "biomedical science program",
+        "student testimonial",
+        "academic program promotion"
+    ]
+}
+Search queries (4): ['University of Queensland', 'biomedical science program', 'student testimonial', 'academic program promotion']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["university branding or logos", "text overlays mentioning academic programs", "student testimonial content", "educational/institutional messaging", "promotional language about courses or degrees"],
+    "search_queries": ["University of Queensland", "biomedical science program", "student testimonial", "academic program promotion"]
+}
+```
+Search queries (4): ['University of Queensland', 'biomedical science program', 'student testimonial', 'academic program promotion']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["University or school branding/logo", "Text indicating promotional content", "References to programs or admissions", "Student testimonial elements"],
+    "search_queries": ["University of Queensland", "student testimonial", "biomedical science program", "admissions brochure"]
+}
+Search queries (4): ['University of Queensland', 'student testimonial', 'biomedical science program', 'admissions brochure']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "University branding or logos visible",
+        "Educational or academic content shown",
+        "Student testimonial or interview format",
+        "Promotional content about a program or institution",
+        "Medical or laboratory equipment in use",
+        "Text overlays indicating program names or university affiliation"
+    ],
+    "search_queries": [
+        "University of Queensland branding text",
+        "student testimonial speaking to camera",
+        "biomedical science program text overlay",
+        "academic degree or program name displayed"
+    ]
+}
+```
+Search queries (4): ['University of Queensland branding text', 'student testimonial speaking to camera', 'biomedical science program text overlay', 'academic degree or program name displayed']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["university or school name", "program or course name", "student testimonial content", "promotional text overlays", "educational or recruitment messaging"],
+    "search_queries": ["University of Queensland", "biomedical science program", "student testimonial", "text overlay promotion"]
+}
+Search queries (4): ['University of Queensland', 'biomedical science program', 'student testimonial', 'text overlay promotion']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+Looking at the question and the provided context, I need to determine the video's purpose by examining visual evidence. The question is not about subtitles or temporal events, but about the overall intent. I'll need to look for visual cues like branding, text overlays, and the context of the scenes.
+
+**Verification Criteria:**
+1. Presence of university or school branding (logos, names)
+2. Text overlays mentioning admissions, programs, or student testimonials
+3. Scenes showing educational or laboratory settings for learning
+4. People appearing as students or educators in an academic context
+5. Promotional elements (e.g., calls to action, URLs)
+6. Absence of hospital-specific branding or patient care scenes
+
+**Plan to Test Each Answer Choice:**
+- For A (hospital promotion): Look for hospital logos, patient care scenes, medical staff in clinical action.
+- For B (school admissions brochure): Look for university branding, program names, student testimonials, admissions-related text.
+- For C (new medical laboratory introduction): Look for new lab branding, ribbon-cutting, emphasis on facilities rather than education.
+- For D (introduction of excellent characters): Look for character introductions, names/titles, focus on individuals rather than institutions.
+
+**Search Queries:**
+1. "University of Queensland logo or text" (to confirm branding)
+2. "student testimonial text overlay" (to see if it's a promotional student video)
+3. "biomedical science program text" (to identify the academic focus)
+4. "admissions information or website URL" (to check for promotional calls to action)
+
+Since the global summary mentions "University of Queensland branding" and "student testimonial", I should focus on extracting frames with text overlays and branding.
+
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["university branding", "student testimonial text", "program name text", "URL or website"],
+    "search_queries": ["University of Queensland", "student testimonial", "biomedical science", "www.uq.edu.au"]
+}
+```
+Search queries (4): ['University of Queensland', 'student testimonial', 'biomedical science', 'www.uq.edu.au']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["university branding or logos", "educational institution mentions", "program or course names", "promotional language about education", "student testimonial content", "academic program descriptions"],
+    "search_queries": ["University of Queensland", "biomedical science program", "student testimonial", "academic program", "university promotion", "educational program"]
+}
+```
+Search queries (6): ['University of Queensland', 'biomedical science program', 'student testimonial', 'academic program', 'university promotion', 'educational program']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "University name or branding visible",
+        "Program name or degree mentioned",
+        "Student testimonial content",
+        "Promotional language about education",
+        "Call to action for prospective students"
+    ],
+    "search_queries": [
+        "University of Queensland",
+        "biomedical science program",
+        "student testimonial",
+        "academic program promotion"
+    ]
+}
+Search queries (4): ['University of Queensland', 'biomedical science program', 'student testimonial', 'academic program promotion']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["university or school branding/logo", "program or degree name mentioned", "student testimonial or introduction", "promotional language about education", "text overlays with academic information", "mentions of biomedical science"],
+    "search_queries": ["University of Queensland", "biomedical science program", "student testimonial", "academic degree", "university promotion", "educational program introduction"]
+}
+Search queries (6): ['University of Queensland', 'biomedical science program', 'student testimonial', 'academic degree', 'university promotion', 'educational program introduction']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "University of Queensland branding or logo",
+        "Student testimonial text overlay",
+        "Promotional language about a program or course",
+        "Academic or educational setting",
+        "Biomedical science program mention",
+        "URL or website address for more information"
+    ],
+    "search_queries": [
+        "University of Queensland",
+        "student testimonial",
+        "biomedical science program",
+        "promotional video for school"
+    ]
+}
+Search queries (4): ['University of Queensland', 'student testimonial', 'biomedical science program', 'promotional video for school']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "University of Queensland branding or logo",
+        "Text overlay mentioning biomedical science program",
+        "Student testimonial text or speech",
+        "Promotional language about education or program benefits",
+        "Academic or educational setting with lab equipment",
+        "URL or website address for university or program"
+    ],
+    "search_queries": [
+        "University of Queensland logo on screen",
+        "text overlay biomedical science program",
+        "student testimonial speaking about education",
+        "promotional video for university program"
+    ]
+}
+Search queries (4): ['University of Queensland logo on screen', 'text overlay biomedical science program', 'student testimonial speaking about education', 'promotional video for university program']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["university branding or logos", "educational program mentions", "student testimonial content", "promotional language about studies", "text overlays about academic programs", "mentions of biomedical science"],
+    "search_queries": ["University of Queensland", "biomedical science program", "student testimonial", "academic program", "university promotion", "educational opportunity"]
+}
+```
+Search queries (6): ['University of Queensland', 'biomedical science program', 'student testimonial', 'academic program', 'university promotion', 'educational opportunity']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Presence of university branding or logos",
+        "Text overlays mentioning academic programs or degrees",
+        "Visuals of educational facilities like classrooms or labs",
+        "People identified as students or faculty",
+        "Mention of admissions, enrollment, or applications",
+        "Promotional language about educational opportunities"
+    ],
+    "search_queries": [
+        "University of Queensland branding or logo",
+        "text overlay mentioning biomedical science program",
+        "student testimonial with academic title",
+        "promotional language about education"
+    ]
+}
+Search queries (4): ['University of Queensland branding or logo', 'text overlay mentioning biomedical science program', 'student testimonial with academic title', 'promotional language about education']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Presence of university branding or logos",
+        "Text overlays mentioning 'student testimonial' or 'biomedical science program'",
+        "Visuals of educational or medical laboratory settings",
+        "People interacting with anatomical models in an instructional context",
+        "On-screen text indicating a university or school name",
+        "Visual cues of promotion or recruitment (e.g., 'apply now', 'learn more')"
+    ],
+    "search_queries": [
+        "University of Queensland branding text overlay",
+        "student testimonial text on screen",
+        "biomedical science program text",
+        "university logo or URL on screen"
+    ]
+}
+Search queries (4): ['University of Queensland branding text overlay', 'student testimonial text on screen', 'biomedical science program text', 'university logo or URL on screen']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "University of Queensland branding or logo",
+        "Student testimonial text overlay",
+        "Promotional language about a biomedical program",
+        "Educational or program introduction text",
+        "URL or website for an educational institution",
+        "Academic titles or program names"
+    ],
+    "search_queries": [
+        "University of Queensland logo on screen",
+        "text overlay student testimonial",
+        "biomedical science program promotion",
+        "educational program introduction text"
+    ]
+}
+Search queries (4): ['University of Queensland logo on screen', 'text overlay student testimonial', 'biomedical science program promotion', 'educational program introduction text']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.

@@ -1,0 +1,202 @@
+[{'role': 'system', 'content': "You are an expert at reasoning and tool-using, with the goal of answering this question about a long video. You should be able to extract detailed frame-information from videos, do caption searches, and use your findings to answer the question. You should be SUPER PICKY about your findings, NOT make assumptions, and always bias towards gathering more evidence before executing a final answer. Use EXACT evidence only. ALSO, when dealing with TEMPORAL questions, you cannot find VISUAL TIMES. If a question asks for a 'duration' of an event, you want to do many caption searches on consecutive ranges, and find scene-changes at the beginning and end of the event. You MUST CHOOSE AN ANSWER. NONE OF THE ABOVE IS NOT ACCEPTABLE."}, {'role': 'user', 'content': '\n Here is a global summary of the video for general context: **Main Characters:**\n\n1. **Cell**: The main protagonist, a large orange cell with a red membrane.\n2. **Virus**: The antagonist, a dark blue sphere with yellow internal spirals and red spike proteins.\n3. **mRNA** (or "mRNA nanoparticle"): A small blue lipid nanoparticle containing pink mRNA.\n4. **Immune Cell**: A light blue, amoeboid shape that detects the foreign spikes on the cell surface.\n5. **Antibodies**: Pink Y-shaped antibodies produced by the immune system in response to the foreign spikes.\n\n**Setting:**\n\n1. **Cell membrane**: The outer boundary of the cell.\n2. **Cell interior**: The internal space of the cell where the mRNA is read and the COVID spikes are produced.\n3. **Muscle cell**: The cell where the mRNA nanoparticle fuses with the cell membrane.\n4. **Tissue**: The surrounding tissue where the mRNA nanoparticle travels.\n\n**Plot:**\n\n1. **Viral infection**: A virus approaches, attaches to the cell membrane, and is absorbed inside the cell.\n2. **mRNA injection**: A syringe injects a dose of mRNA into the muscle cell.\n3. **mRNA reading**: The cell\'s machinery reads the mRNA instructions.\n4. **COVID spike production**: Red, Y-shaped COVID spikes are produced and pushed to the cell\'s surface.\n5. **Immune response**: An immune cell detects the foreign spikes, and the immune system produces antibodies.\n6. **Virus neutralization**: Antibodies attach to the virus\'s red spike proteins, completely coating the virus and neutralizing it.\n\n**Vibes:**\n\n1. **Educational**: The video clearly explains a complex biological process without using jargon.\n2. **Calm**: The mood is reassuring and peaceful, using a warm, limited color palette.\n3. **Reassuring**: The video shows the virus being neutralized by the antibodies, giving a sense of safety.\n\n**General Details:**\n\n1. **Style**: The video uses a simplified, 2D animation style.\n2. **Color palette**: The color palette is warm and limited, featuring creams, oranges, reds, and blues.\n3. **Credits**: The video includes production credits and a research acknowledgment.\n\n Here is also an INCOMPLETE character/event/scene log across the video. These will all be encountered, and there MAY BE MORE CHARACTERS:\n\n1. VIRUS: Description: Dark blue sphere with yellow internal spirals and red spike proteins [00:07 - 00:49]\n2. CELL: Description: Orange shape with red membrane [00:07 - 00:49]\n3. IMMUNE CELL: Description: Light blue, amoeboid shape [00:41 - 01:03]\n4. mRNA: Description: Pink molecule inside a small blue lipid nanoparticle [00:18 - 00:41]\n5. ANTIBODIES: Description: Pink Y-shaped molecules [00:41 - 01:03]\n6. SYRINGE: Description: Medication delivery device [00:18 - 00:30]\n\nSCENES:\n\n1. Background with abstract, branching patterns: Description: Cream-colored background featuring abstract, branching patterns [00:00 - 00:07]\n2. Viral infection: Description: A large orange "CELL" with a red membrane is shown. A "VIRUS" approaches, attaches to the cell membrane, and is absorbed inside [00:07 - 00:18]\n3. Injection: Description: A syringe injects a dose. The view zooms in to reveal a small blue lipid nanoparticle containing pink "mRNA" [00:18 - 00:30]\n4. mRNA delivery: Description: The mRNA nanoparticle travels through tissue and enters a muscle cell. The nanoparticle fuses with the cell membrane, releasing the mRNA into the cell\'s interior [00:18 - 00:30]\n5. mRNA reading: Description: The cell\'s machinery reads the mRNA instructions. Red, Y-shaped "COVID SPIKES" are produced and pushed to the cell\'s surface, protruding through the membrane [00:30 - 00:41]\n6. Antibody production: Description: An "IMMUNE CELL" (light blue, amoeboid shape) detects the foreign spikes on the cell surface. In response, the immune system produces pink Y-shaped "ANTIBODIES" [00:41 - 01:03]\n7. Virus neutralization: Description: A whole virus particle reappears. The pink antibodies flow in and attach to the virus\'s red spike proteins, completely coating the virus and neutralizing it [00:49 - 01:03]\n8. Final scene: Description: The antibody-coated virus is shown floating away harmlessly, unable to infect another cell it approaches [01:03 - 01:10]\n\nEVENTS:\n\n1. Viral infection: Description: A "VIRUS" approaches, attaches to the cell membrane, and is absorbed inside [00:07 - 00:18]\n2. mRNA delivery: Description: The mRNA nanoparticle travels through tissue and enters a muscle cell. The nanoparticle fuses with the cell membrane, releasing the mRNA into the cell\'s interior [00:18 - 00:30]\n3. mRNA reading: Description: The cell\'s machinery reads the mRNA instructions. Red, Y-shaped "COVID SPIKES" are produced and pushed to the cell\'s surface, protruding through the membrane [00:30 - 00:41]\n4. Antibody production: Description: An "IMMUNE CELL" (light blue, amoeboid shape) detects the foreign spikes on the cell surface. In response, the immune system produces pink Y-shaped "ANTIBODIES" [00:41 - 01:03]\n5. Virus neutralization: Description: A whole virus particle reappears. The pink antibodies flow in and attach to the virus\'s red spike proteins, completely coating the virus and neutralizing it [00:49 - 01:03]\nYour question is this: Where does mRNA come from in the video?'}]You are answering questions about a video using tools to retrieve information.
+
+Question: Where does mRNA come from in the video?
+
+Answer Choices:
+A. Cells.
+B. Vaccines.
+C. COVID-19 virus.
+D. Antibodies.
+
+
+STEP 1: CHECK QUESTION TYPE
+- Subtitle question? (quotes text, asks about dialogue) → Use SUBTITLE_SEARCH first
+- Temporal question? (after/before/when/first/next/last) → Use RECORD after each VLM_QUERY to track events
+- Quick actions? (hand movements, fast motions, sudden reactions) → Use EXTRACT_FINE_FRAMES at 5-10 FPS
+- Small details? (small objects, text, fine features) → Use CROP_OBJECT to zoom in
+
+STEP 2: EXTRACT VERIFICATION CRITERIA
+List 4-6 specific, testable visual criteria from the QUESTION (not answer choices) that must be verified.
+
+Example: "person in black shirt holding metal bucket with scattered debris"
+Criteria:
+- Person wearing black shirt
+- Person wearing black pants
+- Person holding large round metal bucket
+- Scene contains scattered debris on ground
+
+STEP 2.5: PLAN TO TEST EACH ANSWER CHOICE
+Once you have frames, plan to systematically test EACH answer option with VLM queries:
+- Query to verify option A characteristics
+- Query to verify option B characteristics
+- Query to verify option C characteristics
+- Query to verify option D characteristics
+This prevents confirmation bias and ensures you select the answer with STRONGEST visual evidence.
+
+STEP 3: GENERATE SEARCH QUERIES
+Create 2-4 natural search queries (subject-verb-object format) targeting VISIBLE details.
+- Good: "woman wearing yellow dress holding papers", "person in office setting with documents"
+- Bad: "yellow dress papers office woman"
+
+IMPORTANT: After getting clip time ranges from CAPTION_SEARCH, you MUST use VLM_QUERY to visually verify frames in those time ranges.
+DO NOT repeatedly search captions - once you have candidate clips/time ranges, USE VLM_QUERY to look at the frames!
+
+NOTE: CAPTION_SEARCH returns clip time ranges (e.g., "clip_45_67" = 45-67 seconds).
+Use these time ranges to extract frames for VLM_QUERY (e.g., check frames 45-67: frame_0045.jpg to frame_0067.jpg).
+
+Return format:
+```json{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["criterion 1", "criterion 2", "criterion 3", "criterion 4"],
+    "search_queries": ["natural query 1", "natural query 2", "optional query 3", "optional query 4"]
+}```
+
+For subtitle questions: {"tool": "SUBTITLE_SEARCH", "query": "exact subtitle text", "topk": 10}
+For video clip extraction: {"tool": "QUERY_CLIP", "start_frame": 45, "end_frame": 52, "prompt": "Describe the action"}
+
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Visual source of mRNA introduction",
+        "Method of mRNA delivery",
+        "Object that contains the mRNA",
+        "Device used to administer mRNA",
+        "Visual depiction of mRNA origin"
+    ],
+    "search_queries": [
+        "syringe injecting mRNA",
+        "mRNA nanoparticle delivery",
+        "blue lipid nanoparticle containing mRNA",
+        "injection of vaccine dose"
+    ]
+}
+Search queries (4): ['syringe injecting mRNA', 'mRNA nanoparticle delivery', 'blue lipid nanoparticle containing mRNA', 'injection of vaccine dose']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Visible source of mRNA delivery",
+        "How mRNA enters the body/system",
+        "Object or entity that contains mRNA",
+        "Mechanism of mRNA introduction"
+    ],
+    "search_queries": [
+        "syringe injecting mRNA nanoparticle",
+        "mRNA delivery mechanism",
+        "blue lipid nanoparticle containing pink mRNA",
+        "source of mRNA injection"
+    ]
+}
+Search queries (4): ['syringe injecting mRNA nanoparticle', 'mRNA delivery mechanism', 'blue lipid nanoparticle containing pink mRNA', 'source of mRNA injection']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["mRNA nanoparticle visible", "mRNA being injected", "mRNA source location", "mRNA delivery mechanism"],
+    "search_queries": ["mRNA nanoparticle injection", "syringe injecting mRNA", "mRNA coming from syringe", "blue lipid nanoparticle with mRNA"]
+}
+```
+Search queries (4): ['mRNA nanoparticle injection', 'syringe injecting mRNA', 'mRNA coming from syringe', 'blue lipid nanoparticle with mRNA']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["mRNA appearing on screen", "source of mRNA introduction", "how mRNA enters the scene", "origin point of mRNA molecule"],
+    "search_queries": ["mRNA appears", "mRNA source", "mRNA injection", "mRNA delivery", "mRNA nanoparticle"]
+}
+Search queries (5): ['mRNA appears', 'mRNA source', 'mRNA injection', 'mRNA delivery', 'mRNA nanoparticle']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["mRNA visible on screen", "source of mRNA shown", "mRNA origin point", "mRNA delivery mechanism"],
+    "search_queries": ["mRNA nanoparticle injection", "syringe injecting mRNA", "mRNA coming from syringe", "blue lipid nanoparticle with pink mRNA"]
+}
+Search queries (4): ['mRNA nanoparticle injection', 'syringe injecting mRNA', 'mRNA coming from syringe', 'blue lipid nanoparticle with pink mRNA']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["mRNA molecule appearance", "mRNA entering cell", "mRNA source/origin", "mRNA delivery method"],
+    "search_queries": ["mRNA nanoparticle injection", "syringe injecting mRNA", "mRNA delivery to muscle cell", "blue lipid nanoparticle containing mRNA"]
+}
+```
+Search queries (4): ['mRNA nanoparticle injection', 'syringe injecting mRNA', 'mRNA delivery to muscle cell', 'blue lipid nanoparticle containing mRNA']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["mRNA visible on screen", "Source of mRNA shown", "mRNA being introduced into the scene", "mRNA origin point"],
+    "search_queries": ["mRNA appears", "mRNA source", "where mRNA comes from", "mRNA injection"]
+}
+Search queries (4): ['mRNA appears', 'mRNA source', 'where mRNA comes from', 'mRNA injection']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["Source of mRNA injection", "Delivery mechanism of mRNA", "Origin point of mRNA in the animation", "How mRNA enters the system"],
+    "search_queries": ["syringe injects mRNA", "mRNA nanoparticle injection", "mRNA delivered by syringe", "source of mRNA vaccine"]
+}
+```
+Search queries (4): ['syringe injects mRNA', 'mRNA nanoparticle injection', 'mRNA delivered by syringe', 'source of mRNA vaccine']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Visual depiction of mRNA origin source",
+        "Object or entity that delivers mRNA into the cell",
+        "Visual context showing where mRNA is introduced from",
+        "Device or mechanism that brings mRNA into the scene"
+    ],
+    "search_queries": [
+        "syringe injecting mRNA nanoparticle",
+        "mRNA being delivered into the cell",
+        "source of the mRNA nanoparticle",
+        "where does the mRNA come from"
+    ]
+}
+Search queries (4): ['syringe injecting mRNA nanoparticle', 'mRNA being delivered into the cell', 'source of the mRNA nanoparticle', 'where does the mRNA come from']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["mRNA visible on screen", "Source of mRNA shown", "mRNA being introduced into the scene", "mRNA origin point"],
+    "search_queries": ["mRNA appears", "mRNA source", "where mRNA comes from", "mRNA injection"]
+}
+Search queries (4): ['mRNA appears', 'mRNA source', 'where mRNA comes from', 'mRNA injection']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["mRNA appearance source", "mRNA origin point", "mRNA introduction method", "mRNA delivery mechanism"],
+    "search_queries": ["mRNA nanoparticle injection", "syringe injecting mRNA", "mRNA delivery to cell", "where mRNA comes from"]
+}
+```
+Search queries (4): ['mRNA nanoparticle injection', 'syringe injecting mRNA', 'mRNA delivery to cell', 'where mRNA comes from']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["mRNA source or origin shown visually", "object delivering mRNA into the cell", "initial appearance of mRNA in the video", "context of mRNA introduction"],
+    "search_queries": ["mRNA nanoparticle source", "where mRNA comes from", "syringe injecting mRNA", "mRNA delivery mechanism"]
+}
+Search queries (4): ['mRNA nanoparticle source', 'where mRNA comes from', 'syringe injecting mRNA', 'mRNA delivery mechanism']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["mRNA appearance", "mRNA source", "mRNA origin point", "mRNA introduction method"],
+    "search_queries": ["mRNA appears", "where mRNA comes from", "mRNA enters the scene", "source of mRNA"]
+}
+```
+Search queries (4): ['mRNA appears', 'where mRNA comes from', 'mRNA enters the scene', 'source of mRNA']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["Source of mRNA shown on screen", "How mRNA is introduced into the scene", "Origin point of mRNA in animation", "Delivery mechanism for mRNA"],
+    "search_queries": ["mRNA source", "where mRNA comes from", "mRNA injection", "syringe delivering mRNA"]
+}
+Search queries (4): ['mRNA source', 'where mRNA comes from', 'mRNA injection', 'syringe delivering mRNA']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["mRNA visible on screen", "mRNA being delivered", "Source of mRNA shown", "mRNA entering cell"],
+    "search_queries": ["mRNA nanoparticle", "blue lipid nanoparticle", "mRNA being injected", "mRNA delivery"]
+}
+Search queries (4): ['mRNA nanoparticle', 'blue lipid nanoparticle', 'mRNA being injected', 'mRNA delivery']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.

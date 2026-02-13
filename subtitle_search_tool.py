@@ -49,7 +49,7 @@ def search_video_subtitles(
         >>> print(f"Found at {results[0]['time_formatted']}, frame {results[0]['start_frame']}")
     """
     # Construct path to subtitle embeddings
-    embeddings_file = f"{video_id}_en_embeddings.jsonl"
+    embeddings_file = f"{video_id}_en_embeddings_alibaba.jsonl"
     embeddings_path = os.path.join(subtitles_dir, embeddings_file)
 
     # Check if embeddings exist

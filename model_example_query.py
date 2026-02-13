@@ -21,6 +21,7 @@ except ImportError:
 with open("env.json", "r") as f:
     env_data = json.load(f)
     together_key_PRIV = env_data["together_key"]
+    kimi_api_key = env_data.get("kimi_api_key")
 
 
 os.environ['TOGETHER_API_KEY'] = together_key_PRIV
@@ -29,12 +30,179 @@ client_together = Together()
 # Don't create global async client - create per request instead
 #genai.configure()
 
+# Kimi API support
+import aiohttp
+
+async def call_kimi_api(messages, model="kimi-k2.5", temperature=1.0):
+    """
+    Call Kimi API with messages.
+
+    Args:
+        messages: List of message dicts with 'role' and 'content'
+        model: Model to use (default: kimi-k2.5)
+        temperature: Temperature for generation (must be 1.0 for kimi-k2.5)
+
+    Returns:
+        Response text
+    """
+    url = "https://api.moonshot.ai/v1/chat/completions"
+    headers = {
+        "Authorization": f"Bearer {kimi_api_key}",
+        "Content-Type": "application/json"
+    }
+    payload = {
+        "model": model,
+        "messages": messages,
+        "temperature": temperature
+    }
+
+    async with aiohttp.ClientSession() as session:
+        async with session.post(url, headers=headers, json=payload) as response:
+            if response.status == 200:
+                result = await response.json()
+                return result['choices'][0]['message']['content']
+            else:
+                error_text = await response.text()
+                raise Exception(f"Kimi API error {response.status}: {error_text}")
+
 def log(message, file_title):
     if not os.path.exists(file_title):
         os.makedirs(file_title)
     else:
         with open(f"{file_title}/log.log", "a") as f:
             f.write(message + "\n")
+
+async def query_vlm_kimi(model, image_paths, query, max_retries=20, batch_size=30):
+    """Query Kimi VLM about frames with batched images
+
+    Args:
+        model: Kimi model name (e.g., kimi-k2.5)
+        image_paths: List of image file paths
+        query: Text prompt for the VLM
+        max_retries: Maximum retry attempts
+        batch_size: Initial number of images per VLM call (default 30)
+    """
+    grouped_response = []
+    failed_images = []
+    warned_missing_files = set()
+    print("="*10 + " Querying Kimi VLM " + "="*10 + f"for {len(image_paths)} images in batches of up to {batch_size}...")
+
+    # Process in batches
+    current_batch_size = batch_size
+    batch_start = 0
+
+    while batch_start < len(image_paths):
+        batch_end = min(batch_start + current_batch_size, len(image_paths))
+        batch_paths = image_paths[batch_start:batch_end]
+
+        print(f"Processing batch {batch_start}-{batch_end} ({len(batch_paths)} images) with batch_size={current_batch_size}")
+
+        for attempt in range(max_retries):
+            if attempt > 0:
+                wait_time = min(2 ** attempt, 60)
+                print(f"Retrying batch after {wait_time} seconds...")
+                await asyncio.sleep(wait_time)
+
+            try:
+                # Build content array with labeled frames
+                content = []
+
+                # Add initial query text
+                intro_text = f"{query}\n\nYou are viewing {len(batch_paths)} frames from the video. Each frame is labeled with its position:\n"
+                content.append({"type": "text", "text": intro_text})
+
+                # Add each image with label
+                valid_images = []
+                for idx, image_path in enumerate(batch_paths, 1):
+                    try:
+                        if not os.path.exists(image_path):
+                            if image_path not in warned_missing_files:
+                                print(f"Warning: Image file not found: {image_path}")
+                                failed_images.append((image_path, "File not found"))
+                                warned_missing_files.add(image_path)
+                            continue
+
+                        # Read and encode image
+                        with open(image_path, "rb") as image_file:
+                            image_data = base64.b64encode(image_file.read()).decode('utf-8')
+
+                        # Add frame label
+                        content.append({"type": "text", "text": f"\n--- Frame {idx} ({image_path}) ---"})
+                        # Add image
+                        content.append({"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_data}"}})
+                        valid_images.append(image_path)
+
+                    except Exception as e:
+                        print(f"Error reading image {image_path}: {e}")
+                        failed_images.append((image_path, f"Read error: {e}"))
+                        continue
+
+                if not valid_images:
+                    print("No valid images in batch, skipping...")
+                    batch_start = batch_end
+                    break
+
+                print(f"Sending {len(valid_images)} images to Kimi API...")
+
+                # Call Kimi API
+                try:
+                    messages = [{
+                        "role": "user",
+                        "content": content
+                    }]
+
+                    content_response = await call_kimi_api(messages, model=model, temperature=1.0)
+
+                    print(f"✓ Successfully processed batch with {len(valid_images)} images")
+                    print(f"Response preview: {content_response[:100]}...")
+
+                    # Store response with batch info
+                    grouped_response.append({
+                        "batch_start": batch_start,
+                        "batch_end": batch_end,
+                        "image_paths": valid_images,
+                        "response": content_response
+                    })
+
+                    # Success - move to next batch
+                    batch_start = batch_end
+                    break
+
+                except Exception as e:
+                    error_msg = str(e).lower()
+                    if "max" in error_msg or "token" in error_msg or "limit" in error_msg:
+                        print(f"⚠ Token limit error with batch_size={current_batch_size}. Reducing batch size...")
+                        current_batch_size = max(current_batch_size // 2, 1)
+                        if current_batch_size < len(batch_paths):
+                            print(f"Retrying with smaller batch_size={current_batch_size}")
+                            batch_end = min(batch_start + current_batch_size, len(image_paths))
+                            batch_paths = image_paths[batch_start:batch_end]
+                            continue
+                    raise
+
+            except Exception as e:
+                print(f"Batch processing error (attempt {attempt + 1}/{max_retries}): {e}")
+                if attempt == max_retries - 1:
+                    for image_path in batch_paths:
+                        if not any(img == image_path for img, _ in failed_images):
+                            failed_images.append((image_path, f"Batch error: {e}"))
+                    batch_start = batch_end
+                    break
+
+    # Report failures
+    if failed_images:
+        print(f"\nFailed to process {len(failed_images)} images:")
+        for img_path, error in failed_images[:5]:
+            print(f"  - {img_path}: {error}")
+        if len(failed_images) > 5:
+            print(f"  ... and {len(failed_images) - 5} more")
+
+    # Format response
+    if grouped_response:
+        full_response = "\n\n".join([batch["response"] for batch in grouped_response])
+        return full_response
+    else:
+        return f"Error: Could not process any images successfully. {len(failed_images)} images failed."
 
 async def query_vlm(model, image_paths, query, max_retries=20, batch_size=30):
     """Query VLM about frames with batched images in single API call
@@ -49,6 +217,10 @@ async def query_vlm(model, image_paths, query, max_retries=20, batch_size=30):
         max_retries: Maximum retry attempts
         batch_size: Initial number of images per VLM call (default 30)
     """
+    # Check if using Kimi API
+    if "kimi" in model.lower():
+        return await query_vlm_kimi(model, image_paths, query, max_retries, batch_size)
+
     grouped_response = []
     failed_images = []
     warned_missing_files = set()  # Track files we've already warned about
@@ -317,7 +489,12 @@ def query_llm(model, prompt, max_tokens=4096, temperature=0.7):
         print(f"Error querying {model}: {e}")
         return None
 
-async def query_llm_async(model_name, prompt):
+async def query_llm_async(model_name, prompt, temperature=0.7):
+    # Check if using Kimi API
+    if "kimi" in model_name.lower():
+        messages = [{"role": "user", "content": prompt}]
+        return await call_kimi_api(messages, model=model_name, temperature=1.0)
+
     # Offload blocking sync call to a thread; do NOT wrap a non-coroutine in create_task
     response = await asyncio.to_thread(query_llm, model_name, prompt)
     return response

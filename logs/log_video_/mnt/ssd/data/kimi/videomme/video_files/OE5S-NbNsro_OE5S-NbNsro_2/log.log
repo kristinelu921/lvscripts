@@ -1,0 +1,220 @@
+[{'role': 'system', 'content': "You are an expert at reasoning and tool-using, with the goal of answering this question about a long video. You should be able to extract detailed frame-information from videos, do caption searches, and use your findings to answer the question. You should be SUPER PICKY about your findings, NOT make assumptions, and always bias towards gathering more evidence before executing a final answer. Use EXACT evidence only. ALSO, when dealing with TEMPORAL questions, you cannot find VISUAL TIMES. If a question asks for a 'duration' of an event, you want to do many caption searches on consecutive ranges, and find scene-changes at the beginning and end of the event. You MUST CHOOSE AN ANSWER. NONE OF THE ABOVE IS NOT ACCEPTABLE."}, {'role': 'user', 'content': '\n Here is a global summary of the video for general context: **Global Summary:**\n\n**Main Characters:** Four ballerinas in traditional white tutus and feathered headpieces, identified by name (though not explicitly mentioned in the text).\n\n**Setting:** A dimly lit theater stage with a black curtain backdrop.\n\n**Plot:** The performance is a choreographed sequence of classical ballet movements set to Tchaikovsky\'s "Swan Lake" music, showcasing the elegance and beauty of the swan theme.\n\n**Vibes:** Serene, elegant, and classical, capturing the ethereal quality of the swan theme.\n\n**General Details:** The video features credits, identifying the music, choreographer, and dancers. The lighting creates a dramatic contrast, illuminating the white-costumed dancers against the dark background, and the choreography builds in complexity, culminating in a final synchronized sequence.\n\n Here is also an INCOMPLETE character/event/scene log across the video. These will all be encountered, and there MAY BE MORE CHARACTERS:\n- Four Ballerinas (e.g., young female dancers in traditional white tutus and feathered headpieces): Description: [Ballerinas in white tutus and feathered headpieces, standing in formation on theater stage]\n\nSCENES:\nScene 1 (Theater Stage): Description: [Dimly lit theater stage, black curtain backdrop, audience silhouette in foreground] [00s-118s]\n\nEVENTS:\nEvent 1 (Ballet Performance): Description: [Four ballerinas execute synchronized classical ballet choreography, moving through various formations] [00:10-01:52]\nEvent 2 (Choreography Build-up): Description: [Choreography builds in complexity, dancers moving as a quartet, performing unison steps, mirrored movements, and intricate weaving patterns] [Approximate 00:20-01:30]\n\nEVENTS:\nEvent 3 (Final Sequence): Description: [Dancers glide across the stage in a line, raise their arms gracefully, and lower into a dramatic seated pose] [01:50]\nEvent 4 (Performance Conclusion): Description: [Lights fade to black] [Approximate 01:52]\nYour question is this: What are the moves in the last scene of this dance?'}]You are answering questions about a video using tools to retrieve information.
+
+Question: What are the moves in the last scene of this dance?
+
+Answer Choices:
+A. Kneel down on one knee and lean back.
+B. Passe and then chasse.
+C. Releve and then pirouette.
+D. Passe and then Grand jete.
+
+
+STEP 1: CHECK QUESTION TYPE
+- Subtitle question? (quotes text, asks about dialogue) → Use SUBTITLE_SEARCH first
+- Temporal question? (after/before/when/first/next/last) → Use RECORD after each VLM_QUERY to track events
+- Quick actions? (hand movements, fast motions, sudden reactions) → Use EXTRACT_FINE_FRAMES at 5-10 FPS
+- Small details? (small objects, text, fine features) → Use CROP_OBJECT to zoom in
+
+STEP 2: EXTRACT VERIFICATION CRITERIA
+List 4-6 specific, testable visual criteria from the QUESTION (not answer choices) that must be verified.
+
+Example: "person in black shirt holding metal bucket with scattered debris"
+Criteria:
+- Person wearing black shirt
+- Person wearing black pants
+- Person holding large round metal bucket
+- Scene contains scattered debris on ground
+
+STEP 2.5: PLAN TO TEST EACH ANSWER CHOICE
+Once you have frames, plan to systematically test EACH answer option with VLM queries:
+- Query to verify option A characteristics
+- Query to verify option B characteristics
+- Query to verify option C characteristics
+- Query to verify option D characteristics
+This prevents confirmation bias and ensures you select the answer with STRONGEST visual evidence.
+
+STEP 3: GENERATE SEARCH QUERIES
+Create 2-4 natural search queries (subject-verb-object format) targeting VISIBLE details.
+- Good: "woman wearing yellow dress holding papers", "person in office setting with documents"
+- Bad: "yellow dress papers office woman"
+
+IMPORTANT: After getting clip time ranges from CAPTION_SEARCH, you MUST use VLM_QUERY to visually verify frames in those time ranges.
+DO NOT repeatedly search captions - once you have candidate clips/time ranges, USE VLM_QUERY to look at the frames!
+
+NOTE: CAPTION_SEARCH returns clip time ranges (e.g., "clip_45_67" = 45-67 seconds).
+Use these time ranges to extract frames for VLM_QUERY (e.g., check frames 45-67: frame_0045.jpg to frame_0067.jpg).
+
+Return format:
+```json{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["criterion 1", "criterion 2", "criterion 3", "criterion 4"],
+    "search_queries": ["natural query 1", "natural query 2", "optional query 3", "optional query 4"]
+}```
+
+For subtitle questions: {"tool": "SUBTITLE_SEARCH", "query": "exact subtitle text", "topk": 10}
+For video clip extraction: {"tool": "QUERY_CLIP", "start_frame": 45, "end_frame": 52, "prompt": "Describe the action"}
+
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["final dance sequence", "last movement of the performance", "dancers' final pose", "concluding choreography", "lights fade to black", "dramatic seated pose"],
+    "search_queries": ["final sequence", "last scene dance moves", "performance conclusion", "dramatic seated pose"]
+}
+Search queries (4): ['final sequence', 'last scene dance moves', 'performance conclusion', 'dramatic seated pose']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Four ballerinas performing synchronized movements",
+        "Ballerinas gliding across the stage",
+        "Ballerinas raising their arms gracefully",
+        "Ballerinas lowering into a seated pose",
+        "Final synchronized sequence of the dance",
+        "Movement patterns in the last scene (approximately last 10 seconds)"
+    ],
+    "search_queries": [
+        "ballerinas gliding across stage",
+        "dancers raising arms and lowering into seated pose",
+        "final synchronized ballet sequence",
+        "last scene dance moves"
+    ]
+}
+Search queries (4): ['ballerinas gliding across stage', 'dancers raising arms and lowering into seated pose', 'final synchronized ballet sequence', 'last scene dance moves']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["four ballerinas in white tutus", "final synchronized sequence", "dancers gliding across stage", "raising arms gracefully", "lowering into seated pose", "lights fading to black"],
+    "search_queries": ["final sequence", "glide across stage", "raise arms gracefully", "seated pose", "lights fade to black"]
+}
+```
+Search queries (5): ['final sequence', 'glide across stage', 'raise arms gracefully', 'seated pose', 'lights fade to black']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Four ballerinas on stage in white tutus",
+        "Final synchronized movement sequence",
+        "Dancers gliding across stage in a line",
+        "Dancers raising arms gracefully",
+        "Dancers lowering into seated pose",
+        "Lights fading to black"
+    ],
+    "search_queries": [
+        "final sequence dancers gliding across stage",
+        "ballerinas raising arms gracefully and lowering into seated pose",
+        "dramatic seated pose at end of ballet",
+        "last scene of the dance performance"
+    ]
+}
+```
+Search queries (4): ['final sequence dancers gliding across stage', 'ballerinas raising arms gracefully and lowering into seated pose', 'dramatic seated pose at end of ballet', 'last scene of the dance performance']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["final dance sequence", "last scene choreography", "dancers' final movements", "performance conclusion moves", "ending ballet poses"],
+    "search_queries": ["final sequence", "last scene dance moves", "performance conclusion", "final choreography", "dancers seated pose", "lights fade to black"]
+}
+```
+Search queries (6): ['final sequence', 'last scene dance moves', 'performance conclusion', 'final choreography', 'dancers seated pose', 'lights fade to black']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["final dance sequence", "last movement of the performance", "dancers' final pose", "concluding choreography"],
+    "search_queries": ["final sequence", "last scene of dance", "performance conclusion", "dramatic seated pose"]
+}
+Search queries (4): ['final sequence', 'last scene of dance', 'performance conclusion', 'dramatic seated pose']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["final dance sequence", "last movements before lights fade", "dancers' final poses", "synchronized movements at end"],
+    "search_queries": ["final sequence", "lights fade to black", "glide across stage", "raise arms gracefully", "dramatic seated pose", "performance conclusion"]
+}
+```
+Search queries (6): ['final sequence', 'lights fade to black', 'glide across stage', 'raise arms gracefully', 'dramatic seated pose', 'performance conclusion']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Last scene of the dance performance",
+        "Final movements executed by the ballerinas",
+        "Specific ballet moves in the concluding sequence",
+        "Arm and leg positions of dancers at performance end",
+        "Body posture and formation in final moments"
+    ],
+    "search_queries": [
+        "final sequence dancers gliding across stage",
+        "dancers raise arms gracefully seated pose",
+        "performance conclusion lights fade to black",
+        "last moves of the ballet performance"
+    ]
+}
+```
+Search queries (4): ['final sequence dancers gliding across stage', 'dancers raise arms gracefully seated pose', 'performance conclusion lights fade to black', 'last moves of the ballet performance']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["final dance sequence", "last movement of the performance", "dancers' final pose", "concluding choreography"],
+    "search_queries": ["final sequence", "last scene dance", "performance conclusion", "final pose"]
+}
+Search queries (4): ['final sequence', 'last scene dance', 'performance conclusion', 'final pose']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["four ballerinas in white tutus and feathered headpieces", "final synchronized sequence of ballet performance", "dancers gliding across stage in a line", "dancers raising arms gracefully", "dancers lowering into a dramatic seated pose", "lights fading to black"],
+    "search_queries": ["final sequence dancers glide across stage", "ballerinas raise arms gracefully and lower into seated pose", "last scene of dance performance", "conclusion of ballet choreography"]
+}
+```
+Search queries (4): ['final sequence dancers glide across stage', 'ballerinas raise arms gracefully and lower into seated pose', 'last scene of dance performance', 'conclusion of ballet choreography']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["final dance sequence", "last movement of performance", "dancers' final pose", "concluding choreography"],
+    "search_queries": ["final sequence", "last scene dance", "performance conclusion", "final pose"]
+}
+```
+Search queries (4): ['final sequence', 'last scene dance', 'performance conclusion', 'final pose']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Final scene of the dance performance",
+        "Last sequence of movements before lights fade",
+        "Dancers' final poses and movements",
+        "Synchronized movements of four ballerinas"
+    ],
+    "search_queries": [
+        "final sequence dancers gliding across stage",
+        "dancers raise arms gracefully seated pose",
+        "last scene dance performance moves",
+        "final synchronized ballet movements"
+    ]
+}
+Search queries (4): ['final sequence dancers gliding across stage', 'dancers raise arms gracefully seated pose', 'last scene dance performance moves', 'final synchronized ballet movements']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["ballerinas in white tutus and feathered headpieces", "dimly lit theater stage with black curtain backdrop", "final synchronized sequence of the dance", "dancers lowering into a seated pose", "lights fading to black"],
+    "search_queries": ["ballerinas final sequence seated pose", "dancers lowering into dramatic pose", "final scene of ballet performance", "swan lake ballet conclusion moves"]
+}
+Search queries (4): ['ballerinas final sequence seated pose', 'dancers lowering into dramatic pose', 'final scene of ballet performance', 'swan lake ballet conclusion moves']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["final scene of the dance", "last movements performed", "dancers' final poses", "concluding choreography", "arm and leg positions in final moments", "body posture at performance end"],
+    "search_queries": ["final sequence of the dance", "last moves in performance", "dancers concluding poses", "end of ballet choreography"]
+}
+Search queries (4): ['final sequence of the dance', 'last moves in performance', 'dancers concluding poses', 'end of ballet choreography']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["Final scene of the dance", "Ballerinas' last movements", "Synchronized sequence conclusion", "Dramatic seated pose", "Gliding across stage", "Raising arms gracefully"],
+    "search_queries": ["final sequence dancers glide across stage", "dramatic seated pose ballerinas", "ballerinas raise arms gracefully", "last scene dance performance conclusion"]
+}
+Search queries (4): ['final sequence dancers glide across stage', 'dramatic seated pose ballerinas', 'ballerinas raise arms gracefully', 'last scene dance performance conclusion']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.

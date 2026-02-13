@@ -1,0 +1,225 @@
+[{'role': 'system', 'content': "You are an expert at reasoning and tool-using, with the goal of answering this question about a long video. You should be able to extract detailed frame-information from videos, do caption searches, and use your findings to answer the question. You should be SUPER PICKY about your findings, NOT make assumptions, and always bias towards gathering more evidence before executing a final answer. Use EXACT evidence only. ALSO, when dealing with TEMPORAL questions, you cannot find VISUAL TIMES. If a question asks for a 'duration' of an event, you want to do many caption searches on consecutive ranges, and find scene-changes at the beginning and end of the event. You MUST CHOOSE AN ANSWER. NONE OF THE ABOVE IS NOT ACCEPTABLE."}, {'role': 'user', 'content': '\n Here is a global summary of the video for general context: **Main Characters:**\n\n1. **Cell**: The main protagonist, a large orange cell with a red membrane.\n2. **Virus**: The antagonist, a dark blue sphere with yellow internal spirals and red spike proteins.\n3. **mRNA** (or "mRNA nanoparticle"): A small blue lipid nanoparticle containing pink mRNA.\n4. **Immune Cell**: A light blue, amoeboid shape that detects the foreign spikes on the cell surface.\n5. **Antibodies**: Pink Y-shaped antibodies produced by the immune system in response to the foreign spikes.\n\n**Setting:**\n\n1. **Cell membrane**: The outer boundary of the cell.\n2. **Cell interior**: The internal space of the cell where the mRNA is read and the COVID spikes are produced.\n3. **Muscle cell**: The cell where the mRNA nanoparticle fuses with the cell membrane.\n4. **Tissue**: The surrounding tissue where the mRNA nanoparticle travels.\n\n**Plot:**\n\n1. **Viral infection**: A virus approaches, attaches to the cell membrane, and is absorbed inside the cell.\n2. **mRNA injection**: A syringe injects a dose of mRNA into the muscle cell.\n3. **mRNA reading**: The cell\'s machinery reads the mRNA instructions.\n4. **COVID spike production**: Red, Y-shaped COVID spikes are produced and pushed to the cell\'s surface.\n5. **Immune response**: An immune cell detects the foreign spikes, and the immune system produces antibodies.\n6. **Virus neutralization**: Antibodies attach to the virus\'s red spike proteins, completely coating the virus and neutralizing it.\n\n**Vibes:**\n\n1. **Educational**: The video clearly explains a complex biological process without using jargon.\n2. **Calm**: The mood is reassuring and peaceful, using a warm, limited color palette.\n3. **Reassuring**: The video shows the virus being neutralized by the antibodies, giving a sense of safety.\n\n**General Details:**\n\n1. **Style**: The video uses a simplified, 2D animation style.\n2. **Color palette**: The color palette is warm and limited, featuring creams, oranges, reds, and blues.\n3. **Credits**: The video includes production credits and a research acknowledgment.\n\n Here is also an INCOMPLETE character/event/scene log across the video. These will all be encountered, and there MAY BE MORE CHARACTERS:\n\n1. VIRUS: Description: Dark blue sphere with yellow internal spirals and red spike proteins [00:07 - 00:49]\n2. CELL: Description: Orange shape with red membrane [00:07 - 00:49]\n3. IMMUNE CELL: Description: Light blue, amoeboid shape [00:41 - 01:03]\n4. mRNA: Description: Pink molecule inside a small blue lipid nanoparticle [00:18 - 00:41]\n5. ANTIBODIES: Description: Pink Y-shaped molecules [00:41 - 01:03]\n6. SYRINGE: Description: Medication delivery device [00:18 - 00:30]\n\nSCENES:\n\n1. Background with abstract, branching patterns: Description: Cream-colored background featuring abstract, branching patterns [00:00 - 00:07]\n2. Viral infection: Description: A large orange "CELL" with a red membrane is shown. A "VIRUS" approaches, attaches to the cell membrane, and is absorbed inside [00:07 - 00:18]\n3. Injection: Description: A syringe injects a dose. The view zooms in to reveal a small blue lipid nanoparticle containing pink "mRNA" [00:18 - 00:30]\n4. mRNA delivery: Description: The mRNA nanoparticle travels through tissue and enters a muscle cell. The nanoparticle fuses with the cell membrane, releasing the mRNA into the cell\'s interior [00:18 - 00:30]\n5. mRNA reading: Description: The cell\'s machinery reads the mRNA instructions. Red, Y-shaped "COVID SPIKES" are produced and pushed to the cell\'s surface, protruding through the membrane [00:30 - 00:41]\n6. Antibody production: Description: An "IMMUNE CELL" (light blue, amoeboid shape) detects the foreign spikes on the cell surface. In response, the immune system produces pink Y-shaped "ANTIBODIES" [00:41 - 01:03]\n7. Virus neutralization: Description: A whole virus particle reappears. The pink antibodies flow in and attach to the virus\'s red spike proteins, completely coating the virus and neutralizing it [00:49 - 01:03]\n8. Final scene: Description: The antibody-coated virus is shown floating away harmlessly, unable to infect another cell it approaches [01:03 - 01:10]\n\nEVENTS:\n\n1. Viral infection: Description: A "VIRUS" approaches, attaches to the cell membrane, and is absorbed inside [00:07 - 00:18]\n2. mRNA delivery: Description: The mRNA nanoparticle travels through tissue and enters a muscle cell. The nanoparticle fuses with the cell membrane, releasing the mRNA into the cell\'s interior [00:18 - 00:30]\n3. mRNA reading: Description: The cell\'s machinery reads the mRNA instructions. Red, Y-shaped "COVID SPIKES" are produced and pushed to the cell\'s surface, protruding through the membrane [00:30 - 00:41]\n4. Antibody production: Description: An "IMMUNE CELL" (light blue, amoeboid shape) detects the foreign spikes on the cell surface. In response, the immune system produces pink Y-shaped "ANTIBODIES" [00:41 - 01:03]\n5. Virus neutralization: Description: A whole virus particle reappears. The pink antibodies flow in and attach to the virus\'s red spike proteins, completely coating the virus and neutralizing it [00:49 - 01:03]\nYour question is this: What color is the cell membrane of the virus-invaded cell in the video?'}]You are answering questions about a video using tools to retrieve information.
+
+Question: What color is the cell membrane of the virus-invaded cell in the video?
+
+Answer Choices:
+A. Black.
+B. Yellow.
+C. Red.
+D. Blue.
+
+
+STEP 1: CHECK QUESTION TYPE
+- Subtitle question? (quotes text, asks about dialogue) → Use SUBTITLE_SEARCH first
+- Temporal question? (after/before/when/first/next/last) → Use RECORD after each VLM_QUERY to track events
+- Quick actions? (hand movements, fast motions, sudden reactions) → Use EXTRACT_FINE_FRAMES at 5-10 FPS
+- Small details? (small objects, text, fine features) → Use CROP_OBJECT to zoom in
+
+STEP 2: EXTRACT VERIFICATION CRITERIA
+List 4-6 specific, testable visual criteria from the QUESTION (not answer choices) that must be verified.
+
+Example: "person in black shirt holding metal bucket with scattered debris"
+Criteria:
+- Person wearing black shirt
+- Person wearing black pants
+- Person holding large round metal bucket
+- Scene contains scattered debris on ground
+
+STEP 2.5: PLAN TO TEST EACH ANSWER CHOICE
+Once you have frames, plan to systematically test EACH answer option with VLM queries:
+- Query to verify option A characteristics
+- Query to verify option B characteristics
+- Query to verify option C characteristics
+- Query to verify option D characteristics
+This prevents confirmation bias and ensures you select the answer with STRONGEST visual evidence.
+
+STEP 3: GENERATE SEARCH QUERIES
+Create 2-4 natural search queries (subject-verb-object format) targeting VISIBLE details.
+- Good: "woman wearing yellow dress holding papers", "person in office setting with documents"
+- Bad: "yellow dress papers office woman"
+
+IMPORTANT: After getting clip time ranges from CAPTION_SEARCH, you MUST use VLM_QUERY to visually verify frames in those time ranges.
+DO NOT repeatedly search captions - once you have candidate clips/time ranges, USE VLM_QUERY to look at the frames!
+
+NOTE: CAPTION_SEARCH returns clip time ranges (e.g., "clip_45_67" = 45-67 seconds).
+Use these time ranges to extract frames for VLM_QUERY (e.g., check frames 45-67: frame_0045.jpg to frame_0067.jpg).
+
+Return format:
+```json{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["criterion 1", "criterion 2", "criterion 3", "criterion 4"],
+    "search_queries": ["natural query 1", "natural query 2", "optional query 3", "optional query 4"]
+}```
+
+For subtitle questions: {"tool": "SUBTITLE_SEARCH", "query": "exact subtitle text", "topk": 10}
+For video clip extraction: {"tool": "QUERY_CLIP", "start_frame": 45, "end_frame": 52, "prompt": "Describe the action"}
+
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["Visual appearance of the cell membrane", "Color of the cell membrane", "Cell that is invaded by the virus", "Virus attaching to or entering the cell"],
+    "search_queries": ["virus attaches to cell membrane", "virus absorbed inside cell", "orange cell with red membrane", "viral infection cell membrane"]
+}
+Search queries (4): ['virus attaches to cell membrane', 'virus absorbed inside cell', 'orange cell with red membrane', 'viral infection cell membrane']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Cell membrane visible on the virus-invaded cell",
+        "Color of the cell membrane",
+        "Virus interacting with the cell",
+        "Cell membrane during viral infection scene"
+    ],
+    "search_queries": [
+        "virus attaches to cell membrane",
+        "virus absorbed inside cell",
+        "orange cell with membrane",
+        "viral infection cell membrane"
+    ]
+}
+Search queries (4): ['virus attaches to cell membrane', 'virus absorbed inside cell', 'orange cell with membrane', 'viral infection cell membrane']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["Cell membrane color", "Virus-invaded cell appearance", "Cell membrane surrounding orange cell", "Red membrane boundary of cell"],
+    "search_queries": ["cell membrane color", "virus invaded cell membrane", "red membrane of cell", "orange cell with membrane"]
+}
+```
+Search queries (4): ['cell membrane color', 'virus invaded cell membrane', 'red membrane of cell', 'orange cell with membrane']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Cell membrane color of the cell that gets invaded by virus",
+        "Visual appearance of the cell during viral infection scene",
+        "Color of the outer boundary of the orange cell",
+        "Red membrane surrounding the orange cell interior"
+    ],
+    "search_queries": [
+        "virus attaches to cell membrane",
+        "virus absorbed inside cell",
+        "orange cell with colored membrane",
+        "viral infection cell membrane color"
+    ]
+}
+Search queries (4): ['virus attaches to cell membrane', 'virus absorbed inside cell', 'orange cell with colored membrane', 'viral infection cell membrane color']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Virus-invaded cell being shown",
+        "Cell membrane of the virus-invaded cell",
+        "Color of the cell membrane",
+        "Virus attaching to or being absorbed by the cell"
+    ],
+    "search_queries": [
+        "virus attaching to cell membrane",
+        "virus absorbed inside cell",
+        "orange cell with red membrane",
+        "virus invading cell"
+    ]
+}
+Search queries (4): ['virus attaching to cell membrane', 'virus absorbed inside cell', 'orange cell with red membrane', 'virus invading cell']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["Cell with virus attached to its membrane", "Cell being invaded by virus", "Virus approaching and absorbing into cell", "Color of the cell membrane during viral infection"],
+    "search_queries": ["virus attaches to cell membrane", "virus absorbed inside cell", "viral infection cell membrane", "virus approaching cell"]
+}
+Search queries (4): ['virus attaches to cell membrane', 'virus absorbed inside cell', 'viral infection cell membrane', 'virus approaching cell']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["Cell with virus attached", "Cell membrane color", "Virus attached to cell surface", "Cell being invaded by virus"],
+    "search_queries": ["virus attaches to cell membrane", "virus absorbed inside cell", "viral infection cell", "virus approaches cell"]
+}
+Search queries (4): ['virus attaches to cell membrane', 'virus absorbed inside cell', 'viral infection cell', 'virus approaches cell']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["Cell with virus attached or being invaded", "Cell membrane color", "Virus interacting with cell", "Visual appearance of infected cell"],
+    "search_queries": ["virus attaches to cell membrane", "virus absorbed inside cell", "viral infection of cell", "virus invading cell"]
+}
+Search queries (4): ['virus attaches to cell membrane', 'virus absorbed inside cell', 'viral infection of cell', 'virus invading cell']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+```json
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Virus-invaded cell membrane color",
+        "Cell membrane color during viral infection",
+        "Visual appearance of cell membrane when virus attaches",
+        "Color of the orange cell's outer boundary"
+    ],
+    "search_queries": [
+        "virus attaches to cell membrane",
+        "virus absorbed inside cell",
+        "orange cell with red membrane",
+        "viral infection cell membrane"
+    ]
+}
+```
+Search queries (4): ['virus attaches to cell membrane', 'virus absorbed inside cell', 'orange cell with red membrane', 'viral infection cell membrane']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Virus approaching and attaching to a cell",
+        "Cell membrane visible during viral infection",
+        "Virus being absorbed into the cell",
+        "Color of the cell membrane during viral invasion"
+    ],
+    "search_queries": [
+        "virus approaches cell membrane",
+        "virus attaches to cell and is absorbed",
+        "viral infection of cell",
+        "cell membrane during virus invasion"
+    ]
+}
+Search queries (4): ['virus approaches cell membrane', 'virus attaches to cell and is absorbed', 'viral infection of cell', 'cell membrane during virus invasion']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": [
+        "Cell membrane color during viral infection scene",
+        "Visual appearance of the virus-invaded cell's outer boundary",
+        "Color of the membrane when virus attaches and is absorbed",
+        "Red membrane mentioned in the character log"
+    ],
+    "search_queries": [
+        "virus attaches to cell membrane",
+        "virus absorbed inside cell",
+        "orange cell with red membrane",
+        "viral infection cell membrane"
+    ]
+}
+Search queries (4): ['virus attaches to cell membrane', 'virus absorbed inside cell', 'orange cell with red membrane', 'viral infection cell membrane']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["Cell membrane color", "Virus attaching to cell", "Virus entering cell", "Red membrane", "Orange cell with red border"],
+    "search_queries": ["virus attaches to cell membrane", "virus enters cell", "red cell membrane", "orange cell with red border"]
+}
+Search queries (4): ['virus attaches to cell membrane', 'virus enters cell', 'red cell membrane', 'orange cell with red border']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["Cell membrane color of the infected cell", "Visual appearance of the cell's outer boundary", "Color of the cell's outer layer when virus attaches", "Distinct color of the cell membrane during viral infection"],
+    "search_queries": ["cell membrane color", "virus attaches to cell membrane", "cell with red membrane", "orange cell with red membrane"]
+}
+Search queries (4): ['cell membrane color', 'virus attaches to cell membrane', 'cell with red membrane', 'orange cell with red membrane']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["Cell membrane color", "Virus-invaded cell appearance", "Cell with virus attached", "Cell membrane during viral infection"],
+    "search_queries": ["cell membrane color", "virus attaches to cell membrane", "virus invaded cell", "viral infection cell membrane"]
+}
+Search queries (4): ['cell membrane color', 'virus attaches to cell membrane', 'virus invaded cell', 'viral infection cell membrane']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.
+{
+    "tool": "CAPTION_SEARCH",
+    "criteria": ["Virus-invaded cell", "Cell membrane color", "Cell with virus attached or absorbed", "Orange cell shape with membrane"],
+    "search_queries": ["virus attaches to cell membrane", "virus absorbed inside cell", "orange cell with red membrane", "viral infection cell membrane"]
+}
+Search queries (4): ['virus attaches to cell membrane', 'virus absorbed inside cell', 'orange cell with red membrane', 'viral infection cell membrane']
+Error updating prompt: Dimension mismatch: query embedding has 1024 dims but caption embeddings have 768 dims. Ensure query and captions use the same embedding model.

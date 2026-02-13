@@ -1,0 +1,52 @@
+Critic initial response: {
+    "tool": "VLM_QUERY",
+    "frames": ["0:00-0:02"],
+    "prompt": "Count the number of birds flying at the very start of the video (timestamp 0:00). Respond with only the number."
+}
+Frames to verify: ['0:00-0:02']
+VLM Prompt: Video context: 
+
+Count the number of birds flying at the very start of the video (timestamp 0:00). Respond with only the number.
+VLM response: None
+Followup prompt: Assess VLM verification.
+
+VLM Results: None
+Question: How many birds are there flying at the beginning of the video?
+
+Answer Choices:
+A. 6
+B. 4
+C. 5
+D. 8
+
+Answer: ERROR
+Frames: []
+
+Check:
+1. VLM confirms given answer
+2. Contradictions between VLM and answer
+3. All question conditions addressed
+4. Correct answer choice selected
+
+There is ALWAYS a correct answer. Pick BEST match even if imperfect.
+
+Return ONLY JSON:
+{
+    "confidence": <0-100>,
+    "possible_errors": [<actual discrepancies found>],
+    "suggestion": <null if >80, else specific improvement>
+}
+
+Base confidence on VLM results only. List only ACTUAL errors, not hypothetical. Empty [] if no errors.
+
+Critical assessment response: {
+    "confidence": 0,
+    "possible_errors": [
+        "No VLM results provided to verify the answer",
+        "No frames were analyzed to count the birds",
+        "The answer 'ERROR' is not a valid choice and contradicts all options",
+        "The question condition 'at the beginning of the video' was not addressed"
+    ],
+    "suggestion": "Run the VLM on the first few frames of the video to count the birds and select from the given choices (A, B, C, D)."
+}
+Critical assessment data: {'confidence': 0, 'possible_errors': ['No VLM results provided to verify the answer', 'No frames were analyzed to count the birds', "The answer 'ERROR' is not a valid choice and contradicts all options", "The question condition 'at the beginning of the video' was not addressed"], 'suggestion': 'Run the VLM on the first few frames of the video to count the birds and select from the given choices (A, B, C, D).'}
