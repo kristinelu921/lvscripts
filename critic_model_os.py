@@ -10,6 +10,32 @@ from together import Together, AsyncTogether
 import asyncio
 import math
 
+
+def _normalize_possible_errors(possible_errors):
+    """Normalize critic-reported issues to a list of strings.
+
+    This protects downstream formatting logic from None/non-list/null values.
+    """
+    if possible_errors is None:
+        return []
+    if isinstance(possible_errors, str):
+        raw_value = possible_errors.strip()
+        return [raw_value] if raw_value else []
+    if isinstance(possible_errors, (list, tuple)):
+        cleaned = []
+        for item in possible_errors:
+            if item is None:
+                continue
+            if isinstance(item, str):
+                item = item.strip()
+                if not item:
+                    continue
+            cleaned.append(item)
+        return cleaned
+
+    # Unexpected shape from LLM/json: drop silently instead of surfacing iterable errors.
+    return []
+
 def log(message, file_title):
     if not os.path.exists(file_title):
         os.makedirs(file_title)
@@ -63,13 +89,64 @@ def get_subtitles_for_frames(video_id, frame_numbers):
     for frame_path in frame_numbers:
         # Extract frame number from path like "frames/frame_0123.jpg" -> 123
         import re
-        match = re.search(r'frame_(\d+)', frame_path)
+        match = re.search(r'frame_(\d+)', str(frame_path))
         if match:
             frame_num = str(int(match.group(1)))  # Remove leading zeros
             if frame_num in video_subtitles:
                 result[frame_path] = video_subtitles[frame_num]
 
     return result
+
+
+def _normalize_critic_frames(raw_frames):
+    """Normalize critic frame identifiers to 1-indexed frame paths."""
+    if raw_frames is None:
+        return []
+    if isinstance(raw_frames, (str, int, float)):
+        raw_frames = [raw_frames]
+    elif not isinstance(raw_frames, (list, tuple)):
+        return []
+
+    normalized = []
+    for frame_path in raw_frames:
+        if isinstance(frame_path, (int, float)):
+            frame_num = int(frame_path)
+            if frame_num < 1:
+                continue
+            normalized.append(f"frames/frame_{frame_num:04d}.jpg")
+            continue
+
+        frame_str = str(frame_path).strip()
+        if not frame_str:
+            continue
+        if frame_str.startswith("frames/frame_") and frame_str.endswith(".jpg"):
+            normalized.append(frame_str)
+            continue
+        if ":" in frame_str:
+            parts = frame_str.split(":")
+            try:
+                if len(parts) == 3:
+                    hh, mm, ss = parts
+                    frame_num = int(float(hh)) * 3600 + int(float(mm)) * 60 + int(float(ss))
+                elif len(parts) == 2:
+                    mm, ss = parts
+                    frame_num = int(float(mm)) * 60 + int(float(ss))
+                else:
+                    raise ValueError("invalid timestamp")
+                if frame_num >= 1:
+                    normalized.append(f"frames/frame_{frame_num:04d}.jpg")
+                continue
+            except (ValueError, TypeError):
+                pass
+
+        # Extract numeric token if present.
+        import re
+        match = re.search(r'(\d+)$', frame_str)
+        if match:
+            frame_num = int(match.group(1))
+            if frame_num >= 1:
+                normalized.append(f"frames/frame_{frame_num:04d}.jpg")
+    return normalized
 
 class CriticPipeline:
     def __init__(self, llm_model_name, vlm_model_name, max_num_iterations=15):
@@ -346,10 +423,10 @@ async def critic_assess(critic_model, question, uid, answer, reasoning, evidence
     # Execute VLM query if requested
     try:
         if parsed_response.get("tool") == "VLM_QUERY" or "VLM" in parsed_response.get("tool"):
-            frames = parsed_response.get("frames", evidence_frame_numbers)
+            frames = _normalize_critic_frames(parsed_response.get("frames", evidence_frame_numbers))
             message = f"Frames to verify: {frames}"
             log(message, f"logs/log_video_{vid_dir}_{uid}")
-            new_frames = [(f"{vid_dir}/{num}/" + frame) for frame in frames]
+            new_frames = [f"{vid_dir}/{num}/" + frame for frame in frames]
             vlm_prompt = parsed_response.get("prompt", "")
 
             # Get subtitles for the frames being queried
@@ -435,7 +512,9 @@ async def critic_assess(critic_model, question, uid, answer, reasoning, evidence
                     "question": question,
                     "answer": answer,
                     "confidence": int(assessment_data.get("confidence", 50)),
-                    "possible_errors": assessment_data.get("possible_errors", []),
+                    "possible_errors": _normalize_possible_errors(
+                        assessment_data.get("possible_errors", [])
+                    ),
                     "suggestion": assessment_data.get("suggestion", None),
                     "evidence_frame_numbers": evidence_frame_numbers  # Include original frames
                 }

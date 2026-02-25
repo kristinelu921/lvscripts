@@ -3,10 +3,15 @@
 import base64
 import time
 import os
+import requests
 from together import Together, AsyncTogether
 #from google.genai import Client
-from together.types.chat_completions import PromptPart
-from PIL import Image
+# PIL is optional for this environment. Keep import guarded to avoid hard
+# dependency failures when image manipulation utilities are not used.
+try:
+    from PIL import Image  # noqa: F401
+except Exception:  # pragma: no cover - environment dependent
+    Image = None
 #from google.genai import types
 import json
 import subprocess
@@ -16,6 +21,31 @@ try:
 except ImportError:
     ffmpeg = None
 #from token_tracker import record, num_tokens
+
+
+def _normalize_model_name(model_name: str) -> str:
+    """Return fallback-friendly model name for current Together availability."""
+    if not isinstance(model_name, str):
+        return model_name
+
+    normalized = model_name.strip()
+    if normalized == "moonshotai/Kimi-K2.5":
+        return normalized
+
+    # Older/alternate Kimi K2.5 endpoints often include provider prefixes and hashes.
+    # Together frequently exposes the same model under `moonshotai/Kimi-K2.5`.
+    segments = normalized.split("/")
+    model_root = segments[-1] if segments else normalized
+    if model_root.startswith("Kimi-K2.5-") and any("moonshotai" in seg for seg in segments):
+        return "moonshotai/Kimi-K2.5"
+    if "Kimi-K2.5" in normalized and normalized.endswith("-9b8c5484"):
+        return "moonshotai/Kimi-K2.5"
+
+    return normalized
+
+
+LLM_QUERY_TIMEOUT_SECONDS = int(os.environ.get("TOGETHER_REQUEST_TIMEOUT_SECONDS", "180"))
+VLM_QUERY_TIMEOUT_SECONDS = int(os.environ.get("TOGETHER_REQUEST_TIMEOUT_SECONDS", "180"))
 
 # Initialize client with API key
 with open("env.json", "r") as f:
@@ -30,8 +60,11 @@ client_together = Together()
 # Don't create global async client - create per request instead
 #genai.configure()
 
-# Kimi API support
-import aiohttp
+# Kimi API support (optional: only needed for non-Together Kimi endpoints)
+try:
+    import aiohttp
+except Exception:  # pragma: no cover - environment dependent
+    aiohttp = None
 
 async def call_kimi_api(messages, model="kimi-k2.5", temperature=1.0):
     """
@@ -56,14 +89,172 @@ async def call_kimi_api(messages, model="kimi-k2.5", temperature=1.0):
         "temperature": temperature
     }
 
-    async with aiohttp.ClientSession() as session:
+    if aiohttp is None:
+        raise RuntimeError("aiohttp is required for KIMI API calls")
+
+    timeout = aiohttp.ClientTimeout(total=LLM_QUERY_TIMEOUT_SECONDS)
+    async with aiohttp.ClientSession(timeout=timeout) as session:
+        async with session.post(url, headers=headers, json=payload) as response:
+            if response.status == 200:
+                result = await response.json()
+                message = result['choices'][0].get('message', {})
+                return _extract_message_text(message)
+            else:
+                error_text = await response.text()
+                raise Exception(f"Kimi API error {response.status}: {error_text}")
+
+
+def _video_clip_output_path(input_file, start_second, end_second):
+    base = os.path.basename(input_file)
+    name = os.path.splitext(base)[0]
+    output_dir = os.path.dirname(input_file)
+    return os.path.join(output_dir, f"{name}.{int(start_second)}_{int(end_second)}.query_clip.mp4")
+
+
+def _format_base64_video_file(video_path):
+    with open(video_path, 'rb') as f:
+        video_bytes = f.read()
+    video_b64 = base64.b64encode(video_bytes).decode('utf-8')
+    return f"data:video/mp4;base64,{video_b64}"
+
+
+def trim_video_for_kimi(input_file, start_second, end_second, output_file=None):
+    """Create a short clip file with fallback to re-encode on keyframe-only trim failures."""
+    if output_file is None:
+        output_file = _video_clip_output_path(input_file, start_second, end_second)
+
+    if start_second < 0 or end_second < 0:
+        raise ValueError("start_second and end_second must be non-negative")
+    if end_second <= start_second:
+        raise ValueError("end_second must be greater than start_second")
+
+    duration = end_second - start_second
+
+    # First try stream copy (fast)
+    cmd = [
+        'ffmpeg', '-y',
+        '-ss', str(start_second),
+        '-i', input_file,
+        '-t', str(duration),
+        '-c', 'copy',
+        '-movflags', '+faststart',
+        output_file
+    ]
+    result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+
+    if result.returncode != 0:
+        # Fallback to re-encode for robustness when stream copy fails.
+        cmd = [
+            'ffmpeg', '-y',
+            '-ss', str(start_second),
+            '-i', input_file,
+            '-t', str(duration),
+            '-c:v', 'libx264',
+            '-preset', 'superfast',
+            '-c:a', 'aac',
+            '-movflags', '+faststart',
+            output_file
+        ]
+        result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        if result.returncode != 0:
+            raise RuntimeError(f"ffmpeg clip trim failed: {result.stderr[:500]}")
+
+    return output_file
+
+
+def _extract_message_text(message):
+    """Return the first usable text field from an API message payload."""
+    if not isinstance(message, dict):
+        return ""
+
+    content = message.get("content", "")
+    if isinstance(content, str) and content.strip():
+        return content
+
+    reasoning = message.get("reasoning", "")
+    if isinstance(reasoning, str) and reasoning.strip():
+        return reasoning
+
+    if isinstance(reasoning, list):
+        pieces = []
+        for item in reasoning:
+            if isinstance(item, str):
+                pieces.append(item)
+        if pieces:
+            return "".join(pieces)
+
+    return ""
+
+
+def _query_together_api_sync_messages(model, messages, max_tokens=4096, temperature=0.7):
+    """Query Together API via HTTP with explicit timeout and robust message payload support."""
+    if not isinstance(messages, list):
+        raise ValueError("messages must be a list")
+
+    headers = {
+        "Authorization": f"Bearer {together_key_PRIV}",
+        "Content-Type": "application/json"
+    }
+    payload = {
+        "model": _normalize_model_name(model),
+        "messages": messages,
+        "max_tokens": max_tokens,
+        "temperature": temperature
+    }
+    response = requests.post(
+        "https://api.together.xyz/v1/chat/completions",
+        headers=headers,
+        json=payload,
+        timeout=LLM_QUERY_TIMEOUT_SECONDS
+    )
+    if response.status_code != 200:
+        raise RuntimeError(f"Together API error {response.status_code}: {response.text}")
+
+    result = response.json()
+    choices = result.get("choices", [])
+    if not choices:
+        raise RuntimeError("Together response did not include choices")
+
+    message = choices[0].get("message", {})
+    return _extract_message_text(message)
+
+
+def _query_together_api_sync(model, prompt, max_tokens=4096, temperature=0.7):
+    """Backwards-compatible wrapper for string prompts."""
+    return _query_together_api_sync_messages(model, [{"role": "user", "content": prompt}], max_tokens=max_tokens, temperature=temperature)
+
+
+async def query_vlm_kimi_video(model, video_path, query, temperature=1.0):
+    """Query Kimi with a raw video clip payload."""
+    payload = {
+        "model": model,
+        "messages": [{
+            "role": "user",
+            "content": [
+                {"type": "text", "text": query},
+                {"type": "video_url", "video_url": {"url": _format_base64_video_file(video_path)}}
+            ]
+        }],
+        "temperature": temperature
+    }
+
+    url = "https://api.moonshot.ai/v1/chat/completions"
+    headers = {
+        "Authorization": f"Bearer {kimi_api_key}",
+        "Content-Type": "application/json"
+    }
+
+    if aiohttp is None:
+        raise RuntimeError("aiohttp is required for KIMI API video calls")
+
+    timeout = aiohttp.ClientTimeout(total=VLM_QUERY_TIMEOUT_SECONDS)
+    async with aiohttp.ClientSession(timeout=timeout) as session:
         async with session.post(url, headers=headers, json=payload) as response:
             if response.status == 200:
                 result = await response.json()
                 return result['choices'][0]['message']['content']
-            else:
-                error_text = await response.text()
-                raise Exception(f"Kimi API error {response.status}: {error_text}")
+            error_text = await response.text()
+            raise Exception(f"Kimi API error {response.status}: {error_text}")
 
 def log(message, file_title):
     if not os.path.exists(file_title):
@@ -72,7 +263,7 @@ def log(message, file_title):
         with open(f"{file_title}/log.log", "a") as f:
             f.write(message + "\n")
 
-async def query_vlm_kimi(model, image_paths, query, max_retries=20, batch_size=30):
+async def query_vlm_kimi(model, image_paths, query, max_retries=20, batch_size=16):
     """Query Kimi VLM about frames with batched images
 
     Args:
@@ -204,7 +395,7 @@ async def query_vlm_kimi(model, image_paths, query, max_retries=20, batch_size=3
     else:
         return f"Error: Could not process any images successfully. {len(failed_images)} images failed."
 
-async def query_vlm(model, image_paths, query, max_retries=20, batch_size=30):
+async def query_vlm(model, image_paths, query, max_retries=20, batch_size=16):
     """Query VLM about frames with batched images in single API call
 
     Sends up to 30 images in ONE VLM conversation with labeled frames.
@@ -217,9 +408,21 @@ async def query_vlm(model, image_paths, query, max_retries=20, batch_size=30):
         max_retries: Maximum retry attempts
         batch_size: Initial number of images per VLM call (default 30)
     """
-    # Check if using Kimi API
-    if "kimi" in model.lower():
-        return await query_vlm_kimi(model, image_paths, query, max_retries, batch_size)
+    normalized_model = _normalize_model_name(model)
+
+    # Check if using direct Moonshot Kimi API (not a Together endpoint)
+    # Together endpoints have format: "username/provider/model-id" or contain "/"
+    if "kimi" in normalized_model.lower() and "/" not in normalized_model:
+        if isinstance(image_paths, (str, os.PathLike)):
+            if str(image_paths).lower().endswith(".mp4"):
+                return await query_vlm_kimi_video(normalized_model, str(image_paths), query, temperature=1.0)
+            if os.path.isdir(image_paths):
+                raise ValueError(f"query_vlm received a directory for KIMI query: {image_paths}")
+        if isinstance(image_paths, (list, tuple)) and len(image_paths) == 1:
+            single_path = image_paths[0]
+            if isinstance(single_path, (str, os.PathLike)) and str(single_path).lower().endswith(".mp4"):
+                return await query_vlm_kimi_video(normalized_model, str(single_path), query, temperature=1.0)
+        return await query_vlm_kimi(normalized_model, image_paths, query, max_retries, batch_size)
 
     grouped_response = []
     failed_images = []
@@ -292,21 +495,19 @@ async def query_vlm(model, image_paths, query, max_retries=20, batch_size=30):
 
                 # Make single API call with all images
                 try:
-                    response = await asyncio.wait_for(
-                        async_client.chat.completions.create(
-                            model=model,
-                            messages=[{
-                                "role": "user",
-                                "content": content
-                            }],
-                            stream=False,
-                            max_tokens=4096
-                        ),
-                        timeout=120  # 2 minute timeout for batch
+                    messages = [{
+                        "role": "user",
+                        "content": content
+                    }]
+                    response = await asyncio.to_thread(
+                        _query_together_api_sync_messages,
+                        normalized_model,
+                        messages,
+                        4096,
+                        0.7
                     )
 
-                    # Extract response
-                    content_response = response.choices[0].message.content
+                    content_response = response
                     print(f"✓ Successfully processed batch with {len(valid_images)} images")
                     print(f"Response preview: {content_response[:100]}...")
 
@@ -472,34 +673,41 @@ def query_llm(model, prompt, max_tokens=4096, temperature=0.7):
     Query any open-source model w/ Together AI
     """
     try:
+        text = _query_together_api_sync(model, prompt, max_tokens=max_tokens, temperature=temperature)
+        if text:
+            return text
+
+        # fallback for SDK message shape differences
         response = client_together.chat.completions.create(
-            model = model,
-            messages=[{
-                "role": "user",
-                "content": prompt
-            }],
+            model=_normalize_model_name(model),
+            messages=[{"role": "user", "content": prompt}],
             max_tokens=max_tokens,
             temperature=temperature,
             stream=False
         )
-        
-        text = response.choices[0].message.content
-        return text
+        raw_message = response.choices[0].message
+        return _extract_message_text(raw_message.__dict__ if hasattr(raw_message, "__dict__") else raw_message)
     except Exception as e:
         print(f"Error querying {model}: {e}")
-        return None
+        raise RuntimeError(f"Error querying {model}: {e}") from e
 
 async def query_llm_async(model_name, prompt, temperature=0.7):
-    # Check if using Kimi API
-    if "kimi" in model_name.lower():
+    normalized_model = _normalize_model_name(model_name)
+    # Check if using direct Moonshot Kimi API (not a Together endpoint)
+    # Together endpoints have format: "username/provider/model-id" or contain "/"
+    if "kimi" in normalized_model.lower() and "/" not in normalized_model:
         messages = [{"role": "user", "content": prompt}]
-        return await call_kimi_api(messages, model=model_name, temperature=1.0)
+        return await call_kimi_api(messages, model=normalized_model, temperature=1.0)
 
-    # Offload blocking sync call to a thread; do NOT wrap a non-coroutine in create_task
-    response = await asyncio.to_thread(query_llm, model_name, prompt)
+    # Offload blocking sync call to a thread.
+    response = await asyncio.wait_for(
+        asyncio.to_thread(query_llm, normalized_model, prompt),
+        timeout=LLM_QUERY_TIMEOUT_SECONDS
+    )
     return response
 
 async def query_vlm_async(model_name, image_paths, query):
-    task = asyncio.create_task(query_vlm(model_name, image_paths, query))
+    normalized_model = _normalize_model_name(model_name)
+    task = asyncio.create_task(query_vlm(normalized_model, image_paths, query))
     response = await task
     return response

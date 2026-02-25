@@ -88,7 +88,7 @@ def extract_frames_for_video(video_path, output_dir, fps=1):
     cmd = [
         'ffmpeg', '-threads', '0',
         '-i', str(video_path),
-        '-vf', f"fps={fps},scale='if(gte(iw,ih),-1,224)':'if(gte(iw,ih),224,-1)'",
+        '-vf', f"fps={fps},scale='if(gte(iw,ih),-2,224)':'if(gte(iw,ih),224,-2)'",
         '-q:v', '2',
         output_pattern, '-y'
     ]
@@ -175,7 +175,7 @@ def extract_clips_for_video(video_path, output_dir, scene_timestamps, max_clip_d
             '-ss', str(clip_info['start']),
             '-i', str(video_path),
             '-t', str(clip_info['duration']),
-            '-vf', f"fps={fps},scale='if(gte(iw,ih),-1,224)':'if(gte(iw,ih),224,-1)'",
+            '-vf', f"fps={fps},scale='if(gte(iw,ih),-2,224)':'if(gte(iw,ih),224,-2)'",
             '-c:v', 'libx264',
             '-preset', 'fast',
             '-crf', '23',

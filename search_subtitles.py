@@ -2,7 +2,7 @@
 """
 Search subtitle embeddings using semantic similarity
 
-Uses Together AI with BAAI/bge-large-en-v1.5 (1024 dims) to search subtitle content.
+Uses Together AI with nvidia/NV-Embed-v2 (1024 dims) to search subtitle content.
 Returns matching subtitle segments with exact frame timestamps.
 """
 import argparse
@@ -10,6 +10,7 @@ import json
 import os
 from typing import Dict, List, Tuple
 import numpy as np
+from typing import Sequence
 from together import Together
 
 
@@ -59,11 +60,11 @@ def l2_normalize(matrix: np.ndarray, eps: float = 1e-12) -> np.ndarray:
     return matrix / norms
 
 
-def embed_query(query: str, client: Together, model: str = "Alibaba-NLP/gte-modernbert-base") -> np.ndarray:
+def embed_query(query: str, client: Together, model: str = "nvidia/NV-Embed-v2") -> np.ndarray:
     """Embed a query string using Together AI
 
     Returns:
-        L2-normalized embedding vector (768 dims, matches subtitle embeddings)
+        L2-normalized embedding vector (1024 dims, matches subtitle embeddings)
     """
     response = client.embeddings.create(model=model, input=query)
     vec = np.asarray(response.data[0].embedding, dtype=np.float32)
@@ -74,6 +75,44 @@ def embed_query(query: str, client: Together, model: str = "Alibaba-NLP/gte-mode
         vec = vec / norm
 
     return vec
+
+
+def _select_subtitle_embedder(dim: int) -> Sequence[Tuple[str, str]]:
+    if dim == 1024:
+        return (
+            ("together", "nvidia/NV-Embed-v2"),
+            ("together", "BAAI/bge-large-en-v1.5"),
+        )
+    if dim == 768:
+        # Keep fallback to Together so local SBERT is never required.
+        return (("together", "Alibaba-NLP/gte-modernbert-base"),)
+    return (
+        ("together", "Alibaba-NLP/gte-modernbert-base"),
+        ("together", "BAAI/bge-large-en-v1.5"),
+    )
+
+
+def _embed_query_with_fallback(query: str, target_dim: int, client: Together) -> np.ndarray:
+    last_error = None
+    for provider, model in _select_subtitle_embedder(target_dim):
+        try:
+            if provider == "together":
+                vec = embed_query(query, client, model=model)
+                if vec.shape[0] != target_dim:
+                    print(
+                        f"⚠️ Skipped {provider}:{model} due to dim mismatch "
+                        f"({vec.shape[0]} != {target_dim})"
+                    )
+                    continue
+                print(f"✓ Subtitle query embedded with {provider}:{model}")
+                return vec
+        except Exception as e:
+            last_error = e
+            print(f"⚠️ Embedding with {provider}:{model} failed: {e}")
+
+    raise RuntimeError(
+        f"Could not embed subtitle query to target dim {target_dim}. Last error: {last_error}"
+    )
 
 
 def cosine_topk(query_vec: np.ndarray, corpus: np.ndarray, k: int) -> Tuple[np.ndarray, np.ndarray]:
@@ -145,14 +184,18 @@ def search_subtitles(embeddings_path: str, query: str, topk: int = 10, fps: floa
     Returns:
         List of search results with similarity scores and timestamps
     """
+    # Load subtitle embeddings
+    records, matrix = load_jsonl_embeddings(embeddings_path)
+    target_dim = matrix.shape[1]
+
     # Load client
     client = load_together_client()
 
-    # Embed query
-    query_vec = embed_query(query, client)
-
-    # Load subtitle embeddings
-    records, matrix = load_jsonl_embeddings(embeddings_path)
+    # Embed query (nvidia first, with fallback)
+    try:
+        query_vec = _embed_query_with_fallback(query, target_dim, client)
+    except Exception as e:
+        raise RuntimeError(f"Failed to embed subtitle query: {e}")
 
     # Check dimension compatibility
     if query_vec.shape[0] != matrix.shape[1]:
@@ -206,7 +249,7 @@ def main():
     args = parser.parse_args()
 
     print(f"\n{'='*70}")
-    print("SUBTITLE SEARCH - Together AI with BAAI/bge-large-en-v1.5")
+    print("SUBTITLE SEARCH - Together AI with nvidia/NV-Embed-v2")
     print(f"Query: {args.query}")
     print(f"Top-k: {args.topk}")
     print(f"{'='*70}\n")

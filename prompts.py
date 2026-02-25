@@ -24,6 +24,15 @@ STEP 1: CHECK QUESTION TYPE
 - Quick actions? (hand movements, fast motions, sudden reactions) → Use EXTRACT_FINE_FRAMES at 5-10 FPS
 - Small details? (small objects, text, fine features) → Use CROP_OBJECT to zoom in
 
+PRIORITY POLICY:
+- CAPTION_SEARCH is the discovery step for almost all visual questions.
+- Mandatory flow for visual questions:
+  1) CAPTION_SEARCH to get candidate windows
+  2) QUERY_CLIP immediately on top windows (at least TWO calls, then up to FOUR+ if needed)
+  3) VLM_QUERY only after QUERY_CLIP has been done and you have concrete evidence windows.
+- Use high-FPS clip inspection by default (8-10 FPS) and keep windows short.
+- VLM_QUERY is for verification only, not for discovery.
+
 STEP 2: EXTRACT VERIFICATION CRITERIA
 List 4-6 specific, testable visual criteria from the QUESTION (not answer choices) that must be verified.
 
@@ -47,11 +56,19 @@ Create 2-4 natural search queries (subject-verb-object format) targeting VISIBLE
 - Good: "woman wearing yellow dress holding papers", "person in office setting with documents"
 - Bad: "yellow dress papers office woman"
 
-IMPORTANT: After getting clip time ranges from CAPTION_SEARCH, you MUST use VLM_QUERY to visually verify frames in those time ranges.
-DO NOT repeatedly search captions - once you have candidate clips/time ranges, USE VLM_QUERY to look at the frames!
+IMPORTANT: If CAPTION_SEARCH returns clip IDs (for example, "clip_45_67"), do NOT treat them as frame paths.
+Use QUERY_CLIP on those windows immediately. Never call VLM_QUERY first.
+Use VLM_QUERY only with explicit frame filenames you provide yourself (e.g., frames/frame_0045.jpg) when verifying details.
+MANDATE: after CAPTION_SEARCH, inspect top windows with QUERY_CLIP before any additional CAPTION_SEARCH.
+DO NOT repeatedly search captions - once you have candidate clips/time ranges, use QUERY_CLIP to inspect the evidence.
+MANDATE: if CAPTION_SEARCH returns any valid clip windows, run at least TWO consecutive QUERY_CLIP calls before any other tool (unless the first window is obviously invalid).
+Prefer 3-4 clip windows by default and keep each window short.
+
+CAPTION_SEARCH must return only the TOP 4 matches per query and those top-k clips are the only ones sent back to you.
+Focus evidence selection on these highlighted top items.
 
 NOTE: CAPTION_SEARCH returns clip time ranges (e.g., "clip_45_67" = 45-67 seconds).
-Use these time ranges to extract frames for VLM_QUERY (e.g., check frames 45-67: frame_0045.jpg to frame_0067.jpg).
+Use these as time windows for QUERY_CLIP. For QUERY_CLIP, keep ranges short and use high FPS around 8-10.
 
 Return format:
 ```json{{
@@ -61,7 +78,8 @@ Return format:
 }}```
 
 For subtitle questions: {{"tool": "SUBTITLE_SEARCH", "query": "exact subtitle text", "topk": 10}}
-For video clip extraction: {{"tool": "QUERY_CLIP", "start_frame": 45, "end_frame": 52, "prompt": "Describe the action"}}
+For video clip extraction: {{"tool": "QUERY_CLIP", "start_frame": 45, "end_frame": 52, "fps": 10, "prompt": "Describe the action"}}
+Frames are sampled at the requested FPS (2-10). Use 8-10 FPS for clip inspection by default.
 """
 
 def followup_prompt(json_output, question, candidates=None, use_subtitles=False, subtitles_available=False):
@@ -81,26 +99,46 @@ def followup_prompt(json_output, question, candidates=None, use_subtitles=False,
 
 Question: {question}{candidates_text}{subtitles_note}
 
+Return strictly one JSON object with a single required `tool` field and any required arguments. No natural-language preamble or explanation.
+
 KEY REMINDERS:
 - Frame IDs are timestamps: frame_0050.jpg = 50 seconds
 - AFTER = larger frame numbers, BEFORE = smaller frame numbers
 - Default 1 FPS may miss fast actions → use EXTRACT_FINE_FRAMES for quick motions
-- VLM observations are GROUND TRUTH (caption searches locate clip time ranges, then you query frames)
+- VLM observations are for verification (CAPTION_SEARCH returns time windows; QUERY_CLIP gives motion evidence)
 - TEMPORAL QUESTIONS: Use RECORD after each VLM_QUERY to log timestamps and events (improves accuracy +7%)
+- Do not use VLM_QUERY as discovery. If the last retrieval was CAPTION_SEARCH, run QUERY_CLIP next.
+- Use higher frame-rate sampling for clip inspection: 8-10 FPS unless constrained by very short windows.
+- If CAPTION_SEARCH returns windows and you have not done QUERY_CLIP yet, run QUERY_CLIP now.
+- If CAPTION_SEARCH returned candidates, issue at least TWO consecutive QUERY_CLIP calls before any VLM_QUERY.
+- Prefer consecutive clip windows (for example, neighboring timestamps from ranked results) before switching to VLM_QUERY.
 
-🔥 CRITICAL: If you just received clip time ranges from CAPTION_SEARCH, USE VLM_QUERY NOW to look at frames in those ranges!
-DO NOT do another CAPTION_SEARCH. Caption search is only for FINDING relevant time ranges/clips, VLM_QUERY is for ANALYZING the frames.
+🔥 CRITICAL: If you just received clip time ranges from CAPTION_SEARCH, USE QUERY_CLIP NOW on 1-2 of the top windows.
+DO NOT do another CAPTION_SEARCH unless the returned windows are clearly wrong.
+When possible, make multiple consecutive QUERY_CLIP calls (2-4+) to compare neighboring or top-ranked windows.
+CAPTION_SEARCH is for finding windows, QUERY_CLIP is for inspection.
+
+1. QUERY_CLIP - Inspect temporal windows from CAPTION_SEARCH first
+   WHEN TO USE:
+   ✓ Immediately after CAPTION_SEARCH returns candidate clip windows
+   ✓ Question is temporal, action-oriented, or requires motion/context
+   ✓ You need to verify what happens between frames
+   ✗ DON'T USE: BEFORE selecting at least one candidate window from CAPTION_SEARCH
+
+   Format: {{"tool": "QUERY_CLIP", "start_frame": 45, "end_frame": 52, "fps": 10, "prompt": "Describe the action sequence."}}
+   Start with a short segment from the top clip(s). If needed, run another QUERY_CLIP on neighboring windows before moving to static VLM_QUERY.
+   Use high-FPS (8-10) and prefer clips near the top matches from caption retrieval first.
 
 TOOL USAGE GUIDE:
 
-1. VLM_QUERY - Visual verification and analysis [USE THIS AFTER GETTING FRAMES!]
+1. VLM_QUERY - Visual verification and analysis [USE THIS ONLY AFTER QUERY_CLIP OR FRAME EXTRACTION]
    WHEN TO USE:
-   ✓✓✓ IMMEDIATELY after receiving frames from CAPTION_SEARCH or SUBTITLE_SEARCH
+   ✓✓✓ AFTER inspecting evidence with QUERY_CLIP and receiving concrete frames/references
    ✓ Need to verify what's actually visible in specific frames
-   ✓ Have candidate frames from caption/subtitle search
+   ✓ Have explicit frame filenames from extraction steps (not clip IDs)
    ✓ Need to answer questions about visual details (colors, actions, objects, settings)
    ✓ Checking temporal sequences (what happens before/after an event)
-   ✗ DON'T USE: As first action (search first to find relevant frames)
+   ✗ DON'T USE: As first action (search first to find relevant windows, then inspect with QUERY_CLIP)
    ✗ DON'T USE: Without specific frames identified
 
    Format: {{"tool": "VLM_QUERY", "frames": ["frames/frame_0102.jpg", ...], "prompt": "..."}}
@@ -127,7 +165,7 @@ TOOL USAGE GUIDE:
 
 3. CAPTION_SEARCH - Find relevant time ranges by searching clip descriptions
    WHEN TO USE:
-   ✓ As FIRST action on most questions (locates candidate time ranges/clips)
+   ✓ As FIRST action on most questions (locates candidate time ranges/clips), then move to QUERY_CLIP immediately.
    ✓ Current frames don't match the question AFTER verifying with VLM_QUERY
    ✓ Need to find specific scenes, objects, people, or actions
    ✓ Looking for visual concepts (not spoken words)
@@ -136,20 +174,21 @@ TOOL USAGE GUIDE:
    ✗ DON'T USE: Repeatedly without using VLM_QUERY first (you must LOOK at frames before searching again!)
 
    Format: {{"tool": "CAPTION_SEARCH", "search_queries": ["woman in yellow dress holding papers", "office setting with documents"]}}
+   CAPTION_SEARCH returns only up to 4 top-scoring results per query (highlight these and test those time windows first).
    Use 2-4 natural subject-verb-object queries
 
    HOW CLIP CAPTIONS WORK:
    - Search results return clip time ranges (e.g., "clip_45_67" = 45-67 second clip)
    - Each clip has a detailed caption describing the visual content during that time period
-   - Use the time ranges to extract frames for VLM_QUERY (e.g., if clip is 45-67s, check frames 45-67)
+   - These are clip windows, not frame paths. Use QUERY_CLIP on the strongest windows first.
    - Clips are automatically extracted at scene boundaries, typically 2-120 seconds long
-   - Example: Search finds "clip_120_145" → Use VLM_QUERY on frames 120-145 (e.g., frame_0120.jpg to frame_0145.jpg)
+   - Example: Search finds "clip_120_145" → Use QUERY_CLIP (start_frame=120, end_frame=145, fps=8-10).
 
    FRAMES FOR VLM ANALYSIS:
-   - Frames are extracted at 1 FPS for the entire video
-   - After finding relevant clips (e.g., 45-67s), query frames in that range
+   - Frames are extracted at 1 FPS for the entire video (for frame-based retrieval paths)
+   - After finding relevant clips (e.g., 45-67s), use QUERY_CLIP first.
+   - VLM_QUERY should only receive explicit frame filenames, not clip IDs.
    - Frame naming: frame_0050.jpg = 50 seconds into video
-   - You can query any frame(s) within the clip's time range for detailed analysis
 
 4. SUBTITLE_SEARCH - Find frames by searching spoken dialogue
    WHEN TO USE:
@@ -196,8 +235,10 @@ TOOL USAGE GUIDE:
    ✗ DON'T USE: For single-frame analysis (use VLM_QUERY instead)
    ✗ DON'T USE: Without knowing the approximate time range
 
-   Format: {{"tool": "QUERY_CLIP", "start_frame": 45, "end_frame": 52, "prompt": "Describe the action sequence"}}
+   Format: {{"tool": "QUERY_CLIP", "start_frame": 45, "end_frame": 52, "fps": 10, "prompt": "Describe the action sequence"}}
    Frame numbers are timestamps in seconds (e.g., frame_0045.jpg = 45 seconds)
+
+   Use short segments and higher fps only when needed (roughly 6-10s windows, 2-10 FPS) so motion context is crisp but bounded.
 
 8. FINAL_ANSWER - Submit answer (only when CERTAIN)
    WHEN TO USE:
@@ -266,6 +307,12 @@ def response_parsing_prompt(response):
     """Parse JSON from LLM response"""
     return f"""Extract JSON from this response. Must be ONE of: VLM_QUERY, RECORD, VIEW_RECORDS, CAPTION_SEARCH, SUBTITLE_SEARCH, EXTRACT_FINE_GRAINED_FRAMES, CROP_OBJECT, QUERY_CLIP, or FINAL_ANSWER.
 
+Important:
+- Output only valid JSON and nothing else.
+- If the response contains an image upload request or refusal text, ignore it and convert to the correct structured tool call instead.
+- Prefer QUERY_CLIP for clip-style evidence when clip IDs or short time ranges are available.
+- If the response includes a clip ID or timing window in a VLM_QUERY frames field, replace with a QUERY_CLIP call using start_frame/end_frame.
+
 Response: {response}
 
 Return ONLY valid JSON. Examples:
@@ -275,11 +322,16 @@ RECORD: {{"tool": "RECORD", "entries": ["Time: 45 seconds, Event: ..."]}}
 SUBTITLE_SEARCH: {{"tool": "SUBTITLE_SEARCH", "query": "...", "topk": 10}}
 EXTRACT_FINE_GRAINED_FRAMES: {{"tool": "EXTRACT_FINE_GRAINED_FRAMES", "start_second": 45.0, "end_second": 47.0, "fps": 5}}
 CROP_OBJECT: {{"tool": "CROP_OBJECT", "frame": "frames/frame_0050.jpg", "object_query": "bird on branch"}}
-QUERY_CLIP: {{"tool": "QUERY_CLIP", "start_frame": 45, "end_frame": 52, "prompt": "Describe the action sequence"}}
+QUERY_CLIP: {{"tool": "QUERY_CLIP", "start_frame": 45, "end_frame": 52, "fps": 10, "prompt": "Describe the action sequence"}}
 CAPTION_SEARCH: {{"tool": "CAPTION_SEARCH", "search_queries": ["query 1", "query 2"]}}
 FINAL_ANSWER: {{"tool": "FINAL_ANSWER", "frames": ["frames/frame_0001.jpg"], "answer": "0", "reasoning": "...", "answer_criteria": ["..."]}}
 
 Frame paths must include "frames/" prefix and ".jpg" suffix.
+Do NOT pass clip IDs (e.g., clip_12_34) or raw timestamps (e.g., 00:01:05.000) as frame entries.
+Use QUERY_CLIP if you need to inspect timing windows.
+
+If your output is missing the `tool` field but includes start_frame/end_frame/fps/prompt fields, it is invalid.
+Return strict JSON with a valid `tool` key every time.
 """
 
 async def reformat_answers(answers_path):
@@ -356,19 +408,86 @@ Use EXACT question and answer text provided. Confidence must be 0-100.
 """
 
 def _expand_frames_with_surrounding(evidence_frame_numbers, seconds_before=5, seconds_after=5):
-    """Expand frame list to include frames ~5 seconds before and after each frame"""
-    expanded_frames = set()
+    """Expand frame list to include frames ~5 seconds before and after each frame.
+
+    Supports:
+    - frame IDs like frames/frame_0123.jpg
+    - clip/range IDs like clip_12_34 or 12_34
+    """
+    expanded_frames = []
+    max_frames = 120
+
+    def _token_to_frames(token):
+        if not isinstance(token, str):
+            return []
+        s = token.strip()
+        if not s:
+            return []
+
+        # frame_0123.jpg style
+        if "frame_" in s and "jpg" in s:
+            try:
+                frame_num_str = s.split('_')[-1].split('.')[0]
+                frame_num = int(frame_num_str)
+                return [f"frames/frame_{frame_num:04d}.jpg"]
+            except (ValueError, IndexError):
+                return [s]
+
+        # clip start/end style e.g., clip_45_67
+        if "clip" in s:
+            nums = [int(x) for x in "".join(ch if ch.isdigit() else " " for ch in s).split() if x]
+            if len(nums) >= 2:
+                start, end = nums[0], nums[1]
+                if end < start:
+                    start, end = end, start
+                return [f"frames/frame_{t:04d}.jpg" for t in range(start, end + 1)]
+
+        if ":" in s:
+            parts = s.split(":")
+            if 2 <= len(parts) <= 3:
+                try:
+                    if len(parts) == 3:
+                        hh, mm, ss = parts
+                        frame_num = int(float(hh)) * 3600 + int(float(mm)) * 60 + int(float(ss))
+                    else:
+                        mm, ss = parts
+                        frame_num = int(float(mm)) * 60 + int(float(ss))
+                    return [f"frames/frame_{max(1, frame_num):04d}.jpg"]
+                except (ValueError, TypeError):
+                    pass
+
+        # fallback: parse trailing numeric token
+        nums = [int(x) for x in "".join(ch if ch.isdigit() else " " for ch in s).split() if x]
+        if nums:
+            return [f"frames/frame_{nums[-1]:04d}.jpg"]
+        return [s]
+
     for frame in evidence_frame_numbers:
-        try:
-            frame_num_str = frame.split('_')[-1].split('.')[0]
-            frame_num = int(frame_num_str)
-            for offset in range(-seconds_before, seconds_after + 1):
-                new_frame_num = max(0, frame_num + offset)
-                new_frame = f"frames/frame_{new_frame_num:04d}.jpg"
-                expanded_frames.add(new_frame)
-        except (ValueError, IndexError):
-            expanded_frames.add(frame)
-    return sorted(list(expanded_frames))
+        frame_entries = _token_to_frames(frame)
+        for frame_num in range(-seconds_before, seconds_after + 1):
+            for fpath in frame_entries:
+                if not fpath.startswith("frames/frame_") or not fpath.endswith(".jpg"):
+                    expanded_frames.append(fpath)
+                    continue
+                try:
+                    base = fpath.split('_')[-1].split('.')[0]
+                    frame_num_base = int(base)
+                    new_frame_num = max(1, frame_num_base + frame_num)
+                    expanded_frames.append(f"frames/frame_{new_frame_num:04d}.jpg")
+                except (ValueError, IndexError):
+                    expanded_frames.append(fpath)
+        if len(expanded_frames) >= max_frames:
+            break
+
+    # remove duplicates but keep order
+    seen = set()
+    unique_frames = []
+    for item in expanded_frames:
+        if item not in seen:
+            seen.add(item)
+            unique_frames.append(item)
+
+    return unique_frames[:max_frames]
 
 def critic_vlm_prompt(question, answer, reasoning, evidence_frame_numbers, vid_dir, num, general_context, ces_logs=None, criteria=None, answer_criteria=None, candidates=None, subtitles=None):
     """Critic VLM prompt - evaluates answer based on criteria"""

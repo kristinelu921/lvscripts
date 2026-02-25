@@ -15,6 +15,31 @@ from prompts import initial_prompt, followup_prompt, response_parsing_prompt, fi
 json_file_lock = asyncio.Lock()
 import traceback
 
+
+def _to_list(value):
+    """Normalize prompt-injected list fields to safe list values."""
+    if value is None:
+        return []
+    if isinstance(value, str):
+        return [value] if value.strip() else []
+    if isinstance(value, (list, tuple)):
+        return list(value)
+    return []
+
+
+def _to_strings(items):
+    """Convert list-like items to strings, dropping null/empty values."""
+    normalized = []
+    for item in _to_list(items):
+        if item is None:
+            continue
+        if isinstance(item, str):
+            item = item.strip()
+            if not item:
+                continue
+        normalized.append(item)
+    return [str(item) for item in normalized]
+
 def log(message, file_title):
     if not os.path.exists(file_title):
         os.makedirs(file_title)
@@ -59,6 +84,47 @@ with open("env.json", "r") as f:
     together_key = env_data["together_key"]
 
 os.environ['TOGETHER_API_KEY'] = together_key
+
+
+def _resolve_caption_embeddings_path(vid_path):
+    """Return the caption embedding file available for this video."""
+    clip_embeddings = f"{vid_path}/captions/clip_embeddings.jsonl"
+    frame_embeddings = f"{vid_path}/captions/frame_captions_sorted_embeddings.jsonl"
+
+    if os.path.exists(clip_embeddings):
+        return clip_embeddings
+    if os.path.exists(frame_embeddings):
+        return frame_embeddings
+    return frame_embeddings
+
+
+def _build_query_clip_frames(vid_path, start_second, end_second):
+    """Build sampled frame paths for a clip range."""
+    try:
+        start_sec = int(float(start_second))
+        end_sec = int(float(end_second))
+    except (TypeError, ValueError):
+        return []
+
+    start_sec = max(0, start_sec)
+    end_sec = max(start_sec, end_sec)
+
+    # Keep re-eval clip probes compact.
+    max_frames = 20
+    step = max(1, int((end_sec - start_sec) / max_frames))
+    if end_sec - start_sec <= max_frames:
+        frame_indices = list(range(start_sec, end_sec + 1))
+    else:
+        frame_indices = list(range(start_sec, end_sec + 1, max(1, step)))
+
+    frame_paths = []
+    for frame_idx in frame_indices:
+        if len(frame_paths) >= max_frames:
+            break
+        frame_path = f"{vid_path}/frames/frame_{frame_idx:04d}.jpg"
+        if os.path.exists(frame_path):
+            frame_paths.append(frame_path)
+    return frame_paths
 
 
 async def query_model_iterative_with_retry(model, question, uid, vid_path, candidates=None, max_retries=15):
@@ -180,16 +246,20 @@ IMPORTANT CONTEXT FROM PREVIOUS ANALYSIS:
 - Confidence level: {assessment.get('confidence', -1)}%
 """
 
-    if assessment.get("possible_errors"):
+    possible_errors = _to_strings(assessment.get("possible_errors", []))
+
+    if possible_errors:
         enhanced += f"\nPotential issues identified:\n"
-        for error in assessment["possible_errors"]:
+        for error in possible_errors:
             enhanced += f"  - {error}\n"
 
-    if assessment.get("suggestion"):
-        enhanced += f"\nSuggested approach: {assessment['suggestion']}\n"
+    suggestion = assessment.get("suggestion")
+    if suggestion:
+        enhanced += f"\nSuggested approach: {suggestion}\n"
 
-    if assessment.get("evidence_frame_numbers"):
-        enhanced += f"\nKey frames to examine: {', '.join(assessment['evidence_frame_numbers'])}\n"
+    evidence_frames = _to_strings(assessment.get("evidence_frame_numbers", []))
+    if evidence_frames:
+        enhanced += f"\nKey frames to examine: {', '.join(evidence_frames)}\n"
 
     enhanced += """
 INSTRUCTIONS FOR RE-EVALUATION:
@@ -244,6 +314,15 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
     is_reevaluation = len(model.messages) > 0
     global_sum_path = vid_path + "/captions/global_summary.txt"
     CES_logs_path = vid_path + "/captions/CES_logs.txt"
+    embeddings_path = _resolve_caption_embeddings_path(vid_path)
+
+    if not os.path.exists(global_sum_path):
+        raise FileNotFoundError(f"Missing required context file: {global_sum_path}")
+    if not os.path.exists(CES_logs_path):
+        raise FileNotFoundError(f"Missing required context file: {CES_logs_path}")
+    if not os.path.exists(embeddings_path):
+        raise FileNotFoundError(f"Missing required caption embeddings file: {embeddings_path}")
+
     with open(global_sum_path, "r") as f:
         global_summary = f.read()
 
@@ -444,7 +523,7 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
                 all_results = []
                 for idx, query in enumerate(search_queries):
                     print(f"  Query {idx+1}/{len(search_queries)}: {query}")
-                    results = await search_captions(vid_path, question_uid, query, f"{vid_path}/captions/frame_captions_sorted_embeddings.jsonl", 30)
+                    results = await search_captions(vid_path, question_uid, query, embeddings_path, 30)
 
                     all_results.append({
                         "query": query,
@@ -468,6 +547,23 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
                 message = f"Caption search completed: {len(search_queries)} queries executed"
                 log(message, f"logs/log_video_{vid_path}_{question_uid}")
                 model.messages.append({"role": "caption search results", "content": retrieved_info[:500]})
+            elif parsed_response.get("tool") == "QUERY_CLIP":
+                start_sec = parsed_response.get("start_frame", 0)
+                end_sec = parsed_response.get("end_frame", 0)
+                prompt = parsed_response.get("prompt", "Describe what appears in this time range.")
+                clip_frames = _build_query_clip_frames(vid_path, start_sec, end_sec)
+
+                if not clip_frames:
+                    model.messages.append({"role": "system", "content": "QUERY_CLIP did not map to any valid frame names."})
+                    continue
+
+                frame_prompt = (
+                    f"{prompt}\n\n"
+                    f"Temporal window: approximately {start_sec}-{end_sec} seconds."
+                    f" Reviewing {len(clip_frames)} sampled frames from this range."
+                )
+                retrieved_info = await model.vlm_query(clip_frames, frame_prompt)
+                model.messages.append({"role": "query clip results", "content": retrieved_info})
             else:
                 print(f"Invalid or unrecognized tool: {parsed_response.get('tool')}")
                 continue
@@ -714,24 +810,28 @@ async def re_evaluate_low_confidence_answers(
                             "reasoning": "Previously evaluated - keeping original answer",
                             "re_evaluated": False,
                             "original_confidence": assessment.get("confidence"),
-                            "critic_concerns": assessment.get("possible_errors", []),
+                            "critic_concerns": _to_strings(assessment.get("possible_errors", [])),
                             "critic_suggestion": assessment.get("suggestion"),
-                            "critic_evidence": assessment.get("evidence_frame_numbers", [])
+                            "critic_evidence": _to_list(assessment.get("evidence_frame_numbers", []))
                         }
                 
                     # Add metadata about re-evaluation
                     result["uid"] = assessment.get("uid")
                     result["original_answer"] = assessment.get("answer")
                     result["original_confidence"] = assessment.get("confidence")
+
+                    critic_concerns = _to_strings(assessment.get("possible_errors", []))
+                    critic_suggestion = assessment.get("suggestion")
+                    critic_evidence = _to_list(assessment.get("evidence_frame_numbers", []))
                     # Log per-question
                     try:
                         with open("answers_logs.json", "a") as log_f:
                             log_f.write(f"critic response re-evaluated uid {assessment.get('uid')} video {num}\n")
                     except Exception:
                         pass
-                    result["critic_concerns"] = assessment.get("possible_errors", [])
-                    result["critic_suggestion"] = assessment.get("suggestion")
-                    result["critic_evidence"] = assessment.get("evidence_frame_numbers", [])
+                    result["critic_concerns"] = critic_concerns
+                    result["critic_suggestion"] = critic_suggestion
+                    result["critic_evidence"] = critic_evidence
                     result["re_evaluated"] = True
 
                     # Add judge decision if it exists

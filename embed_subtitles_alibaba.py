@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate subtitle embeddings using Alibaba-NLP/gte-modernbert-base (768 dims).
+Generate subtitle embeddings using nvidia/NV-Embed-v2 (1024 dims).
 Processes subtitles in subtitles_val directories.
 
 Usage:
@@ -33,7 +33,7 @@ def parse_timestamp_to_seconds(timestamp):
     return hours * 3600 + minutes * 60 + seconds
 
 
-def embed_texts_batch(client, texts, model="Alibaba-NLP/gte-modernbert-base", batch_size=32):
+def embed_texts_batch(client, texts, model="nvidia/NV-Embed-v2", batch_size=32):
     """
     Embed texts using Together AI in batches.
 
@@ -76,7 +76,7 @@ def embed_texts_batch(client, texts, model="Alibaba-NLP/gte-modernbert-base", ba
     return all_embeddings
 
 
-def embed_subtitle_file(video_id, subtitles_dir, client, model="Alibaba-NLP/gte-modernbert-base"):
+def embed_subtitle_file(video_id, subtitles_dir, client, model="nvidia/NV-Embed-v2", force=False):
     """Embed subtitles for a single video."""
 
     # Check if subtitles exist (try both formats)
@@ -92,7 +92,7 @@ def embed_subtitle_file(video_id, subtitles_dir, client, model="Alibaba-NLP/gte-
 
     # Check if embeddings already exist
     embeddings_file = subtitles_dir / f'{video_id}_en_embeddings_alibaba.jsonl'
-    if embeddings_file.exists():
+    if embeddings_file.exists() and not force:
         with open(embeddings_file, 'r') as f:
             num_embeddings = sum(1 for line in f)
         print(f"  ✓ {video_id}: Embeddings already exist ({num_embeddings} captions)")
@@ -161,7 +161,7 @@ def embed_subtitle_file(video_id, subtitles_dir, client, model="Alibaba-NLP/gte-
     }
 
 
-def process_dataset(dataset_name, base_dir, model="Alibaba-NLP/gte-modernbert-base"):
+def process_dataset(dataset_name, base_dir, model="nvidia/NV-Embed-v2", force=False):
     """Process all videos in a dataset."""
     subtitles_dir = Path(base_dir) / dataset_name / 'subtitles_val'
 
@@ -188,7 +188,7 @@ def process_dataset(dataset_name, base_dir, model="Alibaba-NLP/gte-modernbert-ba
     results = []
     for i, video_id in enumerate(sorted(video_ids), 1):
         print(f"[{i}/{len(video_ids)}]")
-        result = embed_subtitle_file(video_id, subtitles_dir, client, model)
+        result = embed_subtitle_file(video_id, subtitles_dir, client, model, force=force)
         results.append(result)
 
     # Summary
@@ -210,8 +210,10 @@ def main():
                        help='Process all datasets')
     parser.add_argument('--base-dir', default='/mnt/ssd/data',
                        help='Base directory (default: /mnt/ssd/data)')
-    parser.add_argument('--model', default='Alibaba-NLP/gte-modernbert-base',
+    parser.add_argument('--model', default='nvidia/NV-Embed-v2',
                        help='Embedding model')
+    parser.add_argument('--force', action='store_true',
+                        help='Overwrite existing subtitle embeddings')
 
     args = parser.parse_args()
 
@@ -228,7 +230,7 @@ def main():
     datasets = ['longvideobench', 'lvbench', 'videomme'] if args.all else [args.dataset]
 
     for dataset in datasets:
-        process_dataset(dataset, args.base_dir, args.model)
+        process_dataset(dataset, args.base_dir, args.model, force=args.force)
 
     print("\n" + "=" * 60)
     print("SUBTITLE EMBEDDING GENERATION COMPLETE")

@@ -53,7 +53,7 @@ def convert_answer_format(answer, from_format='letter', to_format='letter'):
 class PipelineTester:
     """Test harness for video QA pipeline"""
 
-    def __init__(self, video_folder, questions_path, output_dir='test_results', gt_format='index', query_aware=True, vlm_model="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8", llm_model="deepseek-ai/DeepSeek-V3.1"):
+    def __init__(self, video_folder, questions_path, output_dir='test_results', gt_format='index', query_aware=False, vlm_model="kimi-k2.5", llm_model="moonshotai/Kimi-K2.5"):
         """
         Args:
             video_folder: Directory containing video folders
@@ -61,10 +61,11 @@ class PipelineTester:
             output_dir: Directory for test results
             gt_format: Format of ground truth answers - 'letter' (A,B,C,D) or 'index' (0,1,2,3)
             query_aware: Whether to use query-aware captions (True) or regular captions (False)
-            vlm_model: Vision language model to use (default: meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8)
-            llm_model: Language model to use (default: deepseek-ai/DeepSeek-V3.1)
+            vlm_model: Vision language model to use (default: kimi-k2.5)
+            llm_model: Language model to use (default: moonshotai/Kimi-K2.5)
         """
         self.video_folder = Path(video_folder)
+        self.video_folder = self._normalize_video_folder()
         self.questions_path = Path(questions_path)
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(exist_ok=True)
@@ -72,30 +73,99 @@ class PipelineTester:
         self.query_aware = query_aware  # Caption type to use
         self.vlm_model = vlm_model  # Vision language model
         self.llm_model = llm_model  # Language model
+        self.videos_dir = self._resolve_videos_dir()
+        self.test_start_time = datetime.now()
 
         # Load questions
         with open(self.questions_path, 'r') as f:
             questions_data = json.load(f)
+
+        def _normalize_correct_choice(correct_choice, answer_letter=None, num_choices=None):
+            if correct_choice is None:
+                if answer_letter is None:
+                    return None
+                if isinstance(answer_letter, str):
+                    letter = answer_letter.strip().upper().replace('.', '')
+                    if len(letter) == 1 and letter in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']:
+                        correct_choice = ord(letter) - ord('A')
+                    else:
+                        return None
+                else:
+                    return None
+
+            if isinstance(correct_choice, int):
+                idx = correct_choice
+            elif isinstance(correct_choice, str):
+                choice_text = correct_choice.strip().upper().replace('.', '')
+                if choice_text.isdigit():
+                    idx = int(choice_text)
+                elif len(choice_text) == 1 and choice_text.isalpha():
+                    idx = ord(choice_text) - ord('A')
+                else:
+                    return None
+            else:
+                return None
+
+            if isinstance(num_choices, int) and num_choices > 0:
+                if idx < 0 or idx >= num_choices:
+                    return None
+            return idx
 
         # Handle both dict and array formats
         if isinstance(questions_data, list):
             # Convert array format to dict format grouped by video_id
             self.all_questions = {}
             for q in questions_data:
+                # Most files use `video_id`; fall back to extracting from the `id`.
+                # Some list formats contain numeric uid values, so avoid grouping by uid.
                 video_id = q.get('video_id') or q.get('id', '').rsplit('_', 1)[0]
                 if video_id not in self.all_questions:
                     self.all_questions[video_id] = []
+                candidates = q.get('candidates', [])
                 # Convert to expected format
                 question_obj = {
-                    'uid': q.get('id'),
+                        'uid': q.get('uid') or q.get('id'),
                     'question': q.get('question'),
-                    'candidates': q.get('candidates', [])
+                    'candidates': candidates,
+                    'correct_choice': _normalize_correct_choice(
+                        q.get('correct_choice'),
+                        q.get('answer_letter'),
+                        len(candidates) if isinstance(candidates, list) else None
+                    )
                 }
                 self.all_questions[video_id].append(question_obj)
         else:
-            self.all_questions = questions_data
+                self.all_questions = questions_data
 
-        self.test_start_time = datetime.now()
+    def _normalize_video_folder(self):
+        """Normalize dataset roots to the folder that contains per-video subfolders."""
+        # New dataset layout: .../<dataset>/video_files/<video_id>
+        # If a dataset root is passed, switch to the video_files directory.
+        dataset_video_root = self.video_folder / 'video_files'
+        if dataset_video_root.exists() and dataset_video_root.is_dir():
+            return dataset_video_root
+        return self.video_folder
+
+    def _resolve_videos_dir(self):
+        path_str = str(self.video_folder).lower()
+        if self.video_folder.name == 'video_files':
+            resolved = self.video_folder.parent / 'videos'
+            if resolved.exists():
+                return str(resolved)
+
+        if 'longvideobench' in path_str:
+            if '/kimi/' in path_str:
+                return '/mnt/ssd/data/kimi/longvideobench/videos'
+            return '/mnt/ssd/data/longvideobench/videos_val'
+        if 'lvbench' in path_str:
+            if '/kimi/' in path_str:
+                return '/mnt/ssd/data/kimi/lvbench/videos'
+            return '/mnt/ssd/data/lvbench/videos'
+        if 'videomme' in path_str:
+            if '/kimi/' in path_str:
+                return '/mnt/ssd/data/kimi/videomme/videos'
+            return '/mnt/ssd/data/videomme/videos'
+        return str(self.video_folder)
 
     def get_testable_videos(self):
         """Get list of videos that are ready for testing (have frames and captions)"""
@@ -104,17 +174,21 @@ class PipelineTester:
         for video_id, questions in self.all_questions.items():
             video_dir = self.video_folder / video_id
             frames_dir = video_dir / 'frames'
+            required_context = [
+                video_dir / 'captions' / 'global_summary.txt',
+                video_dir / 'captions' / 'CES_logs.txt'
+            ]
 
-            # Check for the appropriate caption file based on mode
-            # First check for clip_frame_captions (preferred)
-            clip_frame_captions = video_dir / 'clip_frame_captions.json'
-            clip_frame_embeddings = video_dir / 'clip_frame_embeddings.jsonl'
-
-            if clip_frame_captions.exists() and clip_frame_embeddings.exists():
-                captions_file = clip_frame_captions
-                embeddings_file = clip_frame_embeddings
-                caption_type = 'clip_frame'
-                caption_requirement = 'clip frame captions (run caption_frames_together.py)'
+        # Check for the appropriate caption file based on mode
+            if (
+                (video_dir / 'captions' / 'clip_captions.json').exists()
+                and (video_dir / 'captions' / 'clip_embeddings.jsonl').exists()
+                and (video_dir / 'captions' / 'clip_embeddings.jsonl').stat().st_size > 0
+            ):
+                captions_file = video_dir / 'captions' / 'clip_captions.json'
+                embeddings_file = video_dir / 'captions' / 'clip_embeddings.jsonl'
+                caption_type = 'clip'
+                caption_requirement = 'clip captions (run caption_frames_together.py)'
             elif self.query_aware:
                 captions_file = video_dir / 'captions' / 'frame_captions_query_aware.json'
                 embeddings_file = video_dir / 'captions' / 'frame_captions_sorted_embeddings.jsonl'
@@ -141,6 +215,14 @@ class PipelineTester:
 
             if not embeddings_file.exists():
                 print(f"⚠️  {video_id}: No embeddings found (run embed_frame_captions.py first)")
+                continue
+
+            if not required_context[0].exists():
+                print(f"⚠️  {video_id}: Missing required context file: {required_context[0]}")
+                continue
+
+            if not required_context[1].exists():
+                print(f"⚠️  {video_id}: Missing required context file: {required_context[1]}")
                 continue
 
             testable.append({
@@ -192,6 +274,18 @@ class PipelineTester:
             for i, q in enumerate(questions):
                 print(f"\nQuestion {i+1}/{len(questions)}: {q['uid']}")
                 print(f"Q: {q['question'][:80]}...")
+                required_context = [
+                    f"{video_dir}/captions/global_summary.txt",
+                    f"{video_dir}/captions/CES_logs.txt",
+                ]
+                missing_context = [
+                    path for path in required_context if not os.path.exists(path)
+                ]
+                if missing_context:
+                    msg = f"Skipping {q['uid']}: missing required context file(s): {', '.join(missing_context)}"
+                    print(f"⚠️  {msg}")
+                    results['errors'].append(msg)
+                    continue
 
                 try:
                     answer = await answer_question(
@@ -202,6 +296,7 @@ class PipelineTester:
                         candidates=q.get('candidates'),
                         vlm_model=self.vlm_model,
                         llm_model=self.llm_model,
+                        videos_dir=self.videos_dir,
                         embeddings_path=video_info.get('embeddings_path')
                     )
 
@@ -211,12 +306,16 @@ class PipelineTester:
                         if 'correct_choice' in q and q['correct_choice'] is not None:
                             correct_answer = q['candidates'][q['correct_choice']]
 
-                            # Get predicted answer from model (already an integer index)
+                            # Get predicted answer and normalize to index
                             predicted_idx = answer.get('answer')
-
-                            # Convert to int if it's a string
                             if isinstance(predicted_idx, str):
-                                predicted_idx = int(predicted_idx)
+                                pred = predicted_idx.strip().upper()
+                                if pred.isdigit():
+                                    predicted_idx = int(pred)
+                                elif pred in ['A', 'B', 'C', 'D', 'E']:
+                                    predicted_idx = ord(pred) - ord('A')
+                                else:
+                                    predicted_idx = None
 
                             # Compare directly
                             is_correct = (predicted_idx == q['correct_choice'])
@@ -370,11 +469,15 @@ class PipelineTester:
 
                                         # Check correctness of re-evaluated answer
                                         if 'correct_choice_idx' in post_critic and post_critic['correct_choice_idx'] is not None:
-                                            if "0" or "1" or "2" or "3" or "4" in re_eval.get('answer'):
-                                                predicted_answer = int(re_eval.get('answer'))
-                                            elif "A" or "B" or "C" or "D" or "E" in re_eval.get('answer'):
-                                                predicted_answer = convert_answer_format(re_eval.get('answer'), from_format='letter', to_format='index')
-                                            results['post_critic_results'][i]['is_correct_after_reeval'] = (predicted_idx == post_critic['correct_choice_idx'])
+                                            answer_for_reeval = re_eval.get('answer')
+                                            if isinstance(answer_for_reeval, str) and answer_for_reeval.strip().upper() in ['A', 'B', 'C', 'D', 'E']:
+                                                predicted_answer = ord(answer_for_reeval.strip().upper()) - ord('A')
+                                            elif isinstance(answer_for_reeval, str) and answer_for_reeval.strip().isdigit():
+                                                predicted_answer = int(answer_for_reeval.strip())
+                                            else:
+                                                predicted_answer = answer_for_reeval
+
+                                            results['post_critic_results'][i]['is_correct_after_reeval'] = (predicted_answer == post_critic['correct_choice_idx'])
 
                                         break
 
@@ -431,7 +534,12 @@ class PipelineTester:
             print("❌ No testable videos found!")
             return None
 
-        caption_type_label = "Query-Aware Captions" if self.query_aware else "Regular Captions"
+        if self.query_aware:
+            caption_type_label = "Query-Aware Captions"
+        elif all(video_info.get("caption_type") == "clip" for video_info in testable_videos):
+            caption_type_label = "Clip Captions"
+        else:
+            caption_type_label = "Regular Captions"
 
         print(f"\n{'='*60}")
         print(f"PIPELINE TEST SUITE")
@@ -475,7 +583,12 @@ class PipelineTester:
                 'duration_seconds': (datetime.now() - self.test_start_time).total_seconds(),
                 'video_folder': str(self.video_folder),
                 'questions_path': str(self.questions_path),
-                'caption_type': 'query_aware' if self.query_aware else 'regular'
+                'caption_type': 'query_aware'
+                if self.query_aware
+                else (
+                    'clip' if all(v.get('caption_type') == 'clip' for v in all_results)
+                    else 'regular'
+                )
             },
             'summary': {
                 'total_videos': len(all_results),
@@ -641,8 +754,8 @@ class PipelineTester:
         print("TEST SUMMARY")
         print(f"{'='*70}")
 
-        if report['qa_performance']:
-            qa = report['qa_performance']
+        if report.get('qa_performance_pre_critic'):
+            qa = report['qa_performance_pre_critic']
             print(f"\n📝 QA Performance:")
             print(f"   Questions answered: {qa['total_answered']}")
             print(f"   Accuracy: {qa['accuracy_percentage']}")
@@ -675,7 +788,7 @@ async def main():
     )
 
     parser.add_argument('video_folder', help='Directory containing video folders')
-    parser.add_argument('--questions', default='/mnt/ssh/data/longvideobench/downloaded_videos_questions.json',
+    parser.add_argument('--questions', default='/mnt/ssd/data/kimi/longvideobench/downloaded_questions.json',
                        help='Path to questions JSON')
     parser.add_argument('--output-dir', default='test_results',
                        help='Directory for test results')
@@ -689,10 +802,10 @@ async def main():
                        help='Ground truth answer format: "letter" (A,B,C,D) or "index" (0,1,2,3). Default: index')
     parser.add_argument('--query-aware', action='store_true', default=False,
                        help='Use query-aware captions instead of regular captions')
-    parser.add_argument('--vlm-model', type=str, default='meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8',
-                       help='Vision language model to use (default: meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8)')
-    parser.add_argument('--llm-model', type=str, default='deepseek-ai/DeepSeek-V3.1',
-                       help='Language model to use (default: deepseek-ai/DeepSeek-V3.1)')
+    parser.add_argument('--vlm-model', type=str, default='kimi-k2.5',
+                       help='Vision language model to use (default: kimi-k2.5)')
+    parser.add_argument('--llm-model', type=str, default='moonshotai/Kimi-K2.5',
+                       help='Language model to use (default: moonshotai/Kimi-K2.5)')
 
     args = parser.parse_args()
 

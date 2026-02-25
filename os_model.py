@@ -1,19 +1,266 @@
-from model_example_query import query_vlm, query_llm, query_llm_async
+from model_example_query import (
+    query_vlm,
+    query_llm,
+    query_llm_async,
+    query_vlm_kimi_video,
+    trim_video_for_kimi
+)
 from search_frame_captions import batch_embed_query_async, search_captions, search_clip_captions
 from search_subtitles import search_subtitles
-from extract_fine_grained_frames import extract_fine_grained_for_pipeline
+from extract_fine_grained_frames import extract_fine_grained_for_pipeline, get_video_path_from_id
 from prompts import initial_prompt, followup_prompt, response_parsing_prompt, finish_prompt, _expand_frames_with_surrounding
 from subtitle_utils import SubtitleLoader
 import math
 import json
 import os
+import tempfile
 from together import AsyncTogether, Together
 #from google import genai
 import asyncio
+import ast
 json_file_lock = asyncio.Lock()
 
 # Import prompts
 import prompts as default_prompts
+import re
+
+CAPTION_SEARCH_TOPK = 4
+CAPTION_SEARCH_MAX_QUERIES = 3
+MAX_HISTORY_MESSAGES = 10
+MAX_MESSAGE_SNIPPET_CHARS = 1000
+QUERY_ITERATION_TIMEOUT_SECONDS = 1800
+QUERY_CLIP_DEFAULT_FPS = 10
+QUERY_CLIP_MIN_FPS = 2
+QUERY_CLIP_MAX_FPS = 10
+QUERY_CLIP_MAX_DURATION_SECONDS = 12.0
+PIPELINE_STATUS_PATH = "tmp/pipeline_status"
+VISION_REFUSAL_MARKERS = [
+    "i don't see",
+    "i do not see",
+    "no image",
+    "can't see",
+    "can you upload",
+    "cannot see",
+    "could you upload",
+    "please upload",
+    "need.*image",
+    "no video",
+    "not visible"
+]
+
+def _contains_viz_refusal(text):
+    if not isinstance(text, str):
+        return False
+    lower = text.lower()
+    return any(re.search(marker, lower) for marker in VISION_REFUSAL_MARKERS)
+
+
+def _coerce_tool_name(tool_name):
+    if tool_name is None:
+        return None
+    if isinstance(tool_name, str):
+        tool_clean = tool_name.strip().upper().replace("-", "_")
+        if not tool_clean:
+            return None
+        # Normalize common spelling/spacing variants from model output.
+        tool_clean = " ".join(tool_clean.split())
+        tool_clean = tool_clean.replace(" ", "_")
+        if tool_clean == "QUERYCLIP":
+            tool_clean = "QUERY_CLIP"
+        elif tool_clean == "CAPTIONSEARCH":
+            tool_clean = "CAPTION_SEARCH"
+        elif tool_clean == "SUBTITLESEARCH":
+            tool_clean = "SUBTITLE_SEARCH"
+        elif tool_clean == "FINALANSWER":
+            tool_clean = "FINAL_ANSWER"
+        elif tool_clean == "EXTRACTFINEGRAINEDFRAMES":
+            tool_clean = "EXTRACT_FINE_GRAINED_FRAMES"
+        elif tool_clean == "CROPOBJECT":
+            tool_clean = "CROP_OBJECT"
+        elif tool_clean == "VIEWRECORDS":
+            tool_clean = "VIEW_RECORDS"
+        return tool_clean
+    return str(tool_name).strip().upper()
+
+
+def _extract_tool_from_loose_text(text):
+    """Best-effort extraction of a tool call from non-strict model output."""
+    if not isinstance(text, str):
+        return None
+
+    # Normalize to a smaller window to avoid regex failures on long outputs.
+    content = text.strip()
+    if not content:
+        return None
+
+    # Direct structured tool-only output inside text.
+    tool_match = re.search(r'"?tool"?\s*[:=]\s*["\']?([A-Za-z_\s]+)["\']?', content, flags=re.IGNORECASE)
+    if not tool_match:
+        return None
+
+    parsed = {
+        "tool": _coerce_tool_name(tool_match.group(1))
+    }
+    if parsed["tool"] is None:
+        return None
+
+    # Capture common scalar fields.
+    for key in ("start_frame", "end_frame", "fps", "topk", "answer"):
+        match = re.search(rf'"?{key}"?\s*[:=]\s*([0-9]+(?:\\.[0-9]+)?)', content, flags=re.IGNORECASE)
+        if match:
+            try:
+                num = float(match.group(1))
+                if key in {"start_frame", "end_frame", "fps", "topk"}:
+                    num = int(num) if float(num).is_integer() else num
+                parsed[key] = num
+            except (ValueError, TypeError):
+                pass
+
+    # Capture answer text/label if present.
+    ans_match = re.search(r'"?answer"?:?\s*["\']?([^",}\\]]+)["\']?', content, flags=re.IGNORECASE)
+    if ans_match:
+        parsed["answer"] = ans_match.group(1).strip()
+
+    # Capture prompt.
+    prompt_match = re.search(r'"?prompt"?:?\s*"([^"]+)"', content, flags=re.IGNORECASE | re.DOTALL)
+    if prompt_match:
+        parsed["prompt"] = prompt_match.group(1).strip()
+
+    # Capture list-like fields.
+    def _extract_list(field):
+        match = re.search(
+            rf'"?{field}"?\s*:\s*(\[[^\]]*\])',
+            content,
+            flags=re.IGNORECASE | re.DOTALL
+        )
+        if not match:
+            return None
+        raw = match.group(1)
+        try:
+            parsed_list = json.loads(raw)
+            if isinstance(parsed_list, list):
+                return parsed_list
+        except Exception:
+            pass
+        return None
+
+    for field in ("search_queries", "entries", "frames"):
+        items = _extract_list(field)
+        if items is not None:
+            parsed[field] = items
+
+    query_match = re.search(r'"?query"?\s*:\s*"([^"]+)"', content, flags=re.IGNORECASE)
+    if query_match:
+        parsed["query"] = query_match.group(1).strip()
+
+    if parsed["tool"] == "CAPTION_SEARCH" and "search_queries" not in parsed and "query" in parsed:
+        parsed["search_queries"] = [parsed.get("query")]
+
+    return parsed
+
+
+def _extract_candidate_answer(answer, candidates):
+    if not candidates or not isinstance(answer, str):
+        return None
+
+    ans = str(answer).lower()
+    stop_words = {
+        "the",
+        "a",
+        "an",
+        "of",
+        "and",
+        "is",
+        "are",
+        "has",
+        "have",
+        "were",
+        "was",
+        "to",
+        "it",
+        "its",
+        "in",
+        "on",
+        "for",
+        "this",
+        "that",
+        "these",
+        "those",
+        "same",
+        "number"
+    }
+
+    def _token_match(token, text):
+        t = token.strip().lower()
+        if not t:
+            return False
+        if t in text:
+            return True
+        if t.endswith("s") and t[:-1] in text:
+            return True
+        if t.endswith("ies") and t[:-3] + "y" in text:
+            return True
+        return False
+
+    # Structured "label: count" format; prefer explicit numeric evidence over free text.
+    mentions = re.findall(r"([a-z][a-z0-9\s\-]{2,80})\s*[:：]\s*(\d+)", ans)
+    if mentions:
+        scores = {}
+        for segment, _count in mentions:
+            segment = segment.strip()
+            for idx, candidate in enumerate(candidates):
+                candidate_tokens = [
+                    t for t in re.findall(r"[a-z0-9]+", str(candidate).lower()) if t not in stop_words
+                ]
+                if not candidate_tokens:
+                    continue
+                score = 0
+                for token in candidate_tokens:
+                    if _token_match(token, segment):
+                        score += 1
+                if score > 0:
+                    scores[idx] = max(scores.get(idx, 0), score + 0.01 * int(_count))
+        if scores:
+            best = sorted(scores.items(), key=lambda kv: (-kv[1], kv[0]))
+            return best[0][0]
+
+    # Explicit option labels such as "A", "option B", "The answer is C"
+    explicit = re.search(r"\b(?:option|answer)\s*([a-e])\b", ans, flags=re.IGNORECASE)
+    if explicit:
+        idx = ord(explicit.group(1).upper()) - ord("A")
+        if 0 <= idx < len(candidates):
+            return idx
+
+    # Bracketed / parenthesized/numbered option formats like "A) ...", "b) ..." etc.
+    for match in re.finditer(r"\b([a-e])\b", ans):
+        idx = ord(match.group(1).upper()) - ord("A")
+        if 0 <= idx < len(candidates):
+            return idx
+
+    # Direct candidate text match.
+    direct_scores = {}
+    for idx, candidate in enumerate(candidates):
+        candidate_tokens = [
+            t for t in re.findall(r"[a-z0-9]+", str(candidate).lower()) if t not in stop_words
+        ]
+        if not candidate_tokens:
+            continue
+        score = 0
+        for token in candidate_tokens:
+            if _token_match(token, ans):
+                score += 1
+        if score > 0:
+            direct_scores[idx] = score
+
+    if direct_scores:
+        best = sorted(direct_scores.items(), key=lambda kv: (-kv[1], kv[0]))
+        return best[0][0]
+
+    return None
+
+
+def _looks_like_tool_response(text):
+    return isinstance(text, str) and ("\"tool\"" in text or "'tool'" in text)
 
 def get_prompts_module(use_no_vlm=False):
     """Get the appropriate prompts module based on configuration"""
@@ -26,6 +273,86 @@ def log(message, file_title):
     else:
         with open(f"{file_title}/log.log", "a") as f:
             f.write(message + "\n")
+
+def _extract_frame_token_paths(token):
+    """Normalize frame-like tokens from search results into frame-relative paths."""
+    if token is None:
+        return []
+
+    if isinstance(token, int):
+        token = max(1, int(token))
+        return [f"frames/frame_{token:04d}.jpg"]
+
+    if not isinstance(token, str):
+        return []
+
+    s = token.strip().strip('"').strip("'")
+    if not s:
+        return []
+
+    # Allow tokens like frames/frame_0001.jpg directly
+    if "frame_" in s and ".jpg" in s:
+        return [s if s.startswith("frames/") else s]
+
+    # Timestamp-like tokens such as 00:01:05 or 00:01:05.000 should map to seconds-based frame ids.
+    if ":" in s:
+        parts = s.split(":")
+        if 2 <= len(parts) <= 3:
+            try:
+                if len(parts) == 3:
+                    hh, mm, ss = parts
+                    frame_num = int(float(hh)) * 3600 + int(float(mm)) * 60 + int(float(ss))
+                else:
+                    mm, ss = parts
+                    frame_num = int(float(mm)) * 60 + int(float(ss))
+                return [f"frames/frame_{max(1, frame_num):04d}.jpg"]
+            except (ValueError, TypeError):
+                pass
+
+    # Allow clip/range tokens only when explicitly requested as timestamps; clip IDs are handled by QUERY_CLIP, not VLM_QUERY.
+    nums = []
+    cur = ""
+    for ch in s:
+        if ch.isdigit():
+            cur += ch
+        elif cur:
+            nums.append(int(cur))
+            cur = ""
+    if cur:
+        nums.append(int(cur))
+    if ("clip" in s and len(nums) >= 2) or (len(nums) >= 2 and "_" in s):
+        # Clip-style IDs (clip_45_67 / 45_67) must be resolved via QUERY_CLIP.
+        return []
+
+    # Allow plain timestamp numbers
+    if nums:
+        return [f"frames/frame_{max(1, int(nums[-1])):04d}.jpg"]
+
+    return [s]
+
+def _normalize_vlm_frames(frames, max_frames=48):
+    """Normalize user-provided frame names into a bounded list of frame paths."""
+    if not frames:
+        return []
+
+    normalized = []
+    if isinstance(frames, str):
+        candidates = [frames]
+    else:
+        candidates = frames if isinstance(frames, list) else list(frames)
+
+    for token in candidates:
+        normalized.extend(_extract_frame_token_paths(token))
+
+    # Deduplicate while preserving order
+    seen = set()
+    ordered = []
+    for item in normalized:
+        if item not in seen:
+            seen.add(item)
+            ordered.append(item)
+
+    return ordered[:max_frames]
 
 
 async def append_to_json_file(filepath, data):
@@ -51,8 +378,74 @@ async def append_to_json_file(filepath, data):
             json.dump(results, f, indent=2)
         
         os.replace(temp_file, filepath)
-
         print(f"saved answer {data.get('uid', 'unknown')}!")
+        return
+
+
+def _trim_message_content(message, max_chars=MAX_MESSAGE_SNIPPET_CHARS):
+    """Trim long message content while preserving role."""
+    content = message.get("content")
+    if not isinstance(content, str):
+        if isinstance(content, (dict, list)):
+            try:
+                content = json.dumps(content, ensure_ascii=False)
+            except TypeError:
+                content = str(content)
+        else:
+            content = str(content)
+
+    if len(content) <= max_chars:
+        return message
+
+    trimmed = content[:max_chars] + f"\n... [truncated {len(content) - max_chars} chars]"
+    trimmed_message = dict(message)
+    trimmed_message["content"] = trimmed
+    return trimmed_message
+
+
+def _trim_messages_for_prompt(messages, max_messages=MAX_HISTORY_MESSAGES, max_chars=MAX_MESSAGE_SNIPPET_CHARS):
+    """Keep only the most recent messages and truncate long message content."""
+    selected = messages[-max_messages:] if len(messages) > max_messages else messages
+    return [_trim_message_content(m, max_chars=max_chars) for m in selected]
+
+
+def _trim_retrieved_info(value, max_chars=MAX_MESSAGE_SNIPPET_CHARS):
+    """Convert tool outputs to a bounded text payload for follow-up prompts."""
+    if not isinstance(value, str):
+        value = json.dumps(value, ensure_ascii=False)
+
+    return _trim_message_content({"content": value}, max_chars=max_chars)["content"]
+
+
+def _safe_read_text(path, default=""):
+    """Read a context file if present; otherwise return a safe fallback."""
+    try:
+        with open(path, "r") as f:
+            return f.read()
+    except FileNotFoundError:
+        return default
+    except Exception:
+        return default
+
+
+def _write_pipeline_probe(v_id, question_uid, status, tool=None, note=None, attempt=None, last_error=None):
+    """Persist lightweight runtime status for monitoring/debugging long runs."""
+    try:
+        os.makedirs(PIPELINE_STATUS_PATH, exist_ok=True)
+        payload = {
+            "pid": os.getpid(),
+            "video_id": v_id,
+            "question_uid": question_uid,
+            "status": status,
+            "tool": tool,
+            "attempt": attempt,
+            "note": note,
+            "last_error": str(last_error) if last_error is not None else None
+        }
+        with open(f"{PIPELINE_STATUS_PATH}/pipeline_status_{os.getpid()}.json", "w") as f:
+            json.dump(payload, f, indent=2)
+    except Exception:
+        # Probe writes must never block the pipeline.
         return
     
 with open("env.json", "r") as f:
@@ -90,18 +483,25 @@ class Pipeline:
     async def llm_query_async(self, prompt):
         return await query_llm_async(self.llm, prompt)
     
-    async def vlm_query(self, image_paths, prompt):
-        result = await query_vlm(self.vlm, image_paths, prompt)
+    async def vlm_query(self, image_paths, prompt, batch_size=15):
+        result = await query_vlm(self.vlm, image_paths, prompt, batch_size=batch_size)
         return result
         
 
-my_model = Pipeline("deepseek-ai/DeepSeek-V3.1", "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8")
+my_model = Pipeline("moonshotai/Kimi-K2.5", "kimi-k2.5")
 
 async def query_model_iterative_with_retry(model, question, uid, vid_path, output_file, max_retries=15, candidates=None, use_no_vlm=False, videos_dir="/mnt/ssd/data/longvideobench/videos", pass_all_subtitles_to_llm=False, subtitles_dir=None, embeddings_path=None):
     """Wrapper to retry query_model_iterative if it hangs"""
     # Default to frame captions embeddings if not specified
     if embeddings_path is None:
-        embeddings_path = f"{vid_path}/captions/frame_captions_sorted_embeddings.jsonl"
+        clip_embeddings = f"{vid_path}/captions/clip_embeddings.jsonl"
+        frame_embeddings = f"{vid_path}/captions/frame_captions_sorted_embeddings.jsonl"
+        if os.path.exists(clip_embeddings):
+            embeddings_path = clip_embeddings
+        elif os.path.exists(frame_embeddings):
+            embeddings_path = frame_embeddings
+        else:
+            raise FileNotFoundError(f"No caption embedding file found for {vid_path}: expected clip or frame embeddings")
     if os.path.exists(output_file):
         try:
             with open(output_file, 'r') as f:
@@ -115,21 +515,20 @@ async def query_model_iterative_with_retry(model, question, uid, vid_path, outpu
             results = []
         try:
             for item in results:
-                if item["uid"] == uid:
-                    print (f"already completed question {uid}")
+                if item.get("uid") == uid:
+                    print(f"already completed question {uid}")
                     return item
         except Exception as e:
             print("Checking if q already completed error")
-            pass
 
     for attempt in range(max_retries):
         try:
             message = f"Attempt {attempt + 1}/{max_retries} for question: {question[:50]}..."
             log(message, f"logs/log_video_{vid_path}_{uid}")
-            # Set 60 second timeout for the entire iterative process
+            # Timeout for the entire iterative process (LLM + tools + retries)
             result = await asyncio.wait_for(
                 query_model_iterative(model, question, uid, vid_path, candidates, use_no_vlm=use_no_vlm, videos_dir=videos_dir, pass_all_subtitles_to_llm=pass_all_subtitles_to_llm, subtitles_dir=subtitles_dir, embeddings_path=embeddings_path),
-                timeout=240  # 3 minute timeout
+                timeout=QUERY_ITERATION_TIMEOUT_SECONDS
             )
             print(f"Successfully completed on attempt {attempt + 1}")
             if output_file:
@@ -138,9 +537,11 @@ async def query_model_iterative_with_retry(model, question, uid, vid_path, outpu
             return result
         except asyncio.TimeoutError:
             print(f"Timeout on attempt {attempt + 1}, retrying...")
+            _write_pipeline_probe(os.path.basename(vid_path.rstrip('/')), uid, status="attempt_timeout", attempt=attempt + 1, last_error=f"Timeout after {QUERY_ITERATION_TIMEOUT_SECONDS}s")
             # Reset model state for retry
             model.messages = []
             model.scratchpad = []
+            model.records = []
             if attempt == max_retries - 1:
                 print(f"Failed after {max_retries} attempts due to timeout")
                 result = {
@@ -154,12 +555,14 @@ async def query_model_iterative_with_retry(model, question, uid, vid_path, outpu
                     await append_to_json_file(output_file, result)
                     await append_to_json_file('completed_uid.json', {"uid": uid})
 
-                return 
+                return result
         except Exception as e:
             print(f"Error on attempt {attempt + 1}: {e}")
+            _write_pipeline_probe(os.path.basename(vid_path.rstrip('/')), uid, status="attempt_error", attempt=attempt + 1, last_error=str(e))
             # Reset model state for retry
             model.messages = []
             model.scratchpad = []
+            model.records = []
             if attempt == max_retries - 1:
                 print(f"Failed after {max_retries} attempts due to error: {e}")
 
@@ -202,15 +605,27 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
         subtitles_dir: Directory containing subtitle embeddings (auto-detects if None)
         embeddings_path: Path to caption embeddings file (auto-detects if None)
     """
-    # Default to frame captions embeddings if not specified
+    # Default to clip captions first, then frame captions
     if embeddings_path is None:
-        embeddings_path = f"{vid_path}/captions/frame_captions_sorted_embeddings.jsonl"
+        clip_embeddings = f"{vid_path}/captions/clip_embeddings.jsonl"
+        frame_embeddings = f"{vid_path}/captions/frame_captions_sorted_embeddings.jsonl"
+        if os.path.exists(clip_embeddings):
+            embeddings_path = clip_embeddings
+        elif os.path.exists(frame_embeddings):
+            embeddings_path = frame_embeddings
+        else:
+            raise FileNotFoundError(f"No caption embedding file found for {vid_path}: expected clip or frame embeddings")
 
     global_sum_path = vid_path + "/captions/global_summary.txt"
     CES_logs_path = vid_path + "/captions/CES_logs.txt"
+
+    if not os.path.exists(global_sum_path):
+        raise FileNotFoundError(f"Missing required context file: {global_sum_path}")
+    if not os.path.exists(CES_logs_path):
+        raise FileNotFoundError(f"Missing required context file: {CES_logs_path}")
+
     with open(global_sum_path, "r") as f:
         global_summary = f.read()
-
     with open(CES_logs_path, "r") as f:
         CES_log = f.read()
 
@@ -218,9 +633,27 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
 
     # Variable to store criteria extracted from initial response
     question_criteria = None
+    query_clip_used = False
+    empty_response_count = 0
+    parse_retry_count = 0
+    invalid_final_attempts = 0
+    last_tool_request = {}
+
+    def _set_followup_prompt_with_note(note):
+        return (
+            str(_trim_messages_for_prompt(model.messages, max_chars=MAX_MESSAGE_SNIPPET_CHARS))
+            + prompts.followup_prompt(
+                note,
+                question,
+                candidates,
+                use_subtitles=use_subtitles,
+                subtitles_available=subtitles_available
+            )
+        )
 
     # Check if subtitle embeddings are available for this video
     video_id = os.path.basename(vid_path.rstrip('/'))
+    _write_pipeline_probe(video_id, question_uid, status="question_start", note=f"question_len={len(question)}")
 
     # Auto-detect subtitles directory if not provided
     if subtitles_dir is None:
@@ -298,40 +731,104 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
         print("="*20 + f"Querying model with prompt: {i}, {question_uid} "+ "="*20)
         print(f"Prompt length: {len(prompt)} characters")
         print(f"model.messages count: {len(model.messages)}")
+        _write_pipeline_probe(video_id, question_uid, status="llm_query_start", attempt=i+1)
         try:
             #print("reached this thing")
             response = await model.llm_query_async(prompt)
             #print("response reached", response)
         except Exception as e:
+            error_message = str(e).lower()
             print(f"Failed to get model response: {e}")
             print(f"Error type: {type(e).__name__}")
+            if (
+                "500" in error_message
+                or "server_error" in error_message
+                or "internal server error" in error_message
+            ):
+                print("❗ Model backend returned 5xx; stopping retries for this question to avoid repeated overload.")
+                return {
+                    "uid": question_uid,
+                    "question": question,
+                    "answer": "ERROR",
+                    "reasoning": f"LLM request failed: {e}",
+                    "evidence_frame_numbers": []
+                }
+            prompt = _set_followup_prompt_with_note(
+                (
+                    f"Could not get a valid planner response ({str(e)[:180]}). "
+                    "Return strict JSON with one valid tool call."
+                )
+            )
             continue
+
+        # Skip logging/parsing if LLM returned an empty or None response
+        if not response:
+            reason = "LLM returned empty response"
+            print(f"Failed to get response at iteration {i+1}: {reason}")
+            empty_response_count += 1
+            _write_pipeline_probe(video_id, question_uid, status="tool_llm_empty", attempt=i+1, last_error=reason)
+            if empty_response_count >= 2:
+                return {
+                    "uid": question_uid,
+                    "question": question,
+                    "answer": "ERROR",
+                    "reasoning": reason,
+                    "evidence_frame_numbers": []
+                }
+            model.messages.append({
+                "role": "system",
+                "content": (
+                    "Your previous response was empty. "
+                    "Reply with strict JSON that includes a valid tool call in the format your parser expects."
+                )
+            })
+            prompt = _set_followup_prompt_with_note("Your previous response was empty. Return STRICT JSON with a tool call.")
+            continue
+
+        # If the model response itself contains server-side failure text, stop immediately.
+        response_error = str(response).lower()
+        if "500" in response_error or "server_error" in response_error or "internal server error" in response_error:
+            print("❗ Model backend returned server-side error text; stopping retries for this question to avoid overload.")
+            return {
+                "uid": question_uid,
+                "question": question,
+                "answer": "ERROR",
+                "reasoning": f"LLM response indicates server error: {response}",
+                "evidence_frame_numbers": []
+            }
 
         model.messages.append({"role": "assistant", "content": response})
         print(f"✓ Added assistant response to messages (total: {len(model.messages)})")
         
         message = response
         log(message, f"logs/log_video_{vid_path}_{question_uid}")
-        if not response:
-            print(f"Failed to get response at iteration {i+1}")
-            continue
             
         # Parse the response
         if response and "</think>" in response:
             response = response.split("</think>")[1].strip()
 
-        parsing_prompt = prompts.response_parsing_prompt(response)
-        parsed_response = await model.llm_query_async(parsing_prompt)
-
-        if not parsed_response:
-            print(f"Failed to get parsing response at iteration {i+1}")
-            continue
-        
         print("reached here")
-        
+
+        if _contains_viz_refusal(response):
+            refusal_note = (
+                "The previous response is a model artifact about missing uploads. "
+                "You do have clip context. Do not ask for images/videos. "
+                "Return the next strict JSON tool call immediately."
+            )
+            model.messages.append({"role": "system", "content": refusal_note})
+            _write_pipeline_probe(video_id, question_uid, status="tool_parse_refusal", attempt=i+1, note="response indicated missing attachment")
+            prompt = _set_followup_prompt_with_note(refusal_note)
+            continue
+
         def extract_json(text):
             if not text:
                 return None
+
+            if not isinstance(text, str):
+                try:
+                    text = str(text)
+                except Exception:
+                    return None
 
             original_text = text  # Keep for debugging
 
@@ -370,7 +867,6 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
                 pass
 
             # Strategy 5: Find JSON object boundaries with proper brace matching
-            import re
             try:
                 # Look for both objects {} and arrays []
                 start_obj = text.find("{")
@@ -411,7 +907,16 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
                                 json_str = text[start:i+1]
                                 # Try to fix common issues
                                 json_str = re.sub(r',(\s*[}\]])', r'\1', json_str)  # Remove trailing commas
-                                return json.loads(json_str)
+                                try:
+                                    return json.loads(json_str)
+                                except Exception:
+                                    pass
+                                try:
+                                    parsed = ast.literal_eval(json_str)
+                                    if isinstance(parsed, (dict, list)):
+                                        return parsed
+                                except (ValueError, SyntaxError):
+                                    pass
 
                     escape = False
 
@@ -427,33 +932,232 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
             except json.JSONDecodeError as e:
                 pass
 
+            # Strategy 7: Parse JSON-like Python dict/list output
+            try:
+                parsed = ast.literal_eval(text.strip())
+                if isinstance(parsed, (dict, list)):
+                    return parsed
+            except (ValueError, SyntaxError):
+                pass
+
             return None
 
-        original_parsed_text = parsed_response  # Save for error message
-        parsed_response = extract_json(parsed_response)
+        # Prefer direct JSON extraction from the model response to avoid extra parser calls.
+        original_response_text = response
+        parsed_response = extract_json(response)
+        if parsed_response is None:
+            # Heuristic recovery first to avoid parser LLM timeouts/failures.
+            recovered = _extract_tool_from_loose_text(response)
+            if isinstance(recovered, dict) and recovered.get("tool"):
+                parsed_response = recovered
+            else:
+                # Last-resort parser LLM call if strict recovery fails.
+                parsing_prompt = prompts.response_parsing_prompt(response)
+                try:
+                    _write_pipeline_probe(video_id, question_uid, status="tool_parse_retry", attempt=i+1)
+                    parser_resp = await model.llm_query_async(parsing_prompt)
+                except Exception as e:
+                    parser_error = str(e).strip()
+                    if not parser_error:
+                        parser_error = type(e).__name__
+                    print(f"Failed to parse assistant response at iteration {i+1}: {parser_error}")
+                    parse_retry_count += 1
+                    if parse_retry_count >= 2:
+                        return {
+                            "uid": question_uid,
+                            "question": question,
+                            "answer": "ERROR",
+                            "reasoning": f"Parser LLM failed: {parser_error}",
+                            "evidence_frame_numbers": []
+                        }
+                    _write_pipeline_probe(video_id, question_uid, status="tool_parse_error", attempt=i+1, last_error=f"Parser LLM failed: {parser_error}")
+                    model.messages.append({
+                        "role": "system",
+                        "content": (
+                            "Your response was not machine-parsable. "
+                            "Please reply with STRICT JSON that includes a 'tool' field only. "
+                            "Do not claim missing images/videos if context exists."
+                        )
+                    })
+                    prompt = _set_followup_prompt_with_note(
+                        "Parser failed on assistant response. Reply with strict JSON containing a valid 'tool' field."
+                    )
+                    continue
+                if not parser_resp:
+                    parsed_response = None
+                else:
+                    parsed_response = extract_json(parser_resp)
+                    if parsed_response is None:
+                        recovered = _extract_tool_from_loose_text(parser_resp)
+                        if isinstance(recovered, dict):
+                            parsed_response = recovered
+                if parsed_response is None:
+                    print(f"Parser response could not be converted to JSON at iteration {i+1}")
+                    parse_retry_count += 1
+                    if parse_retry_count >= 2:
+                        return {
+                            "uid": question_uid,
+                            "question": question,
+                            "answer": "ERROR",
+                            "reasoning": "LLM parser returned unparsable response",
+                            "evidence_frame_numbers": []
+                        }
+                    model.messages.append({
+                        "role": "system",
+                        "content": (
+                            "Could not parse the parser response. "
+                            "Reply with strict JSON containing only a valid tool object."
+                        )
+                    })
+                    prompt = _set_followup_prompt_with_note(
+                        "Parser response was not valid JSON. Return strict JSON with one valid tool call."
+                    )
+                    continue
+
+            if not parsed_response:
+                print(f"Failed to get parsing response at iteration {i+1}")
+                parse_retry_count += 1
+                if parse_retry_count >= 2:
+                    return {
+                        "uid": question_uid,
+                        "question": question,
+                        "answer": "ERROR",
+                        "reasoning": "LLM parser returned empty response",
+                        "evidence_frame_numbers": []
+                    }
+                model.messages.append({
+                    "role": "system",
+                    "content": (
+                        "Your previous response to the parser prompt was empty. "
+                        "Reply with strict JSON only, containing a valid 'tool' field."
+                    )
+                })
+                prompt = _set_followup_prompt_with_note(
+                    "Parser output was empty. Return strict JSON with a valid tool call."
+                )
+                continue
         if parsed_response is None:
             print(f"Failed to extract JSON from response")
-            print(f"Raw response: {original_parsed_text[:500]}...")  # Print first 500 chars
+            print(f"Raw response: {original_response_text[:500]}...")  # Print first 500 chars
+            _write_pipeline_probe(video_id, question_uid, status="tool_parse_error", attempt=i+1, last_error=f"extract_json failed: {original_response_text[:200]}")
+
+            # Try one more lightweight heuristic pass before failing.
+            recovered = _extract_tool_from_loose_text(original_response_text)
+            if isinstance(recovered, dict) and recovered.get("tool"):
+                parsed_response = recovered
+            else:
+                parse_retry_count += 1
+                if parse_retry_count >= 2:
+                    return {
+                        "uid": question_uid,
+                        "question": question,
+                        "answer": "ERROR",
+                        "reasoning": "Failed to extract JSON from assistant response",
+                        "evidence_frame_numbers": []
+                    }
+                if _looks_like_tool_response(original_response_text):
+                    model.messages.append({
+                        "role": "assistant",
+                        "content": original_response_text
+                    })
+                    model.messages.append({
+                        "role": "system",
+                        "content": (
+                            "Parser can't read your tool call. Return the same JSON tool object only "
+                            "(no explanation, no markdown)."
+                        )
+                    })
+                else:
+                    model.messages.append({
+                        "role": "system",
+                        "content": "Could not extract JSON from planner output. Return strict JSON with a valid tool call."
+                    })
+                prompt = _set_followup_prompt_with_note(
+                    "Parser could not extract JSON. Return strict JSON with one valid tool call."
+                )
+                continue
+
+        if not isinstance(parsed_response, dict):
+            print(f"Parser produced non-dict response (type={type(parsed_response).__name__}): {str(parsed_response)[:200]}")
+            parse_retry_count += 1
+            if parse_retry_count >= 2:
+                return {
+                    "uid": question_uid,
+                    "question": question,
+                    "answer": "ERROR",
+                    "reasoning": f"Parser returned non-dict response type={type(parsed_response).__name__}",
+                    "evidence_frame_numbers": []
+                }
+            model.messages.append({
+                "role": "system",
+                "content": f"Tool call parser returned invalid JSON object shape ({type(parsed_response).__name__}). Please output strict JSON with at least a tool field next time."
+            })
+            prompt = _set_followup_prompt_with_note(
+                f"Parser returned invalid type {type(parsed_response).__name__}. Return strict JSON with valid tool."
+            )
             continue
 
         # Debug: Print detected tool and normalize it
         detected_tool = parsed_response.get("tool", "UNKNOWN")
-        # Normalize: strip whitespace and convert to uppercase for matching
-        if isinstance(detected_tool, str):
-            detected_tool = detected_tool.strip().upper()
-            parsed_response["tool"] = detected_tool  # Update the parsed response
+        detected_tool = _coerce_tool_name(detected_tool)
+        if detected_tool is not None:
+            parsed_response["tool"] = detected_tool
+
+        # Recovery: infer a clip query when tool tag is missing but query fields are present.
+        if (parsed_response.get("tool") in (None, "", "UNKNOWN") and
+                parsed_response.get("start_frame") is not None and parsed_response.get("end_frame") is not None):
+            parsed_response["tool"] = "QUERY_CLIP"
+            _write_pipeline_probe(
+                video_id,
+                question_uid,
+                status="tool_inferred_query_clip",
+                attempt=i + 1,
+                note="inferred query_clip_from_missing_tool"
+            )
+            detected_tool = "QUERY_CLIP"
         print(f"🔧 Detected tool: {detected_tool}")
 
         try:
             if parsed_response.get("tool") == "FINAL_ANSWER":
+                _write_pipeline_probe(video_id, question_uid, status="tool_final_answer", attempt=i+1)
                 # The parsed response has "frames" field, not "evidence_frame_numbers"
                 message = f"FINAL_ANSWER: {parsed_response}"
                 log(message, f"logs/log_video_{vid_path}_{question_uid}")
 
                 # Convert answer to int format (handle both letter and number responses)
                 parsed_answer = parsed_response.get("answer")
+                inferred_answer = _extract_candidate_answer(parsed_answer, candidates)
+                if isinstance(inferred_answer, int):
+                    parsed_answer = inferred_answer
                 if isinstance(parsed_answer, str):
                     parsed_answer = parsed_answer.strip().upper()
+                    if parsed_answer in ["NO IMAGE OR VIDEO PROVIDED", "NO IMAGE PROVIDED", "NO VIDEO PROVIDED", "I CANNOT SEE THE VIDEO"]:
+                        invalid_final_attempts += 1
+                        if invalid_final_attempts >= 2:
+                            return {
+                                "uid": question_uid,
+                                "question": question,
+                                "answer": "ERROR",
+                                "reasoning": "Rejected invalid FINAL_ANSWER claims without image/video",
+                                "evidence_frame_numbers": []
+                            }
+                        model.messages.append({
+                            "role": "system",
+                            "content": "Invalid FINAL_ANSWER: do not claim missing image/video. You already have access to QUERY_CLIP outputs and must provide a numeric answer."
+                        })
+                        _write_pipeline_probe(video_id, question_uid, status="tool_invalid_final_answer", attempt=i+1, last_error="Final answer claimed missing image/video")
+                        continue
+                    # Normalize punctuation and extract a clean token.
+                    parsed_answer_clean = re.sub(r"[^A-Z0-4]", "", parsed_answer)
+                    if len(parsed_answer_clean) == 1 and parsed_answer_clean in ['A', 'B', 'C', 'D', 'E']:
+                        parsed_answer = parsed_answer_clean
+                    else:
+                        match = re.search(r"\b([0-4])\b", parsed_answer)
+                        if match:
+                            parsed_answer = match.group(1)
+                        else:
+                            parsed_answer = parsed_answer_clean
+
                     # If it's a letter (A, B, C, D, E), convert to number
                     if parsed_answer in ['A', 'B', 'C', 'D', 'E']:
                         parsed_answer = ord(parsed_answer) - ord('A')
@@ -461,11 +1165,75 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
                     elif parsed_answer.isdigit():
                         parsed_answer = int(parsed_answer)
                     else:
-                        # Keep as is if unrecognized format
-                        pass
+                        invalid_final_attempts += 1
+                        if invalid_final_attempts >= 2:
+                            return {
+                                "uid": question_uid,
+                                "question": question,
+                                "answer": "ERROR",
+                                "reasoning": "Final answer must be a number index (0-4) or letter A-E",
+                                "evidence_frame_numbers": []
+                            }
+                        model.messages.append({
+                            "role": "system",
+                            "content": "Invalid FINAL_ANSWER: answer must be a number index (0-4) or letter A-E."
+                        })
+                        _write_pipeline_probe(video_id, question_uid, status="tool_invalid_final_answer", attempt=i+1, last_error="Final answer not numeric/letter format")
+                        continue
                 elif isinstance(parsed_answer, int):
                     # Already an int, keep as is
                     pass
+                elif inferred_answer is not None:
+                    parsed_answer = inferred_answer
+                else:
+                    invalid_final_attempts += 1
+                    if invalid_final_attempts >= 2:
+                        return {
+                            "uid": question_uid,
+                            "question": question,
+                            "answer": "ERROR",
+                            "reasoning": "Final answer must be a number index (0-4) or letter A-E",
+                            "evidence_frame_numbers": []
+                        }
+                    model.messages.append({
+                        "role": "system",
+                        "content": "Invalid FINAL_ANSWER: answer must be a number index (0-4) or letter A-E."
+                    })
+                    _write_pipeline_probe(video_id, question_uid, status="tool_invalid_final_answer", attempt=i+1, last_error="Final answer type invalid")
+                    continue
+
+                if isinstance(parsed_answer, int) and not (0 <= parsed_answer <= 4):
+                    invalid_final_attempts += 1
+                    if invalid_final_attempts >= 2:
+                        return {
+                            "uid": question_uid,
+                            "question": question,
+                            "answer": "ERROR",
+                            "reasoning": f"Final answer index out of range: {parsed_answer}",
+                            "evidence_frame_numbers": []
+                        }
+                    model.messages.append({
+                        "role": "system",
+                        "content": "Invalid FINAL_ANSWER: numeric answer must be between 0 and 4."
+                    })
+                    _write_pipeline_probe(video_id, question_uid, status="tool_invalid_final_answer", attempt=i+1, last_error=f"Final answer out of range: {parsed_answer}")
+                    continue
+                elif not isinstance(parsed_answer, int):
+                    invalid_final_attempts += 1
+                    if invalid_final_attempts >= 2:
+                        return {
+                            "uid": question_uid,
+                            "question": question,
+                            "answer": "ERROR",
+                            "reasoning": "Final answer must be a number index (0-4) or letter A-E",
+                            "evidence_frame_numbers": []
+                        }
+                    model.messages.append({
+                        "role": "system",
+                        "content": "Invalid FINAL_ANSWER: answer must be a number index (0-4) or letter A-E."
+                    })
+                    _write_pipeline_probe(video_id, question_uid, status="tool_invalid_final_answer", attempt=i+1, last_error="Final answer type invalid")
+                    continue
 
                 new_response = {
                     "uid": question_uid,
@@ -474,6 +1242,23 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
                     "reasoning": parsed_response.get("reasoning"),
                     "evidence_frame_numbers": parsed_response.get("frames")  # Map "frames" to "evidence_frame_numbers"
                 }
+
+                if query_clip_used and not new_response["evidence_frame_numbers"]:
+                    invalid_final_attempts += 1
+                    if invalid_final_attempts >= 2:
+                        return {
+                            "uid": question_uid,
+                            "question": question,
+                            "answer": "ERROR",
+                            "reasoning": "Final answer missing evidence frames after QUERY_CLIP usage",
+                            "evidence_frame_numbers": []
+                        }
+                    model.messages.append({
+                        "role": "system",
+                        "content": "Invalid FINAL_ANSWER: you used QUERY_CLIP. Return frames/evidence from the clip rather than an empty evidence list."
+                    })
+                    _write_pipeline_probe(video_id, question_uid, status="tool_invalid_final_answer", attempt=i+1, last_error="No evidence frames despite QUERY_CLIP")
+                    continue
 
                 # Include criteria if they were extracted
                 if question_criteria:
@@ -490,6 +1275,7 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
 
                 return new_response
             elif parsed_response.get("tool") == "VLM_QUERY":
+                _write_pipeline_probe(video_id, question_uid, status="tool_vlm_query", attempt=i+1, note=f"frames={len(parsed_response.get('frames', [])) if parsed_response.get('frames') else 0}")
                 message = f"VLM_QUERY: {parsed_response}"
                 log(message, f"logs/log_video_{vid_path}_{question_uid}")
                 print("parsed response: ", parsed_response)
@@ -497,6 +1283,18 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
 
                 # Get requested frames and expand them to include ±5 seconds of context
                 frames = parsed_response.get("frames")
+                if not frames:
+                    frames = []
+                frames = _normalize_vlm_frames(frames)
+                if not frames:
+                    message = (
+                        "Invalid VLM_QUERY: no usable frame filenames were provided. "
+                        "For CAPTION_SEARCH clip IDs (e.g., clip_45_67), use QUERY_CLIP instead."
+                    )
+                    model.messages.append({"role": "system", "content": message})
+                    log(message, f"logs/log_video_{vid_path}_{question_uid}")
+                    continue
+
                 expanded_frames = _expand_frames_with_surrounding(frames, seconds_before=5, seconds_after=5)
                 print(f"Original frames ({len(frames)}): {frames}")
                 print(f"Expanded frames ({len(expanded_frames)}): {expanded_frames[:10]}..." if len(expanded_frames) > 10 else f"Expanded frames ({len(expanded_frames)}): {expanded_frames}")
@@ -511,6 +1309,7 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
                 model.messages.append({"role": "vlm response", "content": retrieved_info})
 
             elif parsed_response.get("tool") == "CAPTION_SEARCH":
+                _write_pipeline_probe(video_id, question_uid, status="tool_caption_search", attempt=i+1, note=f"queries={search_queries if 'search_queries' in locals() else 'n/a'}")
                 # Handle multiple search queries or single query
                 print("reaching parsed response get tool caption search")
 
@@ -535,37 +1334,67 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
                         print("Warning: No search query found in CAPTION_SEARCH")
                         continue
 
+                if search_queries and len(search_queries) > CAPTION_SEARCH_MAX_QUERIES:
+                    print(f"Trimming CAPTION_SEARCH queries from {len(search_queries)} to {CAPTION_SEARCH_MAX_QUERIES}")
+                    search_queries = search_queries[:CAPTION_SEARCH_MAX_QUERIES]
+
                 print(f"Performing {len(search_queries)} search queries: {search_queries}")
                 message = f"Search queries ({len(search_queries)}): {search_queries}"
                 log(message, f"logs/log_video_{vid_path}_{question_uid}")
 
                 # Perform all searches and collect results
                 all_results = []
+                caption_search_failed = False
                 # Detect if using clip captions based on embeddings path
                 use_clip_search = 'clip_embeddings' in str(embeddings_path)
 
                 for idx, query in enumerate(search_queries):
                     print(f"  Query {idx+1}/{len(search_queries)}: {query}")
                     # Use appropriate search function based on caption type
-                    if use_clip_search:
-                        results = await search_clip_captions(vid_path, question_uid, query, embeddings_path, 30)
-                    else:
-                        results = await search_captions(vid_path, question_uid, query, embeddings_path, 30)
+                    try:
+                        if use_clip_search:
+                            results = await search_clip_captions(vid_path, question_uid, query, embeddings_path, CAPTION_SEARCH_TOPK)
+                        else:
+                            results = await search_captions(vid_path, question_uid, query, embeddings_path, CAPTION_SEARCH_TOPK)
+                    except Exception as e:
+                        message = f"CAPTION_SEARCH failed for query '{query}': {e}"
+                        print(f"⚠️ {message}")
+                        retrieved_info = (
+                            "Caption search encountered an error: "
+                            f"{e}\n"
+                            "You can either try a different query, switch to QUERY_CLIP to sample a short segment, "
+                            "or continue with direct VLM reasoning using the global summary."
+                        )
+                        model.messages.append({"role": "system", "content": retrieved_info})
+                        _write_pipeline_probe(video_id, question_uid, status="tool_caption_search_error", attempt=i+1, last_error=str(e))
+                        caption_search_failed = True
+                        break
 
                     all_results.append({
                         "query": query,
                         "results": results if isinstance(results, list) else [results]
                     })
 
-                # Format results for LLM to process
-                retrieved_info_parts = [f"Retrieved frames from {len(search_queries)} different search queries.\n"]
-                retrieved_info_parts.append("Review all results below and choose the most relevant frames for your question.\n")
+                if caption_search_failed:
+                    continue
+
+                # Format results for LLM to process (trimmed to top-k highlights)
+                retrieved_info_parts = [f"Retrieved top {CAPTION_SEARCH_TOPK} results from each of {len(search_queries)} caption queries.\n"]
+                retrieved_info_parts.append("These are the only caption hits added to model context. If you need more, run another CAPTION_SEARCH.\n")
 
                 for idx, query_result in enumerate(all_results):
                     retrieved_info_parts.append(f"\n--- Query {idx+1}: \"{query_result['query']}\" ---")
                     results = query_result['results']
                     if isinstance(results, list) and len(results) > 0:
-                        retrieved_info_parts.append(json.dumps(results, indent=2))
+                        top_results = results[:CAPTION_SEARCH_TOPK]
+                        highlighted = []
+                        for rank, hit in enumerate(top_results, start=1):
+                            item = dict(hit) if isinstance(hit, dict) else {"result": hit}
+                            item["rank"] = rank
+                            if "similarity score" in item:
+                                item["ranked_similarity"] = round(float(item["similarity score"]), 4)
+                            highlighted.append(item)
+                        retrieved_info_parts.append(json.dumps(highlighted, indent=2))
                     else:
                         retrieved_info_parts.append("No results")
 
@@ -576,6 +1405,7 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
                 model.messages.append({"role": "caption search results", "content": retrieved_info})
 
             elif parsed_response.get("tool") == "RECORD":
+                _write_pipeline_probe(video_id, question_uid, status="tool_record", attempt=i+1)
                 # Record relevant observations for organizational tracking
                 entries = parsed_response.get("entries", [])
                 if not isinstance(entries, list):
@@ -584,7 +1414,6 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
                 print(f"Recording {len(entries)} event(s)")
                 for entry in entries:
                     # Parse time from entry (format: "Time: XX seconds, Event: ...")
-                    import re
                     time_match = re.search(r'Time:\s*(\d+)\s*seconds?', entry, re.IGNORECASE)
                     if time_match:
                         time_sec = int(time_match.group(1))
@@ -613,6 +1442,7 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
                 model.messages.append({"role": "system", "content": retrieved_info})
 
             elif parsed_response.get("tool") == "VIEW_RECORDS":
+                _write_pipeline_probe(video_id, question_uid, status="tool_view_records", attempt=i+1)
                 # Return all recorded observations sorted by time
                 print(f"Viewing {len(model.records)} recorded event(s)")
 
@@ -630,6 +1460,7 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
                 model.messages.append({"role": "system", "content": retrieved_info})
 
             elif parsed_response.get("tool") == "SUBTITLE_SEARCH":
+                _write_pipeline_probe(video_id, question_uid, status="tool_subtitle_search", attempt=i+1, note=f"query={parsed_response.get('query', '')}")
                 # Embeddings-based subtitle semantic search
                 query = parsed_response.get("query", "")
                 topk = parsed_response.get("topk", 10)  # Optional parameter
@@ -691,6 +1522,7 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
                     print(f"✗ SUBTITLE_SEARCH: Exception - {str(e)}")
 
             elif parsed_response.get("tool") == "EXTRACT_FINE_GRAINED_FRAMES":
+                _write_pipeline_probe(video_id, question_uid, status="tool_extract_fine_grained", attempt=i+1)
                 # Extract fine-grained frames at higher FPS
                 start_sec = parsed_response.get("start_second", 0.0)
                 end_sec = parsed_response.get("end_second", 0.0)
@@ -785,7 +1617,126 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
                     log(message, f"logs/log_video_{vid_path}_{question_uid}")
                     model.messages.append({"role": "system", "content": retrieved_info})
 
+            elif parsed_response.get("tool") == "QUERY_CLIP":
+                query_clip_used = True
+                _write_pipeline_probe(video_id, question_uid, status="tool_query_clip", attempt=i+1, note=f"start={parsed_response.get('start_frame')} end={parsed_response.get('end_frame')}")
+                message = f"QUERY_CLIP: {parsed_response}"
+                log(message, f"logs/log_video_{vid_path}_{question_uid}")
+                print("="*60 + "Querying clip segment" + "="*60)
+
+                start_frame = parsed_response.get("start_frame")
+                end_frame = parsed_response.get("end_frame")
+                prompt = parsed_response.get("prompt", "Describe the action sequence in this clip segment.")
+                fps = parsed_response.get("fps", QUERY_CLIP_DEFAULT_FPS)
+
+                # Validate required inputs
+                try:
+                    start_sec = float(start_frame)
+                    end_sec = float(end_frame)
+                except (TypeError, ValueError):
+                    model.messages.append({"role": "system", "content": "Invalid QUERY_CLIP: 'start_frame' and 'end_frame' must be numeric."})
+                    continue
+
+                if start_sec < 0 or end_sec < 0:
+                    model.messages.append({"role": "system", "content": "Invalid QUERY_CLIP: start_frame/end_frame must be non-negative."})
+                    continue
+                if end_sec <= start_sec:
+                    model.messages.append({"role": "system", "content": f"Invalid QUERY_CLIP range: end_frame ({end_sec}) must be greater than start_frame ({start_sec})."})
+                    continue
+
+                try:
+                    fps = int(fps)
+                except (TypeError, ValueError):
+                    fps = QUERY_CLIP_DEFAULT_FPS
+                fps = max(QUERY_CLIP_MIN_FPS, min(QUERY_CLIP_MAX_FPS, fps))
+
+                # Keep clip analysis short so VLM payload remains tractable.
+                duration = end_sec - start_sec
+                if duration > QUERY_CLIP_MAX_DURATION_SECONDS:
+                    end_sec = start_sec + QUERY_CLIP_MAX_DURATION_SECONDS
+                    model.messages.append({
+                        "role": "system",
+                        "content": f"QUERY_CLIP duration was truncated from {duration:.2f}s to {QUERY_CLIP_MAX_DURATION_SECONDS:.1f}s."
+                    })
+
+                if "kimi" in str(model.vlm).lower() and "/" not in str(model.vlm):
+                    clip_prompt = (
+                        f"Question: {question}\n\n"
+                        f"{prompt}\n\n"
+                        f"Important context: the provided video is a trimmed standalone segment from the original "
+                        f"timeline, covering approximately {start_sec:.2f}s to {end_sec:.2f}s. "
+                        f"Treat this as the only evidence window."
+                    )
+
+                    try:
+                        print(f"QUERY_CLIP request: video={video_id}, segment=({start_sec:.2f}, {end_sec:.2f}), fps={fps}")
+                        source_video = get_video_path_from_id(video_id, videos_dir)
+                        if not source_video:
+                            raise FileNotFoundError(f"Raw video not found for {video_id} in {videos_dir}")
+
+                        clip_output = tempfile.NamedTemporaryFile(
+                            suffix=".mp4",
+                            prefix=f"{video_id}_",
+                            delete=False
+                        )
+                        clip_output.close()
+                        raw_clip_path = trim_video_for_kimi(
+                            input_file=source_video,
+                            start_second=start_sec,
+                            end_second=end_sec,
+                            output_file=clip_output.name
+                        )
+                        try:
+                            retrieved_info = await query_vlm_kimi_video(model.vlm, raw_clip_path, clip_prompt, temperature=1.0)
+                            print(f"QUERY_CLIP VLM preview: {retrieved_info[:160]}...")
+                            print(f"QUERY_CLIP VLM response length: {len(retrieved_info)}")
+                        finally:
+                            if os.path.exists(raw_clip_path):
+                                os.remove(raw_clip_path)
+                        model.messages.append({"role": "query clip results", "content": retrieved_info})
+                    except Exception as e:
+                        model.messages.append({"role": "system", "content": f"QUERY_CLIP VLM analysis failed: {e}"})
+                    continue
+
+                try:
+                    frame_paths = extract_fine_grained_for_pipeline(
+                        video_id=video_id,
+                        start_second=start_sec,
+                        end_second=end_sec,
+                        fps=fps,
+                        videos_dir=videos_dir,
+                        output_base=os.path.dirname(os.path.dirname(vid_path)),
+                        vid_path=vid_path
+                    )
+                except FileNotFoundError as e:
+                    model.messages.append({"role": "system", "content": f"QUERY_CLIP failed: video file not found ({e})"})
+                    continue
+                except RuntimeError as e:
+                    model.messages.append({"role": "system", "content": f"QUERY_CLIP failed: {e}"})
+                    continue
+                except Exception as e:
+                    model.messages.append({"role": "system", "content": f"QUERY_CLIP failed with unexpected error: {e}"})
+                    continue
+
+                if not frame_paths:
+                    model.messages.append({"role": "system", "content": "QUERY_CLIP extracted no frames from this range. Try a smaller range."})
+                    continue
+
+                clip_frames = [(f"{vid_path}/" + frame_path) for frame_path in frame_paths]
+                clip_prompt = (
+                    f"{prompt}\n\n"
+                    f"You are viewing {len(clip_frames)} clip frames sampled at {fps} FPS "
+                    f"covering approximately {start_sec:.2f}s to {end_sec:.2f}s."
+                )
+
+                try:
+                    retrieved_info = await model.vlm_query(clip_frames, clip_prompt)
+                    model.messages.append({"role": "query clip results", "content": retrieved_info})
+                except Exception as e:
+                    model.messages.append({"role": "system", "content": f"QUERY_CLIP VLM analysis failed: {e}"})
+
             elif parsed_response.get("tool") == "CROP_OBJECT":
+                _write_pipeline_probe(video_id, question_uid, status="tool_crop_object", attempt=i+1, note=f"frame={parsed_response.get('frame','')}")
                 # Crop specific objects from a frame for detailed analysis
                 from crop_objects_gemini import crop_objects_from_frame
 
@@ -875,11 +1826,12 @@ async def query_model_iterative(model, question, question_uid, vid_path, candida
                     model.messages.append({"role": "system", "content": retrieved_info})
 
             else:
+                _write_pipeline_probe(video_id, question_uid, status="tool_unknown", attempt=i+1, note=f"tool={parsed_response.get('tool')}")
                 tool_name = parsed_response.get('tool')
                 message = f"Invalid or unrecognized tool: '{tool_name}' (type: {type(tool_name)}, repr: {repr(tool_name)})"
                 log(message, f"logs/log_video_{vid_path}_{question_uid}")
                 print(f"❌ {message}")
-                print(f"   Valid tools: FINAL_ANSWER, VLM_QUERY, CAPTION_SEARCH, RECORD, VIEW_RECORDS, SUBTITLE_SEARCH, EXTRACT_FINE_GRAINED_FRAMES, CROP_OBJECT")
+                print(f"   Valid tools: FINAL_ANSWER, VLM_QUERY, CAPTION_SEARCH, QUERY_CLIP, RECORD, VIEW_RECORDS, SUBTITLE_SEARCH, EXTRACT_FINE_GRAINED_FRAMES, CROP_OBJECT")
                 print(f"   Parsed response keys: {list(parsed_response.keys())}")
                 continue
 
@@ -925,13 +1877,18 @@ Now review the results and choose the most relevant keyframes for VLM querying.
                 print(f"✓ Preparing prompt with SUBTITLE_SEARCH results (length: {len(retrieved_info)} chars)")
             elif parsed_response.get("tool") == "EXTRACT_FINE_GRAINED_FRAMES":
                 retrieved_info = "The following fine-grained frames have been extracted at higher FPS. You can now use VLM_QUERY with these frames to analyze detailed movements and actions.\n" + str(model.messages[-1].get("content", ""))
+            elif parsed_response.get("tool") == "QUERY_CLIP":
+                retrieved_info = "QUERY_CLIP analyzed a short sampled segment and returns motion-aware observations for that time window.\n" + str(model.messages[-1].get("content", ""))
             elif parsed_response.get("tool") == "CROP_OBJECT":
                 retrieved_info = "Objects have been detected and cropped from the frame. These cropped images show ONLY the detected objects with fine details. Use VLM_QUERY with the cropped image paths to analyze specific object details.\n" + str(model.messages[-1].get("content", ""))
             else:
                 retrieved_info = str(model.messages[-1].get("content", ""))
 
+            retrieved_info = _trim_retrieved_info(retrieved_info)
+
             # CRITICAL: Include full conversation history in prompt
-            prompt = str(model.messages) + prompts.followup_prompt(retrieved_info, question, candidates, use_subtitles=use_subtitles, subtitles_available=subtitles_available)
+            trimmed_messages = _trim_messages_for_prompt(model.messages)
+            prompt = str(trimmed_messages) + prompts.followup_prompt(retrieved_info, question, candidates, use_subtitles=use_subtitles, subtitles_available=subtitles_available)
             print(f"✓ Updated prompt for next iteration (length: {len(prompt)} chars, messages: {len(model.messages)})")
         except Exception as e:
             message = f"Error updating prompt: {e}"
@@ -940,7 +1897,7 @@ Now review the results and choose the most relevant keyframes for VLM querying.
             continue
     
     # Return final formatted scratchpad
-    final_prompt = finish_prompt(model.messages, candidates)
+    final_prompt = finish_prompt(_trim_messages_for_prompt(model.messages, max_chars=MAX_MESSAGE_SNIPPET_CHARS), candidates)
     final_answer = await model.llm_query_async(final_prompt)
     
     if not final_answer:
@@ -971,20 +1928,23 @@ Now review the results and choose the most relevant keyframes for VLM querying.
             else:
                 # Return as is if not JSON
                 answer = final_answer
+                inferred = _extract_candidate_answer(answer, candidates)
+                if isinstance(inferred, int):
+                    answer = inferred
 
                 # Try to match answer against candidates if provided
                 if candidates:
                     # Try exact match first
                     for idx, candidate in enumerate(candidates):
-                        if str(final_answer).strip().lower() == candidate.strip().lower():
+                        if str(answer).strip().lower() == candidate.strip().lower():
                             answer = idx
                             break
                         # Try matching without punctuation
-                        if str(final_answer).strip().lower() == candidate.strip().rstrip('.').lower():
+                        if str(answer).strip().lower() == candidate.strip().rstrip('.').lower():
                             answer = idx
                             break
                         # Try matching if answer is just a number and candidate starts with that number
-                        if str(final_answer).strip() in candidate.split('.')[0].strip():
+                        if str(answer).strip() in candidate.split('.')[0].strip():
                             answer = idx
                             break
 
@@ -1011,6 +1971,9 @@ Now review the results and choose the most relevant keyframes for VLM querying.
                         f.write(f"saved model messages for question {question_uid}, video {vid_path}\n")
 
             answer = parsed_final.get("answer", "")
+            inferred = _extract_candidate_answer(answer, candidates)
+            if isinstance(inferred, int):
+                answer = inferred
 
             # Try to match answer against candidates if provided
             if candidates:
@@ -1054,23 +2017,26 @@ Now review the results and choose the most relevant keyframes for VLM querying.
     except:
         pass
 
+    answer = final_answer
+    inferred = _extract_candidate_answer(final_answer, candidates)
+    if isinstance(inferred, int):
+        answer = inferred
+
     message = model.messages
     log(message, f"logs/log_video_{vid_path}_{question_uid}")
-
-    answer = final_answer
 
     # Try to match answer against candidates if provided
     if candidates:
         for idx, candidate in enumerate(candidates):
-            if str(final_answer).strip().lower() == candidate.strip().lower():
+            if str(answer).strip().lower() == candidate.strip().lower():
                 answer = idx
                 break
             # Try matching without punctuation
-            if str(final_answer).strip().lower() == candidate.strip().rstrip('.').lower():
+            if str(answer).strip().lower() == candidate.strip().rstrip('.').lower():
                 answer = idx
                 break
             # Try matching if answer is just a number and candidate starts with that number
-            if str(final_answer).strip() in candidate.split('.')[0].strip():
+            if str(answer).strip() in candidate.split('.')[0].strip():
                 answer = idx
                 break
 
@@ -1092,7 +2058,7 @@ Now review the results and choose the most relevant keyframes for VLM querying.
         result["criteria"] = question_criteria
     return result
 
-async def answer_question(question_uid, question, vid_folder, vid_num, candidates=None, vlm_model="meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8", llm_model="deepseek-ai/DeepSeek-V3.1", use_no_vlm=False, videos_dir="/mnt/ssd/data/longvideobench/videos", pass_all_subtitles_to_llm=False, subtitles_dir=None, embeddings_path=None):
+async def answer_question(question_uid, question, vid_folder, vid_num, candidates=None, vlm_model="kimi-k2.5", llm_model="moonshotai/Kimi-K2.5", use_no_vlm=False, videos_dir="/mnt/ssd/data/longvideobench/videos", pass_all_subtitles_to_llm=False, subtitles_dir=None, embeddings_path=None):
     try:
         # Create a separate Pipeline instance for each question to avoid shared state
         #qwen model : Qwen/Qwen3-235B-A22B-Instruct-2507-tput
@@ -1100,6 +2066,13 @@ async def answer_question(question_uid, question, vid_folder, vid_num, candidate
         curr_folder = str(vid_folder)
         num = vid_num
         vid_path = curr_folder + "/" + num
+        required_context = [
+            f"{vid_path}/captions/global_summary.txt",
+            f"{vid_path}/captions/CES_logs.txt",
+        ]
+        missing_context = [path for path in required_context if not os.path.exists(path)]
+        if missing_context:
+            raise FileNotFoundError(f"Missing required context file(s): {', '.join(missing_context)}")
         print("vid_path", vid_path) #TODO: remove this
         answers_path = f'{curr_folder}/{num}/{num}_answers.json'
         answer = await query_model_iterative_with_retry(model, question, question_uid, vid_path, answers_path, candidates=candidates, use_no_vlm=use_no_vlm, videos_dir=videos_dir, pass_all_subtitles_to_llm=pass_all_subtitles_to_llm, subtitles_dir=subtitles_dir, embeddings_path=embeddings_path)

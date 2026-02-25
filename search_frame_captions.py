@@ -2,8 +2,12 @@ import argparse
 import json
 import math
 import os
-from typing import Dict, Iterable, List, Tuple, Optional
-from openai import AsyncOpenAI, OpenAI
+from typing import Dict, Iterable, List, Tuple, Optional, Sequence
+try:
+    from openai import AsyncOpenAI, OpenAI
+except Exception:  # pragma: no cover - optional dependency in this environment
+    AsyncOpenAI = None
+    OpenAI = None
 import numpy as np
 import time
 import fcntl
@@ -152,6 +156,10 @@ def embed_query(
                 vec = vec / norm
         return vec
     elif provider == "openai":
+        if OpenAI is None:
+            raise RuntimeError(
+                "The 'openai' package is required for provider=openai. Install with: pip install openai"
+            )
         client = OpenAI()
         # Ensure query is a non-empty string
         if not query or not isinstance(query, str):
@@ -190,6 +198,11 @@ async def embed_query_async(
         np.ndarray: L2-normalized embedding vector
     """
     if provider == "openai":
+        if AsyncOpenAI is None:
+            raise RuntimeError(
+                "The 'openai' package is required for provider=openai. "
+                "Install with: pip install openai"
+            )
         client = AsyncOpenAI()
         # Ensure query is a non-empty string
         if not query or not isinstance(query, str):
@@ -410,6 +423,56 @@ def cosine_topk(query_vec: np.ndarray, corpus: np.ndarray, k: int) -> Tuple[np.n
     return idx, scores[idx]
 
 
+def _select_clip_caption_embedder(dim: int) -> Sequence[Tuple[str, str]]:
+    """Return candidate embedder backends/models for a caption embedding dimension."""
+    if dim == 1024:
+        # Try requested nvidia model first, then fallback to Together's available 1024-d alternative.
+        return (
+            ("together", "nvidia/NV-Embed-v2"),
+            ("together", "BAAI/bge-large-en-v1.5"),
+        )
+    if dim == 768:
+        # Default for the pipeline's frame/clip caption embeddings.
+        # Prefer Together API to avoid local SBERT dependency.
+        return (
+            ("together", "Alibaba-NLP/gte-modernbert-base"),
+        )
+    # Safe fallback for unexpected dims.
+    return (
+        ("together", "Alibaba-NLP/gte-modernbert-base"),
+        ("together", "BAAI/bge-large-en-v1.5"),
+    )
+
+
+async def _embed_query_with_fallback(query: str, target_dim: int) -> np.ndarray:
+    """Try multiple embedding models until one works and returns the target dimensionality."""
+    last_error = None
+    for provider, model_name in _select_clip_caption_embedder(target_dim):
+        try:
+            query_vec = await embed_query_async(
+                query,
+                provider=provider,
+                model_name=model_name,
+                normalize=True,
+            )
+            if query_vec.shape[0] != target_dim:
+                print(
+                    f"⚠️ Skipped {provider}:{model_name} due to dimension mismatch "
+                    f"({query_vec.shape[0]} != {target_dim})"
+                )
+                continue
+            print(f"✓ Query embedded with {provider}:{model_name}")
+            return query_vec
+        except Exception as e:
+            last_error = e
+            print(f"⚠️ Embedding with {provider}:{model_name} failed: {e}")
+
+    raise RuntimeError(
+        f"No available clip-caption embedder could produce {target_dim} dims. "
+        f"Last error: {last_error}"
+    )
+
+
 def format_time_s(seconds: int) -> str:
     if seconds is None or not isinstance(seconds, (int, np.integer)):
         return ""
@@ -479,23 +542,18 @@ async def search_captions(vid_path, question_uid, query, embeddings_path, topk=3
     """
     import os
 
-    # Use local sentence-transformers with Alibaba-NLP/gte-modernbert-base (768 dimensions, L2 normalized)
-    # This MUST match the model used for embedding the captions
-    # Using local embeddings to avoid Together AI rate limits (model not available on serverless)
-    provider = "sbert"
-    model_name = "Alibaba-NLP/gte-modernbert-base"
-
-    print(f"Searching captions with Together AI ({model_name})")
+    print(f"Searching captions with semantic embeddings")
     print(f"Embeddings path: {embeddings_path}")
-
-    # Embed the query with the same model used for captions
-    query_emb = await embed_query_async(query, provider=provider, model_name=model_name, normalize=True)
-    print(f"✓ Query embedded: {query[:100]}..." if len(query) > 100 else f"✓ Query embedded: {query}")
-    print(f"  Query embedding shape: {query_emb.shape}")
 
     # Load pre-computed caption embeddings
     records, matrix = load_jsonl_embeddings(embeddings_path)
     print(f"  Loaded {len(records)} caption embeddings (shape: {matrix.shape})")
+
+    # Embed query with a provider/model that matches embedding dimensions.
+    # This defaults to Together and falls back only if needed.
+    query_emb = await _embed_query_with_fallback(query, matrix.shape[1])
+    print(f"✓ Query embedded: {query[:100]}..." if len(query) > 100 else f"✓ Query embedded: {query}")
+    print(f"  Query embedding shape: {query_emb.shape}")
 
     # Check dimension compatibility
     if query_emb.shape[0] != matrix.shape[1]:
@@ -536,42 +594,37 @@ async def search_clip_captions(vid_path, question_uid, query, embeddings_path, t
     Returns:
         List of search results with clip time ranges and similarity scores
     """
-    import os
-    from together import Together
-
-    print(f"Searching clip captions with nvidia/NV-Embed-v2")
+    print(f"Searching clip captions with nvidia/NV-Embed-v2 (fallbacks enabled)")
     print(f"Embeddings path: {embeddings_path}")
 
-    # Use Together AI for nvidia/NV-Embed-v2 embeddings
-    # This must match the model used for embedding the clip captions
-    client = Together(api_key=together_key)
-
-    # Embed the query
+    # Load pre-computed clip embeddings
     try:
-        response = client.embeddings.create(
-            model="nvidia/NV-Embed-v2",
-            input=[query]
-        )
-        query_emb = np.array(response.data[0].embedding)
-        # Normalize
-        query_emb = query_emb / np.linalg.norm(query_emb)
-        query_emb = query_emb.reshape(1, -1)
-        print(f"✓ Query embedded: {query[:100]}..." if len(query) > 100 else f"✓ Query embedded: {query}")
+        records, matrix = load_jsonl_embeddings(embeddings_path)
+    except Exception as e:
+        print(f"✗ Failed to load clip embeddings from {embeddings_path}: {e}")
+        return []
+
+    if matrix is None or matrix.size == 0:
+        print(f"✗ Clip embeddings file is empty or invalid: {embeddings_path}")
+        return []
+
+    print(f"  Loaded {len(records)} clip embeddings (shape: {matrix.shape})")
+
+    try:
+        query_emb = await _embed_query_with_fallback(query, matrix.shape[1])
+        query_emb = np.array(query_emb).reshape(1, -1)
     except Exception as e:
         print(f"Error embedding query: {e}")
         return []
 
-    # Load pre-computed clip embeddings
-    records, matrix = load_jsonl_embeddings(embeddings_path)
-    print(f"  Loaded {len(records)} clip embeddings (shape: {matrix.shape})")
-
     # Check dimension compatibility
     if query_emb.shape[1] != matrix.shape[1]:
-        raise ValueError(
-            f"Dimension mismatch: query embedding has {query_emb.shape[1]} dims "
+        print(
+            f"Dimension mismatch: query has {query_emb.shape[1]} dims "
             f"but caption embeddings have {matrix.shape[1]} dims. "
             f"Ensure query and captions use the same embedding model."
         )
+        return []
 
     # Find most similar clips using cosine similarity
     idx, scores = cosine_topk(query_emb, matrix, k=topk)
